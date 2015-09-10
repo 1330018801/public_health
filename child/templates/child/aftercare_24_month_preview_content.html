@@ -1,0 +1,401 @@
+{% extends 'child/aftercare_1_2_year_base.html' %}
+
+{% comment %}12月龄随访{% endcomment %}
+
+{% block visit_date_12 %}
+    {{ aftercare_12_month.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_12 %}
+    {{ aftercare_12_month.weight }}
+{% endblock %}
+
+{% block weight_grade_12 %}
+    {{ aftercare_12_month.weight_grade }}
+{% endblock %}
+
+{% block height_12 %}
+    {{ aftercare_12_month.height }}
+{% endblock %}
+
+{% block height_grade_12 %}
+    {{ aftercare_12_month.height_grade }}
+{% endblock %}
+
+{% block complexion_12 %}
+    {{ aftercare_12_month.complexion }}
+{% endblock %}
+
+{% block skin_12 %}
+    {{ aftercare_12_month.skin }}
+{% endblock %}
+
+{% block bregma_12 %}
+    {{ aftercare_12_month.bregma }}
+{% endblock %}
+
+{% block bregma_length_12 %}
+    {% if aftercare_12_month.bregma_length != None %}
+        {{ aftercare_12_month.bregma_length }}
+    {% endif %}
+{% endblock %}
+
+{% block bregma_width_12 %}
+    {% if aftercare_12_month.bregma_width != None %}
+        {{ aftercare_12_month.bregma_width }}
+    {% endif %}
+{% endblock %}
+
+{% block eye_appearance_12 %}
+    {{ aftercare_12_month.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_12 %}
+    {{ aftercare_12_month.ear_appearance }}
+{% endblock %}
+
+{% block hearing_12 %}
+    {{ aftercare_12_month.hearing }}
+{% endblock %}
+
+{% block tooth_12 %}
+    {{ aftercare_12_month.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_12 %}
+    {{ aftercare_12_month.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_12 %}
+    {{ aftercare_12_month.heart_lung }}
+{% endblock %}
+
+{% block abdomen_12 %}
+    {{ aftercare_12_month.abdomen }}
+{% endblock %}
+
+{% block all_fours_12 %}
+    {{ aftercare_12_month.all_fours }}
+{% endblock %}
+
+{% block rickets_sign_12 %}
+    {{ aftercare_12_month.rickets_sign }}
+{% endblock %}
+
+{% block outdoor_activities_12 %}
+    {{ aftercare_12_month.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_12 %}
+    {{ aftercare_12_month.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_12 %}
+    {{ aftercare_12_month.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_12 %}
+    {{ aftercare_12_month.two_visit_disease }}
+{% endblock %}
+
+{% block extra_12 %}
+    {{ aftercare_12_month.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_12 %}
+    {{ aftercare_12_month.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_12 %}
+    {{ aftercare_12_month.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_12 %}
+    {{ aftercare_12_month.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_12 %}
+    {% for item in aftercare_12_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_12 %}
+    {{ aftercare_12_month.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_12 %}
+    {{ aftercare_12_month.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_12 %}
+    {{ aftercare_12_month.doctor_signature }}
+{% endblock %}
+
+{% comment %}18月龄随访{% endcomment %}
+
+{% block visit_date_18 %}
+    {{ aftercare_18_month.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_18 %}
+    {{ aftercare_18_month.weight }}
+{% endblock %}
+
+{% block weight_grade_18 %}
+    {{ aftercare_18_month.weight_grade }}
+{% endblock %}
+
+{% block height_18 %}
+    {{ aftercare_18_month.height }}
+{% endblock %}
+
+{% block height_grade_18 %}
+    {{ aftercare_18_month.height_grade }}
+{% endblock %}
+
+{% block complexion_18 %}
+    {{ aftercare_18_month.complexion }}
+{% endblock %}
+
+{% block skin_18 %}
+    {{ aftercare_18_month.skin }}
+{% endblock %}
+
+{% block bregma_18 %}
+    {{ aftercare_18_month.bregma }}
+{% endblock %}
+
+{% block bregma_length_18 %}
+    {% if aftercare_18_month.bregma_length != None %}
+        {{ aftercare_18_month.bregma_length }}
+    {% endif %}
+{% endblock %}
+
+{% block bregma_width_18 %}
+    {% if aftercare_18_month.bregma_width != None %}
+        {{ aftercare_18_month.bregma_width }}
+    {% endif %}
+{% endblock %}
+
+{% block eye_appearance_18 %}
+    {{ aftercare_18_month.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_18 %}
+    {{ aftercare_18_month.ear_appearance }}
+{% endblock %}
+
+{% block tooth_18 %}
+    {{ aftercare_18_month.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_18 %}
+    {{ aftercare_18_month.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_18 %}
+    {{ aftercare_18_month.heart_lung }}
+{% endblock %}
+
+{% block abdomen_18 %}
+    {{ aftercare_18_month.abdomen }}
+{% endblock %}
+
+{% block all_fours_18 %}
+    {{ aftercare_18_month.all_fours }}
+{% endblock %}
+
+{% block step_18 %}
+    {{ aftercare_18_month.step }}
+{% endblock %}
+
+{% block rickets_sign_18 %}
+    {{ aftercare_18_month.rickets_sign }}
+{% endblock %}
+
+{% block hemoglobin_value_18 %}
+    {{ aftercare_18_month.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_18 %}
+    {{ aftercare_18_month.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_18 %}
+    {{ aftercare_18_month.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_18 %}
+    {{ aftercare_18_month.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_18 %}
+    {{ aftercare_18_month.two_visit_disease }}
+{% endblock %}
+
+{% block extra_18 %}
+    {{ aftercare_18_month.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_18 %}
+    {{ aftercare_18_month.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_18 %}
+    {{ aftercare_18_month.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_18 %}
+    {{ aftercare_18_month.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_18 %}
+    {% for item in aftercare_18_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_18 %}
+    {{ aftercare_18_month.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_18 %}
+    {{ aftercare_18_month.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_18 %}
+    {{ aftercare_18_month.doctor_signature }}
+{% endblock %}
+
+{% comment %}24月龄随访{% endcomment %}
+
+{% block visit_date_24 %}
+    {{ form.visit_date.data }}
+{% endblock %}
+
+{% block weight_24 %}
+    {{ form.weight.data }}
+{% endblock %}
+
+{% block weight_grade_24 %}
+    {{ form.weight_grade.data }}
+{% endblock %}
+
+{% block height_24 %}
+    {{ form.height.data }}
+{% endblock %}
+
+{% block height_grade_24 %}
+    {{ form.height_grade.data }}
+{% endblock %}
+
+{% block complexion_24 %}
+    {{ form.complexion.data }}
+{% endblock %}
+
+{% block skin_24 %}
+    {{ form.skin.data }}
+{% endblock %}
+
+{% block bregma_24 %}
+    {{ form.bregma.data }}
+{% endblock %}
+
+{% block bregma_length_24 %}
+    {{ form.bregma_length.data }}
+{% endblock %}
+
+{% block bregma_width_24 %}
+    {{ form.bregma_width.data }}
+{% endblock %}
+
+{% block eye_appearance_24 %}
+    {{ form.eye_appearance.data }}
+{% endblock %}
+
+{% block ear_appearance_24 %}
+    {{ form.ear_appearance.data }}
+{% endblock %}
+
+{% block hearing_24 %}
+    {{ form.hearing.data }}
+{% endblock %}
+
+{% block tooth_24 %}
+    {{ form.tooth.data }}
+{% endblock %}
+
+{% block decayed_tooth_24 %}
+    {{ form.decayed_tooth.data }}
+{% endblock %}
+
+{% block heart_lung_24 %}
+    {{ form.heart_lung.data }}
+{% endblock %}
+
+{% block abdomen_24 %}
+    {{ form.abdomen.data }}
+{% endblock %}
+
+{% block all_fours_24 %}
+    {{ form.all_fours.data }}
+{% endblock %}
+
+{% block step_24 %}
+    {{ form.step.data }}
+{% endblock %}
+
+{% block rickets_sign_24 %}
+    {{ form.rickets_sign.data }}
+{% endblock %}
+
+{% block outdoor_activities_24 %}
+    {{ form.outdoor_activities.data }}
+{% endblock %}
+
+{% block take_vitamin_d_24 %}
+    {{ form.take_vitamin_d.data }}
+{% endblock %}
+
+{% block growth_evaluate_24 %}
+    {{ form.growth_evaluate.data }}
+{% endblock %}
+
+{% block two_visit_disease_24 %}
+    {{ form.two_visit_disease.data }}
+{% endblock %}
+
+{% block extra_24 %}
+    {{ form.extra.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_24 %}
+    {{ form.transfer_treatment_suggestion.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_24 %}
+    {{ form.transfer_treatment_suggestion_reason.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_24 %}
+    {{ form.transfer_treatment_suggestion_institution.data }}
+{% endblock %}
+
+{% block guide_24 %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_24 %}
+    {{ form.guide_extra.data }}
+{% endblock %}
+
+{% block next_visit_date_24 %}
+    {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature_24 %}
+    {{ form.doctor_signature.data }}
+{% endblock %}

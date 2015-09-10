@@ -1,0 +1,22 @@
+{% load staticfiles %}
+
+<div>
+    <table id="village_clinics"></table>
+</div>
+
+<div id="village_clinic_tb" style="padding: 5px">
+    <div>
+        <a href="#" id="add">新增</a>
+        <a href="#" id="edit">修改</a>
+        <a href="#" id="remove">删除</a>
+        <a href="#" id="save">保存</a>
+        <a href="#" id="undo">取消</a>
+    </div>
+    <div style="margin: 5px 0 5px 4px">
+        所属卫生院：<input id="query_town_clinic"/>
+        <span style="margin-left: 15px;">卫生室名称：</span><input id="query_village"/>
+        <a href="#" id="query">查询</a>
+    </div>
+</div>
+
+<script src='{% static "js/village_clinics.js" %}'></script>

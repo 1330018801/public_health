@@ -1,0 +1,127 @@
+{% extends 'tcm/child_base.html' %}
+
+{% if aftercare_6_month %}
+{% block tbl_1_col_3_visit_date %}
+    {{ aftercare_6_month.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_1_col_3_guide %}
+    {% for item in aftercare_6_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_6_month.guide_extra }}
+{% endblock %}
+
+{% block tbl_1_col_3_next_visit_date %}
+    {{ aftercare_6_month.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_1_col_3_doctor_signature %}
+    {{ aftercare_6_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% if aftercare_12_month %}
+{% block tbl_2_col_1_visit_date %}
+    {{ aftercare_12_month.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_1_guide %}
+    {% for item in aftercare_12_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_12_month.guide_extra }}
+{% endblock %}
+
+{% block tbl_2_col_1_next_visit_date %}
+    {{ aftercare_12_month.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_1_doctor_signature %}
+    {{ aftercare_12_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% if aftercare_18_month %}
+{% block tbl_2_col_2_visit_date %}
+    {{ aftercare_18_month.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_2_guide %}
+    {% for item in aftercare_18_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_18_month.guide_extra }}
+{% endblock %}
+
+{% block tbl_2_col_2_next_visit_date %}
+    {{ aftercare_18_month.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_2_doctor_signature %}
+    {{ aftercare_18_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% if aftercare_24_month %}
+{% block tbl_2_col_3_visit_date %}
+    {{ aftercare_24_month.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_3_guide %}
+    {% for item in aftercare_24_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_24_month.guide_extra }}
+{% endblock %}
+
+{% block tbl_2_col_3_next_visit_date %}
+    {{ aftercare_24_month.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_3_doctor_signature %}
+    {{ aftercare_24_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% if aftercare_30_month %}
+{% block tbl_2_col_4_visit_date %}
+    {{ aftercare_30_month.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_4_guide %}
+    {% for item in aftercare_30_month.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_30_month.guide_extra }}
+{% endblock %}
+
+{% block tbl_2_col_4_next_visit_date %}
+    {{ aftercare_30_month.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_2_col_4_doctor_signature %}
+    {{ aftercare_30_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% if aftercare_3_year %}
+{% block tbl_3_col_1_visit_date %}
+    {{ aftercare_3_year.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_3_col_1_guide %}
+    {% for item in aftercare_3_year.guide.all %}
+        {{ item }}
+    {% endfor %}
+    {{ aftercare_3_year.guide_extra }}
+{% endblock %}
+
+{% block tbl_3_col_1_next_visit_date %}
+    {{ aftercare_3_year.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_3_col_1_doctor_signature %}
+    {{ aftercare_3_year.doctor_signature }}
+{% endblock %}
+{% endif %}

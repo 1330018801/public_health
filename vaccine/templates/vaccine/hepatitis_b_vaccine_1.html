@@ -1,0 +1,18 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_header %}
+    <h3 class="page-header" align="center">{{ service_type.name }}: {{ service_item.name }}</h3>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'vaccine:hepatitis_b_vaccine_1' %}" method="POST">
+
+    {% csrf_token %}
+        {{ form.non_filed_errors }}
+        {% include 'vaccine/all_vaccine.html' %}
+        {% include 'vaccine/next_vaccinate_date.html' %}
+
+        {% include 'management/service_details_return_button.html' %}
+    </form>
+{% endblock %}

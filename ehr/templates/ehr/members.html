@@ -1,0 +1,74 @@
+{% extends "health_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container" style="margin: 40px; padding: 30px">
+<div class="row">
+    <h5 class="page-header" align="left">
+        <a href="{% url 'ehr:member_add_child' %}">添加婴幼儿</a> |
+        <a href="{% url 'ehr:member_add_adult' %}">添加成年人</a> |
+        <a href="#">添加老年人</a> |
+        <a href="{% url 'ehr:member_del' %}">删除家庭成员</a>
+    </h5>
+    <h5 class="page-header" align="left">当前家庭成员有{{ members|length }}位:</h5>
+    <div class="table-responsive">
+        <table style="width: 1100px; border-color: #808080; margin: 20px; padding: 20px" align="center">
+            <thead>
+            <tr style="background-color: lightgrey">
+                <th style="width: 60px">姓名</th><th style="width: 30px">性别</th><th style="width: 30px">民族</th>
+                <th style="width: 80px">身份证号码</th>
+                <th style="width: 30px">年龄</th>
+                <th style="width: 150px">住址</th>
+                <th style="width: 80px">电话</th>
+                <th style="width: 100px">个人基本信息表</th>
+                <th style="width: 100px">预防接种卡</th>
+                <th style="width: 100px">重性精神疾病患者个人信息补充表</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for member in members %}
+            <tr style="line-height: 20px; height: 40px">
+                <td>{{ member.name }}</td>
+                <td>{% if member.gender == 1 %}男{% elif member.gender == 0 %}女{% else %}未知{% endif %}</td>
+                <td>{{ member.nation }}</td>
+                <td>{% if member.identity %}{{ member.identity }}{% endif %}</td>
+                <td>{% if member.birthday %}{{ member.age }}{% endif %}</td>
+                <td>{% if member.address %}{{ member.address }}{% endif %}</td>
+                <td>{% if member.mobile %}{{ member.mobile }}{% endif %}</td>
+                <td align="center">
+                    {% if member.personalinfo %}
+                        <span style="background-color: lightgreen">已建档</span> |
+                        <a href="/ehr/personal_info_review/{{ member.id }}/">调阅</a>
+                    {% else %}
+                        <span style="background-color: #ffff00">未建档</span> |
+                        <a href="/ehr/personal_info/{{ member.id }}/">新建</a>
+                    {% endif %}
+                </td>
+                <td align="center">
+                    {% if member.age < 7 %}
+                        {% if member.vaccinecard %}
+                            <span style="background-color: lightgreen">已建卡</span> |
+                            <a href="/ehr/vaccine_card/?card_resident_id={{ member.id }}">调阅</a>
+                        {% else %}
+                            <span style="background-color: #ffff00">未建卡</span> |
+                            <a href="/ehr/vaccine_card/?card_resident_id={{ member.id }}">新建</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+                <td align="center">
+                    {% if member.psychiatricinfo %}
+                        <span style="background-color: lightgreen">已填写</span> |
+                        <a href="/ehr/psychiatric_info_review/{{ member.id }}/">调阅</a>
+                    {% else %}
+                        未填写 |
+                        <a href="/ehr/psychiatric_info/{{ member.id }}/">新建</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock content %}

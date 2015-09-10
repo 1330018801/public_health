@@ -1,0 +1,235 @@
+{% extends 'child/aftercare_1_year_base.html' %}
+
+{% block table_neck_extra%}
+    {% for item in form.errors %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date_1 %}
+    {{ form.visit_date }}
+{% endblock %}
+
+{% block weight_1 %}
+    {{ form.weight }}
+{% endblock %}
+
+{% block weight_grade_1 %}
+    {% for item in form.weight_grade %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block height_1 %}
+    {{ form.height }}
+{% endblock %}
+
+{% block height_grade_1 %}
+    {% for item in form.height_grade %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block head_circumference_1 %}
+    {{ form.head_circumference }}
+{% endblock %}
+
+{% block complexion_1 %}
+    {% for item in form.complexion %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block skin_1 %}
+    {% for item in form.skin %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block bregma_1 %}
+    {% for item in form.bregma %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block bregma_length_1 %}
+    {{ form.bregma_length }}
+{% endblock %}
+
+{% block bregma_width_1 %}
+    {{ form.bregma_width }}
+{% endblock %}
+
+{% block neck_enclosed_mass_1 %}
+    {% for item in form.neck_enclosed_mass %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block eye_appearance_1 %}
+    {% for item in form.eye_appearance %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block ear_appearance_1 %}
+    {% for item in form.ear_appearance %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block oral_cavity_1 %}
+    {% for item in form.oral_cavity %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block heart_lung_1 %}
+    {% for item in form.heart_lung %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block abdomen_1 %}
+    {% for item in form.abdomen %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block navel_1 %}
+    {% for item in form.navel %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block all_fours_1 %}
+    {% for item in form.all_fours %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block rickets_sign_1 %}
+    {% for item in form.rickets_sign %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block anus_externalia_1 %}
+    {% for item in form.anus_externalia %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block hemoglobin_value_1 %}
+    {{ form.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_1 %}
+    {{ form.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_1 %}
+    {{ form.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_1 %}
+    {% for item in form.growth_evaluate %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block two_visit_disease_1 %}
+    {% for item in form.two_visit_disease %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block extra_1 %}
+    {{ form.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_1 %}
+    {% for item in form.transfer_treatment_suggestion %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_1 %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_1 %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_1 %}
+    {% for item in form.guide %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}<br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_1 %}
+    {{ form.next_visit_date }}
+{% endblock %}
+
+{% block doctor_signature_1 %}
+    {{ form.doctor_signature }}
+{% endblock %}

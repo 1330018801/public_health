@@ -1,0 +1,14 @@
+{% extends 'ehr/body_exam_base.html' %}
+
+# 中医体质辨识
+{% if form.Meta.alias == 'constitution_identification' %}
+{% block pinghe %}{{ form.pinghe.data }}{% endblock %}
+{% block qixu %}{{ form.qixu.data }}{% endblock %}
+{% block yangxu %}{{ form.yangxu.data }}{% endblock %}
+{% block yinxu %}{{ form.yinxu.data }}{% endblock %}
+{% block tanshi %}{{ form.tanshi.data }}{% endblock %}
+{% block shire %}{{ form.shire.data }}{% endblock %}
+{% block xueyu %}{{ form.xueyu.data }}{% endblock %}
+{% block qiyu %}{{ form.qixu.data }}{% endblock %}
+{% block tebing %}{{ form.tebing.data }}{% endblock %}
+{% endif %}

@@ -1,0 +1,357 @@
+{% extends 'child/newborn_family_visit_base.html' %}
+
+{% block gender %}
+    {{ form.gender.data }}
+{% endblock %}
+
+{% block birthday %}
+    {{ form.birthday.data }}
+{% endblock %}
+
+{% block identity %}
+    {{ form.identity.data }}
+{% endblock %}
+
+{% block address %}
+    {{ form.address.data }}
+{% endblock %}
+
+{% block father_name %}
+    {{ form.father_name.data }}
+{% endblock %}
+
+{% block father_occupation %}
+    {{ form.father_occupation.data }}
+{% endblock %}
+
+{% block father_contact_number %}
+    {{ form.father_contact_number.data }}
+{% endblock %}
+
+{% block father_birthday %}
+    {{ form.father_birthday.data }}
+{% endblock %}
+
+{% block mother_name %}
+    {{ form.mother_name.data }}
+{% endblock %}
+
+{% block mother_occupation %}
+    {{ form.mother_occupation.data }}
+{% endblock %}
+
+{% block mother_contact_number %}
+    {{ form.mother_contact_number.data }}
+{% endblock %}
+
+{% block mother_birthday %}
+    {{ form.mother_birthday.data }}
+{% endblock %}
+
+{% block gestational_weeks %}
+    {{ form.gestational_weeks.data }}
+{% endblock %}
+
+{% block mother_gestational_disease %}
+    {{ form.mother_gestational_disease.data }}
+{% endblock %}
+
+{% block mother_gestational_disease_extra %}
+    {% ifequal form.mother_gestational_disease.data '其他' %}
+        {{ form.mother_gestational_disease_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block deliver_institution %}
+    {{ form.deliver_institution.data }}
+{% endblock %}
+
+{% block birth_situation %}
+    {% for item in form.birth_situation.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block birth_situation_extra %}
+    {{ form.birth_situation_extra.data }}
+{% endblock %}
+
+{% block newborn_asphyxia %}
+    {{ form.newborn_asphyxia.data }}
+{% endblock %}
+
+{% block apgar_score %}
+    {{ form.apgar_score.data }}
+{% endblock %}
+
+{% block malformation_or_not %}
+    {{ form.malformation_or_not.data }}
+{% endblock %}
+
+{% block malformation_extra %}
+    {% ifequal form.malformation_or_not.data '有'%}
+        {{ form.malformation_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block newborn_hearing_screening %}
+    {{ form.newborn_hearing_screening.data }}
+{% endblock %}
+
+{% block newborn_disease_screening %}
+    {{ form.newborn_disease_screening.data }}
+{% endblock %}
+
+{% block newborn_disease_screening_extra %}
+    {% ifequal form.newborn_disease_screening.data '其他遗传代谢病' %}
+        {{ form.newborn_disease_screening_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block newborn_birth_weight %}
+    {{ form.newborn_birth_weight.data }}
+{% endblock %}
+
+{% block now_weight %}
+    {{ form.now_weight.data }}
+{% endblock %}
+
+{% block birth_height %}
+    {{ form.birth_height.data }}
+{% endblock %}
+
+{% block feed_way %}
+    {{ form.feed_way.data }}
+{% endblock %}
+
+{% block drink_milk_volume %}
+    {{ form.drink_milk_volume.data }}
+{% endblock %}
+
+{% block drink_milk_times %}
+    {{ form.drink_milk_times.data }}
+{% endblock %}
+
+{% block emesis %}
+    {{ form.emesis.data }}
+{% endblock %}
+
+{% block shit %}
+    {{ form.shit.data }}
+{% endblock %}
+
+{% block shit_times %}
+    {{ form.shit_times.data }}
+{% endblock %}
+
+{% block body_temperature %}
+    {{ form.body_temperature.data }}
+{% endblock %}
+
+{% block pulse %}
+    {{ form.pulse.data }}
+{% endblock %}
+
+{% block breath_frequency %}
+    {{ form.breath_frequency.data }}
+{% endblock %}
+
+{% block complexion %}
+    {{ form.complexion.data }}
+{% endblock %}
+
+{% block complexion_extra %}
+    {% ifequal form.complexion.data '其他' %}
+        {{ form.complextion_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block icterus_position %}
+    {{ form.icterus_position.data }}
+{% endblock %}
+
+{% block bregma_x %}
+    {{ form.bregma_x.data }}
+{% endblock %}
+
+{% block bregma_y %}
+    {{ form.bregma_y.data }}
+{% endblock %}
+
+{% block bregma_1 %}
+    {{ form.bregma_1.data }}
+{% endblock %}
+
+{% block bregma_1_extra %}
+    {% ifequal form.bregma_1.data '其他' %}
+        {{ form.bregma_1_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block eye_appearance %}
+    {{ form.eye_appearance.data }}
+{% endblock %}
+
+{% block eye_appearance_abnormal %}
+    {% ifequal form.eye_appearance.data '异常' %}
+        {{ form.eye_appearance_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block all_fours_activity %}
+    {{ form.all_fours_activity.data }}
+{% endblock %}
+
+{% block all_fours_activity_abnormal %}
+    {% ifequal form.all_fours_activity.data '异常' %}
+        {{ form.all_fours_activity_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block ear_appearance %}
+    {{ form.ear_appearance.data }}
+{% endblock %}
+
+{% block ear_appearance_abnormal %}
+    {% ifequal form.ear_appearance.data '异常' %}
+        {{ form.ear_appearance_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block neck_enclosed_mass %}
+    {{ form.neck_enclosed_mass.data }}
+{% endblock %}
+
+{% block neck_enclosed_mass_yes %}
+    {% ifequal form.neck_enclosed_mass.data '有' %}
+        {{ form.neck_enclosed_mass_yes.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block nose %}
+    {{ form.nose.data }}
+{% endblock %}
+
+{% block nose_abnormal %}
+    {% ifequal form.nose.data '异常' %}
+        {{ form.nose_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block skin %}
+    {{ form.skin.data }}
+{% endblock %}
+
+{% block skin_extra %}
+    {% ifequal form.skin.data '其他' %}
+        {{ form.skin_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block oral_cavity %}
+    {{ form.oral_cavity.data }}
+{% endblock %}
+
+{% block oral_cavity_abnormal %}
+    {% ifequal form.oral_cavity.data '异常' %}
+        {{ form.oral_cavity_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block anus %}
+    {{ form.anus.data }}
+{% endblock %}
+
+{% block anus_abnormal %}
+    {% ifequal form.anus.data '异常' %}
+        {{ form.anus_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block heart_lung_auscultation %}
+    {{ form.heart_lung_auscultation.data }}
+{% endblock %}
+
+{% block heart_lung_auscultation_abnormal %}
+    {% ifequal form.heart_lung_auscultation.data '异常' %}
+        {{ form.heart_lung_auscultation_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block externalia %}
+    {{ form.externalia.data }}
+{% endblock %}
+
+{% block externalia_abnormal %}
+    {% ifequal form.externalia.data '异常' %}
+        {{ form.externalia_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block abdomen_palpation %}
+    {{ form.abdomen_palpation.data }}
+{% endblock %}
+
+{% block abdomen_palpation_abnormal %}
+    {% ifequal form.abdomen_palpation.data '异常' %}
+        {{ form.abdomen_palpation_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block spine %}
+    {{ form.spine.data }}
+{% endblock %}
+
+{% block spine_abnormal %}
+    {% ifequal form.spine.data '异常' %}
+        {{ form.spine_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block navel %}
+    {{ form.navel.data }}
+{% endblock %}
+
+{% block navel_extra %}
+    {% ifequal form.navel.data '其他 ' %}
+        {{ form.navel_extra.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block transfer_treatment_suggestion %}
+    {{ form.transfer_treatment_suggestion.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason %}
+    {% ifequal form.transfer_treatment_suggestion.data '有' %}
+        {{ form.transfer_treatment_suggestion_reason.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution %}
+    {% ifequal form.transfer_treatment_suggestion.data '有' %}
+        {{ form.transfer_treatment_suggestion_institution.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date %}
+    {{ form.visit_date.data }}
+{% endblock %}
+
+{% block next_visit_place %}
+    {{ form.next_visit_place.data }}
+{% endblock %}
+
+{% block next_visit_date %}
+    {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature %}
+    {{ form.doctor_signature.data }}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load staticfiles %}
+
+<table id="resident_list"></table>
+
+<div id="resident_toolbar" style="padding: 5px; display: none">
+    <div>
+        <a href="#" id="add">新增居民</a>
+        <a href="#" id="edit">修改居民信息</a>
+        <a href="#" id="remove">删除居民</a>
+        <a href="#" id="save">保存</a>
+        <a href="#" id="undo">取消</a>
+        <a href="#" id="hypertension">加入高血压人群</a>
+        <a href="#" id="diabetes">加入糖尿病人群</a>
+        <a href="#" id="psychiatric">加入精神病人群</a>
+        <a href="#" id="pregnant">加入孕产妇人群</a>
+    </div>
+    <div style="margin: 5px 0 5px 4px">
+        健康档案：<input id="query_ehr_no" />
+        <span style="margin-left: 15px;">所属人群：</span><input id="query_crowd"/>
+        <span style="margin-left: 15px;">乡镇：</span><input id="query_town"/>
+        <span style="margin-left: 15px;">村/街道：</span><input id="query_village" />
+        <span style="margin-left: 15px;">姓名：</span><input id="query_name" />
+        <span style="margin-left: 15px;">身份证号码：</span><input id="query_identity" style="margin-right: 15px" />
+        <a href="#" id="query">查询</a>
+    </div>
+</div>
+
+<script src='{% static "js/residents.js" %}'></script>

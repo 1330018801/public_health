@@ -1,0 +1,63 @@
+{% include 'education/date.html' %}
+
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.institution.errors %}
+            <span style="background: #ffff00">{{ form.institution.label_tag }}</span>
+        {% else %}
+            {{ form.institution.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.institution }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.count.errors %}
+            <span style="background: #ffff00">{{ form.count.label_tag }}</span>
+        {% else %}
+            {{ form.count.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.count }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.principal.errors %}
+            <span style="background: #ffff00">{{ form.principal.label_tag }}</span>
+        {% else %}
+            {{ form.principal.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.principal }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.content.errors %}
+            <span style="background: #ffff00">{{ form.content.label_tag }}</span>
+        {% else %}
+            {{ form.content.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.content }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.load.errors %}
+            <span style="background: #ffff00">{{ form.load.label_tag }}</span>
+        {% else %}
+            {{ form.load.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.load }}{{ form.load.errors }}
+    </div>
+</div>
+{% include 'management/service_details_return_button.html' %}

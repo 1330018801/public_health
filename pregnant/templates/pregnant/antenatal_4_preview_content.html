@@ -1,0 +1,298 @@
+{% extends 'pregnant/antenatal_2_5_base.html' %}
+
+{% comment %}第2次产前随访表格{% endcomment %}
+
+{% block visit_date_2 %}
+    {{ aftercare2.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block gestational_weeks_2 %}
+    {{ aftercare2.gestational_weeks }}
+{% endblock %}
+
+{% block complaint_2 %}
+    {{ aftercare2.complaint }}
+{% endblock %}
+
+{% block weight_2 %}
+    {{ aftercare2.weight }}
+{% endblock %}
+
+{% block examination_before_parturition_uteri_bottom_height_2 %}
+    {{ aftercare2.examination_before_parturition_uteri_bottom_height }}
+{% endblock %}
+
+{% block examination_before_parturition_abdomen_circumference_2 %}
+    {{ aftercare2.examination_before_parturition_abdomen_circumference }}
+{% endblock %}
+
+{% block examination_before_parturition_fetus_position_2 %}
+    {{ aftercare2.examination_before_parturition_fetus_position }}
+{% endblock %}
+
+{% block examination_before_parturition_fetal_heart_rate_2 %}
+    {{ aftercare2.examination_before_parturition_fetal_heart_rate }}
+{% endblock %}
+
+{% block sbp_2 %}
+    {{ aftercare2.sbp }}
+{%endblock %}
+
+{% block dbp_2 %}
+    {{ aftercare2.dbp }}
+{% endblock %}
+
+{% block hemoglobin_2 %}
+    {{ aftercare2.hemoglobin }}
+{% endblock %}
+
+{% block urine_protein_2 %}
+    {{ aftercare2.urine_protein }}
+{% endblock %}
+
+{% block extra_auxiliary_examination_2 %}
+    {{ aftercare2.extra_auxiliary_examination }}
+{% endblock %}
+
+{% block classification_2 %}
+    {{ aftercare2.classification }}
+{% endblock %}
+
+{% block classification_abnormal_2 %}
+    {{ aftercare2.classification_abnormal }}
+{% endblock %}
+
+{% block guide_2 %}
+    {% for item in aftercare2.guide.all %}
+        {{ item }}
+        {% if forloop.last %}
+        {% else %}
+            <br />
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_2 %}
+    {{ aftercare2.guide_extra }}
+{% endblock %}
+
+{% block transfer_treatment_2 %}
+    {{ aftercare2.transfer_treatment }}
+{% endblock %}
+
+
+{% block transfer_treatment_reason_2 %}
+    {% ifequal aftercare2.transfer_treatment "有" %}
+        <br />原因：
+    {% endifequal %}
+    {{ aftercare2.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_2 %}
+    {% ifequal aftercare2.transfer_treatment "有" %}
+        机构及科室：
+    {% endifequal %}
+    {{ aftercare2.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_2 %}
+    {{ aftercare2.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block doctor_signature_2 %}
+    {{ aftercare2.doctor_signature }}
+{% endblock %}
+
+{% comment %}第3次产前随访表格{% endcomment %}
+
+{% block visit_date_3 %}
+    {{ aftercare3.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block gestational_weeks_3 %}
+    {{ aftercare3.gestational_weeks }}
+{% endblock %}
+
+{% block complaint_3 %}
+    {{ aftercare3.complaint }}
+{% endblock %}
+
+{% block weight_3 %}
+    {{ aftercare3.weight }}
+{% endblock %}
+
+{% block examination_before_parturition_uteri_bottom_height_3 %}
+    {{ aftercare3.examination_before_parturition_uteri_bottom_height }}
+{% endblock %}
+
+{% block examination_before_parturition_abdomen_circumference_3 %}
+    {{ aftercare3.examination_before_parturition_abdomen_circumference }}
+{% endblock %}
+
+{% block examination_before_parturition_fetus_position_3 %}
+    {{ aftercare3.examination_before_parturition_fetus_position }}
+{% endblock %}
+
+{% block examination_before_parturition_fetal_heart_rate_3 %}
+    {{ aftercare3.examination_before_parturition_fetal_heart_rate }}
+{% endblock %}
+
+{% block sbp_3 %}
+    {{ aftercare3.sbp }}
+{%endblock %}
+
+{% block dbp_3 %}
+    {{ aftercare3.dbp }}
+{% endblock %}
+
+{% block hemoglobin_3 %}
+    {{ aftercare3.hemoglobin }}
+{% endblock %}
+
+{% block urine_protein_3 %}
+    {{ aftercare3.urine_protein }}
+{% endblock %}
+
+{% block extra_auxiliary_examination_3 %}
+    {{ aftercare3.extra_auxiliary_examination }}
+{% endblock %}
+
+{% block classification_3 %}
+    {{ aftercare3.classification }}
+{% endblock %}
+
+{% block classification_abnormal_3 %}
+    {{ aftercare3.classification_abnormal }}
+{% endblock %}
+
+{% block guide_3 %}
+    {% for item in aftercare3.guide.all %}
+        {{ item }}
+        {% if forloop.last %}
+        {% else %}
+            <br />
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_3 %}
+    {{ aftercare3.guide_extra }}
+{% endblock %}
+
+{% block transfer_treatment_3 %}
+    {{ aftercare3.transfer_treatment }}
+{% endblock %}
+
+{% block transfer_treatment_reason_3 %}
+    <br />原因：{{ aftercare3.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_3 %}
+    <br />机构及科室：{{ aftercare3.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_3 %}
+    {{ aftercare3.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block doctor_signature_3 %}
+    {{ aftercare3.doctor_signature }}
+{% endblock %}
+
+{% comment %}第4次产前随访表格{% endcomment %}
+
+{% block visit_date_4 %}
+    {{ form.visit_date.data }}
+{% endblock %}
+
+{% block gestational_weeks_4 %}
+    {{ form.gestational_weeks.data }}
+{% endblock %}
+
+{% block complaint_4 %}
+    {{ form.complaint.data }}
+{% endblock %}
+
+{% block weight_4 %}
+    {{ form.weight.data }}
+{% endblock %}
+
+{% block examination_before_parturition_uteri_bottom_height_4 %}
+    {{ form.examination_before_parturition_uteri_bottom_height.data }}
+{% endblock %}
+
+{% block examination_before_parturition_abdomen_circumference_4 %}
+    {{ form.examination_before_parturition_abdomen_circumference.data }}
+{% endblock %}
+
+{% block examination_before_parturition_fetus_position_4 %}
+    {{ form.examination_before_parturition_fetus_position.data }}
+{% endblock %}
+
+{% block examination_before_parturition_fetal_heart_rate_4 %}
+    {{ form.examination_before_parturition_fetal_heart_rate.data }}
+{% endblock %}
+
+{% block sbp_4 %}
+    {{ form.sbp.data }}
+{%endblock %}
+
+{% block dbp_4 %}
+    {{ form.dbp.data }}
+{% endblock %}
+
+{% block hemoglobin_4 %}
+    {{ form.hemoglobin.data }}
+{% endblock %}
+
+{% block urine_protein_4 %}
+    {{ form.urine_protein.data }}
+{% endblock %}
+
+{% block extra_auxiliary_examination_4 %}
+    {{ form.extra_auxiliary_examination.data }}
+{% endblock %}
+
+{% block classification_4 %}
+    {{ form.classification.data }}
+{% endblock %}
+
+{% block classification_abnormal_4 %}
+    {{ form.classification_abnormal.data }}
+{% endblock %}
+
+{% block guide_4 %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_4 %}
+    {% if '其他' in form.guide.data %}
+        {{ form.guide_extra.data }}
+    {% endif %}
+{% endblock %}
+
+{% block transfer_treatment_4 %}
+    {{ form.transfer_treatment.data }}
+{% endblock %}
+
+{% block transfer_treatment_reason_4 %}
+    {% ifequal form.transfer_treatment.data '有'%}
+    <br />原因：{{ form.transfer_treatment_reason.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block transfer_treatment_institution_4 %}
+    {% ifequal form.transfer_treatment.data '有' %}
+    <br />机构及科室：{{ form.transfer_treatment_institution.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block next_visit_date_4 %}
+    {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature_4 %}
+    {{ form.doctor_signature.data }}
+{% endblock %}

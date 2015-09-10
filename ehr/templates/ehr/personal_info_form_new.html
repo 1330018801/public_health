@@ -1,0 +1,301 @@
+{% extends 'ehr/personal_info_base.html' %}
+
+{% block gender %}
+    <label for="gender_2"><input type="radio" id="gender_2" name="gender" value="未知的性别"/>未知的性别&nbsp;&nbsp;</label>
+    <label for="gender_1"><input type="radio" id="gender_1" name="gender" value="男"/>男&nbsp;&nbsp;</label>
+    <label for="gender_0"><input type="radio" id="gender_0" name="gender" value="女"/>女&nbsp;&nbsp;</label>
+    <label for="gender_3"><input type="radio" id="gender_3" name="gender" value="未说明的性别"/>未说明的性别</label>
+{% endblock %}
+
+{% block birthday %}<input id="birthday" name="birthday" />{% endblock %}
+{% block identity %}<input id="identity" name="identity" />{% endblock %}
+{% block work_company %}<input id="work_company" name="work_company" />{% endblock %}
+{% block phone %}<input id="phone" name="phone" />{% endblock %}
+{% block contact_name %}<input id="contact_name" name="contact_name" />{% endblock %}
+{% block contact_phone %}<input id="contact_phone" name="contact_phone" />{% endblock %}
+
+{% block residence_type %}
+    <div class="svc_tbl_field">
+        <label for="residence_type_1"><input type="radio" id="residence_type_1" name="residence_type" value="户籍" />户籍&nbsp;&nbsp;</label>
+        <label for="residence_type_2"><input type="radio" id="residence_type_2" name="residence_type" value="非户籍" />非户籍</label>
+    </div>
+{% endblock %}
+
+{% block nation %}
+    <div class="svc_tbl_field">
+        <label for="nation_1"><input type="radio" id="nation_1" name="nation" value="汉族"/>汉族&nbsp;&nbsp;</label>
+        <label for="nation_2"><input type="radio" id="nation_2" name="nation" value="少数民族"/>少数民族</label>
+        <input name="nation_extra" />
+    </div>
+{% endblock %}
+
+{% block blood_type %}
+    <div class="svc_tbl_field">
+        <label for="blood_type_1"><input type="radio" id="blood_type_1" name="blood_type" value="A型"/>A型&nbsp;&nbsp;</label>
+        <label for="blood_type_2"><input type="radio" id="blood_type_2" name="blood_type" value="B型"/>B型&nbsp;&nbsp;</label>
+        <label for="blood_type_3"><input type="radio" id="blood_type_3" name="blood_type" value="O型"/>O型&nbsp;&nbsp;</label>
+        <label for="blood_type_4"><input type="radio" id="blood_type_4" name="blood_type" value="AB型"/>AB型&nbsp;&nbsp;</label>
+        <label for="blood_type_5"><input type="radio" id="blood_type_5" name="blood_type" value="不详"/>不详</label>
+        /&nbsp;&nbsp;RH阴性：
+        <label for="blood_rh_1"><input type="radio" id="blood_rh_1" name="blood_rh" value="否" />否&nbsp;&nbsp;</label>
+        <label for="blood_rh_2"><input type="radio" id="blood_rh_2" name="blood_rh" value="是" />是&nbsp;&nbsp;</label>
+        <label for="blood_rh_3"><input type="radio" id="blood_rh_3" name="blood_rh" value="不详" />不详</label>
+    </div>
+{% endblock %}
+
+{% block education %}
+    <div class="svc_tbl_field">
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="文盲及半文盲" />文盲及半文盲&nbsp;&nbsp;</label>
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="小学" />小学&nbsp;&nbsp;</label>
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="初中" />初中&nbsp;&nbsp;</label>
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="高中/技校/中专" />高中/技校/中专&nbsp;&nbsp;</label>
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="大学专科及以上" />大学专科及以上&nbsp;&nbsp;</label>
+        <label for="education_1"><input type="radio" id="education_1" name="education" value="不详" />不详</label>
+    </div>
+{% endblock %}
+
+{% block occupation %}
+    <div class="svc_tbl_field">
+        <label for="occupation_1"><input type="radio" id="occupation_1" name="occupation" value="国家机关、党群组织、企业、事业单位负责人">国家机关、党群组织、企业、事业单位负责人&nbsp;&nbsp;</label>
+        <label for="occupation_2"><input type="radio" id="occupation_2" name="occupation" value="办事人员和有关人员">办事人员和有关人员&nbsp;&nbsp;</label>
+        <label for="occupation_3"><input type="radio" id="occupation_3" name="occupation" value="农、林、牧、渔、水利业生产人员">农、林、牧、渔、水利业生产人员&nbsp;&nbsp;</label>
+        <label for="occupation_4"><input type="radio" id="occupation_4" name="occupation" value="生产、运输设备操作人员及有关人员">生产、运输设备操作人员及有关人员&nbsp;&nbsp;</label>
+        <label for="occupation_5"><input type="radio" id="occupation_5" name="occupation" value="军人">军人&nbsp;&nbsp;</label>
+        <label for="occupation_6"><input type="radio" id="occupation_6" name="occupation" value="不便分类的其他从业人员">不便分类的其他从业人员</label>
+    </div>
+{% endblock %}
+
+{% block marriage %}
+    <div class="svc_tbl_field">
+        <label for="marriage_1"><input type="radio" id="marriage_1" name="marriage" value="未婚">未婚&nbsp;&nbsp;</label>
+        <label for="marriage_2"><input type="radio" id="marriage_2" name="marriage" value="已婚">已婚&nbsp;&nbsp;</label>
+        <label for="marriage_3"><input type="radio" id="marriage_3" name="marriage" value="丧偶">丧偶&nbsp;&nbsp;</label>
+        <label for="marriage_4"><input type="radio" id="marriage_4" name="marriage" value="离婚">离婚&nbsp;&nbsp;</label>
+        <label for="marriage_5"><input type="radio" id="marriage_5" name="marriage" value="未说明的婚姻状况">未说明的婚姻状况</label>
+    </div>
+{% endblock %}
+
+{% block payment_way %}
+    <div class="svc_tbl_field">
+        <label for="payment_way_1"><input type="checkbox" id="payment_way_1" name="payment_way" value="城镇职工基本医疗保险" />城镇职工基本医疗保险&nbsp;&nbsp;</label>
+        <label for="payment_way_2"><input type="checkbox" id="payment_way_2" name="payment_way" value="城镇居民基本医疗保险" />城镇居民基本医疗保险&nbsp;&nbsp;</label>
+        <label for="payment_way_3"><input type="checkbox" id="payment_way_3" name="payment_way" value="新型农村合作医疗" />新型农村合作医疗&nbsp;&nbsp;</label>
+        <label for="payment_way_4"><input type="checkbox" id="payment_way_4" name="payment_way" value="贫困救助" />贫困救助&nbsp;&nbsp;</label>
+        <label for="payment_way_5"><input type="checkbox" id="payment_way_5" name="payment_way" value="商业医疗保险" />商业医疗保险&nbsp;&nbsp;</label>
+        <label for="payment_way_6"><input type="checkbox" id="payment_way_6" name="payment_way" value="全公费" />全公费&nbsp;&nbsp;</label>
+        <label for="payment_way_7"><input type="checkbox" id="payment_way_7" name="payment_way" value="全自费" />全自费&nbsp;&nbsp;</label>
+        <label for="payment_way_8"><input type="checkbox" id="payment_way_8" name="payment_way" value="其他" />其他</label>
+        <input name="payment_way_extra" />
+    </div>
+{% endblock %}
+
+{% block allergy_history %}
+    <div class="svc_tbl_field">
+        <label for="allergy_history_1"><input type="checkbox" id="allergy_history_1" name="allergy_history" value="无">无&nbsp;&nbsp;</label>
+        <label for="allergy_history_2"><input type="checkbox" id="allergy_history_2" name="allergy_history" value="青霉素">青霉素&nbsp;&nbsp;</label>
+        <label for="allergy_history_3"><input type="checkbox" id="allergy_history_3" name="allergy_history" value="磺胺">磺胺&nbsp;&nbsp;</label>
+        <label for="allergy_history_4"><input type="checkbox" id="allergy_history_4" name="allergy_history" value="链霉素">链霉素&nbsp;&nbsp;</label>
+        <label for="allergy_history_5"><input type="checkbox" id="allergy_history_5" name="allergy_history" value="其他">其他</label>
+        <input name="allergy_history_yes_extra" />
+    </div>
+{% endblock %}
+
+{% block expose_history %}
+    <div class="svc_tbl_field">
+        <label for="expose_history_1"><input type="checkbox" id="expose_history_1" name="expose_history" value="无">无&nbsp;&nbsp;</label>
+        <label for="expose_history_2"><input type="checkbox" id="expose_history_2" name="expose_history" value="化学品">化学品&nbsp;&nbsp;</label>
+        <label for="expose_history_3"><input type="checkbox" id="expose_history_3" name="expose_history" value="毒物">毒物&nbsp;&nbsp;</label>
+        <label for="expose_history_4"><input type="checkbox" id="expose_history_4" name="expose_history" value="射线">射线</label>
+    </div>
+{% endblock %}
+
+{% block disease_history %}
+    <div class="svc_tbl_field">
+        <label for="disease_history_1"><input type="checkbox" id="disease_history_1" name="disease_history" value="无">无</label>
+        <label for="disease_history_2"><input type="checkbox" style="margin-left: 15px" id="disease_history_2" name="disease_history" value="高血压" />高血压&nbsp;&nbsp;确诊时间：<input name="diagnose_date_2" /></label>
+        <label for="disease_history_3"><input type="checkbox" style="margin-left: 15px" id="disease_history_3" name="disease_history" value="糖尿病" />糖尿病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_3" /></label><br />
+        <label for="disease_history_4"><input type="checkbox" id="disease_history_4" name="disease_history" value="冠心病" />冠心病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_4" /></label>
+        <label for="disease_history_5"><input type="checkbox" style="margin-left: 15px" id="disease_history_5" name="disease_history" value="慢性阻塞性肺疾病" />慢性阻塞性肺疾病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_5" /></label><br />
+        <label for="disease_history_6"><input type="checkbox" id="disease_history_6" name="disease_history" value="恶性肿瘤" />恶性肿瘤&nbsp;&nbsp;确诊时间：<input name="diagnose_date_6" /></label>
+        <label for="disease_history_7"><input type="checkbox" style="margin-left: 15px" id="disease_history_7" name="disease_history" value="脑卒中" />脑卒中&nbsp;&nbsp;确诊时间：<input name="diagnose_date_7" /></label><br />
+        <label for="disease_history_8"><input type="checkbox" id="disease_history_8" name="disease_history" value="重性精神疾病" />重性精神疾病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_8" /></label>
+        <label for="disease_history_9"><input type="checkbox" style="margin-left: 15px" id="disease_history_9" name="disease_history" value="结核病" />结核病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_9" /></label><br />
+        <label for="disease_history_10"><input type="checkbox" id="disease_history_10" name="disease_history" value="肝炎" />肝炎&nbsp;&nbsp;确诊时间：<input name="diagnose_date_10" /></label>
+        <label for="disease_history_11"><input type="checkbox" style="margin-left: 15px" id="disease_history_11" name="disease_history" value="其他法定传染病" />其他法定传染病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_11" /></label><br />
+        <label for="disease_history_12"><input type="checkbox" id="disease_history_12" name="disease_history" value="职业病" />职业病&nbsp;&nbsp;确诊时间：<input name="diagnose_date_12" /></label>
+        <label for="disease_history_13"><input type="checkbox" style="margin-left: 15px" id="disease_history_13" name="disease_history" value="其他" />其他&nbsp;&nbsp;确诊时间：<input name="diagnose_date_13" /></label>
+    </div>
+{% endblock %}
+
+{% block surgery_history %}
+    <div class="svc_tbl_field">
+        <label for="surgery_history_1"><input type="radio" id="surgery_history_1" name="surgery_history" value="无">无&nbsp;&nbsp;</label>
+        <label for="surgery_history_2"><input type="radio" id="surgery_history_2" name="surgery_history" value="有">有</label>
+        ：名称1<input name="surgery_1_name" />&nbsp;&nbsp;时间<input name="surgery_1_date" />
+        / 名称2<input name="surgery_2_name" />&nbsp;&nbsp;时间<input name="surgery_2_date" />
+    </div>
+{% endblock %}
+
+{% block injury_history %}
+    <div class="svc_tbl_field">
+        <label for="injury_history_1"><input type="radio" id="injury_history_1" name="injury_history" value="无">无&nbsp;&nbsp;</label>
+        <label for="injury_history_2"><input type="radio" id="injury_history_2" name="injury_history" value="有">有</label>
+        ：名称1<input name="injury_1_name" />&nbsp;&nbsp;时间<input name="injury_1_date" />
+        / 名称2<input name="injury_2_name" />&nbsp;&nbsp;时间<input name="injury_2_date" />
+    </div>
+{% endblock %}
+
+{% block transfusion_history %}
+    <div class="svc_tbl_field">
+        <label for="transfusion_history_1"><input type="radio" id="transfusion_history_1" name="transfusion_history" value="无">无&nbsp;&nbsp;</label>
+        <label for="transfusion_history_2"><input type="radio" id="transfusion_history_2" name="transfusion_history" value="有">有</label>
+        ：原因1<input name="transfusion_1_reason" />&nbsp;&nbsp;时间<input name="transfusion_1_date" />
+        / 原因2<input name="transfusion_2_reason" />&nbsp;&nbsp;时间<input name="transfusion_2_date" />
+    </div>
+{% endblock %}
+
+{% block family_history_father %}
+    <div class="svc_tbl_field">
+        <label for="family_history_father_12"><input type="checkbox" id="family_history_father_12" name="family_history_father" value="无"/>无</label>&nbsp;&nbsp;
+        <label for="family_history_father_1"><input type="checkbox" id="family_history_father_1" name="family_history_father" value="高血压" />高血压</label>&nbsp;&nbsp;
+        <label for="family_history_father_2"><input type="checkbox" id="family_history_father_2" name="family_history_father" value="糖尿病" />糖尿病</label>&nbsp;&nbsp;
+        <label for="family_history_father_3"><input type="checkbox" id="family_history_father_3" name="family_history_father" value="冠心病" />冠心病</label>&nbsp;&nbsp;
+        <label for="family_history_father_4"><input type="checkbox" id="family_history_father_4" name="family_history_father" value="慢性阻塞性肺疾病" />慢性阻塞性肺疾病</label>&nbsp;&nbsp;
+        <label for="family_history_father_5"><input type="checkbox" id="family_history_father_5" name="family_history_father" value="恶性肿瘤" />恶性肿瘤</label>&nbsp;&nbsp;
+        <label for="family_history_father_6"><input type="checkbox" id="family_history_father_6" name="family_history_father" value="脑卒中" />脑卒中</label>&nbsp;&nbsp;
+        <label for="family_history_father_7"><input type="checkbox" id="family_history_father_7" name="family_history_father" value="重性精神疾病无" />重性精神疾病</label>&nbsp;&nbsp;
+        <label for="family_history_father_8"><input type="checkbox" id="family_history_father_8" name="family_history_father" value="结核病" />结核病</label>&nbsp;&nbsp;
+        <label for="family_history_father_9"><input type="checkbox" id="family_history_father_9" name="family_history_father" value="肝炎" />肝炎</label>&nbsp;&nbsp;
+        <label for="family_history_father_10"><input type="checkbox" id="family_history_father_10" name="family_history_father" value="先天畸形" />先天畸形</label>&nbsp;&nbsp;
+        <label for="family_history_father_11"><input type="checkbox" id="family_history_father_11" name="family_history_father" value="其他" />其他</label>
+        <input id="family_history_father_extra" name="family_history_father_extra" />
+    </div>
+{% endblock %}
+
+{% block family_history_mother %}
+    <div class="svc_tbl_field">
+        <label for="family_history_mother_12"><input type="checkbox" id="family_history_mother_12" name="family_history_mother" value="无"/>无</label>&nbsp;&nbsp;
+        <label for="family_history_mother_1"><input type="checkbox" id="family_history_mother_1" name="family_history_mother" value="高血压" />高血压</label>&nbsp;&nbsp;
+        <label for="family_history_mother_2"><input type="checkbox" id="family_history_mother_2" name="family_history_mother" value="糖尿病" />糖尿病</label>&nbsp;&nbsp;
+        <label for="family_history_mother_3"><input type="checkbox" id="family_history_mother_3" name="family_history_mother" value="冠心病" />冠心病</label>&nbsp;&nbsp;
+        <label for="family_history_mother_4"><input type="checkbox" id="family_history_mother_4" name="family_history_mother" value="慢性阻塞性肺疾病" />慢性阻塞性肺疾病</label>&nbsp;&nbsp;
+        <label for="family_history_mother_5"><input type="checkbox" id="family_history_mother_5" name="family_history_mother" value="恶性肿瘤" />恶性肿瘤</label>&nbsp;&nbsp;
+        <label for="family_history_mother_6"><input type="checkbox" id="family_history_mother_6" name="family_history_mother" value="脑卒中" />脑卒中</label>&nbsp;&nbsp;
+        <label for="family_history_mother_7"><input type="checkbox" id="family_history_mother_7" name="family_history_mother" value="重性精神疾病无" />重性精神疾病</label>&nbsp;&nbsp;
+        <label for="family_history_mother_8"><input type="checkbox" id="family_history_mother_8" name="family_history_mother" value="结核病" />结核病</label>&nbsp;&nbsp;
+        <label for="family_history_mother_9"><input type="checkbox" id="family_history_mother_9" name="family_history_mother" value="肝炎" />肝炎</label>&nbsp;&nbsp;
+        <label for="family_history_mother_10"><input type="checkbox" id="family_history_mother_10" name="family_history_mother" value="先天畸形" />先天畸形</label>&nbsp;&nbsp;
+        <label for="family_history_mother_11"><input type="checkbox" id="family_history_mother_11" name="family_history_mother" value="其他" />其他</label>
+        <input id="family_history_mother_extra" name="family_history_mother_extra" />
+    </div>
+{% endblock %}
+
+{% block family_history_sibling %}
+    <div class="svc_tbl_field">
+        <label for="family_history_sibling_12"><input type="checkbox" id="family_history_sibling_12" name="family_history_sibling" value="无"/>无</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_1"><input type="checkbox" id="family_history_sibling_1" name="family_history_sibling" value="高血压" />高血压</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_2"><input type="checkbox" id="family_history_sibling_2" name="family_history_sibling" value="糖尿病" />糖尿病</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_3"><input type="checkbox" id="family_history_sibling_3" name="family_history_sibling" value="冠心病" />冠心病</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_4"><input type="checkbox" id="family_history_sibling_4" name="family_history_sibling" value="慢性阻塞性肺疾病" />慢性阻塞性肺疾病</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_5"><input type="checkbox" id="family_history_sibling_5" name="family_history_sibling" value="恶性肿瘤" />恶性肿瘤</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_6"><input type="checkbox" id="family_history_sibling_6" name="family_history_sibling" value="脑卒中" />脑卒中</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_7"><input type="checkbox" id="family_history_sibling_7" name="family_history_sibling" value="重性精神疾病" />重性精神疾病</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_8"><input type="checkbox" id="family_history_sibling_8" name="family_history_sibling" value="结核病" />结核病</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_9"><input type="checkbox" id="family_history_sibling_9" name="family_history_sibling" value="肝炎" />肝炎</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_10"><input type="checkbox" id="family_history_sibling_10" name="family_history_sibling" value="先天畸形" />先天畸形</label>&nbsp;&nbsp;
+        <label for="family_history_sibling_11"><input type="checkbox" id="family_history_sibling_11" name="family_history_sibling" value="其他" />其他</label>
+        <input id="family_history_sibling_extra" name="family_history_sibling_extra" />
+    </div>
+{% endblock %}
+
+{% block family_history_children %}
+    <div class="svc_tbl_field">
+        <label for="family_history_children_12"><input type="checkbox" id="family_history_children_12" name="family_history_children" value="无"/>无</label>&nbsp;&nbsp;
+        <label for="family_history_children_1"><input type="checkbox" id="family_history_children_1" name="family_history_children" value="高血压" />高血压</label>&nbsp;&nbsp;
+        <label for="family_history_children_2"><input type="checkbox" id="family_history_children_2" name="family_history_children" value="糖尿病" />糖尿病</label>&nbsp;&nbsp;
+        <label for="family_history_children_3"><input type="checkbox" id="family_history_children_3" name="family_history_children" value="冠心病" />冠心病</label>&nbsp;&nbsp;
+        <label for="family_history_children_4"><input type="checkbox" id="family_history_children_4" name="family_history_children" value="慢性阻塞性肺疾病" />慢性阻塞性肺疾病</label>&nbsp;&nbsp;
+        <label for="family_history_children_5"><input type="checkbox" id="family_history_children_5" name="family_history_children" value="恶性肿瘤" />恶性肿瘤</label>&nbsp;&nbsp;
+        <label for="family_history_children_6"><input type="checkbox" id="family_history_children_6" name="family_history_children" value="脑卒中" />脑卒中</label>&nbsp;&nbsp;
+        <label for="family_history_children_7"><input type="checkbox" id="family_history_children_7" name="family_history_children" value="重性精神疾病无" />重性精神疾病</label>&nbsp;&nbsp;
+        <label for="family_history_children_8"><input type="checkbox" id="family_history_children_8" name="family_history_children" value="结核病" />结核病</label>&nbsp;&nbsp;
+        <label for="family_history_children_9"><input type="checkbox" id="family_history_children_9" name="family_history_children" value="肝炎" />肝炎</label>&nbsp;&nbsp;
+        <label for="family_history_children_10"><input type="checkbox" id="family_history_children_10" name="family_history_children" value="先天畸形" />先天畸形</label>&nbsp;&nbsp;
+        <label for="family_history_children_11"><input type="checkbox" id="family_history_children_11" name="family_history_children" value="其他" />其他</label>
+        <input id="family_history_children_extra" name="family_history_children_extra" />
+    </div>
+{% endblock %}
+
+
+{% block genetic_disease %}
+    <div class="svc_tbl_field">
+        <label for="genetic_disease_1"><input type="radio" id="genetic_disease_1" name="genetic_disease" value="无">无</label>&nbsp;&nbsp;
+        <label for="genetic_disease_2"><input type="radio" id="genetic_disease_2" name="genetic_disease" value="有">有</label>
+        ：疾病名称<input id="genetic_disease_yes" name="genetic_disease_yes" />
+    </div>
+{% endblock %}
+
+
+{% block disability %}
+    <div class="svc_tbl_field">
+        <label for="disability_1"><input type="checkbox" id="disability_1" name="disability" value="无残疾" />无残疾</label>&nbsp;&nbsp;
+        <label for="disability_2"><input type="checkbox" id="disability_2" name="disability" value="视力残疾" />视力残疾</label>&nbsp;&nbsp;
+        <label for="disability_3"><input type="checkbox" id="disability_3" name="disability" value="听力残疾" />听力残疾</label>&nbsp;&nbsp;
+        <label for="disability_4"><input type="checkbox" id="disability_4" name="disability" value="言语残疾" />言语残疾</label>&nbsp;&nbsp;
+        <label for="disability_5"><input type="checkbox" id="disability_5" name="disability" value="肢体残疾" />肢体残疾</label>&nbsp;&nbsp;
+        <label for="disability_6"><input type="checkbox" id="disability_6" name="disability" value="智力残疾" />智力残疾</label>&nbsp;&nbsp;
+        <label for="disability_7"><input type="checkbox" id="disability_7" name="disability" value="精神残疾" />精神残疾</label>&nbsp;&nbsp;
+        <label for="disability_8"><input type="checkbox" id="disability_8" name="disability" value="无残疾" />其他残疾</label>
+        <input id="disability_extra" name="disability_extra" />
+    </div>
+{% endblock %}
+
+
+{% block surroundings_kitchen_exhaust %}
+    <div class="svc_tbl_field">
+        <label for="surroundings_kitchen_exhaust_1"><input type="radio" id="surroundings_kitchen_exhaust_1" name="surroundings_kitchen_exhaust" value="无"/>无</label>&nbsp;&nbsp;
+        <label for="surroundings_kitchen_exhaust_2"><input type="radio" id="surroundings_kitchen_exhaust_2" name="surroundings_kitchen_exhaust" value="油烟机"/>油烟机</label>&nbsp;&nbsp;
+        <label for="surroundings_kitchen_exhaust_3"><input type="radio" id="surroundings_kitchen_exhaust_3" name="surroundings_kitchen_exhaust" value="换气扇"/>换气扇</label>&nbsp;&nbsp;
+        <label for="surroundings_kitchen_exhaust_4"><input type="radio" id="surroundings_kitchen_exhaust_4" name="surroundings_kitchen_exhaust" value="烟囱"/>烟囱</label>
+    </div>
+{% endblock %}
+
+{% block surroundings_fuel_type %}
+    <div class="svc_tbl_field">
+        <label for="surroundings_fuel_type_1"><input type="radio" id="surroundings_fuel_type_1" name="surroundings_fuel_type" value="液化气"/>液化气</label>&nbsp;&nbsp;
+        <label for="surroundings_fuel_type_2"><input type="radio" id="surroundings_fuel_type_2" name="surroundings_fuel_type" value="煤"/>煤</label>&nbsp;&nbsp;
+        <label for="surroundings_fuel_type_3"><input type="radio" id="surroundings_fuel_type_3" name="surroundings_fuel_type" value="天然气"/>天然气</label>&nbsp;&nbsp;
+        <label for="surroundings_fuel_type_4"><input type="radio" id="surroundings_fuel_type_4" name="surroundings_fuel_type" value="沼气"/>沼气</label>&nbsp;&nbsp;
+        <label for="surroundings_fuel_type_5"><input type="radio" id="surroundings_fuel_type_5" name="surroundings_fuel_type" value="柴火"/>柴火</label>&nbsp;&nbsp;
+        <label for="surroundings_fuel_type_6"><input type="radio" id="surroundings_fuel_type_6" name="surroundings_fuel_type" value="其他"/>其他</label>
+    </div>
+{% endblock %}
+
+{% block surroundings_water %}
+    <div class="svc_tbl_field">
+        <label for="surroundings_water_1"><input type="radio" id="surroundings_water_1" name="surroundings_water" value="自来水"/>自来水</label>&nbsp;&nbsp;
+        <label for="surroundings_water_2"><input type="radio" id="surroundings_water_2" name="surroundings_water" value="经净化过滤的水"/>经净化过滤的水</label>&nbsp;&nbsp;
+        <label for="surroundings_water_3"><input type="radio" id="surroundings_water_3" name="surroundings_water" value="井水"/>井水</label>&nbsp;&nbsp;
+        <label for="surroundings_water_4"><input type="radio" id="surroundings_water_4" name="surroundings_water" value="河湖水"/>河湖水</label>&nbsp;&nbsp;
+        <label for="surroundings_water_5"><input type="radio" id="surroundings_water_5" name="surroundings_water" value="塘水"/>塘水</label>&nbsp;&nbsp;
+        <label for="surroundings_water_6"><input type="radio" id="surroundings_water_6" name="surroundings_water" value="其他"/>其他</label>
+    </div>
+{% endblock %}
+
+{% block surroundings_toilet %}
+    <div class="svc_tbl_field">
+        <label for="surroundings_toilet_1"><input type="radio" id="surroundings_toilet_1" name="surroundings_toilet" value="卫生厕所"/>卫生厕所</label>&nbsp;&nbsp;
+        <label for="surroundings_toilet_2"><input type="radio" id="surroundings_toilet_2" name="surroundings_toilet" value="一格或二格粪池式"/>一格或二格粪池式</label>&nbsp;&nbsp;
+        <label for="surroundings_toilet_3"><input type="radio" id="surroundings_toilet_3" name="surroundings_toilet" value="马桶"/>马桶</label>&nbsp;&nbsp;
+        <label for="surroundings_toilet_4"><input type="radio" id="surroundings_toilet_4" name="surroundings_toilet" value="露天粪坑"/>露天粪坑</label>&nbsp;&nbsp;
+        <label for="surroundings_toilet_5"><input type="radio" id="surroundings_toilet_5" name="surroundings_toilet" value="简易棚厕"/>简易棚厕</label>
+    </div>
+{% endblock %}
+
+{% block surrounding_livestock_fence %}
+    <div class="svc_tbl_field">
+        <label for="surrounding_livestock_fence_1"><input type="radio" id="surrounding_livestock_fence_1" name="surrounding_livestock_fence" value="单设"/>单设</label>&nbsp;&nbsp;
+        <label for="surrounding_livestock_fence_2"><input type="radio" id="surrounding_livestock_fence_2" name="surrounding_livestock_fence" value="室内"/>室内</label>&nbsp;&nbsp;
+        <label for="surrounding_livestock_fence_3"><input type="radio" id="surrounding_livestock_fence_3" name="surrounding_livestock_fence" value="室外"/>室外</label>
+    </div>
+{% endblock %}

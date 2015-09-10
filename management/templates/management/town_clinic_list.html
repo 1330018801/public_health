@@ -1,0 +1,45 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row">
+        <!--
+        <a href="{% url 'management:town_clinic_add' %}"><h5 class="page-header" align="left">添加乡镇卫生院</h5></a>
+        -->
+        <h5 class="page-header" align="left">乡镇卫生院列表</h5>
+        {% if err_msg %}{{ err_msg }}{% endif %}
+
+        <div class="table-responsive">
+            <table class="table table-striped" style="width: 900px; font-size: 13px">
+                <thead>
+                <tr>
+                    <th>卫生院名称</th>
+                    <th>村卫生室数</th>
+                    <th>医生用户数</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for town_clinic in town_clinics %}
+                <tr>
+                    <th>{{ town_clinic.name }}</th>
+                    <th>{{ town_clinic.village_clinics.count }}</th>
+                    <th>{{ town_clinic.users.count }}</th>
+                    <th>{% if town_clinic.enabled  %}可用{% else %}禁用{% endif %}</th>
+                    <th>{{ town_clinic.create_time | date:"Y年m月d日"}}  {{ town_clinic.create_time | time:"H:i"}}</th>
+                    <th>{{ town_clinic.update_time | date:"Y年m月d日"}}  {{ town_clinic.update_time | time:"H:i"}}</th>
+                    <th><a href="/management/town_clinic/edit/{{ town_clinic.id }}/">修改</a>
+                        <!--
+                        |<a href="/management/town_clinic/del/{{ town_clinic.id }}/">删除</a>
+                        -->
+                    </th>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock admin_work%}

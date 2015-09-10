@@ -1,0 +1,5778 @@
+[
+{
+    "model": "management.clinic",
+    "pk": 1,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u71d5\u90ca\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082109,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 2,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u9ad8\u697c\u4e2d\u5fc3\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082107,
+        "create_time": "2015-03-25T05:51:21.276Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 3,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u6cc3\u9633\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082100,
+        "create_time": "2015-03-25T05:51:46.525Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 4,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u674e\u65d7\u5e84\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082101,
+        "create_time": "2015-03-25T05:52:13.465Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 5,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u6768\u5e84\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082102,
+        "create_time": "2015-03-25T05:52:24.355Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 6,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u7687\u5e84\u4e2d\u5fc3\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082103,
+        "create_time": "2015-03-25T05:52:35.888Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 7,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u65b0\u96c6\u4e2d\u5fc3\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082104,
+        "create_time": "2015-03-25T05:52:44.006Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 8,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u9ec4\u571f\u5e84\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082106,
+        "create_time": "2015-03-25T05:52:51.672Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 9,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u9f50\u5fc3\u5e84\u9547\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082108,
+        "create_time": "2015-03-25T05:53:01.445Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 10,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u6bb5\u7532\u5cad\u4e2d\u5fc3\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082105,
+        "create_time": "2015-03-25T05:53:14.624Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 11,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "\u71d5\u90ca\u7ecf\u6d4e\u6280\u672f\u5f00\u53d1\u533a\u536b\u751f\u9662",
+        "level": 2,
+        "create_by": 1,
+        "region": 131082450,
+        "create_time": "2015-03-25T05:53:23.712Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 12,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南巷口村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 13,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西柳村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 14,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西辛营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 15,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大石庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 16,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李家务村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 17,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东吴村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 18,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西吴村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 19,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "刘斌屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 20,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "半壁店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 21,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "行宫村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 22,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "代刘庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 23,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西小屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 24,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "马起乏村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 25,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 26,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东柳村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 27,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南曹庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 28,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "梁家务村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 29,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "发盖子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 30,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西小胡庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 31,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 32,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大柳店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 33,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "姜庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 34,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小石庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 35,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "卸甲庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 1,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 36,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高楼村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 37,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "庄户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 38,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "万庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 39,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "乔官屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 40,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "石官营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 41,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "五福庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 42,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "沈家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 43,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高庙村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 44,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "黄辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 45,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皮各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 46,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西大府庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 47,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "孤山营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 48,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北曹庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 49,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张老辛村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 50,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高楼辛村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 51,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后车坊村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 52,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "双营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 53,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西山西村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 54,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东山西村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 55,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北杨庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 56,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东南各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 57,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西南各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 58,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "牛府村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 59,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小丁庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 60,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "荣庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 61,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "军下村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 62,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "刘家河村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 63,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小高楼村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 64,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "孙辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 65,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "贾官营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 66,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小崔各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 67,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "程官营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 68,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北大府村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 69,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "兴隆庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 70,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "韩家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 71,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 2,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 72,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "化甲屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 73,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "中门庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 74,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "兰各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 75,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 76,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "野汪庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 77,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "马各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 78,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "陈各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 79,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大枣林村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 80,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李秉全村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 81,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北关村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 82,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 83,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "六道曹村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 84,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "冯庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 85,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大闫村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 86,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南关村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 87,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "魏各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 88,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "定福庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 89,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "错桥村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 90,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东套村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 91,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东关村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 92,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "三里庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 93,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "双塔村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 94,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "沟北庄户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 95,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "梁台子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 96,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 97,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "郑辛庄户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 98,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小丁河沟村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 99,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北陈庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 100,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "曹庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 101,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北务村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 102,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大田庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 103,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李河沟村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 104,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "赵屠庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 105,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "方元屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 106,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 107,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "义和庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 108,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "杨相公村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 109,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "石道庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 3,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 110,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李旗庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 111,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "幺曹庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 112,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "徐枣林村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 113,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东兴庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 114,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白浮图村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 115,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "幸福庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 116,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "赵各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 117,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大定福村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 118,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东辛店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 119,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李枣林村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 120,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西辛店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 121,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "刘校蔚村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 122,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "崔家窑村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 123,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "查马坊村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 124,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李民庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 125,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西杨庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 126,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大景庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 127,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "丁桥庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 128,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皇亲庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 129,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "郝家府村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 130,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "何屯庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 131,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "杜官屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 132,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "郭庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 133,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "三刘庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 4,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 134,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "闵各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 135,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "武公庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 136,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大王各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 137,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小王各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 138,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "中门辛村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 139,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "不老淀村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 140,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "杨庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 141,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "鲍各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 142,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "侯庄户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 143,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "尚店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 144,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "侯各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 145,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大窝头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 146,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小窝头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 147,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 148,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小闫各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 149,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "肖庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 150,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 151,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "韩各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 152,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后丞相村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 153,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "夏庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 154,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "范港村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 155,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大曹庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 156,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "任官庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 157,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "霍各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 158,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "商庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 159,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "周庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 160,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "安庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 161,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北寨村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 162,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "尹辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 163,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王驸马村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 164,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "付辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 165,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "泗河村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 5,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 166,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皇一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 167,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皇二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 168,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皇三村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 169,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "皇四村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 170,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 171,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "郑辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 172,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "芦各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 173,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大薄各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 174,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小薄各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 175,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大堡村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 176,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "马大宙村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 177,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "薄大宙村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 178,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白塔寺村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 179,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "韶道庵村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 180,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张白塔村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 181,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "石附马村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 182,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "赵庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 183,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "陈庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 184,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "杨务村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 185,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西定府村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 186,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "新房村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 187,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白东村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 188,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白西村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 189,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "伏集村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 190,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "司庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 191,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "桥河村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 192,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小辛店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 193,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "昝辛屯第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 194,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "常辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 195,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "洼子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 196,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大王庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 197,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "葛中马坊村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 198,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "艾台村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 199,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "杨各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 200,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西达屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 201,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "周马坊村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 202,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "昝辛屯第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 203,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "钳公庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 204,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 205,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "崔各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 206,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "孙各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 207,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "前葛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 208,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小朱庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 209,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "虎将庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 210,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后葛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 211,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "龚庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 6,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 212,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 213,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "菜元村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 214,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "埝头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 215,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "埝头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 216,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东达屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 217,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "回民村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 218,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张庄第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 219,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "中营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 220,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张庄第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 221,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东罗村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 222,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "张庄第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 223,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李庄第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 224,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 225,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大罗村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 226,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 227,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 228,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "桥头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 229,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "胡元村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 230,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "李庄第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 231,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "刘白塔村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 232,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "行仁庄第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 233,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "行仁庄第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 234,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大掠马村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 235,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大掠马村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 236,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "埝头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 237,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "刘苑庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 238,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 239,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王堂庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 240,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "胡庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 241,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "孟辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 242,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "龙湾村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 243,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "姚营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 7,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 244,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "栲山一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 245,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "栲山二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 246,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "栲山三村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 247,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "栲山四村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 248,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小港村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 249,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大唐回村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 250,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小唐回村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 251,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "艾里村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 252,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东小汪村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 253,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西小汪村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 254,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "双村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 255,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "掘山头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 256,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "唐回店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 257,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "山河营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 258,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "孟各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 259,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "王里村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 260,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "胡桥村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 261,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "骆庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 262,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "闵庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 263,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南燕村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 264,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "老辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 265,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北燕村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 266,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "季辛屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 267,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "律庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 268,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "韩屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 269,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "石碑村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 270,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "黄土庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 271,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "前沿口村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 272,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后沿口村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 273,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 274,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "二百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 275,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小石庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 276,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大石庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 277,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "尚庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 278,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "马连口村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 279,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "白庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 280,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "城子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 8,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 281,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大康庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 282,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "立家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 283,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "康家湾村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 284,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小罗庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 285,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "马家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 286,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "荣家堡村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 287,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小李庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 288,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "齐心庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 289,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "天兴庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 290,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大胡庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 291,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小胡庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 292,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "范家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 293,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "蔡官营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 294,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大府庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 295,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大蒋庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 296,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小邢庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 297,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "周泗庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 298,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大邢庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 299,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "三福庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 300,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西曹庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 301,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小蒋庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 302,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "肖李庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 303,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "中坛村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 304,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "褚家窑村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 305,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "董庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 306,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "夏辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 9,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 307,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "崔各寨一队村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 308,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "崔各寨二队村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 309,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "六百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 310,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "七百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 311,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "八百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 312,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大九百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 313,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小九百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 314,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "十百户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 315,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东公乐村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 316,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西公乐村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 317,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东岭村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 318,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西岭村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 319,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南岭村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 320,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北岭村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 321,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "大赵庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 322,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小赵庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 323,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 324,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "高家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 325,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "崔庄子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 326,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东渠头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 327,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "辛庄户村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 328,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "山下庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 329,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "前山村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 330,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后山村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 10,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 331,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "中赵甫村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 332,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北蔡村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 333,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "交界庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 334,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "二街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 335,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西蔡村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 336,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "苍头村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 337,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "前赵村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 338,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "后赵村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 339,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "田辛庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 340,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小庄营村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 341,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "冯家府村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 342,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "南杨庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 343,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "樊村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 344,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "东蔡村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 345,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "复兴庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 346,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "兴民集村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 347,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "四街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 348,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 349,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "诸葛店第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 350,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "诸葛店第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 351,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "翟家庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 352,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北巷口第一村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 353,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "北巷口第二村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 354,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "一街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 355,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "三街村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 356,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "兴都村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 357,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "圣屯村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 358,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小柳店村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 359,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "枣林村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 360,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "西城子村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+},
+{
+    "model": "management.clinic",
+    "pk": 361,
+    "fields": {
+        "enabled": 1,
+        "update_time": null,
+        "name": "小张各庄村卫生室",
+        "level": 1,
+        "create_by": 1,
+        "region": null,
+        "create_time": "2015-03-25T05:51:07.081Z",
+        "town_clinic": 11,
+        "address": null,
+        "update_by": null
+    }
+}
+]

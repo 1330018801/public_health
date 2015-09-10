@@ -1,0 +1,123 @@
+<table style="width: 560px;">
+    <tr>
+        <td colspan="2" align="center">随访日期</td>
+        <td colspan="1" align="center">{% block visit_date_2 %}
+            <input type="text" id="visit_date" name="visit_date" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">孕周（周）</td>
+        <td colspan="1" align="center">{% block gestational_weeks_2 %}
+            <input id="gestational_weeks" name="gestational_weeks" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">主诉</td>
+        <td colspan="1" style="padding: 2px">{% block complaint_2 %}
+            <input id="complaint" name="complaint" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">体重（kg）</td>
+        <td colspan="1" align="center">{% block weight_2 %}
+            <input id="weight" name="weight" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" rowspan="4" align="center">产科检查</td>
+        <td colspan="1" align="center">宫底高度（cm）</td>
+        <td colspan="1" align="center">{% block examination_before_parturition_uteri_bottom_height_2 %}
+            <input id="examination_before_parturition_uteri_bottom_height"
+                   name="examination_before_parturition_uteri_bottom_height" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">腹围（cm）</td>
+        <td colspan="1" align="center">{% block examination_before_parturition_abdomen_circumference_2 %}
+            <input id="examination_before_parturition_abdomen_circumference"
+                   name="examination_before_parturition_abdomen_circumference" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">胎位</td>
+        <td colspan="1" align="center">{% block examination_before_parturition_fetus_position_2 %}
+            <input id="examination_before_parturition_fetus_position"
+                   name="examination_before_parturition_fetus_position" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">胎心率（次/分钟）</td>
+        <td colspan="1" align="center">{% block examination_before_parturition_fetal_heart_rate_2 %}
+            <input id="examination_before_parturition_fetal_heart_rate"
+                   name="examination_before_parturition_fetal_heart_rate" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">血压（mmHg）</td>
+        <td colspan="1" align="center">{% block sbp_2 %}
+            <input id="sbp" name="sbp" />
+        {%endblock %}/{% block dbp_2 %}
+            <input id="dbp" name="dbp" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">血红蛋白（g/L）</td>
+        <td colspan="1" align="center">{% block hemoglobin_2 %}
+            <input id="hemoglobin" name="hemoglobin" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">尿蛋白</td>
+        <td colspan="1" align="center">{% block urine_protein_2 %}
+            <input id="urine_protein" name="urine_protein" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">其他辅助检查*</td>
+        <td colspan="1" style="padding: 2px">{% block extra_auxiliary_examination_2 %}
+            <input id="extra_auxiliary_examination" name="extra_auxiliary_examination" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">分类</td>
+        <td colspan="1" style="padding-left: 5px">{% block classification_2 %}
+            <input id="classification" name="classification" />
+        {% endblock %}{% block classification_abnormal_2 %}
+            <input id="classification_abnormal" name="classification_abnormal" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">指导</td>
+        <td colspan="1" style="padding-left: 5px">{% block guide_2 %}
+            <input id="guide" name="guide" />
+        {% endblock %}{% block guide_extra_2 %}
+            <input id="guide_extra" name="guide_extra" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">转诊</td>
+        <td colspan="1" style="padding-left: 5px">
+            {% block transfer_treatment_2 %}
+                <input id="transfer_treatment" name="transfer_treatment" />
+            {% endblock %}
+            {% block transfer_treatment_reason_2 %}
+                <input id="transfer_treatment_reason" name="transfer_treatment_reason" />
+            {% endblock %}
+            {% block transfer_treatment_institution_2 %}
+                <input id="transfer_treatment_institution" name="transfer_treatment_institution" />
+            {% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">下次随访日期</td>
+        <td colspan="1" align="center">{% block next_visit_date_2 %}
+            <input id="next_visit_date" name="next_visit_date" />
+        {% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">随访医生签名</td>
+        <td colspan="1" align="center">{% block doctor_signature_2 %}
+            <input id="doctor_signature" name="doctor_signature" />
+        {% endblock %}</td>
+    </tr>
+</table>

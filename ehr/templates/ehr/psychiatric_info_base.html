@@ -1,0 +1,97 @@
+{% extends 'table_base.html' %}
+
+{% block table_title %}重性精神疾病患者个人信息补充表{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td colspan="2" align="center"><b>监护人姓名</b></td>
+        <td width="25%" colspan="2">{% block guardian_name %}{% endblock %}</td>
+        <td width="25%" colspan="2" align="center"><b>与患者关系</b></td>
+        <td colspan="2">{% block guardian_relation %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>监护人住址</b></td>
+        <td colspan="2">{% block guardian_address %}{% endblock %}</td>
+        <td colspan="2" align="center"><b>监护人电话</b></td>
+        <td colspan="2">{% block guardian_phone %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" width="25%" align="center"><b>辖区村（居）委会联系人</b></td>
+        <td colspan="2" width="25%">{% block community_contact_name %}{% endblock %}</td>
+        <td colspan="2" width="25%" align="center"><b>辖区村（居）委会联系人电话</b></td>
+        <td colspan="2" width="25%">{% block community_contact_phone %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td width="25%" colspan="2" align="center"><b>知情同意</b></td>
+        <td colspan="6">
+            {% block assent %}{% endblock %}<br />
+            <b>签字</b>：<br /><br />
+            <b>签字时间</b>：{% block signature_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="25%" colspan="2" align="center"><b>初次发病时间</b></td>
+        <td colspan="6">{% block disease_begin_date %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td width="25%" colspan="2" align="center"><b>既往主要症状</b></td>
+        <td colspan="6">{% block symptom %}{% endblock %}
+            {% block symptom_other %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" colspan="1" width="12.5%" align="center"><b>既往治疗情况</b></td>
+        <td colspan="1" width="12.5%" align="center"><b>门诊</b></td>
+        <td colspan="6">
+            {% block cure_outpatient %}{% endblock %}
+            <br />首次抗精神病药物治疗时间
+            {% block drug_first_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center"><b>住院</b></td>
+        <td colspan="6">
+            曾住精神病专科医院/综合医院精神科{% block cure_hospital %}{% endblock %}次
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>目前诊断情况</b></td>
+        <td colspan="6">
+            诊断</b> {% block diagnose %}{% endblock %}
+            确诊医院</b> {% block diagnose_hospital %}{% endblock %}
+            诊断日期</b> {% block diagnose_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>最近一次治疗效果</b></td>
+        <td colspan="6">{% block cure_effect %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>患病对家庭社会的影响</b></td>
+        <td colspan="6">
+            轻度滋事{% block social_effect_minor %}{% endblock %}次&nbsp&nbsp
+            肇事{% block social_effect_trouble %}{% endblock %}次&nbsp&nbsp
+            肇祸{% block social_effect_disaster %}{% endblock %}次&nbsp&nbsp
+            自伤{% block social_effect_self_injury %}{% endblock %}次&nbsp&nbsp
+            自杀未遂{% block social_effect_suicide %}{% endblock %}次&nbsp&nbsp
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>关锁情况</b></td>
+        <td colspan="6">{% block lock %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>经济状况</b></td>
+        <td colspan="6">{% block economy %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>专科医生意见</b><br>（如果有请记录）</td>
+        <td colspan="6">{% block doctor_advice %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>填表日期</b></td>
+        <td colspan="2">{% block fill_table_date %}{% endblock %}</td>
+        <td colspan="2" align="center"><b>医生签字</b></td>
+        <td colspan="2">{% block doctor_signature %}{% endblock %}</td>
+    </tr>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row" align="center">
+        <form class="form form-inline" role="form" action="{% url 'management:village_clinic_update' %}" method="POST">
+            {% if err_msg %}
+            <h5 class="page-header" align="left">{{ err_msg }}</h5>
+            {% endif %}
+            {% csrf_token %}
+            <br>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="name">村卫生室名称:</label>
+                <input type="text" class="form-control" name="name" value="{{ village_clinic.name }}">
+                <input type="hidden" name="village_clinic_id" value={{ village_clinic.id }}>
+            </div><br /><br />
+            <div class="form-group">
+                <label for="town">所属乡镇卫生院:</label>
+                {% if user.userprofile.role.name == "卫生院管理员" %}
+                    {{ town_clinic.name }}<input type="text" style="display: none;" value="{{ town_clinic.id }}" name="town_clinic">
+                {% else %}
+                <select class="form-control" name="town_clinic">
+                    {% for town_clinic in town_clinics %}
+                        {% if town_clinic == village_clinic.town_clinic %}
+                            <option value="{{ town_clinic.id }}" selected>{{ town_clinic.name }}</option>
+                        {% else %}
+                            <option value="{{ town_clinic.id }}">{{ town_clinic.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                {% endif %}
+            </div><br /><br />
+            <div class="form-group">
+                <label for="enabled">可用状态:</label>
+                {% if village_clinic.enabled %}
+                    <input type="radio" name="enabled" value="1" checked="checked"/>可用
+                    <input type="radio" name="enabled" value="0"/>禁用
+                {% else %}
+                    <input type="radio" name="enabled" value="1"/>可用
+                    <input type="radio" name="enabled" value="0" checked="checked"/>禁用
+                {% endif %}
+            </div><br /><br />
+            <button type="submit" class="btn btn-default">提交</button>
+            {% if user.userprofile.role.name == "卫生院管理员" %}
+                <a href="{% url 'management:town_staff_village_clinic_list' %}" class="btn btn-default">返回</a>
+            {% else %}
+                <a href="{% url 'management:village_clinic_list' %}" class="btn btn-default">返回</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

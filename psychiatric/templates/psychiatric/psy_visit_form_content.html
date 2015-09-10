@@ -1,0 +1,208 @@
+{% extends 'psychiatric/psy_visit_base.html' %}
+
+{% block visit_date %}{{ form.visit_date }}{% endblock %}
+{% block dangerousness %}
+    {% for item in form.dangerousness %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block now_symptom %}
+    {% for item in form.now_symptom %}
+        {% if forloop.last %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block now_symptom_extra %}{{ form.now_symptom_extra }}{% endblock %}
+{% block insight %}
+    {% for item in form.insight %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block sleep_situation %}
+    {% for item in form.sleep_situation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block diet_situation %}
+    {% for item in form.diet_situation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block society_function_individual_life_care %}
+    {% for item in form.society_function_individual_life_care %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block society_function_housework %}
+    {% for item in form.society_function_housework %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block society_function_productive_work %}
+    {% for item in form.society_function_productive_work %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block society_function_learn_ability %}
+    {% for item in form.society_function_learn_ability %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block society_function_social_interpersonal %}
+    {% for item in form.society_function_social_interpersonal %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block disease_family_society_effect_mild_disturbance %}{{ form.disease_family_society_effect_mild_disturbance }}{% endblock %}
+{% block disease_family_society_effect_disturbance %}{{ form.disease_family_society_effect_disturbance }}{% endblock %}
+{% block disease_family_society_effect_accident %}{{ form.disease_family_society_effect_accident }}{% endblock %}
+{% block disease_family_society_effect_autolesion %}{{ form.disease_family_society_effect_autolesion }}{% endblock %}
+{% block disease_family_society_effect_attempted_suicide %}{{ form.disease_family_society_effect_attempted_suicide }}{% endblock %}
+
+{% block lock_situation %}
+    {% for item in form.lock_situation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block hospitalized_situation %}
+    {% for item in form.hospitalized_situation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block last_hospitalized_date %}{{ form.last_hospitalized_date }}{% endblock %}
+
+{% block laboratory_examination %}
+    {% for item in form.laboratory_examination %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block laboratory_examination_yes %}{{ form.laboratory_examination_yes }}{% endblock %}
+
+{% block take_medicine_compliance %}
+    {% for item in form.take_medicine_compliance %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block medicine_untoward_effect %}
+    {% for item in form.medicine_untoward_effect %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block medicine_untoward_effect_yes %}{{ form.medicine_untoward_effect_yes }}{% endblock %}
+
+{% block treatment_effect %}
+    {% for item in form.treatment_effect %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block transfer_treatment %}
+    {% for item in form.transfer_treatment %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block transfer_treatment_reason %}{{ form.transfer_treatment_reason }}{% endblock %}
+{% block transfer_treatment_institution %}{{ form.transfer_treatment_institution }}{% endblock %}
+
+{% block take_medicine_1 %}{{ form.take_medicine_1 }}{% endblock %}
+{% block take_medicine_1_per %}每
+    {% for item in form.take_medicine_1_per %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block take_medicine_1_time %}{{ form.take_medicine_1_time }}次{% endblock %}
+{% block take_medicine_1_mg %}{{ form.take_medicine_1_mg }}mg{% endblock %}
+{% block take_medicine_2 %}{{ form.take_medicine_2 }}{% endblock %}
+{% block take_medicine_2_per %}每
+    {% for item in form.take_medicine_2_per %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block take_medicine_2_time %}{{ form.take_medicine_2_time }}次{% endblock %}
+{% block take_medicine_2_mg %}{{ form.take_medicine_2_mg }}mg{% endblock %}
+{% block take_medicine_3 %}{{ form.take_medicine_3 }}{% endblock %}
+{% block take_medicine_3_per %}每
+    {% for item in form.take_medicine_3_per %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block take_medicine_3_time %}{{ form.take_medicine_3_time }}次{% endblock %}
+{% block take_medicine_3_mg %}{{ form.take_medicine_3_mg }}mg{% endblock %}
+{% block recovery_measure %}
+    {% for item in form.recovery_measure %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block recovery_measure_extra %}{{ form.recovery_measure_extra }}{% endblock %}
+{% block visit_classification %}
+    {% for item in form.visit_classification %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block next_visit_date %}{{ form.next_visit_date }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature }}{% endblock %}

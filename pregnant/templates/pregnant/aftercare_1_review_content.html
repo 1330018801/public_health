@@ -1,0 +1,209 @@
+{% extends 'pregnant/antenatal_1_base.html' %}
+
+{% block visit_date %}{{ form.visit_date | date:"Y-m-d" }}{% endblock %}
+{% block weeks %}{{ form.weeks }}{% endblock %}
+{% block age %}{{ form.age }}{% endblock %}
+{% block husband_name %}{{ form.husband_name }}{% endblock %}
+{% block husband_age %}{{ form.husband_age }}{% endblock %}
+{% block husband_phone %}{{ form.husband_phone }}{% endblock %}
+{% block pregnant_times %}{{ form.pregnant_times }}{% endblock %}
+{% block natural_production %}{{ form.natural_production }}{% endblock %}
+{% block surgery_production %}{{ form.surgery_production }}{% endblock %}
+{% block last_menstruation %}{{ form.last_menstruation | date:"Y-m-d" }}{% endblock %}
+{% block not_sure %}{{ form.not_sure }}{% endblock %}
+{% block due_date %}{{ form.due_date | date:"Y-m-d" }}{% endblock %}
+{% block disease_history %}
+    {% for item in form.disease_history.all %}
+        {{ item }}&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block disease_history_other %}{{ form.disease_history_other }}{% endblock %}
+{% block family_history %}
+    {% for item in form.family_history.all %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block family_history_other %}{{ form.family_history_other }}{% endblock %}
+{% block personal_history %}
+    {% for item in form.personal_history.all %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block personal_history_other %}{{ form.personal_history_other }}{% endblock %}
+{% block gynaecology_surgery_history %}
+    {{ form.gynaecology_surgery_history }}
+{% endblock %}
+{% block gynaecology_surgery_name %}{{ form.gynaecology_surgery_name }}{% endblock %}
+{% block miscarriage %}{{ form.miscarriage }}{% endblock %}
+{% block dead_fetus %}{{ form.dead_fetus }}{% endblock %}
+{% block still_birth %}{{ form.still_birth }}{% endblock %}
+{% block newnatal_death %}{{ form.newnatal_death }}{% endblock %}
+{% block birth_defect %}{{ form.birth_defect }}{% endblock %}
+{% block height %}{{ form.height }}{% endblock %}
+{% block weight %}{{ form.weight }}{% endblock %}
+{% block bmi %}{{ form.bmi }}{% endblock %}
+{% block sbp %}{{ form.sbp }}{% endblock %}
+{% block dbp %}{{ form.dbp }}{% endblock %}
+{% block ausculate_heart %}
+    {{ form.ausculate_heart }}
+{% endblock %}
+{% block ausculate_heart_abnormal %}{{ form.ausculate_heart_abnormal }}{% endblock %}
+
+{% block ausculate_lung %}
+    {{ form.ausculate_lung }}
+{% endblock %}
+{% block ausculate_lung_abnormal %}{{ form.ausculate_lung_abnormal }}{% endblock %}
+
+{% block vulva %}
+    {{ form.vulva }}
+{% endblock %}
+{% block vulva_abnormal %}{{ form.vulva_abnormal }}{% endblock %}
+
+{% block vagina %}
+    {{ form.vagina }}
+{% endblock %}
+{% block vagina_abnormal %}{{ form.vagina_abnormal }}{% endblock %}
+
+{% block cervix %}
+    {{ form.cervix }}
+{% endblock %}
+{% block cervix_abnormal %}{{ form.cervix_abnormal }}{% endblock %}
+
+{% block uteri %}
+    {{ form.uteri }}
+{% endblock %}
+{% block uteri_abnormal %}{{ form.uteri_abnormal }}{% endblock %}
+
+{% block accessory %}
+    {{ form.accessory }}
+{% endblock %}
+{% block accessory_abnormal %}{{ form.accessory_abnormal }}{% endblock %}
+
+{% block hemoglobin %}
+    白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
+{% endblock %}
+{% block leukocyte %}
+    血红蛋白值{{ form.leukocyte }}g/L<br />
+{% endblock %}
+{% block thrombocyte %}
+    血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
+{% endblock %}
+{% block blood_extra %}
+    其他{{ form.blood_extra }}
+{% endblock %}
+
+
+{% block urine_protein %}
+    尿蛋白{{ form.urine_protein }}&nbsp;
+{% endblock %}
+{% block urine_glucose %}
+    尿糖{{ form.urine_glucose }}&nbsp;
+{% endblock %}
+{% block urine_ket %}
+    尿酮体{{ form.urine_ket }}&nbsp;
+{% endblock %}
+{% block urine_ery %}
+    尿潜血{{ form.urine_ery }}&nbsp;
+{% endblock %}
+{% block urine_extra %}
+    其他{{ form.urine_extra }}
+{% endblock %}
+
+{% block blood_type_abo %}
+    {{ form.blood_type_abo }}
+{% endblock %}
+{% block blood_type_abo_other %}{{ form.blood_type_abo_other }}{% endblock %}
+{% block blood_type_rh %}
+    {{ form.blood_type_rh }}
+{% endblock %}
+
+{% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
+
+{% block sgpt %}
+    血清谷丙转氨酶{{ form.sgpt }}U/L&nbsp;&nbsp;
+{% endblock %}
+{% block sgot %}
+    血清谷草转氨酶{{ form.sgot }}U/L<br />
+{% endblock %}
+{% block albumin %}
+    白蛋白{{ form.albumin }}g/L&nbsp;&nbsp;
+{% endblock %}
+{% block tbil %}
+    总胆红素{{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+{% block dbil %}
+    结合胆红素{{ form.dbil }}&#956mol/L
+{% endblock %}
+
+{% block scr %}
+    血清肌酐{{ form.scr }}&#956mol/L&nbsp;&nbsp;{% endblock %}
+{% block bun %}
+    血尿素氮{{ form.bun }}&#956mol/L{% endblock %}
+
+{% block vaginal_secretion %}
+    {{ form.vaginal_secretion }}
+{% endblock %}
+{% block vaginal_secretion_other %}{{ form.vaginal_secretion_other }}{% endblock %}
+{% block vaginal_clean_degree %}
+    阴道清洁度：
+    {{ form.vaginal_clean_degree }}
+{% endblock %}
+
+{% block surface_antigen %}
+    乙型肝炎表面抗原&nbsp;&nbsp;
+    {{ form.surface_antigen }}
+{% endblock %}
+
+{% block surface_antibody %}
+    乙型肝炎表面抗体&nbsp;&nbsp;
+    {{ form.surface_antibody }}
+{% endblock %}
+
+{% block e_antigen %}
+    乙型肝炎e抗原&nbsp;&nbsp;
+    {{ form.e_antigen }}
+{% endblock %}
+
+{% block e_antibody %}
+    乙型肝炎e抗体&nbsp;&nbsp;
+    {{ form.e_antibody }}
+{% endblock %}
+
+{% block core_antibody %}
+    乙型肝炎核心抗体&nbsp;&nbsp;
+    {{ form.core_antibody }}
+{% endblock %}
+
+{% block vdrl %}
+    {{ form.vdrl }}
+{% endblock %}
+
+{% block hiv_antibody %}
+    {{ form.hiv_antibody }}
+{% endblock %}
+
+{% block b_scan %}{{ form.b_scan }}{% endblock %}
+
+{% block total_evaluation %}
+    {{ form.total_evaluation }}
+{% endblock %}
+
+{% block total_evaluation_abnormal %}{{ form.total_evaluation_abnormal }}{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_other %}{{ form.guide_other }}{% endblock %}
+
+{% block transfer %}
+    {{ form.transfer }}
+{% endblock %}
+
+{% block transfer_reason %}原因：{{ form.transfer_reason }}&nbsp;&nbsp;&nbsp;&nbsp;{% endblock %}
+{% block transfer_hospital %}机构及科室：{{ form.transfer_hospital }}{% endblock %}
+
+{% block next_visit_date %}{{ form.next_visit_date | date:"Y-m-d" }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature }}{% endblock %}

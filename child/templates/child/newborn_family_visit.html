@@ -1,0 +1,659 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_header %}
+    <h3 class="page-header" align="center">{{ service_type.name }}: {{ service_item.name }}</h3>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'child:newborn_family_visit' %}" method="POST">
+
+    {% csrf_token %}
+        {{ form.non_filed_errors }}
+
+        {% include 'child/chm_nfv.html' %}
+
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.newborn_asphyxia.errors %}
+                    <span style="background: #ffff00">{{ form.newborn_asphyxia.label_tag }}</span>
+                {% else %}
+                    {{ form.newborn_asphyxia.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-10">
+                {% for item in form.newborn_asphyxia %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-2">{{ item }}&nbsp;&nbsp;</div>
+                            <!--<div class="col-md-2" align="right">
+	        	                (&nbsp;{{ form.apgan_score.label_tag }}
+	                        </div>
+                            <div class="col-md-6">
+                                {% for it in form.apgan_score %}
+                                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                                        <div class="col-md-4">{{ it }}</div>
+                                    {% elif forloop.counter == 4 %}
+                                        <div class="col-md-4">{{ it }}&nbsp;)</div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>-->
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+                (
+	        </div>
+            <div class="col-md-10">
+                <div class="col-md-2" align="right">
+	        	      {% if form.apgan_score.errors %}
+                            <span style="background: #ffff00">{{ form.apgan_score.label_tag }}</span>
+                      {% else %}
+                            {{ form.apgan_score.label_tag }}
+                      {% endif %}
+	            </div>
+                <div class="col-md-9">
+                {% for i in form.apgan_score %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-3">{{ i }}</div>
+                    {% endif %}
+                {% endfor %})
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.malformation_or_not.errors or form.malformation_extra.errors %}
+                    <span style="background: #ffff00">{{ form.malformation_or_not.label_tag }}</span>
+                {% else %}
+                    {{ form.malformation_or_not.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-10">
+                {% for item in form.malformation_or_not %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                    <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                    <div class="col-md-9">{{ item }}&nbsp;&nbsp;{{ form.malformation_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                    {% if form.newborn_hearing_screening.errors %}
+                        <span style="background: #ffff00">{{ form.newborn_hearing_screening.label_tag }}</span>
+                    {% else %}
+                        {{ form.newborn_hearing_screening.label_tag }}
+                    {% endif %}
+            </div>
+            <div class="col-md-9">
+                {% for item in form.newborn_hearing_screening %}
+                    {% if forloop.counter > 1 and forloop.counter < 6 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+
+            <div class="col-md-2" align="right">
+                    {% if form.newborn_disease_screening.errors or newborn_disease_screening_extra.errors %}
+                        <span style="background: #ffff00">{{ form.newborn_disease_screening.label_tag }}</span>
+                    {% else %}
+                        {{ form.newborn_disease_screening.label_tag }}
+                    {% endif %}
+            </div>
+            <!--<div class="col-md-9">
+                {% for item in form.newborn_disease_screening %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 4 %}
+                        <div class="col-md-5">{{ item }}&nbsp;&nbsp;{{ form.newborn_disease_screening_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+	        	{{ form.newborn_disease_screening.errors}}&nbsp;&nbsp;{{ form.newborn_disease_screening_extra.errors }}
+	        </div>-->
+            <div class="col-md-9">
+                {% for item in form.newborn_disease_screening %}
+                    {% if forloop.counter == 2 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 4 %}
+                        <div class="col-md-7">{{ item }}&nbsp;&nbsp;{{ form.newborn_disease_screening_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.newborn_birth_weight.errors %}
+                    <span style="background: #ffff00">{{ form.newborn_birth_weight.label_tag }}</span>
+                {% else %}
+                    {{ form.newborn_birth_weight.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.newborn_birth_weight }}&nbsp;&nbsp;kg
+            </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.now_weight.errors %}
+                    <span style="background: #ffff00">{{ form.now_weight.label_tag }}</span>
+                {% else %}
+                    {{ form.now_weight.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.now_weight }}&nbsp;&nbsp;cm
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.birth_height.errors %}
+                    <span style="background: #ffff00">{{ form.birth_height.label_tag }}</span>
+                {% else %}
+                    {{ form.birth_height.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.birth_height }}&nbsp;&nbsp;cm
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.feed_way.errors %}
+                    <span style="background: #ffff00">{{ form.feed_way.label_tag }}</span>
+                {% else %}
+                    {{ form.feed_way.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-5">
+                {% for item in form.feed_way %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!--<div class="col-md-2" align="right">
+	        	{{ form.drink_milk_volume.label_tag }}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.drink_milk_volume }}&nbsp;&nbsp;ml/次&nbsp;&nbsp;{{ form.drink_milk_volume.errors}}
+            </div>-->
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.drink_milk_volume.errors %}
+                    <span style="background: #ffff00">{{ form.drink_milk_volume.label_tag }}</span>
+                {% else %}
+                    {{ form.drink_milk_volume.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.drink_milk_volume }}&nbsp;&nbsp;ml/次
+            </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.drink_milk_times.errors %}
+                    <span style="background: #ffff00">{{ form.drink_milk_times.label_tag }}</span>
+                {% else %}
+                    {{ form.drink_milk_times.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.drink_milk_times }}&nbsp;&nbsp;次/日
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.emesis.errors %}
+                    <span style="background: #ffff00">{{ form.emesis.label_tag }}</span>
+                {% else %}
+                    {{ form.emesis.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {% for item in form.emesis %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="col-md-2" align="right">
+                {% if form.shit.errors %}
+                    <span style="background: #ffff00">{{ form.shit.label_tag }}</span>
+                {% else %}
+                    {{ form.shit.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {% for item in form.shit %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.shit_times.errors %}
+                    <span style="background: #ffff00">{{ form.shit_times.label_tag }}</span>
+                {% else %}
+                    {{ form.shit_times.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.shit_times }}&nbsp;&nbsp;次/日
+            </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.body_temperature.errors %}
+                    <span style="background: #ffff00">{{ form.body_temperature.label_tag }}</span>
+                {% else %}
+                    {{ form.body_temperature.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.body_temperature }}&nbsp;&nbsp;℃
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+	        	{% if form.pulse.errors %}
+                    <span style="background: #ffff00">{{ form.pulse.label_tag }}</span>
+                {% else %}
+                    {{ form.pulse.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.pulse }}&nbsp;&nbsp;次/分钟
+	        </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.breath_frequency.errors %}
+                    <span style="background: #ffff00">{{ form.breath_frequency.label_tag }}</span>
+                {% else %}
+                    {{ form.breath_frequency.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.breath_frequency }}&nbsp;&nbsp;次/分钟
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+	        	{% if form.complexion.errors or form.complexion_extra.errors %}
+                    <span style="background: #ffff00">{{ form.complexion.label_tag }}</span>
+                {% else %}
+                    {{ form.complexion.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-9">
+                {% for item in form.complexion %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 4 %}
+                        <div class="col-md-5">{{ item }}&nbsp;&nbsp;{{ form.complexion_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.icterus_position.errors %}
+                    <span style="background: #ffff00">{{ form.icterus_position.label_tag }}</span>
+                {% else %}
+                    {{ form.icterus_position.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                {% for item in form.icterus_position %}
+                    {% if forloop.counter > 1 and forloop.counter < 6 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.bregma_x.errors or form.bregma_y.errors or form.bregma_1.errors or form.bregma_1_extra.errors %}
+                    <span style="background: #ffff00">{{ form.bregma_x.label_tag }}</span>
+                {% else %}
+                    {{ form.bregma_x.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+               {{ form.bregma_x }}&nbsp;&nbsp;cm×{{ form.bregma_y }}&nbsp;&nbsp;cm
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+
+            </div>
+            <div class="col-md-10">
+                {% for item in form.bregma_1 %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 5 %}
+                        <div class="col-md-4">{{ item }}&nbsp;&nbsp;{{ form.bregma_1_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.eye_appearance.errors or form.eye_appearance_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.eye_appearance.label_tag }}</span>
+                {% else %}
+                    {{ form.eye_appearance.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.eye_appearance %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.eye_appearance_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.ear_appearance.errors or form.ear_appearance_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.ear_appearance.label_tag }}</span>
+                {% else %}
+                    {{ form.ear_appearance.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.ear_appearance %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.ear_appearance_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.nose.errors or form.nose_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.nose.label_tag }}</span>
+                {% else %}
+                    {{ form.nose.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.nose %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.nose_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.oral_cavity.errors or form.oral_cavity_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.oral_cavity.label_tag }}</span>
+                {% else %}
+                    {{ form.oral_cavity.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.oral_cavity %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.oral_cavity_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.heart_lung_auscultation.errors or form.heart_lung_auscultation_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.heart_lung_auscultation.label_tag }}</span>
+                {% else %}
+                    {{ form.heart_lung_auscultation.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.heart_lung_auscultation %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.heart_lung_auscultation_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.abdomen_palpation.errors or form.abdomen_palpation_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.abdomen_palpation.label_tag }}</span>
+                {% else %}
+                    {{ form.abdomen_palpation.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.abdomen_palpation %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.abdomen_palpation_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.all_fours_activity.errors or form.all_fours_activity_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.all_fours_activity.label_tag }}</span>
+                {% else %}
+                    {{ form.all_fours_activity.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.all_fours_activity %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.all_fours_activity_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.neck_enclosed_mass.errors or form.neck_enclosed_mass_yes.errors %}
+                    <span style="background: #ffff00">{{ form.neck_enclosed_mass.label_tag }}</span>
+                {% else %}
+                    {{ form.neck_enclosed_mass.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.neck_enclosed_mass %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ form.neck_enclosed_mass_yes }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.skin.errors or form.skin_extra.errors %}
+                    <span style="background: #ffff00">{{ form.skin.label_tag }}</span>
+                {% else %}
+                    {{ form.skin.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.skin %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 5 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.skin_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.anus.errors or form.anus_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.anus.label_tag }}</span>
+                {% else %}
+                    {{ form.anus.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.anus %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.anus_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.externalia.errors or form.externalia_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.externalia.label_tag }}</span>
+                {% else %}
+                    {{ form.externalia.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.externalia %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.externalia_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.spine.errors or form.spine_abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.spine.label_tag }}</span>
+                {% else %}
+                    {{ form.spine.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.spine %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.spine_abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.navel.errors or form.navel_extra.errors %}
+                    <span style="background: #ffff00">{{ form.navel.label_tag }}</span>
+                {% else %}
+                    {{ form.navel.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.navel %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 5 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.navel_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.transfer_treatment_suggestion.errors or form.transfer_treatment_suggestion_reason.errors %}
+                    <span style="background: #ffff00">{{ form.transfer_treatment_suggestion.label_tag }}</span>
+                {% else %}
+                    {{ form.transfer_treatment_suggestion.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-6">
+                {% for item in form.transfer_treatment_suggestion %}
+                    {% if forloop.counter > 1 and forloop.counter < 3  %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-2">{{ item }}&nbsp;&nbsp;</div><div class="col-md-2" align="right">
+                                {{ form.transfer_treatment_suggestion_reason.label_tag }}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.transfer_treatment_suggestion_reason }}
+                            </div>
+                    {% endif %}
+                 {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+
+	        </div>
+	        <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2" align="right">
+                {% if form.transfer_treatment_suggestion_institution.errors %}
+                    <span style="background: #ffff00">{{ form.transfer_treatment_suggestion.label_tag }}</span>
+                {% else %}
+                    {{ form.transfer_treatment_suggestion.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.transfer_treatment_suggestion_institution }}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.guide.errors or form.guide_extra.errors %}
+                    <span style="background: #ffff00">{{ form.guide.label_tag }}</span>
+                {% else %}
+                    {{ form.guide.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                {% for item in form.guide %}
+                    {% if forloop.counter > 1 and forloop.counter < 7 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <!--<div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {{ form.next_visit_date.label_tag }}
+            </div>
+            <div class="col-md-4">
+                {{ form.next_visit_date }}&nbsp;&nbsp;{{ form.next_visit_date.errors}}
+            </div>
+        </div>-->
+        {% include 'child/next_visit_date.html' %}
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.next_visit_place.errors %}
+                    <span style="background: #ffff00">{{ form.next_visit_place.label_tag }}</span>
+                {% else %}
+                    {{ form.next_visit_place.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.next_visit_place }}
+            </div>
+        </div>
+        {% include 'diabetes/submit.html' %}
+    </form>
+{% endblock %}
+</html>

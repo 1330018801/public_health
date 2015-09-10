@@ -1,0 +1,22 @@
+<div class="print_area">
+    {% block table_head %}
+        <div class="table_head">{% block table_title %}{% endblock %}</div>
+    {% endblock %}
+
+    {% block table_neck %}
+        <table class="table_neck">
+            <tr>
+                <td colspan="5" width="70%">姓名：{% block table_resident %}{{ resident.name }}{% endblock %} </td>
+                <td colspan="3" width="28%">编号：{% block table_no %}{{ resident.ehr_no }}{% endblock %}</td>
+            </tr>
+        </table>
+    {% endblock %}
+
+    {% block table_neck_extra %}{% endblock %}
+
+    {% block table_body %}
+        <table class="table_body">{% block table_content %}{% endblock %} </table>
+    {% endblock %}
+
+    {% block table_foot %}{% endblock %}
+</div>

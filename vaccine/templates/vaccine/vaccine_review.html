@@ -1,0 +1,24 @@
+{% extends 'table_base.html' %}
+
+{% block table_content %}
+
+    <tr>
+        <td colspan="3" width="16%" align="center">疫苗与剂次</td>
+        <td colspan="1" width="14%" align="center">接种日期</td>
+        <td colspan="1" width="14%" align="center">接种部位</td>
+        <td colspan="1" width="14%" align="center">疫苗批号</td>
+        <td colspan="1" width="14%" align="center">接种医生</td>
+        <td colspan="1" width="14%" align="center">备注</td>
+        <td colspan="1" width="14%" align="center">下次接种日期</td>
+    </tr>
+    <tr>
+        <td colspan="3" width="16%" align="center">{{ form.vaccine.name }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.visit_date | date:"Y-m-d" }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.vaccinate_position }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.batch_number }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.doctor_signature }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.remarks }}</td>
+        <td colspan="1" width="14%" align="center">{{ form.next_vaccinate_date | date:"Y-m-d" }}</td>
+    </tr>
+
+{% endblock %}

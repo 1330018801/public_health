@@ -1,0 +1,74 @@
+{% extends 'pregnant/postpartum42_base.html' %}
+
+{% block visit_date %}{{ form.visit_date.data }}{% endblock %}
+{% block general_health_situation %}{{ form.general_health_situation.data }}{% endblock %}
+{% block general_mentality_situation %}{{ form.general_mentality_situation.data }}{% endblock %}
+{% block sbp %}{{ form.sbp.data }}{% endblock %}
+{% block dbp %}{{ form.dbp.data }}{% endblock %}
+{% block breast %}
+    {{ form.breast.data }}
+{% endblock %}
+{% block breast_abnormal %}
+    {% ifequal form.breast.data '异常' %}
+        {{ form.breast_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+{% block lochia %}
+    {{ form.lochia.data }}
+{% endblock %}
+{% block lochia_abnormal %}
+    {% ifequal form.lochia.data '异常' %}
+        {{ form.lochia_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+{% block uterus %}
+    {{ form.uterus.data }}
+{% endblock %}
+{% block uterus_abnormal %}
+    {% ifequal form.uterus_abnormal.data '异常' %}
+        {{ form.uterus_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+{% block wound %}
+    {{ form.wound.data }}
+{% endblock %}
+{% block wound_abnormal %}
+    {% ifequal form.wound_abnormal.data '异常' %}
+        {{ form.wound_abnormal.data }}
+    {% endifequal %}
+{% endblock %}
+{% block extra %}{{ form.extra.data }}{% endblock %}
+{% block classification %}
+    {{ form.classification.data }}
+{% endblock %}
+{% block classification_not_recovery %}
+    {% ifequal form.classfication.data '异常' %}
+        {{ form.classification_not_recovery.data }}
+    {% endifequal %}
+{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+{% block guide_abnormal %}
+    {% if '其他' in form.guide.data %}
+        {{ form.guide_extra.data }}
+    {% endif %}
+{% endblock %}
+{% block dispose %}
+    {{ form.dispose.data }}
+{% endblock %}
+{% block dispose_transfer_treatment_reason %}
+    {% ifequal form.dispose.data '转诊' %}
+        <br />原因：{{ form.dispose_transfer_treatment_reason.data }}&nbsp;&nbsp;&nbsp;&nbsp;
+    {% endifequal %}
+{% endblock %}
+{% block dispose_transfer_treatment_institution %}
+    {% ifequal form.dispose.data '转诊' %}
+        机构及科室：
+        {{ form.dispose_transfer_treatment_institution.data }}
+    {% endifequal %}
+{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature.data }}{% endblock %}

@@ -1,0 +1,702 @@
+{% extends 'vaccine/vaccine_card_base2.html' %}
+
+<!-- 预防接种卡 -->
+{% block gender %}{{ vaccine_card.gender }}{% endblock %}
+{% block birth_date %}{{ vaccine_card.birth_date | date:"Y-m-d" }}{% endblock %}
+{% block guardian_name %}{{ vaccine_card.guardian_name }}{% endblock %}
+{% block relation_to_child %}{{ vaccine_card.relation_to_child }}{% endblock %}
+{% block contact_number %}{{ vaccine_card.contact_number }}{% endblock %}
+{% block census_register_address %}{{ vaccine_card.census_register_address }}{% endblock %}
+{% block census_register_address_extra %}{{ vaccine_card.census_register_address_extra }}{% endblock %}
+{% block immigrate_time %}{{ vaccine_card.immigrate_time | date:"Y-m-d" }}{% endblock %}
+{% block emigrate_time %}{{ vaccine_card.emigrate_time | date:"Y-m-d" }}{% endblock %}
+{% block emigrate_reason %}{{ vaccine_card.emigrate_reason }}{% endblock %}
+{% block vaccine_abnormal_reaction_history %}{{ vaccine_card.vaccine_abnormal_reaction_history }}{% endblock %}
+{% block vaccinate_taboo %}{{ vaccine_card.vaccinate_taboo }}{% endblock %}
+{% block infection_history %}{{ vaccine_card.infection_history }}{% endblock %}
+{% block found_card_date %}{{ vaccine_card.found_card_date | date:"Y-m-d" }}{% endblock %}
+{% block found_card_person %}{{ vaccine_card.found_card_person }}{% endblock %}
+
+<!-- 乙肝疫苗-1 -->
+{% block hepatitis_b_vaccine_1 %}
+{% if form.Meta.alias == 'hepatitis_b_vaccine_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.remarks }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙肝疫苗-2 -->
+{% block hepatitis_b_vaccine_2 %}
+{% if form.Meta.alias == 'hepatitis_b_vaccine_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.remarks }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_2.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙肝疫苗-3 -->
+{% block hepatitis_b_vaccine_3 %}
+{% if form.Meta.alias == 'hepatitis_b_vaccine_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_3.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_3.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_3.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_3.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_b_vaccine_3.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 卡介苗 -->
+{% block bcg_vaccine %}
+{% if form.Meta.alias == 'bcg_vaccine' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ bcg_vaccine.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ bcg_vaccine.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ bcg_vaccine.batch_number }}</td>
+        <td colspan="1" align="center">{{ bcg_vaccine.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ bcg_vaccine.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 脊灰疫苗-1 -->
+{% block poliomyelitis_vaccine_1 %}
+{% if form.Meta.alias == 'poliomyelitis_vaccine_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.remarks }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 脊灰疫苗-2 -->
+{% block poliomyelitis_vaccine_2 %}
+{% if form.Meta.alias == 'poliomyelitis_vaccine_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.remarks }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_2.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 脊灰疫苗-3 -->
+{% block poliomyelitis_vaccine_3 %}
+{% if form.Meta.alias == 'poliomyelitis_vaccine_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.batch_number }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.remarks }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_3.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 脊灰疫苗-4 -->
+{% block poliomyelitis_vaccine_4 %}
+{% if form.Meta.alias == 'poliomyelitis_vaccine_4' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_4.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_4.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_4.batch_number }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_4.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ poliomyelitis_vaccine_4.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 百白破疫苗-1 -->
+{% block diphtheria_pertussis_tetanus_1 %}
+{% if form.Meta.alias == 'diphtheria_pertussis_tetanus_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.remarks }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 百白破疫苗-2 -->
+{% block diphtheria_pertussis_tetanus_2 %}
+{% if form.Meta.alias == 'diphtheria_pertussis_tetanus_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.remarks }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_2.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 百白破疫苗-3 -->
+{% block diphtheria_pertussis_tetanus_3 %}
+{% if form.Meta.alias == 'diphtheria_pertussis_tetanus_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.batch_number }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.remarks }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_3.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 百白破疫苗-4 -->
+{% block diphtheria_pertussis_tetanus_4 %}
+{% if form.Meta.alias == 'diphtheria_pertussis_tetanus_4' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_4.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_4.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_4.batch_number }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_4.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ diphtheria_pertussis_tetanus_4.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 白破疫苗 -->
+{% block diphtheria_tetanus_vaccine %}
+{% if form.Meta.alias == 'diphtheria_tetanus_vaccine' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ diphtheria_tetanus_vaccine.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ diphtheria_tetanus_vaccine.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ diphtheria_tetanus_vaccine.batch_number }}</td>
+        <td colspan="1" align="center">{{ diphtheria_tetanus_vaccine.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ diphtheria_tetanus_vaccine.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!--麻风疫苗 -->
+{% block leprosy %}
+{% if form.Meta.alias == 'leprosy' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ leprosy.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ leprosy.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ leprosy.batch_number }}</td>
+        <td colspan="1" align="center">{{ leprosy.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ leprosy.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 麻腮风疫苗-1 -->
+{% block measles_mumps_rubella_1 %}
+{% if form.Meta.alias == 'measles_mumps_rubella_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.remarks }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 麻腮风疫苗-2 -->
+{% block measles_mumps_rubella_2 %}
+{% if form.Meta.alias == 'measles_mumps_rubella_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ measles_mumps_rubella_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ measles_mumps_rubella_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!--麻腮疫苗 -->
+{% block measles_mumps %}
+{% if form.Meta.alias == 'measles_mumps' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ measles_mumps.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ measles_mumps.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ measles_mumps.batch_number }}</td>
+        <td colspan="1" align="center">{{ measles_mumps.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ measles_mumps.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 麻疹疫苗-1 -->
+{% block measles_1 %}
+{% if form.Meta.alias == 'measles_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ measles_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ measles_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ measles_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ measles_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ measles_1.remarks }}</td>
+        <td colspan="1" align="center">{{ measles_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 麻疹疫苗-2 -->
+{% block measles_2 %}
+{% if form.Meta.alias == 'measles_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ measles_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ measles_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ measles_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ measles_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ measles_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!--A群流脑疫苗-1 -->
+{% block meningitis_a_1 %}
+{% if form.Meta.alias == 'meningitis_a_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ meningitis_a_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ meningitis_a_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_1.remarks }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!--A群流脑疫苗-2 -->
+{% block meningitis_a_2 %}
+{% if form.Meta.alias == 'meningitis_a_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ meningitis_a_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ meningitis_a_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ meningitis_a_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- A+C群流脑疫苗-1 -->
+{% block meningitis_ac_1 %}
+{% if form.Meta.alias == 'meningitis_ac_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ meningitis_ac_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_1.remarks }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- A+C群流脑疫苗-2 -->
+{% block meningitis_ac_2 %}
+{% if form.Meta.alias == 'meningitis_ac_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ meningitis_ac_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ meningitis_ac_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑（减毒）活疫苗-1 -->
+{% block japanese_encephalitis_attenuated_1 %}
+{% if form.Meta.alias == 'japanese_encephalitis_attenuated_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.remarks }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑（减毒）活疫苗-2 -->
+{% block japanese_encephalitis_attenuated_2 %}
+{% if form.Meta.alias == 'japanese_encephalitis_attenuated_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_attenuated_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑灭活疫苗-1 -->
+{% block japanese_encephalitis_inactivated_1 %}
+{% if form.Meta.alias == 'japanese_encephalitis_inactivated_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.remarks }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑灭活疫苗-2 -->
+{% block japanese_encephalitis_inactivated_2 %}
+{% if form.Meta.alias == 'japanese_encephalitis_inactivated_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.remarks }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_2.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑灭活疫苗-3 -->
+{% block japanese_encephalitis_inactivated_3 %}
+{% if form.Meta.alias == 'japanese_encephalitis_inactivated_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.remarks }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_3.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 乙脑灭活疫苗-4 -->
+{% block japanese_encephalitis_inactivated_4 %}
+{% if form.Meta.alias == 'japanese_encephalitis_inactivated_4' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_4.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_4.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_4.batch_number }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_4.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ japanese_encephalitis_inactivated_4.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 甲肝减毒活疫苗 -->
+{% block hepatitis_a_attenuated %}
+{% if form.Meta.alias == 'hepatitis_a_attenuated' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_a_attenuated.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_attenuated.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_attenuated.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_attenuated.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_attenuated.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 甲肝灭活疫苗-1 -->
+{% block hepatitis_a_inactivated_1 %}
+{% if form.Meta.alias == 'japanese_encephalitis_inactivated_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.remarks }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 甲肝灭活疫苗-2 -->
+{% block hepatitis_a_inactivated_2 %}
+{% if form.Meta.alias == 'hepatitis_a_inactivated_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hepatitis_a_inactivated_2.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 炭疽疫苗 -->
+{% block anthrax_vaccine %}
+{% if form.Meta.alias == 'anthrax_vaccine' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ anthrax_vaccine.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ anthrax_vaccine.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ anthrax_vaccine.batch_number }}</td>
+        <td colspan="1" align="center">{{ anthrax_vaccine.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ anthrax_vaccine.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}
+
+<!-- 出血热疫苗（双价）-1 -->
+{% block hemorrhagic_i_ii_1 %}
+{% if form.Meta.alias == 'hemorrhagic_i_ii_1' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.batch_number }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.remarks }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_1.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 出血热疫苗（双价）-2 -->
+{% block hemorrhagic_i_ii_2 %}
+{% if form.Meta.alias == 'hemorrhagic_i_ii_2' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center">{{ form.next_vaccinate_date.data }}</td>
+{% else %}
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.batch_number }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.remarks }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_2.next_vaccinate_date | date:"Y-m-d" }}</td>
+{% endif %}
+{% endblock %}
+
+<!-- 出血热疫苗（双价）-3 -->
+{% block hemorrhagic_i_ii_3 %}
+{% if form.Meta.alias == 'hemorrhagic_i_ii_3' %}
+        <td colspan="1" align="center">{{ form.visit_date.data }}</td>
+        <td colspan="1" align="center">{{ form.vaccinate_position.data }}</td>
+        <td colspan="1" align="center">{{ form.batch_number.data }}</td>
+        <td colspan="1" align="center">{{ form.doctor_signature.data }}</td>
+        <td colspan="1" align="center">{{ form.remarks.data }}</td>
+        <td colspan="1" align="center"></td>
+{% else %}
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_3.visit_date | date:"Y-m-d"}}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_3.vaccinate_position }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_3.batch_number }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_3.doctor_signature }}</td>
+        <td colspan="1" align="center">{{ hemorrhagic_i_ii_3.remarks }}</td>
+        <td colspan="1" align="center"></td>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends 'child/aftercare_3_6_year_base.html' %}
+
+{% block visit_date_3 %}
+    {{ form.visit_date.data }}
+{% endblock %}
+
+{% block weight_3 %}
+    {{ form.weight.data }}
+{% endblock %}
+
+{% block weight_grade_3 %}
+    {{ form.weight_grade.data }}
+{% endblock %}
+
+{% block height_3 %}
+    {{ form.height.data }}
+{% endblock %}
+
+{% block height_grade_3 %}
+    {{ form.height_grade.data }}
+{% endblock %}
+
+{% block body_growth_evaluate_3 %}
+    {{ form.body_growth_evaluate.data }}
+{% endblock %}
+
+{% block hearing_3 %}
+    {{ form.hearing.data }}
+{% endblock %}
+
+{% block tooth_3 %}
+    {{ form.tooth.data }}
+{% endblock %}
+
+{% block decayed_tooth_3 %}
+    {{ form.decayed_tooth.data }}
+{% endblock %}
+
+{% block heart_lung_3 %}
+    {{ form.heart_lung.data }}
+{% endblock %}
+
+{% block abdomen_3 %}
+    {{ form.abdomen.data }}
+{% endblock %}
+
+{% block hemoglobin_value_3 %}
+    {{ form.hemoglobin_value.data }}
+{% endblock %}
+
+{% block extra_3 %}
+    {{ form.extra.data }}
+{% endblock %}
+
+{% block pneumonia_3 %}
+     {{ form.pneumonia.data }}
+{% endblock %}
+
+{% block diarrhea_3 %}
+    {{ form.diarrhea.data }}
+{% endblock %}
+
+{% block traumatism_3 %}
+    {{ form.traumatism.data }}
+{% endblock %}
+
+{% block two_visit_extra_3 %}
+    {{ form.two_visit_extra.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_3 %}
+    {{ form.transfer_treatment_suggestion.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_3 %}
+    {{ form.transfer_treatment_suggestion_reason.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_3 %}
+    {{ form.transfer_treatment_suggestion_institution.data }}
+{% endblock %}
+
+{% block guide_3 %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_3 %}
+    {{ form.guide_extra.data }}
+{% endblock %}
+
+{% block next_visit_date_3 %}
+    {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature_3 %}
+    {{ form.doctor_signature.data }}
+{% endblock %}

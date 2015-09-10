@@ -1,0 +1,95 @@
+{% extends 'pregnant/antenatal_2_5_base.html' %}
+
+{% block visit_date_4%}
+    {{ form.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block gestational_weeks_4%}
+    {{ form.gestational_weeks }}
+{% endblock %}
+
+{% block complaint_4 %}
+    {{ form.complaint }}
+{% endblock %}
+
+{% block weight_4 %}
+    {{ form.weight }}
+{% endblock %}
+
+{% block examination_before_parturition_uteri_bottom_height_4 %}
+    {{ form.examination_before_parturition_uteri_bottom_height }}
+{% endblock %}
+
+{% block examination_before_parturition_abdomen_circumference_4 %}
+    {{ form.examination_before_parturition_abdomen_circumference }}
+{% endblock %}
+
+{% block examination_before_parturition_fetus_position_4 %}
+    {{ form.examination_before_parturition_fetus_position }}
+{% endblock %}
+
+{% block examination_before_parturition_fetal_heart_rate_4 %}
+    {{ form.examination_before_parturition_fetal_heart_rate }}
+{% endblock %}
+
+{% block sbp_4 %}
+    {{ form.sbp }}
+{%endblock %}
+
+{% block dbp_4 %}
+    {{ form.dbp }}
+{% endblock %}
+
+{% block hemoglobin_4 %}
+    {{ form.hemoglobin }}
+{% endblock %}
+
+{% block urine_protein_4 %}
+    {{ form.urine_protein }}
+{% endblock %}
+
+{% block extra_auxiliary_examination_4 %}
+    {{ form.extra_auxiliary_examination }}
+{% endblock %}
+
+{% block classification_4 %}
+    {{ form.classification }}
+{% endblock %}
+
+{% block classification_abnormal_4 %}
+    {{ form.classification_abnormal }}
+{% endblock %}
+
+{% block guide_4 %}
+    {% for item in form.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_4 %}
+    {{ form.guide_extra }}
+{% endblock %}
+
+{% block transfer_treatment_4 %}
+    {{ form.transfer_treatment }}
+{% endblock %}
+
+{% block transfer_treatment_reason_4 %}
+    {% ifequal form.transfer_treatment '有' %}
+        <br />原因：{{ form.transfer_treatment_reason }}
+    {% endifequal %}
+{% endblock %}
+
+{% block transfer_treatment_institution_4 %}
+    {% ifequal form.transfer_treatment '有' %}
+        <br />机构及科室：{{ form.transfer_treatment_institution }}
+    {% endifequal %}
+{% endblock %}
+
+{% block next_visit_date_4 %}
+    {{ form.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_4 %}
+    {{ form.doctor_signature }}
+{% endblock %}

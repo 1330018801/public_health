@@ -1,0 +1,40 @@
+{% extends 'vaccine/vaccine_card_base.html' %}
+
+{% block gender %}{{ form.gender }}{% endblock %}
+{% block birth_date %}{{ form.birth_date | date:"Y-m-d" }}{% endblock %}
+{% block guardian_name %}{{ form.guardian_name }}{% endblock %}
+{% block relation_to_child %}{{ form.relation_to_child }}{% endblock %}
+
+{% block contact_number %}{{ form.contact_number }}{% endblock %}
+
+{% block home_address %}三河市{{ form.home_town.name }}{% endblock %}
+{% block register_address %}
+    {% if form.register_local %}
+        三河市{{ form.home_town.name }}
+    {% else %}
+        {{ form.register_province }}省（市、自治区）{{ form.register_city }}市
+        {{ form.register_county }}县（区）{{ form.register_town }}乡（镇）
+    {% endif %}
+{% endblock %}
+
+{% block immigrate_time %}
+    {% if form.mmigrate_time %}
+        {{ form.immigrate_time | date:'Y-m-d'}}
+    {% endif %}
+{% endblock %}
+{% block emigrate_time %}
+    {% if form.emigrate_time %}
+        {{ form.emigrate_time }}
+    {% endif %}
+{% endblock %}
+{% block emigrate_reason %}{{ form.emigrate_reason }}{% endblock %}
+
+
+{% block vaccine_abnormal_reaction_history %}{{ form.vaccine_abnormal_reaction_history }}{% endblock %}
+{% block vaccinate_taboo %}{{ form.vaccinate_taboo }}{% endblock %}
+
+{% block infection_history %}{{ form.infection_history }}{% endblock %}
+{% block found_card_date %}{{ form.found_card_date | date:'Y-m-d'}}{% endblock %}
+{% block found_card_person %}{{ form.found_card_person }}{% endblock %}
+
+{% block table_body %}{% endblock %}

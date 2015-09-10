@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<div>
+    <table id="payment"></table>
+</div>
+
+<div id="payment_toolbar" style="padding: 3px; display: none">
+    <table style="margin-right: 40px;">
+        <tr>
+            <td width="10%" align="right">开始日期：</td>
+            <td width="15%"><input id="query_begin_date" /></td>
+            <td width="10%" align="right">结束日期：</td>
+            <td width="15%"><input id="query_end_date" /></td>
+            <td width="10%" align="right">服务类型：</td>
+            <td width="15%"><input id="query_service_type" /></td>
+            <td width="10%" align="right">服务项目：</td>
+            <td width="15%"><input id="query_service_item"/></td>
+        </tr>
+        <tr><td colspan="8" style="padding-top: 2px"></td></tr>
+        <tr>
+            <td width="10%" align="right">医生用户：</td>
+            <td width="15%"><input id="query_doctor" style="width: 100px" /></td>
+            <td width="10%" align="right">居民姓名：</td>
+            <td width="15%"><input id="query_resident" style="width: 100px" /></td>
+            <td width="10%" align="right">乡镇卫生院：</td>
+            <td width="15%"><input id="query_town_clinic" /></td>
+            <td width="10%" align="right">村卫生室：</td>
+            <td width="15%"><input id="query_village_clinic" /></td>
+        </tr>
+        <tr><td colspan="8" style="padding-top: 3px"></td></tr>
+        <tr>
+            <td colspan="8" align="right"><a href="#" id="query">查询</a></td>
+        </tr>
+    </table>
+</div>
+
+<script src='{% static "js/payment.js" %}'></script>

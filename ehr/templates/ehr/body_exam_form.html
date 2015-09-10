@@ -1,0 +1,629 @@
+{% extends 'ehr/body_exam_base.html' %}
+
+{% block doctor_name %}
+    {% if form.doctor.value %}
+        {{ form.doctor.value }}
+    {% else %}
+        {{ form.doctor }}
+    {% endif %}
+{% endblock %}
+
+{% block check_date %}
+    {% if form.visit_date.value %}
+        {{ form.visit_date.value | date:"Y-m-d" }}
+    {% else %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+# 血常规
+{% block blood_routine_test %}
+    {% if form.hemoglobin.value %}
+        血红蛋白{{ form.hemoglobin.value }}g/L&nbsp;&nbsp;
+        白细胞{{ form.leucocyte.value }}×10<sup>9</sup>/L&nbsp;&nbsp;
+        血小板{{ form.blood_platelets.value }}×10<sup>9</sup>/L<br />
+        其他{{ form.blood_routine_test_extra.value }}
+    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        血红蛋白{{ form.hemoglobin }}g/L&nbsp;&nbsp;
+        白细胞{{ form.leucocyte }}×10<sup>9</sup>/L&nbsp;&nbsp;
+        血小板{{ form.blood_platelets }}×10<sup>9</sup>/L<br />
+        其他{{ form.blood_routine_test_extra }}
+    {% endif %}
+{% endblock %}
+
+# 尿常规
+{% block urine_routine_test %}
+    {% if form.urine_protein.value %}
+        尿蛋白{{ form.urine_protein.value }}&nbsp;&nbsp;
+        尿糖{{ form.urine_glucose.value }}&nbsp;&nbsp;
+        尿酮体{{ form.ketone_bodies.value }}&nbsp;&nbsp;
+        尿潜血{{ form.occult_blood.value }}&nbsp;&nbsp;
+        其他{{ form.routine_urine_test_extra.value }}
+    {% elif type_alias == 'old' %}
+        尿蛋白{{ form.urine_protein }}&nbsp;&nbsp;
+        尿糖{{ form.urine_glucose }}&nbsp;&nbsp;
+        尿酮体{{ form.ketone_bodies }}&nbsp;&nbsp;
+        尿潜血{{ form.occult_blood }}&nbsp;&nbsp;
+        其他{{ form.routine_urine_test_extra }}
+    {% endif %}
+{% endblock %}
+
+# 血清谷丙转氨酶
+{% block alanine_aminotransferase %}
+    {% if form.alt.value %}
+        &nbsp;{{ form.alt.value }}U/L&nbsp;&nbsp;
+    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        &nbsp;{{ form.alt }}U/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+# 血清谷草转氨酶
+{% block glutamic_oxalacetic_transaminase %}
+    {% if form.ast.value %}
+        &nbsp;{{ form.ast.value }}U/L&nbsp;&nbsp;
+    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        &nbsp;{{ form.ast }}U/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+# 血糖
+{% block blood_glucose %}
+    {% if form.blood_glucose_mmol.value or form.blood_glucose_mg.value %}
+        {% if form.blood_glucose_mmol.value %}
+        {{ form.blood_glucose_mmol.value }} mmol/L
+        {% endif %}
+        {% if form.blood_glucose_mmol.value and form.blood_glucose_mg.value %}
+        &nbsp;&nbsp;或&nbsp;&nbsp;
+        {% endif %}
+        {% if form.blood_glucose_mg.value %}
+        {{ form.blood_glucose_mg.value }} mg/dL
+        {% endif %}
+    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        {{ form.blood_glucose_mmol }} mmol/L 或 {{ form.blood_glucose_mg }} mg/dL
+    {% endif %}
+{% endblock %}
+
+# 心电图
+{% block electrocardiogram %}
+    {% if form.electr_gram.value %}
+        {{ form.electr_gram.value }}
+        {% if form.electr_gram.value == '异常' %}
+            &nbsp;&nbsp;{{ form.electr_gram_abnormal.value }}
+        {% endif %}
+    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        {% for item in form.electr_gram %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+# 血脂
+{% block blood_fat %}
+    {% if form.tc.value %}
+        总胆固醇{{ form.tc.value }}mmol/L&nbsp;&nbsp;
+        甘油三酯{{ form.tg.value }}mmol/L<br />
+        血清低密度脂蛋白胆固醇{{ form.ldl_c.value }}mmol/L<br />
+        血清高密度脂蛋白胆固醇{{ form.hdl_c.value }}mmol/L
+    {% elif type_alias == 'old' %}
+        总胆固醇{{ form.tc }}mmol/L&nbsp;&nbsp;
+        甘油三酯{{ form.tg }}mmol/L<br />
+        血清低密度脂蛋白胆固醇{{ form.ldl_c }}mmol/L<br />
+        血清高密度脂蛋白胆固醇{{ form.hdl_c }}mmol/L
+    {% endif %}
+{% endblock %}
+
+# 总胆红素
+{% block total_bilirubin %}
+    {% if form.tbil.value %}
+        {{ form.tbil.value }}&#956mol/L&nbsp;&nbsp;
+    {% elif type_alias == 'old' %}
+        {{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+# 血清肌酐
+{% block serum_creatinine %}
+    {% if form.scr.value %}
+        {{ form.scr.value }}&#956mol/L&nbsp;&nbsp;
+    {% elif type_alias == 'old' %}
+        {{ form.scr }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+# 血尿素氮
+{% block blood_urea_nitrogen %}
+    {% if form.bun.value %}
+        {{ form.bun.value }}&#956mol/L&nbsp;&nbsp;
+    {% elif type_alias == 'old' %}
+        {{ form.bun }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+# 一般体格检查
+{% block body_temperature %}
+    {% if form.body_temperature.value %}
+        {{ form.body_temperature.value }}℃
+    {% elif type_alias != 'tcm' %}
+        {{ form.body_temperature }}℃
+    {% endif %}
+{% endblock %}
+
+{% block pulse %}
+    {% if form.pulse.value %}
+        {{ form.pulse.value }}次/分钟
+    {% elif type_alias != 'tcm' %}
+        {{ form.pulse }}次/分钟
+    {% endif %}
+{% endblock %}
+
+{% block breath_frequency %}
+    {% if form.breath_frequency.value %}
+        {{ form.breath_frequency.value }}次/分钟
+    {% elif type_alias != 'tcm' %}
+        {{ form.breath_frequency }}次/分钟
+    {% endif %}
+{% endblock %}
+
+{% block blood_pressure_left_sbp %}
+    {% if form.blood_pressure_left_sbp.value %}
+        {{ form.blood_pressure_left_sbp.value }}
+    {% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_left_sbp }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_pressure_left_dbp %}
+    {% if form.blood_pressure_left_dbp.value %}
+        {{ form.blood_pressure_left_dbp.value }}
+    {% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_left_dbp }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_pressure_right_sbp %}
+    {% if form.blood_pressure_right_sbp.value %}
+        {{ form.blood_pressure_right_sbp.value }}
+    {% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_right_sbp }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_pressure_right_dbp %}
+    {% if form.blood_pressure_right_dbp.value %}
+        {{ form.blood_pressure_right_dbp.value }}
+    {% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_right_dbp }}
+    {% endif %}
+{% endblock %}
+
+{% block height %}
+    {% if form.height.value %}
+        {{ form.height.value }}cm
+    {% elif type_alias != 'tcm' %}
+        {{ form.height }}cm
+    {% endif %}
+{% endblock %}
+
+{% block weight %}
+    {% if form.weight.value %}
+        {{ form.weight.value }}kg
+    {% elif type_alias != 'tcm' %}
+        {{ form.weight }}kg
+    {% endif %}
+{% endblock %}
+
+{% block waistline %}
+    {% if form.waistline.value %}
+        {{ form.waistline.value }}cm
+    {% elif type_alias != 'tcm' %}
+        {{ form.waistline }}cm
+    {% endif %}
+{% endblock %}
+
+{% block body_mass_index %}
+    {% if form.body_mass_index.value %}
+        {{ form.body_mass_index.value }}Kg/m<sup>2</sup>
+    {% elif type_alias != 'tcm' %}
+        {{ form.body_mass_index }}Kg/m<sup>2</sup>
+    {% endif %}
+{% endblock %}
+
+{% block mouth_lip %}
+    {% if form.mouth_lip.value %}
+        {{ form.mouth_lip.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_lip %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block mouth_tooth %}
+    {% if form.mouth_tooth.value %}
+        {{ form.mouth_tooth.value }}
+            {% if form.mouth_tooth.value == '缺齿' %}
+                左上{{ form.mouth_tooth_missing_upleft.value }}
+                左下{{ form.mouth_tooth_missing_bottomleft.value }}
+                右上{{ form.mouth_tooth_missing_upright.value }}
+                右下{{ form.mouth_tooth_missing_bottomright.value }}<br />
+            {% elif form.mouth_tooth.value == '龋齿' %}
+                左上{{ form.mouth_tooth_decayed_upleft.value }}
+                左下{{ form.mouth_tooth_decayed_bottomleft.value }}
+                右上{{ form.mouth_tooth_decayed_upright.value }}
+                右下{{ form.mouth_tooth_decayed_bottomright.value }}<br />
+            {% elif form.mouth_tooth.value == '义齿（假牙）' %}
+                左上{{ form.mouth_tooth_denture_upleft.value }}
+                左下{{ form.mouth_tooth_denture_bottomleft.value }}
+                右上{{ form.mouth_tooth_denture_upright.value }}
+                右下{{ form.mouth_tooth_denture_bottomright.value }}
+            {% endif %}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_tooth %}
+            {% if forloop.first %}
+            {% elif forloop.counter0 == 2 %}
+                {{ item }}：
+                左上{{ form.mouth_tooth_missing_upleft }}
+                左下{{ form.mouth_tooth_missing_bottomleft }}
+                右上{{ form.mouth_tooth_missing_upright }}
+                右下{{ form.mouth_tooth_missing_bottomright }}<br />
+            {% elif forloop.counter0 == 3 %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ item }}：
+                左上{{ form.mouth_tooth_decayed_upleft }}
+                左下{{ form.mouth_tooth_decayed_bottomleft }}
+                右上{{ form.mouth_tooth_decayed_upright }}
+                右下{{ form.mouth_tooth_decayed_bottomright }}<br />
+            {% elif forloop.counter0 == 4 %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ item }}：
+                左上{{ form.mouth_tooth_denture_upleft }}
+                左下{{ form.mouth_tooth_denture_bottomleft }}
+                右上{{ form.mouth_tooth_denture_upright }}
+                右下{{ form.mouth_tooth_denture_bottomright }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block mouth_throat %}
+    {% if form.mouth_throat.value %}
+        {{ form.mouth_throat.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_throat %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endblock %}
+
+{% block eyesight %}
+    {% if form.eyesight_left.value %}
+        左眼{{ form.eyesight_left.value }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right.value }}&nbsp;&nbsp;
+        （矫正视力：
+        左眼{{ form.eyesight_left_rectified.value }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right_rectified.value }}）
+    {% elif type_alias != 'tcm' %}
+        左眼{{ form.eyesight_left }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right }}&nbsp;&nbsp;
+        （矫正视力：
+        左眼{{ form.eyesight_left_rectified }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right_rectified }}）
+    {% endif %}
+{% endblock %}
+
+{% block hearing %}
+    {% if form.hearing.value %}
+        {{ form.hearing.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.hearing %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block movement_function %}
+    {% if form.movement_function.value %}
+        {{ form.movement_function.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.movement_function %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block skin %}
+    {% if form.skin.value %}
+        {{ form.skin.value }}&nbsp;&nbsp;
+        {{ form.skin_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.skin %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.skin_extra }}
+    {% endif %}
+{% endblock %}
+
+
+{% block lymph_node %}
+    {% if form.lymph_node.value %}
+        {{ form.lymph_node.value }}&nbsp;&nbsp;
+        {{ form.lymph_node_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.lymph_node %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lymph_node_extra }}
+    {% endif %}
+{% endblock %}
+
+
+{% block lung_barrel_chested %}
+    {% if form.lung_barrel_chested.value %}
+        {{ form.lung_barrel_chested.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.lung_barrel_chested %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block lung_breath_sound %}
+    {% if form.lung_breath_sound.value %}
+        {{ form.lung_breath_sound.value }}&nbsp;&nbsp;
+        {{ form.lung_breath_sound_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.lung_breath_sound %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lung_breath_sound_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block lung_rale %}
+    {% if form.lung_rale.value %}
+        {{ form.lung_rale.value }}&nbsp;&nbsp;
+        {{ form.lung_rale_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        {% for item in form.lung_rale %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lung_rale_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block heart %}
+    {% if form.heart_rate.value %}
+        心率：{{ form.heart_rate.value }}次/分钟<br />
+        心律：{{ form.heart_rhythm.value }}
+        杂音：{{ form.heart_noise.value }}&nbsp;&nbsp;
+        {{ form.heart_noise_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        心率：{{ form.heart_rate }}次/分钟<br />
+        心律：
+        {% for item in form.heart_rhythm %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        杂音：
+        {% for item in form.heart_noise %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.heart_noise_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block stomach %}
+    {% if form.stomach_tenderness.value %}
+        压痛：{{ form.stomach_tenderness.value }}
+        {{ form.stomach_tenderness_extra.value }}<br />
+        包块：{{ form.stomach_enclosed_mass.value }}
+        {{ form.stomach_enclosed_mass_extra.value }}<br />
+        肝大：{{ form.stomach_hepatomegaly.value }}
+        {{ form.stomach_hepatomegaly_extra.value }}<br />
+        脾大：{{ form.stomach_slenauxe.value }}
+        {{ form.stomach_slenauxe_extra.value }}<br />
+        移动性浊音：{{ form.stomach_shifting_dullness.value }}
+        {{ form.stomach_shifting_dullness_extra.value }}
+    {% elif type_alias != 'tcm' %}
+        压痛：
+        {% for item in form.stomach_tenderness %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_tenderness_extra }}<br />
+        包块：
+        {% for item in form.stomach_enclosed_mass %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_enclosed_mass_extra }}<br />
+        肝大：
+        {% for item in form.stomach_hepatomegaly %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_hepatomegaly_extra }}<br />
+        脾大：
+        {% for item in form.stomach_slenauxe %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_slenauxe_extra }}<br />
+        移动性浊音：
+        {% for item in form.stomach_shifting_dullness %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_shifting_dullness_extra }}
+    {% endif %}
+{% endblock %}
+
+# 中医体质辨识
+{% block pinghe %}
+    {% if form.pinghe.value %}
+        {{ form.pinghe.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.pinghe %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block qixu %}
+    {% if form.qixu.value %}
+        {{ form.qixu.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.qixu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block yangxu %}
+    {% if form.yangxu.value %}
+        {{ form.yangxu.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.yangxu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block yinxu %}
+    {% if form.yinxu.value %}
+        {{ form.yinxu.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.yinxu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block tanshi %}
+    {% if form.tanshi.value %}
+        {{ form.tanshi.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.tanshi %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block shire %}
+    {% if form.shire.value %}
+        {{ form.shire.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.shire %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block xueyu %}
+    {% if form.xueyu.value %}
+        {{ form.xueyu.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.xueyu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block qiyu %}
+    {% if form.qiyu.value %}
+        {{ form.qiyu.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.qiyu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block tebing %}
+    {% if form.tebing.value %}
+        {{ form.tebing.value }}
+    {% elif type_alias == 'tcm' %}
+        {% for item in form.tebing %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

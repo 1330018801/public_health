@@ -1,0 +1,29 @@
+{% extends 'education/education_record_base.html' %}
+
+{% block date %}{{ form.date | date:"Y-m-d" }}{% endblock %}
+
+{% block place %}{{ form.place }}{% endblock %}
+
+{% block way_name %}{{ record.service_item.name }}{% endblock %}
+
+{% block way %}{{ form.way }}{% endblock %}
+
+{% block topic %}{{ form.topic }}{% endblock %}
+
+{% block principal %}{{ form.principal }}{% endblock %}
+
+{% block audience %}{{ form.audience }}{% endblock %}
+
+{% block people_number %}{{ form.people_number }}{% endblock %}
+
+{% block material %}{{ form.material }}{% endblock %}
+
+{% block count %}{{ form.count }}{% endblock %}
+
+{% block content %}{{ form.content }}{% endblock %}
+
+{% block evaluation %}{{ form.evaluation }}{% endblock %}
+
+{% block upload %}
+   <a href="{{ MEDIA_URL }}{{ form.upload }}"><img src="{{ MEDIA_URL }}{{ form.upload }}" alt="{{ form.upload }}"></a>
+{% endblock %}

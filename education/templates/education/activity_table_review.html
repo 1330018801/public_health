@@ -1,0 +1,14 @@
+{% extends 'education/activity_table.html' %}
+
+{% block act_time %}{{ form.act_time.value | date:"Y-m-d H:i"}}{% endblock %}
+{% block scene %}{{ form.scene.value }}{% endblock %}
+{% block act_type %}{{ form.act_type.value }}{% endblock %}
+{% block subject %}{{ form.subject.value }}{% endblock %}
+{% block organizer %}{{ form.organizer.value }}{% endblock %}
+{% block crowd_type %}{{ form.crowd_type.value }}{% endblock %}
+{% block crowd_num %}{{ form.crowd_num.value }}{% endblock %}
+{% block material_type %}{{ form.material_type.value }}{% endblock %}
+{% block material_num %}{{ form.material_num.value }}{% endblock %}
+{% block content %}{{ form.content.value }}{% endblock %}
+{% block summary %}{{ form.summary.value }}{% endblock %}
+{% block photo %}{% endblock %}

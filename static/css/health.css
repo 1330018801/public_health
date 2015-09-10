@@ -1,0 +1,211 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: transparent;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+.btn-grid {
+    padding: 50px 50px 50px 50px;
+    font-size: 24px;
+    line-height: 1.5;
+    border-radius: 6px;
+}
+
+.butt {
+    width: 100%;
+    height: 100%;
+    padding-top:40%;
+    padding-bottom: 40%;
+    /*word-wrap: break-word !important;
+    word-break: break-all !important;
+    white-space: normal !important;*/
+    /*word-wrap: break-word;
+    word-break: normal;*/
+    /*word-break: break-all;
+    white-space: normal;*/
+}
+
+span.ButtonWord {
+    font-size: 18px;
+    color: Green;
+    text-align: center;
+}
+
+.health-color {
+    color: #0044cc;
+    background-color: #b2dba1;
+}
+
+.disable-color {
+    color: #0044cc;
+    background-color: #e8e8e8;
+}
+
+#resident_add table {
+    margin-top: 20px
+}
+
+#resident_add table tr{
+    height: 30px
+}
+
+.datagrid-row-selected {
+    background: #7CDA7A none repeat scroll 0% 0%;
+    color: #060606;
+}
+
+.textbox {
+    height: 20px;
+    margin: 0;
+    padding: 0, 2px;
+    box-sizing: content-box;
+}
+
+.tree-node-selected {
+    background: #7CDA7A none repeat scroll 0% 0%;
+}
+
+.ms-optgroup-label span {
+    font-size: 14px;
+}
+
+.ms-elem-selectable span {
+    font-size: 12px;
+}
+
+.ms-elem-selection span {
+    font-size: 12px;
+}
+
+.ms-container {
+    width: 560px;
+    height: 340px
+}
+
+.ms-container .ms-list {
+    height: 290px;
+    width: 252px
+}
+
+#act_tbl table tr td{
+    border: solid 1px #aaa;
+    padding: 2px 15px;
+}
+
+#review table tr td{
+    border: solid 1px #aaa;
+    padding: 2px 15px;
+}
+
+.web_logo{
+    width: 400px;
+    padding: 15px 20px;
+    color: #ffffff;
+    font-size: 23px;
+    font-weight: bold;
+    float: left;
+}
+
+.logout {
+    padding-top: 40px;
+    padding-right: 20px;
+    float: right;
+}
+
+.logout a {
+    color: #ccc;
+}
+
+.btn_svc {
+    margin: 20px;
+}
+
+.accordion .accordion-header-selected {
+    background: #3071a9 none repeat scroll 0% 0%
+}
+
+.svc_tbl_field {
+    margin: 0 5px;
+}
+
+#head_form table tr td{
+    border: solid 1px #aaa;
+    padding: 2px 15px;
+}
+
+label {
+    font-weight: 300;
+}
+
+/*
+ 系统中表格的各部分的样式，分为头部，颈部，颈部（额外），主体，脚部几个部分，分别应用不同的样式。
+*/
+
+.table_head {
+    width: 750px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
+}
+
+.table_neck {
+    width: 750px;
+    font-size: 13px;
+    margin-bottom: 10px;
+    border-collapse: collapse;
+}
+
+.table_neck tr td {
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    padding-left: 10px;
+}
+
+.table_body {
+    width: 750px;
+    font-size: 13px;
+    line-height: 20px;
+    border-collapse: collapse
+}
+
+.table_body tr td {
+    border: 1px solid grey;
+    padding: 1px 5px;
+}

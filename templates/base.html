@@ -1,0 +1,59 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Fundamental Public Healthcare Information Systrem">
+    <meta name="author" content="Tsinghua University">
+
+    <title>{% block title %}三河市基本公共卫生管理信息系统{% endblock %}</title>
+
+    <!-- CSS -->
+    <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "bootstrap/css/bootstrap-datepicker.min.css" %}" rel="stylesheet" type="text/css">
+
+    <link href="{% static "jquery-easyui/themes/bootstrap/easyui.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "jquery-easyui/themes/icon.css" %}" rel="stylesheet" type="text/css">
+    <link href="{% static "lou-multi-select/css/multi-select.css"%}" rel="stylesheet" type="text/css">
+
+    <link href="{% static "css/health.css" %}" rel="stylesheet" type="text/css">
+    <!-- JS -->
+    <script src="{% static "jquery/jquery.min.js" %}"></script>
+    <script src="{% static "jquery/jquery.cookie.js" %}"></script>
+    <script src="{% static "jquery/printThis.js" %}"></script>
+
+    <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap-datepicker.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap-datepicker.zh-CN.min.js" %}"></script>
+
+    <script src="{% static "jquery-easyui/jquery.easyui.min.js" %}"></script>
+    <script src="{% static "jquery-easyui/locale/easyui-lang-zh_CN.js" %}"></script>
+
+    <script src="{% static "js/highcharts.js" %}"></script>
+    <script src="{% static "js/exporting.js" %}"></script>
+    <script src="{% static "js/health.js" %}"></script>
+
+    {% block extracss %}{% endblock %}
+    <style>{% block addstyle %}{% endblock %}</style>
+</head>
+
+<body>
+    <!-- heading -->
+    {% block heading %}{% endblock %}
+
+    <!-- content -->
+    {% block content %}{% endblock %}
+
+    <!-- footer -->
+    {% block footer %}{% endblock %}
+
+    {% block page_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,422 @@
+{% extends 'pregnant/antenatal_1_base.html' %}
+
+{% block visit_date %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.visit_date.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.visit_date | date:"Y-m-d" }}
+    {% endif %}
+{% endblock %}
+
+{% block weeks %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.weeks.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.weeks }}
+    {% endif %}
+{% endblock %}
+
+{% block age %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.age.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.age }}
+    {% endif %}
+{% endblock %}
+
+{% block husband_name %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.husband_name.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.husband_name }}
+    {% endif %}
+{% endblock %}
+
+{% block husband_age %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.husband_age.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.husband_age }}
+    {% endif %}
+{% endblock %}
+
+{% block husband_phone %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.husband_phone.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.husband_phone }}
+    {% endif %}
+{% endblock %}
+
+{% block pregnant_times %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.pregnant_times.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.pregnant_times }}
+    {% endif %}
+{% endblock %}
+
+{% block production_times %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        阴道分娩{{ form.natural_production.data }}次&nbsp&nbsp
+        剖宫产{{ form.surgery_production.data }}次
+    {% elif physical_examination %}
+        阴道分娩{{ physical_examination.natural_production }}次&nbsp&nbsp
+        剖宫产{{ physical_examination.surgery_production }}次
+    {% endif %}
+{% endblock %}
+
+{% block last_menstruation %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.last_menstruation.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.last_menstruation | date:"Y-m-d" }}
+    {% endif %}
+{% endblock %}
+
+{% block not_sure %}
+    {{ form.not_sure }}
+{% endblock %}
+
+{% block due_date %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.due_date.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.due_date | date:"Y-m-d" }}
+    {% endif %}
+{% endblock %}
+
+{% block disease_history %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {% for item in form.disease_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.disease_history_other.data }}
+    {% elif physical_examination %}
+        {% for item in physical_examination.disease_history.all %}
+            {{ item }}
+        {% endfor %}
+        {{ physical_examination.disease_history_other }}
+    {% endif %}
+{% endblock %}
+
+{% block family_history %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {% for item in form.family_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.family_history_other.data }}
+    {% elif physical_examination %}
+        {% for item in physical_examination.family_history.all %}
+            {{ item }}
+        {% endfor %}
+        {{ physical_examination.family_history_other }}
+    {% endif %}
+{% endblock %}
+
+{% block personal_history %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {% for item in form.personal_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.personal_history_other.data }}
+    {% elif physical_examination %}
+        {% for item in physical_examination.personal_history.all %}
+            {{ item }}
+        {% endfor %}
+        {{ physical_examination.personal_history_other }}
+    {% endif %}
+{% endblock %}
+
+{% block gynaecology_surgery_history %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.gynaecology_surgery_history.data }}&nbsp;&nbsp;
+        {{ form.gynaecology_surgery_name.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.gynaecology_surgery_history }}
+        {{ physical_examination.gynaecology_surgery_name }}
+    {% endif %}
+{% endblock %}
+
+{% block production_history %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        流产{{ form.miscarriage.data }}&nbsp&nbsp
+        死胎{{ form.dead_fetus.data }}&nbsp&nbsp
+        死产{{ form.still_birth.data }}&nbsp&nbsp
+        新生儿死亡{{ form.newnatal_death.data }}&nbsp&nbsp
+        出生缺陷儿{{ form.birth_defect.data }}
+    {% elif physical_examination %}
+        流产{{ physical_examination.miscarriage }}&nbsp&nbsp
+        死胎{{ physical_examination.dead_fetus }}&nbsp&nbsp
+        死产{{ physical_examination.still_birth }}&nbsp&nbsp
+        新生儿死亡{{ physical_examination.newnatal_death }}&nbsp&nbsp
+        出生缺陷儿{{ physical_examination.birth_defect }}
+    {% endif %}
+{% endblock %}
+
+{% block height %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.height.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.height }}
+    {% endif %}
+{% endblock %}
+
+{% block weight %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.weight.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.weight }}
+    {% endif %}
+{% endblock %}
+
+{% block bmi %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.bmi.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.bmi }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_pressure %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.sbp.data }}/{{ form.dbp.data }}mmHg
+    {% elif physical_examination %}
+        {{ physical_examination.sbp }}/{{ physical_examination.dbp }}mmHg
+    {% endif %}
+{% endblock %}
+
+{% block ausculate_heart %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.ausculate_heart.data }}
+        {{ form.ausculate_heart_abnormal.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.ausculate_heart }}
+        {{ physical_examination.ausculate_heart_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block ausculate_lung %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.ausculate_lung.data }}
+        {{ form.ausculate_lung_abnormal.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.ausculate_lung }}
+        {{ physical_examination.ausculate_lung_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block vulva %}
+    {% if form.Meta.alias == 'gynaecological_examination' %}
+        {{ form.vulva.data }}
+        {{ form.vulva_abnormal.data }}
+    {% elif gynaecological_examination %}
+        {{ gynaecological_examination.vulva }}
+        {{ gynaecological_examination.vulva_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block vagina %}
+    {% if form.Meta.alias == 'gynaecological_examination' %}
+        {{ form.vagina.data }}
+        {{ form.vagina_abnormal.data }}
+    {% elif gynaecological_examination %}
+        {{ gynaecological_examination.vagina }}
+        {{ gynaecological_examination.vagina_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block cervix %}
+    {% if form.Meta.alias == 'gynaecological_examination' %}
+        {{ form.cervix.data }}
+        {{ form.cervix_abnormal.data }}
+    {% elif gynaecological_examination %}
+        {{ gynaecological_examination.cervix }}
+        {{ gynaecological_examination.cervix_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block uteri %}
+    {% if form.Meta.alias == 'gynaecological_examination' %}
+        {{ form.uteri.data }}
+        {{ form.uteri_abnormal.data }}
+    {% elif gynaecological_examination %}
+        {{ gynaecological_examination.uteri }}
+        {{ gynaecological_examination.uteri_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block accessory %}
+    {% if form.Meta.alias == 'gynaecological_examination' %}
+        {{ form.accessory.data }}
+        {{ form.accessory_abnormal.data }}
+    {% elif gynaecological_examination %}
+        {{ gynaecological_examination.accessory }}
+        {{ gynaecological_examination.accessory_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_routine_test %}
+    {% if form.Meta.alias == 'blood_routine_test' %}
+        白细胞计数值{{ form.hemoglobin.data }}/L&nbsp;&nbsp;
+        血红蛋白值{{ form.leukocyte.data }}g/L<br />
+        血小板计数值{{ form.thrombocyte.data }}/L&nbsp;&nbsp;
+        其他{{ form.blood_extra.data }}
+    {% elif blood_routine_test %}
+        白细胞计数值{{ blood_routine_test.hemoglobin }}/L&nbsp;&nbsp;
+        血红蛋白值{{ blood_routine_test.leukocyte }}g/L<br />
+        血小板计数值{{ blood_routine_test.thrombocyte }}/L&nbsp;&nbsp;
+        其他{{ blood_routine_test.blood_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block urine_routine_test %}
+    {% if form.Meta.alias == 'urine_routine_test' %}
+        尿蛋白{{ form.urine_protein.data }}&nbsp;
+        尿糖{{ form.urine_glucose.data }}&nbsp;
+        尿酮体{{ form.urine_ket.data }}&nbsp;
+        尿潜血{{ form.urine_ery.data }}&nbsp;
+        其他{{ form.urine_extra.data }}
+    {% elif urine_routine_test %}
+        尿蛋白{{ urine_routine_test.urine_protein }}&nbsp;
+        尿糖{{ urine_routine_test.urine_glucose }}&nbsp;
+        尿酮体{{ urine_routine_test.urine_ket }}&nbsp;
+        尿潜血{{ urine_routine_test.urine_ery }}&nbsp;
+        其他{{ urine_routine_test.urine_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_type_abo %}
+    {% if form.Meta.alias == 'blood_type' %}
+        {{ form.blood_type_abo.data }}
+        {{ form.blood_type_abo_other.data }}
+    {% elif blood_type %}
+        {{ blood_type.blood_type_abo }}
+        {{ blood_type.blood_type_abo_other }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_type_rh %}
+    {% if form.Meta.alias == 'blood_type' %}
+        {{ form.blood_type_rh.data }}
+    {% elif blood_type %}
+        {{ blood_type.blood_type_rh }}
+    {% endif %}
+{% endblock %}
+
+{% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
+
+{% block alanine_aminotransferase %}
+    {% if form.Meta.alias == 'alanine_aminotransferase' %}
+        血清谷丙转氨酶{{ form.sgpt.data }}U/L&nbsp;&nbsp;
+    {% elif alanine_aminotransferase %}
+        血清谷丙转氨酶{{ alanine_aminotransferase.sgpt }}U/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+{% block glutamic_oxalacetic_transaminase %}
+    {% if form.Meta.alias == 'glutamic_oxalacetic_transaminase' %}
+        血清谷草转氨酶{{ form.sgot.data }}U/L<br />
+    {% elif glutamic_oxalacetic_transaminase %}
+        血清谷草转氨酶{{ glutamic_oxalacetic_transaminase.sgot }}U/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+{% block total_bilirubin %}
+    {% if form.Meta.alias == 'total_bilirubin' %}
+        总胆红素{{ form.tbil.data }}&#956mol/L&nbsp;&nbsp;
+    {% elif total_bilirubin %}
+        总胆红素{{ total_bilirubin.tbil }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+{% block serum_creatinine %}
+    {% if form.Meta.alias == 'serum_creatinine' %}
+        血清肌酐{{ form.scr.data }}&#956mol/L&nbsp;&nbsp;
+    {% elif serum_creatinine %}
+        血清肌酐{{ serum_creatinine.scr }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
+
+{% block blood_urea_nitrogen %}
+    {% if form.Meta.alias == 'blood_urea_nitrogen' %}
+        血尿素氮{{ form.bun.data }}&#956mol/L
+    {% elif blood_urea_nitrogen %}
+        血尿素氮{{ blood_urea_nitrogen.bun }}&#956mol/L
+    {% endif %}
+{% endblock %}
+
+{% block hepatitis_b_five_item %}
+    {% if form.Meta.alias == 'hepatitis_b_five_item' %}
+        乙型肝炎表面抗原&nbsp;&nbsp;{{ form.surface_antigen.data }}<br />
+        乙型肝炎表面抗体&nbsp;&nbsp;{{ form.surface_antibody.data }}<br />
+        乙型肝炎e抗原&nbsp;&nbsp;{{ form.e_antigen.data }}<br />
+        乙型肝炎e抗体&nbsp;&nbsp;{{ form.e_antibody.data }}<br />
+        乙型肝炎核心抗体&nbsp;&nbsp;{{ form.core_antibody.data }}
+    {% elif hepatitis_b_five_item %}
+        {{ hepatitis_b_five_item.surface_antigen }}<br />
+        {{ hepatitis_b_five_item.surface_antibody }}<br />
+        {{ hepatitis_b_five_item.e_antigen }}<br />
+        {{ hepatitis_b_five_item.e_antibody }}<br />
+        {{ hepatitis_b_five_item.core_antibody }}<br />
+    {% endif %}
+{% endblock %}
+
+
+{% block total_evaluation %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.total_evaluation.data }}
+        {{ form.total_evaluation_abnormal.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.total_evaluation }}
+        {{ physical_examination.total_evaluation_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block guide %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {% for item in form.guide.data %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_other.data }}
+    {% elif physical_examination %}
+        {% for item in physical_examination.guide.all %}
+            {{ item }}&nbsp;&nbsp;
+        {% endfor %}
+        {{ physical_examination.guide_other }}
+    {% endif %}
+{% endblock %}
+
+{% block transfer %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.transfer.data }}
+        原因：{{ form.transfer_reason.data }}&nbsp;&nbsp;&nbsp;&nbsp;
+        机构及科室：{{ form.transfer_hospital.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.transfer }}<br />
+        原因：{{ physical_examination.transfer_reason }}&nbsp;&nbsp;&nbsp;&nbsp;
+        机构及科室：{{ physical_examination.transfer_hospital }}
+    {% endif %}
+{% endblock %}
+
+
+{% block next_visit_date %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.next_visit_date.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.next_visit_date | date:"Y-m-d" }}
+    {% endif %}
+{% endblock %}
+
+{% block doctor_signature %}
+    {% if form.Meta.alias == 'physical_examination' %}
+        {{ form.doctor_signature.data }}
+    {% elif physical_examination %}
+        {{ physical_examination.doctor_signature }}
+    {% endif %}
+{% endblock %}

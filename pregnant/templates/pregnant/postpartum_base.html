@@ -1,0 +1,94 @@
+{% extends 'table_base.html' %}
+
+{% block table_title %}产后访视记录表{% endblock %}
+
+{% block table_content %}
+<tr>
+    <td colspan="1" width="15%" align="center">随访日期</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block visit_date %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">体温</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block body_temperature %}{% endblock %}℃</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">一般健康情况</td>
+    <td colspan="3" style="padding: 2px">
+        {% block general_health_situation %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">一般心理状况</td>
+    <td colspan="3" style="padding: 2px">
+        {% block general_mentality_situation %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">血压</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block sbp %}{% endblock %}/{% block dbp %}{% endblock %}mmHg</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">乳房</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block breast %}{% endblock %}{% block breast_abnormal %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">恶露</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block lochia %}{% endblock %}
+        {% block lochia_abnormal%}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">子宫</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block uterus %}{% endblock %}
+        {% block uterus_abnormal %}{% endblock %}
+    </td>
+</tr>
+<tr>
+    <td colspan="1" align="center">伤口</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block wound %}{% endblock %}
+        {% block wound_abnormal %}{% endblock %}
+    </td>
+</tr>
+<tr>
+    <td colspan="1" align="center">其他</td>
+    <td colspan="3" style="padding: 2px">
+        {% block extra %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">分类</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block classification %}{% endblock %}
+        {% block classification_abnormal %}{% endblock %}
+    </td>
+</tr>
+<tr>
+    <td colspan="1" align="center">指导</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block guide %}{% endblock %}
+        {% block guide_abnormal %}{% endblock %}
+    </td>
+</tr>
+<tr>
+    <td colspan="1" align="center">转诊</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block transfer_treatment %}{% endblock %}
+        {% block transfer_treatment_reason %}{% endblock %}
+        {% block transfer_treatment_institution %}{% endblock %}</td>
+</tr>
+<tr>
+    <td colspan="1" align="center">下次随访日期</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block next_visit_date %}{% endblock %}
+    </td>
+</tr>
+<tr>
+    <td colspan="1" align="center">随访医生签名</td>
+    <td colspan="3" style="padding-top: 2px; padding-left: 5px">
+        {% block doctor_signature %}{% endblock %}
+    </td>
+</tr>
+{% endblock %}

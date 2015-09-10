@@ -1,0 +1,90 @@
+{% extends 'pregnant/postpartum42_base.html' %}
+
+{% block table_neck_extra %}
+    {% for item in form.errors %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date %}{{ form.visit_date }}{% endblock %}
+{% block general_health_situation %}{{ form.general_health_situation }}{% endblock %}
+{% block general_mentality_situation %}{{ form.general_mentality_situation }}{% endblock %}
+{% block sbp %}{{ form.sbp }}{% endblock %}
+{% block dbp %}{{ form.dbp }}{% endblock %}
+{% block breast %}
+    {% for item in form.breast %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block breast_abnormal %}{{ form.breast_abnormal }}{% endblock %}
+{% block lochia %}
+    {% for item in form.lochia %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block lochia_abnormal %}{{ form.lochia_abnormal }}{% endblock %}
+{% block uterus %}
+    {% for item in form.uterus %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block uterus_abnormal %}{{ form.uterus_abnormal }}{% endblock %}
+{% block wound %}
+    {% for item in form.wound %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block wound_abnormal %}{{ form.wound_abnormal }}{% endblock %}
+{% block extra %}{{ form.extra }}{% endblock %}
+{% block classification %}
+    {% for item in form.classification %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block classification_not_recovery %}
+    {{ form.classification_not_recovery }}
+{% endblock %}
+
+
+{% block guide %}
+    {% for item in form.guide %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block guide_extra %}
+    {{ form.guide_extra }}
+{% endblock %}
+{% block dispose %}
+    {% for item in form.dispose %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}<br />
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block dispose_transfer_treatment_reason %}
+    原因：{{ form.dispose_transfer_treatment_reason }}
+{% endblock %}
+{% block dispose_transfer_treatment_institution %}
+    机构及科室：{{ form.dispose_transfer_treatment_institution }}
+{% endblock %}
+{% block doctor_signature %}
+    {{ form.doctor_signature }}
+{% endblock %}

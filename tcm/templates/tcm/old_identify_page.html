@@ -1,0 +1,18 @@
+{% load staticfiles %}
+
+<div id="tcm_old_identify">
+    <div id="toolbar" class="datagrid-toolbar">
+        <a href="#" id="save">提交体检表</a>
+        <a href="#" id="edit">提交修改申请</a>
+        <a href="#" id="print">打印体检表</a>
+        <input type="hidden" id="resident_id" value="{{ request.session.resident_id }}" />
+        <input type="hidden" id="resident_name" value="{{ request.session.resident_name }}" />
+    </div>
+
+    <form id="form" method="POST">
+        <div id="table" align="center" style="padding-bottom: 30px;"></div>
+    </form>
+</div>
+
+
+<script src='{% static "js/tcm_old_identify.js" %}'></script>

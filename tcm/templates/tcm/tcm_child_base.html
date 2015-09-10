@@ -1,0 +1,57 @@
+{% extends 'table_base.html' %}
+
+{% block table_content %}
+    {% if form.Meta.alias == 'aftercare_6_month' %}
+    <tr>
+        <td colspan="1" align="center">月龄</td>
+        <td colspan="1" align="center" width="20%">满月</td>
+        <td colspan="1" align="center" width="20%">3月龄</td>
+        <td colspan="1" align="center" width="20%">6月龄</td>
+        <td colspan="1" align="center" width="20%">8月龄</td>
+    </tr>
+    {% elif form.Meta.alias == 'aftercare_3_year' %}
+    <tr>
+        <td colspan="1" align="center">月龄</td>
+        <td colspan="1" align="center" width="20%">3岁</td>
+        <td colspan="1" align="center" width="20%">4岁</td>
+        <td colspan="1" align="center" width="20%">5岁</td>
+        <td colspan="1" align="center" width="20%">6岁</td>
+    </tr>
+    {% else %}
+    <tr>
+        <td colspan="1" align="center">月龄</td>
+        <td colspan="1" align="center" width="20%">12月龄</td>
+        <td colspan="1" align="center" width="20%">18月龄</td>
+        <td colspan="1" align="center" width="20%">24月龄</td>
+        <td colspan="1" align="center" width="20%">30月龄</td>
+    </tr>
+    {% endif %}
+    <tr>
+        <td colspan="1" align="center">随访日期</td>
+        <td colspan="1" align="center">{% block col_1_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_2_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_3_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_4_visit_date %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">中医药健康管理服务</td>
+        <td colspan="1">{% block col_1_guide %}{% endblock %}</td>
+        <td colspan="1">{% block col_2_guide %}{% endblock %}</td>
+        <td colspan="1">{% block col_3_guide %}{% endblock %}</td>
+        <td colspan="1">{% block col_4_guide %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">下次随访日期</td>
+        <td colspan="1" align="center">{% block col_1_next_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_2_next_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_3_next_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_4_next_visit_date %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">随访医生签名</td>
+        <td colspan="1" align="center">{% block col_1_doctor_signature %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_2_doctor_signature %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_3_doctor_signature %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block col_4_doctor_signature %}{% endblock %}</td>
+    </tr>
+{% endblock %}

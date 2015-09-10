@@ -1,0 +1,129 @@
+<h4 align="center" style="padding: 5px;">预防接种卡</h4>
+
+<table>
+    <tr>
+        <td colspan="3" width="25%" style="border: none; font-size: 15px;">
+            姓名：{% block table_resident %}{{ request.session.resident_name }}{% endblock %}
+        </td>
+        <td colspan="6" style="border: none"></td>
+        <td colspan="3" width="25%" style="border: none; font-size: 15px">
+            编号：{% block table_no %}
+                <input id="ehr_village_no" name="ehr_village_no" /> -
+                <input id="ehr_unique_no" name="ehr_unique_no" />
+            {% endblock %}
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" width="25%" align="center">
+            <b>性别</b>
+        </td>
+        <td colspan="3" width="25%" align="center">
+            {% block gender %}
+                <label for="gender_male"><input type="radio" name="gender" id="gender_male" value='男' />男</label>
+                <label for="gender_female"><input type="radio" name="gender" id="gender_female" value='女' style="margin-left: 20px;"/>女</label>
+            {% endblock %}
+        </td>
+        <td colspan="3" width="25%" align="center">
+            <label for="birth_date">出生日期</label>
+        </td>
+        <td colspan="3" width="25%" align="center">
+            {% block birth_date %}<input id="birth_date" name="birth_date"/>{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><label for="guardian_name">监护人姓名</label></td>
+        <td colspan="2" align="center">
+            {% block guardian_name %}<input id="guardian_name" name="guardian_name" />{% endblock %}
+        </td>
+        <td colspan="2" align="center">
+            <label for="relation_to_child">与儿童关系</label>
+        </td>
+        <td colspan="2" align="center">
+            {% block relation_to_child %}<input id="relation_to_child" name="relation_to_child" />{% endblock %}
+        </td>
+        <td colspan="2" align="center">
+            <label for="contact_number">联系电话</label></td>
+        <td colspan="2" align="center">
+            {% block contact_number %}<input id="contact_number" name="contact_number" />{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="home_address">家庭现住址</label>
+        </td>
+        <td colspan="10" style="padding-left: 5px">
+            {% block home_address %}三河市<input id="home_town" name="home_town" />乡镇{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="census_register_address">户籍地址</label></td>
+        <td colspan="10" style="padding-left: 5px">
+            {% block census_register_address %}
+                <input type="checkbox" id="register_local" name="register_local"/>同家庭地址
+                <input id="register_province" name="register_province" /> 省（市、自治区）
+                <input id="register_city" name="register_city" style="text-align: right"/> 市
+                <input id="register_county" name="register_county" /> 县（区）
+                <input id="register_town" name="register_town" /> 乡镇（街道）
+            {% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="immigrate_time">迁入时间</label>
+        </td>
+        <td colspan="2" align="center">
+            {% block immigrate_time %}<input id="immigrate_time" name="immigrate_time" />{% endblock %}
+        </td>
+        <td colspan="2" align="center">
+            <label for="emigrate_time">迁出时间</label></td>
+        <td colspan="2" align="center">
+            {% block emigrate_time %}<input id="emigrate_time" name="emigrate_time" />{% endblock %}
+        </td>
+        <td colspan="2" align="center">
+            <label for="emigrate_reason">迁出原因</label>
+        </td>
+        <td colspan="2" align="center">
+            {% block emigrate_reason %}<input id="emigrate_reason" name="emigrate_reason" />{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="vaccine_abnormal_reaction_history">疫苗异常反应史</label>
+        </td>
+        <td colspan="10" style="padding-left: 5px">
+            {% block vaccine_abnormal_reaction_history %}<input id="vaccine_abnormal_reaction_history" name="vaccine_abnormal_reaction_history" />{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="vaccinate_taboo">接种禁忌</label>
+        </td>
+        <td colspan="10" style="padding-left: 5px">
+            {% block vaccinate_taboo %}<input id="vaccinate_taboo" name="vaccinate_taboo" />{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <label for="infection_history">传染病史</label>
+        </td>
+        <td colspan="10" style="padding-left: 5px">
+            {% block infection_history %}<input id="infection_history" name="infection_history" />{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center">
+            <label for="found_card_date">建卡日期</label>
+        </td>
+        <td colspan="3" align="center">
+            {% block found_card_date %}<input id="found_card_date" name="found_card_date" />{% endblock %}
+        </td>
+        <td colspan="3" align="center">
+            <label for="found_card_person">建卡人</label>
+        </td>
+        <td colspan="3" align="center">
+            {% block found_card_person %}<input id="found_card_person" name="found_card_person" />{% endblock %}
+        </td>
+    </tr>
+</table>

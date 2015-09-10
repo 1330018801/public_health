@@ -1,0 +1,33 @@
+<!-- next visit date -->
+<div class="row" style="padding-top: 10px">
+	<div class="col-md-2" align="right">
+        {% if form.next_vaccinate_date.errors %}
+            <span style="background: #ffff00">{{ form.next_vaccinate_date.label_tag }}</span>
+        {% else %}
+            {{ form.next_vaccinate_date.label_tag }}
+        {% endif %}
+	</div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class='input-group date' id='datepicker1'>
+                <!--<input type='text' id="{{ form.next_vaccinate_date_id }}" class="form-control"
+                       name="{{ form.next_vaccinate_date.name }}" value="{{ next_vaccinate_date }}">-->
+                {{ form.next_vaccinate_date }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker1').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                language: 'zh-CN',
+                todayHighlight: true,
+                orientation: 'top'
+            });
+        });
+    </script>
+</div>        <!-- delineate -->

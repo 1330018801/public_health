@@ -1,0 +1,250 @@
+{% extends 'table_base.html' %}
+
+{% block table_title %}预防接种卡{% endblock %}
+
+{% block table_neck_extra %}
+<table style="width: 650px; font-size: 13px; line-height: 24px;
+            border-collapse: collapse">
+    <tr>
+        <td colspan="3" width="25%" align="center">性别</td>
+        <td colspan="3" width="25%" align="center">{% block gender %}{% endblock %}</td>
+        <td colspan="3" width="25%" align="center">出生日期</td>
+        <td colspan="3" width="25%" align="center">{% block birth_date %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">监护人姓名</td>
+        <td colspan="2" align="center">{% block guardian_name %}{% endblock %}</td>
+        <td colspan="2" align="center">与儿童关系</td>
+        <td colspan="2" align="center">{% block relation_to_child %}{% endblock %}</td>
+        <td colspan="2" align="center">联系电话</td>
+        <td colspan="2" align="center">{% block contact_number %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">家庭现住址</td>
+        <td colspan="10" style="padding-left: 5px">{% block home_address %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">户籍地址</td>
+        <td colspan="10" style="padding-left: 5px">{% block census_register_address %}{% endblock %}
+            {% block census_register_address_extra %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">迁入时间</td>
+        <td colspan="2" align="center">{% block immigrate_time %}{% endblock %}</td>
+        <td colspan="2" align="center">迁出时间</td>
+        <td colspan="2" align="center">{% block emigrate_time %}{% endblock %}</td>
+        <td colspan="2" align="center">迁出原因</td>
+        <td colspan="2" align="center">{% block emigrate_reason %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">疫苗异常反应史</td>
+        <td colspan="10" style="padding-left: 5px">{% block vaccine_abnormal_reaction_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">接种禁忌</td>
+        <td colspan="10" style="padding-left: 5px">{% block vaccinate_taboo %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">传染病史</td>
+        <td colspan="10" style="padding-left: 5px">{% block infection_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" align="center">建卡日期</td>
+        <td colspan="3" align="center">{% block found_card_date %}{% endblock %}</td>
+        <td colspan="3" align="center">建卡人</td>
+        <td colspan="3" align="center">{% block found_card_person %}{% endblock %}</td>
+    </tr>
+</table><br/>
+{% endblock %}
+
+{% block table_body %}
+<table style="width: 650px; font-size: 13px; line-height: 20px;
+            border-collapse: collapse">
+    <tr>
+        <td colspan="3" width="16%" align="center">疫苗与剂次</td>
+        <td colspan="1" width="14%" align="center">接种日期</td>
+        <td colspan="1" width="14%" align="center">接种部位</td>
+        <td colspan="1" width="14%" align="center">疫苗批号</td>
+        <td colspan="1" width="14%" align="center">接种医生</td>
+        <td colspan="1" width="14%" align="center">备注</td>
+        <td colspan="1" width="14%" align="center">下次接种日期</td>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="3" width="14%" align="center">乙肝疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block hepatitis_b_vaccine_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block hepatitis_b_vaccine_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">3</td>
+        {% block hepatitis_b_vaccine_3 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">卡介苗</td>
+        {% block bcg_vaccine %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4" width="14%" align="center">脊灰疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block poliomyelitis_vaccine_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block poliomyelitis_vaccine_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">3</td>
+        {% block poliomyelitis_vaccine_3 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">4</td>
+        {% block poliomyelitis_vaccine_4 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4" width="14%" align="center">百白破疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block diphtheria_pertussis_tetanus_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block diphtheria_pertussis_tetanus_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">3</td>
+        {% block diphtheria_pertussis_tetanus_3 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">4</td>
+        {% block diphtheria_pertussis_tetanus_4 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">白破疫苗</td>
+        {% block diphtheria_tetanus_vaccine %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">麻风疫苗</td>
+        {% block measles_rubella %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">麻腮风疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block measles_mumps_rubella_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block measles_mumps_rubella_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">麻腮疫苗</td>
+        {% block measles_mumps %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">麻疹疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block measles_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block measles_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">A群流脑疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block meningitis_a_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block meningitis_a_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">A+C群流脑疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block meningitis_ac_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block meningitis_ac_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">乙脑（减毒）活疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block japanese_encephalitis_attenuated_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block japanese_encephalitis_attenuated_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="4" width="14%" align="center">乙脑灭活疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block japanese_encephalitis_inactivated_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block japanese_encephalitis_inactivated_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">3</td>
+        {% block japanese_encephalitis_inactivated_3 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">4</td>
+        {% block japanese_encephalitis_inactivated_4 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">甲肝减毒活疫苗</td>
+        {% block hepatitis_a_attenuated %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" width="14%" align="center">甲肝灭活疫苗</td>
+        <td colspan="1" width="2%" align="center">1</td>
+        {% block hepatitis_a_inactivated_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" width="2%" align="center">2</td>
+        {% block hepatitis_a_inactivated_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">炭疽疫苗</td>
+        {% block anthrax_vaccine %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="3" align="center">出血热疫苗（双价）</td>
+        <td colspan="1" align="center">1</td>
+        {% block hemorrhagic_i_ii_1 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" align="center">2</td>
+        {% block hemorrhagic_i_ii_2 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="1" align="center">3</td>
+        {% block hemorrhagic_i_ii_3 %}{% endblock %}
+    </tr>
+    <tr>
+        <td colspan="3" align="center">其他疫苗</td>
+        <td colspan="1" align="center"></td>
+        <td colspan="1" align="center"></td>
+        <td colspan="1" align="center"></td>
+        <td colspan="1" align="center"></td>
+        <td colspan="1" align="center"></td>
+        <td colspan="1" align="center"></td>
+    </tr>
+    {% if other_vaccine %}
+    <tr>
+        <td colspan="2" align="center">{% block other_vaccine %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_vaccine_dose %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_visit_date %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_vaccinate_position %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_batch_number %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_doctor_signature %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_remarks %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block other_vaccine_next_vaccinate_date %}{% endblock %}</td>
+    </tr>
+    {% endif %}
+</table>
+{% endblock %}

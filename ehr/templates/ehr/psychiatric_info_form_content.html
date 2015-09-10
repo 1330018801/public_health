@@ -1,0 +1,75 @@
+{% extends 'ehr/psychiatric_info_base.html' %}
+
+{% block guardian_name %}
+    {{ form.guardian_name }}
+{% endblock %}
+{% block guardian_relation %}{{ form.guardian_relation }}{% endblock %}
+{% block guardian_address %}{{ form.guardian_address }}{% endblock %}
+{% block guardian_phone %}{{ form.guardian_phone }}{% endblock %}
+{% block community_contact_name %}{{ form.community_contact_name }}{% endblock %}
+{% block community_contact_phone %}{{ form.community_contact_phone }}{% endblock %}
+{% block assent %}
+    {% for item in form.assent %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block signature_date %}{{ form.signature_date }}{% endblock %}
+{% block disease_begin_date %}{{ form.disease_begin_date }}{% endblock %}
+{% block symptom %}
+    {% for item in form.symptom %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block symptom_other %}{{ form.symptom_other }}{% endblock %}
+{% block cure_outpatient %}
+    {% for item in form.cure_outpatient %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block drug_first_date %}{{ form.drug_first_date }}{% endblock %}
+{% block cure_hospital %}{{ form.cure_hospital }}{% endblock %}
+{% block diagnose %}{{ form.diagnose }}{% endblock %}
+{% block diagnose_hospital %}{{ form.diagnose_hospital }}{% endblock %}
+{% block diagnose_date %}{{ form.diagnose_date }}{% endblock %}
+{% block cure_effect %}
+    {% for item in form.cure_effect %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block social_effect_minor %}{{ form.social_effect_minor }}{% endblock %}
+{% block social_effect_trouble %}{{ form.social_effect_trouble }}{% endblock %}
+{% block social_effect_disaster %}{{ form.social_effect_disaster }}{% endblock %}
+{% block social_effect_self_injury %}{{ form.social_effect_self_injury }}{% endblock %}
+{% block social_effect_suicide %}{{ form.social_effect_suicide }}{% endblock %}
+{% block lock %}
+    {% for item in form.lock %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block economy %}
+    {% for item in form.economy %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block doctor_advice %}{{ form.doctor_advice }}{% endblock %}
+{% block fill_table_date %}{{ form.fill_table_date }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature }}{% endblock %}

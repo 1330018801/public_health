@@ -1,0 +1,45 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row">
+        <hr/>
+        <form class="form-horizontal" role="form" method="POST" action="{% url 'management:town_clinics_statement' %}">
+            {% csrf_token %}
+            <!-- data range select -->
+            {% include 'management/date_range.html' %}
+
+            <div class="row" style="padding-top: 10px">
+                <div class="col-md-12" align="right">
+                    <button type="submit" class="btn btn-default">查询</button>
+                </div>
+            </div>
+        </form>
+        <hr/>
+        {% if err_msg %}
+        <h5 class="page-header" align="left">{{ err_msg }}</h5>
+        {% endif %}
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr><th>卫生院</th><th>工作量数</th><th>应得金额</th></tr>
+                </thead>
+                <tbody>
+                {% for item in payment_grid %}
+                    <tr>
+                        <th><a href="/management/village_clinics_statement/{{ item.item.id }}/">{{ item.item.name }}</a></th>
+                        <th>{{ item.records_count }}</th>
+                        <th>{{ item.payments }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <hr style="color: green"/>
+            <div class="col-md-4 col-md-offset-4" align="center">
+                <a href="{% url 'management:index' %}" class="btn btn-default">返回</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

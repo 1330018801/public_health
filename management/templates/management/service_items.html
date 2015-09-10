@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<table id="service_items"></table>
+
+<div id="service_items_tb" style="padding: 5px">
+    <div>
+        <a href="#" id="add">新增</a>
+        <a href="#" id="edit">修改</a>
+        <a href="#" id="remove">删除</a>
+        <a href="#" id="save">保存</a>
+        <a href="#" id="undo">取消</a>
+    </div>
+    <div style="margin: 5px 0 5px 4px">
+        服务类别：<input id="query_service_type" />
+        <span style="margin-left: 15px;">服务项目名称：</span><input id="query_service_item_name" />
+        <a href="#" id="query">查询</a>
+    </div>
+</div>
+
+<script src='{% static "js/service_items.js" %}'></script>

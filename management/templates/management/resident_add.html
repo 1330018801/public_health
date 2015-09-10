@@ -1,0 +1,238 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row" align="center" >
+        <form class="form-inline" method="POST" action="
+        {% if user.userprofile.role.name == "卫生院管理员" %}
+            {% url 'management:town_staff_resident_add' %}
+        {% else %}
+            {% url 'management:resident_add' %}
+        {% endif %}" >
+        {% if err_msg %}
+        <h5 class="page-header" align="left">{{ err_msg }}</h5>
+        {% endif %}
+            {% csrf_token %}
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.name.errors %}
+                        <span style="background: #ffff00"><label for="name">{{ form.name.label_tag }}</label></span>
+                        {% else %}
+                        <label for="name">{{ form.name.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.name }}
+                    </div>
+                </div>
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.gender.errors %}
+                        <span style="background: #ffff00"><label for="gender">{{ form.gender.label_tag }}</label></span>
+                        {% else %}
+                        <label for="sex">{{ form.gender.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                    {% for item in form.gender %}
+                        {% if forloop.counter > 1 %}
+                            {{ item }}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            </div><!-- for row -->
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.birthday.errors %}
+                        <span style="background: #ffff00"><label for="birthday">{{ form.birthday.label_tag }}</label></span>
+                        {% else %}
+                        <label for="address">{{ form.birthday.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        <div class='input-group date' id='datepicker1'>
+                            {{ form.birthday }}
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datepicker1').datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true,
+                            language: 'zh-CN',
+                            todayHighlight: true
+                        });
+                    });
+                </script>
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.nation.errors %}
+                        <span style="background: #ffff00"><label for="nation">{{ form.nation.label_tag }}</label></span>
+                        {% else %}
+                        <label for="nation">{{ form.nation.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.nation }}
+                    </div>
+                </div>
+            </div><!-- for row -->
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.town.errors %}
+                        <span style="background: #ffff00"><label for="town">{{ form.town.label_tag }}</label></span>
+                        {% else %}
+                        <label for="town">{{ form.town.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {% if user.userprofile.role.name == "卫生院管理员" %}
+                            {{ town.name }}<input type="text" style="display: none;" value="{{ town.id }}" name="town">
+                        {% else %}
+                            {{ form.town }}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.village.errors %}
+                        <span style="background: #ffff00"><label for="village">{{ form.village.label_tag }}</label></span>
+                        {% else %}
+                        <label for="village">{{ form.village.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if user.userprofile.role.name == "卫生院管理员" %}
+                 <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        <select id="village" name="village" class="form-control">
+                            <option value="0">请选择</option>
+                            {% for the_village in villages %}
+                                <option value="{{ the_village.id }}">{{ the_village.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                 </div>
+                {% else %}
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                            {{ form.village }}
+                    </div>
+                </div>
+                <script>
+                $(document).ready(function() {
+                    $("select[name='village']").attr('disabled', true);
+                    $("select[name='town']").change(function() {
+                        if ($(this).val() == ""){
+                            $("select[name='village']").html("<option>请选择</option>");
+                            $("select[name='village']").attr('disabled', true);
+                        }
+                        else {
+                            var url = "/management/town/" + $(this).val() + "/villages/";
+                            $.getJSON(url, function(villages) {
+                                var options = '<option value="0">请选择</option>';
+                                for (var i = 0; i < villages.length; i++) {
+                                    options += '<option value="' + villages[i].pk + '">' + villages[i].fields['name'] + '</option>';
+                                }
+                                $("select[name='village']").html(options);
+                                $("select[name='village'] option:first").attr('selected', 'selected');
+                                $("select[name='village']").attr('disabled', false);
+                            });
+                        }
+                    });
+                })
+                </script>
+            {% endif %}
+            </div><!-- for row -->
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.identity.errors %}
+                        <span style="background: #ffff00"><label for="identity">{{ form.identity.label_tag }}</label></span>
+                        {% else %}
+                        <label for="identity">{{ form.identity.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.identity }}
+                    </div>
+                </div>
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.address.errors %}
+                        <span style="background: #ffff00"><label for="address">{{ form.address.label_tag }}</label></span>
+                        {% else %}
+                        <label for="address">{{ form.address.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.address }}
+                    </div>
+                </div>
+            </div><!-- for row -->
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.mobile.errors %}
+                        <span style="background: #ffff00"><label for="mobile">{{ form.mobile.label_tag }}</label></span>
+                        {% else %}
+                        <label for="mobile">{{ form.mobile.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.mobile }}
+                    </div>
+                </div>
+                <div class="col-md-3" align="right">
+                    <div class="form-group">
+                        {% if form.email.errors %}
+                        <span style="background: #ffff00"><label for="email">{{ form.email.label_tag }}</label></span>
+                        {% else %}
+                        <label for="email">{{ form.email.label_tag }}</label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-3" align="left">
+                    <div class="form-group">
+                        {{ form.email }}
+                    </div>
+                </div>
+            </div><!-- for row -->
+
+            <div class="row" style="padding-top: 30px">
+                <div class="col-md-6 col-md-offset-4">
+                    <button type="submit" class="btn btn-default" align="left">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                    {% if user.userprofile.role.name == "卫生院管理员" %}
+                        <a href="{% url 'management:town_staff_resident_list' %}" class="btn btn-default">返回</a>
+                    {% else %}
+                        <a href="{% url 'management:resident_list' %}" class="btn btn-default">返回</a>
+                    {% endif %}
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

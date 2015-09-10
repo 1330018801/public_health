@@ -1,0 +1,135 @@
+{% extends 'child/aftercare_1_year_base.html' %}
+
+{% block visit_date_1 %}
+    {{ form.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_1 %}
+    {{ form.weight }}
+{% endblock %}
+
+{% block weight_grade_1 %}
+    {{ form.weight_grade }}
+{% endblock %}
+
+{% block height_1 %}
+    {{ form.height }}
+{% endblock %}
+
+{% block height_grade_1 %}
+    {{ form.height_grade }}
+{% endblock %}
+
+{% block head_circumference_1 %}
+    {{ form.head_circumference }}
+{% endblock %}
+
+{% block complexion_1 %}
+    {{ form.complexion }}
+{% endblock %}
+
+{% block skin_1 %}
+    {{ form.skin }}
+{% endblock %}
+
+{% block bregma_1 %}
+    {{ form.bregma }}
+{% endblock %}
+
+{% block bregma_length_1 %}
+    {{ form.bregma_length }}
+{% endblock %}
+
+{% block bregma_width_1 %}
+    {{ form.bregma_width }}
+{% endblock %}
+
+{% block neck_enclosed_mass_1 %}
+    {{ form.neck_enclosed_mass }}
+{% endblock %}
+
+{% block eye_appearance_1 %}
+    {{ form.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_1 %}
+    {{ form.ear_appearance }}
+{% endblock %}
+
+{% block oral_cavity_1 %}
+    {{ form.oral_cavity }}
+{% endblock %}
+
+{% block heart_lung_1 %}
+    {{ form.heart_lung }}
+{% endblock %}
+
+{% block abdomen_1 %}
+    {{ form.abdomen }}
+{% endblock %}
+
+{% block navel_1 %}
+    {{ form.navel }}
+{% endblock %}
+
+{% block all_fours_1 %}
+    {{ form.all_fours }}
+{% endblock %}
+
+{% block rickets_sign_1 %}
+    {{ form.rickets_sign }}
+{% endblock %}
+
+{% block anus_externalia_1 %}
+    {{ form.anus_externalia }}
+{% endblock %}
+
+{% block hemoglobin_value_1 %}
+    {{ form.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_1 %}
+    {{ form.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_1 %}
+    {{ form.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_1 %}
+    {{ form.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_1 %}
+    {{ form.two_visit_disease }}
+{% endblock %}
+
+{% block extra_1 %}
+    {{ form.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_1 %}
+    {{ form.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_1 %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_1 %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_1 %}
+    {% for item in form.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_1 %}
+    {{ form.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_1 %}
+    {{ form.doctor_signature }}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_header %}
+    <h3 class="page-header" align="center">{{ service_type.name }}: {{ service_item.name }}</h3>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'child:aftercare_30_month' %}" method="POST">
+
+    {% csrf_token %}
+        {{ form.non_filed_errors }}
+        {% include 'child/a1m_a30m_1.html' %}
+        {% include 'child/a12m_a30m_1.html' %}
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.hemoglobin_value.errors %}
+                    <span style="background: #ffff00">{{ form.hemoglobin_value.label_tag }}</span>
+                {% else %}
+                    {{ form.hemoglobin_value.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.hemoglobin_value }}&nbsp;&nbsp;g/L
+            </div>
+        </div>
+        <div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong></strong></h4>
+	    	</div>
+    	</div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.outdoor_activities.errors %}
+                    <span style="background: #ffff00">{{ form.outdoor_activities.label_tag }}</span>
+                {% else %}
+                    {{ form.outdoor_activities.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.outdoor_activities }}&nbsp;&nbsp;小时/日
+            </div>
+        </div>
+
+        {% include 'child/a12m_a30m_2.html' %}
+
+    </form>
+{% endblock %}
+</html>

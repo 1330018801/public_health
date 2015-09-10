@@ -1,0 +1,36 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block addstyle %}
+
+{% endblock %}
+
+{% block service_header %}
+    <h2 class="page-header" align="center">高血压患者一般体格检查</h2>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'hypertension:physical_examination' %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4" align="right">
+                            {{ field.label_tag }}
+                        </div>
+                        <div class="col-md-5">
+                            {{ field }}
+                        </div>
+                        {{ field.errors }}
+                    </div>
+                </div>
+            </div>
+            <br />
+        {% endfor %}
+        <div class="fieldWrapper">
+            <input type="submit" value="提交">
+            <a href="{% url 'hypertension:index' %}" class="btn btn-default">返回</a>
+        </div>
+    </form>
+{% endblock service_item_content %}

@@ -1,0 +1,248 @@
+{% extends 'ehr/body_exam_base.html' %}
+
+{% block doctor_name %}{{ form.doctor }}{% endblock %}
+{% block check_date %}{{ form.visit_date | date:"Y-m-d" }}{% endblock %}
+
+# 血常规
+{% block blood_routine_test %}
+    血红蛋白{{ form.hemoglobin }}g/L&nbsp;&nbsp;
+    白细胞{{ form.leucocyte }}×10<sup>9</sup>/L&nbsp;&nbsp;
+    血小板{{ form.blood_platelets }}×10<sup>9</sup>/L<br />
+    其他{{ form.blood_routine_test_extra }}
+{% endblock %}
+
+#尿常规
+{% block urine_routine_test %}
+    尿蛋白{{ form.urine_protein }}&nbsp;&nbsp;
+    尿糖{{ form.urine_glucose }}&nbsp;&nbsp;
+    尿酮体{{ form.ketone_bodies }}&nbsp;&nbsp;
+    尿潜血{{ form.occult_blood }}&nbsp;&nbsp;
+    其他{{ form.routine_urine_test_extra }}
+{% endblock %}
+
+# 血清谷丙转氨酶
+{% block alanine_aminotransferase %}
+        &nbsp;{{ form.alt }}U/L&nbsp;&nbsp;
+{% endblock %}
+
+# 血清谷草转氨酶
+{% block glutamic_oxalacetic_transaminase %}
+        &nbsp;{{ form.ast }}U/L&nbsp;&nbsp;
+{% endblock %}
+
+# 血糖
+{% block blood_glucose %}
+    {% if form.blood_glucose_mmol %}
+    {{ form.blood_glucose_mmol }} mmol/L
+    {% endif %}
+    {% if form.blood_glucose_mmol and form.blood_glucose_mg %}
+    &nbsp;&nbsp;或&nbsp;&nbsp;
+    {% endif %}
+    {% if form.blood_glucose_mg %}
+    {{ form.blood_glucose_mg }} mg/dL
+    {% endif %}
+{% endblock %}
+
+# 心电图
+{% block electrocardiogram %}
+    {{ form.electr_gram }}
+    {% if form.electr_gram == '异常' %}
+        &nbsp;&nbsp;{{ form.electr_gram_abnormal }}
+    {% endif %}
+{% endblock %}
+
+# 血脂
+{% block blood_fat %}
+    总胆固醇{{ form.tc }}mmol/L&nbsp;&nbsp;
+    甘油三酯{{ form.tg }}mmol/L<br />
+    血清低密度脂蛋白胆固醇{{ form.ldl_c }}mmol/L<br />
+    血清高密度脂蛋白胆固醇{{ form.hdl_c }}mmol/L
+{% endblock %}
+
+# 总胆红素
+{% block total_bilirubin %}
+        {{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+# 血清肌酐
+{% block serum_creatinine %}
+        {{ form.scr }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+# 血尿素氮
+{% block blood_urea_nitrogen %}
+        {{ form.bun }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+# 一般体格检查
+{% block body_temperature %}
+        {{ form.body_temperature }}℃
+{% endblock %}
+
+{% block pulse %}
+        {{ form.pulse }}次/分钟
+{% endblock %}
+
+{% block breath_frequency %}
+        {{ form.breath_frequency }}次/分钟
+{% endblock %}
+
+{% block blood_pressure_left_sbp %}
+        {{ form.blood_pressure_left_sbp }}
+{% endblock %}
+
+{% block blood_pressure_left_dbp %}
+        {{ form.blood_pressure_left_dbp }}
+{% endblock %}
+
+{% block blood_pressure_right_sbp %}
+        {{ form.blood_pressure_right_sbp }}
+{% endblock %}
+
+{% block blood_pressure_right_dbp %}
+        {{ form.blood_pressure_right_dbp }}
+{% endblock %}
+
+{% block height %}
+        {{ form.height }}cm
+{% endblock %}
+
+{% block weight %}
+        {{ form.weight }}kg
+{% endblock %}
+
+{% block waistline %}
+        {{ form.waistline }}cm
+{% endblock %}
+
+{% block body_mass_index %}
+        {{ form.body_mass_index }}Kg/m<sup>2</sup>
+{% endblock %}
+
+{% block mouth_lip %}
+        {{ form.mouth_lip }}
+{% endblock %}
+
+{% block mouth_tooth %}
+        {{ form.mouth_tooth }}
+            {% if form.mouth_tooth == '缺齿' %}
+                左上{{ form.mouth_tooth_missing_upleft }}
+                左下{{ form.mouth_tooth_missing_bottomleft }}
+                右上{{ form.mouth_tooth_missing_upright }}
+                右下{{ form.mouth_tooth_missing_bottomright }}<br />
+            {% elif form.mouth_tooth == '龋齿' %}
+                左上{{ form.mouth_tooth_decayed_upleft }}
+                左下{{ form.mouth_tooth_decayed_bottomleft }}
+                右上{{ form.mouth_tooth_decayed_upright }}
+                右下{{ form.mouth_tooth_decayed_bottomright }}<br />
+            {% elif form.mouth_tooth == '义齿（假牙）' %}
+                左上{{ form.mouth_tooth_denture_upleft }}
+                左下{{ form.mouth_tooth_denture_bottomleft }}
+                右上{{ form.mouth_tooth_denture_upright }}
+                右下{{ form.mouth_tooth_denture_bottomright }}
+            {% endif %}
+{% endblock %}
+
+{% block mouth_throat %}
+    {{ form.mouth_throat }}
+{% endblock %}
+
+{% block eyesight %}
+        左眼{{ form.eyesight_left }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right }}&nbsp;&nbsp;
+        （矫正视力：
+        左眼{{ form.eyesight_left_rectified }}&nbsp;&nbsp;
+        右眼{{ form.eyesight_right_rectified }}）
+{% endblock %}
+
+{% block hearing %}
+        {{ form.hearing }}
+{% endblock %}
+
+{% block movement_function %}
+        {{ form.movement_function }}
+{% endblock %}
+
+{% block skin %}
+        {{ form.skin }}&nbsp;&nbsp;
+        {{ form.skin_extra }}
+{% endblock %}
+
+
+{% block lymph_node %}
+        {{ form.lymph_node }}&nbsp;&nbsp;
+        {{ form.lymph_node_extra }}
+{% endblock %}
+
+
+{% block lung_barrel_chested %}
+        {{ form.lung_barrel_chested }}
+{% endblock %}
+
+{% block lung_breath_sound %}
+        {{ form.lung_breath_sound }}&nbsp;&nbsp;
+        {{ form.lung_breath_sound_extra }}
+{% endblock %}
+
+{% block lung_rale %}
+        {{ form.lung_rale }}&nbsp;&nbsp;
+        {{ form.lung_rale_extra }}
+{% endblock %}
+
+{% block heart %}
+        心率：{{ form.heart_rate }}次/分钟<br />
+        心律：{{ form.heart_rhythm }}
+        杂音：{{ form.heart_noise }}&nbsp;&nbsp;
+        {{ form.heart_noise_extra }}
+{% endblock %}
+
+{% block stomach %}
+        压痛：{{ form.stomach_tenderness }}
+        {{ form.stomach_tenderness_extra }}<br />
+        包块：{{ form.stomach_enclosed_mass }}
+        {{ form.stomach_enclosed_mass_extra }}<br />
+        肝大：{{ form.stomach_hepatomegaly }}
+        {{ form.stomach_hepatomegaly_extra }}<br />
+        脾大：{{ form.stomach_slenauxe }}
+        {{ form.stomach_slenauxe_extra }}<br />
+        移动性浊音：{{ form.stomach_shifting_dullness }}
+        {{ form.stomach_shifting_dullness_extra }}
+{% endblock %}
+
+# 中医体质辨识
+{% block pinghe %}
+    {{ form.pinghe }}
+{% endblock %}
+
+{% block qixu %}
+    {{ form.qixu }}
+{% endblock %}
+
+{% block yangxu %}
+    {{ form.yangxu }}
+{% endblock %}
+
+{% block yinxu %}
+    {{ form.yinxu }}
+{% endblock %}
+
+{% block tanshi %}
+    {{ form.tanshi }}
+{% endblock %}
+
+{% block shire %}
+    {{ form.shire }}
+{% endblock %}
+
+{% block xueyu %}
+    {{ form.xueyu }}
+{% endblock %}
+
+{% block qiyu %}
+    {{ form.qiyu }}
+{% endblock %}
+
+{% block tebing %}
+    {{ form.tebing }}
+{% endblock %}
+

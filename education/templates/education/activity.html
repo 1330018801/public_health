@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<table id="activity_dg"></table>
+
+<div id="activity_toolbar" style="padding: 5px 25px; display: none">
+    <div style="border-bottom: solid 1px #dbdbdb">
+        <a href="#" id="add">添加信息报告</a>
+        <a href="#" id="edit">修改信息报告</a>
+        <a href="#" id="remove">删除信息报告</a>
+        <a href="#" id="save">保存</a>
+        <a href="#" id="undo">取消</a>
+    </div>
+    <table style="margin-top: 5px">
+        <tr style="margin: 5px">
+            <td width="10%" style="padding: 5px" align="right">起始时间：</td>
+            <td width="15%"><input id="begin_date" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">结束时间：</td>
+            <td width="15%"><input id="end_date" /></td>
+            <td width="10%" style="margin-left: 15px" align="right">教育形式：</td>
+            <td width="15%"><input id="act_type" /></td>
+            <td width="5%"></td>
+            <td width="10%"><a href="#" id="btn_query">查询</a></td>
+            <td width="20%"></td>
+        </tr>
+    </table>
+</div>
+
+<div id="act_tbl" style="display: none; padding: 10px; font-size: 13px;">
+    <form id="act_tbl_form" method="POST">
+        {% include 'education/activity_table.html' %}
+    </form>
+</div>
+
+<div id="review" style="display: none; padding: 10px; font-size: 13px;"></div>
+
+<script src='{% static "js/activity.js" %}'></script>

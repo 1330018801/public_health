@@ -1,0 +1,67 @@
+{% load staticfiles %}
+
+<div id="records"></div>
+
+<div id="records_tb" style="padding: 5px; display: none">
+    <table>
+        <tr style="margin: 5px">
+            <td width="10%" style="padding: 5px">
+                <label for="query_record_begin">开始时间：</label>
+            </td>
+            <td width="15%">
+                <div id="query_record_begin"></div>
+            </td>
+            <td width="10%">
+                <label for="query_record_end" style="margin-left: 15px;">结束时间：</label>
+            </td>
+            <td width="15%">
+                <div id="query_record_end"></div>
+            </td>
+            <td width="10%">
+                <label for="query_service_type">服务类型：</label>
+            </td>
+            <td width="15%">
+                <div id="query_service_type"></div>
+            </td>
+            <td width="10%">
+                <label for="query_service_item" style="margin-left: 15px;">服务项目：</label>
+            </td>
+            <td width="15%" style="padding-right: 15px">
+                <input id="query_service_item" name="query_service_item" class="easyui-combobox" style="width: 120px"/>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" style="padding: 5px">
+                <label for="query_doctor">医生用户：</label>
+            </td>
+            <td width="15%">
+                <input id="query_doctor" name="query_doctor" class="easyui-textbox" style="width: 100px"/>
+            </td>
+            <td width="10%">
+                <label for="query_resident" style="margin-left: 15px;">居民姓名：</label>
+            </td>
+            <td width="15%">
+                <input id="query_resident" name="query_resident" class="easyui-textbox" style="width: 100px"/>
+            </td>
+            <td width="10%">
+                <label for="query_town_clinic">乡镇卫生院：</label>
+            </td>
+            <td width="15%">
+                <div id="query_town_clinic"></div>
+            </td>
+            <td width="10%">
+                <label for="query_village_clinic" style="margin-left: 15px;">村卫生室：</label>
+            </td>
+            <td width="15%" style="padding-right: 15px">
+                <input id="query_village_clinic" name="query_village_clinic" class="easyui-combobox" style="width: 120px"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" align="right" style="padding-right: 30px">
+                <a href="#" id="btn_query" class="easyui-linkbutton" iconCls="icon-glyphicons-28-search" plain="true">查询</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script src='{% static "js/records.js" %}'></script>

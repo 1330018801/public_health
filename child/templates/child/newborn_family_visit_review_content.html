@@ -1,0 +1,317 @@
+{% extends 'child/newborn_family_visit_base.html' %}
+
+{% block gender %}
+    {{ form.gender }}
+{% endblock %}
+
+{% block birthday %}
+    {{ form.birthday | date:"Y-m-d" }}
+{% endblock %}
+
+{% block identity %}
+    {{ form.identity }}
+{% endblock %}
+
+{% block address %}
+    {{ form.address }}
+{% endblock %}
+
+{% block father_name %}
+    {{ form.father_name }}
+{% endblock %}
+
+{% block father_occupation %}
+    {{ form.father_occupation }}
+{% endblock %}
+
+{% block father_contact_number %}
+    {{ form.father_contact_number }}
+{% endblock %}
+
+{% block father_birthday %}
+    {{ form.father_birthday | date:"Y-m-d" }}
+{% endblock %}
+
+{% block mother_name %}
+    {{ form.mother_name }}
+{% endblock %}
+
+{% block mother_occupation %}
+    {{ form.mother_occupation }}
+{% endblock %}
+
+{% block mother_contact_number %}
+    {{ form.mother_contact_number }}
+{% endblock %}
+
+{% block mother_birthday %}
+    {{ form.mother_birthday | date:"Y-m-d" }}
+{% endblock %}
+
+{% block gestational_weeks %}
+    {{ form.gestational_weeks }}
+{% endblock %}
+
+{% block mother_gestational_disease %}
+    {{ form.mother_gestational_disease }}
+{% endblock %}
+
+{% block mother_gestational_disease_extra %}
+    {{ form.mother_gestational_disease_extra }}
+{% endblock %}
+
+{% block deliver_institution %}
+    {{ form.deliver_institution }}
+{% endblock %}
+
+{% block birth_situation %}
+    {% for item in form.birth_situation.all %}
+            {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block birth_situation_extra %}
+    {{ form.birth_situation_extra }}
+{% endblock %}
+
+{% block newborn_asphyxia %}
+    {{ form.newborn_asphyxia }}
+{% endblock %}
+
+{% block apgar_score %}
+    {{ form.apgar_score }}
+{% endblock %}
+
+{% block malformation_or_not %}
+    {{ form.malformation_or_not }}
+{% endblock %}
+
+{% block malformation_extra %}
+    {{ form.malformation_extra }}
+{% endblock %}
+
+{% block newborn_hearing_screening %}
+    {{ form.newborn_hearing_screening }}
+{% endblock %}
+
+{% block newborn_disease_screening %}
+    {{ form.newborn_disease_screening }}
+{% endblock %}
+
+{% block newborn_disease_screening_extra %}
+    {{ form.newborn_disease_screening_extra }}
+{% endblock %}
+
+{% block newborn_birth_weight %}
+    {{ form.newborn_birth_weight }}
+{% endblock %}
+
+{% block now_weight %}
+    {{ form.now_weight }}
+{% endblock %}
+
+{% block birth_height %}
+    {{ form.birth_height }}
+{% endblock %}
+
+{% block feed_way %}
+    {{ form.feed_way }}
+{% endblock %}
+
+{% block drink_milk_volume %}
+    {{ form.drink_milk_volume }}
+{% endblock %}
+
+{% block drink_milk_times %}
+    {{ form.drink_milk_times }}
+{% endblock %}
+
+{% block emesis %}
+    {{ form.emesis }}
+{% endblock %}
+
+{% block shit %}
+    {{ form.shit }}
+{% endblock %}
+
+{% block shit_times %}
+    {{ form.shit_times }}
+{% endblock %}
+
+{% block body_temperature %}
+    {{ form.body_temperature }}
+{% endblock %}
+
+{% block pulse %}
+    {{ form.pulse }}
+{% endblock %}
+
+{% block breath_frequency %}
+    {{ form.breath_frequency }}
+{% endblock %}
+
+{% block complexion %}
+    {{ form.complexion }}
+{% endblock %}
+
+{% block complexion_extra %}
+    {{ form.complexion_extra }}
+{% endblock %}
+
+{% block icterus_position %}
+    {{ form.icterus_position }}
+{% endblock %}
+
+{% block bregma_x %}
+    {{ form.bregma_x }}
+{% endblock %}
+
+{% block bregma_y %}
+    {{ form.bregma_y }}
+{% endblock %}
+
+{% block bregma_1 %}
+    {{ form.bregma }}
+{% endblock %}
+
+{% block bregma_1_extra %}
+    {{ form.bregma_1_extra }}
+{% endblock %}
+
+{% block eye_appearance %}
+    {{ form.eye_appearance }}
+{% endblock %}
+
+{% block eye_appearance_abnormal %}
+    {{ form.eye_appearance_abnormal }}
+{% endblock %}
+
+{% block all_fours_activity %}
+    {{ form.all_fours_activity }}
+{% endblock %}
+
+{% block all_fours_activity_abnormal %}
+    {{ form.all_fours_activity_abnormal }}
+{% endblock %}
+
+{% block ear_appearance %}
+    {{ form.ear_appearance }}
+{% endblock %}
+
+{% block ear_appearance_abnormal %}
+    {{ form.ear_appearance_abnormal }}
+{% endblock %}
+
+{% block neck_enclosed_mass %}
+    {{ form.neck_enclosed_mass }}
+{% endblock %}
+
+{% block neck_enclosed_mass_yes %}
+    {{ form.neck_enclosed_mass_yes }}
+{% endblock %}
+
+{% block nose %}
+    {{ form.nose }}
+{% endblock %}
+
+{% block nose_abnormal %}
+    {{ form.nose_abnormal }}
+{% endblock %}
+
+{% block skin %}
+    {{ form.skin }}
+{% endblock %}
+
+{% block skin_extra %}
+    {{ form.skin_extra }}
+{% endblock %}
+
+{% block oral_cavity %}
+    {{ form.oral_cavity }}
+{% endblock %}
+
+{% block oral_cavity_abnormal %}
+    {{ form.oral_cavity_abnormal }}
+{% endblock %}
+
+{% block anus %}
+    {{ form.anus }}
+{% endblock %}
+
+{% block anus_abnormal %}
+    {{ form.anus_abnormal }}
+{% endblock %}
+
+{% block heart_lung_auscultation %}
+    {{ form.heart_lung_auscultation }}
+{% endblock %}
+
+{% block heart_lung_auscultation_abnormal %}
+    {{ form.heart_lung_auscultation_abnormal }}
+{% endblock %}
+
+{% block externalia %}
+    {{ form.externalia }}
+{% endblock %}
+
+{% block externalia_abnormal %}
+    {{ form.externalia_abnormal }}
+{% endblock %}
+
+{% block abdomen_palpation %}
+    {{ form.abdomen_palpation }}
+{% endblock %}
+
+{% block abdomen_palpation_abnormal %}
+    {{ form.abdomen_palpation_abnormal }}
+{% endblock %}
+
+{% block spine %}
+    {{ form.spine }}
+{% endblock %}
+
+{% block spine_abnormal %}
+    {{ form.spine_abnormal }}
+{% endblock %}
+
+{% block navel %}
+    {{ form.navel }}
+{% endblock %}
+
+{% block navel_extra %}
+    {{ form.navel_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion %}
+    {{ form.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.all %}
+            {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date %}
+    {{ form.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block next_visit_place %}
+    {{ form.next_visit_place }}
+{% endblock %}
+
+{% block next_visit_date %}
+    {{ form.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature %}
+    {{ form.doctor_signature }}
+{% endblock %}

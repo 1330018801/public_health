@@ -1,0 +1,569 @@
+{% extends 'child/aftercare_1_year_base.html' %}
+
+{% comment %}满月随访表格{% endcomment %}
+
+{% if aftercare_1_month %}
+{% block visit_date_1 %}
+    {{ aftercare_1_month.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_1 %}
+    {{ aftercare_1_month.weight }}
+{% endblock %}
+
+{% block weight_grade_1 %}
+    {{ aftercare_1_month.weight_grade }}
+{% endblock %}
+
+{% block height_1 %}
+    {{ aftercare_1_month.height }}
+{% endblock %}
+
+{% block height_grade_1 %}
+    {{ aftercare_1_month.height_grade }}
+{% endblock %}
+
+{% block head_circumference_1 %}
+    {{ aftercare_1_month.head_circumference }}
+{% endblock %}
+
+{% block complexion_1 %}
+    {{ aftercare_1_month.complexion }}
+{% endblock %}
+
+{% block skin_1 %}
+    {{ aftercare_1_month.skin }}
+{% endblock %}
+
+{% block bregma_1 %}
+    {{ aftercare_1_month.bregma }}
+{% endblock %}
+
+{% block bregma_length_1 %}
+    {% if aftercare_1_month.bregma_length != None %}
+        {{ aftercare_1_month.bregma_length }}
+    {% endif %}
+{% endblock %}
+
+{% block bregma_width_1 %}
+    {% if aftercare_1_month.bregma_width != None %}
+        {{ aftercare_1_month.bregma_width }}
+    {% endif %}
+{% endblock %}
+
+{% block neck_enclosed_mass_1 %}
+    {{ aftercare_1_month.neck_enclosed_mass }}
+{% endblock %}
+
+{% block eye_appearance_1 %}
+    {{ aftercare_1_month.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_1 %}
+    {{ aftercare_1_month.ear_appearance }}
+{% endblock %}
+
+{% block oral_cavity_1 %}
+    {{ aftercare_1_month.oral_cavity }}
+{% endblock %}
+
+{% block heart_lung_1 %}
+    {{ aftercare_1_month.heart_lung }}
+{% endblock %}
+
+{% block abdomen_1 %}
+    {{ aftercare_1_month.abdomen }}
+{% endblock %}
+
+{% block navel_1 %}
+    {{ aftercare_1_month.navel }}
+{% endblock %}
+
+{% block all_fours_1 %}
+    {{ aftercare_1_month.all_fours }}
+{% endblock %}
+
+{% block rickets_sign_1 %}
+    {{ aftercare_1_month.rickets_sign }}
+{% endblock %}
+
+{% block anus_externalia_1 %}
+    {{ aftercare_1_month.anus_externalia }}
+{% endblock %}
+
+{% block hemoglobin_value_1 %}
+    {{ aftercare_1_month.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_1 %}
+    {{ aftercare_1_month.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_1 %}
+    {{ aftercare_1_month.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_1 %}
+    {{ aftercare_1_month.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_1 %}
+    {{ aftercare_1_month.two_visit_disease }}
+{% endblock %}
+
+{% block extra_1 %}
+    {{ aftercare_1_month.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_1 %}
+    {{ aftercare_1_month.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_1 %}
+    {{ aftercare_1_month.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_1 %}
+    {{ aftercare_1_month.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_1 %}
+    {% for item in aftercare_1_month.guide.all %}
+          {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_1 %}
+    {{ aftercare_1_month.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_1 %}
+    {{ aftercare_1_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% comment %}3月龄随访表格{% endcomment %}
+
+{% if aftercare_3_month %}
+{% block visit_date_3 %}
+    {{ aftercare_3_month.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_3 %}
+    {{ aftercare_3_month.weight }}
+{% endblock %}
+
+{% block weight_grade_3 %}
+    {{ aftercare_3_month.weight_grade }}
+{% endblock %}
+
+{% block height_3 %}
+    {{ aftercare_3_month.height }}
+{% endblock %}
+
+{% block height_grade_3 %}
+    {{ aftercare_3_month.height_grade }}
+{% endblock %}
+
+{% block head_circumference_3 %}
+    {{ aftercare_3_month.head_circumference }}
+{% endblock %}
+
+{% block complexion_3 %}
+    {{ aftercare_3_month.complexion }}
+{% endblock %}
+
+{% block skin_3 %}
+    {{ aftercare_3_month.skin }}
+{% endblock %}
+
+{% block bregma_3 %}
+    {{ aftercare_3_month.bregma }}
+{% endblock %}
+
+{% block bregma_length_3 %}
+    {% if aftercare_3_month.bregma_length != None %}
+        {{ aftercare_3_month.bregma_length }}
+    {% endif %}
+{% endblock %}
+
+{% block bregma_width_3 %}
+    {% if aftercare_3_month.bregma_width != None %}
+        {{ aftercare_3_month.bregma_width }}
+    {% endif %}
+{% endblock %}
+
+{% block neck_enclosed_mass_3 %}
+    {{ aftercare_3_month.neck_enclosed_mass }}
+{% endblock %}
+
+{% block eye_appearance_3 %}
+    {{ aftercare_3_month.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_3 %}
+    {{ aftercare_3_month.ear_appearance }}
+{% endblock %}
+
+{% block oral_cavity_3 %}
+    {{ aftercare_3_month.oral_cavity }}
+{% endblock %}
+
+{% block heart_lung_3 %}
+    {{ aftercare_3_month.heart_lung }}
+{% endblock %}
+
+{% block abdomen_3 %}
+    {{ aftercare_3_month.abdomen }}
+{% endblock %}
+
+{% block navel_3 %}
+    {{ aftercare_3_month.navel }}
+{% endblock %}
+
+{% block all_fours_3 %}
+    {{ aftercare_3_month.all_fours }}
+{% endblock %}
+
+{% block rickets_symptom_3 %}
+    {{ aftercare_3_month.rickets_symptom }}
+{% endblock %}
+
+{% block rickets_sign_3 %}
+    {{ aftercare_3_month.rickets_sign }}
+{% endblock %}
+
+{% block anus_externalia_3 %}
+    {{ aftercare_3_month.anus_externalia }}
+{% endblock %}
+
+{% block hemoglobin_value_3 %}
+    {{ aftercare_3_month.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_3 %}
+    {{ aftercare_3_month.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_3 %}
+    {{ aftercare_3_month.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_3 %}
+    {{ aftercare_3_month.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_3 %}
+    {{ aftercare_3_month.two_visit_disease }}
+{% endblock %}
+
+{% block extra_3 %}
+    {{ aftercare_3_month.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_3 %}
+    {{ aftercare_3_month.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_3 %}
+    {{ aftercare_3_month.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_3 %}
+    {{ aftercare_3_month.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_3 %}
+    {% for item in aftercare_3_month.guide.all %}
+          {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_3 %}
+    {{ aftercare_3_month.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_3 %}
+    {{ aftercare_3_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% comment %}6月龄随访表格{% endcomment %}
+
+{% if aftercare_6_month %}
+{% block visit_date_6 %}
+    {{ aftercare_6_month.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_6 %}
+    {{ aftercare_6_month.weight }}
+{% endblock %}
+
+{% block weight_grade_6 %}
+    {{ aftercare_6_month.weight_grade }}
+{% endblock %}
+
+{% block height_6 %}
+    {{ aftercare_6_month.height }}
+{% endblock %}
+
+{% block height_grade_6 %}
+    {{ aftercare_6_month.height_grade }}
+{% endblock %}
+
+{% block head_circumference_6 %}
+    {{ aftercare_6_month.head_circumference }}
+{% endblock %}
+
+{% block complexion_6 %}
+    {{ aftercare_6_month.complexion }}
+{% endblock %}
+
+{% block skin_6 %}
+    {{ aftercare_6_month.skin }}
+{% endblock %}
+
+{% block bregma_6 %}
+    {{ aftercare_6_month.bregma }}
+{% endblock %}
+
+{% block bregma_length_6 %}
+    {% if aftercare_6_month.bregma_length != None %}
+        {{ aftercare_6_month.bregma_length }}
+    {% endif %}
+{% endblock %}
+
+{% block bregma_width_6 %}
+    {% if aftercare_6_month.bregma_width != None %}
+        {{ aftercare_6_month.bregma_width }}
+    {% endif %}
+{% endblock %}
+
+{% block neck_enclosed_mass_6 %}
+    {{ aftercare_6_month.neck_enclosed_mass }}
+{% endblock %}
+
+{% block eye_appearance_6 %}
+    {{ aftercare_6_month.eye_appearance }}
+{% endblock %}
+
+{% block ear_appearance_6 %}
+    {{ aftercare_6_month.ear_appearance }}
+{% endblock %}
+
+{% block hearing_6 %}
+    {{ aftercare_6_month.hearing }}
+{% endblock %}
+
+{% block oral_cavity_6 %}
+    {{ aftercare_6_month.oral_cavity }}
+{% endblock %}
+
+{% block heart_lung_6 %}
+    {{ aftercare_6_month.heart_lung }}
+{% endblock %}
+
+{% block abdomen_6 %}
+    {{ aftercare_6_month.abdomen }}
+{% endblock %}
+
+{% block all_fours_6 %}
+    {{ aftercare_6_month.all_fours }}
+{% endblock %}
+
+{% block rickets_symptom_6 %}
+    {{ aftercare_6_month.rickets_symptom }}
+{% endblock %}
+
+{% block rickets_sign_6 %}
+    {{ aftercare_6_month.rickets_sign }}
+{% endblock %}
+
+{% block anus_externalia_6 %}
+    {{ aftercare_6_month.anus_externalia }}
+{% endblock %}
+
+{% block hemoglobin_value_6 %}
+    {{ aftercare_6_month.hemoglobin_value }}
+{% endblock %}
+
+{% block outdoor_activities_6 %}
+    {{ aftercare_6_month.outdoor_activities }}
+{% endblock %}
+
+{% block take_vitamin_d_6 %}
+    {{ aftercare_6_month.take_vitamin_d }}
+{% endblock %}
+
+{% block growth_evaluate_6 %}
+    {{ aftercare_6_month.growth_evaluate }}
+{% endblock %}
+
+{% block two_visit_disease_6 %}
+    {{ aftercare_6_month.two_visit_disease }}
+{% endblock %}
+
+{% block extra_6 %}
+    {{ aftercare_6_month.extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_6 %}
+    {{ aftercare_6_month.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_6 %}
+    {{ aftercare_6_month.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_6 %}
+    {{ aftercare_6_month.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_6 %}
+    {% for item in aftercare_6_month.guide.all %}
+          {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_6 %}
+    {{ aftercare_6_month.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_6 %}
+    {{ aftercare_6_month.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+{% comment %}8月龄随访表格{% endcomment %}
+
+{% if aftercare_8_month %}
+{% block visit_date_8 %}
+    {{ aftercare_8_month.visit_date.data }}
+{% endblock %}
+
+{% block weight_8 %}
+    {{ aftercare_8_month.weight.data }}
+{% endblock %}
+
+{% block weight_grade_8 %}
+    {{ aftercare_8_month.weight_grade.data }}
+{% endblock %}
+
+{% block height_8 %}
+    {{ aftercare_8_month.height.data }}
+{% endblock %}
+
+{% block height_grade_8 %}
+    {{ aftercare_8_month.height_grade.data }}
+{% endblock %}
+
+{% block head_circumference_8 %}
+    {{ aftercare_8_month.head_circumference.data }}
+{% endblock %}
+
+{% block complexion_8 %}
+    {{ aftercare_8_month.complexion.data }}
+{% endblock %}
+
+{% block skin_8 %}
+    {{ aftercare_8_month.skin.data }}
+{% endblock %}
+
+{% block bregma_8 %}
+    {{ aftercare_8_month.bregma.data }}
+{% endblock %}
+
+{% block bregma_length_8 %}
+    {{ aftercare_8_month.bregma_length.data }}
+{% endblock %}
+
+{% block bregma_width_8 %}
+    {{ aftercare_8_month.bregma_width.data }}
+{% endblock %}
+
+{% block eye_appearance_8 %}
+    {{ aftercare_8_month.eye_appearance.data }}
+{% endblock %}
+
+{% block ear_appearance_8 %}
+    {{ aftercare_8_month.ear_appearance.data }}
+{% endblock %}
+
+{% block oral_cavity_8 %}
+    {{ aftercare_8_month.oral_cavity.data }}
+{% endblock %}
+
+{% block heart_lung_8 %}
+    {{ aftercare_8_month.heart_lung.data }}
+{% endblock %}
+
+{% block abdomen_8 %}
+    {{ aftercare_8_month.abdomen.data }}
+{% endblock %}
+
+{% block all_fours_8 %}
+    {{ aftercare_8_month.all_fours.data }}
+{% endblock %}
+
+{% block rickets_symptom_8 %}
+    {{ aftercare_8_month.rickets_symptom.data }}
+{% endblock %}
+
+{% block rickets_sign_8 %}
+    {{ aftercare_8_month.rickets_sign.data }}
+{% endblock %}
+
+{% block anus_externalia_8 %}
+    {{ aftercare_8_month.anus_externalia.data }}
+{% endblock %}
+
+{% block hemoglobin_value_8 %}
+    {{ aftercare_8_month.hemoglobin_value.data }}
+{% endblock %}
+
+{% block outdoor_activities_8 %}
+    {{ aftercare_8_month.outdoor_activities.data }}
+{% endblock %}
+
+{% block take_vitamin_d_8 %}
+    {{ aftercare_8_month.take_vitamin_d.data }}
+{% endblock %}
+
+{% block growth_evaluate_8 %}
+    {{ aftercare_8_month.growth_evaluate.data }}
+{% endblock %}
+
+{% block two_visit_disease_8 %}
+    {{ aftercare_8_month.two_visit_disease.data }}
+{% endblock %}
+
+{% block extra_8 %}
+    {{ aftercare_8_month.extra.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_8 %}
+    {{ aftercare_8_month.transfer_treatment_suggestion.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_8 %}
+    {{ aftercare_8_month.transfer_treatment_suggestion_reason.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_8 %}
+    {{ aftercare_8_month.transfer_treatment_suggestion_institution.data }}
+{% endblock %}
+
+{% block guide_8 %}
+    {% for item in aftercare_8_month.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block next_visit_date_8 %}
+    {{ aftercare_8_month.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature_8 %}
+    {{ aftercare_8_month.doctor_signature.data }}
+{% endblock %}
+{% endif %}

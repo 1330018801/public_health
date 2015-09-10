@@ -1,0 +1,201 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row" align="center" >
+        <form class="form-horizontal" action="{% url 'management:resident_update' %}" method="POST">
+            {% if err_msg %}
+            <h5 class="page-header" align="left">{{ err_msg }}</h5>
+            {% endif %}
+            {% csrf_token %}
+            <br>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="name" class="col-md-2" align="right">姓名:</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="name" value="{{ resident.name }}"/>
+                    <input type="hidden" class="form-control" name="resident_id" value="{{ resident.id }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="sex" class="col-md-2"align="right">性别:</label>
+                <div class="col-md-6">
+                <select class="form-control" name="sex">
+                    {% if resident.gender == 1 %}
+                    <option value="1" selected>男</option>
+                    <option value="0">女</option>
+                    {% elif resident.gender == 0 %}
+                    <option value="1" >男</option>
+                    <option value="0" selected>女</option>
+                    {% else %}
+                    <option value="2" selected></option>
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                    {% endif %}
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="identity" class="col-md-2" align="right">身份证号码:</label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" name="identity" value="{{ resident.identity }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="nation" class="col-md-2" align="right">民族:</label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" name="nation" value="{{ resident.nation }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="town" class="col-md-2" align="right">所在乡镇:</label>
+                <div class="col-md-6">
+                    {% if user.userprofile.role.name == "卫生院管理员" %}
+                        {{ town.name }}<input type="text" style="display: none;" value="{{ town.id }}" name="town">
+                    {% else %}
+                    <select id="town" name="town" class="form-control">
+                        <option value="0">请选择</option>
+                        {% for town in towns %}
+                            {% if resident.town == town %}
+                            <option value="{{ town.id }}" selected>{{ town.name }}</option>
+                            {% else %}
+                            <option value="{{ town.id }}">{{ town.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="village" class="col-md-2" align="right">所在村庄/街道:</label>
+                <div class="col-md-6">
+                    {% if user.userprofile.role.name == "卫生院管理员" %}
+                    <select id="village" name="village" class="form-control">
+                        <option value="0">请选择</option>
+                        {% if resident.village != None %}
+                            <option value="{{ resident.village.id }}" selected>{{ resident.village.name }}</option>
+                        {% endif %}
+                        {% for the_village in villages %}
+                                <option value="{{ the_village.id }}">{{ the_village.name }}</option>
+                        {% endfor %}
+                    </select>
+                    {% else %}
+                    <select id="village" name="village" class="form-control">
+                        <option value="0">请选择</option>
+                        {% if resident.village != None %}
+                            <option value="{{ resident.village.id }}" selected>{{ resident.village.name }}</option>
+                        {% endif %}
+                    </select>
+                    {% endif %}
+                </div>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    $("select#town").change(function() {
+                        if ($(this).val() == '0'){
+                            $("select#village").html("<option>请选择</option>");
+                            $("select#village").attr('disabled', true);
+                        }
+                        else {
+                            var url = "/management/town/" + $(this).val() + "/villages/";
+                            $.getJSON(url, function(villages) {
+                                var options = '<option value="0">请选择</option>';
+                                for (var i = 0; i < villages.length; i++) {
+                                    options += '<option value="' + villages[i].pk + '">' + villages[i].fields['name'] + '</option>';
+                                }
+                                $("select#village").html(options);
+                                $("select#village option:first").attr('selected', 'selected');
+                                $("select#village").attr('disabled', false);
+                            });
+                        }
+                    });
+                })
+            </script>
+            <div class="form-group">
+                <label for="address" class="col-md-2" align="right">住址:</label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" name="address" value="{{ resident.address }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="col-md-2" align="right">手机号码:</label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" name="mobile" value="{{ resident.mobile }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email" class="col-md-2" align="right">Email:</label>
+                <div class="col-md-6">
+                <input type="text" class="form-control" name="email" value="{{ resident.email }}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="enabled" class="col-md-2" align="right">高血压患者:</label>
+                <div class="col-md-6">
+                    {% if resident.hypertension %}
+                        <input type="radio" name="hypertension" value="1" checked/>是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="hypertension" value="0" />否
+                    {% else %}
+                        <input type="radio" name="hypertension" value="1" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="hypertension" value="0" checked/>否
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="enabled" class="col-md-2" align="right">糖尿病患者:</label>
+                <div class="col-md-6">
+                    {% if resident.diabetes %}
+                        <input type="radio" name="diabetes" value="1" checked/>是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="diabetes" value="0" />否
+                    {% else %}
+                        <input type="radio" name="diabetes" value="1" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="diabetes" value="0" checked/>否
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="enabled" class="col-md-2" align="right">重症精神病患者:</label>
+                <div class="col-md-6">
+                    {% if resident.psychiatric %}
+                        <input type="radio" name="psychiatric" value="1" checked/>是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="psychiatric" value="0" />否
+                    {% else %}
+                        <input type="radio" name="psychiatric" value="1" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="psychiatric" value="0" checked/>否
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="enabled" class="col-md-2" align="right">孕产妇:</label>
+                <div class="col-md-6">
+                    {% if resident.pregnant %}
+                        <input type="radio" name="pregnant" value="1" checked/>是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="pregnant" value="0" />否
+                    {% else %}
+                        <input type="radio" name="pregnant" value="1" />是&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="pregnant" value="0" checked/>否
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="enabled" class="col-md-2" align="right">状态</label>
+                <div class="col-md-6">
+                    {% if resident.enabled %}
+                        <input type="radio" name="enabled" value="1" checked/>可用&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="enabled" value="0" />禁用
+                    {% else %}
+                        <input type="radio" name="enabled" value="1" />可用&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" name="enabled" value="0" checked/>禁用
+                    {% endif %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default" align="left">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if user.userprofile.role.name == "卫生院管理员" %}
+                <a href="{% url 'management:town_staff_resident_list' %}" class="btn btn-default">返回</a>
+            {% else %}
+                <a href="{% url 'management:resident_list' %}" class="btn btn-default">返回</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

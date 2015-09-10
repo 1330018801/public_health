@@ -1,0 +1,47 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row">
+        {% if user.is_superuser %}
+        <a href="{% url 'management:role_add' %}"><h5 class="page-header" align="left">添加用户角色</h5></a>
+        {% endif %}
+        <h5 class="page-header" align="left">用户角色列表</h5><br>
+
+        <div class="table-responsive">
+            <table class="table table-striped" style="width: 900px; font-size: 13px">
+                <thead>
+                <tr>
+                    <th>角色</th><th>类别</th><th>创建者</th><th>创建时间</th><th>状态</th><th>更新者</th><th>更新时间</th>
+                    {% if user.is_superuser or user.userprofile.role.name == "全局管理员" %}
+                        <th>操作</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for group in groups %}
+                <tr>
+                    <th>{{ group.name }}</th>
+                    <th>{% if group.groupprofile.is_staff %}管理员{% else %}一般用户{% endif %}</th>
+                    <th>{{ group.groupprofile.create_by.username }}</th>
+                    <th>{{ group.groupprofile.create_time | date:"Y-m-d"}}  {{ group.groupprofile.create_time | time:"H:i"}}</th>
+                    <th>{{ group.groupprofile.enabled }}</th>
+                    <th>{{ group.groupprofile.update_by.username }}</th>
+                    <th>{{ group.groupprofile.update_time | date:"Y-m-d"}}  {{ group.groupprofile.update_time | time:"H:i"}}</th>
+                    {% if user.is_superuser %}
+                    <th><a href="/management/role/authorize/{{ group.id }}/">授权</a>
+                        |<a href="/management/role/edit/{{ group.id }}/">修改</a>
+                        |<a href="/management/role/del/{{ group.id }}/">删除</a>
+                    </th>
+                    {% elif user.userprofile.role.name == "全局管理员" and user.is_staff > group.groupprofile.is_staff %}
+                        <th><a href="/management/role/authorize/{{ group.id }}/">授权</a></th>
+                    {% else %}
+                        <th></th>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

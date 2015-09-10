@@ -1,0 +1,94 @@
+{% extends 'psychiatric/psy_visit_base.html' %}
+
+{% block visit_date %}{{ form.visit_date.value | date:"Y-m-d"}}{% endblock %}
+{% block dangerousness %}{{ form.dangerousness.value }}{% endblock %}
+{% block now_symptom %}
+    {% for item in form.now_symptom.value %}
+        {{ item }}
+    {% endfor%}
+{% endblock %}
+{% block now_symptom_extra %}{{ form.now_symptom_extra.value }}{% endblock %}
+{% block insight %}{{ form.insight.value }}{% endblock %}
+{% block sleep_situation %}{{ form.sleep_situation.value }}{% endblock %}
+{% block diet_situation %}{{ form.diet_situation.value }}{% endblock %}
+{% block society_function_individual_life_care %}{{ form.society_function_individual_life_care.value }}{% endblock %}
+{% block society_function_housework %}{{ form.society_function_housework.value }}{% endblock %}
+{% block society_function_productive_work %}{{ form.society_function_productive_work.value }}{% endblock %}
+{% block society_function_learn_ability %}{{ form.society_function_learn_ability.value }}{% endblock %}
+{% block society_function_social_interpersonal %}{{ form.society_function_social_interpersonal.value }}{% endblock %}
+{% block disease_family_society_effect_mild_disturbance %}{{ form.disease_family_society_effect_mild_disturbance.value }}{% endblock %}
+{% block disease_family_society_effect_disturbance %}{{ form.disease_family_society_effect_disturbance.value }}{% endblock %}
+{% block disease_family_society_effect_accident %}{{ form.disease_family_society_effect_accident.value }}{% endblock %}
+{% block disease_family_society_effect_autolesion %}{{ form.disease_family_society_effect_autolesion.value }}{% endblock %}
+{% block disease_family_society_effect_attempted_suicide %}{{ form.disease_family_society_effect_attempted_suicide.value }}{% endblock %}
+{% block lock_situation %}{{ form.lock_situation.value }}{% endblock %}
+{% block hospitalized_situation %}{{ form.hospitalized_situation.value }}{% endblock %}
+{% block last_hospitalized_date %}{{ form.last_hospitalized_date.value | date:"Y-m-d"}}{% endblock %}
+{% block laboratory_examination %}{{ form.laboratory_examination.value }}{% endblock %}
+{% block laboratory_examination_yes %}{{ form.laboratory_examination_yes.value }}{% endblock %}
+{% block take_medicine_compliance %}{{ form.take_medicine_compliance.value }}{% endblock %}
+{% block medicine_untoward_effect %}{{ form.medicine_untoward_effect.value }}{% endblock %}
+{% block medicine_untoward_effect_yes %}{{ form.medicine_untoward_effect_yes.value }}{% endblock %}
+{% block treatment_effect %}{{ form.treatment_effect.value }}{% endblock %}
+{% block transfer_treatment %}{{ form.transfer_treatment.value }}{% endblock %}
+{% block transfer_treatment_reason %}{{ form.transfer_treatment_reason.value }}{% endblock %}
+{% block transfer_treatment_institution %}{{ form.transfer_treatment_institution.value }}{% endblock %}
+
+{% block take_medicine_1 %}{{ form.take_medicine_1.value }}{% endblock %}
+{% block take_medicine_1_per %}
+    {% if form.take_medicine_1.value %}
+        每{{ form.take_medicine_1_per.value }}
+    {% endif %}
+{% endblock %}
+{% block take_medicine_1_time %}
+    {% if form.take_medicine_1.value %}
+        {{ form.take_medicine_1_time.value }}次
+    {% endif %}
+{% endblock %}
+{% block take_medicine_1_mg %}
+    {% if form.take_medicine_1.value %}
+        {{ form.take_medicine_1_mg.value }}mg
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2 %}{{ form.take_medicine_2.value }}{% endblock %}
+{% block take_medicine_2_per %}
+    {% if form.take_medicine_2.value %}
+        每{{ form.take_medicine_2_per.value }}
+    {% endif %}
+{% endblock %}
+{% block take_medicine_2_time %}
+    {% if form.take_medicine_2.value %}
+        {{ form.take_medicine_2_time.value }}次
+    {% endif %}
+{% endblock %}
+{% block take_medicine_2_mg %}
+    {% if form.take_medicine_2.value %}
+        {{ form.take_medicine_2_mg.value }}mg
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3 %}{{ form.take_medicine_3.value }}{% endblock %}
+{% block take_medicine_3_per %}
+    {% if form.take_medicine_3.value %}
+        每{{ form.take_medicine_3_per.value }}
+    {% endif %}
+{% endblock %}
+{% block take_medicine_3_time %}
+    {% if form.take_medicine_3.value %}
+        {{ form.take_medicine_3_time.value }}次
+    {% endif %}
+{% endblock %}
+{% block take_medicine_3_mg %}
+    {% if form.take_medicine_3.value %}
+        {{ form.take_medicine_3_mg.value }}mg
+    {% endif %}
+{% endblock %}
+{% block recovery_measure %}
+    {% for item in form.recovery_measure.value %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+{% block recovery_measure_extra %}{{ form.recovery_measure_extra.value }}{% endblock %}
+{% block visit_classification %}{{ form.visit_classification.value }}{% endblock %}
+{% block next_visit_date %}{{ form.next_visit_date.value }}{% endblock %}

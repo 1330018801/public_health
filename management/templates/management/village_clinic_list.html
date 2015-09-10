@@ -1,0 +1,95 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row">
+        {% if user.userprofile.role.name != "卫生院管理员" %}
+            <a href="{% url 'management:village_clinic_add' %}">
+        {% else %}
+            <a href="{% url 'management:town_staff_village_clinic_add' %}">
+        {% endif %}
+        <h5 class="page-header" align="left">添加村卫生室</h5></a>
+        <form role="form" method="POST" action="
+            {% if user.userprofile.role.name != "卫生院管理员" %}
+                {% url 'management:village_clinic_list' %}">
+              {% else %}
+                   {% url 'management:town_staff_village_clinic_list' %}">
+              {% endif %}
+            {% csrf_token %}
+            <table style="line-height: 30px; font-size: 13px">
+            {% if user.userprofile.role.name != "卫生院管理员" %}
+                <tr>
+                <td width="15%">乡镇卫生院:
+                <select name="town_clinic">
+                    <option value="0">全部</option>
+                    {% for town_clinic in town_clinics %}
+                        {% if town_clinic.id == town_clinic_id %}
+                            <option value="{{ town_clinic.id }}" selected>{{ town_clinic.name }}</option>
+                        {% else %}
+                            <option value="{{ town_clinic.id }}">{{ town_clinic.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                </td>
+            {% endif %}
+            <!--
+            <div class="form-group">
+                <label for="enabled">状态:</label>
+                {% if enabled_status == 0 %}
+                <input class="form-control" type="radio" name="enabled" value="1"/>可用
+                <input class="form-control" type="radio" name="enabled" value="0" checked />禁用
+                {% elif enabled_status == 1 %}
+                <input class="form-control" type="radio" name="enabled" value="1" checked/>可用
+                <input class="form-control" type="radio" name="enabled" value="0"/>禁用
+                {% else %}
+                <input class="form-control" type="radio" name="enabled" value="1"/>可用
+                <input class="form-control" type="radio" name="enabled" value="0"/>禁用
+                {% endif %}
+            </div>&nbsp;&nbsp;
+            -->
+            <td width="15%">名称:<input type="text" name="vague_name" value="{{ vague_name }}" style="line-height: 15px"/></td>
+            <td width="10%"><button type="submit" style="line-height: 20px">筛选</button></td>
+            </table>
+        </form>
+        <h5 class="page-header" align="left">村卫生室列表，共有{{ village_clinics.count }}个：</h5>
+        {% if err_msg %}
+        <h5 class="page-header" align="left">{{ err_msg }}</h5>
+        {% endif %}
+        <div class="table-responsive">
+            <table class="table table-striped" style="width: 900px; font-size: 13px">
+                <thead>
+                <tr>
+                    <th>村卫生室名称</th>
+                    <th>系统用户数量</th>
+                    <th>所属卫生院</th>
+                    <th>状态</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for village_clinic in village_clinics %}
+                <tr>
+                    <th>{{ village_clinic.name }}</th>
+                    <th>{{ village_clinic.users.count }}</th>
+                    <th>{{ village_clinic.town_clinic.name }}</th>
+                    <th>{% if village_clinic.enabled %}可用{% else %}禁用{% endif %}</th>
+                    <th>{{ village_clinic.create_time | date:"Y年m月d日"}}  {{ village_clinic.create_time | time:"H:i"}}</th>
+                    <th>{{ village_clinic.update_time | date:"Y年m月d日"}}  {{ village_clinic.update_time | time:"H:i"}}</th>
+                    <th>{% if user.userprofile.role.name == "卫生院管理员" %}
+                            <a href="/management/town_staff_village_clinic/edit/{{ village_clinic.id }}/">修改</a>
+                        {% else %}
+                            <a href="/management/village_clinic/edit/{{ village_clinic.id }}/">修改</a>
+                        {% endif %}
+                        <!--
+                        |<a href="/management/village_clinic/del/{{ village_clinic.id }}/">删除</a>
+                        -->
+                    </th>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

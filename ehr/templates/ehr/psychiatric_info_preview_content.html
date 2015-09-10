@@ -1,0 +1,46 @@
+{% extends 'ehr/psychiatric_info_base.html' %}
+
+{% block guardian_name %}
+    {{ form.guardian_name.data }}
+{% endblock %}
+{% block guardian_relation %}{{ form.guardian_relation.data }}{% endblock %}
+{% block guardian_address %}{{ form.guardian_address.data }}{% endblock %}
+{% block guardian_phone %}{{ form.guardian_phone.data }}{% endblock %}
+{% block community_contact_name %}{{ form.community_contact_name.data }}{% endblock %}
+{% block community_contact_phone %}{{ form.community_contact_phone.data }}{% endblock %}
+{% block assent %}
+    {{ form.assent.data }}
+{% endblock %}
+{% block signature_date %}{{ form.signature_date.data }}{% endblock %}
+{% block disease_begin_date %}{{ form.disease_begin_date.data }}{% endblock %}
+{% block symptom %}
+    {% for item in form.symptom.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+{% block symptom_other %}{{ form.symptom_other.data }}{% endblock %}
+{% block cure_outpatient %}
+    {{ form.cure_outpatient.data }}
+{% endblock %}
+{% block drug_first_date %}{{ form.drug_first_date.data }}{% endblock %}
+{% block cure_hospital %}{{ form.cure_hospital.data }}{% endblock %}
+{% block diagnose %}{{ form.diagnose.data }}{% endblock %}
+{% block diagnose_hospital %}{{ form.diagnose_hospital.data }}{% endblock %}
+{% block diagnose_date %}{{ form.diagnose_date.data }}{% endblock %}
+{% block cure_effect %}
+    {{ form.cure_effect.data }}
+{% endblock %}
+{% block social_effect_minor %}{{ form.social_effect_minor.data }}{% endblock %}
+{% block social_effect_trouble %}{{ form.social_effect_trouble.data }}{% endblock %}
+{% block social_effect_disaster %}{{ form.social_effect_disaster.data }}{% endblock %}
+{% block social_effect_self_injury %}{{ form.social_effect_self_injury.data }}{% endblock %}
+{% block social_effect_suicide %}{{ form.social_effect_suicide.data }}{% endblock %}
+{% block lock %}
+    {{ form.lock.data }}
+{% endblock %}
+{% block economy %}
+    {{ form.economy.data }}
+{% endblock %}
+{% block doctor_advice %}{{ form.doctor_advice.data }}{% endblock %}
+{% block fill_table_date %}{{ form.fill_table_date.data }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature.data }}{% endblock %}

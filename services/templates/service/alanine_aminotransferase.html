@@ -1,0 +1,13 @@
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-3" align="right">
+                {% if form.xueqing_gu_bing_zhuan_an_mei.errors %}
+                    <span style="background: #ffff00">{{ form.xueqing_gu_bing_zhuan_an_mei.label_tag }}</span>
+                {% else %}
+                    {{ form.xueqing_gu_bing_zhuan_an_mei.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.xueqing_gu_bing_zhuan_an_mei }}
+                &nbsp;&nbsp;U/L&nbsp;&nbsp;{{ form.xueqing_gu_bing_zhuan_an_mei.errors }}
+            </div>
+         </div>

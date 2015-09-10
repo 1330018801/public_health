@@ -1,0 +1,35 @@
+<!-- next visit date -->
+<div class="row" style="padding-top: 40px">
+	<div class="col-md-2" align="right">
+        {% if form.next_visit_date.errors %}
+            <span style="background: #ffff00">{{ form.next_visit_date.label_tag }}</span>
+        {% else %}
+            {{ form.next_visit_date.label_tag }}
+        {% endif %}
+	</div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class='input-group date' id='datepicker1'>
+                <!--
+                <input type='text' id="{{ form.next_visit_date_id }}" class="form-control"
+                       name="{{ form.next_visit_date.name }}" value="{{ next_visit_date }}">
+                -->
+                {{ form.next_visit_date }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker1').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                language: 'zh-CN',
+                todayHighlight: true,
+                orientation: 'bottom'
+            });
+        });
+    </script>
+</div>        <!-- delineate -->

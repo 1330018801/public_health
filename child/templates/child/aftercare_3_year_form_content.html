@@ -1,0 +1,144 @@
+{% extends 'child/aftercare_3_6_year_base.html' %}
+
+{% block table_neck_extra %}
+    {% for item in form.errors %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date_3 %}
+    {{ form.visit_date }}
+{% endblock %}
+
+{% block weight_3 %}
+    {{ form.weight }}
+{% endblock %}
+
+{% block weight_grade_3 %}
+    {% for item in form.weight_grade %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block height_3 %}
+    {{ form.height }}
+{% endblock %}
+
+{% block height_grade_3 %}
+    {% for item in form.height_grade %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block body_growth_evaluate_3 %}
+    {% for item in form.body_growth_evaluate %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block hearing_3 %}
+    {% for item in form.hearing %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block tooth_3 %}
+    {{ form.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_3 %}
+    {{ form.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_3 %}
+    {% for item in form.heart_lung %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block abdomen_3 %}
+    {% for item in form.abdomen %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block hemoglobin_value_3 %}
+    {{ form.hemoglobin_value }}
+{% endblock %}
+
+{% block extra_3 %}
+    {{ form.extra }}
+{% endblock %}
+
+{% block pneumonia_3 %}
+     {{ form.pneumonia }}
+{% endblock %}
+
+{% block diarrhea_3 %}
+    {{ form.diarrhea }}
+{% endblock %}
+
+{% block traumatism_3 %}
+    {{ form.traumatism }}
+{% endblock %}
+
+{% block two_visit_extra_3 %}
+    {{ form.two_visit_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_3 %}
+    {% for item in form.transfer_treatment_suggestion %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_3 %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_3 %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_3 %}
+    {% for item in form.guide %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}<br>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_3 %}
+    {{ form.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_3 %}
+    {{ form.next_visit_date }}
+{% endblock %}
+
+{% block doctor_signature_3 %}
+    {{ form.doctor_signature }}
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends 'child/aftercare_1_2_year_base.html' %}
+
+{% block visit_date_12 %}
+    {{ form.visit_date.data }}
+{% endblock %}
+
+{% block weight_12 %}
+    {{ form.weight.data }}
+{% endblock %}
+
+{% block weight_grade_12 %}
+    {{ form.weight_grade.data }}
+{% endblock %}
+
+{% block height_12 %}
+    {{ form.height.data }}
+{% endblock %}
+
+{% block height_grade_12 %}
+    {{ form.height_grade.data }}
+{% endblock %}
+
+{% block complexion_12 %}
+    {{ form.complexion.data }}
+{% endblock %}
+
+{% block skin_12 %}
+    {{ form.skin.data }}
+{% endblock %}
+
+{% block bregma_12 %}
+    {{ form.bregma.data }}
+{% endblock %}
+
+{% block bregma_length_12 %}
+    {{ form.bregma_length.data }}
+{% endblock %}
+
+{% block bregma_width_12 %}
+    {{ form.bregma_width.data }}
+{% endblock %}
+
+{% block eye_appearance_12 %}
+    {{ form.eye_appearance.data }}
+{% endblock %}
+
+{% block ear_appearance_12 %}
+    {{ form.ear_appearance.data }}
+{% endblock %}
+
+{% block hearing_12 %}
+    {{ form.hearing.data }}
+{% endblock %}
+
+{% block tooth_12 %}
+    {{ form.tooth.data }}
+{% endblock %}
+
+{% block decayed_tooth_12 %}
+    {{ form.decayed_tooth.data }}
+{% endblock %}
+
+{% block heart_lung_12 %}
+    {{ form.heart_lung.data }}
+{% endblock %}
+
+{% block abdomen_12 %}
+    {{ form.abdomen.data }}
+{% endblock %}
+
+{% block all_fours_12 %}
+    {{ form.all_fours.data }}
+{% endblock %}
+
+{% block rickets_sign_12 %}
+    {{ form.rickets_sign.data }}
+{% endblock %}
+
+{% block outdoor_activities_12 %}
+    {{ form.outdoor_activities.data }}
+{% endblock %}
+
+{% block take_vitamin_d_12 %}
+    {{ form.take_vitamin_d.data }}
+{% endblock %}
+
+{% block growth_evaluate_12 %}
+    {{ form.growth_evaluate.data }}
+{% endblock %}
+
+{% block two_visit_disease_12 %}
+    {{ form.two_visit_disease.data }}
+{% endblock %}
+
+{% block extra_12 %}
+    {{ form.extra.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_12 %}
+    {{ form.transfer_treatment_suggestion.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_12 %}
+    {{ form.transfer_treatment_suggestion_reason.data }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_12 %}
+    {{ form.transfer_treatment_suggestion_institution.data }}
+{% endblock %}
+
+{% block guide_12 %}
+    {% for item in form.guide.data %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_12 %}
+    {{ form.guide_extra.data }}
+{% endblock %}
+
+{% block next_visit_date_12 %}
+    {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature_12 %}
+    {{ form.doctor_signature.data }}
+{% endblock %}

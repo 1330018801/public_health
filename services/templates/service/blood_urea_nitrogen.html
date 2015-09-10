@@ -1,0 +1,12 @@
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-3" align="right">
+                {% if form.xueniaosudan.errors %}
+                    <span style="background: #ffff00">{{ form.xueniaosudan.label_tag }}</span>
+                {% else %}
+                    {{ form.xueniaosudan.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.xueniaosudan }}&nbsp;&nbsp;mmol/L
+            </div>
+         </div>

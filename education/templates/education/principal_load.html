@@ -1,0 +1,37 @@
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.principal.errors %}
+            <span style="background: #ffff00">{{ form.principal.label_tag }}</span>
+        {% else %}
+            {{ form.principal.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.principal }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.content.errors %}
+            <span style="background: #ffff00">{{ form.content.label_tag }}</span>
+        {% else %}
+            {{ form.content.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.content }}
+    </div>
+</div>
+<div class="row" style="padding-top: 15px">
+    <div class="col-md-2" align="right">
+        {% if form.load.errors %}
+            <span style="background: #ffff00">{{ form.load.label_tag }}</span>
+        {% else %}
+            {{ form.load.label_tag }}
+        {% endif %}
+    </div>
+    <div class="col-md-4">
+        {{ form.load }}
+    </div>
+</div>
+{% include 'education/submit.html' %}

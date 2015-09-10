@@ -1,0 +1,521 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}
+    1岁以内儿童健康检查记录表
+{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            月龄
+        </td>
+        <td width="20%" colspan="4" align="center">
+            满月
+        </td>
+        <td width="20%" colspan="4" align="center">
+            3月龄
+        </td>
+        <td width="20%" colspan="4" align="center">
+            6月龄
+        </td>
+        <td colspan="4" align="center">
+            8月龄
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            随访日期
+        </td>
+        <td width="20%" colspan="4">
+            {% block visit_date_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block visit_date_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block visit_date_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block visit_date_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            体重（kg）
+        </td>
+        <td width="20%" colspan="4">
+            {% block weight_1 %}{% endblock %}<br>{% block weight_grade_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block weight_3 %}{% endblock %}<br>{% block weight_grade_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block weight_6 %}{% endblock %}<br>{% block weight_grade_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block weight_8 %}{% endblock %}<br>{% block weight_grade_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            身长（cm）
+        </td>
+        <td width="20%" colspan="4">
+            {% block height_1 %}{% endblock %}<br>{% block height_grade_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block height_3 %}{% endblock %}<br>{% block height_grade_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block height_6 %}{% endblock %}<br>{% block height_grade_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block height_8 %}{% endblock %}<br>{% block height_grade_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            头围（cm）
+        </td>
+        <td width="20%" colspan="4">
+            {% block head_circumference_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block head_circumference_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block head_circumference_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block head_circumference_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="1" rowspan="16" width="10%" align="center">
+            体格检查
+        </td>
+        <td width="10%" colspan="3" align="center">
+            面色
+        </td>
+        <td width="20%" colspan="4">
+            {% block complexion_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block complexion_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block complexion_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block complexion_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            皮肤
+        </td>
+        <td width="20%" colspan="4">
+            {% block skin_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block skin_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block skin_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block skin_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            前囟
+        </td>
+        <td width="20%" colspan="4">
+            {% block bregma_1 %}{% endblock %}<br>{% block bregma_length_1 %}{% endblock %}cm×{% block bregma_width_1 %}{% endblock %}cm
+        </td>
+        <td width="20%" colspan="4">
+            {% block bregma_3 %}{% endblock %}<br>{% block bregma_length_3 %}{% endblock %}cm×{% block bregma_width_3 %}{% endblock %}cm
+        </td>
+        <td width="20%" colspan="4">
+            {% block bregma_6 %}{% endblock %}<br>{% block bregma_length_6 %}{% endblock %}cm×{% block bregma_width_6 %}{% endblock %}cm
+        </td>
+        <td colspan="4">
+            {% block bregma_8 %}{% endblock %}<br>{% block bregma_length_8 %}{% endblock %}cm×{% block bregma_width_8 %}{% endblock %}cm
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            颈部包块
+        </td>
+        <td width="20%" colspan="4">
+            {% block neck_enclosed_mass_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block neck_enclosed_mass_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block neck_enclosed_mass_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            ——————
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            眼外观
+        </td>
+        <td width="20%" colspan="4">
+            {% block eye_appearance_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block eye_appearance_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block eye_appearance_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block eye_appearance_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            耳外观
+        </td>
+        <td width="20%" colspan="4">
+            {% block ear_appearance_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block ear_appearance_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block ear_appearance_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block ear_appearance_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            听力
+        </td>
+        <td width="20%" colspan="4">
+            ——————
+        </td>
+        <td width="20%" colspan="4">
+            ——————
+        </td>
+        <td width="20%" colspan="4">
+            {% block hearing_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            ——————
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            口腔
+        </td>
+        <td width="20%" colspan="4">
+            {% block oral_cavity_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block oral_cavity_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            出牙数（颗）{% block oral_cavity_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            出牙数（颗）{% block oral_cavity_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            心肺
+        </td>
+        <td width="20%" colspan="4">
+            {% block heart_lung_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block heart_lung_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block heart_lung_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block heart_lung_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            腹部
+        </td>
+        <td width="20%" colspan="4">
+            {% block abdomen_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block abdomen_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block abdomen_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block abdomen_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            脐部
+        </td>
+        <td width="20%" colspan="4">
+            {% block navel_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block navel_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            ——————
+        </td>
+        <td colspan="4">
+            ——————
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            四肢
+        </td>
+        <td width="20%" colspan="4">
+            {% block all_fours_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block all_fours_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block all_fours_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block all_fours_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            可疑佝偻病症状
+        </td>
+        <td width="20%" colspan="4">
+            ——————
+        </td>
+        <td width="20%" colspan="4">
+            {% block rickets_symptom_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block rickets_symptom_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block rickets_symptom_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            可疑佝偻病体征
+        </td>
+        <td width="20%" colspan="4">
+            {% block rickets_sign_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block rickets_sign_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block rickets_sign_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block rickets_sign_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            肛门/外生殖
+        </td>
+        <td width="20%" colspan="4">
+            {% block anus_externalia_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block anus_externalia_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block anus_externalia_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block anus_externalia_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="10%" colspan="3" align="center">
+            血红蛋白值
+        </td>
+        <td width="20%" colspan="4">
+            {% block hemoglobin_value_1 %}{% endblock %}g/L
+        </td>
+        <td width="20%" colspan="4">
+            {% block hemoglobin_value_3 %}{% endblock %}g/L
+        </td>
+        <td width="20%" colspan="4">
+            {% block hemoglobin_value_6 %}{% endblock %}g/L
+        </td>
+        <td colspan="4">
+            {% block hemoglobin_value_8 %}{% endblock %}g/L
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            户外活动
+        </td>
+        <td width="20%" colspan="4">
+            {% block outdoor_activities_1 %}{% endblock %}小时/日
+        </td>
+        <td width="20%" colspan="4">
+            {% block outdoor_activities_3 %}{% endblock %}小时/日
+        </td>
+        <td width="20%" colspan="4">
+            {% block outdoor_activities_6 %}{% endblock %}小时/日
+        </td>
+        <td colspan="4">
+            {% block outdoor_activities_8 %}{% endblock %}小时/日
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            服用维生素D
+        </td>
+        <td width="20%" colspan="4">
+            {% block take_vitamin_d_1 %}{% endblock %}IU/日
+        </td>
+        <td width="20%" colspan="4">
+            {% block take_vitamin_d_3 %}{% endblock %}IU/日
+        </td>
+        <td width="20%" colspan="4">
+            {% block take_vitamin_d_6 %}{% endblock %}IU/日
+        </td>
+        <td colspan="4">
+            {% block take_vitamin_d_8 %}{% endblock %}IU/日
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            发育评估
+        </td>
+        <td width="20%" colspan="4">
+            {% block growth_evaluate_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block growth_evaluate_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block growth_evaluate_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block growth_evaluate_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            两次随访间患病情况
+        </td>
+        <td width="20%" colspan="4">
+            {% block two_visit_disease_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block two_visit_disease_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block two_visit_disease_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block two_visit_disease_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            其他
+        </td>
+        <td width="20%" colspan="4">
+            {% block extra_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block extra_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block extra_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block extra_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            转诊建议
+        </td>
+        <td width="20%" colspan="4">
+            {% block transfer_treatment_suggestion_1 %}{% endblock %}<br>原因：{% block transfer_treatment_suggestion_reason_1 %}{% endblock %}<br>机构及科室：{% block transfer_treatment_suggestion_institution_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block transfer_treatment_suggestion_3 %}{% endblock %}<br>原因：{% block transfer_treatment_suggestion_reason_3 %}{% endblock %}<br>机构及科室：{% block transfer_treatment_suggestion_institution_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block transfer_treatment_suggestion_6 %}{% endblock %}<br>原因：{% block transfer_treatment_suggestion_reason_6 %}{% endblock %}<br>机构及科室：{% block transfer_treatment_suggestion_institution_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block transfer_treatment_suggestion_8 %}{% endblock %}<br>原因：{% block transfer_treatment_suggestion_reason_8 %}{% endblock %}<br>机构及科室：{% block transfer_treatment_suggestion_institution_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            指导
+        </td>
+        <td width="20%" colspan="4">
+            {% block guide_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block guide_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block guide_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block guide_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            下次随访日期
+        </td>
+        <td width="20%" colspan="4">
+            {% block next_visit_date_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block next_visit_date_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block next_visit_date_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block next_visit_date_8 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="20%" colspan="4" align="center">
+            随访医生签名
+        </td>
+        <td width="20%" colspan="4">
+            {% block doctor_signature_1 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block doctor_signature_3 %}{% endblock %}
+        </td>
+        <td width="20%" colspan="4">
+            {% block doctor_signature_6 %}{% endblock %}
+        </td>
+        <td colspan="4">
+            {% block doctor_signature_8 %}{% endblock %}
+        </td>
+    </tr>
+{% endblock %}

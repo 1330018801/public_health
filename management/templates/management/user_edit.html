@@ -1,0 +1,112 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+    <div class="row" align="center">
+        <form class="form-inline" role="form"  method="POST" action="{% url 'management:user_update' %}">
+            {% csrf_token %}
+            <br>
+            <br>
+            <br>
+            <div class="form-group">
+                <label for="name">用户名称:</label>
+                <input type="text" class="form-control" name="name" value="{{ the_user.username }}"/>
+                <input type="hidden" name="user_id" value={{ the_user.id }}>
+            </div><br /><br />
+            <div class="form-group">
+                <label for="password">登陆密码:</label>
+                <input type="password" class="form-control" name="password"/>
+            </div><br /><br />
+            {% if not the_user.is_superuser and the_user.userprofile.role.name != "全局管理员" %}
+                <div class="form-group">
+                    <label for="town_clinic">所在乡镇卫生院:</label>
+                    {% if user.userprofile.role.name == "卫生院管理员" %}
+                         {{ town_clinic.name }}<input type="text" style="display:none;" name="town_clinic" value="{{ town_clinic.id }}">
+                    {% else %}
+                    <select class="form-control" name="town_clinic">
+                        <option value="0"></option>
+                        {% for town_clinic in town_clinics %}
+                            {% if town_clinic == the_user.userprofile.clinic or town_clinic ==  the_user.userprofile.clinic.town_clinic%}
+                                <option value="{{ town_clinic.id }}" selected="selected">{{ town_clinic.name }}</option>
+                            {% else %}
+                                <option value="{{ town_clinic.id }}">{{ town_clinic.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                </div><br /><br />
+                {% if the_user.userprofile.role.name == "村医" %}
+                <div class="form-group">
+                    <label for="village_clinic">所在村卫生室</label>
+                    <select class="form-control" name="village_clinic">
+                        <option value="0"></option>
+                        {% for village_clinic in village_clinics %}
+                            {% if village_clinic == the_user.userprofile.clinic %}
+                                <option value="{{ village_clinic.id }}" selected="selected">{{ village_clinic.name }}</option>
+                            {% else %}
+                                <option value="{{ village_clinic.id }}">{{ village_clinic.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <script>
+                    $(document).ready(function() {
+                        $("select#town_clinic").change(function() {
+                            if ($(this).val() == '0'){
+                                $("select#village_clinic").html("<option value='0'>全部</option>");
+                                $("select#village_clinic").attr('disabled', true);
+                            }
+                            else {
+                                var url = "/management/clinic/" + $(this).val() + "/village_clinics/";
+                                $.getJSON(url, function(village_clinics) {
+                                    var options = '<option value="0">全部</option>';
+                                    for (var i = 0; i < village_clinics.length; i++) {
+                                        options += '<option value="' + village_clinics[i].pk + '">' + village_clinics[i].fields['name'] + '</option>';
+                                    }
+                                    $("select#village_clinic").html(options);
+                                    $("select#village_clinic option:first").attr('selected', 'selected');
+                                    $("select#village_clinic").attr('disabled', false);
+                                });
+                            }
+                        });
+                    })
+                </script>
+                </div><br /><br />
+                {% endif %}
+                {% if the_user.userprofile.role.name == "卫生院医生" %}
+                <div class="form-group">
+                    <label for="department">所在科室:</label>
+                    {% if the_user.userprofile.department %}
+                    <input type="text" name="department" class="form-control" value="{{ the_user.userprofile.department }}"/>
+                    {% else %}
+                    <input type="text" name="department" class="form-control" />
+                    {% endif %}
+                </div><br /><br />
+                <div class="form-group">
+                    <label for="position">职务:</label>
+                    {% if the_user.userprofile.position %}
+                    <input type="text" name="position" class="form-control" value="{{ the_user.userprofile.position }}"/>
+                    {% else %}
+                    <input type="text" name="position" class="form-control" />
+                    {% endif %}
+                </div><br /><br />
+                 {% endif %}
+            {% endif %}
+            <div class="form-group">
+                <label for="enabled">状态</label>
+                {% if the_user.userprofile.enabled %}
+                <input type="radio" name="enabled" value="1" checked />可用
+                <input type="radio" name="enabled" value="0"/>禁用
+                {% else %}
+                <input type="radio" name="enabled" value="1"/>可用
+                <input type="radio" name="enabled" value="0" checked />禁用
+                {% endif %}
+            </div><br /><br />
+            <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if user.userprofile.role.name == "卫生院管理员" %}
+                <a href="{% url 'management:town_staff_user_list' %}" class="btn btn-default">返回</a>
+            {% else %}
+                <a href="{% url 'management:user_list' %}" class="btn btn-default">返回</a>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,307 @@
+{% extends 'child/aftercare_3_6_year_base.html' %}
+
+{% comment %}5岁随访表格{% endcomment %}
+
+{% block visit_date_3 %}
+    {{ aftercare_3_year.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_3 %}
+    {{ aftercare_3_year.weight }}
+{% endblock %}
+
+{% block weight_grade_3 %}
+    {{ aftercare_3_year.weight_grade }}
+{% endblock %}
+
+{% block height_3 %}
+    {{ aftercare_3_year.height }}
+{% endblock %}
+
+{% block height_grade_3 %}
+    {{ aftercare_3_year.height_grade }}
+{% endblock %}
+
+{% block body_growth_evaluate_3 %}
+    {{ aftercare_3_year.body_growth_evaluate }}
+{% endblock %}
+
+{% block hearing_3 %}
+    {{ aftercare_3_year.hearing }}
+{% endblock %}
+
+{% block tooth_3 %}
+    {{ aftercare_3_year.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_3 %}
+    {{ aftercare_3_year.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_3 %}
+    {{ aftercare_3_year.heart_lung }}
+{% endblock %}
+
+{% block abdomen_3 %}
+    {{ aftercare_3_year.abdomen }}
+{% endblock %}
+
+{% block hemoglobin_value_3 %}
+    {{ aftercare_3_year.hemoglobin_value }}
+{% endblock %}
+
+{% block extra_3 %}
+    {{ aftercare_3_year.extra }}
+{% endblock %}
+
+{% block pneumonia_3 %}
+     {{ aftercare_3_year.pneumonia }}
+{% endblock %}
+
+{% block diarrhea_3 %}
+    {{ aftercare_3_year.diarrhea }}
+{% endblock %}
+
+{% block traumatism_3 %}
+    {{ aftercare_3_year.traumatism }}
+{% endblock %}
+
+{% block two_visit_extra_3 %}
+    {{ aftercare_3_year.two_visit_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_3 %}
+    {{ aftercare_3_year.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_3 %}
+    {{ aftercare_3_year.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_3 %}
+    {{ aftercare_3_year.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_3 %}
+    {% for item in aftercare_3_year.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_3 %}
+    {{ aftercare_3_year.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_3 %}
+    {{ aftercare_3_year.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block doctor_signature_3 %}
+    {{ aftercare_3_year.doctor_signature }}
+{% endblock %}
+
+{% comment %}4岁随访表格{% endcomment %}
+
+{% block visit_date_4 %}
+    {{ aftercare_4_year.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block weight_4 %}
+    {{ aftercare_4_year.weight }}
+{% endblock %}
+
+{% block weight_grade_4 %}
+    {{ aftercare_4_year.weight_grade }}
+{% endblock %}
+
+{% block height_4 %}
+    {{ aftercare_4_year.height }}
+{% endblock %}
+
+{% block height_grade_4 %}
+    {{ aftercare_4_year.height_grade }}
+{% endblock %}
+
+{% block body_growth_evaluate_4 %}
+    {{ aftercare_4_year.body_growth_evaluate }}
+{% endblock %}
+
+{% block eye_sight_4 %}
+    {{ aftercare_4_year.eye_sight }}
+{% endblock %}
+
+{% block tooth_4 %}
+    {{ aftercare_4_year.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_4 %}
+    {{ aftercare_4_year.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_4 %}
+    {{ aftercare_4_year.heart_lung }}
+{% endblock %}
+
+{% block abdomen_4 %}
+    {{ aftercare_4_year.abdomen }}
+{% endblock %}
+
+{% block hemoglobin_value_4 %}
+    {{ aftercare_4_year.hemoglobin_value }}
+{% endblock %}
+
+{% block extra_4 %}
+    {{ aftercare_4_year.extra }}
+{% endblock %}
+
+{% block pneumonia_4 %}
+     {{ aftercare_4_year.pneumonia }}
+{% endblock %}
+
+{% block diarrhea_4 %}
+    {{ aftercare_4_year.diarrhea }}
+{% endblock %}
+
+{% block traumatism_4 %}
+    {{ aftercare_4_year.traumatism }}
+{% endblock %}
+
+{% block two_visit_extra_4 %}
+    {{ aftercare_4_year.two_visit_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_4 %}
+    {{ aftercare_4_year.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_4 %}
+    {{ aftercare_4_year.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_4 %}
+    {{ aftercare_4_year.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_4 %}
+    {% for item in aftercare_4_year.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_4 %}
+    {{ aftercare_4_year.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_4 %}
+    {{ aftercare_4_year.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block doctor_signature_4 %}
+    {{ aftercare_4_year.doctor_signature }}
+{% endblock %}
+
+{% comment %}5岁随访表格{% endcomment %}
+
+{% block table_resident %}{{ record.resident.name }}{% endblock %}
+
+{% block table_no %}{% endblock %}{% block table_resident %}{{ record.resident.name }}{% endblock %}
+
+{% block table_no %}{% endblock %}
+
+{% block visit_date_5 %}
+    {{ form.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block weight_5 %}
+    {{ form.weight }}
+{% endblock %}
+
+{% block weight_grade_5 %}
+    {{ form.weight_grade }}
+{% endblock %}
+
+{% block height_5 %}
+    {{ form.height }}
+{% endblock %}
+
+{% block height_grade_5 %}
+    {{ form.height_grade }}
+{% endblock %}
+
+{% block body_growth_evaluate_5 %}
+    {{ form.body_growth_evaluate }}
+{% endblock %}
+
+{% block eye_sight_5 %}
+    {{ form.eye_sight }}
+{% endblock %}
+
+{% block tooth_5 %}
+    {{ form.tooth }}
+{% endblock %}
+
+{% block decayed_tooth_5 %}
+    {{ form.decayed_tooth }}
+{% endblock %}
+
+{% block heart_lung_5 %}
+    {{ form.heart_lung }}
+{% endblock %}
+
+{% block abdomen_5 %}
+    {{ form.abdomen }}
+{% endblock %}
+
+{% block hemoglobin_value_5 %}
+    {{ form.hemoglobin_value }}
+{% endblock %}
+
+{% block extra_5 %}
+    {{ form.extra }}
+{% endblock %}
+
+{% block pneumonia_5 %}
+     {{ form.pneumonia }}
+{% endblock %}
+
+{% block diarrhea_5 %}
+    {{ form.diarrhea }}
+{% endblock %}
+
+{% block traumatism_5 %}
+    {{ form.traumatism }}
+{% endblock %}
+
+{% block two_visit_extra_5 %}
+    {{ form.two_visit_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_5 %}
+    {{ form.transfer_treatment_suggestion }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason_5 %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution_5 %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide_5 %}
+    {% for item in form.guide.all %}
+            {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block guide_extra_5 %}
+    {{ form.guide_extra }}
+{% endblock %}
+
+{% block next_visit_date_5 %}
+    {{ form.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_5 %}
+    {{ form.doctor_signature }}
+{% endblock %}

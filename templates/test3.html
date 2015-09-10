@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<form method="POST" id="my_form">
+    <p><label for="username">用户：</label><input name="username" style="text-align: right"/></p>
+    <p><input type="radio" id="gender_male" name="gender" value="1"/>男
+    <input type="radio" id="gender_female" name="gender" value="0" />女</p>
+    <p><input type="checkbox" id="register_type_1" name="register_type">完成注册</p>
+    <p><input type="checkbox" id="register_type_2" name="register_type">准备注册</p>
+    <p><input type="checkbox" id="register_type_3" name="register_type">正在注册</p>
+    <p><input type="checkbox" id="register_type_4" name="register_type">放弃注册</p>
+    <p><label for="birthday">生日：</label><input id="birthday" name="birthday" /></p>
+
+    <div id="btn">提交</div>
+</form>
+<script>
+$(function() {
+
+    $('#birthday').datebox({ required: true, width: 200, editable: false });
+    $('input[name=username]').textbox({ required: true, width: 100 });
+    var gender = $('input[name=gender]');
+    var register_type = $("input[name=register_type]");
+    var btn = $('#btn').linkbutton();
+    btn.bind('click', function () {
+        $('#my_form').form('submit', {
+            url: '/management/get_towns/',
+            onSubmit: function (param) {
+                if (!gender.is(":checked")) {
+                    $.messager.alert('提示', '选择性别', 'info');
+                    return false;
+                }
+                if (!register_type.is(":checked")) {
+                    $.messager.alert('提示', '选择注册类型', 'info');
+                    return false;
+                }
+                if ($(this).form('validate')) {
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            success: function (data) {
+                alert(data);
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}
+

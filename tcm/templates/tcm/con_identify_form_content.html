@@ -1,0 +1,85 @@
+{% extends 'ehr/body_exam_base.html' %}
+
+# 中医体质辨识
+{% if form.Meta.alias == 'constitution_identification' %}
+{% block pinghe %}
+    {% for item in form.pinghe %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block qixu %}
+    {% for item in form.qixu %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block yangxu %}
+    {% for item in form.yangxu %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block yinxu %}
+    {% for item in form.yinxu %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block tanshi %}
+    {% for item in form.tanshi %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block shire %}
+    {% for item in form.shire %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block xueyu %}
+    {% for item in form.xueyu %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block qiyu %}
+    {% for item in form.qiyu %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block tebing %}
+    {% for item in form.tebing %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% endif %}

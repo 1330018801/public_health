@@ -1,0 +1,286 @@
+{% extends 'ehr/personal_info_base.html' %}
+
+{% block table_no %}
+    {% if resident.ehr_no %}
+        {{ resident.ehr_no }}
+    {% else %}
+        <input id="ehr_village_no" name="ehr_village_no"
+               class="easyui-textbox" data-options="required: true" style="width: 40px"/> -
+        <input id="ehr_unique_no" name="ehr_unique_no"
+               class="easyui-textbox" data-options="required: true" style="width: 60px"/>
+    {% endif %}
+{% endblock %}
+
+{% block gender %}
+    {% for item in form.gender %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block birthday %}
+    {{ form.birthday }}
+{% endblock %}
+
+{% block identity %}
+    {{ form.identity }}
+{% endblock %}
+
+{% block work_company %}
+    {{ form.work_company }}
+{% endblock %}
+
+{% block phone %}
+    {{ form.phone }}
+{% endblock %}
+
+{% block contact_name %}
+    {{ form.contact_name }}
+{% endblock %}
+
+{% block contact_phone %}
+    {{ form.contact_phone }}
+{% endblock %}
+
+{% block residence_type %}
+    {% for item in form.residence_type %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block nation %}
+    {% for item in form.nation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+    {{ form.nation_extra }}
+{% endblock %}
+
+{% block blood_type %}
+    {% for item in form.blood_type %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block blood_rh %}
+    /&nbsp;&nbsp;RH阴性：
+    {% for item in form.blood_rh %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block education %}
+    {% for item in form.education %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block occupation %}
+    {% for item in form.occupation %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block marriage %}
+    {% for item in form.marriage %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block payment_way %}
+    {% for item in form.payment_way %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+    {{ form.payment_way_extra }}
+{% endblock %}
+
+{% block allergy_history %}
+    {% for item in form.allergy_history %}
+        {{ item }}
+    {% endfor %}
+    {{ form.allergy_history_yes_extra }}
+{% endblock %}
+
+{% block expose_history %}
+    {% for item in form.expose_history %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block disease_history %}
+    {% for item in form.disease_history %}
+        {% if forloop.first %}
+            {{ item }}<br />
+        {% elif forloop.counter == 2 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_2 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 3 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_3 }}<br />
+        {% elif forloop.counter == 4 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_4 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 5 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_5 }}<br />
+        {% elif forloop.counter == 6 %}
+            {{ item }}{{ form.disease_history_cancer }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_6 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 7 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_7 }}<br />
+        {% elif forloop.counter == 8 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_8 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 9 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_9 }}<br />
+        {% elif forloop.counter == 10 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_10 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 11 %}
+            {{ item }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_11 }}<br />
+        {% elif forloop.counter == 12 %}
+            {{ item }}{{ form.disease_history_occupational }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_12 }}&nbsp;&nbsp;
+        {% elif forloop.counter == 13 %}
+            {{ item }}{{ form.disease_history_extra }}&nbsp;&nbsp;确诊时间：{{ form.diagnose_date_13 }}<br />
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block surgery_history %}
+    {% for item in form.surgery_history %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+    ：名称1{{ form.surgery_1_name }}&nbsp;&nbsp;时间{{ form.surgery_1_date }}
+    / 名称2{{ form.surgery_2_name }}&nbsp;&nbsp;时间{{ form.surgery_2_date }}
+{% endblock %}
+
+{% block injury_history %}
+    {% for item in form.injury_history %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+    ：名称1{{ form.injury_1_name }}&nbsp;&nbsp;时间{{ form.injury_1_date }}
+    / 名称2{{ form.injury_2_name }}&nbsp;&nbsp;时间{{ form.injury_2_date }}
+{% endblock %}
+
+{% block transfusion_history %}
+    {% for item in form.transfusion_history %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+    ：原因1{{ form.transfusion_1_reason }}&nbsp;&nbsp;时间{{ form.transfusion_1_date }}
+    / 原因2{{ form.transfusion_2_reason }}&nbsp;&nbsp;时间{{ form.transfusion_2_date }}
+{% endblock %}
+
+
+{% block family_history_father %}
+    {% for item in form.family_history_father %}
+        {{ item }}
+    {% endfor %}
+    {{ form.family_history_father_extra }}
+{% endblock %}
+
+{% block family_history_mother %}
+    {% for item in form.family_history_mother %}
+        {{ item }}
+    {% endfor %}
+    {{ form.family_history_mother_extra }}
+{% endblock %}
+
+{% block family_history_sibling %}
+    {% for item in form.family_history_sibling %}
+        {{ item }}
+    {% endfor %}
+    {{ form.family_history_sibling_extra }}
+{% endblock %}
+
+{% block family_history_children %}
+    {% for item in form.family_history_children %}
+        {{ item }}
+    {% endfor %}
+    {{ form.family_history_children_extra }}
+{% endblock %}
+
+{% block genetic_disease %}
+    {% for item in form.genetic_disease %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+    ：疾病名称{{ form.genetic_disease_yes }}
+{% endblock %}
+
+{% block disability %}
+    {% for item in form.disability %}
+        {{ item }}
+    {% endfor %}
+    {{ form.disability_extra }}
+{% endblock %}
+
+{% block surroundings_kitchen_exhaust %}
+    {% for item in form.surroundings_kitchen_exhaust %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block surroundings_fuel_type %}
+    {% for item in form.surroundings_fuel_type %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block surroundings_water %}
+    {% for item in form.surroundings_water %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block surroundings_toilet %}
+    {% for item in form.surroundings_toilet %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block surrounding_livestock_fence %}
+    {% for item in form.surrounding_livestock_fence %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

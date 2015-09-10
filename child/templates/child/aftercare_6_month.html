@@ -1,0 +1,30 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_header %}
+    <h3 class="page-header" align="center">{{ service_type.name }}: {{ service_item.name }}</h3>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'child:aftercare_6_month' %}" method="POST">
+
+    {% csrf_token %}
+        {{ form.non_filed_errors }}
+        {% include 'child/a1m_a30m_1.html' %}
+        {% include 'child/a1m_a8m_1.html' %}
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.oral_cavity.errors %}
+                    <span style="background: #ffff00">{{ form.oral_cavity.label_tag }}</span>
+                {% else %}
+                    {{ form.oral_cavity.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                出牙数（颗数）{{ form.oral_cavity }}
+            </div>
+        </div>
+        {% include 'child/a1m_a8m_2.html' %}
+    </form>
+{% endblock %}
+</html>

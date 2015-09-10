@@ -1,0 +1,92 @@
+    {% if user.userprofile.role.name != "卫生院管理员" %}
+            <div class="form-group">
+                <label for="town">所在乡镇:</label>
+                <select id="town" class="form-control" name="town">
+                    <option value="0">请选择</option>
+                    {% for the_town in towns %}
+                        <option value="{{ the_town.id }}">{{ the_town.name }}</option>
+                    {% endfor %}
+                </select>
+                <label for="village">所在村庄:</label>
+                <select id="village" class="form-control" name="village">
+                    <option value="0">请选择</option>
+                </select>
+            </div><br/><br/>
+            <script>
+                $(document).ready(function() {
+                    $("select#town").change(function() {
+                        if ($(this).val() == '0'){
+                            $("select#village").html("<option>请选择</option>");
+                            $("select#village").attr('disabled', true);
+                        }
+                        else {
+                            var url = "/management/town/" + $(this).val() + "/villages/";
+                            $.getJSON(url, function(villages) {
+                                var options = '<option value="0">请选择</option>';
+                                for (var i = 0; i < villages.length; i++) {
+                                    options += '<option value="' + villages[i].pk + '">' + villages[i].fields['name'] + '</option>';
+                                }
+                                $("select#village").html(options);
+                                $("select#village option:first").attr('selected', 'selected');
+                                $("select#village").attr('disabled', false);
+                            });
+                        }
+                    });
+                })
+            </script>
+            {% else %}
+                <div class="form-group">
+                    <label for="village">所在村庄:</label>
+                    <select id="village" class="form-control" name="village">
+                        <option value="0">请选择</option>
+                            {% for the_village in villages.all %}
+                                {% if the_village == village %}
+                                    <option value="{{ the_village.id }}" selected>{{ the_village.name }}</option>
+                                {% else %}
+                                    <option value="{{ the_village.id }}">{{ the_village.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                    </select>
+                </div><br/><br/>
+            {% endif %}
+            <div class="form-group">
+                <label for="name">姓名:</label>
+                {% if name %}
+                <input class="form-control" type="text" name="name" size="8" value="{{ name }}"/>
+                {% else %}
+                <input class="form-control" type="text" name="name" size="8"/>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="name">性别:</label>
+                <select class="form-control" name="gender">
+                    {% if gender %}
+                        {% if gender == 1 %}
+                        <option value="2" >全部</option>
+                        <option value="1" selected>男</option>
+                        <option value="0">女</option>
+                        {% elif gender == 0 %}
+                        <option value="2" >全部</option>
+                        <option value="1">男</option>
+                        <option value="0" selected>女</option>
+                        {% else %}
+                        <option value="2" selected>全部</option>
+                        <option value="1">男</option>
+                        <option value="0" >女</option>
+                        {% endif %}
+                    {% else %}
+                        <option value="2" selected>全部</option>
+                        <option value="1">男</option>
+                        <option value="0" >女</option>
+                    {% endif %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="identity">身份证号码:</label>
+                {% if identity %}
+                <input class="form-control" type="text" name="identity" value="{{ identity }}"/>
+                {% else %}
+                <input class="form-control" type="text" name="identity"/>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>

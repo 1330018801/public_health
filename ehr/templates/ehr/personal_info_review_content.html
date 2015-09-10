@@ -1,0 +1,198 @@
+{% extends 'ehr/personal_info_base.html' %}
+
+{% block gender %}{{ form.gender.value }}{% endblock %}
+{% block birthday %}{{ form.birthday.value | date:"Y-m-d"}}{% endblock %}
+{% block identity %}{{ form.identity.value }}{% endblock %}
+{% block work_company %}{{ form.work_company.value }}{% endblock %}
+{% block phone %}{{ form.phone.value }}{% endblock %}
+{% block contact_name %}{{ form.contact_name.value }}{% endblock %}
+{% block contact_phone %}{{ form.contact_phone.value }}{% endblock %}
+{% block residence_type %}{{ form.residence_type.value }}{% endblock %}
+{% block nation %}{{ form.nation.value }}
+    {% ifequal form.nation.value '少数民族' %}
+        {{ form.nation_extra.value }}
+    {% endifequal %}
+{% endblock %}
+{% block blood_type %}{{ form.blood_type.value }}{% endblock %}
+{% block blood_rh %}/&nbsp;&nbsp;RH阴性：{{ form.blood_rh.value }}{% endblock %}
+{% block education %}{{ form.education.value }}{% endblock %}
+{% block occupation %}{{ form.occupation.value }}{% endblock %}
+{% block marriage %}{{ form.marriage.value }}{% endblock %}
+
+{% block payment_way %}
+    {% for item in form.payment_way.value %}
+        {{ item }}
+    {% endfor %}
+    {% ifequal form.payment_way.value '其他' %}
+        {{ form.payment_way_extra.value }}
+    {% endifequal %}
+{% endblock %}
+
+{% block allergy_history %}
+    {% for item in form.allergy_history.value %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+    {% if '其他' in form.allergy_history.value %}
+        {{ form.allergy_history_yes_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block expose_history %}
+    {% for item in form.expose_history.value %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+
+{% block disease_history %}
+    {% for item in form.disease_history.value %}
+        {{ item }}
+        {% ifequal item '高血压' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_2.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '糖尿病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_3.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '冠心病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_4.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '慢性阻塞性肺疾病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_5.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '恶性肿瘤' %}
+            &nbsp;{{ form.disease_history_cancer.data }}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_6.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '脑卒中' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_7.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '重性精神疾病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_8.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '结核病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_9.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '肝炎' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_10.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '其他法定传染病' %}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_11.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '职业病' %}
+            &nbsp;{{ form.disease_hisotry_occupational }}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_12.value | date:"Y-m-d"}}
+        {% endifequal %}
+        {% ifequal item '其他' %}
+            &nbsp;{{ form.disease_history_extra }}
+            &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_13.value | date:"Y-m-d"}}
+        {% endifequal %}
+    {% endfor %}
+{% endblock %}
+
+{% block surgery_history %}
+    {{ form.surgery_history.value }}
+    {% ifequal form.surgery_history.value '有' %}
+        {% if form.surgery_1_name.value %}
+            ：名称1{{ form.surgery_1_name.value }}&nbsp;&nbsp;时间{{ form.surgery_1_date.value | date:"Y-m-d"}}
+        {% endif %}
+        {% if form.surgery_2_name.value %}
+            ：名称2{{ form.surgery_2_name.value }}&nbsp;&nbsp;时间{{ form.surgery_2_date.value | date:"Y-m-d"}}
+        {% endif %}
+    {% endifequal %}
+{% endblock %}
+
+{% block injury_history %}
+    {{ form.injury_history.value }}
+    {% ifequal form.injury_history.value '有' %}
+        {% if form.injury_1_name.value %}
+            ：名称1{{ form.injury_1_name.value }}&nbsp;&nbsp;时间{{ form.injury_1_date.value | date:"Y-m-d"}}
+        {% endif %}
+        {% if form.injury_2_name.value %}
+            ：名称2{{ form.injury_2_name.value }}&nbsp;&nbsp;时间{{ form.injury_2_date.value | date:"Y-m-d"}}
+        {% endif %}
+    {% endifequal %}
+{% endblock %}
+
+{% block transfusion_history %}
+    {{ form.transfusion_history.value }}
+    {% ifequal form.transfusion_history.value '有' %}
+        {% if form.transfusion_1_reason.value %}
+            ：原因1{{ form.transfusion_1_reason.value }}&nbsp;&nbsp;时间{{ form.transfusion_1_date.value | date:"Y-m-d"}}
+        {% endif %}
+        {% if form.transfusion_2_reason.value %}
+            ：原因2{{ form.transfusion_2_reason.value }}&nbsp;&nbsp;时间{{ form.transfusion_2_date.value | date:"Y-m-d"}}
+        {% endif %}
+    {% endifequal %}
+{% endblock %}
+
+
+{% block family_history_father %}
+    {% for item in form.family_history_father.value %}
+        {{ item }}
+    {% endfor %}
+    {% if '其他' in form.family_history_father.value %}
+        {{ form.family_history_father_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block family_history_mother %}
+    {% for item in form.family_history_mother.value %}
+        {{ item }}
+    {% endfor %}
+    {% if '其他' in form.family_history_mother.value %}
+        {{ form.family_history_mother_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block family_history_sibling %}
+    {% for item in form.family_history_sibling.value %}
+        {{ item }}
+    {% endfor %}
+    {% if '其他' in form.family_history_sibling.value %}
+        {{ form.family_history_sibling_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block family_history_children %}
+    {% for item in form.family_history_children.value %}
+        {{ item }}
+    {% endfor %}
+    {% if '其他' in form.family_history_children.value %}
+        {{ form.family_history_children_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block genetic_disease %}
+    {{ form.genetic_disease.value }}
+    {% ifequal form.genetic_disease.value '有' %}
+        ：疾病名称{{ form.genetic_disease_yes.value }}
+    {% endifequal %}
+{% endblock %}
+
+{% block disability %}
+    {% for item in form.disability.value %}
+        {{ item }}
+    {% endfor %}
+    {% if '其他' in form.disability.value %}
+        {{ form.disability_extra.value }}
+    {% endif %}
+{% endblock %}
+
+{% block surroundings_kitchen_exhaust %}
+    {{ form.surroundings_kitchen_exhaust.value }}
+{% endblock %}
+
+{% block surroundings_fuel_type %}
+    {{ form.surroundings_fuel_type.value }}
+{% endblock %}
+
+{% block surroundings_water %}
+    {{ form.surroundings_water.value }}
+{% endblock %}
+
+{% block surroundings_toilet %}
+    {{ form.surroundings_toilet.value }}
+{% endblock %}
+
+{% block surrounding_livestock_fence %}
+    {{ form.surrounding_livestock_fence.value }}
+{% endblock %}

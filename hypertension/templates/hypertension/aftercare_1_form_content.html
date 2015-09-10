@@ -1,0 +1,229 @@
+{% extends 'hypertension/aftercare_1_4_base.html' %}
+
+{% block table_neck_extra %}
+    {% for item in form.errors %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date_1 %}
+    {{ form.visit_date }}
+{% endblock %}
+
+{% block visit_way_1 %}
+    {% for item in form.visit_way %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block symptom_1 %}
+    {% for item in form.symptom %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}<br />
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block symptom_extra_1 %}
+    {{ form.symptom_extra }}
+{% endblock %}
+
+{% block sign_blood_pressure_1 %}
+    {{ form.sign_blood_pressure }}
+{% endblock %}
+
+{% block sign_weight_1 %}
+    {{ form.sign_weight }}
+{% endblock %}
+
+{% block sign_weight_next_1 %}
+    {{ form.sign_weight_next }}
+{% endblock %}
+
+{% block sign_bmi_1 %}
+    {{ form.sign_bmi }}
+{% endblock %}
+
+{% block sign_bmi_next_1 %}
+    {{ form.sign_bmi_next }}
+{% endblock %}
+
+{% block sign_heart_rhythm_1 %}
+    {{ form.sign_heart_rhythm }}
+{% endblock %}
+
+{% block sign_extra_1 %}
+    {{ form.sign_extra }}
+{% endblock %}
+
+{% block life_style_guide_smoke_1 %}
+    {{ form.life_style_guide_smoke }}
+{% endblock %}
+
+{% block life_style_guide_smoke_next_1 %}
+    {{ form.life_style_guide_smoke_next }}
+{% endblock %}
+
+{% block life_style_guide_liquor_1 %}
+    {{ form.life_style_guide_liquor }}
+{% endblock %}
+
+{% block life_style_guide_liquor_next_1 %}
+    {{ form.life_style_guide_liquor_next }}
+{% endblock %}
+
+{% block life_style_guide_sport1_1 %}
+    {{ form.life_style_guide_sport1 }}
+{% endblock %}
+
+{% block life_style_guide_sport2_1 %}
+    {{ form.life_style_guide_sport2 }}
+{% endblock %}
+
+{% block life_style_guide_sport3_1 %}
+    {{ form.life_style_guide_sport3 }}
+{% endblock %}
+
+{% block life_style_guide_sport4_1 %}
+    {{ form.life_style_guide_sport4 }}
+{% endblock %}
+
+{% block life_style_guide_salt_1 %}
+    {% for item in form.life_style_guide_salt %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block life_style_guide_salt_next_1 %}
+    {% for item in form.life_style_guide_salt_next %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block life_style_guide_mentality_1 %}
+    {% for item in form.life_style_guide_mentality %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block life_style_guide_medical_compliance_1 %}
+    {% for item in form.life_style_guide_medical_compliance %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block auxiliary_examination_1 %}
+    {{ form.auxiliary_examination }}
+{% endblock %}
+
+{% block take_medicine_compliance_1 %}
+    {% for item in form.take_medicine_compliance %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block medicine_untoward_effect_1 %}
+    {% for item in form.medicine_untoward_effect %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block medicine_untoward_effect_yes_1 %}
+    {{ form.medicine_untoward_effect_yes }}
+{% endblock %}
+
+{% block visit_classification_1 %}
+    {% for item in form.visit_classification %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block take_medicine_1_1 %}
+    {{ form.take_medicine_1 }}
+{% endblock %}
+
+{% block take_medicine_1_day_1 %}
+    {{ form.take_medicine_1_day }}
+{% endblock %}
+
+{% block take_medicine_1_time_1 %}
+    {{ form.take_mdicine_1_time }}
+{% endblock %}
+
+{% block take_medicine_2_1 %}
+    {{ form.take_medicine_2 }}
+{% endblock %}
+
+{% block take_medicine_2_day_1 %}
+    {{ form.take_medicine_2_day }}
+{% endblock %}
+
+{% block take_medicine_2_time_1 %}
+    {{ form.take_medicine_2_time }}
+{% endblock %}
+
+{% block take_medicine_3_1 %}
+    {{ form.take_medicine_3 }}
+{% endblock %}
+
+{% block take_medicine_3_day_1 %}
+    {{ form.take_medicine_3_day }}
+{% endblock %}
+
+{% block take_medicine_3_time_1 %}
+    {{ form.take_medicine_3_time }}
+{% endblock %}
+
+{% block take_medicine_qt_1 %}
+    {{ form.take_medicine_qt }}
+{% endblock %}
+
+{% block take_medicine_qt_day_1 %}
+    {{ form.take_medicine_qt_day }}
+{% endblock %}
+
+{% block take_medicine_qt_time_1 %}
+    {{ form.take_medicine_qt_time }}
+{% endblock %}
+
+{% block transfer_treatment_reason_1 %}
+    {{ form.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_1 %}
+    {{ form.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_1 %}
+    {{ form.next_visit_date }}
+{% endblock %}
+
+{% block doctor_signature_1 %}
+    {{ form.doctor_signature }}
+{% endblock %}

@@ -1,0 +1,336 @@
+{% extends 'pregnant/antenatal_1_base.html' %}
+
+{% block table_neck_extra %}
+    {% for item in form.errors %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date %}
+        {{ form.visit_date }}
+{% endblock %}
+
+{% block weeks %}
+        {{ form.weeks }}
+{% endblock %}
+
+{% block age %}
+        {{ form.age }}
+{% endblock %}
+
+{% block husband_name %}
+        {{ form.husband_name }}
+{% endblock %}
+
+{% block husband_age %}
+        {{ form.husband_age }}
+{% endblock %}
+
+{% block husband_phone %}
+        {{ form.husband_phone }}
+{% endblock %}
+
+{% block pregnant_times %}
+        {{ form.pregnant_times }}
+{% endblock %}
+
+{% block production_times %}
+        阴道分娩{{ form.natural_production }}次&nbsp&nbsp
+        剖宫产{{ form.surgery_production }}次
+{% endblock %}
+
+{% block last_menstruation %}
+        {{ form.last_menstruation }}
+{% endblock %}
+
+{% block not_sure %}
+    {{ form.not_sure }}
+{% endblock %}
+
+{% block due_date %}
+        {{ form.due_date }}
+{% endblock %}
+
+{% block disease_history %}
+        {% for item in form.disease_history %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.disease_history_other }}
+{% endblock %}
+
+{% block family_history %}
+        {% for item in form.family_history %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.family_history_other }}
+{% endblock %}
+
+{% block personal_history %}
+        {% for item in form.personal_history %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.personal_history_other }}
+{% endblock %}
+
+{% block gynaecology_surgery_history %}
+        {% for item in form.gynaecology_surgery_history %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.gynaecology_surgery_name }}
+{% endblock %}
+
+{% block production_history %}
+        流产{{ form.miscarriage }}&nbsp&nbsp
+        死胎{{ form.dead_fetus }}&nbsp&nbsp
+        死产{{ form.still_birth }}&nbsp&nbsp
+        新生儿死亡{{ form.newnatal_death }}&nbsp&nbsp
+        出生缺陷儿{{ form.birth_defect }}
+{% endblock %}
+
+{% block height %}
+        {{ form.height }}
+{% endblock %}
+
+{% block weight %}
+        {{ form.weight }}
+{% endblock %}
+
+{% block bmi %}
+        {{ form.bmi }}
+{% endblock %}
+
+{% block blood_pressure %}
+        {{ form.sbp }}/{{ form.dbp }}mmHg
+{% endblock %}
+
+{% block ausculate_heart %}
+        {% for item in form.ausculate_heart %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+        {{ form.ausculate_heart_abnormal }}
+{% endblock %}
+
+{% block ausculate_lung %}
+        {% for item in form.ausculate_lung %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+        {{ form.ausculate_lung_abnormal }}
+{% endblock %}
+
+{% block vulva %}
+        {% for item in form.vulva %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.vulva_abnormal }}
+{% endblock %}
+
+{% block vagina %}
+        {% for item in form.vagina %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.vagina_abnormal }}
+{% endblock %}
+
+{% block cervix %}
+        {% for item in form.cervix %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.cervix_abnormal }}
+{% endblock %}
+
+{% block uteri %}
+        {% for item in form.uteri %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.uteri_abnormal }}
+{% endblock %}
+
+{% block accessory %}
+        {% for item in form.accessory %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.accessory_abnormal }}
+{% endblock %}
+
+{% block blood_routine_test %}
+        白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
+        血红蛋白值{{ form.leukocyte }}g/L<br />
+        血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
+        其他{{ form.blood_extra }}
+{% endblock %}
+
+{% block urine_routine_test %}
+        尿蛋白{{ form.urine_protein }}&nbsp;
+        尿糖{{ form.urine_glucose }}&nbsp;
+        尿酮体{{ form.urine_ket }}&nbsp;
+        尿潜血{{ form.urine_ery }}&nbsp;
+        其他{{ form.urine_extra }}
+{% endblock %}
+
+{% block blood_type_abo %}
+        {% for item in form.blood_type_abo %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.blood_type_abo_other }}
+{% endblock %}
+
+{% block blood_type_rh %}
+    {% for item in form.blood_type_rh %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
+
+{% block alanine_aminotransferase %}
+        血清谷丙转氨酶{{ form.sgpt }}U/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block glutamic_oxalacetic_transaminase %}
+        血清谷草转氨酶{{ form.sgot }}U/L<br />
+{% endblock %}
+
+{% block total_bilirubin %}
+        总胆红素{{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block serum_creatinine %}
+        血清肌酐{{ form.scr }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block blood_urea_nitrogen %}
+        血尿素氮{{ form.bun }}&#956mol/L
+{% endblock %}
+
+{% block hepatitis_b_five_item %}
+        乙型肝炎表面抗原&nbsp;&nbsp;
+        {% for item in form.surface_antigen %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        乙型肝炎表面抗体&nbsp;&nbsp;
+        {% for item in form.surface_antibody %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        乙型肝炎e抗原&nbsp;&nbsp;
+        {% for item in form.e_antigen %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        乙型肝炎e抗体&nbsp;&nbsp;
+        {% for item in form.e_antibody %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        乙型肝炎核心抗体&nbsp;&nbsp;
+        {% for item in form.core_antibody %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+{% endblock %}
+
+{% block total_evaluation %}
+        {% for item in form.total_evaluation %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.total_evaluation_abnormal }}
+{% endblock %}
+
+{% block guide %}
+        {% for item in form.guide %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_other }}
+{% endblock %}
+
+{% block transfer %}
+        {% for item in form.transfer %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}<br />
+        原因：{{ form.transfer_reason }}&nbsp;&nbsp;&nbsp;&nbsp;
+        机构及科室：{{ form.transfer_hospital }}
+{% endblock %}
+
+{% block next_visit_date %}
+        {{ form.next_visit_date }}
+{% endblock %}
+
+{% block doctor_signature %}
+        {{ form.doctor_signature }}
+{% endblock %}

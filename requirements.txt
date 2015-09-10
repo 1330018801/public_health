@@ -1,0 +1,5 @@
+xlwt
+xlwt
+Django==1.7.5
+psycopg2==2.6
+wsgiref==0.1.2

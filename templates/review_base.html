@@ -1,0 +1,40 @@
+{% extends "health_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container" align="center">
+    <div id="table" style="margin-left: 15px; overflow: auto;
+            z-index: 999999999999; width: 720px; padding-left: 40px">
+        <div id="printArea">
+            <!--printStart-->
+            {% block table_review %}{% endblock %}
+            <!--printEnd-->
+        </div>
+        <p style="text-align: right; padding-top: 20px; padding-right: 50px">
+            <!--
+            <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-print'"
+               style="width:80px" onclick="print_table()">打印</a>
+            <input class="easyui-linkbutton" type="submit" value="提交" style="width: 80px"/>
+            -->
+            <a type="button"
+               {% if return_name == 'town_staff_statistics_records' %}
+                href="/management/town_staff_statistics/records/"
+                {% elif return_name == 'statistics_records' %}
+                    href="/management/statistics/records/"
+                {% elif return_name == 'doctor_work_records' %}
+                    href="/management/doctor_work_records/{{ record.provider.id }}/"
+                {% elif return_name == 'user_statistics_records' %}
+                    href="/management/user_statistics_records/"
+                {% else %}
+                     href="/management/resident_records/{{ return_name.id }}/{{ record.resident.id }}/"
+                {% endif %}
+               class="btn btn-danger" style="margin-right: 40px">
+                <span class="glyphicon glyphicon-list-alt" style="padding-right: 5px"></span>返回</a>
+
+            <button type="button" class="btn btn-warning" style="margin-right: 10px" onclick="print_table()">
+                <span class="glyphicon glyphicon-print" style="padding-right: 5px"></span>打印
+            </button>
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'tcm/child_base.html' %}
+
+{% block tbl_1_col_3_visit_date %}
+    {% if item_alias == 'aftercare_6_month' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_1_col_3_guide %}
+    {% if item_alias == 'aftercare_6_month' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 4 or forloop.counter == 5 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_1_col_3_next_visit_date %}
+    {% if item_alias == 'aftercare_6_month' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_1_col_3_doctor_signature %}
+    {% if item_alias == 'aftercare_6_month' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}
+
+
+{% block tbl_2_col_1_visit_date %}
+    {% if item_alias == 'aftercare_12_month' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_1_guide %}
+    {% if item_alias == 'aftercare_12_month' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 4 or forloop.counter == 5 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_1_next_visit_date %}
+    {% if item_alias == 'aftercare_12_month' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_1_doctor_signature %}
+    {% if item_alias == 'aftercare_12_month' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}
+
+
+{% block tbl_2_col_2_visit_date %}
+    {% if item_alias == 'aftercare_18_month' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_2_guide %}
+    {% if item_alias == 'aftercare_18_month' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 3 or forloop.counter == 5 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_2_next_visit_date %}
+    {% if item_alias == 'aftercare_18_month' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_2_doctor_signature %}
+    {% if item_alias == 'aftercare_18_month' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}
+
+
+
+{% block tbl_2_col_3_visit_date %}
+    {% if item_alias == 'aftercare_24_month' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_3_guide %}
+    {% if item_alias == 'aftercare_24_month' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 3 or forloop.counter == 5 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_3_next_visit_date %}
+    {% if item_alias == 'aftercare_24_month' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_3_doctor_signature %}
+    {% if item_alias == 'aftercare_24_month' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}
+
+
+
+{% block tbl_2_col_4_visit_date %}
+    {% if item_alias == 'aftercare_30_month' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_4_guide %}
+    {% if item_alias == 'aftercare_30_month' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 3 or forloop.counter == 4 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_4_next_visit_date %}
+    {% if item_alias == 'aftercare_30_month' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_2_col_4_doctor_signature %}
+    {% if item_alias == 'aftercare_30_month' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}
+
+
+
+{% block tbl_3_col_1_visit_date %}
+    {% if item_alias == 'aftercare_3_year' %}
+        {{ form.visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_3_col_1_guide %}
+    {% if item_alias == 'aftercare_3_year' %}
+        {% for item in form.guide %}
+            {% if forloop.counter == 3 or forloop.counter == 4 %}
+            {% else %}
+                {% if forloop.last %}{{ item }}{% else %}{{ item }}<br />{% endif %}
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_3_col_1_next_visit_date %}
+    {% if item_alias == 'aftercare_3_year' %}
+        {{ form.next_visit_date }}
+    {% endif %}
+{% endblock %}
+
+{% block tbl_3_col_1_doctor_signature %}
+    {% if item_alias == 'aftercare_3_year' %}
+        {{ form.doctor_signature }}
+    {% endif %}
+{% endblock %}

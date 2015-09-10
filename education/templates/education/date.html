@@ -1,0 +1,31 @@
+<!-- date -->
+<div class="row" style="padding-top: 40px">
+	<div class="col-md-2" align="right">
+        {% if form.date.errors %}
+            <span style="background: #ffff00">{{ form.date.label_tag }}</span>
+        {% else %}
+            {{ form.date.label_tag }}
+        {% endif %}
+	</div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <div class='input-group date' id='datepicker1'>
+                {{ form.date }}
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker1').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                language: 'zh-CN',
+                todayHighlight: true,
+                orientation: 'top'
+            });
+        });
+    </script>
+</div>        <!-- delineate -->

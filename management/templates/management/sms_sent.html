@@ -1,0 +1,34 @@
+{% load staticfiles %}
+
+<table id="sms_list"></table>
+
+<div id="sms_sent_toolbar" style="padding: 5px 25px; display: none">
+    <table>
+        <tr style="margin: 5px">
+            <td width="10%" style="padding: 5px" align="right">起始时间：</td>
+            <td width="15%"><input id="sms_begin" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">结束时间：</td>
+            <td width="15%"><input id="sms_end" /></td>
+            <td width="10%" style="margin-left: 15px" align="right">服务类型：</td>
+            <td width="15%"><input id="service_type" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">服务项目：</td>
+            <td width="15%"><input id="service_item" /></td>
+        </tr>
+        <tr>
+            <td width="10%" style="padding: 5px" align="right">居民姓名：</td>
+            <td width="15%"><input id="resident" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">手机号码：</td>
+            <td width="15%"><input id="mobile" /></td>
+            <td width="10%" style="margin-left: 15px" align="right">短信状态：</td>
+            <td width="15%"><input id="status" /></td>
+            <td width="10%"></td>
+            <td width="15%"></td>
+        </tr>
+        <tr>
+            <td colspan="8" align="right" style="padding-right: 10px">
+                <a href="#" id="btn_query">查询</a>
+            </td>
+        </tr>
+    </table>
+</div>
+<script src='{% static "js/sms_sent.js" %}'></script>

@@ -1,0 +1,20 @@
+{% load staticfiles %}
+
+<div id="child_health_0_1">
+    <div id="toolbar" class="datagrid-toolbar">
+        <a href="#" id="add_1">满月随访</a>
+        <a href="#" id="add_2">3月龄随访</a>
+        <a href="#" id="add_3">6月龄随访</a>
+        <a href="#" id="add_4">8月龄随访</a>
+        <a href="#" id="save">保存记录表</a>
+        <a href="#" id="undo">取消</a>
+        <a href="#" id="print">打印记录表</a>
+        <input type="hidden" id="resident_id" value="{{ request.session.resident_id }}" />
+        <input type="hidden" id="resident_name" value="{{ request.session.resident_name }}" />
+    </div>
+    <form id="form" method="POST">
+        <div id="table" align="center"></div>
+    </form>
+</div>
+
+<script src='{% static "js/child_health_0_1.js" %}'></script>

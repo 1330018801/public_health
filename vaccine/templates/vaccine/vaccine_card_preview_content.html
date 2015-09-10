@@ -1,0 +1,26 @@
+{% extends 'vaccine/vaccine_card_base.html' %}
+
+{% block table_resident %}{{ form.name.data }}{% endblock %}
+{% block table_no %}{{ form.number.data }}{% endblock %}
+
+{% block gender %}{{ form.gender.data }}{% endblock %}
+{% block birth_date %}{{ form.birth_date.data }}{% endblock %}
+{% block guardian_name %}{{ form.guardian_name.data }}{% endblock %}
+{% block relation_to_child %}{{ form.relation_to_child.data }}{% endblock %}
+
+{% block contact_number %}{{ form.contact_number.data }}{% endblock %}
+{% block home_address %}{{ form.home_address.data }}{% endblock %}
+{% block census_register_address %}{{ form.census_register_address.data }}{% endblock %}
+{% block census_register_address_extra %}{{ form.census_register_address_extra.data }}{% endblock %}
+
+{% block immigrate_time %}{{ form.immigrate_time.data }}{% endblock %}
+{% block emigrate_time %}{{ form.emigrate_time.data }}{% endblock %}
+{% block emigrate_reason %}{{ form.emigrate_reason.data }}{% endblock %}
+
+
+{% block vaccine_abnormal_reaction_history %}{{ form.vaccine_abnormal_reaction_history.data }}{% endblock %}
+{% block vaccinate_taboo %}{{ form.vaccinate_taboo.data }}{% endblock %}
+
+{% block infection_history %}{{ form.infection_history.data }}{% endblock %}
+{% block found_card_date %}{{ form.found_card_date.data }}{% endblock %}
+{% block found_card_person %}{{ form.found_card_person.data }}{% endblock %}

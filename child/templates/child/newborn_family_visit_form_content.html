@@ -1,0 +1,495 @@
+{% extends 'child/newborn_family_visit_base.html' %}
+
+{% block gender %}
+    {% for item in form.gender %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block birthday %}
+    {{ form.birthday }}
+{% endblock %}
+
+{% block identity %}
+    {{ form.identity }}
+{% endblock %}
+
+{% block address %}
+    {{ form.address }}
+{% endblock %}
+
+{% block father_name %}
+    {{ form.father_name }}
+{% endblock %}
+
+{% block father_occupation %}
+    {{ form.father_occupation }}
+{% endblock %}
+
+{% block father_contact_number %}
+    {{ form.father_contact_number }}
+{% endblock %}
+
+{% block father_birthday %}
+    {{ form.father_birthday }}
+{% endblock %}
+
+{% block mother_name %}
+    {{ form.mother_name }}
+{% endblock %}
+
+{% block mother_occupation %}
+    {{ form.mother_occupation }}
+{% endblock %}
+
+{% block mother_contact_number %}
+    {{ form.mother_contact_number }}
+{% endblock %}
+
+{% block mother_birthday %}
+    {{ form.mother_birthday }}
+{% endblock %}
+
+{% block gestational_weeks %}
+    {{ form.gestational_weeks }}
+{% endblock %}
+
+{% block mother_gestational_disease %}
+    {% for item in form.mother_gestational_disease %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block mother_gestational_disease_extra %}
+    {{ form.mother_gestational_disease_extra }}
+{% endblock %}
+
+{% block deliver_institution %}
+    {{ form.deliver_institution }}
+{% endblock %}
+
+{% block birth_situation %}
+    {% for item in form.birth_situation %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block birth_situation_extra %}
+    {{ form.birth_situation_extra }}
+{% endblock %}
+
+{% block newborn_asphyxia %}
+    {% for item in form.newborn_asphyxia %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block apgar_score %}
+    {% for item in form.apgar_score %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block malformation_or_not %}
+    {% for item in form.malformation_or_not %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block malformation_extra %}
+    {{ form.malformation_extra }}
+{% endblock %}
+
+{% block newborn_hearing_screening %}
+    {% for item in form.newborn_hearing_screening %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block newborn_disease_screening %}
+    {% for item in form.newborn_disease_screening %}
+        {% if forloop.last %}
+            {{ item }}
+        {% elif forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block newborn_disease_screening_extra %}
+    {{ form.newborn_disease_screening_extra }}
+{% endblock %}
+
+{% block newborn_birth_weight %}
+    {{ form.newborn_birth_weight }}
+{% endblock %}
+
+{% block now_weight %}
+    {{ form.now_weight }}
+{% endblock %}
+
+{% block birth_height %}
+    {{ form.birth_height }}
+{% endblock %}
+
+{% block feed_way %}
+    {% for item in form.feed_way %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block drink_milk_volume %}
+    {{ form.drink_milk_volume }}
+{% endblock %}
+
+{% block drink_milk_times %}
+    {{ form.drink_milk_times }}
+{% endblock %}
+
+{% block emesis %}
+    {% for item in form.emesis %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block shit %}
+    {% for item in form.shit %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block shit_times %}
+    {{ form.shit_times }}
+{% endblock %}
+
+{% block body_temperature %}
+    {{ form.body_temperature }}
+{% endblock %}
+
+{% block pulse %}
+    {{ form.pulse }}
+{% endblock %}
+
+{% block breath_frequency %}
+    {{ form.breath_frequency }}
+{% endblock %}
+
+{% block complexion %}
+    {% for item in form.complexion %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block complexion_extra %}
+    {{ form.complexion_extra }}
+{% endblock %}
+
+{% block icterus_position %}
+    {% for item in form.icterus_position %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block bregma_x %}
+    {{ form.bregma_x }}
+{% endblock %}
+
+{% block bregma_y %}
+    {{ form.bregma_y }}
+{% endblock %}
+
+{% block bregma_1 %}
+    {% for item in form.bregma_1 %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block bregma_1_extra %}
+    {{ form.bregma_1_extra }}
+{% endblock %}
+
+{% block eye_appearance %}
+    {% for item in form.eye_appearance %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block eye_appearance_abnormal %}
+    {{ form.eye_appearance_abnormal }}
+{% endblock %}
+
+{% block all_fours_activity %}
+    {% for item in form.all_fours_activity %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block all_fours_activity_abnormal %}
+    {{ form.all_fours_activity_abnormal }}
+{% endblock %}
+
+{% block ear_appearance %}
+    {% for item in form.ear_appearance %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block ear_appearance_abnormal %}
+    {{ form.ear_appearance_abnormal }}
+{% endblock %}
+
+{% block neck_enclosed_mass %}
+    {% for item in form.neck_enclosed_mass %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block neck_enclosed_mass_yes %}
+    {{ form.neck_enclosed_mass_yes }}
+{% endblock %}
+
+{% block nose %}
+    {% for item in form.nose %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block nose_abnormal %}
+    {{ form.nose_abnormal }}
+{% endblock %}
+
+{% block skin %}
+    {% for item in form.skin %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block skin_extra %}
+    {{ form.skin_extra }}
+{% endblock %}
+
+{% block oral_cavity %}
+    {% for item in form.oral_cavity %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block oral_cavity_abnormal %}
+    {{ form.oral_cavity_abnormal }}
+{% endblock %}
+
+{% block anus %}
+    {% for item in form.anus %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block anus_abnormal %}
+    {{ form.anus_abnormal }}
+{% endblock %}
+
+{% block heart_lung_auscultation %}
+    {% for item in form.heart_lung_auscultation %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block heart_lung_auscultation_abnormal %}
+    {{ form.heart_lung_auscultation_abnormal }}
+{% endblock %}
+
+{% block externalia %}
+    {% for item in form.externalia %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block externalia_abnormal %}
+    {{ form.externalia_abnormal }}
+{% endblock %}
+
+{% block abdomen_palpation %}
+    {% for item in form.abdomen_palpation %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block abdomen_palpation_abnormal %}
+    {{ form.abdomen_palpation_abnormal }}
+{% endblock %}
+
+{% block spine %}
+    {% for item in form.spine %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block spine_abnormal %}
+    {{ form.spine_abnormal }}
+{% endblock %}
+
+{% block navel %}
+    {% for item in form.navel %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block navel_extra %}
+    {{ form.navel_extra }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion %}
+    {% for item in form.transfer_treatment_suggestion %}
+        {% if forloop.first %}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_reason %}
+    {{ form.transfer_treatment_suggestion_reason }}
+{% endblock %}
+
+{% block transfer_treatment_suggestion_institution %}
+    {{ form.transfer_treatment_suggestion_institution }}
+{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide %}
+        {% if forloop.first %}
+        {% elif forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}&nbsp;
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block visit_date %}
+    {{ form.visit_date }}
+{% endblock %}
+
+{% block next_visit_place %}
+    {{ form.next_visit_place }}
+{% endblock %}
+
+{% block next_visit_date %}
+    {{ form.next_visit_date }}
+{% endblock %}
+
+{% block doctor_signature %}
+    {{ form.doctor_signature }}
+{% endblock %}

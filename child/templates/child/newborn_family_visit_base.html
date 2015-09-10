@@ -1,0 +1,169 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}
+    新生儿家庭访视记录表
+{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">性别</b></td>
+        <td width="37.5%" colspan="45">{% block gender %}{% endblock %}</td>
+        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">出生日期</b></td>
+        <td width="37.5%" colspan="45">{% block birthday %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="15" align="center"><b style="margin-right: 5px;">身份证号</b></td>
+        <td colspan="45">{% block identity %}{% endblock %}</td>
+        <td colspan="15" align="center"><b style="margin-right: 5px;">家庭住址</b></td>
+        <td colspan="45">{% block address %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">父亲</b></td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">姓名</b>{% block father_name %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">职业</b>{% block father_occupation %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">联系电话</b>{% block father_contact_number %}{% endblock %}</td>
+        <td width="23%" colspan="27"><b style="margin-right: 5px;">出生日期</b>{% block father_birthday %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">母亲</b></td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">姓名</b>{% block mother_name %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">职业</b>{% block mother_occupation %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">联系电话</b>{% block mother_contact_number %}{% endblock %}</td>
+        <td width="23%" colspan="27"><b style="margin-right: 5px;">出生日期</b>{% block mother_birthday %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="30"><b style="margin-right: 5px;">出生孕周</b>{% block gestational_weeks %}{% endblock %}周</td>
+        <td colspan="90"><b style="margin-right: 5px;">母亲妊娠期患病情况</b>{% block mother_gestational_disease %}{% endblock %}
+            {% block mother_gestational_disease_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="30"><b style="margin-right: 5px;">助产机构名称</b>{% block deliver_institution %}{% endblock %}</td>
+        <td colspan="90"><b style="margin-right: 5px;">出生情况</b>{% block birth_situation %}{% endblock %}
+            {% block birth_situation_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">新生儿窒息</b>{% block newborn_asphyxia %}{% endblock %}
+            <br>(Apgar评分：{% block apgar_score %}{% endblock %})</td>
+        <td colspan="60"><b style="margin-right: 5px;">是否有畸形</b>{% block malformation_or_not %}{% endblock %}
+            {% block malformation_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="120"><b style="margin-right: 5px;">新生儿听力筛查</b>{% block newborn_hearing_screening %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="120"><b style="margin-right: 5px;">新生儿疾病筛查</b>{% block newborn_disease_screening %}{% endblock %}
+            {% block newborn_disease_screening_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="48"><b style="margin-right: 5px;">新生儿体重</b>{% block newborn_birth_weight %}{% endblock %}kg</td>
+        <td colspan="36"><b style="margin-right: 5px;">目前体重</b>{% block now_weight %}{% endblock %}kg</td>
+        <td colspan="36"><b style="margin-right: 5px;">出生身长</b>{% block birth_height %}{% endblock %}cm</td>
+    </tr>
+    <tr>
+        <td colspan="48"><b style="margin-right: 5px;">喂养方式</b>{% block feed_way %}{% endblock %}</td>
+        <td colspan="36"><b style="margin-right: 5px;">*吃奶量</b>{% block drink_milk_volume %}{% endblock %}ml/次</td>
+        <td colspan="36"><b style="margin-right: 5px;">*吃奶次数</b>{% block drink_milk_times %}{% endblock %}次/日</td>
+    </tr>
+    <tr>
+        <td colspan="48"><b style="margin-right: 5px;">*呕吐</b>{% block emesis %}{% endblock %}</td>
+        <td colspan="36"><b style="margin-right: 5px;">*大便</b>{% block shit %}{% endblock %}</td>
+        <td colspan="36"><b style="margin-right: 5px;">*大便次数</b>{% block shit_times %}{% endblock %}次/日</td>
+    </tr>
+    <tr>
+        <td colspan="48"><b style="margin-right: 5px;">体温</b>{% block body_temperature %}{% endblock %}℃</td>
+        <td colspan="36"><b style="margin-right: 5px;">脉率</b>{% block pulse %}{% endblock %}次/分钟</td>
+        <td colspan="36"><b style="margin-right: 5px;">呼吸频率</b>{% block breath_frequency %}{% endblock %}次/分钟</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">面色</b>{% block complexion %}{% endblock %}
+            {% block complexion_extra %}{% endblock %}</td>
+        <td colspan="60"><b style="margin-right: 5px;">黄疸部位</b>{% block icterus_position %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="120"><b style="margin-right: 5px;">前囟</b>{% block bregma_x %}{% endblock %}cm×
+            {% block bregma_y %}{% endblock %}cm&nbsp;&nbsp;{% block bregma_1 %}{% endblock %}
+            {% block bregma_1_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">眼外观</b>{% block eye_appearance %}{% endblock %}
+            {% block eye_appearance_abnormal %}{% endblock %}</td>
+        <td colspan="60"><b style="margin-right: 5px;">四肢活动度</b>{% block all_fours_activity %}{% endblock %}
+            {% block all_fours_activity_abnormal %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">耳外观</b>{% block ear_appearance %}{% endblock %}
+            {% block ear_appearance_abnormal %}{% endblock %}</td>
+        <td colspan="60"><b style="margin-right: 5px;">颈部包块</b>{% block neck_enclosed_mass %}{% endblock %}
+            {% block neck_enclosed_mass_yes %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">鼻</b>{% block nose %}{% endblock %}
+            {% block nose_abnormal %}{% endblock %}</td>
+        <td colspan="60"><b style="margin-right: 5px;">皮肤</b>{% block skin %}{% endblock %}
+            {% block skin_extra %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60">
+            <b style="margin-right: 5px;">口腔</b>{% block oral_cavity %}{% endblock %}
+            {% block oral_cavity_abnormal %}{% endblock %}</td>
+        <td colspan="60"><b style="margin-right: 5px;">肛门</b>{% block anus %}{% endblock %}
+            {% block anus_abnormal %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">心肺听诊</b>
+            {% block heart_lung_auscultation %}{% endblock %}
+            {% block heart_lung_auscultation_abnormal %}{% endblock %}
+        </td>
+        <td colspan="60"><b style="margin-right: 5px;">外生殖器</b>
+            {% block externalia %}{% endblock %}{% block externalia_abnormal %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="60"><b style="margin-right: 5px;">腹部触诊</b>
+            {% block abdomen_palpation %}{% endblock %}{% block abdomen_palpation_abnormal %}{% endblock %}
+        </td>
+        <td colspan="60">
+            <b style="margin-right: 5px;">脊柱</b>
+            {% block spine %}{% endblock %}{% block spine_abnormal %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="120">
+            <b style="margin-right: 10px">脐带</b>{% block navel %}{% endblock %}{% block navel_extra %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="120">
+            <b style="margin-right: 5px;">转诊建议</b>
+            {% block transfer_treatment_suggestion %}{% endblock %}
+            原因：{% block transfer_treatment_suggestion_reason %}{% endblock %}
+            机构及科室：{% block transfer_treatment_suggestion_institution %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="120">
+            <b style="margin-right: 5px;">指导</b>
+            {% block guide %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="60">
+            <b style="margin-right: 5px;">本次访视日期</b>
+            {% block visit_date %}{% endblock %}
+        </td>
+        <td colspan="60">
+            <b style="margin-right: 5px;">下次随访地点</b>
+            {% block next_visit_place %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="60">
+            <b style="margin-right: 5px;">下次随访日期</b>
+            {% block next_visit_date %}{% endblock %}
+        </td>
+        <td colspan="60">
+            <b style="margin-right: 5px;">随访医生签名</b>
+            {% block doctor_signature %}{% endblock %}
+        </td>
+    </tr>
+{% endblock %}

@@ -1,0 +1,370 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_header %}
+    <h3 class="page-header" align="center">{{ service_type.name }}: {{ service_item.name }}</h3>
+{% endblock %}
+
+{% block service_item_content %}
+    <form action="{% url 'vaccine:vaccine_card' %}" method="POST">
+
+    {% csrf_token %}
+        {{ form.non_filed_errors }}
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.name.errors %}
+                    <span style="background: #ffff00">{{ form.name.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.name }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="name" value="{{ form.name }}">
+                {% else %}
+                    {{ form.name }}
+                {% endif %}
+	        </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.number.errors %}
+                    <span style="background: #ffff00">{{ form.number.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.number }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="number" value="{{ form.number }}">
+                {% else %}
+                    {{ form.number }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.gender.errors %}
+                    <span style="background: #ffff00">{{ form.gender.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.gender }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-5">
+                {% if form == card %}
+                    <div class="col-md-4">
+                        <input type="radio" name="gender" value="男"
+                            {% if form.gender == "男" %}
+                                checked
+                            {% endif %}><b>男</b>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" name="gender" value="女"
+                               {% if form.gender == "女" %}
+                                    checked
+                               {% endif %}><b>女</b>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="radio" name="gender" value="未知性别"
+                               {% if form.gender == "未知性别" %}
+                                    checked
+                               {% endif %}><b>未知性别</b>
+                    </div>
+                {% else %}
+                    {% for item in form.gender %}
+                        {% if forloop.counter > 1 and forloop.counter < 5 %}
+                            <div class="col-md-4">{{ item }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+	        </div>
+        </div>
+        <!-- birth_date -->
+        <div class="row" style="padding-top: 15px">
+            <div class="col-md-2" align="right">
+                {% if form.birth_date.errors %}
+                    <span style="background: #ffff00">{{ form.birth_date.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.birth_date }}:</b>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class='input-group date' id='datepicker1'>
+                        {% if form == card %}
+                            <input type='text' id="birth_date" class="form-control"
+                               name="birth_date" value="{{ form.birth_date | date:'Y-m-d'}}">
+                        {% else %}
+                            {{ form.birth_date }}
+                        {% endif %}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datepicker1').datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true,
+                            language: 'zh-CN',
+                            todayHighlight: true
+                        });
+                    });
+                </script>
+            </div>
+        </div>      <!-- delineate -->
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.guardian_name.errors %}
+                    <span style="background: #ffff00">{{ form.guardian_name.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.guardian_name }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="guardian_name" value="{{ form.guardian_name }}">
+                {% else %}
+                    {{ form.guardian_name }}
+                {% endif %}
+	        </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.relation_to_child.errors %}
+                    <span style="background: #ffff00">{{ form.relation_to_child.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.relation_to_child }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="relation_to_child" value="{{ form.relation_to_child }}">
+                {% else %}
+                    {{ form.relation_to_child }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.contact_number.errors %}
+                    <span style="background: #ffff00">{{ form.contact_number.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.contact_number }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="contact_number" value="{{ form.contact_number }}">
+                {% else %}
+                    {{ form.contact_number }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-md-2" align="right">
+	        	{% if form.home_address.errors %}
+                    <span style="background: #ffff00">{{ form.home_address.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.home_address }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="home_address" size="50" value="{{ form.home_address }}">
+                {% else %}
+                    {{ form.home_address }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.census_register_address.errors or form.census_register_address_extra.errors %}
+                    <span style="background: #ffff00">{{ form.census_register_address.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.census_register_address }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-10">
+                {% if form == card %}
+                    <div class="col-md-4">
+                        <input type="radio" name="census_register_address" value="同家庭住址"
+                                {% if form.census_register_address == "同家庭住址" %}
+                                    checked
+                                {% endif %}><b>同家庭住址</b>
+                    </div>
+                    <div class="col-md-7">
+                    <input type="radio" name="census_register_address" value="其他"
+                            {% if form.census_register_address == "其他" %}
+                                checked
+                            {% endif %}><b>其他</b>&nbsp;&nbsp;<input type="text" name="census_register_address_extra" size="40" value="{{ form.census_register_address_extra }}">
+                    </div>
+                {% else %}
+                    {% for item in form.census_register_address %}
+                        {% if forloop.counter == 2  %}
+                            <div class="col-md-3">{{ item }}</div>
+                        {% elif forloop.counter == 3 %}
+                            <div class="col-md-7">{{ item }}&nbsp;&nbsp;{{ form.census_register_address_extra }}</div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+                {% if form.immigrate_time.errors %}
+                    <span style="background: #ffff00">{{ form.immigrate_time.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.immigrate_time }}:</b>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class='input-group date' id='datepicker2'>
+                        {% if form == card %}
+                            <input type='text' id="immigrate_time" class="form-control"
+                                   name="immigrate_time" value="{{ form.immigrate_time | date:'Y-m-d'}}">
+                        {% else %}
+                            {{ form.immigrate_time }}
+                        {% endif %}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2" align="right">
+                {% if form.emigrate_time.errors %}
+                    <span style="background: #ffff00">{{ form.emigrate_time.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.emigrate_time }}:</b>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class='input-group date' id='datepicker3'>
+                        {% if form == card %}
+                            <input type='text' id="emigrate_time_id" class="form-control"
+                               name="emigrate_time" value="{{ form.emigrate_time | date:'Y-m-d'}}">
+                        {% else %}
+                            {{ form.emigrate_time }}
+                        {% endif %}
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datepicker2').datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true,
+                            language: 'zh-CN',
+                            todayHighlight: true
+                        });
+                    });
+                    $(function () {
+                        $('#datepicker3').datepicker({
+                            format: 'yyyy-mm-dd',
+                            autoclose: true,
+                            language: 'zh-CN',
+                            todayHighlight: true
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.emigrate_reason.errors %}
+                    <span style="background: #ffff00">{{ form.emigrate_reason.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.emigrate_reason }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="emigrate_reason" size="50" value="{{ form.emigrate_reason }}">
+                {% else %}
+                    {{ form.emigrate_reason }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-md-2" align="right">
+	        	{% if form.vaccine_abnormal_reaction_history.errors %}
+                    <span style="background: #ffff00">{{ form.vaccine_abnormal_reaction_history.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.vaccine_abnormal_reaction_history }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="vaccine_abnormal_reaction_history" size="50" value="{{ form.vaccine_abnormal_reaction_history }}">
+                {% else %}
+                    {{ form.vaccine_abnormal_reaction_history }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.vaccinate_taboo.errors %}
+                    <span style="background: #ffff00">{{ form.vaccinate_taboo.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.vaccinate_taboo }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="vaccinate_taboo" size="50" value="{{ form.vaccinate_taboo }}">
+                {% else %}
+                    {{ form.vaccinate_taboo }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+            <div class="col-md-2" align="right">
+	        	{% if form.infection_history.errors %}
+                    <span style="background: #ffff00">{{ form.infection_history.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.infection_history }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    <input type="text" name="infection_history" size="50" value="{{ form.infection_history }}">
+                {% else %}
+                    {{ form.infection_history }}
+                {% endif %}
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 15px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.found_card_date.errors %}
+                    <span style="background: #ffff00">{{ form.found_card_date.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.found_card_date }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    {{ form.found_card_date | date:'Y-m-d'}}<input type="text" style="display: none;" value="{{ form.found_card_date | date:'Y-m-d' }}" name="found_card_date">
+                {% else %}
+                    {{ found_card_date }}<input type="text" style="display: none;" value="{{ found_card_date }}" name="found_card_date">
+                {% endif %}
+	        </div>
+            <div class="col-md-2" align="right">
+	        	{% if form.found_card_person.errors %}
+                    <span style="background: #ffff00">{{ form.found_card_person.label_tag }}</span>
+                {% else %}
+                    <b>{{ field_card.found_card_person }}:</b>
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% if form == card %}
+                    {{ form.found_card_person }}<input type="text" style="display: none;" value="{{ form.found_card_person }}" name="found_card_person">
+                {% else %}
+                    {{ form.found_card_person }}
+                {% endif %}
+	        </div>
+        </div>
+        {% include 'vaccine/submit.html' %}
+    </form>
+{% endblock %}

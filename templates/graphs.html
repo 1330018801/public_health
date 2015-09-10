@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Graphs</title>
+        <script type="text/javascript" src="../static/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="../static/js/highcharts.js"></script>
+        <script type="text/javascript" src="../static/js/exporting.js"></script>
+        <script type="text/javascript">
+            $.getJSON('/graph_clinics/', function (data) {
+
+                $('#container').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: '卫生院工作量汇总图'
+                    },
+                    xAxis: {
+                        categories: data.clinics
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: '工作量（人次）'
+                        }
+                    },
+                    legend: {
+                        reversed: true
+                    },
+                    plotOptions: {
+                        series: {
+                            stacking: 'normal'
+                        }
+                    },
+                    series: data.series
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+    </body>
+</html>

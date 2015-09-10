@@ -1,0 +1,129 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block addstyle %}
+<style>
+.textbox {
+    height: 20px;
+    margin: 0;
+    padding: 0, 2px;
+    box-sizing: content-box;
+}
+</style>
+{% endblock %}
+
+{% block admin_work %}
+    <!--
+        {% if user.userprofile.role.name == "卫生院管理员" %}
+            <a href="{% url 'management:town_staff_resident_add' %}">
+        {% else %}
+            <a href="{% url 'management:resident_add' %}">
+        {% endif %}
+
+        <h5 class="page-header" align="left">添加常住居民</h5></a>
+    -->
+    <div>
+        <table id="resident_list"></table>
+    </div>
+
+    <div id="tb" style="padding: 5px">
+        <div>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" id="add" onclick="obj.add();">新增</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" id="edit" onclick="obj.edit();">修改</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="remove" onclick="obj.remove();">删除</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none;" id="save" onclick="obj.save();">保存</a>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" style="display: none;" id="undo" onclick="obj.undo();">取消</a>
+        </div>
+        <div style="margin: 5px 0 5px 4px">
+            <label>乡镇：</label><input id="query_town" name="query_town" style="width: 150px"/>
+            <label style="margin-left: 15px;">村/街道：</label><input id="query_village" name="query_village" style="width: 100px"/>
+            <label style="margin-left: 15px;">姓名：</label><input type="text" class="textbox" name="query_name" style="width: 80px"/>
+            <label style="margin-left: 15px;">身份证号码：</label><input type="text" class="textbox" name="query_identity" style="margin-right: 15px"/>
+            <a href="#" class="easyui-linkbutton" iconCls="icon-search" plain="true" onclick="obj.search();">查询</a>
+        </div>
+    </div>
+
+    <div id="resident_add" style="display: none">
+        <form id="resident_add_form" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td width="20%" align="right" >
+                        <label for="name">姓名：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox easyui_validatebox" data-options="required: true" name="name" id="name" />
+                    </td>
+                    <td width="20%" align="right">
+                        <label for="gender">性别：</label>
+                    </td>
+                    <td width="30%">
+                        <input type="radio" name="gender" id="gender_male" value="1" style="margin-left: 10px" checked="checked">男</input>
+                        <input type="radio" name="gender" id="gender_female" value="0" style="margin-left: 10px">女</input>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right" >
+                        <label for="identity">身份证号码：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox easyui_validatebox" data-options="required: true" name="identity" id="identity" />
+                    </td>
+                    <td width="20%" align="right">
+                        <label for="nation">民族：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox" name="nation" id="nation" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right" >
+                        <label for="town1">乡镇：</label>
+                    </td>
+                    <td width="30%">
+                        <input name="town1" id="town1" />
+                    </td>
+                    <td width="20%" align="right">
+                        <label for="village1">村/街道/社区：</label>
+                    </td>
+                    <td width="30%">
+                        <input name="village1" id="village1" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right">
+                        <label for="address">地址：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox" name="address" id="address"/>
+                    </td>
+                    <td width="20%" align="right">
+                        <label for="birthday">出生日期：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-datebox" name="birthday" id="birthday"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="20%" align="right" >
+                        <label for="mobile">电话号码：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox easyui_validatebox" data-options="required: true" name="mobile" id="mobile" />
+                    </td>
+                    <td width="20%" align="right">
+                        <label for="email">电子邮箱：</label>
+                    </td>
+                    <td width="30%">
+                        <input class="easyui-textbox" name="email" id="email" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div id="resident_edit"></div>
+
+{% endblock %}
+
+<script src='{% static "js/resident_list_new.js" %}'></script>

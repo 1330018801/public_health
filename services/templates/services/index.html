@@ -1,0 +1,9 @@
+{% extends 'service_base.html' %}
+{% load staticfiles %}
+
+{% block service_item_list %}
+    {% for item in service_type.service_groups %}
+        <a href="/{{ service_type.alias }}/{{ item.alias }}" class="btn btn-block health-color" align="center">	{{ item.name }}
+        </a><br />
+    {% endfor %}
+{% endblock service_item_list %}

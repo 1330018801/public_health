@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="easyui-layout" id="layout" data-options="fit: true">
+    <div data-options="region:'north', noheader: true, minWidth: 1050" style="height:60px; background-color: #3278b3">
+        <div class="web_logo">
+            三河市基本公共卫生服务信息系统
+        </div>
+        <div class="logout">
+            {% if not request.user.is_staff %}
+            <span style="margin-right: 15px">居民：<span id="resident">无</span></span>
+            {% endif %}
+            <span style="margin-right: 15px">医生：{{ request.user.username }} </span>
+            <a href="{% url 'logout_new' %}" id="logout">退出系统</a>
+        </div>
+    </div>
+    <div data-options="region:'west'" style="width:250px; margin-right: 5px;">
+        <div id="nav_accordion" class="easyui-accordion" data-options="fit: true">
+            <div title="基本公共卫生服务项目">
+                <ul id="svc_nav"></ul>
+            </div>
+            <div id="doc_panel" title="医生个人信息和工作量">
+                <ul id="doc_nav"></ul>
+            </div>
+        </div>
+    </div>
+    <div data-options="region:'center', noheader: true, minWidth: 800" align="center">
+        <div id="svc_area"></div>
+    </div>
+</div>
+
+<script src='{% static "js/test4.js" %}'></script>
+{% endblock %}

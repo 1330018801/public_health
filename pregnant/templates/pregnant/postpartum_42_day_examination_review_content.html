@@ -1,0 +1,55 @@
+{% extends 'pregnant/postpartum42_base.html' %}
+
+{% block visit_date %}{{ form.visit_date | date:"Y-m-d" }}{% endblock %}
+{% block general_health_situation %}{{ form.general_health_situation }}{% endblock %}
+{% block general_mentality_situation %}{{ form.general_mentality_situation }}{% endblock %}
+{% block sbp %}{{ form.sbp }}{% endblock %}
+{% block dbp %}{{ form.dbp }}{% endblock %}
+{% block breast %}
+    {{ form.breast }}
+{% endblock %}
+{% block breast_abnormal %}{{ form.breast_abnormal }}{% endblock %}
+{% block lochia %}
+    {{ form.lochia }}
+{% endblock %}
+{% block lochia_abnormal %}{{ form.lochia_abnormal }}{% endblock %}
+{% block uterus %}
+    {{ form.uterus }}
+{% endblock %}
+{% block uterus_abnormal %}{{ form.uterus_abnormal }}{% endblock %}
+{% block wound %}
+    {{ form.wound }}
+{% endblock %}
+{% block wound_abnormal %}{{ form.wound_abnormal }}{% endblock %}
+{% block extra %}{{ form.extra }}{% endblock %}
+{% block classification %}
+    {{ form.classification }}
+{% endblock %}
+{% block classification_not_recovery %}
+    {{ form.classification_not_recovery }}
+{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.all %}
+        {{ item }}&nbsp;&nbsp;
+    {% endfor %}
+{% endblock %}
+{% block guide_extra %}
+    {{ form.guide_extra }}
+{% endblock %}
+{% block dispose %}
+    {{ form.dispose }}
+{% endblock %}
+{% block dispose_transfer_treatment_reason %}
+    {% ifequal form.dispose '有' %}
+        <br />原因：{{ form.dispose_transfer_treatment_reason }}
+    {% endifequal %}
+{% endblock %}
+{% block dispose_transfer_treatment_institution %}
+    {% ifequal form.dispose '有' %}
+        <br />机构及科室：{{ form.dispose_transfer_treatment_institution }}
+    {% endifequal %}
+{% endblock %}
+{% block doctor_signature %}
+    {{ form.doctor_signature }}
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends 'table_base.html' %}
+
+{% block table_title %}卫生监督协管巡查登记表{% endblock %}
+
+{% block table_neck %}
+<table style="width: 650px; font-size: 13px; margin-bottom: 10px;
+            border-collapse: collapse">
+    <tr>
+        <td colspan="5" width="70%" style="font-size: 16px; font-weight: 500;
+                                            border: none; padding-left: 10px">
+            机构名称：&nbsp;{% block table_institution %}{{ user.userprofile.clinic.name }}<input type="text" style="display: none;" name="institution" value="{{ user.userprofile.clinic.name }}">{% endblock %}
+        </td>
+        <td colspan="3" width="30%" style="font-size: 16px; font-weight: 500; border: none">
+            年度：&nbsp;{% block table_year %}
+            <select id="year" name="year">
+
+            </select>
+            {% endblock %}
+        </td>
+    </tr>
+</table>
+{% endblock %}
+
+{% block table_content %}
+    <tr id="former_records">
+        <td width="" colspan="1" align="center">
+            序号
+        </td>
+        <td width="" colspan="3" align="center">
+            巡查地点与内容
+        </td>
+        <td width="" colspan="6" align="center">
+            发现的主要问题
+        </td>
+        <td width="" colspan="1" align="center">
+            巡查日期
+        </td>
+        <td width="" colspan="1" align="center">
+            巡查人
+        </td>
+        <td width="" colspan="2" align="center">
+            备注
+        </td>
+    </tr>
+    <div>
+    <!--{% for record in records %}
+        <tr>
+            <td width="" colspan="1" align="center">{{ forloop.counter }}</td>
+            <td width="" colspan="3" align="center">{{ record.place_content }}</td>
+            <td width="" colspan="6" align="center">{{ record.main_problem }}</td>
+            <td width="" colspan="1" align="center">{{ record.patrol_date | date:"Y-m-d" }}</td>
+            <td width="" colspan="1" align="center">{{ record.patrolman }}</td>
+            <td width="" colspan="2" align="center">{{ record.remarks }}</td>
+        </tr>
+    {% endfor %}-->
+    </div>
+    <tr>
+        <td width="" colspan="1" align="center"></td>
+        <td width="" colspan="3" align="center">{{ form.place_content }}</td>
+        <td width="" colspan="6" align="center">{{ form.main_problem }}</td>
+        <td width="" colspan="1" align="center">{{ form.patrol_date }}</td>
+        <td width="" colspan="1" align="center">{{ form.patrolman }}</td>
+        <td width="" colspan="2" align="center">{{ form.remarks }}</td>
+    </tr>
+    <script>
+        $(document).ready(function(){
+            var options ='<option value="0">全部</option>';
+            var today = new Date();
+            for (var i = 1970; i<= today.getFullYear(); i++){
+                if (i == today.getFullYear()) {
+                    options += '<option value="' + i + '" selected>' + i + '</option>';
+                }
+                else{
+                    options += '<option value="' + i + '">' + i + '</option>';
+                }
+            }
+            $("select#year").html(options);
+
+            var url = "/supervision/patrol/" + today.getFullYear() + "/former_records/";
+            $.getJSON(url, function(former_records) {
+                        var options1;
+                        for (var i = 0; i < former_records.length; i++) {
+                            options1 += '<tr class="record"><td width="" colspan="1" align="center">' + (i+1) + '</td>' + '<td width="" colspan="3" align="center">' + former_records[i].fields['place_content'] + '</td>' +
+                                    '<td width="" colspan="6" align="center">' + former_records[i].fields['main_problem'] + '</td>'+
+                                    '<td width="" colspan="1" align="center">' + former_records[i].fields['patrol_date'] + '</td>' +
+                                    '<td width="" colspan="1" align="center">' + former_records[i].fields['patrolman'] + '</td>' +
+                                    '<td width="" colspan="3" align="center">' + former_records[i].fields['remarks'] + '</td></tr>';
+
+                        }
+                        //$("#former_records").html("<b>hello</b>");
+                        //$("#former_records").html(options1);
+                        $("#former_records").after(options1);
+                    });
+
+
+            $("select#year").change(function() {
+                    $(".record").remove();
+                    var url = "/supervision/patrol/" + $(this).val() + "/former_records/";
+                    $.getJSON(url, function(former_records) {
+                        var options2;
+                        for (var i = 0; i < former_records.length; i++) {
+                            options2 += '<tr class="record"><td width="" colspan="1" align="center">' + (i+1) + '</td>' + '<td width="" colspan="3" align="center">' + former_records[i].fields['place_content'] + '</td>' +
+                                    '<td width="" colspan="6" align="center">' + former_records[i].fields['main_problem'] + '</td>'+
+                                    '<td width="" colspan="1" align="center">' + former_records[i].fields['patrol_date'] + '</td>' +
+                                    '<td width="" colspan="1" align="center">' + former_records[i].fields['patrolman'] + '</td>' +
+                                    '<td width="" colspan="3" align="center">' + former_records[i].fields['remarks'] + '</td></tr>';
+
+                        }
+                        //$("#former_records").html("<b>hello</b>");
+                        //$("#former_records").html(options1);
+                        $("#former_records").after(options2);
+                    });
+
+            });
+        })
+    </script>
+{% endblock %}
+
+{% block table_foot %}
+    <br>
+    注： 对饮用水卫生安全、学校卫生、非法行医（采供血）开展巡查，填写本表。备注栏填写发现问题后的处置方式（如报告卫生监督机构或者帮助整改等内容）。
+{% endblock %}

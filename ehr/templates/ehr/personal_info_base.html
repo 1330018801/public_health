@@ -1,0 +1,125 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}个人基本信息表{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td colspan="2" width="15%" align="center"><b>性别</b></td>
+        <td colspan="6" align="center" style="padding-left: 5px;">{% block gender %}{% endblock %}</td>
+        <td colspan="2" width="15%" align="center"><b>出生日期</b></td>
+        <td colspan="2" align="center" style="padding-left: 5px;">{% block birthday %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>身份证号</b></td>
+        <td colspan="4" align="center" style="padding-left: 5px;">{% block identity %}{% endblock %}</td>
+        <td colspan="2" align="center"><b>工作单位</b></td>
+        <td colspan="4" align="center" style="padding-left: 5px;">{% block work_company %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>本人电话</b></td>
+        <td colspan="2" width="15%" align="center" style="padding-left: 5px;">{% block phone %}{% endblock %}</td>
+        <td colspan="2" width="15%" align="center"><b>联系人姓名</b></td>
+        <td colspan="2" align="center" style="padding-left: 5px;">{% block contact_name %}{% endblock %}</td>
+        <td colspan="2" width="15%" align="center"><b>联系人电话</b></td>
+        <td colspan="2" width="15%" align="center" style="padding-left: 5px;">{% block contact_phone %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>常住类型</b></td>
+        <td colspan="4" align="center" style="padding-left: 5px;">{% block residence_type %}{% endblock %}</td>
+        <td colspan="2" align="center"><b>民族</b></td>
+        <td colspan="4" align="center" style="padding-left: 5px;">{% block nation %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>血型</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block blood_type %}{% endblock %}
+            {% block blood_rh %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>文化程度</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block education %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>职业</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block occupation %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>婚姻状况</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block marriage %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>医疗费用支付方式</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block payment_way %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>药物过敏史</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block allergy_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>暴露史</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block expose_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td rowspan="4" colspan="1" align="center"><b>既往史</b></td>
+        <td colspan="1" align="center"><b>疾病</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block disease_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center"><b>手术</b></td>
+        <td colspan="10"  style="padding-left: 5px;">{% block surgery_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center"><b>外伤</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block injury_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center"><b>输血</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block transfusion_history %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td rowspan="4" colspan="2" align="center"><b>家族史</b></td>
+        <td colspan="2" align="center"><b>父亲</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block family_history_father %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>母亲</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block family_history_mother %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>兄弟姐妹</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block family_history_sibling %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>子女</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block family_history_children %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>遗传病史</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block genetic_disease %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>残疾情况</b></td>
+        <td colspan="10" style="padding-left: 5px;">{% block disability %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td rowspan="5" colspan="2" align="center"><b>生活环境*</b></td>
+        <td colspan="2" align="center"><b>厨房排风设施</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block surroundings_kitchen_exhaust %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>燃料类型</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block surroundings_fuel_type %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>饮水</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block surroundings_water %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>厕所</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block surroundings_toilet %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center"><b>禽畜栏</b></td>
+        <td colspan="8" style="padding-left: 5px;">{% block surrounding_livestock_fence %}{% endblock %}</td>
+    </tr>
+{% endblock %}

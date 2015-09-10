@@ -1,0 +1,46 @@
+{% load staticfiles %}
+
+<table id="sms_setup"></table>
+
+<div id="sms_setup_toolbar" style="padding: 5px 25px; display: none">
+    <div style="border-bottom: solid 1px #dbdbdb">
+        <a href="#" id="add">添加短信设置</a>
+        <a href="#" id="edit">修改短信设置</a>
+        <a href="#" id="remove">取消短信发送</a>
+        <a href="#" id="save">保存</a>
+        <a href="#" id="undo">取消</a>
+    </div>
+    <table style="margin-top: 5px">
+        <tr style="margin: 5px">
+            <td width="10%" style="padding: 5px" align="right">服务类型：</td>
+            <td width="15%"><input id="service_type" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">服务项目：</td>
+            <td width="15%"><input id="service_item" /></td>
+            <td width="10%" style="margin-left: 15px" align="right">起始时间：</td>
+            <td width="15%"><input id="sms_begin" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">结束时间：</td>
+            <td width="15%"><input id="sms_end" /></td>
+        </tr>
+        <tr>
+            <td width="10%" style="padding: 5px" align="right">乡镇卫生院：</td>
+            <td width="15%"><input id="town_clinic" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">创建者：</td>
+            <td width="15%"><input id="author" /></td>
+            <td width="10%" style="margin-left: 15px;" align="right">最后修改者：</td>
+            <td width="15%"><input id="updater" /></td>
+            <td width="10%" style="margin-left: 15px" align="right">短信状态：</td>
+            <td width="15%"><input id="status" /></td>
+        </tr>
+        <tr>
+            <td colspan="8" align="right" style="padding-right: 30px">
+                <a href="#" id="btn_query">查询</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="sms_setup_add" style="display: none">
+    
+</div>
+
+<script src='{% static "js/sms_setup.js" %}'></script>

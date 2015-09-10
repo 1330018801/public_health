@@ -1,0 +1,20 @@
+    	 <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.normal_or_abnormal.errors or form.abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.normal_or_abnormal.label_tag }}</span>
+                {% elif form.abnormal.errors %}
+                    <span style="background: #ffff00">{{ form.normal_or_abnormal.label_tag }}</span>
+                {% else %}
+                    {{ form.normal_or_abnormal.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                {% for item in form.normal_or_abnormal %}
+                    {% if forloop.counter > 1 and forloop.counter < 3 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}&nbsp;&nbsp;{{ form.abnormal }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+         </div>

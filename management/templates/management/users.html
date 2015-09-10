@@ -1,0 +1,54 @@
+{% load staticfiles %}
+
+<!-- 数据表格 -->
+<table id="user_list"></table>
+
+<!-- 数据表格上方的工具条 -->
+<div id="user_list_tb" style="padding: 5px; display: none;">
+    <div>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" id="add" onclick="obj.add();">新增</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" id="edit">修改</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="remove" onclick="obj.remove();">删除</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" style="display: none;" id="save" onclick="obj.save();">保存</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" style="display: none;" id="undo" onclick="obj.undo();">取消</a>
+    </div>
+    <div style="margin: 5px 0 5px 4px">
+        <label>用户类别：</label><input id="query_user_group" name="query_user_group" style="width: 100px"/>
+        <label style="margin-left: 15px;">所在卫生院：</label><input id="query_town_clinic" name="query_town_clinic" style="width: 150px"/>
+        <label style="margin-left: 15px;">所在卫生室：</label><input id="query_village_clinic" name="query_village_clinic" style="width: 100px"/>
+        <label style="margin-left: 15px;">用户名：</label><input type="text" class="textbox" name="query_username" style="width: 80px"/>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-glyphicons-28-search" plain="true" onclick="obj.search();">查询</a>
+    </div>
+</div>
+
+<!-- 添加用户对话框 -->
+<form id="user_add_form" method="POST" style="display: none; padding: 5px 20px">
+    <table id="user_add_tbl">
+        <tr>
+            <td width="20%" align="right" style="padding: 10px;"><label for="username">用户名：</label></td>
+            <td width="30%"><input name="username"/></td>
+            <td width="20%" align="right"><label for="user_group">类别：</label></td>
+            <td width="30%"><input name="user_group" id="user_group"/></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right"><label for="password">密码：</label></td>
+            <td width="30%"><input name="password" type="password" id="password"/></td>
+            <td width="20%" align="right"><label for="password_again">再输入一遍：</label></td>
+            <td width="30%"><input name="password_again" type="password" id="password_again"/></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="padding: 10px;"><label for="town_clinic">所在卫生院：</label></td>
+            <td width="30%"><input name="town_clinic" id="town_clinic"/></td>
+            <td width="20%" align="right"><label for="village_clinic">所在卫生室：</label></td>
+            <td width="30%"><input name="village_clinic" id="village_clinic"/></td>
+        </tr>
+        <tr>
+            <td width="20%" align="right" style="padding-bottom: 10px;"><label for="department">科室：</label></td>
+            <td width="30%"><input name="department" id="department"/></td>
+            <td width="20%" align="right"><label for="title">职务：</label></td>
+            <td width="30%"><input name="title" id="title" /></td>
+        </tr>
+    </table>
+</form>
+
+<script src='{% static "js/users.js" %}'></script>

@@ -1,0 +1,84 @@
+{% extends "management/admin_base.html" %}
+{% load staticfiles %}
+
+{% block admin_work %}
+<div class="row">
+    <hr/>
+    <form class="form-inline" role="form" method="POST" action="
+        {% if user.userprofile.role.name != "卫生院管理员" %}
+            {% url 'management:statistics_resident' %}
+         {% else %}
+            {% url 'management:town_staff_statistics_resident' %}
+         {% endif %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">居民姓名:</label>
+            {% if name %}
+                <input class="form-control" type="text" name="name" value="{{ name }}"/>
+            {% else %}
+                <input class="form-control" type="text" name="name"/>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="identity">身份证号码:</label>
+            {% if identity %}
+                <input class="form-control" type="text" name="identity" value="{{ identity }}"/>
+            {% else %}
+                <input class="form-control" type="text" name="identity"/>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-default">查询</button>
+    </form>
+</div>
+
+<div class="row">
+    <h5 class="page-header" align="left">查询到服务记录{{ records | length }}个：</h5>
+    {% if err_msg %}
+    <h5 class="page-header" align="left">{{ err_msg }}</h5>
+    {% endif %}
+    <div class="table-responsive">
+        <table class="table table-striped" style="width: 900px; font-size: 13px">
+            <thead>
+                <tr>
+                    <th width="8%">居民姓名</th>
+                    <th width="15%">机构名称</th>
+                    <th width="8%">医生姓名</th>
+                    <th width="20%">服务类别</th>
+                    <th width="17%">服务项目</th>
+                    <th width="17%">完成时间</th>
+                    <th width="5%">状态</th>
+                    <th width="5%">评价</th>
+                    <th width="5%">详情</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for record in records %}
+                <tr>
+                    <th>{{ record.resident.name }}</th>
+                    <th>{{ record.provider.userprofile.clinic.name }}</th>
+                    <th>{{ record.provider.username }}</th>
+                    <th>{{ record.service_item.service_type.name }}</th>
+                    <th>{{ record.service_item.name }}</th>
+                    <th>{{ record.submit_time | date:"Y年m月d日" }} {{ record.submit_time | time:"H:i" }}</th>
+                    <th>{% if record.status == 1 %}  开始
+                        {% elif record.status == 2 %}暂存
+                        {% elif record.status == 3 %}完成
+                        {% elif record.status == 4 %}支付完毕
+                        {% else %}                   未知
+                        {% endif %}
+                    </th>
+                    <th>{% if record.evaluation == 0 %}不满意
+                        {% elif record.evaluation == 1 %}一般
+                        {% elif record.evaluation == 2 %}满意
+                        {% else %}                       未知
+                        {% endif %}
+                    </th>
+                    <!-- <th><a href="/management/statistics/resident/record/{{ record.id }}/">详细结果</a></th> -->
+                    <th><a href="#">查看</a></th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,130 @@
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.growth_evaluate.errors %}
+                    <span style="background: #ffff00">{{ form.growth_evaluate.label_tag }}</span>
+                {% else %}
+                    {{ form.growth_evaluate.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {% for item in form.growth_evaluate %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <!--<div class="col-md-3" align="right">
+	        	{{ form.two_visit_disease.label_tag }}
+	        </div>
+	        <div class="col-md-4">
+                {% for item in form.two_visit_disease %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+                {{ form.two_visit_disease.errors}}
+            </div>-->
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-3">
+	        	{% if form.two_visit_disease.errors %}
+                    <span style="background: #ffff00">{{ form.two_visit_disease.label_tag }}</span>
+                {% else %}
+                    {{ form.two_visit_disease.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-6">
+                {% for item in form.two_visit_disease %}
+                    {% if forloop.counter > 1 and forloop.counter < 4 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.extra.errors %}
+                    <span style="background: #ffff00">{{ form.extra.label_tag }}</span>
+                {% else %}
+                    {{ form.extra.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+                {{ form.extra }}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.transfer_treatment_suggestion.errors %}
+                    <span style="background: #ffff00">{{ form.transfer_treatment_suggestion.label_tag }}</span>
+                {% else %}
+                    {{ form.transfer_treatment_suggestion.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-6">
+                {% for item in form.transfer_treatment_suggestion %}
+                    {% if forloop.counter > 1 and forloop.counter < 3  %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-2">{{ item }}&nbsp;&nbsp;</div><div class="col-md-2" align="right">
+                                {% if form.transfer_treatment_suggestion_reason.errors %}
+                                    <span style="background: #ffff00">{{ form.transfer_treatment_suggestion_reason.label_tag }}</span>
+                                {% else %}
+                                    {{ form.transfer_treatment_suggestion_reason.label_tag }}
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {{ form.transfer_treatment_suggestion_reason }}
+                            </div>
+                    {% endif %}
+                 {% endfor %}
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+
+	        </div>
+	        <div class="col-md-1">
+
+            </div>
+            <div class="col-md-2" align="right">
+                {% if form.transfer_treatment_suggestion_institution.errors %}
+                    <span style="background: #ffff00">{{ form.transfer_treatment_suggestion_institution.label_tag }}</span>
+                {% else %}
+                    {{ form.transfer_treatment_suggestion_institution.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.transfer_treatment_suggestion_institution }}
+            </div>
+        </div>
+
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.guide.errors or form.guide_extra.errors %}
+                    <span style="background: #ffff00">{{ form.guide.label_tag }}</span>
+                {% elif form.guide_extra.errors %}
+                    <span style="background: #ffff00">{{ form.guide.label_tag }}</span>
+                {% else %}
+                    {{ form.guide.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-10">
+                {% for item in form.guide %}
+                    {% if forloop.counter > 0 and forloop.counter < 6 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+                {{ form.guide_extra }}
+            </div>
+        </div>
+        <!--<div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {{ form.next_visit_date.label_tag }}
+            </div>
+            <div class="col-md-4">
+                {{ form.next_visit_date }}&nbsp;&nbsp;{{ form.next_visit_date.errors}}
+            </div>
+        </div>-->
+        {% include 'child/next_visit_date.html' %}
+        {% include 'child/submit.html' %}

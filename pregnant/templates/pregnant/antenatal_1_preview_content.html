@@ -1,0 +1,220 @@
+{% extends 'pregnant/antenatal_1_base.html' %}
+
+{% block visit_date %}
+        {{ form.visit_date.data }}
+{% endblock %}
+
+{% block weeks %}
+        {{ form.weeks.data }}
+{% endblock %}
+
+{% block age %}
+        {{ form.age.data }}
+{% endblock %}
+
+{% block husband_name %}
+        {{ form.husband_name.data }}
+{% endblock %}
+
+{% block husband_age %}
+        {{ form.husband_age.data }}
+{% endblock %}
+
+{% block husband_phone %}
+        {{ form.husband_phone.data }}
+{% endblock %}
+
+{% block pregnant_times %}
+        {{ form.pregnant_times.data }}
+{% endblock %}
+
+{% block production_times %}
+        阴道分娩{{ form.natural_production.data }}次&nbsp&nbsp
+        剖宫产{{ form.surgery_production.data }}次
+{% endblock %}
+
+{% block last_menstruation %}
+        {{ form.last_menstruation.data }}
+{% endblock %}
+
+{% block not_sure %}
+    {{ form.not_sure }}
+{% endblock %}
+
+{% block due_date %}
+        {{ form.due_date.data }}
+{% endblock %}
+
+{% block disease_history %}
+        {% for item in form.disease_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.disease_history_other.data }}
+{% endblock %}
+
+{% block family_history %}
+        {% for item in form.family_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.family_history_other.data }}
+{% endblock %}
+
+{% block personal_history %}
+        {% for item in form.personal_history.data %}
+            {{ item }}&nbsp;
+        {% endfor %}
+        {{ form.personal_history_other.data }}
+{% endblock %}
+
+{% block gynaecology_surgery_history %}
+        {{ form.gynaecology_surgery_history.data }}&nbsp;&nbsp;
+        {{ form.gynaecology_surgery_name.data }}
+{% endblock %}
+
+{% block production_history %}
+        流产{{ form.miscarriage.data }}&nbsp&nbsp
+        死胎{{ form.dead_fetus.data }}&nbsp&nbsp
+        死产{{ form.still_birth.data }}&nbsp&nbsp
+        新生儿死亡{{ form.newnatal_death.data }}&nbsp&nbsp
+        出生缺陷儿{{ form.birth_defect.data }}
+{% endblock %}
+
+{% block height %}
+        {{ form.height.data }}
+{% endblock %}
+
+{% block weight %}
+        {{ form.weight.data }}
+{% endblock %}
+
+{% block bmi %}
+        {{ form.bmi.data }}
+{% endblock %}
+
+{% block blood_pressure %}
+        {{ form.sbp.data }}/{{ form.dbp.data }}mmHg
+{% endblock %}
+
+{% block ausculate_heart %}
+        {{ form.ausculate_heart.data }}
+        {{ form.ausculate_heart_abnormal.data }}
+{% endblock %}
+
+{% block ausculate_lung %}
+        {{ form.ausculate_lung.data }}
+        {{ form.ausculate_lung_abnormal.data }}
+{% endblock %}
+
+{% block vulva %}
+        {{ form.vulva.data }}
+        {{ form.vulva_abnormal.data }}
+{% endblock %}
+
+{% block vagina %}
+        {{ form.vagina.data }}
+        {{ form.vagina_abnormal.data }}
+{% endblock %}
+
+{% block cervix %}
+        {{ form.cervix.data }}
+        {{ form.cervix_abnormal.data }}
+{% endblock %}
+
+{% block uteri %}
+        {{ form.uteri.data }}
+        {{ form.uteri_abnormal.data }}
+{% endblock %}
+
+{% block accessory %}
+        {{ form.accessory.data }}
+        {{ form.accessory_abnormal.data }}
+{% endblock %}
+
+{% block blood_routine_test %}
+        白细胞计数值{{ form.hemoglobin.data }}/L&nbsp;&nbsp;
+        血红蛋白值{{ form.leukocyte.data }}g/L<br />
+        血小板计数值{{ form.thrombocyte.data }}/L&nbsp;&nbsp;
+        其他{{ form.blood_extra.data }}
+{% endblock %}
+
+{% block urine_routine_test %}
+        尿蛋白{{ form.urine_protein.data }}&nbsp;
+        尿糖{{ form.urine_glucose.data }}&nbsp;
+        尿酮体{{ form.urine_ket.data }}&nbsp;
+        尿潜血{{ form.urine_ery.data }}&nbsp;
+        其他{{ form.urine_extra.data }}
+{% endblock %}
+
+{% block blood_type_abo %}
+        {{ form.blood_type_abo.data }}
+        {{ form.blood_type_abo_other.data }}
+{% endblock %}
+
+{% block blood_type_rh %}
+        {{ form.blood_type_rh.data }}
+{% endblock %}
+
+{% block blood_glucose %}{{ form.blood_glucose.data }}mmol/L{% endblock %}
+
+{% block alanine_aminotransferase %}
+        血清谷丙转氨酶{{ form.sgpt.data }}U/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block glutamic_oxalacetic_transaminase %}
+        血清谷草转氨酶{{ form.sgot.data }}U/L<br />
+{% endblock %}
+
+{% block total_bilirubin %}
+        总胆红素{{ form.tbil.data }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block serum_creatinine %}
+        血清肌酐{{ form.scr.data }}&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block blood_urea_nitrogen %}
+        血尿素氮{{ form.bun.data }}&#956mol/L
+{% endblock %}
+
+{% block hepatitis_b_five_item %}
+        乙型肝炎表面抗原&nbsp;&nbsp;{{ form.surface_antigen.data }}<br />
+        乙型肝炎表面抗体&nbsp;&nbsp;{{ form.surface_antibody.data }}<br />
+        乙型肝炎e抗原&nbsp;&nbsp;{{ form.e_antigen.data }}<br />
+        乙型肝炎e抗体&nbsp;&nbsp;{{ form.e_antibody.data }}<br />
+        乙型肝炎核心抗体&nbsp;&nbsp;{{ form.core_antibody.data }}
+{% endblock %}
+
+
+{% block total_evaluation %}
+        {{ form.total_evaluation.data }}
+        {{ form.total_evaluation_abnormal.data }}
+{% endblock %}
+
+{% block guide %}
+        {% for item in form.guide.data %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.guide_other.data }}
+{% endblock %}
+
+{% block transfer %}
+        {{ form.transfer.data }}
+        {% if form.transfer.data == '有' %}
+        原因：{{ form.transfer_reason.data }}&nbsp;&nbsp;&nbsp;&nbsp;
+        机构及科室：{{ form.transfer_hospital.data }}
+        {% endif %}
+{% endblock %}
+
+
+{% block next_visit_date %}
+        {{ form.next_visit_date.data }}
+{% endblock %}
+
+{% block doctor_signature %}
+        {{ form.doctor_signature.data }}
+{% endblock %}

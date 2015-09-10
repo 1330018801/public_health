@@ -1,0 +1,22 @@
+{% extends 'services/index.html' %}
+{% load staticfiles %}
+
+{% block service_item_content %}
+
+<div id="table" style="margin-left: 15px; overflow: auto; float: left;
+                        z-index: 999999999999; width: 720px">
+    <div style="padding: 10px; padding-left: 30px">
+        <form id="psychiatric_basic" name="psychiatric_basic" action="" method="post">
+            {% csrf_token %}
+            <div>{% block table_form %}{% endblock %}</div>
+
+            <input type="hidden" name="{{ stage_field }}" value="1" />
+            <p style="text-align: right; padding-top: 30px; padding-right: 60px">
+                <button type="submit" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-list-alt" style="padding-right: 5px"></span>预览</button>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

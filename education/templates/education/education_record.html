@@ -1,0 +1,9 @@
+{% extends 'management/admin_base.html' %}
+
+{% block admin_work %}
+    <form enctype="multipart/form-data" action="/education/{{ service_item.alias }}/" method="POST">
+    {% csrf_token %}
+    {% include 'education/education_record_form_content.html' %}
+    {% include 'education/submit.html' %}
+    </form>
+{% endblock %}

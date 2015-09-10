@@ -1,0 +1,587 @@
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>一般情况</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+                {% if form.body_temperature.errors %}
+                    <span style="background: #ffff00">{{ form.body_temperature.label_tag }}</span>
+                {% else %}
+                    {{ form.body_temperature.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.body_temperature }}&nbsp;&nbsp;℃
+	        </div>
+	        <div class="col-md-2" align="right">
+                {% if form.pulse.errors %}
+                    <span style="background: #ffff00">{{ form.pulse.label_tag }}</span>
+                {% else %}
+                    {{ form.pulse.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.pulse }}&nbsp;&nbsp;次/分钟
+	        </div>
+        </div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+                {% if form.breath_frequency.errors %}
+                    <span style="background: #ffff00">{{ form.breath_frequency.label_tag }}</span>
+                {% else %}
+                    {{ form.breath_frequency.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.breath_frequency }}&nbsp;&nbsp;次/分钟
+	        </div>
+        </div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+                {% if form.blood_pressure_left.errors %}
+                    <span style="background: #ffff00">{{ form.blood_pressure_left.label_tag }}</span>
+                {% else %}
+                    {{ form.blood_pressure_left.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.blood_pressure_left }}&nbsp;&nbsp;mmHg
+	        </div>
+	        <div class="col-md-2" align="right">
+	        	{% if form.blood_pressure_right.errors %}
+                    <span style="background: #ffff00">{{ form.blood_pressure_right.label_tag }}</span>
+                {% else %}
+                    {{ form.blood_pressure_right.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.blood_pressure_right }}&nbsp;&nbsp;mmHg
+	        </div>
+        </div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.height.errors %}
+                    <span style="background: #ffff00">{{ form.height.label_tag }}</span>
+                {% else %}
+                    {{ form.height.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.height }}&nbsp;&nbsp;厘米
+	        </div>
+	        <div class="col-md-2" align="right">
+	        	{% if form.weight.errors %}
+                    <span style="background: #ffff00">{{ form.weight.label_tag }}</span>
+                {% else %}
+                    {{ form.weight.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.weight }}&nbsp;&nbsp;公斤
+	        </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.waistline.errors %}
+                    <span style="background: #ffff00">{{ form.waistline.label_tag }}</span>
+                {% else %}
+                    {{ form.waistline.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.waistline }}&nbsp;&nbsp;厘米
+	        </div>
+	        <div class="col-md-2" align="right">
+	        	{% if form.body_mass_index.errors %}
+                    <span style="background: #ffff00">{{ form.body_mass_index.label_tag }}</span>
+                {% else %}
+                    {{ form.body_mass_index.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.body_mass_index }}
+	        </div>
+        </div>
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>口腔</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-md-2" align="right">
+                {% if form.mouth_lip.errors %}
+                    <span style="background: #ffff00">{{ form.mouth_lip.label_tag }}</span>
+                {% else %}
+                    {{ form.mouth_lip.label_tag }}
+                {% endif %}
+	    	</div>
+            <div class="col-md-9">
+                {% for item in form.mouth_lip %}
+                    {% if forloop.counter > 1  %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-md-2" align="right">
+                {% if form.mouth_tooth.errors or form.mouth_tooth_hypodontia_upleft.errors or form.mouth_tooth_hypodontia_upright.errors or form.mouth_tooth_hypodontia_bottomleft.errors or form.mouth_tooth_hypodontia_bottomright.errors or form.mouth_tooth_saprodontia_upleft.errors or form.mouth_tooth_saprodontia_upright.errors or form.mouth_tooth_saprodontia_bottomleft.errors or form.mouth_tooth_saprodontia_bottomright.errors or form.mouth_tooth_denture_upleft.errors or form.mouth_tooth_denture_upright.errors or form.mouth_tooth_denture_bottomleft.errors or form.mouth_tooth_denture_bottomright.errors %}
+                    <span style="background: #ffff00">{{ form.mouth_tooth.label_tag }}</span>
+                {% else %}
+                    {{ form.mouth_tooth.label_tag }}
+                {% endif %}
+	    	</div>
+            <div class="col-md-10">
+                {% for item in form.mouth_tooth %}
+                    {% if forloop.counter == 2 %}
+                        <div class="col-md-2">{{ item }}</div>
+            </div>
+    	</div>
+                {% elif forloop.counter == 3 %}
+                <div class="row" style="padding-top: 3px">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                                <div class="col-md-2">{{ item }}</div>
+                                <div class="col-md-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            {{ form.mouth_tooth_hypodontia_upleft }}
+                                            </div>
+                                            <div class="col-md-6">
+                                            {{ form.mouth_tooth_hypodontia_upright }}
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top: 1px">
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_hypodontia_bottomleft }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_hypodontia_bottomright }}
+                                            </div>
+                                        </div>
+                                </div>
+                    </div>
+                </div>
+                {% elif forloop.counter == 4 %}
+                <div class="row" style="padding-top: 3px">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                                    <div class="col-md-2">{{ item }}</div>
+                                    <div class="col-md-2">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_saprodontia_upleft }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_saprodontia_upright }}
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top: 2px">
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_saprodontia_bottomleft }}
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ form.mouth_tooth_saprodontia_bottomright }}
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+                </div>
+                    {% elif forloop.counter == 5 %}
+                    <div class="row" style="padding-top: 3px">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10">
+                                        <div class="col-md-2">{{ item }}</div>
+                                        <div class="col-md-2">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {{ form.mouth_tooth_denture_upleft }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form.mouth_tooth_denture_upright }}
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-top: 2px">
+                                                <div class="col-md-6">
+                                                    {{ form.mouth_tooth_denture_bottomleft }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form.mouth_tooth_denture_bottomright }}
+                                                </div>
+                                            </div>
+                                        </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+    	<div class="row">
+	    	<div class="col-md-2" align="right">
+                {% if form.mouth_throat.errors %}
+                    <span style="background: #ffff00">{{ form.mouth_throat.label_tag }}</span>
+                {% else %}
+                    {{ form.mouth_throat.label_tag }}
+                {% endif %}
+	    	</div>
+            <div class="col-md-9">
+                {% for item in form.mouth_throat %}
+                    {% if forloop.counter == 2 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 4 %}
+                        <div class="col-md-4">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>视力</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.eyesight_left.errors %}
+                    <span style="background: #ffff00">{{ form.eyesight_left.label_tag }}</span>
+                {% else %}
+                    {{ form.eyesight_left.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.eyesight_left }}
+	        </div>
+	        <div class="col-md-2" align="right">
+	        	{% if form.eyesight_right.errors %}
+                    <span style="background: #ffff00">{{ form.eyesight_right.label_tag }}</span>
+                {% else %}
+                    {{ form.eyesight_right.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.eyesight_right }}
+	        </div>
+        </div>
+    	<div class="row" style="padding-top: 4px">
+	        <div class="col-md-2" align="right">
+	        	{% if form.eyesight_left_rectified.errors %}
+                    <span style="background: #ffff00">{{ form.eyesight_left_rectified.label_tag }}</span>
+                {% else %}
+                    {{ form.eyesight_left_rectified.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.eyesight_left_rectified }}
+	        </div>
+	        <div class="col-md-2" align="right">
+	        	{% if form.eyesight_right_rectified.errors %}
+                    <span style="background: #ffff00">{{ form.eyesight_right_rectified.label_tag }}</span>
+                {% else %}
+                    {{ form.eyesight_right_rectified.label_tag }}
+                {% endif %}
+	        </div>
+	        <div class="col-md-4">
+	        	{{ form.eyesight_right_rectified }}
+	        </div>
+        </div>
+        <!-- hearing -->
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>听力</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-md-2" align="right">
+                {% if form.hearing.errors %}
+                    <span style="background: #ffff00">{{ form.hearing.label_tag }}</span>
+                {% else %}
+                    {{ form.hearing.label_tag }}
+                {% endif %}
+	    	</div>
+            <div class="col-md-9">
+                {% for item in form.hearing %}
+                    {% if forloop.counter == 2 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    	</div>
+        <!-- movement functionality -->
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>运动功能</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row">
+	    	<div class="col-md-2" align="right">
+                {% if form.movement_function.errors %}
+                    <span style="background: #ffff00">{{ form.movement_function.label_tag }}</span>
+                {% else %}
+                    {{ form.movement_function.label_tag }}
+                {% endif %}
+	    	</div>
+                {% for item in form.movement_function %}
+                    {% if forloop.counter == 2 %}
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 3 %}
+                        <div class="col-md-6">{{ item }}</div>
+                    {% endif %}
+                {% endfor %}
+    	</div>
+        <!-- skin -->
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>皮肤</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row" style="padding-top: 4px">
+	    	<div class="col-md-2" align="right">
+                {% if form.skin.errors %}
+                    <span style="background: #ffff00">{{ form.skin.label_tag }}</span>
+                {% elif form.skin_extra.errors %}
+                    <span style="background: #ffff00">{{ form.skin.label_tag }}</span>
+                {% else %}
+                    {{ form.skin.label_tag }}
+                {% endif %}
+	    	</div>
+            <div class="col-md-9">
+                <div class="row" style="padding-top: 4px">
+                {% for item in form.skin %}
+                    {% if forloop.counter > 1 and forloop.counter < 7 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 7 %}
+                </div>
+                <div class="row" style="padding-top: 4px">
+                        <div class="col-md-3">{{ item }}</div>
+                    {% elif forloop.counter == 8 %}
+                        <div class="col-md-2">{{ item }}</div>
+                        <div class="col-md-4">{{ form.skin_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+    	</div>
+        <!-- lymph node -->
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>淋巴结</strong></h4>
+	    	</div>
+    	</div>
+    	<div class="row" style="padding-top: 4px">
+	    	<div class="col-md-2" align="right">
+                {% if form.lymph_node.errors %}
+                    <span style="background: #ffff00">{{ form.lymph_node.label_tag }}</span>
+                {% elif form.lymph_node_extra.errors %}
+                    <span style="background: #ffff00">{{ form.lymph_node.label_tag }}</span>
+                {% else %}
+                    {{ form.lymph_node.label_tag }}
+                {% endif %}
+	    	</div>
+                {% for item in form.lymph_node %}
+                    {% if forloop.counter > 1 and forloop.counter < 5 %}
+                        <div class="col-md-2">{{ item }}</div>
+                    {% elif forloop.counter == 5 %}
+        </div>
+        <div class="row" style="padding-top: 4px">
+                        <div class="col-md-2 col-md-offset-2">{{ item }}</div>
+                        <div class="col-md-4">{{ form.lymph_node_extra }}</div>
+                    {% endif %}
+                {% endfor %}
+    	</div>
+        <!-- lymph node -->
+    	<div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>肺</strong></h4>
+	    	</div>
+    	</div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.lung_barrel_chested.errors %}
+                    <span style="background: #ffff00">{{ form.lung_barrel_chested.label_tag }}</span>
+                {% else %}
+                    {{ form.lung_barrel_chested.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.lung_barrel_chested %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.lung_breath_sound.errors %}
+                    <span style="background: #ffff00">{{ form.lung_barrel_chested.label_tag }}</span>
+                {% else %}
+                    {{ form.lung_breath_sound.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.lung_breath_sound %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.lung_rale.errors %}
+                    <span style="background: #ffff00">{{ form.lung_rale.label_tag }}</span>
+                {% elif form.lung_rale_extra.errors %}
+                    <span style="background: #ffff00">{{ form.lung_rale.label_tag }}</span>
+                {% else %}
+                    {{ form.lung_rale.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.lung_rale %}
+                {% if forloop.counter > 1 and forloop.counter < 5 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% elif forloop.counter == 5 %}
+        </div>
+        <div class="row" style="padding-top: 4px">
+                <div class="col-md-2 col-md-offset-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.lung_rale_extra }}</div>
+        </div>
+        <!-- for heart -->
+        <div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>心脏</strong></h4>
+	    	</div>
+    	</div>
+        <div class="row">
+            <div class="col-md-2" align="right">
+                {% if form.heart_rate.errors %}
+                    <span style="background: #ffff00">{{ form.heart_rate.label_tag }}</span>
+                {% else %}
+                    {{ form.heart_rate.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.heart_rate }}&nbsp;&nbsp;次/分钟
+            </div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.heart_rhythm.errors %}
+                    <span style="background: #ffff00">{{ form.heart_rhythm.label_tag }}</span>
+                {% else %}
+                    {{ form.heart_rhythm.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.heart_rhythm %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.heart_noise.errors %}
+                    <span style="background: #ffff00">{{ form.heart_noise.label_tag }}</span>
+                {% elif form.heart_noise_extra.errors %}
+                    <span style="background: #ffff00">{{ form.heart_noise.label_tag }}</span>
+                {% else %}
+                    {{ form.heart_noise.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.heart_noise %}
+                {% if forloop.counter > 1 %}
+                    <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.heart_noise_extra }}</div>
+        </div>
+        <!-- for stomach -->
+        <div class="row">
+	    	<div class="col-md-3">
+		    	<h4 class="page-header" style="color: green"><strong>腹部</strong></h4>
+	    	</div>
+    	</div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.stomach_tenderness.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_tenderness.label_tag }}</span>
+                {% elif form.stomach_tenderness_extra.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_tenderness.label_tag }}</span>
+                {% else %}
+                    {{ form.stomach_tenderness.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.stomach_tenderness %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.stomach_tenderness_extra }}</div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.stomach_enclosed_mass.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_enclosed_mass.label_tag }}</span>
+                {% elif form.stomach_enclosed_mass_extra.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_enclosed_mass.label_tag }}</span>
+                {% else %}
+                    {{ form.stomach_enclosed_mass.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.stomach_enclosed_mass %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.stomach_enclosed_mass_extra }}</div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.stomach_hepatomegaly.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_hepatomegaly.label_tag }}</span>
+                {% elif form.stomach_hepatomegaly_extra.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_hepatomegaly.label_tag }}</span>
+                {% else %}
+                    {{ form.stomach_hepatomegaly.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.stomach_hepatomegaly %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.stomach_hepatomegaly_extra }}</div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.stomach_slenauxe.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_slenauxe.label_tag }}</span>
+                {% elif form.stomach_slenauxe_extra.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_slenauxe.label_tag }}</span>
+                {% else %}
+                    {{ form.stomach_slenauxe.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.stomach_slenauxe %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.stomach_slenauxe_extra }}</div>
+        </div>
+        <div class="row" style="padding-top: 4px">
+            <div class="col-md-2" align="right">
+                {% if form.stomach_shifting_dullness.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_shifting_dullness.label_tag }}</span>
+                {% elif form.stomach_shifting_dullness_extra.errors %}
+                    <span style="background: #ffff00">{{ form.stomach_shifting_dullness.label_tag }}</span>
+                {% else %}
+                    {{ form.stomach_shifting_dullness.label_tag }}
+                {% endif %}
+            </div>
+            {% for item in form.stomach_shifting_dullness %}
+                {% if forloop.counter > 1 %}
+                <div class="col-md-2">{{ item }}</div>
+                {% endif %}
+            {% endfor %}
+            <div class="col-md-2">{{ form.stomach_shifting_dullness_extra }}</div>
+        </div>

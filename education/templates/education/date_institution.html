@@ -1,0 +1,13 @@
+        {% include 'education/date.html' %}
+        <div class="row" style="padding-top: 15px">
+            <div class="col-md-2" align="right">
+                {% if form.institution.errors %}
+                    <span style="background: #ffff00">{{ form.institution.label_tag }}</span>
+                {% else %}
+                    {{ form.institution.label_tag }}
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                {{ form.institution }}
+            </div>
+        </div>

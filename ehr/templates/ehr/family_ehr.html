@@ -1,0 +1,50 @@
+{% load staticfiles %}
+
+<div id="family_ehr" class="easyui-accordion" data-options="fit: true">
+    <div title="家庭成员列表" style="overflow: auto;">
+        <div id="family_list"></div>
+    </div>
+    <div title="个人基本信息表" style="overflow: auto;">
+        <div id="personal_info_toolbar" class="datagrid-toolbar">
+            <a href="#" id="personal_info_save">保存</a>
+            <a href="#" id="personal_info_edit">编辑</a>
+            <a href="#" id="personal_info_undo">取消</a>
+            <a href="#" id="personal_info_print">打印</a>
+        </div>
+        <form id="personal_info_form" method="POST">
+            <div id="personal_info_table" align="center" style="padding-bottom: 30px;"></div>
+        </form>
+    </div>
+    <div id="service_records" title="公共卫生服务记录" style="overflow: auto;">
+        <div id="records_datagrid"></div>
+    </div>
+</div>
+
+<div id="family_toolbar" style="padding: 5px 25px; display: none">
+    <div style="border-bottom: solid 1px #dbdbdb">
+        <a href="#" id="child_add">增加婴幼儿</a>
+        <a href="#" id="child_edit">编辑婴幼儿</a>
+        <a href="#" id="child_save">保存婴幼儿</a>
+        <a href="#" id="child_undo">取消婴幼儿</a>
+        <a href="#" id="adult_add">增加成年人</a>
+        <a href="#" id="old_add">增加老年人</a>
+        <a href="#" id="chg_resident">切换服务对象</a>
+        <a href="#" id="member_rm">删除家庭成员</a>
+    </div>
+</div>
+
+<div id="adult_add_dialog">
+    <table id="adult_add_dg"></table>
+</div>
+
+<div id="adult_add_tb" style="display: none; padding: 10px 20px;">
+    <label for="name">姓名：</label><input id="name" name="name" style="width: 80px"/>
+    <label for="gender" style="margin-left: 15px;">性别：</label><input id="gender" name="gender" />
+    <label for="identity" style="margin-left: 15px;">身份证号码：</label><input id="identity" name="identity" style="width: 100px"/>
+    <a id="query" href="#">查询</a>
+</div>
+
+<div id="personal_info_review" style="display: none; padding: 10px; font-size: 13px;" align="center"></div>
+<div id="record_detail_review" style="display: none; padding: 10px; font-size: 13px;" align="center"></div>
+
+<script src='{% static "js/family_ehr.js" %}'></script>

@@ -1,0 +1,46 @@
+{% extends 'ehr/psychiatric_info_base.html' %}
+
+{% block guardian_name %}
+    {{ form.guardian_name.value }}
+{% endblock %}
+{% block guardian_relation %}{{ form.guardian_relation.value }}{% endblock %}
+{% block guardian_address %}{{ form.guardian_address.value }}{% endblock %}
+{% block guardian_phone %}{{ form.guardian_phone.value }}{% endblock %}
+{% block community_contact_name %}{{ form.community_contact_name.value }}{% endblock %}
+{% block community_contact_phone %}{{ form.community_contact_phone.value }}{% endblock %}
+{% block assent %}
+    {{ form.assent.value }}
+{% endblock %}
+{% block signature_date %}{{ form.signature_date.value | date:"Y-m-d"}}{% endblock %}
+{% block disease_begin_date %}{{ form.disease_begin_date.value | date:"Y-m-d"}}{% endblock %}
+{% block symptom %}
+    {% for item in form.symptom.value %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+{% block symptom_other %}{{ form.symptom_other.value }}{% endblock %}
+{% block cure_outpatient %}
+    {{ form.cure_outpatient.value }}
+{% endblock %}
+{% block drug_first_date %}{{ form.drug_first_date.value | date:"Y-m-d"}}{% endblock %}
+{% block cure_hospital %}{{ form.cure_hospital.value }}{% endblock %}
+{% block diagnose %}{{ form.diagnose.value }}{% endblock %}
+{% block diagnose_hospital %}{{ form.diagnose_hospital.value }}{% endblock %}
+{% block diagnose_date %}{{ form.diagnose_date.value | date:"Y-m-d"}}{% endblock %}
+{% block cure_effect %}
+    {{ form.cure_effect.value }}
+{% endblock %}
+{% block social_effect_minor %}{{ form.social_effect_minor.value }}{% endblock %}
+{% block social_effect_trouble %}{{ form.social_effect_trouble.value }}{% endblock %}
+{% block social_effect_disaster %}{{ form.social_effect_disaster.value }}{% endblock %}
+{% block social_effect_self_injury %}{{ form.social_effect_self_injury.value }}{% endblock %}
+{% block social_effect_suicide %}{{ form.social_effect_suicide.value }}{% endblock %}
+{% block lock %}
+    {{ form.lock.value }}
+{% endblock %}
+{% block economy %}
+    {{ form.economy.value }}
+{% endblock %}
+{% block doctor_advice %}{{ form.doctor_advice.value }}{% endblock %}
+{% block fill_table_date %}{{ form.fill_table_date.value | date:"Y-m-d"}}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature.value }}{% endblock %}

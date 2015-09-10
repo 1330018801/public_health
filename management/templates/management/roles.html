@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+<div>
+    <table id="roles"></table>
+</div>
+
+<div id="roles_toolbar" style="padding: 5px">
+    <a href="#" id="btn_authorize" class="easyui-linkbutton" plain="true">设置角色权限</a>
+</div>
+
+<!-- 设置角色权限对话框 -->
+<div id="role_authorize" style="padding: 10px; display: none">
+    <form id="role_authorize_form" method="POST">
+    <select multiple="multiple" id="service_item_select" name="service_item_select">
+        <optgroup label="健康教育服务"></optgroup>
+
+        <optgroup label="Summer"></optgroup>
+        <optgroup label="Winter"></optgroup>
+
+        <optgroup label="预防接种服务"></optgroup>
+        <optgroup label="0-6岁儿童健康管理服务"></optgroup>
+        <optgroup label="孕产妇健康服务"></optgroup>
+        <optgroup label="老年人健康管理服务"></optgroup>
+        <optgroup label="高血压患者健康管理服务"></optgroup>
+        <optgroup label="2型糖尿病患者健康管理服务"></optgroup>
+        <optgroup label="重性精神疾病患者健康管理服务"></optgroup>
+        <optgroup label="中医药健康管理服务"></optgroup>
+        <optgroup label="传染病及突发公共卫生事件报告和处理"></optgroup>
+        <optgroup label="卫生监督协管"></optgroup>
+    </select>
+    </form>
+</div>
+
+<script src='{% static "lou-multi-select/js/jquery.multi-select.js"%}'></script>
+<script src='{% static "js/roles.js" %}'></script>

@@ -1,0 +1,53 @@
+{% extends 'pregnant/postpartum_base.html' %}
+
+{% block visit_date %}{{ form.visit_date | date:"Y-m-d" }}{% endblock %}
+{% block body_temperature %}{{ form.body_temperature }}{% endblock %}
+{% block general_health_situation %}{{ form.general_health_situation }}{% endblock %}
+{% block general_mentality_situation %}{{ form.general_mentality_situation }}{% endblock %}
+{% block sbp %}{{ form.sbp }}{% endblock %}
+{% block dbp %}{{ form.dbp }}{% endblock %}
+{% block breast %}
+    {{ form.breast }}
+{% endblock %}
+{% block breast_abnormal %}{{ form.breast_abnormal }}{% endblock %}
+{% block lochia %}
+    {{ form.lochia }}
+{% endblock %}
+{% block lochia_abnormal %}{{ form.lochia_abnormal }}{% endblock %}
+{% block uterus %}
+    {{ form.uterus }}
+{% endblock %}
+{% block uterus_abnormal %}{{ form.uterus_abnormal }}{% endblock %}
+{% block wound %}
+    {{ form.wound }}
+{% endblock %}
+{% block wound_abnormal %}{{ form.wound_abnormal }}{% endblock %}
+{% block extra %}{{ form.extra }}{% endblock %}
+{% block classification %}
+    {{ form.classification }}
+{% endblock %}
+{% block classification_abnormal %}{{ form.classification_abnormal }}{% endblock %}
+
+{% block guide %}
+    {% for item in form.guide.all %}
+        {{ item }}
+    {% endfor %}
+{% endblock %}
+{% block guide_abnormal %}
+    {{ form.guide_extra }}
+{% endblock %}
+{% block transfer_treatment %}
+    {{ form.transfer_treatment }}
+{% endblock %}
+{% block transfer_treatment_reason %}
+    {% ifequal form.transfer_treatment '有' %}
+    <br>原因：{{ form.transfer_treatment_reason }}&nbsp;&nbsp;
+    {% endifequal %}
+{% endblock %}
+{% block transfer_treatment_institution %}
+    {% ifequal form.transfer_treatment.data '有' %}
+    <br>机构及科室：{{ form.transfer_treatment_institution }}
+    {% endifequal %}
+{% endblock %}
+{% block next_visit_date %}{{ form.next_visit_date | date:"Y-m-d" }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature }}{% endblock %}

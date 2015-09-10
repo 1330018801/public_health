@@ -1,0 +1,273 @@
+{% extends "health_base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 darkgreen-bg left-container">
+			<!--<h3 class="page-header" align="center">头像</h3>-->
+            {% block service_item_list %}{% endblock %}
+		</div> <!-- left section -->
+		<div class="col-lg-9 col-md-9 col-sm-6 col-xs-12 white-bg right-container">
+			{% block service_header %}<h3 class="page-header">用户中心</h3>{% endblock %}
+			{% block service_item_content %}
+                <form action="{% url 'management:user_profile' %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.non_filed_errors }}
+                    <!--以下为必填项-->
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4 class="page-header" style="color: green"><strong>基本信息</strong></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.name.errors %}
+                                    <span style="background: #ffff00">{{ form.name.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.name }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                    {{ form.name }}<input type="text" style="display: None" name="name" value="{{ form.name }}">
+                                {% else %}
+                                    {{ form.name }}<span style="color:red;">*</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.gender.errors %}
+                                    <span style="background: #ffff00">{{ form.gender.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.gender }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-7">
+                                {% if form == userprofile.resident %}
+                                    {% if form.gender == 0 %}
+                                        女<input type="radio" style="display:none;" value="0" name="gender" checked/>
+                                    {% elif form.gender == 1 %}
+                                        男<input type="radio" style="display:none;" value="1" name="gender" checked/>
+                                    {% else %}
+                                        未知<input type="radio" style="display:none;" value="2" name="gender" checked/>
+                                    {% endif %}
+                                {% else %}
+                                    {% for item in form.gender %}
+                                        {% if forloop.counter > 1 and forloop.counter < 5 %}
+                                            <div class="col-md-2">{{ item }}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <span style="color:red;">*</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.nation.errors %}
+                                    <span style="background: #ffff00">{{ form.nation.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.nation }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                    {{ form.nation }}<input type="text" style="display:none;" value="{{ form.nation }}" name="nation"/>
+                                {% else %}
+                                    {{ form.nation }}<span style="color:red;">*</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.identity.errors %}
+                                    <span style="background: #ffff00">{{ form.identity.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.identity }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                    {{ form.identity }}<input type="text" style="display:none;" value="{{ form.identity }}" name="identity"/>
+                                {% else %}
+                                    {{ form.identity }}<span style="color:red;">*</span>
+                                {% endif %}
+
+                            </div>
+                        </div>
+
+                    <!--birthday,address,mobile,email为非必填项,role,clinic，department，position是已有的-->
+                        <!--<div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">-->
+                                <!--{% if form.birthday == None %}
+                                    {{ form.birthday.label_tag }}
+                                {% else %}
+                                    {{ fieldresident.birthday }}：
+                                {% endif %}-->
+                                 <!--{{ fieldresident.birthday }}：
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident and form.birthday != ""%}
+                                    {{ form.birthday | date:"Y-m-d" }}<input type="text" style="display:none;" value="{{ form.birthday|date:"Y-m-d" }}" name="birthday"/>
+                                {% else %}
+                                    <input type="text" value="" name="birthday"/>
+                                {% endif %}
+                                &nbsp;&nbsp;{{ form.birthday.errors }}
+                            </div>
+                        </div>-->
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.birthday.errors %}
+                                    <span style="background: #ffff00">{{ form.birthday.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.birthday }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                        <div class='input-group date' id='datepicker1' data-date="{{ form.birthday | date:"Y-m-d" }}">
+                                            <input type='text' id="{{ form.birthday_id }}" class="form-control"
+                                                   name="birthday" value="{{ form.birthday | date:"Y-m-d" }}">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                     &nbsp;&nbsp;
+                                        {% if birthday_errors != None %}
+                                                <span style="color:red;">{{ birthday_errors }}</span>
+                                        {% endif %}
+                                {% else %}
+                                        <div class='input-group date' id='datepicker1'>
+                                            <input type='text' id="{{ form.birthday_id }}" class="form-control"
+                                                   name="{{ form.birthday.name }}" value="">
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                {% endif %}
+                                <script type="text/javascript">
+                                    $(function () {
+                                        $('#datepicker1').datepicker({
+                                            format: 'yyyy-mm-dd',
+                                            autoclose: true,
+                                            language: 'zh-CN',
+                                            todayHighlight: true
+                                        });
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.address.errors %}
+                                    <span style="background: #ffff00">{{ form.address.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.address }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                    <input type="text"  value="{{ form.address }}" name="address"/>
+                                {% else %}
+                                    {{ form.address }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4 class="page-header" style="color: green"><strong>用户信息</strong></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {{ fielduserprofile.role }}：
+                            </div>
+                            <div class="col-md-4">
+                                {{ userprofile.role }}&nbsp;&nbsp;{{ userprofile.role.errors }}
+
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {{ fielduserprofile.clinic }}：
+                            </div>
+                            <div class="col-md-4">
+                                {% if userprofile.clinic == None %}
+                                {% else %}
+                                    {{ userprofile.clinic }}&nbsp;&nbsp;{{ userprofile.clinic.errors }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {{ fielduserprofile.department }}：
+                            </div>
+                            <div class="col-md-4">
+                                {{ userprofile.department }}&nbsp;&nbsp;{{ userprofile.department.errors }}
+
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {{ fielduserprofile.position }}：
+                            </div>
+                            <div class="col-md-4">
+                                {{ userprofile.position }}&nbsp;&nbsp;{{ userprofile.position.errors }}
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h4 class="page-header" style="color: green"><strong>联系方式</strong></h4>
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.mobile.errors %}
+                                    <span style="background: #ffff00">{{ form.mobile.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.mobile }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-4">
+                                {% if form == userprofile.resident %}
+                                    <input type="text"  value="{{ form.mobile }}" name="mobile"/>
+                                {% else %}
+                                    {{ form.mobile }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top: 4px">
+                            <div class="col-md-2" align="right">
+                                {% if form.email.errors %}
+                                    <span style="background: #ffff00">{{ form.email.label_tag }}</span>
+                                {% else %}
+                                    <b>{{ fieldresident.email }}:</b>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
+                                {% if form == userprofile.resident %}
+                                    <input type="text"  value="{{ form.email }}" name="email"/>&nbsp;&nbsp;
+                                    {% if email_errors != None %}
+                                        <span style="color:red;">{{ email_errors }}</span>
+                                    {% endif %}
+                                {% else %}
+                                    {{ form.email }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- for submit part -->
+                        <div class="row">
+                            <hr style="color: green"/>
+                            <div class="col-md-4 col-md-offset-2" align="center">
+                                <button type="submit" class="btn btn-default">提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="{% url 'management:userprofile_index' %}" class="btn btn-default">返回</a>
+                            </div>
+                        </div>
+                    </form>
+			{% endblock %}
+		</div> <!-- right section -->
+	</div>
+</div>
+{% endblock %}

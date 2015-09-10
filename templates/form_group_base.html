@@ -1,0 +1,24 @@
+{% extends 'management/admin_base.html' %}
+{% load staticfiles %}
+
+{% block admin_work %}
+
+<div id="table" style="margin-left: 15px; overflow: auto; float: left;
+                        z-index: 999999999999; width: 720px">
+    <div style="padding: 10px; padding-left: 30px">
+        <form enctype="multipart/form-data" id="psychiatric_basic" name="psychiatric_basic" action="" method="post">
+            {% csrf_token %}
+            <div>{% block table_form %}{% endblock %}</div>
+
+            <input type="hidden" name="{{ stage_field }}" value="1" />
+            <p style="text-align: right; padding-top: 30px; padding-right: 60px">
+                <!--<input type="submit" value="预览" style="background: #ccc; width: 60px; font-size: 15px"/>
+                -->
+                <button type="submit" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-list-alt" style="padding-right: 5px"></span>预览</button>
+            </p>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

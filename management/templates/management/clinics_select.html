@@ -1,0 +1,68 @@
+<div class="form-group">
+    {% if user.userprofile.role.name != "卫生院管理员" %}
+    <label class="col-md-3 control-label" for="town_clinic">乡镇卫生院:</label>
+    <div class="col-md-3">
+        <select class="form-control" id="town_clinic" name="town_clinic">
+            <option value="0">全部</option>
+            {% for the_town_clinic in town_clinics %}
+                {% if the_town_clinic == town_clinic %}
+                    <option value="{{ the_town_clinic.id }}" selected>{{ the_town_clinic.name }}</option>
+                {% else %}
+                    <option value="{{ the_town_clinic.id }}">{{ the_town_clinic.name }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <label class="col-md-3 control-label" for="village_clinic">村卫生室:</label>
+    <div class="col-md-3">
+        <select class="form-control" id="village_clinic" name="village_clinic">
+            <option value="0">全部</option>
+            {% if town_clinic %}
+                {% for the_village_clinic in town_clinic.village_clinics.all %}
+                    {% if the_village_clinic == village_clinic %}
+                        <option value="{{ the_village_clinic.id }}" selected>{{ the_village_clinic.name }}</option>
+                    {% else %}
+                        <option value="{{ the_village_clinic.id }}">{{ the_village_clinic.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </select>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $("select#town_clinic").change(function() {
+                if ($(this).val() == '0'){
+                    $("select#village_clinic").html("<option value='0'>全部</option>");
+                    $("select#village_clinic").attr('disabled', true);
+                }
+                else {
+                    var url = "/management/clinic/" + $(this).val() + "/village_clinics/";
+                    $.getJSON(url, function(village_clinics) {
+                        var options = '<option value="0">全部</option>';
+                        for (var i = 0; i < village_clinics.length; i++) {
+                            options += '<option value="' + village_clinics[i].pk + '">' + village_clinics[i].fields['name'] + '</option>';
+                        }
+                        $("select#village_clinic").html(options);
+                        $("select#village_clinic option:first").attr('selected', 'selected');
+                        $("select#village_clinic").attr('disabled', false);
+                    });
+                }
+            });
+        })
+    </script>
+    {% else %}
+        <label class="col-md-3 control-label" for="village_clinic">村卫生室:</label>
+        <div class="col-md-3">
+            <select class="form-control" id="village_clinic" name="village_clinic">
+                <option value="0">全部</option>
+                    {% for the_village_clinic in village_clinics.all %}
+                        {% if the_village_clinic == village_clinic %}
+                            <option value="{{ the_village_clinic.id }}" selected>{{ the_village_clinic.name }}</option>
+                        {% else %}
+                            <option value="{{ the_village_clinic.id }}">{{ the_village_clinic.name }}</option>
+                        {% endif %}
+                    {% endfor %}
+            </select>
+        </div>
+    {% endif %}
+</div>
