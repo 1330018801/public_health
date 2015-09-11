@@ -18,6 +18,9 @@ from .models import Clinic, Region, UserProfile, GroupProfile, Service, Resident
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
 
+import logging
+debug = logging.getLogger('debug')
+
 
 @login_required
 def index(request):
@@ -44,9 +47,6 @@ def user_add(request):
         'town_clinics': town_clinics,
         'village_clinics': village_clinics
     })
-
-import logging
-debug = logging.getLogger('debug')
 
 
 @login_required
@@ -3391,10 +3391,7 @@ def user_query_list(request):
                 item['name'] = user.userprofile.resident.name
         json_items.append(item)
 
-    json_data = dict()
-    json_data['total'] = users.count()
-    json_data['rows'] = json_items
-    return JsonResponse(json_data)
+    return JsonResponse({'total': users.count(), 'rows': json_items})
 
 
 def get_town_village_clinics(request, town_clinic_id):
@@ -3459,60 +3456,44 @@ def get_roles(request):
 
     return JsonResponse(json_data, safe=False)
 
+from django.utils import timezone
+
 
 def user_add_test(request):
     username = request.POST.get('username').strip()
     try:
-        user = User.objects.get(username=username)
+        User.objects.get(username=username)
     except User.DoesNotExist:
-        user = User()
-        user.username = username
-        user.set_password(request.POST.get('password'))
+        user = User(username=username, is_superuser=False, is_active=True, date_joined=timezone.now())
         group = Group.objects.get(id=int(request.POST.get('user_group')))
-        if group.groupprofile.is_staff:
-            user.is_staff = True
-        else:
-            user.is_staff = False
-        user.is_superuser = False
-        user.is_active = True
-        user.date_joined = datetime.now()
-        user_profile = UserProfile()
+        user.is_staff = True if group.groupprofile.is_staff else False
+        user.set_password(request.POST.get('password'))
+        user.save()
 
+        user_profile = UserProfile(user=user, role=group, create_by=request.user,
+                                   department=request.POST.get('department', ''),
+                                   position=request.POST.get('position', ''))
         town_clinic_id = int(request.POST.get('town_clinic', '0'))
         if town_clinic_id:
             user_profile.clinic = Clinic.objects.get(id=town_clinic_id)
-
         village_clinic_id = int(request.POST.get('village_clinic', '0'))
         if village_clinic_id:
             user_profile.clinic = Clinic.objects.get(id=village_clinic_id)
-
-        user_profile.department = request.POST.get('department', '')
-        user_profile.position = request.POST.get('position', '')
-        user_profile.create_by = request.user
-        user_profile.enabled = 1
-        user.save()
-        user_profile.user = user
-        user_profile.role = group
         user_profile.save()
 
         for service_item in group.groupprofile.default_services.all():
             user_profile.authorized_services.add(service_item)
 
-        success = 'true'
-        msg = u'添加用户【' + username + u'】成功'
+        success, msg = True, u'添加用户【' + username + u'】成功'
     else:
-        success = 'false'
-        msg = '用户已存在'
+        success, msg = False, u'使用该用户名的用户已存在'
 
-    json_data = {'success': success, 'message': msg}
-    return JsonResponse(json_data)
+    return JsonResponse({'success': success, 'message': msg})
 
 
 def user_del_test(request):
-    success = 'false'
-    msg = ''
+    success, msg = False, ''
     user_id = int(request.POST.get('user_id', '0'))
-
     if user_id:
         try:
             user = User.objects.get(id=user_id)
@@ -3526,8 +3507,7 @@ def user_del_test(request):
             else:
                 user_profile.delete()
             user.delete()
-            success = 'true'
-            msg = u'删除用户' + user.username + u'完成'
+            success, msg = True, u'删除用户' + user.username + u'完成'
     else:
         msg = u'用户参数错误'
 

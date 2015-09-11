@@ -1,0 +1,321 @@
+[
+{
+    "fields": {
+        "url": "/ehr/ehr_page/",
+        "text": "\u5bb6\u5ead\u5065\u5eb7\u6863\u6848\u7ba1\u7406",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 1
+},
+{
+    "fields": {
+        "url": "/vaccine/vaccine_page/",
+        "text": "\u9884\u9632\u63a5\u79cd\u670d\u52a1",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 2
+},
+{
+    "fields": {
+        "url": "",
+        "text": "0-6\u5c81\u513f\u7ae5\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 3
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u5b55\u4ea7\u5987\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 4
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u8001\u5e74\u4eba\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 5
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u9ad8\u8840\u538b\u60a3\u8005\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 6
+},
+{
+    "fields": {
+        "url": "",
+        "text": "2\u578b\u7cd6\u5c3f\u75c5\u60a3\u8005\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 7
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u91cd\u6027\u7cbe\u795e\u75be\u75c5\u60a3\u8005\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 8
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u4e2d\u533b\u836f\u5065\u5eb7\u7ba1\u7406\u670d\u52a1",
+        "state": "closed",
+        "iconCls": "icon-glyphicons-462-saw-blade",
+        "nid": 0
+    },
+    "model": "management.svcnav",
+    "pk": 9
+},
+{
+    "fields": {
+        "url": "",
+        "text": "\u5efa\u7acb\u513f\u7ae5\u4fdd\u5065\u624b\u518c",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 3
+    },
+    "model": "management.svcnav",
+    "pk": 52
+},
+{
+    "fields": {
+        "url": "/child/newborn/",
+        "text": "\u65b0\u751f\u513f\u5bb6\u5ead\u8bbf\u89c6",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 3
+    },
+    "model": "management.svcnav",
+    "pk": 53
+},
+{
+    "fields": {
+        "url": "/child/health_0_1_page/",
+        "text": "1\u5c81\u4ee5\u5185\u513f\u7ae5\u5065\u5eb7\u68c0\u67e5",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 3
+    },
+    "model": "management.svcnav",
+    "pk": 54
+},
+{
+    "fields": {
+        "url": "/child/health_1_2_page/",
+        "text": "1-2\u5c81\u513f\u7ae5\u5065\u5eb7\u68c0\u67e5",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 3
+    },
+    "model": "management.svcnav",
+    "pk": 55
+},
+{
+    "fields": {
+        "url": "/child/health_3_6_page/",
+        "text": "3-6\u5c81\u513f\u7ae5\u5065\u5eb7\u68c0\u67e5",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 3
+    },
+    "model": "management.svcnav",
+    "pk": 56
+},
+{
+    "fields": {
+        "url": "/pregnant/aftercare_1_page/",
+        "text": "\u7b2c1\u6b21\u4ea7\u524d\u968f\u8bbf",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 4
+    },
+    "model": "management.svcnav",
+    "pk": 66
+},
+{
+    "fields": {
+        "url": "/pregnant/aftercare_2_5_page/",
+        "text": "\u7b2c2-5\u6b21\u4ea7\u524d\u968f\u8bbf",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 4
+    },
+    "model": "management.svcnav",
+    "pk": 67
+},
+{
+    "fields": {
+        "url": "/pregnant/postpartum_visit/",
+        "text": "\u4ea7\u540e\u8bbf\u89c6",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 4
+    },
+    "model": "management.svcnav",
+    "pk": 68
+},
+{
+    "fields": {
+        "url": "/pregnant/postpartum_42day/",
+        "text": "\u4ea7\u540e42\u5929\u5065\u5eb7\u68c0\u67e5",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 4
+    },
+    "model": "management.svcnav",
+    "pk": 72
+},
+{
+    "fields": {
+        "url": "/old/body_exam_page/",
+        "text": "\u5065\u5eb7\u4f53\u68c0\uff08\u8001\u5e74\u4eba\u4f53\u68c0\uff09",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 5
+    },
+    "model": "management.svcnav",
+    "pk": 73
+},
+{
+    "fields": {
+        "url": "/old/living_selfcare_appraisal_page/",
+        "text": "\u8001\u5e74\u4eba\u751f\u6d3b\u81ea\u7406\u80fd\u529b\u8bc4\u4f30",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 5
+    },
+    "model": "management.svcnav",
+    "pk": 74
+},
+{
+    "fields": {
+        "url": "/hypertension/body_exam_page/",
+        "text": "\u5065\u5eb7\u4f53\u68c0\uff08\u4e00\u822c\u4f53\u683c\u68c0\u67e5\uff09",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 6
+    },
+    "model": "management.svcnav",
+    "pk": 75
+},
+{
+    "fields": {
+        "url": "/hypertension/aftercare_page/",
+        "text": "\u9ad8\u8840\u538b\u60a3\u8005\u968f\u8bbf",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 6
+    },
+    "model": "management.svcnav",
+    "pk": 76
+},
+{
+    "fields": {
+        "url": "/diabetes/body_exam_page/",
+        "text": "\u5065\u5eb7\u4f53\u68c0\uff08\u4e00\u822c\u4f53\u683c\u68c0\u67e5\uff09",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 7
+    },
+    "model": "management.svcnav",
+    "pk": 80
+},
+{
+    "fields": {
+        "url": "/diabetes/aftercare_page/",
+        "text": "2\u578b\u7cd6\u5c3f\u75c5\u60a3\u8005\u968f\u8bbf",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 7
+    },
+    "model": "management.svcnav",
+    "pk": 81
+},
+{
+    "fields": {
+        "url": "/psychiatric/personal_info_page/",
+        "text": "\u91cd\u6027\u7cbe\u795e\u75be\u75c5\u60a3\u8005\u4e2a\u4eba\u4fe1\u606f\u8865\u5145\u8868",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 8
+    },
+    "model": "management.svcnav",
+    "pk": 85
+},
+{
+    "fields": {
+        "url": "/psychiatric/aftercare_page/",
+        "text": "\u91cd\u6027\u7cbe\u795e\u75be\u75c5\u60a3\u8005\u968f\u8bbf",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 8
+    },
+    "model": "management.svcnav",
+    "pk": 86
+},
+{
+    "fields": {
+        "url": "/psychiatric/body_exam_page/",
+        "text": "\u5065\u5eb7\u4f53\u68c0\uff08\u4e00\u822c\u4f53\u683c\u68c0\u67e5\uff09",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 8
+    },
+    "model": "management.svcnav",
+    "pk": 93
+},
+{
+    "fields": {
+        "url": "/tcm/child_page/",
+        "text": "\u513f\u7ae5\u4e2d\u533b\u836f\u5065\u5eb7\u7ba1\u7406",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 9
+    },
+    "model": "management.svcnav",
+    "pk": 98
+},
+{
+    "fields": {
+        "url": "/tcm/old_identify_page/",
+        "text": "\u5065\u5eb7\u4f53\u68c0\uff08\u8001\u5e74\u4eba\u4e2d\u533b\u4f53\u8d28\u8fa8\u8bc6\uff09",
+        "state": "open",
+        "iconCls": "icon-glyphicons-138-cogwheels",
+        "nid": 9
+    },
+    "model": "management.svcnav",
+    "pk": 100
+}
+]
