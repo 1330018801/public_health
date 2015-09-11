@@ -9,7 +9,7 @@ from django.db.models.loading import get_model
 from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.models import User, Group
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -3247,12 +3247,13 @@ def village_clinic_list_new(request):
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
 
-    query_town = request.POST.get('query_town', '')
-    query_village = request.POST.get('query_village', '')
+    query_town_clinic = request.POST.get('query_town_clinic', '0')
+    query_village = request.POST.get('query_village_clinic_name', '')
 
     village_clinics = Clinic.in_village.all().order_by('id')
-    if query_town and query_town != '0':
-        village_clinics = village_clinics.filter(town_clinic=query_town)
+    if query_town_clinic and query_town_clinic != '0':
+        town_clinic = Clinic.in_town.get(id=int(query_town_clinic))
+        village_clinics = village_clinics.filter(town_clinic=town_clinic)
     if query_village:
         village_clinics = village_clinics.filter(name__icontains=query_village)
 
@@ -3264,27 +3265,20 @@ def village_clinic_list_new(request):
 
         json_items.append(item)
 
-    json_data = dict()
-    json_data['total'] = village_clinics.count()
-    json_data['rows'] = json_items
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data)
+    #return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    return JsonResponse({'total': village_clinics.count(), 'rows': json_items})
 
 
 def get_town_clinics(request):
     first_text = request.POST.get('first_text', '')
-    json_data = []
-    json_item = {'id': '0', 'name': first_text}
-    json_data.append(json_item)
+    json_items = [{'id': 0, 'name': first_text}]
 
     town_clinics = Clinic.in_town.all()
     for clinic in town_clinics:
-        json_item = dict()
-        json_item['id'], json_item['name'] = clinic.id, clinic.name
-        json_data.append(json_item)
+        json_items.append(model_to_dict(clinic, fields=['id', 'name']))
 
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data, safe=False)
+    #return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    return JsonResponse(json_items, safe=False)
 
 
 def get_town_clinic_edit(request):
@@ -3338,8 +3332,8 @@ def village_clinic_del_test(request):
         success = False
 
     json_data = {'success': success, 'name': village_clinic_name}
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data)
+    # return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    return JsonResponse(json_data)
 
 
 def village_clinic_update_test(request):
@@ -3522,13 +3516,13 @@ def user_add_test(request):
 
 
 def user_del_test(request):
-    success, msg = False, ''
+    success, message = False, ''
     user_id = int(request.POST.get('user_id', '0'))
     if user_id:
         try:
             user = User.objects.get(id=user_id)
         except User.DoesNotExist:
-            msg = u'用户不存在'
+            message = u'用户不存在'
         else:
             try:
                 user_profile = UserProfile.objects.get(user=user)
@@ -3537,13 +3531,13 @@ def user_del_test(request):
             else:
                 user_profile.delete()
             user.delete()
-            success, msg = True, u'删除用户' + user.username + u'完成'
+            success, message = True, u'删除用户' + user.username + u'完成'
     else:
-        msg = u'用户参数错误'
+        message = u'用户参数错误'
 
-    return HttpResponse(simplejson.dumps({'success': success, 'message': msg}),
-                        content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': msg})
+    #return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+    #                    content_type='text/html; charset=UTF-8')
+    return JsonResponse({'success': success, 'message': message})
 
 
 def service_types(request):
@@ -3564,15 +3558,14 @@ def service_type_list_new(request):
 
 def service_type_options(request):
     first_text = request.POST.get('first_text', '')
-    json_items = []
-    json_items.append({'id': 0, 'name': first_text})
+    json_items = [{'id': 0, 'name': first_text}]
 
     serivce_types = Service.types.all()
     for service_type in serivce_types:
         item = model_to_dict(service_type, fields=['id', 'name'])
         json_items.append(item)
-    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_items, safe=False)
+    # return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    return JsonResponse(json_items, safe=False)
 
 
 def service_item_list_new(request):

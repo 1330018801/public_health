@@ -1,17 +1,7 @@
 $(function() {
-
-    var query_town_clinic = $('#query_town_clinic');
-    query_town_clinic.combobox({
-        url: '/management/get_town_clinics/',
-        valueField: 'id',textField: 'name', editable: false, width: 150,
-        onLoadSuccess: function () {
-            $(this).combobox('setValue', '0');
-        }
-    });
-
-    var query_village = $('#query_village');
-    query_village.textbox({ width: 100 });
-
+    var datagrid = $('#village_clinics');
+    var selected_row = undefined;   // 选中行的对象
+    var edit_row = undefined;       // 编辑行的index
     var toolbar = $('#village_clinic_tb');
 
     var btn_add = toolbar.find('#add').linkbutton({ iconCls: 'icon-add', plain: true });
@@ -19,9 +9,24 @@ $(function() {
     var btn_rm = toolbar.find('#remove').linkbutton({ iconCls: 'icon-remove', plain: true });
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_undo = toolbar.find('#undo').linkbutton({ iconCls: 'icon-undo', plain: true });
+
+    var query_town_clinic = toolbar.find('#query_town_clinic');
+    var query_village_clinic_name = toolbar.find('#query_village').textbox({ width: 100 });
     var btn_query = toolbar.find('#query').linkbutton({
         iconCls: 'icon-glyphicons-28-search', plain: true
     });
+
+    query_town_clinic.combobox({
+        url: '/management/get_town_clinics/',
+        valueField: 'id',textField: 'name', editable: false, width: 150,
+        onBeforeLoad: function (param) {
+            param.first_text = '全部'
+        },
+        onLoadSuccess: function () {
+            $(this).combobox('setValue', 0);
+        }
+    });
+
     btn_save.hide(); btn_undo.hide();
     btn_edit.linkbutton('disable');
     btn_rm.linkbutton('disable');
@@ -54,39 +59,31 @@ $(function() {
     });
 
     btn_rm.bind('click', function () {
-        var rows = datagrid.datagrid('getSelections');
-        if (rows.length > 0) {
+        if (selected_row) {
             $.messager.confirm('确认操作', '要删除所选择的卫生室吗？', function(flag) {
                 if (flag) {
-                    var ids = [];
-                    for (var i = 0; i < rows.length; i++) {
-                        ids.push(rows[i].id);
-                    }
                     $.ajax({
                         url: '/management/village_clinic_del_test/', method: 'POST',
-                        data: { service_item_id: ids[0] },
+                        data: { village_clinic_id: selected_row['id'] },
                         success: function (data) {
-                            if (data) {
+                            if (data.success) {
                                 datagrid.datagrid('reload');
                                 datagrid.datagrid('unselectAll');
-                                selected_row = undefined; edit_row = undefined
+                                selected_row = undefined; edit_row = undefined;
                                 btn_edit.linkbutton('disable');
                                 btn_rm.linkbutton('disable');
                                 $.messager.show({ title: '提示', timeout: 1000, msg: '卫生室删除成功！' })
+                            } else {
+                                $.messager.alert('提示', '删除卫生室时发生错误', 'warning');
                             }
                         }
                     });
                 }
             });
-        } else {
-            $.messager.alert('提示', '请选择所要删除的卫生室', 'info');
         }
     });
 
-    btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
-    });
-
+    btn_save.bind('click', function () { datagrid.datagrid('endEdit', edit_row); });
     btn_undo.bind('click', function () {
         datagrid.datagrid('rejectChanges');
         selected_row = undefined; edit_row = undefined;
@@ -95,18 +92,13 @@ $(function() {
         btn_edit.linkbutton('disable');
         btn_rm.linkbutton('disable');
     });
-
     btn_query.bind('click', function () {
         datagrid.datagrid('reload', {
             query_town_clinic: query_town_clinic.combobox('getValue'),
-            query_village: query_village.textbox('getValue')
+            query_village_clinic_name: query_village_clinic_name.textbox('getValue')
         });
     });
 
-    var selected_row = undefined;   // 选中行的对象
-    var edit_row = undefined;       // 编辑行的index
-
-    var datagrid = $('#village_clinics');
     datagrid.datagrid({
         title: '村卫生室信息列表', toolbar: '#village_clinic_tb',
         url: '/management/village_clinic_list_new/',
@@ -134,8 +126,9 @@ $(function() {
                 btn_rm.linkbutton('enable');
             }
         },
-        onDblClickRow: function(index, row) {
-            alert('clinic on the row');
+        onLoadSuccess: function () {
+            btn_edit.linkbutton('disable');
+            btn_rm.linkbutton('disable');
         },
         onAfterEdit: function() {
             btn_save.hide(); btn_undo.hide();

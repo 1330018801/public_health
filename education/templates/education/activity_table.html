@@ -1,10 +1,10 @@
 <h4 align="center" style="padding: 5px;">健康教育活动登记表</h4>
 <table style="width: 760px;">
     <tr>
-        <td colspan="4" width="50%"><label for="act_time">活动时间：</label>
+        <td colspan="4" style="width: 380px;"><label for="act_time">活动时间：</label>
             {% block act_time %}<input id="act_time" name="act_time"/>{% endblock %}
         </td>
-        <td colspan="4" width="50%"><label for="scene">活动地点：</label>
+        <td colspan="4" style="width: 380px;"><label for="scene">活动地点：</label>
             {% block scene %}<input id="scene" name="scene"/>{% endblock %}
         </td>
     </tr>
@@ -24,38 +24,38 @@
         </td>
     </tr>
     <tr>
-        <td colspan="4"><label for="crowd_type">接受健康教育人员类别：</label>
+        <td colspan="4" style="width: 380px;"><label for="crowd_type">接受健康教育人员类别：</label>
             {% block crowd_type %}<input id="crowd_type" name="crowd_type" />{% endblock %}
         </td>
-        <td colspan="4"><label for="crowd_num">接受健康教育人数：</label>
+        <td colspan="4" style="width: 380px;"><label for="crowd_num">接受健康教育人数：</label>
             {% block crowd_num %}<input id="crowd_num" name="crowd_num"/>{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="4"><label for="material_type">健康教育资料发放种类：</label>
+        <td colspan="4" style="width: 380px;"><label for="material_type">健康教育资料发放种类：</label>
             {% block material_type %}<input id="material_type" name="material_type" />{% endblock %}
         </td>
-        <td colspan="4"><label for="material_num">数量：</label>
+        <td colspan="4" style="width: 380px;"><label for="material_num">数量：</label>
             {% block material_num %}<input id="material_num" name="material_num" />{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="border-right-color: #ffffff;" width="20%">
+        <td colspan="1" style="border-right-color: #ffffff; width: 140px;">
             <label for="content" style="width: 100px;">活动内容：</label></td>
-        <td colspan="6">{% block content %}
-            <textarea rows="5" cols="90" id="content" name="content" style="border: solid 1px #dbdbdb"></textarea>
+        <td colspan="7" style="width: 620px;">{% block content %}
+            <textarea rows="5" cols="100" id="content" name="content" style="border: solid 1px #dbdbdb"></textarea>
         {% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" style="border-right-color: #ffffff" width="20%">
+        <td colspan="1" style="border-right-color: #ffffff; width: 140px;">
             <label for="summary" style="width: 100px;">活动总结评价：</label></td>
-        <td colspan="6">{% block summary %}
-            <textarea rows="5" cols="90" id="summary" name="summary" style="border: solid 1px #dbdbdb"></textarea>
+        <td colspan="7" style="width: 620px;">{% block summary %}
+            <textarea rows="5" cols="100" id="summary" name="summary" style="border: solid 1px #dbdbdb"></textarea>
         {% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" style="border-right-color: #ffffff" width="20%">
+        <td colspan="1" style="border-right-color: #ffffff; width: 140px;">
             <label for="photo">存档材料附后：</label></td>
-        <td colspan="6">{% block photo %}<input id="photo" name="photo" />{% endblock %}</td>
+        <td colspan="7" style="width: 620px;">{% block photo %}<input id="photo" name="photo" />{% endblock %}</td>
     </tr>
 </table>

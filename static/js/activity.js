@@ -22,11 +22,11 @@ $(function() {
     btn_rm.hide(); btn_save.hide(); btn_undo.hide();
 
     var table = $('#act_tbl');
-    table.find('#act_time').datetimebox({ required: true, showSeconds: false });
+    table.find('#act_time').datetimebox({ required: true, showSeconds: false, width: 120 });
     table.find('#scene').textbox({ width: 250, required: true });
     table.find('#act_type').combobox({
         valueField: 'text', textField: 'text',
-        data: act_type2, required: true
+        data: act_type2, required: true, width: 120
     });
     table.find('#subject').textbox({ width: 300, required: true });
     table.find('#organizer').textbox({ width: 200, required: true });
@@ -34,14 +34,14 @@ $(function() {
     table.find('#crowd_num').numberbox({ width: 80, required: true });
     table.find('#material_type').textbox({ width: 150, required: true });
     table.find('#material_num').numberbox({ width: 80, required: true });
-    table.find('#photo').filebox({ buttonText: '选择附件'});
+    table.find('#photo').filebox({ buttonText: '选择附件', width: 200});
 
     var form = $('#act_tbl_form').form();
 
     btn_add.bind('click', function () {
         table.dialog({
             title: '健康教育活动记录表',
-            width: 800, height: 400, cache: true, modal: true, resizable: true,
+            width: 820, height: 400, cache: true, modal: true, resizable: true,
             buttons: [{
                 text: '提交', iconCls: 'icon-ok',
                 handler: function () {

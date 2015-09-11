@@ -1,35 +1,8 @@
 $(function() {
 
-    // 返回数据表格中某行的某个字段的对象
-    // index：数据表格的行索引
-    // field：行中字段的名称
-    function get_edit_field(index, field) {
-        return datagrid.datagrid('getEditor', { index: index, field: field });
-    }
-
-    // 编辑数据表格中某行时，所属服务类别的下拉菜单选项
-    // field: 所属服务类别字段
-    function serviceTypeOptions(field) {
-        var current_service_type = $(field.target).combobox('getValue');
-        $(field.target).combobox({
-            url: '/management/service_type_options/',
-            valueField: 'name', textField: 'name', editable: false,
-            onBeforeLoad: function (param) {
-                param.first_text = ''
-            },
-            onLoadSuccess: function() {
-                if (current_service_type) {
-                    $(this).combobox('setValue', current_service_type);
-                } else {
-                    $(this).combobox('setValue', '');
-                }
-            }
-        });
-    }
-
+    var datagrid = $('#service_items');
     var selected_row = undefined;   // 选定行对象
     var edit_row = undefined;       // 编辑行的index
-
     // 工具栏及其上按钮和空间初始化
     var toolbar = $('#service_items_tb');
 
@@ -45,7 +18,7 @@ $(function() {
     btn_edit.linkbutton('disable');
     btn_rm.linkbutton('disable');
 
-    var query_service_type = $('#query_service_type').combobox({
+    var query_service_type = toolbar.find('#query_service_type').combobox({
         url: '/management/service_type_options/',
         valueField: 'id', textField: 'name', editable: false, width: 200,
         onBeforeLoad: function (param) {
@@ -55,10 +28,11 @@ $(function() {
             $(this).combobox('setValue', '0');
         }
     });
-    var query_service_item_name = $('#query_service_item_name').textbox({ width: 100 });
+    var query_service_item_name = toolbar.find('#query_service_item_name').textbox({ width: 100 });
 
     // 工具栏按钮的事件绑定
     btn_add.bind('click', function() {
+        console.log(btn_add);
         if (edit_row == undefined) {
             btn_save.show(); btn_undo.show();
             btn_add.linkbutton('disable');
@@ -70,10 +44,7 @@ $(function() {
             serviceTypeOptions(get_edit_field(edit_row, 'service_type'));
         }
     });
-    btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
-    });
-
+    btn_save.bind('click', function () { datagrid.datagrid('endEdit', edit_row); });
     btn_edit.bind('click', function () {
         if (selected_row == undefined) {
             $.messager.alert('警告', '请先选定记录再修改！', 'warning');
@@ -88,7 +59,6 @@ $(function() {
             btn_save.show(); btn_undo.show();
         }
     });
-
     btn_rm.bind('click', function () {
         var rows = datagrid.datagrid('getSelections');
         if (rows.length > 0) {
@@ -118,7 +88,6 @@ $(function() {
             $.messager.alert('提示', '请选择所要删除的服务项目', 'info');
         }
     });
-
     btn_undo.bind('click', function () {
         datagrid.datagrid('rejectChanges');
         selected_row = undefined; edit_row = undefined;
@@ -126,18 +95,14 @@ $(function() {
         btn_add.linkbutton('enable');
         btn_edit.linkbutton('disable');
         btn_rm.linkbutton('disable');
+        console.log(btn_undo);
     });
-
     btn_query.bind('click', function () {
         datagrid.datagrid('load', {
             query_service_type: query_service_type.combobox('getValue'),
             query_service_item_name: query_service_item_name.textbox('getValue')
         });
     });
-
-    // 数据表格定义
-    var datagrid = $('#service_items');
-
     datagrid.datagrid({
         title: '基本公共卫生服务计费项目列表', toolbar: '#service_items_tb',
         url: '/management/service_item_list_new/',
@@ -145,7 +110,9 @@ $(function() {
         pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
         columns: [[
             { field: 'id', title: '编码', hidden: true },
-            { field: 'service_type', title: '所属服务类别', width: 20 },
+            { field: 'service_type', title: '所属服务类别', width: 20, editor: {
+                type: 'combobox'
+            } },
             { field: 'name', title: '服务项目名称', width: 20, editor: {
                 type: 'validatebox', options: { required: true } } },
             { field: 'unit', title: '计价单位', width: 10, editor: {
@@ -208,5 +175,33 @@ $(function() {
             btn_save.hide(); btn_undo.hide();
         }
     });
+
+
+    // 返回数据表格中某行的某个字段的对象
+    // index：数据表格的行索引
+    // field：行中字段的名称
+    function get_edit_field(index, field) {
+        return datagrid.datagrid('getEditor', { index: index, field: field });
+    }
+
+    // 编辑数据表格中某行时，所属服务类别的下拉菜单选项
+    // field: 所属服务类别字段
+    function serviceTypeOptions(field) {
+        var current_service_type = $(field.target).combobox('getValue');
+        $(field.target).combobox({
+            url: '/management/service_type_options/',
+            valueField: 'name', textField: 'name', editable: false,
+            onBeforeLoad: function (param) {
+                param.first_text = ''
+            },
+            onLoadSuccess: function() {
+                if (current_service_type) {
+                    $(this).combobox('setValue', current_service_type);
+                } else {
+                    $(this).combobox('setValue', '');
+                }
+            }
+        });
+    }
 
 });
