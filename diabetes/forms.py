@@ -10,7 +10,9 @@ class AftercareForm(ModelForm):
         fields = '__all__'
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
-                                           'data-options': 'formatter:myformatter,parser:myparser'}),
+                                           'data-options': 'formatter:myformatter,'
+                                                           'parser:myparser, '
+                                                           'required: true'}),
             'visit_way': RadioSelect,
             'symptom': CheckboxSelectMultiple,
             'symptom_extra': Textarea(attrs={'class': 'easyui-textbox', 'data-options': 'multiline:true',

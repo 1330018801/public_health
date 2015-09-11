@@ -1,11 +1,12 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 from datetime import datetime, date
 import os
+import simplejson
+
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render
-from django.http import JsonResponse
 
 from django.utils import timezone
 from education.forms import *
@@ -181,7 +182,9 @@ def activity_list(request):
             item['act_time'] = act.act_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
             json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse(json_items, safe=False)
 
 
 def activity_table(request):
@@ -204,7 +207,11 @@ def activity_table(request):
     else:
         success = False
         message = u'健康教育活动数据验证失败'
-    return JsonResponse({'success': success, 'message': message})
+
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def activity_review(request):
@@ -213,4 +220,6 @@ def activity_review(request):
     form = EducationActivityForm(instance=activity)
 
     response = render(request, 'education/activity_table_review.html', {'form': form}).content
-    return JsonResponse(response, safe=False)
+    return HttpResponse(simplejson.dumps(response), content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse(response, safe=False)

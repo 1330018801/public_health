@@ -56,20 +56,25 @@ $(function () {
 
     btn_save.bind('click', function () {
         form.form('submit', {
-             url: '/diabetes/aftercare_submit/',
-             onSubmit: function (param) {
-                 param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                 param.aftercare = aftercare;
-             },
-             success: function (data) {
-                 var data_obj = eval('(' + data + ')');
-                 if (data_obj.success) {
-                     $.messager.show({title: '提示', msg: '随访记录保存成功', timeout: 1000});
-                 } else {
-                     $.messager.alert('提示', '随访记录保存失败', 'warning');
-                 }
-                 panel.panel({ href: '/diabetes/aftercare_review/' })
-             }
+            url: '/diabetes/aftercare_submit/',
+            onSubmit: function (param) {
+                param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                param.aftercare = aftercare;
+                if (!form.find('input[name=visit_way]').is(":checked")) {
+                    $.messager.alert('提示', '请选随访方式', 'info');
+                    return false;
+                }
+                return form.form('validate');
+            },
+            success: function (data) {
+                var data_obj = eval('(' + data + ')');
+                if (data_obj.success) {
+                    $.messager.show({title: '提示', msg: '随访记录保存成功', timeout: 1000});
+                } else {
+                    $.messager.alert('提示', '随访记录保存失败', 'warning');
+                }
+                panel.panel({ href: '/diabetes/aftercare_review/' })
+            }
         });
     });
 

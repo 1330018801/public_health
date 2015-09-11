@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
+import simplejson
 
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from management.models import WorkRecord, Service
 from services.utils import get_resident, get_model, get_model_name
@@ -123,7 +124,9 @@ def aftercare_1_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def aftercare_1_review(request):
@@ -139,7 +142,10 @@ def aftercare_1_review(request):
         success = True
         message = render(request, 'pregnant/aftercare_1_review_content.html',
                          {'form': result, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def aftercare_2_5_page(request):
@@ -185,7 +191,9 @@ def aftercare_2_5_submit(request):
         record.save()
         success = True
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def postpartum_visit(request):
@@ -208,7 +216,9 @@ def postpartum_visit_review(request):
         success = True
         message = render(request, 'pregnant/postpartum_review_content.html',
                          {'form': form, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def postpartum_visit_submit(request):
@@ -223,7 +233,9 @@ def postpartum_visit_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def postpartum_42day(request):
@@ -246,7 +258,9 @@ def postpartum_42day_review(request):
         success = True
         message = render(request, 'pregnant/postpartum42_review_content.html',
                          {'form': form, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def postpartum_42day_submit(request):
@@ -261,4 +275,6 @@ def postpartum_42day_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})

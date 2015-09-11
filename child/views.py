@@ -1,8 +1,10 @@
 import logging
+import simplejson
 
-from django.http import JsonResponse
+# from django.http import JsonResponse
 from django.shortcuts import render
 from django.apps import apps
+from django.http import HttpResponse
 
 from management.models import WorkRecord, Resident, Service
 from services.utils import get_model_name
@@ -40,7 +42,10 @@ def newborn_visit_submit(request):
         debug.info(form.errors.as_data())
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': success})
 
 
 def newborn_visit_review(request):
@@ -55,7 +60,11 @@ def newborn_visit_review(request):
         success = True
         message = render(request, 'child/newborn_family_visit_review_content.html',
                          {'form': form, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+    #return JsonResponse({'success': success, 'message': message})
 
 
 def health_0_1_page(request):
@@ -110,7 +119,10 @@ def health_0_1_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': success})
 
 
 def health_1_2_page(request):
@@ -165,7 +177,10 @@ def health_1_2_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': success})
 
 
 def health_3_6_page(request):
@@ -220,4 +235,7 @@ def health_3_6_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': success})

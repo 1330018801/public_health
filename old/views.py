@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
+import simplejson
 
 from django.shortcuts import render 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 from management.models import WorkRecord, Service
 from services.utils import get_resident
@@ -140,7 +141,9 @@ def body_exam_submit(request):
         success = False
         message = u'没有提交任何数据结果'
 
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def living_selfcare_appraisal_page(request):
@@ -178,4 +181,6 @@ def living_selfcare_appraisal_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})

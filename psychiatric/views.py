@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
+import simplejson
 
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from management.models import Service, WorkRecord
@@ -15,7 +16,6 @@ debug = logging.getLogger('debug')
 
 def personal_info_page(request):
     resident = get_resident(request)
-    ehr_no = resident.ehr_no if resident.ehr_no else ''
     form = PsychiatricInfoForm()
     return render(request, 'psychiatric/personal_info.html',
                   {'form': form, 'resident': resident})
@@ -30,7 +30,9 @@ def personal_info_review(request):
                          {'form': form, 'resident': resident}).content
     else:
         success, message = False, ''
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def personal_info_submit(request):
@@ -45,7 +47,9 @@ def personal_info_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def aftercare_page(request):
@@ -92,7 +96,9 @@ def aftercare_submit(request):
         record.save()
         success = True
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 from ehr.forms import BodyExamForm
@@ -190,4 +196,6 @@ def body_exam_submit(request):
         success = False
         message = u'没有提交任何数据结果'
 
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
