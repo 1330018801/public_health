@@ -1,7 +1,8 @@
 #-*- coding: utf-8 -*-
 import logging
+import simplejson
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
 from django.forms.models import model_to_dict
 from management.models import WorkRecord, Resident, Service
@@ -94,7 +95,8 @@ def vaccine_card_head_save(request):
         debug.info(form.errors.as_data())
         success = False
         message = u'新生儿建卡失败'
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
 
 
 def vaccinate_submit(request):
