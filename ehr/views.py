@@ -351,8 +351,6 @@ def record_detail_review(request):
         model_obj = apps.get_model(app_label=record.app_label, model_name=record.model_name)
 
     form = model_obj.objects.get(id=record.item_id)
-    debug.info(form)
-
     if item_alias == 'body_exam_table' or item_alias == 'constitution_identification':
         template = 'ehr/body_exam_review.html'
     elif record.app_label == 'vaccine' and record.service_item.alias != 'vaccine_card':

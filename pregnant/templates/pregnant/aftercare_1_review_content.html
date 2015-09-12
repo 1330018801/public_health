@@ -34,11 +34,15 @@
     {{ form.gynaecology_surgery_history }}
 {% endblock %}
 {% block gynaecology_surgery_name %}{{ form.gynaecology_surgery_name }}{% endblock %}
-{% block miscarriage %}{{ form.miscarriage }}{% endblock %}
-{% block dead_fetus %}{{ form.dead_fetus }}{% endblock %}
-{% block still_birth %}{{ form.still_birth }}{% endblock %}
-{% block newnatal_death %}{{ form.newnatal_death }}{% endblock %}
-{% block birth_defect %}{{ form.birth_defect }}{% endblock %}
+
+{% block production_history %}
+    {% block miscarriage %}流产{{ form.miscarriage }}&nbsp;&nbsp;{% endblock %}
+    {% block dead_fetus %}死胎{{ form.dead_fetus }}&nbsp;&nbsp;{% endblock %}
+    {% block still_birth %}死产{{ form.still_birth }}&nbsp;&nbsp;{% endblock %}
+    {% block newnatal_death %}新生儿死亡{{ form.newnatal_death }}&nbsp;&nbsp;{% endblock %}
+    {% block birth_defect %}出生缺陷儿{{ form.birth_defect }}{% endblock %}
+{% endblock %}
+
 {% block height %}{{ form.height }}{% endblock %}
 {% block weight %}{{ form.weight }}{% endblock %}
 {% block bmi %}{{ form.bmi }}{% endblock %}
@@ -79,34 +83,37 @@
 {% endblock %}
 {% block accessory_abnormal %}{{ form.accessory_abnormal }}{% endblock %}
 
-{% block hemoglobin %}
-    白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
-{% endblock %}
-{% block leukocyte %}
-    血红蛋白值{{ form.leukocyte }}g/L<br />
-{% endblock %}
-{% block thrombocyte %}
-    血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
-{% endblock %}
-{% block blood_extra %}
-    其他{{ form.blood_extra }}
+{% block blood_routine_test %}
+    {% block hemoglobin %}
+        白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
+    {% endblock %}
+    {% block leukocyte %}
+        血红蛋白值{{ form.leukocyte }}g/L&nbsp;&nbsp;
+    {% endblock %}
+    {% block thrombocyte %}
+        血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
+    {% endblock %}
+    {% block blood_extra %}
+        其他{{ form.blood_extra }}
+    {% endblock %}
 {% endblock %}
 
-
-{% block urine_protein %}
-    尿蛋白{{ form.urine_protein }}&nbsp;
-{% endblock %}
-{% block urine_glucose %}
-    尿糖{{ form.urine_glucose }}&nbsp;
-{% endblock %}
-{% block urine_ket %}
-    尿酮体{{ form.urine_ket }}&nbsp;
-{% endblock %}
-{% block urine_ery %}
-    尿潜血{{ form.urine_ery }}&nbsp;
-{% endblock %}
-{% block urine_extra %}
-    其他{{ form.urine_extra }}
+{% block urine_routine_test %}
+    {% block urine_protein %}
+        尿蛋白{{ form.urine_protein }}&nbsp;
+    {% endblock %}
+    {% block urine_glucose %}
+        尿糖{{ form.urine_glucose }}&nbsp;
+    {% endblock %}
+    {% block urine_ket %}
+        尿酮体{{ form.urine_ket }}&nbsp;
+    {% endblock %}
+    {% block urine_ery %}
+        尿潜血{{ form.urine_ery }}&nbsp;
+    {% endblock %}
+    {% block urine_extra %}
+        其他{{ form.urine_extra }}
+    {% endblock %}
 {% endblock %}
 
 {% block blood_type_abo %}
@@ -119,67 +126,100 @@
 
 {% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
 
-{% block sgpt %}
-    血清谷丙转氨酶{{ form.sgpt }}U/L&nbsp;&nbsp;
+{% block alanine_aminotransferase %}
+    血清谷丙转氨酶
+    {% if form.sgpt %}
+        {{ form.sgpt }}U/L&nbsp;&nbsp;
+    {% endif %}
 {% endblock %}
-{% block sgot %}
-    血清谷草转氨酶{{ form.sgot }}U/L<br />
+{% block glutamic_oxalacetic_transaminase %}
+    血清谷草转氨酶
+    {% if form.sgot %}
+        {{ form.sgot }}U/L<br />
+    {% endif %}
 {% endblock %}
 {% block albumin %}
-    白蛋白{{ form.albumin }}g/L&nbsp;&nbsp;
+    白蛋白
+    {% if form.albumin %}
+        {{ form.albumin }}g/L&nbsp;&nbsp;
+    {% endif %}
 {% endblock %}
-{% block tbil %}
-    总胆红素{{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+{% block total_bilirubin %}
+    总胆红素
+    {% if form.tbil %}
+        {{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
 {% endblock %}
 {% block dbil %}
-    结合胆红素{{ form.dbil }}&#956mol/L
+    结合胆红素
+    {% if form.dbil %}
+        {{ form.dbil }}&#956mol/L
+    {% endif %}
 {% endblock %}
 
 {% block scr %}
-    血清肌酐{{ form.scr }}&#956mol/L&nbsp;&nbsp;{% endblock %}
+    血清肌酐
+    {% if form.scr %}
+        {{ form.scr }}&#956mol/L&nbsp;&nbsp;
+    {% endif %}
+{% endblock %}
 {% block bun %}
-    血尿素氮{{ form.bun }}&#956mol/L{% endblock %}
+    血尿素氮
+    {% if form.bun %}
+        {{ form.bun }}&#956mol/L
+    {% endif %}
+{% endblock %}
 
 {% block vaginal_secretion %}
-    {{ form.vaginal_secretion }}
+    {% if form.vaginal_secretion %}
+        {{ form.vaginal_secretion }}
+    {% endif %}
 {% endblock %}
 {% block vaginal_secretion_other %}{{ form.vaginal_secretion_other }}{% endblock %}
 {% block vaginal_clean_degree %}
     阴道清洁度：
-    {{ form.vaginal_clean_degree }}
+    {% if form.vaginal_clean_degree %}
+        {{ form.vaginal_clean_degree }}
+    {% endif %}
 {% endblock %}
 
-{% block surface_antigen %}
-    乙型肝炎表面抗原&nbsp;&nbsp;
-    {{ form.surface_antigen }}
-{% endblock %}
+{% block hepatitis_b_five_item %}
+    {% block surface_antigen %}
+        乙型肝炎表面抗原&nbsp;&nbsp;
+        {{ form.surface_antigen }}<br />
+    {% endblock %}
 
-{% block surface_antibody %}
-    乙型肝炎表面抗体&nbsp;&nbsp;
-    {{ form.surface_antibody }}
-{% endblock %}
+    {% block surface_antibody %}
+        乙型肝炎表面抗体&nbsp;&nbsp;
+        {{ form.surface_antibody }}<br />
+    {% endblock %}
 
-{% block e_antigen %}
-    乙型肝炎e抗原&nbsp;&nbsp;
-    {{ form.e_antigen }}
-{% endblock %}
+    {% block e_antigen %}
+        乙型肝炎e抗原&nbsp;&nbsp;
+        {{ form.e_antigen }}<br />
+    {% endblock %}
 
-{% block e_antibody %}
-    乙型肝炎e抗体&nbsp;&nbsp;
-    {{ form.e_antibody }}
-{% endblock %}
+    {% block e_antibody %}
+        乙型肝炎e抗体&nbsp;&nbsp;
+        {{ form.e_antibody }}<br />
+    {% endblock %}
 
-{% block core_antibody %}
-    乙型肝炎核心抗体&nbsp;&nbsp;
-    {{ form.core_antibody }}
+    {% block core_antibody %}
+        乙型肝炎核心抗体&nbsp;&nbsp;
+        {{ form.core_antibody }}<br />
+    {% endblock %}
 {% endblock %}
 
 {% block vdrl %}
-    {{ form.vdrl }}
+    {% if form.vdrl %}
+        {{ form.vdrl }}
+    {% endif %}
 {% endblock %}
 
 {% block hiv_antibody %}
-    {{ form.hiv_antibody }}
+    {% if form.hiv_antibody %}
+        {{ form.hiv_antibody }}
+    {% endif %}
 {% endblock %}
 
 {% block b_scan %}{{ form.b_scan }}{% endblock %}
@@ -202,8 +242,16 @@
     {{ form.transfer }}
 {% endblock %}
 
-{% block transfer_reason %}原因：{{ form.transfer_reason }}&nbsp;&nbsp;&nbsp;&nbsp;{% endblock %}
-{% block transfer_hospital %}机构及科室：{{ form.transfer_hospital }}{% endblock %}
+{% block transfer_reason %}
+    {% ifequal form.transfer '有' %}
+        原因：{{ form.transfer_reason }}&nbsp;&nbsp;&nbsp;&nbsp;
+    {% endifequal %}
+{% endblock %}
+{% block transfer_hospital %}
+    {% ifequal form.transfer '有' %}
+        机构及科室：{{ form.transfer_hospital }}
+    {% endifequal %}
+{% endblock %}
 
 {% block next_visit_date %}{{ form.next_visit_date | date:"Y-m-d" }}{% endblock %}
 {% block doctor_signature %}{{ form.doctor_signature }}{% endblock %}
