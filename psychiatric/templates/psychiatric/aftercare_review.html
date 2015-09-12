@@ -1,6 +1,6 @@
 {% extends 'psychiatric/psy_visit_base.html' %}
 
-{% block visit_date %}{{ form.visit_date.value | date:"Y-m-d"}}{% endblock %}
+{% block visit_date %}{{ form.visit_date.value }}{% endblock %}
 {% block dangerousness %}{{ form.dangerousness.value }}{% endblock %}
 {% block now_symptom %}
     {% for item in form.now_symptom.value %}
@@ -92,3 +92,4 @@
 {% block recovery_measure_extra %}{{ form.recovery_measure_extra.value }}{% endblock %}
 {% block visit_classification %}{{ form.visit_classification.value }}{% endblock %}
 {% block next_visit_date %}{{ form.next_visit_date.value }}{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature.value }}{% endblock %}

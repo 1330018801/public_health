@@ -7,6 +7,10 @@ from django.shortcuts import render
 
 from management.models import Service, WorkRecord
 from services.utils import get_resident, new_year_day
+from ehr.models import BodyExam
+from ehr.forms import BodyExamForm, PhysicalExaminationForm, BloodRoutineTestForm,  \
+    BloodGlucoseForm, ElectrocardiogramForm, AlanineAminotransferaseForm, \
+    GlutamicOxalaceticTransaminaseForm
 from .forms import AftercareForm, PsychiatricInfoForm
 from .models import Aftercare
 
@@ -36,7 +40,6 @@ def personal_info_submit(request):
     form = PsychiatricInfoForm(request.POST)
     if form.is_valid():
         result = form.save()
-        debug.info(result.id)
         resident = get_resident(request)
         resident.psychiatric_info_table = result
         resident.psychiatric = True
@@ -73,10 +76,6 @@ def aftercare_form(request):
                       {'form': form, 'resident': resident})
 
 
-def aftercare_review(request):
-    pass
-
-
 def aftercare_submit(request):
     success = False
     form = AftercareForm(request.POST)
@@ -84,10 +83,8 @@ def aftercare_submit(request):
         result = form.save()
         resident = get_resident(request)
         item_alias = request.POST.get('item_alias')
-        debug.info(item_alias)
         service_item = Service.items.get(alias=item_alias,
                                          service_type__alias='psychiatric')
-        debug.info('ddd')
         record = WorkRecord(provider=request.user, resident=resident, service_item=service_item,
                             app_label='psychiatric', model_name='Aftercare',
                             item_id=result.id, service_item_alias=service_item.alias)
@@ -97,10 +94,6 @@ def aftercare_submit(request):
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'success': success})
-
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
 
 
 def body_exam_page(request):
@@ -120,9 +113,6 @@ def body_exam_form(request):
 
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'psychiatric'})
-
-from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, BloodGlucoseForm, \
-    ElectrocardiogramForm, AlanineAminotransferaseForm, GlutamicOxalaceticTransaminaseForm
 
 
 def body_exam_submit(request):

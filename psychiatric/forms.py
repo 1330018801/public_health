@@ -13,11 +13,12 @@ class AftercareForm(ModelForm):
             'visit_date': TextInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter,'
                                                            'parser: myparser,'
-                                                           'width: 100'}),
+                                                           'width: 100,'
+                                                           'required: true'}),
             'dangerousness': RadioSelect,
             'now_symptom': CheckboxSelectMultiple,
             'now_symptom_extra': TextInput(attrs={'class': 'easyui-textbox',
-                                                  'style': 'width: 60px'},),
+                                                  'style': 'width: 120px'},),
             'insight': RadioSelect,
             'sleep_situation': RadioSelect,
             'diet_situation': RadioSelect,
@@ -27,16 +28,22 @@ class AftercareForm(ModelForm):
             'society_function_learn_ability': RadioSelect,
             'society_function_social_interpersonal': RadioSelect,
             'disease_family_society_effect_mild_disturbance': TextInput(attrs={'class': 'easyui-textbox',
+                                                                               'data-options': 'required: true',
                                                                                'style': 'width: 40px'},),
             'disease_family_society_effect_disturbance': TextInput(attrs={'class': 'easyui-textbox',
+                                                                          'data-options': 'required: true',
                                                                           'style': 'width: 40px'},),
             'disease_family_society_effect_accident': TextInput(attrs={'class': 'easyui-textbox',
+                                                                       'data-options': 'required: true',
                                                                        'style': 'width: 40px'},),
             'disease_family_society_effect_autolesion': TextInput(attrs={'class': 'easyui-textbox',
+                                                                         'data-options': 'required: true',
                                                                          'style': 'width: 40px'},),
             'disease_family_society_effect_attempted_suicide': TextInput(attrs={'class': 'easyui-textbox',
+                                                                                'data-options': 'required: true',
                                                                                 'style': 'width: 40px'},),
             'disease_family_society_effect_nothing': TextInput(attrs={'class': 'easyui-textbox',
+                                                                      'data-options': 'required: true',
                                                                       'style': 'width: 40px'},),
             'lock_situation': RadioSelect,
             'hospitalized_situation': RadioSelect,
@@ -72,13 +79,17 @@ class AftercareForm(ModelForm):
             'next_visit_date': TextInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter,'
                                                                 'parser: myparser,'
+                                                                'require: true,'
                                                                 'width: 100'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox',
+                                                 'data-options': 'required: true',
                                                  'style': 'width: 100px'},),
         }
 
     def __init__(self, *args, **kwargs):
         initial = kwargs.get('initial', {})
+        visit_date = date.today() + timedelta(days=45)
+        initial['visit_date'] = visit_date.strftime('%Y-%m-%d')
         next_visit_date = date.today() + timedelta(days=45)
         initial['next_visit_date'] = next_visit_date.strftime('%Y-%m-%d')
         kwargs['initial'] = initial
