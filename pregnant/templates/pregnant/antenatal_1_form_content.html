@@ -35,8 +35,8 @@
 {% endblock %}
 
 {% block production_times %}
-        阴道分娩{{ form.natural_production }}次&nbsp&nbsp
-        剖宫产{{ form.surgery_production }}次
+        阴道分娩&nbsp;{{ form.natural_production }}&nbsp;次&nbsp;&nbsp;
+        剖宫产&nbsp;{{ form.surgery_production }}&nbsp;次
 {% endblock %}
 
 {% block last_menstruation %}
@@ -85,11 +85,11 @@
 {% endblock %}
 
 {% block production_history %}
-        流产{{ form.miscarriage }}&nbsp&nbsp
-        死胎{{ form.dead_fetus }}&nbsp&nbsp
-        死产{{ form.still_birth }}&nbsp&nbsp
-        新生儿死亡{{ form.newnatal_death }}&nbsp&nbsp
-        出生缺陷儿{{ form.birth_defect }}
+        流产&nbsp;{{ form.miscarriage }}&nbsp;&nbsp;
+        死胎&nbsp;{{ form.dead_fetus }}&nbsp;&nbsp;
+        死产&nbsp;{{ form.still_birth }}&nbsp;&nbsp;
+        新生儿死亡&nbsp;{{ form.newnatal_death }}&nbsp;&nbsp;
+        出生缺陷儿&nbsp;{{ form.birth_defect }}
 {% endblock %}
 
 {% block height %}
@@ -105,14 +105,16 @@
 {% endblock %}
 
 {% block blood_pressure %}
-        {{ form.sbp }}/{{ form.dbp }}mmHg
+        {{ form.sbp }}/{{ form.dbp }}&nbsp;mmHg
 {% endblock %}
 
 {% block ausculate_heart %}
         {% for item in form.ausculate_heart %}
             {% if forloop.first %}
-            {% else %}
+            {% elif forloop.last %}
                 {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
         {{ form.ausculate_heart_abnormal }}
@@ -121,8 +123,10 @@
 {% block ausculate_lung %}
         {% for item in form.ausculate_lung %}
             {% if forloop.first %}
-            {% else %}
+            {% elif forloop.last %}
                 {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
         {{ form.ausculate_lung_abnormal }}
@@ -189,18 +193,18 @@
 {% endblock %}
 
 {% block blood_routine_test %}
-        白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
-        血红蛋白值{{ form.leukocyte }}g/L<br />
-        血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
-        其他{{ form.blood_extra }}
+        白细胞计数值&nbsp;{{ form.hemoglobin }}&nbsp;/L&nbsp;&nbsp;
+        血红蛋白值&nbsp;{{ form.leukocyte }}&nbsp;g/L<br />
+        血小板计数值&nbsp;{{ form.thrombocyte }}&nbsp;/L&nbsp;&nbsp;
+        其他&nbsp;{{ form.blood_extra }}
 {% endblock %}
 
 {% block urine_routine_test %}
-        尿蛋白{{ form.urine_protein }}&nbsp;
-        尿糖{{ form.urine_glucose }}&nbsp;
-        尿酮体{{ form.urine_ket }}&nbsp;
-        尿潜血{{ form.urine_ery }}&nbsp;
-        其他{{ form.urine_extra }}
+        尿蛋白&nbsp;{{ form.urine_protein }}&nbsp;&nbsp;
+        尿糖&nbsp;{{ form.urine_glucose }}&nbsp;&nbsp;
+        尿酮体&nbsp;{{ form.urine_ket }}&nbsp;&nbsp;
+        尿潜血&nbsp;{{ form.urine_ery }}&nbsp;&nbsp;
+        其他&nbsp;{{ form.urine_extra }}
 {% endblock %}
 
 {% block blood_type_abo %}
@@ -224,26 +228,26 @@
     {% endfor %}
 {% endblock %}
 
-{% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
+{% block blood_glucose %}{{ form.blood_glucose }}&nbsp;mmol/L{% endblock %}
 
 {% block alanine_aminotransferase %}
-        血清谷丙转氨酶{{ form.sgpt }}U/L&nbsp;&nbsp;
+        血清谷丙转氨酶&nbsp;{{ form.sgpt }}&nbsp;U/L&nbsp;&nbsp;
 {% endblock %}
 
 {% block glutamic_oxalacetic_transaminase %}
-        血清谷草转氨酶{{ form.sgot }}U/L<br />
+        血清谷草转氨酶&nbsp;{{ form.sgot }}&nbsp;U/L<br />
 {% endblock %}
 
 {% block total_bilirubin %}
-        总胆红素{{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+        总胆红素&nbsp;{{ form.tbil }}&nbsp;&#956mol/L&nbsp;&nbsp;
 {% endblock %}
 
 {% block serum_creatinine %}
-        血清肌酐{{ form.scr }}&#956mol/L&nbsp;&nbsp;
+        血清肌酐&nbsp;{{ form.scr }}&nbsp;&#956mol/L&nbsp;&nbsp;
 {% endblock %}
 
 {% block blood_urea_nitrogen %}
-        血尿素氮{{ form.bun }}&#956mol/L
+        血尿素氮&nbsp;{{ form.bun }}&nbsp;&#956mol/L
 {% endblock %}
 
 {% block hepatitis_b_five_item %}

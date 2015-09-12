@@ -4,129 +4,129 @@
 
 {% block table_content %}
     <tr>
-        <td colspan="2" width="25%" align="center">填表日期</td>
+        <td colspan="2" width="25%" align="center"><b>填表日期</b></td>
         <td colspan="2" width="25%" align="center" style="padding: 2px">{% block visit_date %}{% endblock %}</td>
-        <td colspan="2" width="25%" align="center">填表孕周</td>
+        <td colspan="2" width="25%" align="center"><b>填表孕周</b></td>
         <td colspan="2" width="25%" align="center" style="padding: 2px">{% block weeks %}{% endblock %}周</td>
     </tr>
     <tr>
-        <td colspan="1" width="12.5%" align="center">孕妇年龄</td>
+        <td colspan="1" width="12.5%" align="center"><b>孕妇年龄</b></td>
         <td colspan="7">{% block age %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">丈夫姓名</td>
+        <td colspan="1" align="center"><b>丈夫姓名</b></td>
         <td colspan="1" align="center" style="padding: 2px">{% block husband_name %}{% endblock %}</td>
-        <td colspan="1" width="12.5%" align="center">丈夫年龄</td>
+        <td colspan="1" width="12.5%" align="center"><b>丈夫年龄</b></td>
         <td colspan="1" align="center" style="padding: 2px">{% block husband_age %}{% endblock %}</td>
-        <td colspan="2" align="center">丈夫电话</td>
+        <td colspan="2" align="center"><b>丈夫电话</b></td>
         <td colspan="2" align="center" style="padding: 2px">{% block husband_phone %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">孕次</td>
+        <td colspan="1" align="center"><b>孕次</b></td>
         <td colspan="1" align="center" style="padding: 2px">{% block pregnant_times %}{% endblock %}</td>
-        <td colspan="1" align="center">产次</td>
+        <td colspan="1" align="center"><b>产次</b></td>
         <td colspan="5" align="center" style="padding: 2px">
             {% block production_times %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">末次月经</td>
+        <td colspan="1" align="center"><b>末次月经</b></td>
         <td colspan="3" align="center" style="padding: 2px">
             {% block last_menstruation %}{% endblock %}
             {% block no_sure %}{% endblock %}</td>
-        <td colspan="1" align="center">预产期</td>
+        <td colspan="1" align="center"><b>预产期</b></td>
         <td colspan="3" align="center" style="padding: 2px">
             {% block due_date %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">既往史</td>
+        <td colspan="1" align="center"><b>既往史</b></td>
         <td colspan="7" style="padding-top: 2px; padding-left: 5px">
             {% block disease_history%}{% endblock %}
             {% block disease_history_other %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">家族史</td>
+        <td colspan="1" align="center"><b>家族史</b></td>
         <td colspan="7" style="padding-top: 2px; padding-left: 5px">
             {% block family_history %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">个人史</td>
+        <td colspan="1" align="center"><b>个人史</b></td>
         <td colspan="7" style="padding-top: 2px; padding-left: 5px">
             {% block personal_history %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">妇科手术史</td>
+        <td colspan="1" align="center"><b>妇科手术史</b></td>
         <td colspan="7" style="padding-top: 2px; padding-left: 5px">
             {% block gynaecology_surgery_history%}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">孕产史</td>
+        <td colspan="1" align="center"><b>孕产史</b></td>
         <td colspan="7" style="padding-top: 2px; padding-bottom: 2px; padding-left: 5px">{% block production_history %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">身高</td>
+        <td colspan="1" align="center"><b>身高</b></td>
         <td colspan="3" align="center" style="padding: 2px">{% block height %}{% endblock %}cm</td>
-        <td colspan="1" align="center">体重</td>
+        <td colspan="1" align="center"><b>体重</b></td>
         <td colspan="3" align="center" style="padding: 2px">{% block weight %}{% endblock %}Kg</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">体质指数</td>
+        <td colspan="1" align="center"><b>体质指数</b></td>
         <td colspan="3" align="center" style="padding: 2px">{% block bmi %}{% endblock %}</td>
-        <td colspan="1" align="center">血压</td>
+        <td colspan="1" align="center"><b>血压</b></td>
         <td colspan="3" align="center" style="padding: 2px">
             {% block blood_pressure %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">听诊</td>
-        <td colspan="3" align="center" style="padding-top: 2px">
-            心脏：{% block ausculate_heart %}{% endblock %}{% block ausculate_heart_abnormal %}{% endblock %}</td>
-        <td colspan="4" align="center" style="padding-top: 2px">
-            肺部：{% block ausculate_lung %}{% endblock %}{% block ausculate_lung_abnormal %}{% endblock %}</td>
+        <td colspan="1" align="center"><b>听诊</b></td>
+        <td colspan="3" style="padding-top: 2px">
+            <b>心脏：</b>{% block ausculate_heart %}{% endblock %}{% block ausculate_heart_abnormal %}{% endblock %}</td>
+        <td colspan="4" style="padding-top: 2px">
+            <b>肺部：</b>{% block ausculate_lung %}{% endblock %}{% block ausculate_lung_abnormal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="3" align="center">妇科检查</td>
-        <td colspan="3">外阴：{% block vulva %}{% endblock %}{% block vulva_abnormal %}{% endblock %}</td>
-        <td colspan="4">阴道：{% block vagina %}{% endblock %}{% block vagina_abnormal %}{% endblock %}</td>
+        <td colspan="1" rowspan="3" align="center"><b>妇科检查</b></td>
+        <td colspan="3"><b>外阴：</b>{% block vulva %}{% endblock %}{% block vulva_abnormal %}{% endblock %}</td>
+        <td colspan="4"><b>阴道：</b>{% block vagina %}{% endblock %}{% block vagina_abnormal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="3">宫颈：{% block cervix %}{% endblock %}{% block cervix_abnormal %}{% endblock %}</td>
-        <td colspan="4">子宫：{% block uteri %}{% endblock %}{% block uteri_abnormal %}{% endblock %}</td>
+        <td colspan="3"><b>宫颈：</b>{% block cervix %}{% endblock %}{% block cervix_abnormal %}{% endblock %}</td>
+        <td colspan="4"><b>子宫：</b>{% block uteri %}{% endblock %}{% block uteri_abnormal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="7">附件：{% block accessory %}{% endblock %}{% block accessory_abnormal %}{% endblock %}</td>
+        <td colspan="7"><b>附件：</b>{% block accessory %}{% endblock %}{% block accessory_abnormal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="13" align="center">辅助检查</td>
-        <td colspan="2" align="center">血常规</td>
+        <td colspan="1" rowspan="13" align="center"><b>辅助检查</b></td>
+        <td colspan="2" align="center"><b>血常规</b></td>
         <td colspan="5" style="padding-left: 5px">
             {% block blood_routine_test %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="2" align="center">尿常规</td>
+        <td colspan="2" align="center"><b>尿常规</b></td>
         <td colspan="5" align="center">
             {% block urine_routine_test %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="2" align="center">血型</td>
-        <td colspan="1" align="center"><u>ABO</u></td>
+        <td colspan="1" rowspan="2" align="center"><b>血型</b></td>
+        <td colspan="1" align="center"><b><u>ABO</u></b></td>
         <td colspan="5" style="padding-left: 5px">{% block blood_type_abo%}{% endblock %}
             {% block blood_type_abo_other %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">Rh*</td>
+        <td colspan="1" align="center"><b>Rh*</b></td>
         <td colspan="5" style="padding-left: 5px">{% block blood_type_rh %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">血糖*</td>
+        <td colspan="2" align="center"><b>血糖*</b></td>
         <td colspan="5" style="padding-left: 10px">{% block blood_glucose %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">肝功能</td>
+        <td colspan="2" align="center"><b>肝功能</b></td>
         <td colspan="5" style="padding-left: 5px">
             {% block alanine_aminotransferase %}{% endblock %}
             {% block glutamic_oxalacetic_transaminase %}{% endblock %}
@@ -136,50 +136,50 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" align="center">肾功能</td>
+        <td colspan="2" align="center"><b>肾功能</b></td>
         <td colspan="5" style="padding-left: 5px">
             {% block scr %}{% endblock %}
             {% block bun %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="2" rowspan="2" align="center">阴道分泌物</td>
+        <td colspan="2" rowspan="2" align="center"><b>阴道分泌物</b></td>
         <td colspan="5" style="padding-left: 5px">
             {% block vaginal_secretion %}{% endblock %}
             {% block vaginal_secretion_other %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="5" style="padding-left: 5px">阴道清洁度{% block vaginal_clean_degree %}{% endblock %}</td>
+        <td colspan="5" style="padding-left: 5px"><b>阴道清洁度</b>{% block vaginal_clean_degree %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">乙型肝炎五项</td>
+        <td colspan="2" align="center"><b>乙型肝炎五项</b></td>
         <td colspan="5" style="padding-left: 5px">
             {% block hepatitis_b_five_item %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="2" align="center">梅毒血清学实验*</td>
+        <td colspan="2" align="center"><b>梅毒血清学实验*</b></td>
         <td colspan="5" style="padding-left: 5px">{% block vdrl %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">HIV抗体检测*</td>
+        <td colspan="2" align="center"><b>HIV抗体检测*</b></td>
         <td colspan="5" style="padding-left: 5px">{% block hiv_antibody %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">B超*</td>
+        <td colspan="2" align="center"><b>B超*</b></td>
         <td colspan="5" style="padding-left: 5px">{% block b_scan %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">总体评估</td>
+        <td colspan="1" align="center"><b>总体评估</b></td>
         <td colspan="7" style="padding-left: 5px">{% block total_evaluation %}{% endblock %}{% block total_evaluation_abnormal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">保健指导</td>
+        <td colspan="1" align="center"><b>保健指导</b></td>
         <td colspan="7" style="padding-left: 5px">{% block guide %}{% endblock %}{% block guide_other %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">转诊</td>
+        <td colspan="1" align="center"><b>转诊</b></td>
         <td colspan="7" style="padding-left: 5px">
             {% block transfer %}{% endblock %}<br />
             {% block transfer_reason %}{% endblock %}
@@ -187,9 +187,9 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" align="center">下次随访时间</td>
+        <td colspan="2" align="center"><b>下次随访时间</b></td>
         <td colspan="2" align="center">{% block next_visit_date %}{% endblock %}</td>
-        <td colspan="2" align="center">随访医生签名</td>
+        <td colspan="2" align="center"><b>随访医生签名</b></td>
         <td colspan="2" align="center">{% block doctor_signature %}{% endblock %}</td>
     </tr>
 {% endblock %}
