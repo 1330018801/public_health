@@ -7,8 +7,7 @@ from django.shortcuts import render
 
 from management.models import Service, WorkRecord
 from services.utils import get_resident, new_year_day
-from ehr.forms import PsychiatricInfoForm
-from .forms import AftercareForm
+from .forms import AftercareForm, PsychiatricInfoForm
 from .models import Aftercare
 
 debug = logging.getLogger('debug')
@@ -21,27 +20,26 @@ def personal_info_page(request):
                   {'form': form, 'resident': resident})
 
 
-def personal_info_review(request):
+def personal_info_table(request):
     resident = get_resident(request)
     if resident.psychiatric_info_table:
         form = PsychiatricInfoForm(instance=resident.psychiatric_info_table)
-        success = True
-        message = render(request, 'ehr/psychiatric_info_review_content.html',
-                         {'form': form, 'resident': resident}).content
+        return render(request, 'ehr/psychiatric_info_review_content.html',
+                      {'form': form, 'resident': resident})
     else:
-        success, message = False, ''
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': message})
+        form = PsychiatricInfoForm()
+        return render(request, 'ehr/psychiatric_info_form_content.html',
+                      {'form': form, 'resident': resident})
 
 
 def personal_info_submit(request):
     form = PsychiatricInfoForm(request.POST)
     if form.is_valid():
         result = form.save()
+        debug.info(result.id)
         resident = get_resident(request)
-        resident.psychiatric = True
         resident.psychiatric_info_table = result
+        resident.psychiatric = True
         resident.save()
         success = True
     else:

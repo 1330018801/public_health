@@ -4,14 +4,14 @@ from datetime import datetime
 
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
 
 from management.models import Resident
 from management.models import Family
 
 # from .models import PersonalInfo
-from .forms import ChildForm, PersonalInfoForm, PsychiatricInfoForm
+from .forms import ChildForm, PersonalInfoForm
 
 import logging
 debug = logging.getLogger('debug')
@@ -143,13 +143,6 @@ def personal_info_review(request, resident_id):
     form = PersonalInfoForm(instance=resident.personalinfo)
 
     return render(request, 'ehr/personal_info_review.html', {'form': form})
-
-
-def psychiatric_info_review(request, resident_id):
-    resident = Resident.objects.get(id=resident_id)
-    form = PsychiatricInfoForm(instance=resident.psychiatricinfo)
-
-    return render(request, 'ehr/psychiatric_info_review.html', {'form': form})
 
 
 def family_list(request):
@@ -384,9 +377,6 @@ def change_resident(request):
         request.session['resident_name'] = resident.name
         # 这里应该也将允许服务的列表也更新一下
     except Resident.DoesNotExist:
-        return HttpResponse(simplejson.dumps({'success': False}), content_type='text/html; charset=UTF-8')
-        # return JsonResponse({'success': False})
+        return JsonResponse({'success': False})
     else:
-        return HttpResponse(simplejson.dumps({'success': True, 'message': resident.name}),
-                            content_type='text/html; charset=UTF-8')
-        # return JsonResponse({'success': True, 'message': resident.name})
+        return JsonResponse({'success': True, 'message': resident.name})

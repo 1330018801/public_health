@@ -35,9 +35,9 @@ $(function () {
                             }
                         }
                     });
-                    $.messager.show({title: '提示', msg: '重性精神疾病患者个人信息补充表保存成功', timeout: 1000});
+                    $.messager.show({title: '提示', msg: '第一次产前随访记录保存成功', timeout: 1000});
                 } else {
-                    $.messager.alert('提示', '重性精神疾病患者个人信息补充表保存失败', 'info');
+                    $.messager.alert('提示', '第一次产前随访记录保存失败', 'info');
                 }
             }
         });

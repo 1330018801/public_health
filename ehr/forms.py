@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+from django.utils import timezone
 from django.forms import Form, ModelForm, TextInput, RadioSelect, \
     DateInput, Textarea, CheckboxSelectMultiple
 from management.models import Resident
@@ -131,96 +133,6 @@ class PersonalInfoForm(ModelForm):
             'surroundings_water': RadioSelect,
             'surroundings_toilet': RadioSelect,
             'surrounding_livestock_fence': RadioSelect,
-        }
-
-
-# 重性精神疾病患者信息补充表
-class PsychiatricInfoForm(ModelForm):
-    class Meta:
-        model = PsychiatricInfo
-        fields = '__all__'
-        widgets = {
-            'guardian_name': TextInput(attrs={'class': 'easyui-textbox',
-                                              'style': 'width: 80px',
-                                              'data-options': 'required: true'}),
-            'guardian_relation': TextInput(attrs={'class': 'easyui-textbox',
-                                                  'style': 'width: 120px',
-                                                  'data-options': 'required: true'}),
-            'guardian_address': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'style': 'width: 150px',
-                                                 'data-options': 'required: true'}),
-            'guardian_phone': TextInput(attrs={'class': 'easyui-textbox',
-                                               'style': 'width: 120px',
-                                               'data-options': 'required: true'}),
-            'community_contact_name': TextInput(attrs={'class': 'easyui-textbox',
-                                                       'style': 'width: 80px',
-                                                       'data-options': 'required: true'}),
-            'community_contact_phone': TextInput(attrs={'class': 'easyui-textbox',
-                                                        'style': 'width: 120px',
-                                                        'data-options': 'required: true'}),
-            'assent': RadioSelect,
-            'signature_date': TextInput(attrs={'class': 'easyui-datebox',
-                                               'data-options': 'formatter: myformatter, '
-                                                               'parser: myparser, '
-                                                               'required: true, '
-                                                               'editable: false'}),
-            'disease_begin_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                   'data-options': 'formatter: myformatter,'
-                                                                   'parser: myparser, '
-                                                                   'required: true, '
-                                                                   'editable: false'}),
-            'symptom': CheckboxSelectMultiple,
-            'symptom_other': TextInput(attrs={'class': 'easyui-textbox',
-                                              'style': 'width: 80px'}),
-            'cure_outpatient': RadioSelect,
-            'drug_first_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter: myformatter,'
-                                                                'parser: myparser, '
-                                                                'required: true, '
-                                                                'editable: false'}),
-            'cure_hospital': TextInput(attrs={'class': 'easyui-numberbox',
-                                              'style': 'width: 40px',
-                                              'data-options': 'required: true'}),
-            'diagnose': TextInput(attrs={'class': 'easyui-textbox',
-                                         'style': 'width: 120px',
-                                         'data-options': 'required: true'}),
-            'diagnose_hospital': TextInput(attrs={'class': 'easyui-textbox',
-                                                  'style': 'width: 120px',
-                                                  'data-options': 'required: true'}),
-            'diagnose_date': TextInput(attrs={'class': 'easyui-datebox',
-                                              'data-options': 'formatter: myformatter,'
-                                                              'parser: myparser, '
-                                                              'required: true, '
-                                                              'editable: false'}),
-            'cure_effect': RadioSelect,
-            'social_effect_minor': TextInput(attrs={'class': 'easyui-numberbox',
-                                                    'style': 'width: 40px',
-                                                    'data-options': 'required: true'}),
-            'social_effect_trouble': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'style': 'width: 40px',
-                                                      'data-options': 'required: true'}),
-            'social_effect_disaster': TextInput(attrs={'class': 'easyui-numberbox',
-                                                       'style': 'width: 40px',
-                                                       'data-options': 'required: true'}),
-            'social_effect_self_injury': TextInput(attrs={'class': 'easyui-numberbox',
-                                                          'style': 'width: 40px',
-                                                          'data-options': 'required: true'}),
-            'social_effect_suicide': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'style': 'width: 40px',
-                                                      'data-options': 'required: true'}),
-            'lock': RadioSelect,
-            'economy': RadioSelect,
-            'doctor_advice': Textarea(attrs={'class': 'easyui-textbox',
-                                             'data-options': 'multiline:true',
-                                             'style': 'width: 500px; height: 100px'}),
-            'fill_table_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter: myformatter,'
-                                                                'parser: myparser, '
-                                                                'required: true, '
-                                                                'editable: false'}),
-            'doctor_signature': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'style': 'width: 80px',
-                                                 'data-options': 'required: true'}),
         }
 
 

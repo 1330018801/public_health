@@ -14,8 +14,6 @@ urlpatterns = patterns('',
     #url(r'^personal_info/(\d+)/$', views.resident_health_file, name='personal_info'),
     url(r'^personal_info/(?P<resident_id>\d+)/$', PersonalInfoFormPreview(PersonalInfoForm), name='personal_info'),
     url(r'^personal_info_review/(?P<resident_id>\d+)/$', views.personal_info_review, name='personal_info_review'),
-    url(r'^psychiatric_info/(?P<resident_id>\d+)/$', PsychiatricInfoFormPreview(PsychiatricInfoForm), name='psychiatirc_info'),
-    url(r'^psychiatric_info_review/(?P<resident_id>\d+)/$', views.psychiatric_info_review, name='psychiatric_info_review'),
 
     url(r'^family_list/$', views.family_list, name='family_list'),
     url(r'^child_add_new/$', views.child_add_new, name='child_add_new'),
