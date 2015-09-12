@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.conf.urls import patterns, url
-
 from psychiatric import views
 
 urlpatterns = patterns('',

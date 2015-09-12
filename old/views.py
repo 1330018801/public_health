@@ -4,19 +4,19 @@ import simplejson
 
 from django.shortcuts import render 
 from django.http import HttpResponse
-
+from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
+    BloodGlucoseForm, ElectrocardiogramForm, GlutamicOxalaceticTransaminaseForm, BloodFatForm, \
+    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm
 from management.models import WorkRecord, Service
-from services.utils import get_resident
+from services.utils import get_resident, new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
 
 debug = logging.getLogger('debug')
 
 
 def body_exam_page(request):
     return render(request, 'old/body_exam_page.html')
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
-from services.utils import new_year_day
 
 
 def body_exam_form(request):
@@ -32,10 +32,6 @@ def body_exam_form(request):
 
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'old'})
-
-from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
-    BloodGlucoseForm, ElectrocardiogramForm, GlutamicOxalaceticTransaminaseForm, BloodFatForm, \
-    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm
 
 
 def body_exam_submit(request):
@@ -141,7 +137,6 @@ def body_exam_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': message})
 
 
 def living_selfcare_appraisal_page(request):
@@ -181,4 +176,3 @@ def living_selfcare_appraisal_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success})

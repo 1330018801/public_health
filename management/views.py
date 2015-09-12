@@ -4167,3 +4167,7 @@ def resident_add_pregnant(request):
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'success': success, 'message': message})
+
+
+def graphs(request):
+    return render(request, 'management/graphs.html')

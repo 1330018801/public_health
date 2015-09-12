@@ -7,24 +7,6 @@ from management.models import Clinic
 from django.contrib.auth.models import User
 
 
-class Patrol(models.Model):
-    institution = models.CharField(max_length=50, verbose_name="")
-    place_content = models.TextField(max_length=1000, verbose_name="")
-    main_problem = models.TextField(max_length=2000, verbose_name="")
-    patrol_date = models.DateField(verbose_name="")
-    patrolman = models.CharField(max_length=50, verbose_name="")
-    remarks = models.TextField(max_length=1000, verbose_name="", blank=True, null=True)
-
-
-class InformationReport(models.Model):
-    institution = models.CharField(max_length=50, verbose_name="")
-    discover_date = models.DateTimeField(verbose_name="")
-    information_type = models.CharField(max_length=50, verbose_name="")
-    information_content = models.TextField(max_length=1000, verbose_name="")
-    report_date = models.DateTimeField(verbose_name="")
-    reporter = models.CharField(max_length=50, verbose_name="")
-
-
 class Inspection(models.Model):
     institution = models.ForeignKey(Clinic, verbose_name='机构')
     place_content = models.TextField(max_length=1000, verbose_name='巡查地点与内容')

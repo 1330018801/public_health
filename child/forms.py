@@ -65,7 +65,8 @@ class NewbornFamilyVisitForm(ModelForm):
                                          'data-options': 'formatter: myformatter, '
                                                          'parser: myparser, '
                                                          'required: true, '
-                                                         'editable: false'}),
+                                                         'editable: false,'
+                                                         'width: 100'}),
             'identity': TextInput(attrs={'class': 'easyui-textbox',
                                          'style': 'width: 150px'}),
             'address': TextInput(attrs={'class': 'easyui-textbox',
@@ -84,7 +85,8 @@ class NewbornFamilyVisitForm(ModelForm):
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, '
                                                                 'required: true, '
-                                                                'editable: false'}),
+                                                                'editable: false,'
+                                                                'width: 100'}),
             'mother_name': TextInput(attrs={'class': 'easyui-textbox',
                                             'style': 'width: 80px',
                                             'data-options': 'required: true'}),
@@ -98,7 +100,8 @@ class NewbornFamilyVisitForm(ModelForm):
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, '
                                                                 'required: true, '
-                                                                'editable: false'}),
+                                                                'editable: false,'
+                                                                'width: 100'}),
             'gestational_weeks': TextInput(attrs={'class': 'easyui-numberbox',
                                                   'style': 'width:40px',
                                                   'data-options': 'required: true'}),
@@ -207,11 +210,13 @@ class NewbornFamilyVisitForm(ModelForm):
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'required: true, '
                                                            'formatter: myformatter,'
-                                                           'parser: myparser'}),
+                                                           'parser: myparser,'
+                                                           'width: 100'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'required: true, '
                                                                 'formatter: myformatter, '
-                                                                'parser: myparser'}),
+                                                                'parser: myparser,'
+                                                                'width: 100'}),
             'next_visit_place': TextInput(attrs={'class': 'easyui-textbox',
                                                  'style': 'width: 128px',
                                                  'data-options': 'required: true'}),

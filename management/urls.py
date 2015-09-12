@@ -200,4 +200,6 @@ urlpatterns = patterns('',
     url(r'^resident_add_psychiatric/$', views.resident_add_psychiatric, name='resident_add_psychiatric'),
     url(r'^resident_add_pregnant/$', views.resident_add_pregnant, name='resident_add_pregnant'),
 
+    url(r'^graphs/$', views.graphs, name='graphs'),
+
 )
