@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_1 %}
-    {{ aftercare1.sign_blood_pressure }}
+    {{ aftercare1.sign_sbp }}/{{ aftercare1.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_1 %}
@@ -217,7 +217,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_2 %}
-    {{ form.sign_blood_pressure }}
+    {{ form.sign_sbp }}/{{ form.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_2 %}

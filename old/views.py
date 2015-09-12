@@ -3,12 +3,10 @@ import logging
 import simplejson
 
 from django.shortcuts import render 
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 
 from management.models import WorkRecord, Service
 from services.utils import get_resident
-from ehr.forms import OldBodyCheckForm
-from ehr.models import OldBodyCheck
 
 debug = logging.getLogger('debug')
 

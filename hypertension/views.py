@@ -2,11 +2,14 @@
 import logging
 import simplejson
 
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from management.models import WorkRecord, Service
-from services.utils import get_resident
+from services.utils import get_resident, new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
+
 from .forms import AftercareForm
 from .models import Aftercare
 
@@ -19,10 +22,8 @@ def aftercare_page(request):
 
 def aftercare_review(request):
     resident = get_resident(request)
-
     context = {'aftercare_1': None, 'aftercare_2': None,
                'aftercare_3': None, 'aftercare_4': None}
-
     for aftercare in context:
         service_item = Service.items.get(alias=aftercare, service_type__alias='hypertension')
         try:
@@ -56,15 +57,8 @@ def aftercare_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-
-    #return JsonResponse({'success': success})
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
-from services.utils import new_year_day
 
 
 def body_exam_page(request):
@@ -81,7 +75,6 @@ def body_exam_form(request):
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
-
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'hypertension'})
 
@@ -96,7 +89,6 @@ def body_exam_submit(request):
     submit_data = request.POST.copy()
     if 'csrfmiddlewaretoken' in submit_data:
         submit_data.pop('csrfmiddlewaretoken')
-
     if submit_data:
         resident = get_resident(request)
         record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
@@ -122,8 +114,5 @@ def body_exam_submit(request):
     else:
         success = False
         message = u'没有提交任何数据结果'
-
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
-
-    # return JsonResponse({'success': success, 'message': message})

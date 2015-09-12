@@ -8,7 +8,7 @@ from django.http import HttpResponse
 from management.models import WorkRecord, Service
 from services.utils import get_resident, get_model_name
 
-from pregnant.forms import *
+from .forms import *
 from .models import *
 
 debug = logging.getLogger('debug')

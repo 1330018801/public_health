@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
 
 from pregnant.models import ChoicesAbstract
-
 
 GENDER = ((u'未知的性别', '未知的性别'), (u'男', '男'), (u'女', '女'), (u'未说明的性别', '未说明的性别'),)
 RESIDENCE_TYPE = ((u'户籍', '户籍'), (u'非户籍', '非户籍'))
@@ -112,13 +110,17 @@ class PersonalInfo(models.Model):
     transfusion_2_reason = models.CharField(max_length=20, verbose_name='原因2', blank=True, null=True)
     transfusion_2_date = models.DateField(blank=True, null=True)
 
-    family_history_father = models.ManyToManyField(FamilyHistoryChoices, related_name='father_disease', blank=True, null=True)
+    family_history_father = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True,
+                                                   related_name='father_disease')
     family_history_father_extra = models.CharField(max_length=30, blank=True, null=True)
-    family_history_mother = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True, related_name='mother_disease')
+    family_history_mother = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True,
+                                                   related_name='mother_disease')
     family_history_mother_extra = models.CharField(max_length=30, blank=True, null=True)
-    family_history_sibling = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True, related_name='sibling_disease')
+    family_history_sibling = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True,
+                                                    related_name='sibling_disease')
     family_history_sibling_extra = models.CharField(max_length=30, blank=True, null=True)
-    family_history_children = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True, related_name='children_disease')
+    family_history_children = models.ManyToManyField(FamilyHistoryChoices, blank=True, null=True,
+                                                     related_name='children_disease')
     family_history_children_extra = models.CharField(max_length=30, blank=True, null=True)
 
     genetic_disease = models.CharField(max_length=10, blank=True, null=True, verbose_name='遗传病史', choices=YES_NO)
@@ -126,16 +128,16 @@ class PersonalInfo(models.Model):
     disability = models.ManyToManyField(DisabilityChoices, verbose_name='残疾情况', blank=True, null=True)
     disability_extra = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
 
-    surroundings_kitchen_exhaust = models.CharField(max_length=20, verbose_name='厨房排风设备', blank=True, null=True, choices=KITCHEN_FAN)
-    surroundings_fuel_type = models.CharField(max_length=20, verbose_name='燃料类型', blank=True, null=True, choices=FUEL_TYPE)
+    surroundings_kitchen_exhaust = models.CharField(max_length=20, verbose_name='厨房排风设备',
+                                                    blank=True, null=True, choices=KITCHEN_FAN)
+    surroundings_fuel_type = models.CharField(max_length=20, verbose_name='燃料类型',
+                                              blank=True, null=True, choices=FUEL_TYPE)
     surroundings_water = models.CharField(max_length=50, verbose_name='饮水', blank=True, null=True, choices=WATER)
     surroundings_toilet = models.CharField(max_length=50, verbose_name='厕所', blank=True, null=True, choices=TOILET)
-    surrounding_livestock_fence = models.CharField(max_length=20, verbose_name='禽畜栏', blank=True, null=True, choices=LIVESTOCK_FENCE)
-
+    surrounding_livestock_fence = models.CharField(max_length=20, verbose_name='禽畜栏',
+                                                   blank=True, null=True, choices=LIVESTOCK_FENCE)
     create_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
-    # create_by = models.ForeignKey(User, null=True)
     last_update_time = models.DateTimeField(auto_now=True, verbose_name='最后修改时间')
-    # update_by = models.ForeignKey(User, null=True)
 
     class Meta:
         db_table = 'ehr_personal_info'
@@ -150,7 +152,8 @@ MOUTH_TOOTH_CHOICES = ((u'正常', '正常'), (u'缺齿', '缺齿'), (u'龋齿',
 MOUTH_THROAT_CHOICES = ((u'无充血', '无充血'), (u'充血', '充血'), (u'淋巴滤泡增生', '淋巴滤泡增生'))
 HEARING_CHOICES = ((u'听见', '听见'), (u'听不清或无法听见', '听不清或无法听见'))
 MOVEMENT_FUNCTION_CHOICES = ((u'可顺利完成', '可顺利完成'), (u'无法独立完成其中任何一个动作', '无法独立完成其中任何一个动作'))
-SKIN_CHOICES = ((u'正常', '正常'), (u'潮红', '潮红'), (u'苍白', '苍白'), (u'发绀', '发绀'), (u'黄染', '黄染'), (u'色素沉着', '色素沉着'), (u'其他', '其他'))
+SKIN_CHOICES = ((u'正常', '正常'), (u'潮红', '潮红'), (u'苍白', '苍白'), (u'发绀', '发绀'), (u'黄染', '黄染'),
+                (u'色素沉着', '色素沉着'), (u'其他', '其他'))
 LYMPH_NODE_CHOICES = ((u'未触及', '未触及'), (u'锁骨上', '锁骨上'), (u'腋窝', '腋窝'), (u'其他', '其他'))
 NO_YES_CHOICES = ((u'否', '否'), (u'是', '是'))
 LUNG_RALE_CHOICES = ((u'否', '否'), (u'干罗音', '干罗音'), (u'湿罗音', '湿罗音'), (u'其他', '其他'))
@@ -219,8 +222,8 @@ class PhysicalExamination(models.Model):
     stomach_shifting_dullness_extra = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
-        db_table = 'body_physical_examination'
-        #abstract = True
+        #db_table = 'body_physical_examination'
+        abstract = True
 
 
 # 血常规
@@ -231,8 +234,8 @@ class BloodRoutineTest(models.Model):
     blood_routine_test_extra = models.CharField(max_length=20, blank=True, null=True, verbose_name='其他',)
 
     class Meta:
-        db_table = 'body_blood_routine_test'
-        #abstract = True
+        #db_table = 'body_blood_routine_test'
+        abstract = True
 
 
 # 尿常规
@@ -244,8 +247,8 @@ class UrineRoutineTest(models.Model):
     routine_urine_test_extra = models.CharField(max_length=20, verbose_name='其他', blank=True, null=True)
 
     class Meta:
-        db_table = 'body_urine_routine_test'
-        #abstract = True
+        #db_table = 'body_urine_routine_test'
+        abstract = True
 
 
 # 血糖
@@ -254,8 +257,8 @@ class BloodGlucose(models.Model):
     blood_glucose_mg = models.FloatField(blank=True, null=True)
 
     class Meta:
-        db_table = 'body_blood_glucose'
-        #abstract = True
+        #db_table = 'body_blood_glucose'
+        abstract = True
 
 NORMAL_OR_ABNORMAL = ((u'正常', '正常'), (u'异常', '异常'),)
 
@@ -266,8 +269,8 @@ class Electrocardiogram(models.Model):
     electr_gram_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
 
     class Meta:
-        db_table = 'body_electrocardiogram'
-        #abstract = True
+        #db_table = 'body_electrocardiogram'
+        abstract = True
 
 
 # 血清谷丙转氨酶
@@ -275,8 +278,8 @@ class AlanineAminotransferase(models.Model):
     alt = models.FloatField(verbose_name='血清谷丙转氨酶')
 
     class Meta:
-        db_table = 'body_alanine_aminotransferase'
-        #abstract = True
+        #db_table = 'body_alanine_aminotransferase'
+        abstract = True
 
 
 # 血清谷草转氨酶
@@ -284,8 +287,8 @@ class GlutamicOxalaceticTransaminase(models.Model):
     ast = models.FloatField(verbose_name='血清谷草转氨酶')
 
     class Meta:
-        db_table = 'body_glutamic_oxalacetic_transaminase'
-        #abstract = True
+        #db_table = 'body_glutamic_oxalacetic_transaminase'
+        abstract = True
 
 
 # 血清肌酐
@@ -293,8 +296,8 @@ class SerumCreatinine(models.Model):
     scr = models.FloatField(verbose_name='血清肌酐')
 
     class Meta:
-        db_table = 'body_serum_creatinine'
-        #abstract = True
+        #db_table = 'body_serum_creatinine'
+        abstract = True
 
 
 # 血尿素氮
@@ -302,8 +305,8 @@ class BloodUreaNitrogen(models.Model):
     bun = models.FloatField(verbose_name='血尿素氮')
 
     class Meta:
-        #abstract = True
-        db_table = 'body_blood_urea_nitrogen'
+        abstract = True
+        #db_table = 'body_blood_urea_nitrogen'
 
 
 # 总胆红素
@@ -311,8 +314,8 @@ class TotalBilirubin(models.Model):
     tbil = models.FloatField(verbose_name='总胆红素')
 
     class Meta:
-        #abstract = True
-        db_table = 'body_total_bilirubin'
+        abstract = True
+        #db_table = 'body_total_bilirubin'
 
 
 # 血脂
@@ -323,175 +326,8 @@ class BloodFat(models.Model):
     hdl_c = models.FloatField(verbose_name='血清高密度脂蛋白胆固醇')
 
     class Meta:
-        db_table = 'body_blood_fat'
-
-
-class OldBodyCheck(models.Model):
-    body_temperature = models.FloatField(verbose_name='体温')
-    pulse = models.PositiveSmallIntegerField(verbose_name='脉率')
-    breath_frequency = models.PositiveSmallIntegerField(verbose_name='呼吸频率')
-    blood_pressure_left_sbp = models.FloatField(verbose_name='左侧收缩压')
-    blood_pressure_left_dbp = models.FloatField(verbose_name='左侧舒张压')
-    blood_pressure_right_sbp = models.FloatField(verbose_name='右侧收缩压')
-    blood_pressure_right_dbp = models.FloatField(verbose_name='右侧舒张压')
-    height = models.FloatField(verbose_name='身高')
-    weight = models.FloatField(verbose_name='体重')
-    waistline = models.FloatField(verbose_name='腰围')
-    body_mass_index = models.FloatField(verbose_name='体质指数')
-    mouth_lip = models.CharField(verbose_name='口唇',
-                                 max_length=10, choices=MOUTH_LIP_CHOICES)
-    mouth_tooth = models.CharField(verbose_name='齿列',
-                                   max_length=10, choices=MOUTH_TOOTH_CHOICES)
-    mouth_tooth_missing_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_throat = models.CharField(verbose_name='咽部', max_length=10, choices=MOUTH_THROAT_CHOICES)
-    eyesight_left = models.FloatField(verbose_name='左眼')
-    eyesight_right = models.FloatField(verbose_name='右眼')
-    eyesight_left_rectified = models.FloatField(verbose_name='矫正视力左眼', blank=True, null=True)
-    eyesight_right_rectified = models.FloatField(verbose_name='矫正视力右眼', blank=True, null=True)
-    hearing = models.CharField(verbose_name='听力', max_length=60, choices=HEARING_CHOICES)
-    movement_function = models.CharField(verbose_name='运动功能', max_length=100, choices=MOVEMENT_FUNCTION_CHOICES)
-    skin = models.CharField(verbose_name='皮肤', max_length=20, choices=SKIN_CHOICES)
-    skin_extra = models.CharField(max_length=100, blank=True, null=True)
-    lymph_node = models.CharField(verbose_name='淋巴结', max_length=20, choices=LYMPH_NODE_CHOICES)
-    lymph_node_extra = models.CharField(max_length=100, blank=True, null=True)
-    lung_barrel_chested = models.CharField(verbose_name='桶状胸', max_length=10, choices=NO_YES_CHOICES)
-    lung_breath_sound = models.CharField(verbose_name='呼吸音', max_length=10, choices=NO_YES_CHOICES)
-    lung_breath_sound_extra = models.CharField(max_length=100, blank=True, null=True)
-    lung_rale = models.CharField(verbose_name='罗音', max_length=10, choices=LUNG_RALE_CHOICES)
-    lung_rale_extra = models.CharField(max_length=100, blank=True, null=True)
-    heart_rate = models.IntegerField(verbose_name='心率')
-    heart_rhythm = models.CharField(verbose_name='心律', max_length=10, choices=HEART_RHYTHM)
-    heart_noise = models.CharField(verbose_name='杂音', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    heart_noise_extra = models.CharField(max_length=100, blank=True, null=True)
-    stomach_tenderness = models.CharField(verbose_name='压痛', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_tenderness_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_enclosed_mass = models.CharField(verbose_name='包块', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_enclosed_mass_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_hepatomegaly = models.CharField(verbose_name='肝大', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_hepatomegaly_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_slenauxe = models.CharField(verbose_name='脾大', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_slenauxe_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_shifting_dullness = models.CharField(verbose_name='移动性浊音', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_shifting_dullness_extra = models.CharField(max_length=100, null=True, blank=True)
-
-    hemoglobin = models.FloatField(verbose_name='血红蛋白', blank=True, null=True)
-    leucocyte = models.FloatField(verbose_name='白细胞', blank=True, null=True)
-    blood_platelets = models.FloatField(verbose_name='血小板', blank=True, null=True)
-    blood_routine_test_extra = models.CharField(max_length=20, blank=True, null=True, verbose_name='其他',)
-
-    urine_protein = models.CharField(max_length=10, verbose_name='尿蛋白', blank=True, null=True)
-    urine_glucose = models.CharField(max_length=10, verbose_name='尿糖', blank=True, null=True)
-    ketone_bodies = models.CharField(max_length=10, verbose_name='尿酮体', blank=True, null=True)
-    occult_blood = models.CharField(max_length=10, verbose_name='尿潜血', blank=True, null=True)
-    routine_urine_test_extra = models.CharField(max_length=20, verbose_name='其他', blank=True, null=True)
-
-    blood_glucose_mmol = models.FloatField(blank=True, null=True)
-    blood_glucose_mg = models.FloatField(blank=True, null=True)
-
-    electr_gram = models.CharField(max_length=10, verbose_name='', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
-    electr_gram_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
-
-    alt = models.FloatField(verbose_name='血清谷丙转氨酶', blank=True, null=True)
-    ast = models.FloatField(verbose_name='血清谷草转氨酶', blank=True, null=True)
-    scr = models.FloatField(verbose_name='血清肌酐', blank=True, null=True)
-    bun = models.FloatField(verbose_name='血尿素氮', blank=True, null=True)
-    tbil = models.FloatField(verbose_name='总胆红素', blank=True, null=True)
-
-    tc = models.FloatField(verbose_name='总胆固醇', blank=True, null=True)  # Total Cholesterol
-    tg = models.FloatField(verbose_name='甘油三脂', blank=True, null=True)  # Triglycerides
-    ldl_c = models.FloatField(verbose_name='血清低密度脂蛋白胆固醇', blank=True, null=True)
-    hdl_c = models.FloatField(verbose_name='血清高密度脂蛋白胆固醇', blank=True, null=True)
-
-    class Meta:
-        db_table = 'old_body_check'
-
-
-class PsyBodyCheck(models.Model):
-    body_temperature = models.FloatField(verbose_name='体温')
-    pulse = models.PositiveSmallIntegerField(verbose_name='脉率')
-    breath_frequency = models.PositiveSmallIntegerField(verbose_name='呼吸频率')
-    blood_pressure_left_sbp = models.FloatField(verbose_name='左侧收缩压')
-    blood_pressure_left_dbp = models.FloatField(verbose_name='左侧舒张压')
-    blood_pressure_right_sbp = models.FloatField(verbose_name='右侧收缩压')
-    blood_pressure_right_dbp = models.FloatField(verbose_name='右侧舒张压')
-    height = models.FloatField(verbose_name='身高')
-    weight = models.FloatField(verbose_name='体重')
-    waistline = models.FloatField(verbose_name='腰围')
-    body_mass_index = models.FloatField(verbose_name='体质指数')
-    mouth_lip = models.CharField(verbose_name='口唇',
-                                 max_length=10, choices=MOUTH_LIP_CHOICES)
-    mouth_tooth = models.CharField(verbose_name='齿列',
-                                   max_length=10, choices=MOUTH_TOOTH_CHOICES)
-    mouth_tooth_missing_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_missing_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_decayed_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_upleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_bottomleft = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_upright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_tooth_denture_bottomright = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
-    mouth_throat = models.CharField(verbose_name='咽部', max_length=10, choices=MOUTH_THROAT_CHOICES)
-    eyesight_left = models.FloatField(verbose_name='左眼')
-    eyesight_right = models.FloatField(verbose_name='右眼')
-    eyesight_left_rectified = models.FloatField(verbose_name='矫正视力左眼', blank=True, null=True)
-    eyesight_right_rectified = models.FloatField(verbose_name='矫正视力右眼', blank=True, null=True)
-    hearing = models.CharField(verbose_name='听力', max_length=60, choices=HEARING_CHOICES)
-    movement_function = models.CharField(verbose_name='运动功能', max_length=100, choices=MOVEMENT_FUNCTION_CHOICES)
-    skin = models.CharField(verbose_name='皮肤', max_length=20, choices=SKIN_CHOICES)
-    skin_extra = models.CharField(max_length=100, blank=True, null=True)
-    lymph_node = models.CharField(verbose_name='淋巴结', max_length=20, choices=LYMPH_NODE_CHOICES)
-    lymph_node_extra = models.CharField(max_length=100, blank=True, null=True)
-    lung_barrel_chested = models.CharField(verbose_name='桶状胸', max_length=10, choices=NO_YES_CHOICES)
-    lung_breath_sound = models.CharField(verbose_name='呼吸音', max_length=10, choices=NO_YES_CHOICES)
-    lung_breath_sound_extra = models.CharField(max_length=100, blank=True, null=True)
-    lung_rale = models.CharField(verbose_name='罗音', max_length=10, choices=LUNG_RALE_CHOICES)
-    lung_rale_extra = models.CharField(max_length=100, blank=True, null=True)
-    heart_rate = models.IntegerField(verbose_name='心率')
-    heart_rhythm = models.CharField(verbose_name='心律', max_length=10, choices=HEART_RHYTHM)
-    heart_noise = models.CharField(verbose_name='杂音', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    heart_noise_extra = models.CharField(max_length=100, blank=True, null=True)
-    stomach_tenderness = models.CharField(verbose_name='压痛', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_tenderness_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_enclosed_mass = models.CharField(verbose_name='包块', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_enclosed_mass_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_hepatomegaly = models.CharField(verbose_name='肝大', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_hepatomegaly_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_slenauxe = models.CharField(verbose_name='脾大', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_slenauxe_extra = models.CharField(max_length=100, null=True, blank=True)
-    stomach_shifting_dullness = models.CharField(verbose_name='移动性浊音', max_length=10, choices=NOTHING_OR_NOT_CHOICES)
-    stomach_shifting_dullness_extra = models.CharField(max_length=100, null=True, blank=True)
-
-    hemoglobin = models.FloatField(verbose_name='血红蛋白', blank=True, null=True)
-    leucocyte = models.FloatField(verbose_name='白细胞', blank=True, null=True)
-    blood_platelets = models.FloatField(verbose_name='血小板', blank=True, null=True)
-    blood_routine_test_extra = models.CharField(max_length=20, blank=True, null=True, verbose_name='其他',)
-
-    blood_glucose_mmol = models.FloatField(blank=True, null=True)
-    blood_glucose_mg = models.FloatField(blank=True, null=True)
-
-    electr_gram = models.CharField(max_length=10, verbose_name='', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
-    electr_gram_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
-
-    alt = models.FloatField(verbose_name='血清谷丙转氨酶', blank=True, null=True)
-    ast = models.FloatField(verbose_name='血清谷草转氨酶', blank=True, null=True)
-
-    class Meta:
-        db_table = 'psy_body_check'
+        #db_table = 'body_blood_fat'
+        abstract = True
 
 
 MOST = ((u'是', '是'), (u'基本是', '基本是'),)
@@ -511,7 +347,8 @@ class ConstitutionIdentification(models.Model):
     tebing = models.CharField(max_length=15, verbose_name='特禀质', choices=TEND)
 
     class Meta:
-        db_table = 'body_constitution_identification'
+        #db_table = 'body_constitution_identification'
+        abstract = True
 
 
 class BodyExam(models.Model):

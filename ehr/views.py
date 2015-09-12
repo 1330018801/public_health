@@ -1,148 +1,20 @@
 # -*- coding: utf-8 -*-
+import logging
+import pytz
 import simplejson
 from datetime import datetime
 
-from django.shortcuts import render, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.forms.models import model_to_dict
+from django.apps import apps
 
-from management.models import Resident
-from management.models import Family
+from management.models import Resident, WorkRecord, Family
 
-# from .models import PersonalInfo
-from .forms import ChildForm, PersonalInfoForm
+from .forms import PersonalInfoForm
 
-import logging
 debug = logging.getLogger('debug')
-
-import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
-
-
-def family_relation(request):
-    try:
-        request.session['resident_id']
-    except KeyError:
-        return render(request, 'services/service_grid.html')
-    else:
-        resident = Resident.objects.get(id=int(request.session['resident_id']))
-
-    if resident.family is None:
-        family = Family()
-        family.save()
-        resident.family = family
-        resident.save()
-    #    try:
-    #        if resident.gender == Resident.MALE:
-    #            family = Family.objects.get(father=resident)
-    #        else:
-    #            family = Family.objects.get(mother=resident)
-    #    except ObjectDoesNotExist:
-    #        family = Family()
-    #        if resident.gender == Resident.MALE:
-    #            family.father = resident
-    #        else:
-    #            family.mother = resident
-    #        family.save()
-
-    return render(request, 'ehr/members.html', {'members': resident.family.members.all()})
-
-
-def member_add_child(request):
-    if request.method == 'POST':
-        form = ChildForm(request.POST)
-        if form.is_valid():
-            child = form.save()
-            resident = Resident.objects.get(id=int(request.session['resident_id']))
-            child.family = resident.family
-            child.save()
-
-            return HttpResponseRedirect(reverse('ehr:family_relation'))
-    else:
-        form = ChildForm()
-    return render(request, 'ehr/member_add_child.html', {'form': form})
-
-
-def member_add_adult(request):
-    if request.method == 'POST':
-        name = request.POST.get('name', '')
-        gender = request.POST.get('gender', None)
-        identity = request.POST.get('identity', '')
-        if name:
-            candidates = Resident.objects.filter(name=name)
-        if gender is not None:
-            try:
-                gender = int(gender)
-            except ValueError:
-                pass
-            else:
-                candidates = candidates.filter(gender=gender)
-        if identity:
-            candidates = candidates.filter(identity=identity)
-
-        return render(request, 'ehr/member_add_adult.html',
-                      {'name': name, 'gender': gender, 'identity': identity, 'candidates': candidates})
-    else:
-        return render(request, 'ehr/member_add_adult.html')
-
-
-def member_add_selected_adult(request):
-    selected_adult_id = int(request.POST.get('selected'))
-    selected_adult = Resident.objects.get(id=selected_adult_id)
-    resident_id = int(request.session.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    selected_adult.family = resident.family
-    selected_adult.save()
-
-    return HttpResponseRedirect(reverse('ehr:family_relation'))
-
-
-def member_del(request):
-    resident_id = int(request.session.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    members = resident.family.members.all()
-    if request.method == 'GET':
-        return render(request, 'ehr/member_del.html', {'members': members})
-    else:
-        try:
-            removed_member_id = int(request.POST.get('removed', ''))
-        except ValueError:
-            return render(request, 'ehr/member_del.html', {'members': members})
-        else:
-            removed_member = Resident.objects.get(id=removed_member_id)
-            removed_member.family = None
-            removed_member.save()
-
-        return HttpResponseRedirect(reverse('ehr:family_relation'))
-
-
-def resident_health_file(request, resident_id):
-    resident = Resident.objects.get(id=int(resident_id))
-    if request.method == 'POST':
-        form = PersonalInfoForm(request.POST)
-        if form.is_valid():
-            item = form.save()
-            resident.PersonalInfo = item
-            resident.save()
-
-    else:
-        if resident.PersonalInfo:
-            form = PersonalInfoForm(instance=resident.PersonalInfo)
-        else:
-            form = PersonalInfoForm()
-
-    return render(request, 'ehr/resident_health_file.html', {
-        'resident': resident,
-        'form': form,
-    })
-
-
-def personal_info_review(request, resident_id):
-    resident = Resident.objects.get(id=resident_id)
-    form = PersonalInfoForm(instance=resident.personalinfo)
-
-    return render(request, 'ehr/personal_info_review.html', {'form': form})
 
 
 def family_list(request):
@@ -172,9 +44,7 @@ def family_list(request):
         item['age'] = each.age
         item['birthday'] = each.birthday.strftime('%Y-%m-%d')
         json_items.append(item)
-
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_items, safe=False)
 
 
 def child_add_new(request):
@@ -193,8 +63,6 @@ def child_add_new(request):
     return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
                         content_type='text/html; charset=UTF-8')
 
-    #return JsonResponse({'success': True, 'message': 'OK'})
-
 
 def family_add_adult_query(request):
     name = request.POST.get('name', '').strip()
@@ -205,10 +73,7 @@ def family_add_adult_query(request):
     if name == '' and identity == '':
         return HttpResponse(simplejson.dumps({'total': 0, 'rows': json_items}),
                             content_type='text/html; charset=UTF-8')
-        # return JsonResponse({'total': 0, 'rows': json_items})
-
     adults = Resident.objects.all()
-
     if name:
         adults = adults.filter(name=name)
     if identity:
@@ -230,8 +95,6 @@ def family_add_adult_query(request):
     return HttpResponse(simplejson.dumps({'total': len(json_items), 'rows': json_items}),
                         content_type='text/html; charset=UTF-8')
 
-    # return JsonResponse({'total': len(json_items), 'rows': json_items})
-
 
 def family_add_adult(request):
     adult = Resident.objects.get(id=int(request.POST.get('id')))
@@ -243,8 +106,6 @@ def family_add_adult(request):
     return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
                         content_type='text/html; charset=UTF-8')
 
-    # return JsonResponse({'success': True, 'message': 'OK'})
-
 
 def family_member_rm(request):
     resident = Resident.objects.get(id=int(request.POST.get('id')))
@@ -253,7 +114,6 @@ def family_member_rm(request):
 
     return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': True, 'message': 'OK'})
 
 
 def personal_info_submit(request):
@@ -284,7 +144,6 @@ def personal_info_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success})
 
 
 def personal_info_table_new(request):
@@ -306,8 +165,6 @@ def personal_info_review_new(request):
         return render(request, 'ehr/personal_info_form_content.html',
                       {'form': form, 'resident': resident})
 
-from management.models import WorkRecord
-
 
 def record_list(request):
     resident_id = request.POST.get('resident_id')
@@ -316,22 +173,14 @@ def record_list(request):
 
     json_items = []
     for record in records:
-        item = dict()
+        item = model_to_dict(resident, fields=['ehr_no', 'name'])
         item['id'] = record.id
-        item['ehr_no'] = resident.ehr_no
-        item['resident_name'] = resident.name
         item['doctor_name'] = record.provider.username
         item['service_type'] = record.service_item.service_type.name
         item['service_item'] = record.service_item.name
         item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
-
         json_items.append(item)
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
-
-    # return JsonResponse(json_items, safe=False)
-
-
-from django.apps import apps
 
 
 def record_detail_review(request):

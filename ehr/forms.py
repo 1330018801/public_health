@@ -7,18 +7,6 @@ from management.models import Resident
 from .models import *
 
 
-class ChildForm(ModelForm):
-    class Meta:
-        model = Resident
-        fields = ['name', 'gender', 'nation', 'birthday']
-        widgets = {
-            'name': TextInput(attrs={'size': 20, 'class': 'form-control'},),
-            'gender': RadioSelect(attrs={'class': 'form-control'},),
-            'nation': TextInput(attrs={'size': 20, 'class': 'form-control'},),
-            'birthday': DateInput(attrs={'size': 20, 'class': 'form-control'},),
-        }
-
-
 # 个人基本信息表
 class PersonalInfoForm(ModelForm):
     class Meta:
@@ -136,7 +124,7 @@ class PersonalInfoForm(ModelForm):
         }
 
 
-# 一般体格检查
+# 一般体格检查：主要用于验证提交的内容是否完整，可以算作一次工作量
 class PhysicalExaminationForm(ModelForm):
     class Meta:
         model = PhysicalExamination
@@ -214,7 +202,7 @@ class PhysicalExaminationForm(ModelForm):
     '''
 
 
-# 血常规
+# 血常规：主要用于验证提交的内容是否完整，可以算作一次工作量
 class BloodRoutineTestForm(ModelForm):
     class Meta:
         model = BloodRoutineTest
@@ -241,7 +229,7 @@ class BloodRoutineTestForm(ModelForm):
     '''
 
 
-# 尿常规
+# 尿常规：主要用于验证提交的内容是否完整，可以算作一次工作量
 class UrineRoutineTestForm(ModelForm):
     class Meta:
         model = UrineRoutineTest
@@ -272,7 +260,7 @@ class UrineRoutineTestForm(ModelForm):
     '''
 
 
-# 血糖
+# 血糖：主要用于验证提交的内容是否完整，可以算作一次工作量
 class BloodGlucoseForm(ModelForm):
     class Meta:
         model = BloodGlucose
@@ -284,7 +272,7 @@ class BloodGlucoseForm(ModelForm):
         }
 
 
-# 心电图
+# 心电图：主要用于验证提交的内容是否完整，可以算作一次工作量
 class ElectrocardiogramForm(ModelForm):
     class Meta:
         model = Electrocardiogram
@@ -296,7 +284,7 @@ class ElectrocardiogramForm(ModelForm):
         }
 
 
-# 谷丙转氨酶
+# 谷丙转氨酶：主要用于验证提交的内容是否完整，可以算作一次工作量
 class AlanineAminotransferaseForm(ModelForm):
     class Meta:
         model = AlanineAminotransferase
@@ -314,7 +302,7 @@ class AlanineAminotransferaseForm(ModelForm):
     '''
 
 
-# 谷草转氨酶
+# 谷草转氨酶：主要用于验证提交的内容是否完整，可以算作一次工作量
 class GlutamicOxalaceticTransaminaseForm(ModelForm):
     class Meta:
         model = GlutamicOxalaceticTransaminase
@@ -332,7 +320,7 @@ class GlutamicOxalaceticTransaminaseForm(ModelForm):
     '''
 
 
-# 血清肌酐
+# 血清肌酐：主要用于验证提交的内容是否完整，可以算作一次工作量
 class SerumCreatinineForm(ModelForm):
     class Meta:
         model = SerumCreatinine
@@ -350,7 +338,7 @@ class SerumCreatinineForm(ModelForm):
     '''
 
 
-# 血尿素氮
+# 血尿素氮：主要用于验证提交的内容是否完整，可以算作一次工作量
 class BloodUreaNitrogenForm(ModelForm):
     class Meta:
         model = BloodUreaNitrogen
@@ -368,7 +356,7 @@ class BloodUreaNitrogenForm(ModelForm):
     '''
 
 
-# 总胆红素
+# 总胆红素：主要用于验证提交的内容是否完整，可以算作一次工作量
 class TotalBilirubinForm(ModelForm):
     class Meta:
         model = TotalBilirubin
@@ -386,7 +374,7 @@ class TotalBilirubinForm(ModelForm):
     '''
 
 
-# 血脂
+# 血脂：主要用于验证提交的内容是否完整，可以算作一次工作量
 class BloodFatForm(ModelForm):
     class Meta:
         model = BloodFat
@@ -416,7 +404,7 @@ class BloodFatForm(ModelForm):
     '''
 
 
-# 中医体质辨识
+# 中医体质辨识：主要用于验证提交的内容是否完整，可以算作一次工作量
 class ConstitutionIdentificationForm(ModelForm):
     class Meta:
         model = ConstitutionIdentification
@@ -483,307 +471,6 @@ class OldBodyCheckForm(CombinedFormBase):
     class Meta:
         alias = 'old_body_check'
 '''
-
-
-class OldBodyCheckForm(ModelForm):
-
-    class Meta:
-        model = OldBodyCheck
-        alias = 'old_body_check'
-        fields = '__all__'
-        widgets = {
-            'body_temperature': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'pulse': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'breath_frequency': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'height': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'weight': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'waistline': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'body_mass_index': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'mouth_lip': RadioSelect,
-            'mouth_tooth': RadioSelect,
-            'mouth_tooth_missing_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_throat': RadioSelect,
-            'eyesight_left': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_left_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'hearing': RadioSelect,
-            'movement_function': RadioSelect,
-            'skin': RadioSelect,
-            'skin_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lymph_node': RadioSelect,
-            'lymph_node_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lung_barrel_chested': RadioSelect,
-            'lung_breath_sound': RadioSelect,
-            'lung_breath_sound_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lung_rale': RadioSelect,
-            'lung_rale_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'heart_rate': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'heart_rhythm': RadioSelect,
-            'heart_noise': RadioSelect,
-            'heart_noise_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_tenderness': RadioSelect,
-            'stomach_tenderness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_enclosed_mass': RadioSelect,
-            'stomach_enclosed_mass_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_hepatomegaly': RadioSelect,
-            'stomach_hepatomegaly_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_slenauxe': RadioSelect,
-            'stomach_slenauxe_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_shifting_dullness': RadioSelect,
-            'stomach_shifting_dullness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-
-            # 血常规
-            'hemoglobin': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'leucocyte': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_platelets': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:150px'}),
-
-            # 尿常规
-            'urine_protein': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'urine_glucose': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'ketone_bodies': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'occult_blood': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'routine_urine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-
-            # 血糖
-            'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
-            'blood_glucose_mg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
-
-            # 心电图
-            'electr_gram': RadioSelect,
-            'electr_gram_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:200px'}),
-
-            # 血清谷丙转氨酶
-            'alt': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血清谷草转氨酶
-            'ast': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血清肌酐
-            'scr': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血尿素氮
-            'bun': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 总胆红素
-            'tbil': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血脂
-            'tc': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'tg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'ldl_c': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'hdl_c': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-        }
-
-    def clean(self):
-        cleaned_data = super(OldBodyCheckForm, self).clean()
-        if cleaned_data.get('body_temperature') < 20 or cleaned_data.get('body_temperature') > 50:
-            msg = "体温的合理范围在20-50℃"
-            self.add_error('body_temperature', msg)
-        if cleaned_data.get('pulse') < 50 or cleaned_data.get('pulse') > 150:
-            msg = "脉率的合理范围在50-150次/分钟"
-            self.add_error('pulse', msg)
-        if cleaned_data.get('heart_rate') < 0 or cleaned_data.get('heart_rate') > 150:
-            msg = "心率的合理范围在0-150次/分钟"
-            self.add_error('heart_rate', msg)
-        if cleaned_data.get('hemoglobin'):
-            if cleaned_data.get('hemoglobin') < 0 or cleaned_data.get('hemoglobin') > 300:
-                msg = "血红蛋白的合理范围值是0-300"
-                self.add_error('hemoglobin', msg)
-        if cleaned_data.get('leucocyte'):
-            if cleaned_data.get('leucocyte') < 0 or cleaned_data.get('leucocyte') > 20:
-                msg = "白细胞的合理范围值是0-20"
-                self.add_error('leucocyte', msg)
-        if cleaned_data.get('blood_platelets'):
-            if cleaned_data.get('blood_platelets') < 0 or cleaned_data.get('blood_platelets') > 600:
-                msg = "血小板的合理范围值是0-600"
-                self.add_error('blood_platelets', msg)
-        if cleaned_data.get('urine_protein'):
-            if cleaned_data.get('urine_protein') not in ['-', '+', '++', '+++', '++++']:
-                msg = "尿蛋白请填写：-, +, ++, +++, ++++"
-                self.add_error('urine_protein', msg)
-        if cleaned_data.get('urine_glucose'):
-            if cleaned_data.get('urine_glucose') not in ['-', '+', '++', '+++', '++++']:
-                msg = "尿糖请填写：-, +, ++, +++, ++++"
-                self.add_error('urine_glucose', msg)
-        if cleaned_data.get('ketone_bodies'):
-            if cleaned_data.get('ketone_bodies') not in ['-', '+', '++', '+++', '++++']:
-                msg = "尿酮体请填写：-, +, ++, +++, ++++"
-                self.add_error('ketone_bodies', msg)
-        if cleaned_data.get('occult_blood'):
-            if cleaned_data.get('occult_blood') not in ['-', '+', '++', '+++', '++++']:
-                msg = "尿潜血请填写：-, +, ++, +++, ++++"
-                self.add_error('occult_blood', msg)
-        if cleaned_data.get('alt'):
-            if cleaned_data.get('alt') < 0 or cleaned_data.get('alt') > 60:
-                msg = "血清谷丙转氨酶的合理范围是0-60"
-                self.add_error('alt', msg)
-        if cleaned_data.get('ast'):
-            if cleaned_data.get('ast') < 0 or cleaned_data.get('ast') > 60:
-                msg = "血清谷草转氨酶的合理范围是0-60"
-                self.add_error('ast', msg)
-        if cleaned_data.get('scr'):
-            if cleaned_data.get('scr') < 0 or cleaned_data.get('scr') > 200:
-                msg = "血清肌酐的合理范围是0-200"
-                self.add_error('scr', msg)
-        if cleaned_data.get('bun'):
-            if cleaned_data.get('bun') < 0 or cleaned_data.get('bun') > 15:
-                msg = "血尿素氮的合理范围是0-15"
-                self.add_error('bun', msg)
-        if cleaned_data.get('tbil'):
-            if cleaned_data.get('tbil') < 0 or cleaned_data.get('tbil') > 30:
-                msg = "总胆红素的合理范围是0-30"
-                self.add_error('tbil', msg)
-        if cleaned_data.get('tc'):
-            if cleaned_data.get('tc') < 0 or cleaned_data.get('tc') > 15:
-                msg = "总胆固醇的合理范围是0-15"
-                self.add_error('tc', msg)
-        if cleaned_data.get('tg'):
-            if cleaned_data.get('tg') < 0 or cleaned_data.get('tg') > 10:
-                msg = "甘油三酯的合理范围是0-10"
-                self.add_error('tg', msg)
-        if cleaned_data.get('ldl_c'):
-            if cleaned_data.get('ldl_c') < 0 or cleaned_data.get('ldl_c') > 10:
-                msg = "血清低密度脂蛋白胆固醇的合理范围是0-10"
-                self.add_error('ldl_c', msg)
-        if cleaned_data.get('hdl_c'):
-            if cleaned_data.get('hdl_c') < 0 or cleaned_data.get('hdl_c') > 11:
-                msg = "血清高密度脂蛋白胆固醇的合理范围是0-11"
-                self.add_error('hdl_c', msg)
-
-
-class PsyBodyCheckForm(ModelForm):
-
-    class Meta:
-        model = PsyBodyCheck
-        alias = 'psy_body_check'
-        fields = '__all__'
-        widgets = {
-            'body_temperature': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'pulse': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'breath_frequency': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'height': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'weight': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'waistline': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'body_mass_index': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'mouth_lip': RadioSelect,
-            'mouth_tooth': RadioSelect,
-            'mouth_tooth_missing_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_throat': RadioSelect,
-            'eyesight_left': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_left_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'hearing': RadioSelect,
-            'movement_function': RadioSelect,
-            'skin': RadioSelect,
-            'skin_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lymph_node': RadioSelect,
-            'lymph_node_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lung_barrel_chested': RadioSelect,
-            'lung_breath_sound': RadioSelect,
-            'lung_breath_sound_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'lung_rale': RadioSelect,
-            'lung_rale_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'heart_rate': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'heart_rhythm': RadioSelect,
-            'heart_noise': RadioSelect,
-            'heart_noise_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_tenderness': RadioSelect,
-            'stomach_tenderness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_enclosed_mass': RadioSelect,
-            'stomach_enclosed_mass_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_hepatomegaly': RadioSelect,
-            'stomach_hepatomegaly_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_slenauxe': RadioSelect,
-            'stomach_slenauxe_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'stomach_shifting_dullness': RadioSelect,
-            'stomach_shifting_dullness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-
-            # 血常规
-            'hemoglobin': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'leucocyte': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_platelets': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:150px'}),
-
-            # 血糖
-            'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
-            'blood_glucose_mg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
-
-            # 心电图
-            'electr_gram': RadioSelect,
-            'electr_gram_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:200px'}),
-
-            # 血清谷丙转氨酶
-            'alt': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血清谷草转氨酶
-            'ast': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-        }
-
-    def clean(self):
-        cleaned_data = super(PsyBodyCheckForm, self).clean()
-        if cleaned_data.get('body_temperature') < 20 or cleaned_data.get('body_temperature') > 50:
-            msg = "体温的合理范围在20-50℃"
-            self.add_error('body_temperature', msg)
-        if cleaned_data.get('pulse') < 50 or cleaned_data.get('pulse') > 150:
-            msg = "脉率的合理范围在50-150次/分钟"
-            self.add_error('pulse', msg)
-        if cleaned_data.get('heart_rate') < 0 or cleaned_data.get('heart_rate') > 150:
-            msg = "心率的合理范围在0-150次/分钟"
-            self.add_error('heart_rate', msg)
-        if cleaned_data.get('hemoglobin'):
-            if cleaned_data.get('hemoglobin') < 0 or cleaned_data.get('hemoglobin') > 300:
-                msg = "血红蛋白的合理范围值是0-300"
-                self.add_error('hemoglobin', msg)
-        if cleaned_data.get('leucocyte'):
-            if cleaned_data.get('leucocyte') < 0 or cleaned_data.get('leucocyte') > 20:
-                msg = "白细胞的合理范围值是0-20"
-                self.add_error('leucocyte', msg)
-        if cleaned_data.get('blood_platelets'):
-            if cleaned_data.get('blood_platelets') < 0 or cleaned_data.get('blood_platelets') > 600:
-                msg = "血小板的合理范围值是0-600"
-                self.add_error('blood_platelets', msg)
-        if cleaned_data.get('alt'):
-            if cleaned_data.get('alt') < 0 or cleaned_data.get('alt') > 60:
-                msg = "血清谷丙转氨酶的合理范围是0-60"
-                self.add_error('alt', msg)
-        if cleaned_data.get('ast'):
-            if cleaned_data.get('ast') < 0 or cleaned_data.get('ast') > 60:
-                msg = "血清谷草转氨酶的合理范围是0-60"
-                self.add_error('ast', msg)
 
 
 # 20150907，当前考虑用一个model来记录所有服务类型的体检数据，
@@ -909,3 +596,80 @@ class BodyExamForm(ModelForm):
             'tebing': RadioSelect,      # 特秉
 
         }
+    '''
+    def clean(self):
+        cleaned_data = super(BodyExamForm, self).clean()
+        if cleaned_data.get('body_temperature') < 20 or cleaned_data.get('body_temperature') > 50:
+            msg = "体温的合理范围在20-50℃"
+            self.add_error('body_temperature', msg)
+        if cleaned_data.get('pulse') < 50 or cleaned_data.get('pulse') > 150:
+            msg = "脉率的合理范围在50-150次/分钟"
+            self.add_error('pulse', msg)
+        if cleaned_data.get('heart_rate') < 0 or cleaned_data.get('heart_rate') > 150:
+            msg = "心率的合理范围在0-150次/分钟"
+            self.add_error('heart_rate', msg)
+        if cleaned_data.get('hemoglobin'):
+            if cleaned_data.get('hemoglobin') < 0 or cleaned_data.get('hemoglobin') > 300:
+                msg = "血红蛋白的合理范围值是0-300"
+                self.add_error('hemoglobin', msg)
+        if cleaned_data.get('leucocyte'):
+            if cleaned_data.get('leucocyte') < 0 or cleaned_data.get('leucocyte') > 20:
+                msg = "白细胞的合理范围值是0-20"
+                self.add_error('leucocyte', msg)
+        if cleaned_data.get('blood_platelets'):
+            if cleaned_data.get('blood_platelets') < 0 or cleaned_data.get('blood_platelets') > 600:
+                msg = "血小板的合理范围值是0-600"
+                self.add_error('blood_platelets', msg)
+        if cleaned_data.get('urine_protein'):
+            if cleaned_data.get('urine_protein') not in ['-', '+', '++', '+++', '++++']:
+                msg = "尿蛋白请填写：-, +, ++, +++, ++++"
+                self.add_error('urine_protein', msg)
+        if cleaned_data.get('urine_glucose'):
+            if cleaned_data.get('urine_glucose') not in ['-', '+', '++', '+++', '++++']:
+                msg = "尿糖请填写：-, +, ++, +++, ++++"
+                self.add_error('urine_glucose', msg)
+        if cleaned_data.get('ketone_bodies'):
+            if cleaned_data.get('ketone_bodies') not in ['-', '+', '++', '+++', '++++']:
+                msg = "尿酮体请填写：-, +, ++, +++, ++++"
+                self.add_error('ketone_bodies', msg)
+        if cleaned_data.get('occult_blood'):
+            if cleaned_data.get('occult_blood') not in ['-', '+', '++', '+++', '++++']:
+                msg = "尿潜血请填写：-, +, ++, +++, ++++"
+                self.add_error('occult_blood', msg)
+        if cleaned_data.get('alt'):
+            if cleaned_data.get('alt') < 0 or cleaned_data.get('alt') > 60:
+                msg = "血清谷丙转氨酶的合理范围是0-60"
+                self.add_error('alt', msg)
+        if cleaned_data.get('ast'):
+            if cleaned_data.get('ast') < 0 or cleaned_data.get('ast') > 60:
+                msg = "血清谷草转氨酶的合理范围是0-60"
+                self.add_error('ast', msg)
+        if cleaned_data.get('scr'):
+            if cleaned_data.get('scr') < 0 or cleaned_data.get('scr') > 200:
+                msg = "血清肌酐的合理范围是0-200"
+                self.add_error('scr', msg)
+        if cleaned_data.get('bun'):
+            if cleaned_data.get('bun') < 0 or cleaned_data.get('bun') > 15:
+                msg = "血尿素氮的合理范围是0-15"
+                self.add_error('bun', msg)
+        if cleaned_data.get('tbil'):
+            if cleaned_data.get('tbil') < 0 or cleaned_data.get('tbil') > 30:
+                msg = "总胆红素的合理范围是0-30"
+                self.add_error('tbil', msg)
+        if cleaned_data.get('tc'):
+            if cleaned_data.get('tc') < 0 or cleaned_data.get('tc') > 15:
+                msg = "总胆固醇的合理范围是0-15"
+                self.add_error('tc', msg)
+        if cleaned_data.get('tg'):
+            if cleaned_data.get('tg') < 0 or cleaned_data.get('tg') > 10:
+                msg = "甘油三酯的合理范围是0-10"
+                self.add_error('tg', msg)
+        if cleaned_data.get('ldl_c'):
+            if cleaned_data.get('ldl_c') < 0 or cleaned_data.get('ldl_c') > 10:
+                msg = "血清低密度脂蛋白胆固醇的合理范围是0-10"
+                self.add_error('ldl_c', msg)
+        if cleaned_data.get('hdl_c'):
+            if cleaned_data.get('hdl_c') < 0 or cleaned_data.get('hdl_c') > 11:
+                msg = "血清高密度脂蛋白胆固醇的合理范围是0-11"
+                self.add_error('hdl_c', msg)
+    '''

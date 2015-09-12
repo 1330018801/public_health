@@ -125,7 +125,8 @@ class BloodRoutineTest(models.Model):
     blood_extra = models.CharField(max_length=20, verbose_name='其他', blank=True, null=True)
 
     class Meta:
-        db_table = 'pregnant_blood_routine_test'
+        #db_table = 'pregnant_blood_routine_test'
+        abstract = True
 
 
 # 尿常规
@@ -137,7 +138,8 @@ class UrineRoutineTest(models.Model):
     urine_extra = models.CharField(max_length=20, verbose_name='其他', blank=True, null=True)
 
     class Meta:
-        db_table = 'pregnant_urine_routine_test'
+        #db_table = 'pregnant_urine_routine_test'
+        abstract = True
 
 
 # 血型
@@ -147,7 +149,8 @@ class BloodType(models.Model):
     blood_type_rh = models.CharField(max_length=10, verbose_name='血型Rh', choices=BLOOD_RH_CHOICES, blank=True, null=True)
 
     class Meta:
-        db_table = 'pregnant_blood_type'
+        #db_table = 'pregnant_blood_type'
+        abstract = True
 
 
 # 谷丙转氨酶
@@ -155,7 +158,8 @@ class AlanineAminotransferase(models.Model):
     sgpt = models.FloatField(verbose_name='血清谷丙转氨酶')
 
     class Meta:
-        db_table = 'pregnant_alanine_aminotransferase'
+        #db_table = 'pregnant_alanine_aminotransferase'
+        abstract = True
 
 
 # 谷草转氨酶
@@ -163,7 +167,8 @@ class GlutamicOxalaceticTransaminase(models.Model):
     sgot = models.FloatField(verbose_name='血清谷草转氨酶')
 
     class Meta:
-        db_table = 'pregnant_glutamic_oxalacetic_transaminase'
+        #db_table = 'pregnant_glutamic_oxalacetic_transaminase'
+        abstract = True
 
 
 # 总胆红素
@@ -171,7 +176,8 @@ class TotalBilirubin(models.Model):
     tbil = models.FloatField(verbose_name='总胆红素')
 
     class Meta:
-        db_table = 'pregnant_total_bilirubin'
+        #db_table = 'pregnant_total_bilirubin'
+        abstract = True
 
 
 # 血清肌酐
@@ -179,7 +185,8 @@ class SerumCreatinine(models.Model):
     scr = models.FloatField(verbose_name='血清肌酐',)
 
     class Meta:
-        db_table = 'pregnant_serum_creatinine'
+        # db_table = 'pregnant_serum_creatinine'
+        abstract = True
 
 
 # 血尿素氮
@@ -187,7 +194,8 @@ class BloodUreaNitrogen(models.Model):
     bun = models.FloatField(verbose_name='血尿素氮')
 
     class Meta:
-        db_table = 'pregnant_blood_urea_nitrogen'
+        # db_table = 'pregnant_blood_urea_nitrogen'
+        abstract = True
 
 NEGATIVE_OR_POSITIVE = ((u'阴性', '阴性'), (u'阳性', '阳性'),)
 
@@ -201,7 +209,8 @@ class HepatitisBFiveItem(models.Model):
     core_antibody = models.CharField(max_length=10, verbose_name='乙型肝炎核心抗体', choices=NEGATIVE_OR_POSITIVE)
 
     class Meta:
-        db_table = 'pregnant_hepatitis_b_five_item'
+        #db_table = 'pregnant_hepatitis_b_five_item'
+        abstract = True
 
 
 # 第一次产前随访
@@ -346,7 +355,7 @@ class Guide4Choices(ChoicesAbstract):
     pass
 
 
-class AftercareAbstract(models.Model):
+class Aftercare(models.Model):
     visit_date = models.DateField(max_length=10, verbose_name='随访日期',)
     gestational_weeks = models.PositiveSmallIntegerField(verbose_name='孕周',)
     complaint = models.TextField(max_length=100, verbose_name='主诉',)
@@ -367,48 +376,11 @@ class AftercareAbstract(models.Model):
     transfer_treatment_reason = models.CharField(max_length=100, verbose_name='原因', blank=True, null=True,)
     transfer_treatment_institution = models.CharField(max_length=100, verbose_name='机构及科室', blank=True, null=True,)
     doctor_signature = models.CharField(max_length=20, verbose_name='随访医生签名', blank=True, null=True)
-
-    class Meta:
-        abstract = True
-
-
-class Aftercare(AftercareAbstract):
     guide = models.ManyToManyField(Guide2Choices, verbose_name='指导', blank=True, null=True,)
     next_visit_date = models.DateField(max_length=10, verbose_name='下次随访日期', blank=True, null=True)
 
     class Meta:
         db_table = 'pregnant_aftercare'
-
-
-class Aftercare2(AftercareAbstract):
-    guide = models.ManyToManyField(GuideChoices, verbose_name='指导', blank=True, null=True,)
-    next_visit_date = models.DateField(max_length=10, verbose_name='下次随访日期',)
-
-    class Meta:
-        db_table = 'pregnant_aftercare_2'
-
-
-class Aftercare3(AftercareAbstract):
-    guide = models.ManyToManyField(Guide1Choices, verbose_name='指导', blank=True, null=True,)
-    next_visit_date = models.DateField(max_length=10, verbose_name='下次随访日期',)
-
-    class Meta:
-        db_table = 'pregnant_aftercare_3'
-
-
-class Aftercare4(AftercareAbstract):
-    guide = models.ManyToManyField(Guide2Choices, verbose_name='指导', blank=True, null=True,)
-    next_visit_date = models.DateField(max_length=10, verbose_name='下次随访日期',)
-
-    class Meta:
-        db_table = 'pregnant_aftercare_4'
-
-
-class Aftercare5(AftercareAbstract):
-    guide = models.ManyToManyField(Guide2Choices, verbose_name='指导', blank=True, null=True,)
-
-    class Meta:
-        db_table = 'pregnant_aftercare_5'
 
 
 class PostpartumRecordAbstract(models.Model):
