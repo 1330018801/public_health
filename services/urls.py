@@ -19,5 +19,7 @@ urlpatterns = patterns('',
     url(r'^reading_card_new/$', views.reading_card_new, name='reading_card_new'),
     url(r'^quit_card/$', views.quit_card, name='quit_card'),
     url(r'^read_card/$', views.read_card, name='read_card'),
+    url(r'^real_read_card/$', views.real_read_card, name='real_read_card'),
+
     url(r'^provide_service/$', views.provide_service, name='provide_service'),
 )
