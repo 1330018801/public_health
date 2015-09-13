@@ -352,8 +352,8 @@ class ConstitutionIdentification(models.Model):
 
 
 class BodyExam(models.Model):
-    visit_date = models.DateField(verbose_name='体检日期')
-    doctor = models.CharField(max_length=10, verbose_name='责任医生')
+    visit_date = models.DateField(verbose_name='体检日期', blank=True, null=True)
+    doctor = models.CharField(max_length=10, verbose_name='责任医生', blank=True, null=True)
 
     # 一般体格检查
     body_temperature = models.FloatField(verbose_name='体温', blank=True, null=True)

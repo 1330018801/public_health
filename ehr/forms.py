@@ -271,6 +271,12 @@ class BloodGlucoseForm(ModelForm):
             'blood_glucose_mg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
         }
 
+    def clean(self):
+        cleaned_data = super(BloodGlucoseForm, self).clean()
+        if cleaned_data.get('blood_glucose_mmol') is None and cleaned_data.get('blood_glucose_mg') is None:
+            msg = "请选填一类血糖值"
+            self.add_error('blood_glucose_mmol', msg)
+
 
 # 心电图：主要用于验证提交的内容是否完整，可以算作一次工作量
 class ElectrocardiogramForm(ModelForm):

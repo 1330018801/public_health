@@ -31,11 +31,16 @@ $(function() {
                         queryParams: {record_id: selected_row['id']}
                     });
                     $.messager.show({title: '提示', msg: '暂存记录保存完成', timeout: 1000});
+                    datagrid.datagrid('reload');
                 } else {
                     $.messager.alert('提示', '暂存记录保存失败', 'info');
                 }
             }
         })
+    });
+
+    btn_print.bind('click', function () {
+        table.find('.print_area').printThis();
     });
 
     var selected_row = undefined;
