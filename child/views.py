@@ -21,10 +21,8 @@ def get_resident(request):
     return resident
 
 
-def newborn_page(request):
-    resident = get_resident(request)
-    form = NewbornFamilyVisitForm()
-    return render(request, 'child/newborn_page.html', {'form': form, 'resident': resident})
+def newborn_visit_page(request):
+    return render(request, 'child/newborn_visit_page.html')
 
 
 def newborn_visit_submit(request):
@@ -45,26 +43,20 @@ def newborn_visit_submit(request):
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
 
-    # return JsonResponse({'success': success})
 
-
-def newborn_visit_review(request):
+def newborn_visit_table(request):
     resident = get_resident(request)
     service_item = Service.items.get(alias='newborn_family_visit')
     try:
         record = WorkRecord.objects.get(resident=resident, service_item=service_item)
     except WorkRecord.DoesNotExist:
-        success, message = False, ''
+        form = NewbornFamilyVisitForm()
+        return render(request, 'child/newborn_family_visit_form_content.html',
+                      {'form': form, 'resident': resident})
     else:
         form = NewbornFamilyVisit.objects.get(id=record.item_id)
-        success = True
-        message = render(request, 'child/newborn_family_visit_review_content.html',
-                         {'form': form, 'resident': resident}).content
-
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-
-    #return JsonResponse({'success': success, 'message': message})
+        return render(request, 'child/newborn_family_visit_review_content.html',
+                      {'form': form, 'resident': resident})
 
 
 def health_0_1_page(request):

@@ -2,9 +2,9 @@ from django.conf.urls import patterns, url
 import views
 
 urlpatterns = patterns('',
-        url(r'^newborn/$', views.newborn_page, name='newborn_page'),
+        url(r'^newborn_visit_page/$', views.newborn_visit_page, name='newborn_visit_page'),
         url(r'^newborn_visit_submit/$', views.newborn_visit_submit, name='newborn_visit_submit'),
-        url(r'^newborn_visit_review/$', views.newborn_visit_review, name='newborn_visit_review'),
+        url(r'^newborn_visit_table/$', views.newborn_visit_table, name='newborn_visit_table'),
 
         url(r'^health_0_1_page/$', views.health_0_1_page, name='health_0_1_page'),
         url(r'^health_0_1_review/$', views.health_0_1_review, name='health_0_1_review'),
