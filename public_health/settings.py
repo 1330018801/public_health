@@ -23,7 +23,7 @@ SECRET_KEY = 'q^*6e0l6(=_v+-2lctz+1cm^q@l%w%dj1b51w$-1ar-js0)312'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import socket
-
+'''
 if socket.gethostname() == 'web.phis':  # prod environment
     DEBUG = TEMPLATE_DEBUG = False
     ALLOWED_HOSTS = ['.phis.com.cn']
@@ -51,6 +51,8 @@ elif socket.gethostname() == 'web-server':  # test environment
         }
     }
 else:  # development environment
+'''
+if True:
     DEBUG = TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
     DATABASES = {
