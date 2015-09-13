@@ -175,6 +175,7 @@ def record_list(request):
     for record in records:
         item = model_to_dict(resident, fields=['ehr_no', 'name'])
         item['id'] = record.id
+        item['resident_name'] = record.resident.name
         item['doctor_name'] = record.provider.username
         item['service_type'] = record.service_item.service_type.name
         item['service_item'] = record.service_item.name

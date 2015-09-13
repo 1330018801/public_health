@@ -322,8 +322,8 @@ $(function() {
                             }
                             return value;
                         } },
-                        { field: 'resident_name', title: '居民姓名', width: 4 },
-                        { field: 'doctor_name', title: '服务提供者', width: 4 },
+                        { field: 'resident_name', title: '居民', width: 4 },
+                        { field: 'doctor_name', title: '医生', width: 4 },
                         { field: 'service_type', title: '服务类别', width: 10 },
                         { field: 'service_item', title: '服务项目', width: 10 },
                         { field: 'submit_time', title: '服务时间', width: 8 }

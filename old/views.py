@@ -29,9 +29,8 @@ def body_exam_form(request):
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
-
-    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
-                                                       'type_alias': 'old'})
+    return render(request, 'ehr/body_exam_form.html',
+                  {'form': form, 'resident': resident, 'type_alias': 'old'})
 
 
 def body_exam_submit(request):
@@ -44,6 +43,7 @@ def body_exam_submit(request):
         message = u'记录保存成功'
         resident = get_resident(request)
         record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                           status=WorkRecord.FINISHED,
                                            submit_time__gte=new_year_day()).first()
         if record:
             result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
@@ -132,9 +132,26 @@ def body_exam_submit(request):
                                           app_label='old', model_name='BodyExam',
                                           item_id=result.id, service_item_alias=service_item.alias)
     else:
-        success = False
-        message = u'没有提交任何数据结果'
+        success, message = False, u'没有提交任何数据结果'
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
 
+
+def body_exam_suspend(request):
+    submit_data = request.POST.copy()
+    if 'csrfmiddlewaretoken' in submit_data:
+        submit_data.pop('csrfmiddlewaretoken')
+    if submit_data:
+        success, message = True, u'记录暂存成功'
+        resident = get_resident(request)
+        form = BodyExamForm(submit_data)
+        result = form.save()
+        service_item = Service.objects.get(alias='body_exam_table', service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam', status=WorkRecord.SUSPEND,
+                                  item_id=result.id, service_item_alias=service_item.alias)
+    else:
+        success, message = False, u'没有提交任何数据结果'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
 

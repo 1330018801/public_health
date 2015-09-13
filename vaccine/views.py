@@ -30,10 +30,6 @@ def vaccine_records(request):
             except WorkRecord.DoesNotExist:
                 pass
             else:
-                '''
-                vaccine_service = apps.get_model(app_label=record.app_label, model_name=record.model_name)
-                service_result = vaccine_service.objects.get(id=record.item_id)
-                '''
                 service_result = Vaccination.objects.get(id=record.item_id)
                 item['doctor_signature'] = record.provider.username
                 item['visit_date'] = service_result.visit_date.strftime('%Y-%m-%d')
@@ -48,19 +44,6 @@ def vaccine_records(request):
 def vaccine_card_head(request):
     resident_id = int(request.POST.get('resident_id'))
     resident = Resident.objects.get(id=resident_id)
-    '''
-    try:
-        record = WorkRecord.objects.get(resident=resident, service_item__alias='vaccine_cared')
-    except WorkRecord.DoesNotExist:
-        success = False
-        message = ''
-    else:
-        success = True
-        vaccine_card = apps.get_model(app_label='vaccine', model_name=record.model_name)
-        service_result = vaccine_card.objects.get(id=record.item_id)
-        form = VaccineCardForm(instance=service_result)
-        message = render(request, 'vaccine/vaccine_card_preview_content.html', {'form': form}).content
-    '''
     if resident.vaccine_card:
         success = True
         message = render(request, 'vaccine/vaccine_card_review_content.html',

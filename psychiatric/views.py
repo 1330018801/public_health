@@ -50,7 +50,6 @@ def personal_info_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success})
 
 
 def aftercare_page(request):
@@ -102,17 +101,15 @@ def body_exam_page(request):
 
 def body_exam_form(request):
     resident = get_resident(request)
-    records = WorkRecord.objects.filter(resident=resident,
-                                        model_name='BodyExam',
-                                        submit_time__gte=new_year_day())
-    if records.count():
-        result = BodyExam.objects.get(id=records[0].item_id)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    if record:
+        result = BodyExam.objects.get(id=record.item_id)
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
-
-    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
-                                                       'type_alias': 'psychiatric'})
+    return render(request, 'ehr/body_exam_form.html',
+                  {'form': form, 'resident': resident, 'type_alias': 'psychiatric'})
 
 
 def body_exam_submit(request):
@@ -121,8 +118,7 @@ def body_exam_submit(request):
         submit_data.pop('csrfmiddlewaretoken')
 
     if submit_data:
-        success = True
-        message = u'记录保存成功'
+        success, message = True, u'记录保存成功'
         resident = get_resident(request)
         record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
                                            submit_time__gte=new_year_day()).first()
@@ -133,14 +129,12 @@ def body_exam_submit(request):
             if form.is_valid():
                 result = form.save()
             else:
-                success = False
-                message = u'记录数据存在问题'
+                success, message = False, u'记录数据存在问题'
 
         if success:
             if PhysicalExaminationForm(submit_data).is_valid():
                 service_item = Service.items.get(alias='physical_examination',
                                                  service_type__alias='psychiatric')
-
                 WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                           app_label='psychiatric', model_name='BodyExam',
                                           item_id=result.id, service_item_alias=service_item.alias)
@@ -181,9 +175,6 @@ def body_exam_submit(request):
                                           item_id=result.id, service_item_alias=service_item.alias)
 
     else:
-        success = False
-        message = u'没有提交任何数据结果'
-
+        success, message = False, u'没有提交任何数据结果'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': message})

@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from management.models import Service, WorkRecord, Resident
 from .utils import get_resident
 
-log = logging.getLogger('debug')
+debug = logging.getLogger('debug')
 
 
 @login_required
@@ -93,7 +93,6 @@ def reading_card(request):
     #        if child.is_0_6_child:
     #            candidates.append(child)
     if resident.family:
-        log.info("has family")
         candidates = [everyone for everyone in resident.family.members.all()]
     else:
         candidates = [resident]
@@ -328,14 +327,12 @@ def doc_nav(request):
 def doc_workload_page(request):
     return render(request, 'services/doc_workload_page.html')
 
-from django.contrib.auth.models import User
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
 
 
 def doc_workload_list(request):
-    user_id = request.POST.get('user_id')
-    user = User.objects.get(id=int(user_id))
+    user = request.user
     records = WorkRecord.objects.filter(provider=user).order_by('-submit_time')
 
     json_items = []
@@ -348,9 +345,131 @@ def doc_workload_list(request):
         item['service_type'] = record.service_item.service_type.name
         item['service_item'] = record.service_item.name
         item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+        if record.status == WorkRecord.FINISHED:
+            item['status'] = u'完成'
+        elif record.status == WorkRecord.SUSPEND:
+            item['status'] = u'暂存'
         json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
+
+from ehr.models import BodyExam
+from ehr.forms import BodyExamForm
+from ehr.views import record_detail_review as ehr_record_review
+from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
+    BloodGlucoseForm, ElectrocardiogramForm, AlanineAminotransferaseForm, \
+    GlutamicOxalaceticTransaminaseForm, TotalBilirubinForm, SerumCreatinineForm, \
+    BloodUreaNitrogenForm, BloodFatForm
+
+
+def record_detail_review(request):
+    record_id = int(request.POST.get('record_id'))
+    record = WorkRecord.objects.get(id=record_id)
+    if record.status == WorkRecord.SUSPEND:
+        result = BodyExam.objects.get(id=record.item_id)  # only body exam supported
+        form = BodyExamForm(instance=result)
+        return render(request, 'ehr/body_exam_form.html',
+                      {'form': form, 'resident': record.resident, 'type_alias': record.app_label})
+    elif record.status == WorkRecord.FINISHED:
+        return ehr_record_review(request)
+
+
+def suspend_submit(request):
+    record_id = int(request.POST.get('record_id'))
+    record = WorkRecord.objects.get(id=record_id)
+    result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=request.POST)
+    submit_data = model_to_dict(result)
+
+    if PhysicalExaminationForm(submit_data).is_valid():
+        service_item = Service.items.get(alias='physical_examination',
+                                         service_type__alias=record.app_label)
+        WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                  service_item=service_item, app_label=record.app_label,
+                                  model_name='BodyExam', item_id=result.id,
+                                  service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if BloodRoutineTestForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='blood_routine_test',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if UrineRoutineTestForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='urine_routine_test',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if BloodGlucoseForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='blood_glucose',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if ElectrocardiogramForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='electrocardiogram',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if AlanineAminotransferaseForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='alanine_aminotransferase',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if GlutamicOxalaceticTransaminaseForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='glutamic_oxalacetic_transaminase',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if TotalBilirubinForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='total_bilirubin',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if SerumCreatinineForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='serum_creatinine',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if BloodUreaNitrogenForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='blood_urea_nitrogen',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    if record.app_label == 'old':
+        if BloodFatForm(submit_data).is_valid():
+            service_item = Service.items.get(alias='blood_fat',
+                                             service_type__alias=record.app_label)
+            WorkRecord.objects.create(provider=request.user, resident=record.resident,
+                                      service_item=service_item,
+                                      app_label=record.app_label, model_name='BodyExam',
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    record.status = WorkRecord.FINISHED
+    record.save()
+    return JsonResponse({'success': True})
 
 
 def reading_card_new(request):
