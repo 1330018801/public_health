@@ -432,29 +432,33 @@ def read_card(request):
 
 
 def real_read_card(request):
-    name = request.POST.get('name')
-    birthday = request.POST.get('birthday')
-    gender = request.POST.get('gender')
-    nation = request.POST.get('nation')
-    address = request.POST.get('address')
-    identity = request.POST.get('identity')
+	resident_name = request.POST.get('name')
+	birthday = request.POST.get('birthday')
+	gender = request.POST.get('gender')
+	nation = request.POST.get('nation')
+	address = request.POST.get('address')
+	identity = request.POST.get('identity')
+	debug.info(address)
+	try:
+		resident = Resident.objects.get(identity=identity)
+	except Resident.DoesNotExist:
+		resident = Resident()
+		resident.name = resident_name
+		resident.gender = gender
+		resident.birthday = date(year=1978, month=1, day=1)
+		resident.nation = nation
+		resident.address = address
+		resident.identity = identity
+		resident.save()
+		
+	request.session['resident_id'] = resident.id
+	request.session['resident_name'] = resident.name
+	request.session['resident_ehr_no'] = resident.ehr_no
+	json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
 
-    try:
-        resident = Resident.objects.get(identity=identity)
-    except Resident.DoesNotExist:
-        resident = Resident(name=name, nation=nation, address=address,
-                            gender=gender, identity=identity,
-                            birthday=datetime.strptime(birthday, '%Y-%m-%d'))
-        resident.save()
-        debug.info(resident.id)
-    request.session['resident_id'] = resident.id
-    request.session['resident_name'] = resident.name
-    request.session['resident_ehr_no'] = resident.ehr_no
-    json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
-
-    return JsonResponse(json_data)
-
-
+	return JsonResponse(json_data)
+	
+	
 def provide_service(request):
     return render(request, 'test4.html')
 
