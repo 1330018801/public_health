@@ -19,7 +19,8 @@ $(function () {
             }
         });
     });
-    /*
+
+    // 模拟读卡函数
     read.bind('click', function () {
         $.ajax({
             url: '/services/read_card/', method: 'POST',
@@ -39,7 +40,9 @@ $(function () {
             }
         });
     });
-    */
+
+    /*
+    // 真实的读卡函数
     read.bind('click', function () {
         var obj = byId("CardReader1");
         if (false == isInit) {
@@ -85,5 +88,6 @@ $(function () {
     function byId(id) {
         return document.getElementById(id);
     }
+    */
 
 });
