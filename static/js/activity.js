@@ -161,17 +161,11 @@ $(function() {
                 selected_row = datagrid.datagrid('getSelected');
             }
         },
-        onDblClickRow: function (index, row) {
-            $.ajax({
-                url: '/education/activity_review/', method: 'POST',
-                data: {'id': row['id']},
-                success: function (data) {
-                    review.html(data);
-                    review.css('display', 'block');
-                    review.dialog('open');
-                    review.dialog('center');
-                }
-            })
+        onDblClickRow: function () {
+            review.find('#detail').panel({ href: '/education/activity_review/' });
+            review.css('display', 'block');
+            review.dialog('open');
+            review.dialog('center')
         },
         onAfterEdit: function() {
             /*

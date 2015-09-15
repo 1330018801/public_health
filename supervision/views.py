@@ -41,15 +41,21 @@ def inspection_list(request):
 
     json_items = []
     for inspection in inspections:
-        item = model_to_dict(inspection, fields=['id', 'place_content', 'main_problem',
-                                                 'inspector', 'remarks'])
-        item['institution'] = inspection.institution.name
-        item['inspection_date'] = inspection.inspection_date.strftime('%Y-%m-%d')
-        item['create_by'] = inspection.create_by.username
-        item['create_time'] = inspection.create_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
-        item['update_time'] = inspection.update_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
+        try:
+            WorkRecord.objects.get(app_label='supervision', service_item__alias='patrol',
+                                   item_id=inspection.id, provider=request.user)
+        except WorkRecord.DoesNotExist:
+            pass
+        else:
+            item = model_to_dict(inspection, fields=['id', 'place_content', 'main_problem',
+                                                     'inspector', 'remarks'])
+            item['institution'] = inspection.institution.name
+            item['inspection_date'] = inspection.inspection_date.strftime('%Y-%m-%d')
+            item['create_by'] = inspection.create_by.username
+            item['create_time'] = inspection.create_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
+            item['update_time'] = inspection.update_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
 
-        json_items.append(item)
+            json_items.append(item)
     return JsonResponse(json_items, safe=False)
 
 from management.models import Clinic
@@ -114,10 +120,16 @@ def info_report_list(request):
 
     json_items = []
     for report in info_reports:
-        item = model_to_dict(report, fields=['id', 'info_type', 'info_content', 'reporter'])
-        item['discover_time'] = report.discover_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
-        item['report_time'] = report.report_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
-        json_items.append(item)
+        try:
+            WorkRecord.objects.get(app_label='supervision', service_item__alias='information_report',
+                                   item_id=report.id, provider=request.user)
+        except WorkRecord.DoesNotExist:
+            pass
+        else:
+            item = model_to_dict(report, fields=['id', 'info_type', 'info_content', 'reporter'])
+            item['discover_time'] = report.discover_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+            item['report_time'] = report.report_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+            json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
 
@@ -136,13 +148,12 @@ def info_report_add(request):
 
     # 保存服务记录，用于统计工作量
     try:
-        resident = Resident.objects.get(name='群体')
+        crowd = Resident.objects.get(name='群体')
     except Resident.DoesNotExist:
-        resident = Resident(name='群体', gender=2, nation='汉族', birthday=date.today())
-        resident.save()
-    service_item = Service.objects.ge(service_type__alias='supervision', alias='information_report')
-
-    record = WorkRecord(provider=request.user, resident=resident, service_item=service_item,
+        crowd = Resident(name='群体', gender=2, nation='汉族', birthday=date.today())
+        crowd.save()
+    service_item = Service.objects.get(service_type__alias='supervision', alias='information_report')
+    record = WorkRecord(provider=request.user, resident=crowd, service_item=service_item,
                         app_label='supervision', model_name='InfoReport',
                         service_item_alias=service_item.alias, item_id=info_report.id)
     record.save()

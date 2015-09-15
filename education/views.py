@@ -23,12 +23,13 @@ def activity_list(request):
 
     json_items = []
     for act in activities:
-        item = model_to_dict(act, fields=['id', 'scene', 'act_type', 'subject'])
         try:
-            record = WorkRecord.objects.get(app_label='education', item_id=act.id)
+            # record = WorkRecord.objects.get(app_label='education', item_id=act.id)
+            record = WorkRecord.objects.get(app_label='education', item_id=act.id, provider=request.user)
         except WorkRecord.DoesNotExist:
             pass
         else:
+            item = model_to_dict(act, fields=['id', 'scene', 'act_type', 'subject'])
             item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
             item['act_time'] = act.act_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
             json_items.append(item)
@@ -51,11 +52,9 @@ def activity_table(request):
         record.service_item = service_item
         record.service_item_alias = service_item.alias
         record.save()
-        success = True
-        message = u'健康教育活动记录保存完成'
+        success, message = True, u'健康教育活动记录保存完成'
     else:
-        success = False
-        message = u'健康教育活动数据验证失败'
+        success, message = False, u'健康教育活动数据验证失败'
 
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
@@ -66,5 +65,4 @@ def activity_review(request):
     activity = EducationActivity.objects.get(id=act_id)
     form = EducationActivityForm(instance=activity)
 
-    response = render(request, 'education/activity_table_review.html', {'form': form}).content
-    return HttpResponse(simplejson.dumps(response), content_type='text/html; charset=UTF-8')
+    return render(request, 'education/activity_table_review.html', {'form': form})

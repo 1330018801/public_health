@@ -305,10 +305,8 @@ from django.http import JsonResponse
 def svc_nav(request):
     nid = request.POST.get('id', '0')
     nav_items = SvcNav.objects.filter(nid=int(nid))
-
     json_data = [model_to_dict(item) for item in nav_items]
-    #for item in nav_items:
-    #    json_data.append(model_to_dict(item))
+    debug.info(len(json_data))
 
     return JsonResponse(json_data, safe=False)
 
