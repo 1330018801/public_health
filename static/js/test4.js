@@ -7,7 +7,15 @@ $(function(){
         url: '/services/svc_nav/', animate: true,
         onClick: function(node) {
             // 这里通过cookie控制能否打开服务连接
-            if ($.cookie('resident_id')){
+            if (node.classification == 'individual') {
+                if ($.cookie('resident_id')){
+                    if (node.url) {
+                        $('#svc_area').panel({
+                            href: node.url, fit: true, border: false
+                        });
+                    }
+                }
+            } else {
                 if (node.url) {
                     $('#svc_area').panel({
                         href: node.url, fit: true, border: false
