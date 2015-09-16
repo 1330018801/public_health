@@ -1,5 +1,6 @@
 $(function() {
     var selected_row = undefined;
+    /*
     var act_type1 = [{'value': 0, 'text': '全部'}, {'value': 1, 'text': '宣传栏'}, {'value': 2, 'text': '宣传栏更新'},
                      {'value': 3, 'text': '宣传册'},{'value': 4, 'text': '宣传单'}, {'value': 5, 'text': '宣传折页'},
                      {'value': 6, 'text': '资料架'},{'value': 7, 'text': '宣传栏维护'}, {'value': 8, 'text': '音像资料'},
@@ -10,6 +11,17 @@ $(function() {
                      {'value': 6, 'text': '资料架'},{'value': 7, 'text': '宣传栏维护'}, {'value': 8, 'text': '音像资料'},
                      {'value': 9, 'text': '公众健康咨询活动'},{'value': 10, 'text': '健康知识讲座'},
                      {'value': 11, 'text': '健康教育网站'}];
+    */
+    var act_type1 = [{'value': 0, 'text': '全部'}, {'value': 1, 'text': '宣传栏'}, {'value': 2, 'text': '宣传栏更新'},
+                     {'value': 7, 'text': '宣传栏维护'}, {'value': 6, 'text': '资料架'}, {'value': 8, 'text': '音像资料'},
+                     {'value': 9, 'text': '公众健康咨询活动'},{'value': 10, 'text': '健康知识讲座'},
+                     {'value': 11, 'text': '健康教育网站'}];
+    var act_type2 = [{'value': 0, 'text': ''}, {'value': 1, 'text': '宣传栏'}, {'value': 2, 'text': '宣传栏更新'},
+                     {'value': 7, 'text': '宣传栏维护'}, {'value': 6, 'text': '资料架'}, {'value': 8, 'text': '音像资料'},
+                     {'value': 9, 'text': '公众健康咨询活动'},{'value': 10, 'text': '健康知识讲座'},
+                     {'value': 11, 'text': '健康教育网站'}];
+
+    var material_type = [{'value': 3, 'text': '宣传册'},{'value': 4, 'text': '宣传单'}, {'value': 5, 'text': '宣传折页'}]
 
     var toolbar = $('#activity_toolbar');
 
@@ -32,7 +44,10 @@ $(function() {
     table.find('#organizer').textbox({ width: 200, required: true });
     table.find('#crowd_type').textbox({ width: 150, required: true });
     table.find('#crowd_num').numberbox({ width: 80, required: true });
-    table.find('#material_type').textbox({ width: 150, required: true });
+    //table.find('#material_type').textbox({ width: 150, required: true });
+    table.find('#material_type').combobox({
+        valueField: 'text', textField: 'text', data: material_type, width: 120, panelHeight: 72
+    });
     table.find('#material_num').numberbox({ width: 80, required: true });
     table.find('#photo').filebox({ buttonText: '选择附件', width: 200});
 
@@ -161,8 +176,11 @@ $(function() {
                 selected_row = datagrid.datagrid('getSelected');
             }
         },
-        onDblClickRow: function () {
-            review.find('#detail').panel({ href: '/education/activity_review/' });
+        onDblClickRow: function (index, row) {
+            review.find('#detail').panel({
+                href: '/education/activity_review/', method: 'POST',
+                queryParams: {id: row['id']}
+            });
             review.css('display', 'block');
             review.dialog('open');
             review.dialog('center')

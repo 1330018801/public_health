@@ -16,5 +16,7 @@ urlpatterns = patterns('',
     url(r'^record_detail_review/$', views.record_detail_review, name='record_detail_review'),
     url(r'^ehr_page/$', views.ehr_page, name='ehr_page'),
     url(r'^change_resident/$', views.change_resident, name='change_resident'),
+    url(r'^body_exam_table/$', views.body_exam_table, name='body_exam_table'),
+    url(r'^body_exam_submit/$', views.body_exam_submit, name='body_exam_submit'),
 
 )

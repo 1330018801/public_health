@@ -68,7 +68,9 @@ def body_exam_save(request, save_type):
             if created:
                 debug.info('create a new record BodyExam !!!')
         else:
-            result = form.save()
+            result = form.save(commit=False)
+            result.resident = resident
+            result.save()
         body_exam_commit_workrecord(request, resident, result)
         if save_type == WorkRecord.SUSPEND:
             service_item = Service.objects.get(alias='body_exam_table', service_type__alias='old')

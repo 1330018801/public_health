@@ -9,6 +9,9 @@ $(function() {
     var personal_info_form = $('#personal_info_form');
     var personal_info_table = $('#personal_info_table');
     // panel 3
+    var body_exam_form = $('#body_exam_form');
+    var body_exam_table = $('#body_exam_table');
+    // panel 4
     var records_datagrid = $('#records_datagrid');
 
     // 家庭成员列表中选中和被编辑的行
@@ -31,6 +34,12 @@ $(function() {
     var personal_info_edit_btn = $('#personal_info_edit').linkbutton({ iconCls: 'icon-edit', plain: true});
     var personal_info_undo_btn = $('#personal_info_undo').linkbutton({ iconCls: 'icon-undo', plain: true});
     var personal_info_print_btn = $('#personal_info_print').linkbutton({ iconCls: 'icon-print', plain: true});
+
+    // panel 3
+    var body_exam_save_btn = $('#body_exam_save').linkbutton({ iconCls: 'icon-save', plain: true});
+    var body_exam_edit_btn = $('#body_exam_edit').linkbutton({ iconCls: 'icon-edit', plain: true});
+    var body_exam_undo_btn = $('#body_exam_undo').linkbutton({ iconCls: 'icon-undo', plain: true});
+    var body_exam_print_btn = $('#body_exam_print').linkbutton({ iconCls: 'icon-print', plain: true});
 
     old_add_btn.linkbutton('disable');
     child_save_btn.linkbutton('disable');
@@ -183,6 +192,31 @@ $(function() {
         }
     });
 
+    body_exam_save_btn.bind('click', function () {
+        body_exam_form.form('submit', {
+            url: '/ehr/body_exam_submit/', method: 'POST',
+            onSubmit: function (param) {
+                param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                param.resident_id = selected_row['id'];
+            },
+            success: function (data) {
+                var data_obj = eval('(' + data + ')');
+                if (data_obj.success) {
+                    $.messager.alert('提示', '健康体检表保存完成', 'info');
+                    //var personal_info_panel = ehr_accordion.accordion('getSelected');
+                    body_exam_table.panel('refresh');
+                    family_datagrid.datagrid('reload');
+                } else {
+                    $.messager.alert('提示', '健康体检表保存失败', 'warning');
+                }
+            }
+        })
+    });
+
+    body_exam_print_btn.bind('click', function () {
+        // 打印体检表的内容
+    });
+
     // 添加成年人家庭成员的对话框
     adult_add_dialog.dialog({
         title: '添加成年人进入家庭', closed: true, height: 300,
@@ -308,7 +342,7 @@ $(function() {
 
     ehr_accordion.accordion({
         onSelect: function (title, index) {
-            if (index == 2) {
+            if (index == 3) {
                 records_datagrid.datagrid({
                     url: '/ehr/record_list/', rownumbers: true, singleSelect: true, fitColumns: true,
                     columns: [[
@@ -363,15 +397,27 @@ $(function() {
                         href: '/ehr/personal_info_review_new/', method: 'POST',
                         queryParams: {resident_id: selected_row['id']}
                     });
+                    /*
                     if (selected_row['ehr_no'] == null) {
                         personal_info_save_btn.linkbutton('enable');
-                        personal_info_save_btn.linkbutton('enable');
+                        personal_info_undo_btn.linkbutton('enable');
                         personal_info_edit_btn.linkbutton('disable');
                     } else {
                         personal_info_edit_btn.linkbutton('enable');
                         personal_info_save_btn.linkbutton('disable');
                         personal_info_undo_btn.linkbutton('disable');
                     }
+                    */
+                } else {
+                    $.messager.alert('提示', '请在家庭成员列表中选择居民', 'info');
+                }
+            } else if (index == 2) {
+                if (selected_row !== undefined) {
+                    body_exam_table.panel({
+                        href: '/ehr/body_exam_table/', method: 'POST',
+                        queryParams: {resident_id: selected_row['id']}
+                    });
+                    // some code goes here
                 } else {
                     $.messager.alert('提示', '请在家庭成员列表中选择居民', 'info');
                 }

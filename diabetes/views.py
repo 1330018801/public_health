@@ -100,11 +100,12 @@ def body_exam_submit(request):
         else:
             form = BodyExamForm(submit_data)
             if form.is_valid():
-                result = form.save()
+                result = form.save(commit=False)
+                result.resident = resident
+                result.save()
                 success = True
             else:
-                success = False
-                message = u'数据保存到数据库时失败'
+                success, message = False, u'数据保存到数据库时失败'
         if success:
             service_item = Service.items.get(alias='physical_examination',
                                              service_type__alias='diabetes')
@@ -113,8 +114,7 @@ def body_exam_submit(request):
                                       service_item_alias=service_item.alias)
             message = u'记录保存成功'
     else:
-        success = False
-        message = u'没有提交任何数据结果'
+        success, message = False, u'没有提交任何数据结果'
 
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')

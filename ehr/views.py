@@ -10,6 +10,7 @@ from django.forms.models import model_to_dict
 from django.apps import apps
 
 from management.models import Resident, WorkRecord, Family
+from services.utils import get_resident
 
 from .forms import PersonalInfoForm
 
@@ -117,11 +118,16 @@ def family_member_rm(request):
 
 
 def personal_info_submit(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
     form = PersonalInfoForm(request.POST)
     if form.is_valid():
         personal_info = form.save()
-        resident = Resident.objects.get(id=int(request.POST.get('resident_id')))
         resident.personal_info_table = personal_info
+        record = WorkRecord(resident=resident, provider=request.user,
+                            service_item_alias='personal_info_table',
+                            item_id=personal_info.id)
+        record.save()
         '''
         以下是自动生成健康档案编号的方法，但是需求手动设置健康档案编号
         if resident.village:
@@ -140,6 +146,7 @@ def personal_info_submit(request):
             resident.save()
         success = True
     else:
+        debug.info(form.errors.as_data())
         success = False
 
     return HttpResponse(simplejson.dumps({'success': success}),
@@ -157,13 +164,52 @@ def personal_info_review_new(request):
     resident = Resident.objects.get(id=resident_id)
     personal_info = resident.personal_info_table
     if personal_info:
+        debug.info(personal_info.id)
         form = PersonalInfoForm(instance=personal_info)
         return render(request, 'ehr/personal_info_review_content.html',
                       {'form': form, 'resident': resident})
     else:
-        form = PersonalInfoForm()
+        debug.info('aaa')
+        initial = {'identity': resident.identity, 'birthday': resident.birthday}
+        form = PersonalInfoForm(initial=initial)
         return render(request, 'ehr/personal_info_form_content.html',
                       {'form': form, 'resident': resident})
+
+from .forms import BodyExamForm
+from .models import BodyExam
+
+
+def body_exam_table(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    record = WorkRecord.objects.filter(resident=resident,
+                                       service_item_alias='body_exam_table').first()
+    debug.info(resident.name)
+    if record:
+        debug.info('aaa')
+        table = BodyExam.objects.get(id=record.item_id)
+        debug.info(record.item_id)
+        form = BodyExamForm(instance=table)
+    else:
+        form = BodyExamForm()
+    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})
+
+
+def body_exam_submit(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    form = BodyExamForm(request.POST)
+    success = False
+    if form.is_valid():
+        result = form.save()
+        record = WorkRecord(resident=resident, provider=request.user,
+                            service_item_alias='body_exam_table', item_id=result.id)
+        record.save()
+        success = True
+    else:
+        debug.info(form.errors.as_data())
+
+    return JsonResponse({'success': success})
 
 
 def record_list(request):
@@ -173,14 +219,22 @@ def record_list(request):
 
     json_items = []
     for record in records:
-        item = model_to_dict(resident, fields=['ehr_no', 'name'])
-        item['id'] = record.id
-        item['resident_name'] = record.resident.name
-        item['doctor_name'] = record.provider.username
-        item['service_type'] = record.service_item.service_type.name
-        item['service_item'] = record.service_item.name
-        item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
-        json_items.append(item)
+        if record.service_item:
+            item = model_to_dict(resident, fields=['ehr_no', 'name'])
+            item['id'] = record.id
+            item['resident_name'] = record.resident.name
+            item['doctor_name'] = record.provider.username
+            if record.service_item:
+                item['service_type'] = record.service_item.service_type.name
+                item['service_item'] = record.service_item.name
+            elif record.service_item_alias == 'body_exam_table':
+                item['service_type'] = u'健康档案建档'
+                item['service_item'] = u'健康体检表（建档）'
+            elif record.service_item_alias == 'personal_info_table':
+                item['service_type'] = u'健康档案建档'
+                item['service_item'] = u'个人基本信息表（建档）'
+            item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+            json_items.append(item)
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
 
@@ -207,6 +261,9 @@ def record_detail_review(request):
         template = 'vaccine/vaccine_review.html'
     elif record.app_label == 'psychiatric':
         template = 'psychiatric/psy_visit_review_content.html'
+    elif record.app_label == 'education':
+        debug.info(form.act_type)
+        template = 'education/activity_table_review.html'
     else:
         template = '%s/%s_review_content.html' % (record.app_label, item_alias)
 

@@ -622,11 +622,11 @@ class WorkRecord(models.Model):
 
     provider = models.ForeignKey(User)
     resident = models.ForeignKey(Resident)
-    service_item = models.ForeignKey(Service)
+    service_item = models.ForeignKey(Service, null=True)
     # 应用的名称与服务类别的别称（alias）一致
-    app_label = models.CharField(max_length=50)
+    app_label = models.CharField(max_length=50, null=True)
     # 服务项目模型的名称
-    model_name = models.CharField(max_length=50)
+    model_name = models.CharField(max_length=50, null=True)
     # 该服务项目所在服务组的item_id
     group_item_id = models.IntegerField(null=True)
     # 该次服务的结果在对应数据库表中的主键

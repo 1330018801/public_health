@@ -23,12 +23,9 @@ def activity_list(request):
 
     json_items = []
     for act in activities:
-        try:
-            # record = WorkRecord.objects.get(app_label='education', item_id=act.id)
-            record = WorkRecord.objects.get(app_label='education', item_id=act.id, provider=request.user)
-        except WorkRecord.DoesNotExist:
-            pass
-        else:
+        records = WorkRecord.objects.filter(app_label='education', item_id=act.id, provider=request.user)
+        if records.count() > 0:
+            record = records.first()
             item = model_to_dict(act, fields=['id', 'scene', 'act_type', 'subject'])
             item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
             item['act_time'] = act.act_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M')
@@ -52,6 +49,16 @@ def activity_table(request):
         record.service_item = service_item
         record.service_item_alias = service_item.alias
         record.save()
+        if result.material_type and result.material_num:
+            service_item = Service.items.get(name=result.material_type)
+            for i in range(result.material_num):
+                record = WorkRecord(provider=request.user, resident=resident, app_label='education',
+                                    model_name='EducationActivity', item_id=result.id,
+                                    evaluation=WorkRecord.SATISFIED, status=WorkRecord.FINISHED)
+                record.service_item = service_item
+                record.service_item_alias = service_item.alias
+                record.save()
+
         success, message = True, u'健康教育活动记录保存完成'
     else:
         success, message = False, u'健康教育活动数据验证失败'
@@ -62,7 +69,7 @@ def activity_table(request):
 
 def activity_review(request):
     act_id = int(request.POST.get('id'))
-    activity = EducationActivity.objects.get(id=act_id)
-    form = EducationActivityForm(instance=activity)
+    form = EducationActivity.objects.get(id=act_id)
+    # form = EducationActivityForm(instance=activity)
 
     return render(request, 'education/activity_table_review.html', {'form': form})

@@ -340,8 +340,15 @@ def doc_workload_list(request):
         item['ehr_no'] = record.resident.ehr_no
         item['resident_name'] = record.resident.name
         item['doctor_name'] = record.provider.username
-        item['service_type'] = record.service_item.service_type.name
-        item['service_item'] = record.service_item.name
+        if record.service_item:
+            item['service_type'] = record.service_item.service_type.name
+            item['service_item'] = record.service_item.name
+        elif record.service_item_alias == 'body_exam_table':
+            item['service_type'] = u'健康档案建档'
+            item['service_item'] = u'健康体检表（建档）'
+        elif record.service_item_alias == 'personal_info_table':
+                item['service_type'] = u'健康档案建档'
+                item['service_item'] = u'个人基本信息表（建档）'
         item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
         if record.status == WorkRecord.FINISHED:
             item['status'] = u'完成'
@@ -360,6 +367,8 @@ from psychiatric.views import body_exam_suspend_submit as psy_body_exam_suspend_
 from pregnant.views import aftercare_1_suspend_submit as preg_aftercare_1_suspend_submit
 from pregnant.models import Aftercare1 as PregnantAftercare1
 from pregnant.forms import Aftercare1Form as PregnantAftercare1Form
+from education.models import EducationActivity
+from education.forms import EducationActivityForm
 
 
 def record_detail_review(request):
@@ -381,6 +390,7 @@ def record_detail_review(request):
             form = PregnantAftercare1Form(instance=result)
             return render(request, 'pregnant/antenatal_1_form_content.html',
                           {'form': form, 'resident': record.resident})
+
     elif record.status == WorkRecord.FINISHED:
         return ehr_record_review(request)
 
