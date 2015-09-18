@@ -50,7 +50,6 @@ def personal_info_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success})
 
 
 def aftercare_page(request):
@@ -102,88 +101,107 @@ def body_exam_page(request):
 
 def body_exam_form(request):
     resident = get_resident(request)
-    records = WorkRecord.objects.filter(resident=resident,
-                                        model_name='BodyExam',
-                                        submit_time__gte=new_year_day())
-    if records.count():
-        result = BodyExam.objects.get(id=records[0].item_id)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    if record:
+        result = BodyExam.objects.get(id=record.item_id)
+        debug.info(result.id)
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
+    return render(request, 'ehr/body_exam_form.html',
+                  {'form': form, 'resident': resident, 'type_alias': 'psychiatric'})
 
-    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
-                                                       'type_alias': 'psychiatric'})
+
+def body_exam_suspend_submit(request, record):
+    form = BodyExamForm(request.POST)
+    if form.is_valid():
+        submit_data = {field: value for field, value in form.cleaned_data.items() if value}
+        result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
+        if created:
+            debug.info('create a new record BodyExam !!!')
+        body_exam_commit_workrecord(request, record.resident, result)
+        success = True
+    else:
+        success = False
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+
+def body_exam_save(request, save_type):
+    success = True
+    resident = get_resident(request)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    form = BodyExamForm(request.POST)
+    if form.is_valid():
+        if record:
+            submit_data = {field: value for field, value in form.cleaned_data.items() if value or value == 0}
+            result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
+            if created:
+                debug.info('create a new record BodyExam !!!')
+        else:
+            result = form.save()
+        body_exam_commit_workrecord(request, resident, result)
+        if save_type == WorkRecord.SUSPEND:
+            service_item = Service.objects.get(alias='body_exam_table', service_type__alias='psychiatric')
+            WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                      app_label='psychiatric', model_name='BodyExam', status=save_type,
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    else:
+        success = False
+    return success
 
 
 def body_exam_submit(request):
-    submit_data = request.POST.copy()
-    if 'csrfmiddlewaretoken' in submit_data:
-        submit_data.pop('csrfmiddlewaretoken')
+    success = body_exam_save(request, WorkRecord.FINISHED)
+    return HttpResponse(simplejson.dumps({'success': success}), content_type='text/html; charset=UTF-8')
 
-    if submit_data:
-        success = True
-        message = u'记录保存成功'
-        resident = get_resident(request)
-        record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
-                                           submit_time__gte=new_year_day()).first()
-        if record:
-            result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
-        else:
-            form = BodyExamForm(submit_data)
-            if form.is_valid():
-                result = form.save()
-            else:
-                success = False
-                message = u'记录数据存在问题'
 
-        if success:
-            if PhysicalExaminationForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='physical_examination',
-                                                 service_type__alias='psychiatric')
+def body_exam_suspend(request):
+    success = body_exam_save(request, WorkRecord.SUSPEND)
+    return HttpResponse(simplejson.dumps({'success': success}), content_type='text/html; charset=UTF-8')
 
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
 
-            if BloodRoutineTestForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_routine_test',
-                                                 service_type__alias='psychiatric')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
+def body_exam_commit_workrecord(request, resident, result):
+    if PhysicalExaminationForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='physical_examination',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
 
-            if BloodGlucoseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_glucose',
-                                                 service_type__alias='psychiatric')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
+    if BloodRoutineTestForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_routine_test',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
 
-            if ElectrocardiogramForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='electrocardiogram',
-                                                 service_type__alias='psychiatric')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
+    if BloodGlucoseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_glucose',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
 
-            if AlanineAminotransferaseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='alanine_aminotransferase',
-                                                 service_type__alias='psychiatric')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
+    if ElectrocardiogramForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='electrocardiogram',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
 
-            if GlutamicOxalaceticTransaminaseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='glutamic_oxalacetic_transaminase',
-                                                 service_type__alias='psychiatric')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='psychiatric', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
+    if AlanineAminotransferaseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='alanine_aminotransferase',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
 
-    else:
-        success = False
-        message = u'没有提交任何数据结果'
-
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': message})
+    if GlutamicOxalaceticTransaminaseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='glutamic_oxalacetic_transaminase',
+                                         service_type__alias='psychiatric')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='psychiatric', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)

@@ -3,22 +3,20 @@ import logging
 import simplejson
 
 from django.shortcuts import render 
-from django.http import JsonResponse, HttpResponse
-
+from django.http import HttpResponse
+from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
+    BloodGlucoseForm, ElectrocardiogramForm, GlutamicOxalaceticTransaminaseForm, BloodFatForm, \
+    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm
 from management.models import WorkRecord, Service
-from services.utils import get_resident
-from ehr.forms import OldBodyCheckForm
-from ehr.models import OldBodyCheck
+from services.utils import get_resident, new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
 
 debug = logging.getLogger('debug')
 
 
 def body_exam_page(request):
     return render(request, 'old/body_exam_page.html')
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
-from services.utils import new_year_day
 
 
 def body_exam_form(request):
@@ -31,119 +29,67 @@ def body_exam_form(request):
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
+    return render(request, 'ehr/body_exam_form.html',
+                  {'form': form, 'resident': resident, 'type_alias': 'old'})
 
-    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
-                                                       'type_alias': 'old'})
 
-from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
-    BloodGlucoseForm, ElectrocardiogramForm, GlutamicOxalaceticTransaminaseForm, BloodFatForm, \
-    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm
+def body_exam_suspend_submit(request, record):
+    result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=request.POST)
+    body_exam_commit_workrecord(request, record.resident, result)
+    return HttpResponse(simplejson.dumps({'success': True}),
+                        content_type='text/html; charset=UTF-8')
+
+
+def body_exam_suspend_submit(request, record):
+    form = BodyExamForm(request.POST)
+    if form.is_valid():
+        submit_data = {field: value for field, value in form.cleaned_data.items() if value}
+        result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
+        if created:
+            debug.info('create a new record BodyExam !!!')
+        body_exam_commit_workrecord(request, record.resident, result)
+        success = True
+    else:
+        success = False
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+
+
+def body_exam_save(request, save_type):
+    success = True
+    resident = get_resident(request)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    form = BodyExamForm(request.POST)
+    if form.is_valid():
+        if record:
+            submit_data = {field: value for field, value in form.cleaned_data.items() if value or value == 0}
+            result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
+            if created:
+                debug.info('create a new record BodyExam !!!')
+        else:
+            result = form.save(commit=False)
+            result.resident = resident
+            result.save()
+        body_exam_commit_workrecord(request, resident, result)
+        if save_type == WorkRecord.SUSPEND:
+            service_item = Service.objects.get(alias='body_exam_table', service_type__alias='old')
+            WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                      app_label='old', model_name='BodyExam', status=save_type,
+                                      item_id=result.id, service_item_alias=service_item.alias)
+    else:
+        success = False
+    return success
 
 
 def body_exam_submit(request):
-    submit_data = request.POST.copy()
-    if 'csrfmiddlewaretoken' in submit_data:
-        submit_data.pop('csrfmiddlewaretoken')
+    success = body_exam_save(request, WorkRecord.FINISHED)
+    return HttpResponse(simplejson.dumps({'success': success}), content_type='text/html; charset=UTF-8')
 
-    if submit_data:
-        success = True
-        message = u'记录保存成功'
-        resident = get_resident(request)
-        record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
-                                           submit_time__gte=new_year_day()).first()
-        if record:
-            result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
-        else:
-            form = BodyExamForm(submit_data)  # 这里为什么不能用create函数呢
-            if form.is_valid():
-                result = form.save()
-            else:
-                success = False
-                message = u'记录数据存在问题'
-        if success:
-            if PhysicalExaminationForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='physical_examination',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
 
-            if BloodRoutineTestForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_routine_test',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if UrineRoutineTestForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='urine_routine_test',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if BloodGlucoseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_glucose',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if ElectrocardiogramForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='electrocardiogram',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if AlanineAminotransferaseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='alanine_aminotransferase',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if GlutamicOxalaceticTransaminaseForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='glutamic_oxalacetic_transaminase',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if TotalBilirubinForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='total_bilirubin',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if SerumCreatinineForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='serum_creatinine',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if BloodUreaNitrogenForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_urea_nitrogen',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-
-            if BloodFatForm(submit_data).is_valid():
-                service_item = Service.items.get(alias='blood_fat',
-                                                 service_type__alias='old')
-                WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                          app_label='old', model_name='BodyExam',
-                                          item_id=result.id, service_item_alias=service_item.alias)
-    else:
-        success = False
-        message = u'没有提交任何数据结果'
-
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success, 'message': message})
+def body_exam_suspend(request):
+    success = body_exam_save(request, WorkRecord.SUSPEND)
+    return HttpResponse(simplejson.dumps({'success': success}), content_type='text/html; charset=UTF-8')
 
 
 def living_selfcare_appraisal_page(request):
@@ -183,4 +129,82 @@ def living_selfcare_appraisal_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    # return JsonResponse({'success': success})
+
+
+def body_exam_commit_workrecord(request, resident, result):
+    if PhysicalExaminationForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='physical_examination',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if BloodRoutineTestForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_routine_test',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if UrineRoutineTestForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='urine_routine_test',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if BloodGlucoseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_glucose',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if ElectrocardiogramForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='electrocardiogram',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if AlanineAminotransferaseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='alanine_aminotransferase',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if GlutamicOxalaceticTransaminaseForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='glutamic_oxalacetic_transaminase',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if TotalBilirubinForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='total_bilirubin',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if SerumCreatinineForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='serum_creatinine',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if BloodUreaNitrogenForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_urea_nitrogen',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if BloodFatForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='blood_fat',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)

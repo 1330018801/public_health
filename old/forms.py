@@ -1,4 +1,4 @@
-from django.forms import ModelForm, RadioSelect, TextInput
+from django.forms import ModelForm, TextInput
 from .models import *
 
 

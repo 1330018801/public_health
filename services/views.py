@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 from management.models import Service, WorkRecord, Resident
 from .utils import get_resident
 
-log = logging.getLogger('debug')
+debug = logging.getLogger('debug')
 
 
 @login_required
@@ -93,7 +93,6 @@ def reading_card(request):
     #        if child.is_0_6_child:
     #            candidates.append(child)
     if resident.family:
-        log.info("has family")
         candidates = [everyone for everyone in resident.family.members.all()]
     else:
         candidates = [resident]
@@ -306,10 +305,8 @@ from django.http import JsonResponse
 def svc_nav(request):
     nid = request.POST.get('id', '0')
     nav_items = SvcNav.objects.filter(nid=int(nid))
-
     json_data = [model_to_dict(item) for item in nav_items]
-    #for item in nav_items:
-    #    json_data.append(model_to_dict(item))
+    debug.info(len(json_data))
 
     return JsonResponse(json_data, safe=False)
 
@@ -328,14 +325,12 @@ def doc_nav(request):
 def doc_workload_page(request):
     return render(request, 'services/doc_workload_page.html')
 
-from django.contrib.auth.models import User
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
 
 
 def doc_workload_list(request):
-    user_id = request.POST.get('user_id')
-    user = User.objects.get(id=int(user_id))
+    user = request.user
     records = WorkRecord.objects.filter(provider=user).order_by('-submit_time')
 
     json_items = []
@@ -345,12 +340,72 @@ def doc_workload_list(request):
         item['ehr_no'] = record.resident.ehr_no
         item['resident_name'] = record.resident.name
         item['doctor_name'] = record.provider.username
-        item['service_type'] = record.service_item.service_type.name
-        item['service_item'] = record.service_item.name
+        if record.service_item:
+            item['service_type'] = record.service_item.service_type.name
+            item['service_item'] = record.service_item.name
+        elif record.service_item_alias == 'body_exam_table':
+            item['service_type'] = u'健康档案建档'
+            item['service_item'] = u'健康体检表（建档）'
+        elif record.service_item_alias == 'personal_info_table':
+                item['service_type'] = u'健康档案建档'
+                item['service_item'] = u'个人基本信息表（建档）'
         item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+        if record.status == WorkRecord.FINISHED:
+            item['status'] = u'完成'
+        elif record.status == WorkRecord.SUSPEND:
+            item['status'] = u'暂存'
         json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
+
+from ehr.models import BodyExam
+from ehr.forms import BodyExamForm
+from ehr.views import record_detail_review as ehr_record_review
+
+from old.views import body_exam_suspend_submit as old_body_exam_suspend_submit
+from psychiatric.views import body_exam_suspend_submit as psy_body_exam_suspend_submit
+from pregnant.views import aftercare_1_suspend_submit as preg_aftercare_1_suspend_submit
+from pregnant.models import Aftercare1 as PregnantAftercare1
+from pregnant.forms import Aftercare1Form as PregnantAftercare1Form
+from education.models import EducationActivity
+from education.forms import EducationActivityForm
+
+
+def record_detail_review(request):
+    record_id = int(request.POST.get('record_id'))
+    record = WorkRecord.objects.get(id=record_id)
+    if record.status == WorkRecord.SUSPEND:
+        if record.app_label == 'old' and record.service_item.alias == 'body_exam_table':
+            result = BodyExam.objects.get(id=record.item_id)
+            form = BodyExamForm(instance=result)
+            return render(request, 'ehr/body_exam_form.html',
+                          {'form': form, 'resident': record.resident, 'type_alias': record.app_label})
+        elif record.app_label == 'psychiatric' and record.service_item.alias == 'body_exam_table':
+            result = BodyExam.objects.get(id=record.item_id)
+            form = BodyExamForm(instance=result)
+            return render(request, 'ehr/body_exam_form.html',
+                          {'form': form, 'resident': record.resident, 'type_alias': record.app_label})
+        elif record.app_label == 'pregnant' and record.service_item.alias == 'aftercare_1':
+            result = PregnantAftercare1.objects.get(id=record.item_id)
+            form = PregnantAftercare1Form(instance=result)
+            return render(request, 'pregnant/antenatal_1_form_content.html',
+                          {'form': form, 'resident': record.resident})
+
+    elif record.status == WorkRecord.FINISHED:
+        return ehr_record_review(request)
+
+
+def suspend_submit(request):
+    record_id = int(request.POST.get('record_id'))
+    record = WorkRecord.objects.get(id=record_id)
+    record.status = WorkRecord.FINISHED
+    record.save()
+    if record.service_item.alias == 'body_exam_table' and record.app_label == 'old':
+        return old_body_exam_suspend_submit(request, record)
+    if record.service_item.alias == 'body_exam_table' and record.app_label == 'psychiatric':
+        return psy_body_exam_suspend_submit(request, record)
+    if record.service_item.alias == 'aftercare_1' and record.app_label == 'pregnant':
+        return preg_aftercare_1_suspend_submit(request, record)
 
 
 def reading_card_new(request):
@@ -384,6 +439,34 @@ def read_card(request):
     return JsonResponse(json_data)
 
 
+def real_read_card(request):
+	resident_name = request.POST.get('name')
+	birthday = request.POST.get('birthday')
+	gender = request.POST.get('gender')
+	nation = request.POST.get('nation')
+	address = request.POST.get('address')
+	identity = request.POST.get('identity')
+	debug.info(address)
+	try:
+		resident = Resident.objects.get(identity=identity)
+	except Resident.DoesNotExist:
+		resident = Resident()
+		resident.name = resident_name
+		resident.gender = gender
+		resident.birthday = date(year=1978, month=1, day=1)
+		resident.nation = nation
+		resident.address = address
+		resident.identity = identity
+		resident.save()
+		
+	request.session['resident_id'] = resident.id
+	request.session['resident_name'] = resident.name
+	request.session['resident_ehr_no'] = resident.ehr_no
+	json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
+
+	return JsonResponse(json_data)
+	
+	
 def provide_service(request):
     return render(request, 'test4.html')
 

@@ -3,52 +3,35 @@
 {% block table_title %}卫生监督协管巡查登记表{% endblock %}
 
 {% block table_neck %}
-<table style="width: 650px; font-size: 13px; margin-bottom: 10px;
-            border-collapse: collapse">
-    <tr>
-        <td colspan="5" width="70%" style="font-size: 16px; font-weight: 500;
-                                            border: none; padding-left: 10px">
-            机构名称：&nbsp;{% block table_institution %}{{ form.institution }}{% endblock %}
-        </td>
-        <td colspan="3" width="30%" style="font-size: 16px; font-weight: 500; border: none">
-            年度：&nbsp;{% block table_year %}{{ form.patrol_date.year }}{% endblock %}
-        </td>
-    </tr>
-</table>
+    <table class="table_neck">
+        <tr>
+            <td colspan="5" style="width: 525px;">机构名称：&nbsp;{% block table_institution %}{{ form.institution }}{% endblock %} </td>
+            <td colspan="3" style="width: 225px;">年度：&nbsp;{% block table_year %}{{ form.inspection_date.year }}{% endblock %}</td>
+        </tr>
+    </table>
 {% endblock %}
 
 {% block table_content %}
     <tr id="former_records">
-        <td width="" colspan="1" align="center">
-            序号
-        </td>
-        <td width="" colspan="3" align="center">
-            巡查地点与内容
-        </td>
-        <td width="" colspan="6" align="center">
-            发现的主要问题
-        </td>
-        <td width="" colspan="1" align="center">
-            巡查日期
-        </td>
-        <td width="" colspan="1" align="center">
-            巡查人
-        </td>
-        <td width="" colspan="2" align="center">
-            备注
-        </td>
+        <td width="" colspan="1" align="center">序号</td>
+        <td width="" colspan="3" align="center">巡查地点与内容</td>
+        <td width="" colspan="6" align="center">发现的主要问题</td>
+        <td width="" colspan="2" align="center">巡查日期</td>
+        <td width="" colspan="2" align="center">巡查人</td>
+        <td width="" colspan="2" align="center">备注</td>
     </tr>
     <tr>
         <td width="" colspan="1" align="center">1</td>
-        <td width="" colspan="3" align="center">{{ form.place_content }}</td>
-        <td width="" colspan="6" align="center">{{ form.main_problem }}</td>
-        <td width="" colspan="1" align="center">{{ form.patrol_date | date:"Y-m-d" }}</td>
-        <td width="" colspan="1" align="center">{{ form.patrolman }}</td>
+        <td width="" colspan="3">{{ form.place_content }}</td>
+        <td width="" colspan="6">{{ form.main_problem }}</td>
+        <td width="" colspan="2" align="center">{{ form.inspection_date | date:"Y-m-d" }}</td>
+        <td width="" colspan="2" align="center">{{ form.inspector }}</td>
         <td width="" colspan="2" align="center">{{ form.remarks }}</td>
     </tr>
 {% endblock %}
 
 {% block table_foot %}
     <br>
-    注： 对饮用水卫生安全、学校卫生、非法行医（采供血）开展巡查，填写本表。备注栏填写发现问题后的处置方式（如报告卫生监督机构或者帮助整改等内容）。
+    注： 对饮用水卫生安全、学校卫生、非法行医（采供血）开展巡查，填写本表。
+    备注栏填写发现问题后的处置方式（如报告卫生监督机构或者帮助整改等内容）。
 {% endblock %}

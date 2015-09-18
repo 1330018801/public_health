@@ -6,8 +6,8 @@ from pregnant import views
 urlpatterns = patterns('',
     url(r'^aftercare_1_page/$', views.aftercare_1_page, name='aftercare_1'),
     url(r'^aftercare_1_submit/$', views.aftercare_1_submit, name='aftercare_1_submit'),
-    url(r'^aftercare_1_review/$', views.aftercare_1_review, name='aftercare_1_review'),
     url(r'^aftercare_1_table/$', views.aftercare_1_table, name='aftercare_1_table'),
+    url(r'^aftercare_1_suspend/$', views.aftercare_1_suspend, name='aftercare_1_suspend'),
 
     url(r'^aftercare_2_5_page/$', views.aftercare_2_5_page, name='aftercare_2_5'),
     url(r'^aftercare_2_5_review/$', views.aftercare_2_5_review, name='aftercare_2_5_review'),

@@ -4,7 +4,8 @@
     新生儿家庭访视记录表
 {% endblock %}
 
-{% block table_content %}
+{% block table_body %}
+<table class="table_body">
     <tr>
         <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">性别</b></td>
         <td width="37.5%" colspan="45">{% block gender %}{% endblock %}</td>
@@ -17,20 +18,24 @@
         <td colspan="15" align="center"><b style="margin-right: 5px;">家庭住址</b></td>
         <td colspan="45">{% block address %}{% endblock %}</td>
     </tr>
+</table>
+<table class="table_body">
     <tr>
-        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">父亲</b></td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">姓名</b>{% block father_name %}{% endblock %}</td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">职业</b>{% block father_occupation %}{% endblock %}</td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">联系电话</b>{% block father_contact_number %}{% endblock %}</td>
-        <td width="" colspan=""><b style="margin-right: 5px;">出生日期</b>{% block father_birthday %}{% endblock %}</td>
+        <td width="10.5%" colspan="15" align="center"><b style="margin-right: 5px;">父亲</b></td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">姓名</b>{% block father_name %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">职业</b>{% block father_occupation %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">联系电话</b>{% block father_contact_number %}{% endblock %}</td>
+        <td width="25%" colspan="27"><b style="margin-right: 5px;">出生日期</b>{% block father_birthday %}{% endblock %}</td>
     </tr>
     <tr>
-        <td width="12.5%" colspan="15" align="center"><b style="margin-right: 5px;">母亲</b></td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">姓名</b>{% block mother_name %}{% endblock %}</td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">职业</b>{% block mother_occupation %}{% endblock %}</td>
-        <td width="21.5%" colspan="28"><b style="margin-right: 5px;">联系电话</b>{% block mother_contact_number %}{% endblock %}</td>
-        <td width="" colspan=""><b style="margin-right: 5px;">出生日期</b>{% block mother_birthday %}{% endblock %}</td>
+        <td width="10.5%" colspan="15" align="center"><b style="margin-right: 5px;">母亲</b></td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">姓名</b>{% block mother_name %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">职业</b>{% block mother_occupation %}{% endblock %}</td>
+        <td width="21.5%" colspan="26"><b style="margin-right: 5px;">联系电话</b>{% block mother_contact_number %}{% endblock %}</td>
+        <td width="25%" colspan="27"><b style="margin-right: 5px;">出生日期</b>{% block mother_birthday %}{% endblock %}</td>
     </tr>
+</table>
+<table class="table_body">
     <tr>
         <td colspan="30"><b style="margin-right: 5px;">出生孕周</b>{% block gestational_weeks %}{% endblock %}周</td>
         <td colspan="90"><b style="margin-right: 5px;">母亲妊娠期患病情况</b>{% block mother_gestational_disease %}{% endblock %}
@@ -166,4 +171,5 @@
             {% block doctor_signature %}{% endblock %}
         </td>
     </tr>
+</table>
 {% endblock %}

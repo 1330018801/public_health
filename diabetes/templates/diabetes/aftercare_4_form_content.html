@@ -21,7 +21,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_1 %}
-    {{ aftercare1.sign_blood_pressure }}
+    {{ aftercare1.sign_sbp }}{{ aftercare1.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_1 %}
@@ -209,7 +209,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_2 %}
-    {{ aftercare2.sign_blood_pressure }}
+    {{ aftercare2.sign_sbp }}{{ aftercare2.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_2 %}
@@ -397,7 +397,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_3 %}
-    {{ aftercare3.sign_blood_pressure }}
+    {{ aftercare3.sign_sbp }}{{ aftercare3.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_3 %}
@@ -600,7 +600,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_4 %}
-    {{ form.sign_blood_pressure }}
+    {{ form.sign_sbp }}/{{ form.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_4 %}

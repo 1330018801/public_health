@@ -1,11 +1,12 @@
 $(function () {
-    var toolbar = $('#toolbar');
-    var table = $('#newborn_table');
-    var form = $('#newborn_form');
-    var resident_id = $('#resident_id').val();
-    
+    var area = $('#newborn_visit');
+    var toolbar = area.find('#toolbar');
+    var table = area.find('#table');
+    var form = area.find('#form');
+
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_edit = toolbar.find('#edit').linkbutton({ iconCls: 'icon-edit', plain: true });
+    btn_edit.linkbutton('disable');
     var btn_print = toolbar.find('#print').linkbutton({ iconCls: 'icon-print', plain: true });
 
     btn_print.bind('click', function () {
@@ -132,16 +133,7 @@ $(function () {
             success: function (json_data) {
                 var data = eval('(' + json_data + ')');
                 if (data.success) {
-                    $.ajax({
-                        url: '/child/newborn_visit_review/', method: 'POST',
-                        data: {'resident_id': resident_id},
-                        success: function (data) {
-                            if (data.success) {
-                                table.html(data.message);
-                                table.refresh();
-                            }
-                        }
-                    });
+                    table.panel('refresh');
                     $.messager.show({title: '提示', msg: '新生儿家庭访视记录表保存成功', timeout: 1000});
                 } else {
                     $.messager.alert('提示', '新生儿家庭访视记录表保存失败', 'info');
@@ -149,22 +141,6 @@ $(function () {
             }
         });
     });
-
-    $.ajax({
-        url: '/child/newborn_visit_review/', method: 'POST',
-        data: {'resident_id': resident_id},
-        success: function (data) {
-            if (data.success) {
-                table.html(data.message);
-                table.css('display', 'block');
-                btn_save.linkbutton('disable');
-                btn_edit.linkbutton('disable');
-            } else {
-                table.css('display', 'block');
-                btn_edit.linkbutton('disable');
-                btn_print.linkbutton('disable');
-            }
-        }
-    });
+    table.panel({ href: '/child/newborn_visit_table/', method: 'POST' })
 
 });

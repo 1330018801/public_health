@@ -202,7 +202,8 @@ label {
     width: 750px;
     font-size: 13px;
     line-height: 20px;
-    border-collapse: collapse
+    border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .table_body tr td {

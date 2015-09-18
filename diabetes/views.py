@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 import logging
-
-# from django.http import JsonResponse
-from django.shortcuts import render
-from django.http import HttpResponse
 import simplejson
 
+from django.shortcuts import render
+from django.http import HttpResponse
+
 from management.models import WorkRecord, Service
-from services.utils import get_resident
+from services.utils import get_resident, new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
+
 from .forms import AftercareForm
 from .models import Aftercare
 
@@ -62,12 +64,6 @@ def aftercare_submit(request):
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-    #return JsonResponse({'success': success})
-
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
-from services.utils import new_year_day
 
 
 def body_exam_page(request):
@@ -104,11 +100,12 @@ def body_exam_submit(request):
         else:
             form = BodyExamForm(submit_data)
             if form.is_valid():
-                result = form.save()
+                result = form.save(commit=False)
+                result.resident = resident
+                result.save()
                 success = True
             else:
-                success = False
-                message = u'数据保存到数据库时失败'
+                success, message = False, u'数据保存到数据库时失败'
         if success:
             service_item = Service.items.get(alias='physical_examination',
                                              service_type__alias='diabetes')
@@ -117,10 +114,7 @@ def body_exam_submit(request):
                                       service_item_alias=service_item.alias)
             message = u'记录保存成功'
     else:
-        success = False
-        message = u'没有提交任何数据结果'
+        success, message = False, u'没有提交任何数据结果'
 
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
-
-    #return JsonResponse({'success': success, 'message': message})

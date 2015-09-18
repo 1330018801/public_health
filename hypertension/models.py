@@ -3,7 +3,6 @@ from django.db import models
 
 from pregnant.models import ChoicesAbstract
 
-
 MOUTH_LIP_CHOICES = ((u'红润', '红润'), (u'苍白', '苍白'), (u'发绀', '发绀'),
                      (u'皲裂', '皲裂'), (u'疱疹', '疱疹'),)
 MOUTH_TOOTH_CHOICES = ((u'正常', '正常'), (u'缺齿', '缺齿'), (u'龋齿', '龋齿'),
@@ -39,12 +38,13 @@ class SymptomChoices(ChoicesAbstract):
     pass
 
 
-class AftercareAbstract(models.Model):
+class Aftercare(models.Model):
     visit_date = models.DateField(max_length=10, verbose_name='随访日期',)
     visit_way = models.CharField(max_length=10, verbose_name='随访方式', choices=SFFS_CHOICES)
     symptom = models.ManyToManyField(SymptomChoices, verbose_name='症状', blank=True, null=True,)
     symptom_extra = models.TextField(verbose_name='其他', blank=True, null=True,)
-    sign_blood_pressure = models.FloatField(verbose_name='血压')
+    sign_sbp = models.FloatField(verbose_name='血压-收缩压')
+    sign_dbp = models.FloatField(verbose_name='血压-舒张压')
     sign_weight = models.FloatField(verbose_name='体重')
     sign_weight_next = models.FloatField(verbose_name='')
     sign_bmi = models.FloatField(verbose_name='体质指数')
@@ -86,24 +86,4 @@ class AftercareAbstract(models.Model):
     doctor_signature = models.CharField(max_length=20, verbose_name='随访医生签名')
 
     class Meta:
-        abstract = True
-
-
-class Aftercare(AftercareAbstract):
-    class Meta:
         db_table = 'hypertension_aftercare'
-
-
-class Aftercare2(AftercareAbstract):
-    class Meta:
-        db_table = 'hypertension_aftercare_2'
-
-
-class Aftercare3(AftercareAbstract):
-    class Meta:
-        db_table = 'hypertension_aftercare_3'
-
-
-class Aftercare4(AftercareAbstract):
-    class Meta:
-        db_table = 'hypertension_aftercare_4'

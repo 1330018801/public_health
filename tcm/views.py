@@ -52,7 +52,9 @@ def old_identify_submit(request):
     else:
         form = BodyExamForm(request.POST)
         if form.is_valid():
-            result = form.save()
+            result = form.save(commit=False)
+            result.resident = resident
+            result.save()
             success = True
         else:
             debug.info(form.errors.as_data())

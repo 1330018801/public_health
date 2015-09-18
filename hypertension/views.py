@@ -2,11 +2,14 @@
 import logging
 import simplejson
 
-from django.http import JsonResponse, HttpResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from management.models import WorkRecord, Service
-from services.utils import get_resident
+from services.utils import get_resident, new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
+
 from .forms import AftercareForm
 from .models import Aftercare
 
@@ -19,10 +22,8 @@ def aftercare_page(request):
 
 def aftercare_review(request):
     resident = get_resident(request)
-
     context = {'aftercare_1': None, 'aftercare_2': None,
                'aftercare_3': None, 'aftercare_4': None}
-
     for aftercare in context:
         service_item = Service.items.get(alias=aftercare, service_type__alias='hypertension')
         try:
@@ -56,15 +57,8 @@ def aftercare_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
-
-    #return JsonResponse({'success': success})
-
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
-from services.utils import new_year_day
 
 
 def body_exam_page(request):
@@ -73,15 +67,15 @@ def body_exam_page(request):
 
 def body_exam_form(request):
     resident = get_resident(request)
-    records = WorkRecord.objects.filter(resident=resident,
-                                        model_name='BodyExam',
-                                        submit_time__gte=new_year_day())
-    if records.count():
-        result = BodyExam.objects.get(id=records[0].item_id)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    if record:
+        debug.info('find the record of BodyExam')
+        result = BodyExam.objects.get(id=record.item_id)
+        debug.info(record.id)
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
-
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'hypertension'})
 
@@ -93,37 +87,34 @@ def body_exam_submit(request):
     :param request:
     :return:
     """
-    submit_data = request.POST.copy()
-    if 'csrfmiddlewaretoken' in submit_data:
-        submit_data.pop('csrfmiddlewaretoken')
-
-    if submit_data:
-        resident = get_resident(request)
-        record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
-                                           submit_time__gte=new_year_day()).first()
-        if record:
+    resident = get_resident(request)
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    if record:
+        form = BodyExamForm(request.POST)
+        if form.is_valid():
+            submit_data = {field: value for field, value in form.cleaned_data.items() if value or value == 0}
             result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=submit_data)
-            success = True
+            if created:
+                debug.info('create a new BodyExam record')
+            success, message = True, u'保存数据完成'
         else:
-            form = BodyExamForm(submit_data)
-            if form.is_valid():
-                result = form.save()
-                success = True
-            else:
-                success = False
-                message = u'数据保存到数据库时失败'
-        if success:
-            service_item = Service.items.get(alias='physical_examination',
-                                             service_type__alias='hypertension')
-            WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
-                                      app_label='hypertension', model_name='BodyExam',
-                                      item_id=result.id, service_item_alias=service_item.alias)
-            message = u'记录保存成功'
+            debug.info(form.errors.as_data())
+            success, message = False, u'输入数据有误'
     else:
-        success = False
-        message = u'没有提交任何数据结果'
-
+        form = BodyExamForm(request.POST)
+        if form.is_valid():
+            result = form.save()
+            success, message = True, u'保存数据完成'
+        else:
+            debug.info(form.errors.as_data())
+            success, message = False, u'数据保存到数据库时失败'
+    if success:
+        service_item = Service.items.get(alias='physical_examination',
+                                         service_type__alias='hypertension')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='hypertension', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+        message = u'记录保存成功'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
-
-    # return JsonResponse({'success': success, 'message': message})

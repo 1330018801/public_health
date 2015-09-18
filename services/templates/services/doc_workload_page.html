@@ -1,15 +1,29 @@
 {% load staticfiles %}
 
-<table id="doc_workload_table"></table>
+<div id="doc_workload" class="easyui-accordion" data-options="fit: true">
+    <div title="服务结果列表" style="overflow: auto;">
+        <table id="doc_workload_table"></table>
+    </div>
+    <div title="服务结果详情" style="overflow: auto;">
+        <div id="detail_toolbar" class="datagrid-toolbar">
+            <a href="#" id="edit">申请修改</a>
+            <a href="#" id="submit">提交保存</a>
+            <a href="#" id="print">打印</a>
+        </div>
+        <form id="form" method="POST">
+            <div id="table" align="center" style="padding: 20px 0; overflow: auto"></div>
+        </form>
+    </div>
+</div>
 
-<div id="doc_workload_toolbar" style="padding: 5px;">
+
+<div id="list_toolbar" style="padding: 5px; display: none;">
     <div>
-        <a href="#" id="edit">申请修改服务结果</a>
+        <a href="#" id="edit">申请修改结果</a>
     </div>
     <div style="margin: 5px 0 5px 4px; display: none;">
         <span style="margin-left: 15px;">姓名：</span><input id="query_name" />
         <span style="margin-left: 15px;">身份证号码：</span><input id="query_identity" style="margin-right: 15px" />
-        <input type="hidden" name="user_id" value="{{ request.user.id }}" />
         <a href="#" id="query">查询</a>
     </div>
 </div>

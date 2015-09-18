@@ -47,6 +47,7 @@ $(function () {
                             }
                         }
                     });
+                    card_exist = true;
                     $.messager.show({title: '提示', msg: '新生儿建卡完成'});
                 } else {
                     $.messager.alert('提示', '新生儿建卡失败', 'info');

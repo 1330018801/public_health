@@ -80,7 +80,8 @@ class NewbornFamilyVisitForm(ModelForm):
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, width: 100,'
                                                                 'required: true, '
-                                                                'editable: false'}),
+                                                                'editable: false,'
+                                                                'width: 100'}),
             'mother_name': TextInput(attrs={'class': 'easyui-textbox',
                                             'data-options': 'width: 80, required: true'}),
             'mother_occupation': TextInput(attrs={'class': 'easyui-textbox',
@@ -91,7 +92,8 @@ class NewbornFamilyVisitForm(ModelForm):
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, width: 100,'
                                                                 'required: true, '
-                                                                'editable: false'}),
+                                                                'editable: false,'
+                                                                'width: 100'}),
             'gestational_weeks': TextInput(attrs={'class': 'easyui-numberbox',
                                                   'data-options': 'width: 25, required: true'}),
             'mother_gestational_disease': RadioSelect,
