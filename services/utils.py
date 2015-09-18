@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from datetime import datetime
 from django.utils import timezone
 from django.apps import apps
 from management.models import Resident
+import pytz
+bj_tz = pytz.timezone('Asia/Shanghai')
 
 
 def get_model_name(item_alias):
@@ -21,3 +24,9 @@ def get_resident(request):
 
 def new_year_day():
     return timezone.now().date().replace(month=1, day=1)
+
+
+def new_year_time():
+    year = datetime.now().year
+    return bj_tz.localize(datetime(year, 1, 1, 0, 0, 0))
+

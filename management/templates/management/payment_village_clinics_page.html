@@ -1,0 +1,8 @@
+{% load staticfiles %}
+
+<div class="payment_village_clinics">
+    <input type="hidden" name="town_clinic_id" value="{{ town_clinic_id }}" />
+    <div class="payment_village_clinics_datagrid"></div>
+</div>
+
+<script src='{% static "js/payment_village_clinics.js" %}'></script>
