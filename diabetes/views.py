@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
 
-from django.http import JsonResponse
+# from django.http import JsonResponse
 from django.shortcuts import render
+from django.http import HttpResponse
+import simplejson
 
 from management.models import WorkRecord, Service
 from services.utils import get_resident
@@ -57,10 +59,10 @@ def aftercare_submit(request):
         record.save()
         debug.info(record.id)
         success = True
-    else:
-        debug.info(form.errors.as_data())
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    #return JsonResponse({'success': success})
 
 
 from ehr.forms import BodyExamForm
@@ -118,4 +120,7 @@ def body_exam_submit(request):
         success = False
         message = u'没有提交任何数据结果'
 
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+    #return JsonResponse({'success': success, 'message': message})

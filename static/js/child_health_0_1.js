@@ -62,8 +62,112 @@ $(function () {
         form.form('submit', {
             url: '/child/health_0_1_submit/',
             onSubmit: function (param) {
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.item_alias = item_alias;
+                if(!form.find('input[name=weight_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择体重等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=height_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择身高等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=complexion]').is(":checked")){
+                    $.messager.alert('提示', '请选择面色情况', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=skin]').is(":checked")){
+                    $.messager.alert('提示', '请选择皮肤是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=bregma]').is(":checked")){
+                    $.messager.alert('提示', '请选择前囟是否闭合', 'info');
+                    return false;
+                }
+                if(item_alias != 'aftercare_8_month'){
+                    if(!form.find('input[name=neck_enclosed_mass]').is(":checked")){
+                        $.messager.alert('提示', '请选择是否有颈部包块', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=eye_appearance]').is(":checked")){
+                    $.messager.alert('提示', '请选择眼外观是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=ear_appearance]').is(":checked")){
+                    $.messager.alert('提示', '请选择耳外观是否异常', 'info');
+                    return false;
+                }
+                if(item_alias == 'aftercare_6_month'){
+                    if(!form.find('input[name=hearing]').is(":checked")){
+                        $.messager.alert('提示', '请选择听力是否通过', 'info');
+                        return false;
+                    }
+                }
+                if(item_alias == 'aftercare_1_month' | item_alias == 'aftercare_3_month'){
+                    if(!form.find('input[name=oral_cavity]').is(":checked")){
+                        $.messager.alert('提示', '请选择口腔是否异常', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=heart_lung]').is(":checked")){
+                    $.messager.alert('提示', '请选择心肺是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=abdomen]').is(":checked")){
+                    $.messager.alert('提示', '请选择腹部是否异常', 'info');
+                    return false;
+                }
+                if(item_alias == 'aftercare_1_month' | item_alias == 'aftercare_3_month'){
+                    if(!form.find('input[name=navel]').is(":checked")){
+                        $.messager.alert('提示', '请选择脐部是否异常', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=all_fours]').is(":checked")){
+                    $.messager.alert('提示', '请选择四肢是否异常', 'info');
+                    return false;
+                }
+                if(item_alias != 'aftercare_1_month'){
+                    if(!form.find('input[name=rickets_symptom]').is(":checked")){
+                        $.messager.alert('提示', '请选择可疑佝偻病症状', 'info');
+                        return false;
+                    }
+                }
+                if(item_alias == 'aftercare_1_month' | item_alias == 'aftercare_3_month'){
+                    if(!form.find('input[name=rickets_sign]').is(":checked")){
+                        $.messager.alert('提示', '请选择可疑佝偻病体征', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=anus_externalia]').is(":checked")){
+                    $.messager.alert('提示', '请选择肛门/外生殖是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=growth_evaluate]').is(":checked")){
+                    $.messager.alert('提示', '请选择发育评估情况', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=two_visit_disease]').is(":checked")){
+                    $.messager.alert('提示', '请选择两次随访间患病情况', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=transfer_treatment_suggestion]').is(":checked")){
+                    $.messager.alert('提示', '请选择转诊建议', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=guide]').is(":checked")){
+                    $.messager.alert('提示', '请选择指导方式', 'info');
+                    return false;
+                }
+
+                if(form.form('validate')){
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    param.item_alias = item_alias;
+                    return true;
+                }
+                else{
+                    return false;
+                }
+
             },
             success: function (data) {
                 var data_obj = eval('(' + data + ')');

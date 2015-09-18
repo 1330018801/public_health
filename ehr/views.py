@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
+import simplejson
+from datetime import datetime
+
 from django.shortcuts import render, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.http import HttpResponse, JsonResponse
+from django.forms.models import model_to_dict
 
 from management.models import Resident
 from management.models import Family
-from services.utils import get_resident
 
-from .models import PersonalInfo
-from .forms import ChildForm, PersonalInfoForm, PsychiatricInfoForm
+# from .models import PersonalInfo
+from .forms import ChildForm, PersonalInfoForm
 
 import logging
 debug = logging.getLogger('debug')
+
+import pytz
+bj_tz = pytz.timezone('Asia/Shanghai')
 
 
 def family_relation(request):
@@ -110,11 +117,6 @@ def member_del(request):
         return HttpResponseRedirect(reverse('ehr:family_relation'))
 
 
-def vaccine_card(request, member_id):
-    child = Resident.objects.get(id=member_id)
-    return render(request, 'ehr/vaccine_card_setup.html', {'child': child})
-
-
 def resident_health_file(request, resident_id):
     resident = Resident.objects.get(id=int(resident_id))
     if request.method == 'POST':
@@ -125,22 +127,14 @@ def resident_health_file(request, resident_id):
             resident.save()
 
     else:
-        try:
-            health = resident.PersonalInfo
-        except Exception:
-            form = PersonalInfoForm()
+        if resident.PersonalInfo:
+            form = PersonalInfoForm(instance=resident.PersonalInfo)
         else:
-            form = PersonalInfoForm(instance=health)
+            form = PersonalInfoForm()
 
     return render(request, 'ehr/resident_health_file.html', {
         'resident': resident,
         'form': form,
-    })
-
-
-def health_file(request):
-    return render(request, 'ehr/health_file.html', {
-
     })
 
 
@@ -149,19 +143,6 @@ def personal_info_review(request, resident_id):
     form = PersonalInfoForm(instance=resident.personalinfo)
 
     return render(request, 'ehr/personal_info_review.html', {'form': form})
-
-
-def psychiatric_info_review(request, resident_id):
-    resident = Resident.objects.get(id=resident_id)
-    form = PsychiatricInfoForm(instance=resident.psychiatricinfo)
-
-    return render(request, 'ehr/psychiatric_info_review.html', {'form': form})
-
-from django.forms.models import model_to_dict
-from django.http import JsonResponse
-from datetime import datetime
-import pytz
-bj_tz = pytz.timezone('Asia/Shanghai')
 
 
 def family_list(request):
@@ -192,7 +173,8 @@ def family_list(request):
         item['birthday'] = each.birthday.strftime('%Y-%m-%d')
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def child_add_new(request):
@@ -208,7 +190,10 @@ def child_add_new(request):
 
     child.family = resident.family
     child.save()
-    return JsonResponse({'success': True, 'message': 'OK'})
+    return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
+                        content_type='text/html; charset=UTF-8')
+
+    #return JsonResponse({'success': True, 'message': 'OK'})
 
 
 def family_add_adult_query(request):
@@ -218,7 +203,9 @@ def family_add_adult_query(request):
 
     json_items = []
     if name == '' and identity == '':
-        return JsonResponse({'total': 0, 'rows': json_items})
+        return HttpResponse(simplejson.dumps({'total': 0, 'rows': json_items}),
+                            content_type='text/html; charset=UTF-8')
+        # return JsonResponse({'total': 0, 'rows': json_items})
 
     adults = Resident.objects.all()
 
@@ -240,7 +227,10 @@ def family_add_adult_query(request):
         item['birthday'] = adult.birthday.strftime('%Y-%m-%d')
         json_items.append(item)
 
-    return JsonResponse({'total': len(json_items), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': len(json_items), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'total': len(json_items), 'rows': json_items})
 
 
 def family_add_adult(request):
@@ -250,7 +240,10 @@ def family_add_adult(request):
     adult.family = resident.family
     adult.save()
 
-    return JsonResponse({'success': True, 'message': 'OK'})
+    return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
+                        content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse({'success': True, 'message': 'OK'})
 
 
 def family_member_rm(request):
@@ -258,7 +251,9 @@ def family_member_rm(request):
     resident.family = None
     resident.save()
 
-    return JsonResponse({'success': True, 'message': 'OK'})
+    return HttpResponse(simplejson.dumps({'success': True, 'message': 'OK'}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': True, 'message': 'OK'})
 
 
 def personal_info_submit(request):
@@ -287,9 +282,9 @@ def personal_info_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
-
-from django.http import HttpResponse
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def personal_info_table_new(request):
@@ -331,7 +326,9 @@ def record_list(request):
         item['submit_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
 
         json_items.append(item)
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse(json_items, safe=False)
 
 
 from django.apps import apps
@@ -354,8 +351,6 @@ def record_detail_review(request):
         model_obj = apps.get_model(app_label=record.app_label, model_name=record.model_name)
 
     form = model_obj.objects.get(id=record.item_id)
-    debug.info(form)
-
     if item_alias == 'body_exam_table' or item_alias == 'constitution_identification':
         template = 'ehr/body_exam_review.html'
     elif record.app_label == 'vaccine' and record.service_item.alias != 'vaccine_card':

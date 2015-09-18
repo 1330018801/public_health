@@ -6,7 +6,8 @@ from django.http import HttpResponseRedirect
 from django.apps import apps
 
 from management.models import Resident, Service, WorkRecord
-from .models import PersonalInfo, PsychiatricInfo
+from psychiatric.models import PsychiatricInfo
+from .models import PersonalInfo
 from .forms import *
 
 import logging

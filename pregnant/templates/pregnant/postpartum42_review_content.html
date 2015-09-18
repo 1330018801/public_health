@@ -5,30 +5,17 @@
 {% block general_mentality_situation %}{{ form.general_mentality_situation.value }}{% endblock %}
 {% block sbp %}{{ form.sbp.value }}{% endblock %}
 {% block dbp %}{{ form.dbp.value }}{% endblock %}
-{% block breast %}
-    {{ form.breast.value }}
-{% endblock %}
+{% block breast %}{{ form.breast.value }}{% endblock %}
 {% block breast_abnormal %}{{ form.breast_abnormal.value }}{% endblock %}
-{% block lochia %}
-    {{ form.lochia.value }}
-{% endblock %}
+{% block lochia %}{{ form.lochia.value }}{% endblock %}
 {% block lochia_abnormal %}{{ form.lochia_abnormal.value }}{% endblock %}
-{% block uterus %}
-    {{ form.uterus.value }}
-{% endblock %}
+{% block uterus %}{{ form.uterus.value }}{% endblock %}
 {% block uterus_abnormal %}{{ form.uterus_abnormal.value }}{% endblock %}
-{% block wound %}
-    {{ form.wound.value }}
-{% endblock %}
+{% block wound %}{{ form.wound.value }}{% endblock %}
 {% block wound_abnormal %}{{ form.wound_abnormal.value }}{% endblock %}
 {% block extra %}{{ form.extra.value }}{% endblock %}
-{% block classification %}
-    {{ form.classification.value }}
-{% endblock %}
-{% block classification_not_recovery %}
-    {{ form.classification_not_recovery.value }}
-{% endblock %}
-
+{% block classification %}{{ form.classification.value }}{% endblock %}
+{% block classification_not_recovery %}{{ form.classification_not_recovery.value }}{% endblock %}
 {% block guide %}
     {% for item in form.guide.value %}
         {% if forloop.last %}
@@ -38,12 +25,8 @@
         {% endif %}
     {% endfor %}
 {% endblock %}
-{% block guide_extra %}
-    {{ form.guide_extra.value }}
-{% endblock %}
-{% block dispose %}
-    {{ form.dispose.value }}
-{% endblock %}
+{% block guide_extra %}{{ form.guide_extra.value }}{% endblock %}
+{% block dispose %}{{ form.dispose.value }}{% endblock %}
 {% block dispose_transfer_treatment_reason %}
     {% ifequal form.dispose '有' %}
         <br />原因：{{ form.dispose_transfer_treatment_reason.value }}
@@ -54,6 +37,4 @@
         <br />机构及科室：{{ form.dispose_transfer_treatment_institution.value }}
     {% endifequal %}
 {% endblock %}
-{% block doctor_signature %}
-    {{ form.doctor_signature.value }}
-{% endblock %}
+{% block doctor_signature %}{{ form.doctor_signature.value }}{% endblock %}

@@ -262,13 +262,13 @@ class Aftercare1Form(ModelForm):
                                              'data-options': 'width: 40, '
                                                       'required: true'}),
             'height': TextInput(attrs={'class': 'easyui-numberbox',
-                                       'data-options': 'width: 40,'
+                                       'data-options': 'width: 40, precision: 1,'
                                                        'required: true'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
-                                       'data-options': 'width: 40,'
+                                       'data-options': 'width: 40, precision: 1,'
                                                        'required: true'}),
             'bmi': TextInput(attrs={'class': 'easyui-numberbox',
-                                    'data-options': 'width: 40,'
+                                    'data-options': 'width: 40, precision: 2,'
                                                     'required: true'}),
             'sbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
@@ -298,25 +298,21 @@ class Aftercare1Form(ModelForm):
             'accessory_abnormal': TextInput(attrs={'class': 'easyui-textbox',
                                                    'data-options': 'width: 90'}),
             'leukocyte': TextInput(attrs={'class': 'easyui-numberbox',
-                                          'data-options': 'width: 40'}),
+                                          'data-options': 'width: 40, min: 0, max: 20, precision: 1'}),
             'hemoglobin': TextInput(attrs={'class': 'easyui-numberbox',
-                                           'data-options': 'width: 40'}),
+                                           'data-options': 'width: 40, min: 0, max: 300, precision: 1'}),
             'thrombocyte': TextInput(attrs={'class': 'easyui-numberbox',
-                                            'data-options': 'width: 40'}),
+                                            'data-options': 'width: 40, min: 0, max: 600, precision: 1'}),
             'blood_extra': TextInput(attrs={'class': 'easyui-textbox',
                                             'data-options': 'width: 40'}),
-            'urine_protein': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 40,'
-                                                              'required: true'}),
+            'urine_protein': TextInput(attrs={"class": "easyui-textbox",
+                                              'data-options': 'width: 40, validType:"posNeg"'}),
             'urine_glucose': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 40,'
-                                                              'required: true'}),
+                                              'data-options': 'width: 40, validType: "posNeg"'}),
             'urine_ket': TextInput(attrs={'class': 'easyui-textbox',
-                                          'data-options': 'width: 40, '
-                                                          'required: true'}),
+                                          'data-options': 'width: 40, validType: "posNeg"'}),
             'urine_ery': TextInput(attrs={'class': 'easyui-textbox',
-                                          'data-options': 'width: 40, '
-                                                          'required: true'}),
+                                          'data-options': 'width: 40, validType: "posNeg"'}),
             'urine_extra': TextInput(attrs={'class': 'easyui-textbox',
                                             'data-options': 'width: 40'}),
             'blood_type_abo': RadioSelect,
@@ -324,32 +320,24 @@ class Aftercare1Form(ModelForm):
                                                      'data-options': 'width: 80'}),
             'blood_type_rh': RadioSelect,
             'blood_glucose': TextInput(attrs={'class': 'easyui-numberbox',
-                                              'data-options': 'width: 40'}),
+                                              'data-options': 'width: 40, precision: 1'}),
             'sgpt': TextInput(attrs={'class': 'easyui-numberbox',
-                                     'data-options': 'width: 40, '
-                                                     'required: true'}),
+                                     'data-options': 'width: 40, min: 0, max: 60, precision: 1'}),
             'sgot': TextInput(attrs={'class': 'easyui-numberbox',
-                                     'data-options': 'width: 40, '
-                                                     'required: true'}),
-            'albumin': TextInput(attrs={'class': 'easyui-textbox',
-                                        'data-options': 'width: 40,'
-                                                        'required: true'}),
-            'tbil': TextInput(attrs={'class': 'easyui-textbox',
-                                     'data-options': 'width: 40,'
-                                                     'required: true'}),
-            'dbil': TextInput(attrs={'class': 'easyui-textbox',
-                                     'data-options': 'width: 40,'
-                                                     'required: true'}),
-            'scr': TextInput(attrs={'class': 'easyui-textbox',
-                                    'data-options': 'width: 40,'
-                                                    'required: true'}),
-            'bun': TextInput(attrs={'class': 'easyui-textbox',
-                                    'data-options': 'width: 40,'
-                                                    'required: true'}),
+                                     'data-options': 'width: 40, min: 0, max: 60, precision: 1'}),
+            'albumin': TextInput(attrs={'class': 'easyui-numberbox',
+                                        'data-options': 'width: 40, precision: 1'}),
+            'tbil': TextInput(attrs={'class': 'easyui-numberbox',
+                                     'data-options': 'width: 40, min: 0, max: 30, precision: 1'}),
+            'dbil': TextInput(attrs={'class': 'easyui-numberbox',
+                                     'data-options': 'width: 40, precision: 1'}),
+            'scr': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 200, precision: 1'}),
+            'bun': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 15, precision: 1'}),
             'vaginal_secretion': RadioSelect,
             'vaginal_secretion_other': TextInput(attrs={'class': 'easyui-textbox',
-                                                        'data-options': 'width: 80,'
-                                                                        'required: true'}),
+                                                        'data-options': 'width: 80'}),
             'vaginal_clean_degree': RadioSelect,
             'surface_antigen': RadioSelect,
             'surface_antibody': RadioSelect,
@@ -407,36 +395,64 @@ class AftercareForm(ModelForm):
         fields = '__all__'
         widgets = {
             'visit_date': TextInput(attrs={'class': 'easyui-datebox',
-                                           'data-options': 'formatter:myformatter,parser:myparser'}),
-            'gestational_weeks': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 40px'}, ),
-            'complaint': Textarea(attrs={'class': 'easyui-textbox', 'data-options': 'multiline:true',
-                                         'style': 'width: 128px; height: 100px'}),
-            'weight': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}, ),
+                                           'data-options': 'formatter: myformatter,'
+                                                           'parser: myparser,'
+                                                           'width: 100, '
+                                                           'required: true, '
+                                                           'editable: false'}),
+            'gestational_weeks': TextInput(attrs={'class': 'easyui-numberbox',
+                                                  'data-options': 'width: 40, required: true,'}, ),
+            'complaint': Textarea(attrs={'class': 'easyui-textbox',
+                                         'data-options': 'multiline:true, '
+                                                         'width: 128, '
+                                                         'height: 100, '
+                                                         'required: true'}),
+            'weight': TextInput(attrs={'class': 'easyui-numberbox',
+                                       'data-options': 'width: 40, precision: 1, required: true'}, ),
             'examination_before_parturition_uteri_bottom_height': TextInput(
-                attrs={'class': 'easyui-textbox', 'style': 'width:40px'}, ),
+                attrs={'class': 'easyui-numberbox',
+                       'data-options': 'width: 40, precision: 1, required: true'}, ),
             'examination_before_parturition_abdomen_circumference': TextInput(
-                attrs={'class': 'easyui-textbox', 'style': 'width:40px'}, ),
+                attrs={'class': 'easyui-numberbox',
+                       'data-options': 'width: 40, precision: 1, required: true'}, ),
             'examination_before_parturition_fetus_position': TextInput(
-                attrs={'class': 'easyui-textbox', 'style': 'width:128px'}, ),
+                attrs={'class': 'easyui-textbox',
+                       'data-options': 'width: 128, required: true'}, ),
             'examination_before_parturition_fetal_heart_rate': TextInput(
-                attrs={'class': 'easyui-textbox', 'style': 'width:40px'}, ),
-            'sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'hemoglobin': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}, ),
-            'urine_protein': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:128px'}, ),
+                attrs={'class': 'easyui-numberbox',
+                       'data-options': 'width: 40, '
+                                       'min: 90,'
+                                       'max: 200,'
+                                       'required: true'}, ),
+            'sbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, required: true'}),
+            'dbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, required: true'}),
+            'hemoglobin': TextInput(attrs={'class': 'easyui-numberbox',
+                                           'data-options': 'width: 40, '
+                                                           'min: 0, '
+                                                           'max: 300, precision: 1,'
+                                                           'required: true'}, ),
+            'urine_protein': TextInput(attrs={'class': 'easyui-textbox',
+                                              'data-options': 'width: 128, validType: "posNeg", required: true'}, ),
             'extra_auxiliary_examination': Textarea(attrs={'class': 'easyui-textbox',
-                                                           'data-options': 'multiline:true',
-                                                           'style': 'width: 128px; height: 100px'}),
+                                                           'data-options': 'multiline:true,'
+                                                                           'width: 128,'
+                                                                           ' height: 100'}),
             'classification': RadioSelect,
-            'classification_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}, ),
+            'classification_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:80'}, ),
             'guide': CheckboxSelectMultiple,
-            'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}, ),
+            'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:80'}, ),
             'transfer_treatment': RadioSelect,
-            'transfer_treatment_reason': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}, ),
-            'transfer_treatment_institution': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:125px'}, ),
+            'transfer_treatment_reason': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:80'}, ),
+            'transfer_treatment_institution': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:125'}, ),
             'next_visit_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser'}),
-            'doctor_signature': TextInput(attrs={'class': 'easyui-textbox'})
+                                                'data-options': 'formatter:myformatter,'
+                                                                'parser:myparser,'
+                                                                'width: 100, '
+                                                                'required: true, '
+                                                                'editable: false'}),
+            'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
     def __init__(self, *args, **kwargs):
@@ -448,6 +464,7 @@ class AftercareForm(ModelForm):
         kwargs['initial'] = initial
         super(AftercareForm, self).__init__(*args, **kwargs)
 
+    '''
     def clean(self):
         cleaned_data = super(AftercareForm, self).clean()
         if cleaned_data.get('examination_before_parturition_fetal_heart_rate') < 90 or cleaned_data.get(
@@ -457,6 +474,7 @@ class AftercareForm(ModelForm):
         if cleaned_data.get('hemoglobin') < 0 or cleaned_data.get('hemoglobin') > 300:
             msg = ""
             self.add_error('hemoglobin', msg)
+    '''
 
 
 class Aftercare2Form(ModelForm):
@@ -709,13 +727,13 @@ class PostpartumVisitForm(ModelForm):
             'classification': RadioSelect,
             'transfer_treatment': RadioSelect,
             'guide': CheckboxSelectMultiple,
-            'body_temperature': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'data-options': 'width: 40,'
+            'body_temperature': TextInput(attrs={'class': 'easyui-numberbox',
+                                                 'data-options': 'width: 40, min: 20, max: 50, precision: 1,'
                                                                  'required: true'}),
-            'sbp': TextInput(attrs={'class': 'easyui-textbox',
+            'sbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
                                                     'required: true'}),
-            'dbp': TextInput(attrs={'class': 'easyui-textbox',
+            'dbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
                                                     'required: true'}),
             'general_health_situation': Textarea(attrs={'class': 'easyui-textbox',
@@ -751,6 +769,7 @@ class PostpartumVisitForm(ModelForm):
                                                 'data-options': 'width: 300'}),
             'wound_abnormal': TextInput(attrs={'class': 'easyui-textbox',
                                                'data-options': 'width: 300'}),
+
         }
 
     def __init__(self, *args, **kwargs):
@@ -784,11 +803,11 @@ class Postpartum42ExamForm(ModelForm):
                                                                            'width: 550,'
                                                                            'height:100,'
                                                                            'required: true'}),
-            'sbp': TextInput(attrs={'class': 'easyui-textbox',
+            'sbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
                                                     'required: true'}),
-            'dbp': TextInput(attrs={'class': 'easyui-textbox',
-                                    'data-options': 'width: 40,'
+            'dbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40,,'
                                                     'required: true'}),
             'breast': RadioSelect,
             'breast_abnormal': TextInput(attrs={'class': 'easyui-textbox',

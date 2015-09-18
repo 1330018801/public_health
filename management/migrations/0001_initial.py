@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
         ('auth', '0001_initial'),
         ('ehr', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('psychiatric', '0001_initial'),
     ]
 
     operations = [
@@ -139,7 +140,7 @@ class Migration(migrations.Migration):
                 ('create_by', models.ForeignKey(related_query_name=b'created_resident', related_name='created_residents', to=settings.AUTH_USER_MODEL, null=True)),
                 ('family', models.ForeignKey(related_query_name=b'members', related_name='members', blank=True, to='management.Family', null=True)),
                 ('personal_info_table', models.OneToOneField(null=True, verbose_name=b'\xe4\xb8\xaa\xe4\xba\xba\xe5\x9f\xba\xe6\x9c\xac\xe4\xbf\xa1\xe6\x81\xaf\xe8\xa1\xa8', to='ehr.PersonalInfo')),
-                ('psychiatric_info_table', models.OneToOneField(null=True, verbose_name=b'\xe9\x87\x8d\xe6\x80\xa7\xe7\xb2\xbe\xe7\xa5\x9e\xe7\x96\xbe\xe7\x97\x85\xe6\x82\xa3\xe8\x80\x85\xe4\xbf\xa1\xe6\x81\xaf\xe8\xa1\xa8', to='ehr.PsychiatricInfo')),
+                ('psychiatric_info_table', models.OneToOneField(null=True, verbose_name=b'\xe9\x87\x8d\xe6\x80\xa7\xe7\xb2\xbe\xe7\xa5\x9e\xe7\x96\xbe\xe7\x97\x85\xe6\x82\xa3\xe8\x80\x85\xe4\xbf\xa1\xe6\x81\xaf\xe8\xa1\xa8', to='psychiatric.PsychiatricInfo')),
                 ('town', models.ForeignKey(related_query_name=b'town_resident', related_name='town_residents', verbose_name=b'\xe6\x89\x80\xe5\x9c\xa8\xe4\xb9\xa1\xe9\x95\x87', to='management.Region', null=True)),
                 ('update_by', models.ForeignKey(related_query_name=b'updated_resident', related_name='updated_residents', to=settings.AUTH_USER_MODEL, null=True)),
             ],

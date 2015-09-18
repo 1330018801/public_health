@@ -1,21 +1,21 @@
 $(function() {
-    var btn_add = $('#add').linkbutton({ iconCls: 'icon-add', plain: true });
-    var btn_edit = $('#edit').linkbutton({ iconCls: 'icon-edit', plain: true});
-    var btn_save = $('#save').linkbutton({ iconCls: 'icon-save', plain: true});
-    var btn_undo = $('#undo').linkbutton({ iconCls: 'icon-undo', plain: true});
-    var btn_rm = $('#remove').linkbutton({ iconCls: 'icon-remove', plain: true});
-    btn_edit.linkbutton('disable');
+    var datagrid = $('#user_list');
+    var toolbar = $('#user_list_toolbar');
+    var panel = $('#user_add_panel');
+    var form = $('#user_add_form');
+    var table = $('#user_add_table');
+
+    var btn_add = toolbar.find('#add').linkbutton({ iconCls: 'icon-add', plain: true });
+    var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true});
+    var btn_undo = toolbar.find('#undo').linkbutton({ iconCls: 'icon-undo', plain: true});
+    var btn_rm = toolbar.find('#remove').linkbutton({ iconCls: 'icon-remove', plain: true});
     btn_rm.linkbutton('disable');
 
-    var query_user_group = $('#query_user_group');
-    var query_town_clinic = $('#query_town_clinic');
-    var query_village_clinic = $('#query_village_clinic');
-    var query_name = $('#query_name').textbox({width: 80});
-    var btn_query = $('#query').linkbutton({ iconCls: 'icon-search', plain: true });
-
-    var datagrid = $('#user_list');
-
-    var form = $('#user_add_form');
+    var query_user_group = toolbar.find('#query_user_group');
+    var query_town_clinic = toolbar.find('#query_town_clinic');
+    var query_village_clinic = toolbar.find('#query_village_clinic');
+    var query_name = toolbar.find('#query_name').textbox({width: 80});
+    var btn_query = toolbar.find('#query').linkbutton({ iconCls: 'icon-search', plain: true });
 
     query_user_group.combobox({
         url: '/management/get_roles/',
@@ -57,7 +57,7 @@ $(function() {
 
     datagrid.datagrid({
         title: '系统用户列表', url: '/management/user_query_list/',
-        toolbar: '#user_list_tb', fitColumns: true, rownumbers: true, singleSelect: true,
+        toolbar: '#user_list_toolbar', fitColumns: true, rownumbers: true, singleSelect: true,
         pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
         columns: [[
             { field: 'id', title: '编码', hidden: true },
@@ -101,23 +101,24 @@ $(function() {
             edit_row = undefined; selected_row = undefined;
             btn_save.hide(); btn_undo.hide();
             btn_add.linkbutton('enable');
-            btn_edit.linkbutton('enable');
             btn_rm.linkbutton('enable');
         }
     });
 
     $.extend($.fn.validatebox.defaults.rules, {
         equals: {
-            validator: function(value,param){
+            validator: function(value, param){
                 return value == $(param[0]).val();
             },
             message: '两次密码输入不匹配'
         }
     });
-    form.find('#username').textbox({ required: true });
+
+    form.find('#username').textbox({ required: true, width: 120 });
     form.find('#user_group').combobox({
         url: '/management/get_roles/',
-        valueField: 'id', textField: 'name', editable: false, panelHeight: 124,
+        valueField: 'id', textField: 'name', editable: false,
+        panelHeight: 124, width: 120,
         onBeforeLoad: function (param) {
             param.first_text = ''
         },
@@ -145,13 +146,13 @@ $(function() {
             }
         }
     });
-    form.find('#password').textbox({ required: true });
+    form.find('#password').textbox({ required: true, width: 120 });
     form.find('#password_again').textbox({
-        required: true, validType: 'equals["#password"]'
+        required: true, validType: 'equals["#password"]', width: 120
     });
     form.find('#town_clinic').combobox({
         url: '/management/get_town_clinics/',
-        valueField: 'id', textField: 'name', editable: false,
+        valueField: 'id', textField: 'name', editable: false, width: 120,
         onBeforeLoad: function (param) {
             param.first_text = '';
         },
@@ -165,7 +166,7 @@ $(function() {
         }
     });
     form.find('#village_clinic').combobox({
-        valueField: 'id', textField: 'name', editable: false,
+        valueField: 'id', textField: 'name', editable: false, width: 120,
         data: [{ 'id': '0', 'name': '' }],
         onBeforeLoad: function (param) {
             param.first_text = ''
@@ -174,11 +175,8 @@ $(function() {
             $(this).combobox('setValue', '0');
         }
     });
-    form.find('#department').textbox();
-    form.find('#position').textbox();
-
-    var panel = $('#user_add_panel');
-    var table = $('#user_add_table');
+    form.find('#department').textbox({width: 120});
+    form.find('#position').textbox({width: 120});
 
     panel.dialog({
         title: '添加用户', closed: true, width: 500, height: 220, cache: false, modal: true,
@@ -228,39 +226,15 @@ $(function() {
             query_username: query_name.textbox('getValue')
         });
     });
-
-    btn_add.bind('click', function () {
-        panel.dialog('open');
-    });
-
-    btn_edit.bind('click', function () {
-        /*
-        if (selected_row) {
-            btn_save.show(); btn_undo.show();
-            btn_add.linkbutton('disable');
-            btn_edit.linkbutton('disable');
-            btn_rm.linkbutton('disable');
-
-            edit_row = datagrid.datagrid('getRowIndex', selected_row);
-            datagrid.datagrid('beginEdit', edit_row);
-            towLevelClinicOptions(get_edit_field(edit_row, 'town_clinic'), edit_row);
-        }
-        */
-    });
-
-    btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
-    });
-
+    btn_add.bind('click', function () { panel.dialog('open'); });
+    btn_save.bind('click', function () { datagrid.datagrid('endEdit', edit_row); });
     btn_undo.bind('click', function () {
         edit_row = undefined;
         datagrid.datagrid('rejectChanges');
         btn_save.hide(); btn_undo.hide();
         btn_add.linkbutton('enable');
-        btn_edit.linkbutton('enable');
         btn_rm.linkbutton('enable');
     });
-
     btn_rm.bind('click', function () {
         if (selected_row != undefined) {
             $.messager.confirm('提示', '要删除所选择的用户记录吗？', function(flag) {

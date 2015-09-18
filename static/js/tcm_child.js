@@ -1,11 +1,9 @@
 $(function () {
-    $('#tcm_child').panel({ fit: true });
-    var toolbar = $('#toolbar');
-    var form = $('#form');
-    var panel = $('#table');
-    var resident_id = $('#resident_id').val();
+    var area = $('#tcm_child').panel({ fit: true });
+    var toolbar = area.find('#toolbar');
+    var form = area.find('#form');
+    var panel = area.find('#table');
     var item_alias = undefined;
-    // var finished = undefined;
 
     var btn_add_1 = toolbar.find('#add_1').linkbutton({ iconCls: 'icon-add', plain: true });
     var btn_add_2 = toolbar.find('#add_2').linkbutton({ iconCls: 'icon-add', plain: true });
@@ -19,10 +17,8 @@ $(function () {
 
     btn_save.linkbutton('disable');
 
-    btn_print.bind('click', function () {
-        panel.find('.print_area').printThis();
-    });
-
+    btn_print.bind('click', function () { panel.find('.print_area').printThis(); });
+    btn_undo.bind('click', function () { panel.panel({ href: '/tcm/child_review/' }); });
 
     btn_add_1.bind('click', function () {
         item_alias = 'aftercare_6_month';
@@ -41,7 +37,6 @@ $(function () {
         });
         btn_save.linkbutton('enable');
     });
-
 
     btn_add_3.bind('click', function () {
         item_alias = 'aftercare_18_month';
@@ -83,8 +78,18 @@ $(function () {
         form.form('submit', {
              url: '/tcm/child_submit/',
              onSubmit: function (param) {
-                 param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                 param.item_alias = item_alias;
+                 if(!form.find('input[name=guide]').is(":checked")){
+                     $.messager.alert('提示', '请选择中医药健康管理服务', 'info');
+                     return false;
+                 }
+                 if(form.form('validate')){
+                     param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                     param.item_alias = item_alias;
+                     return true;
+                 }
+                 else{
+                     return false;
+                 }
              },
              success: function (data) {
                  var data_obj = eval('(' + data + ')');
@@ -98,11 +103,6 @@ $(function () {
              }
         });
     });
-
-    btn_undo.bind('click', function () {
-        panel.panel({ href: '/tcm/child_review/' });
-    });
-    btn_print.bind('click', function () {});
 
     panel.panel({ href: '/tcm/child_review/', border: false });
 });

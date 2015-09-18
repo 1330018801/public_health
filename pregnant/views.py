@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import logging
+import simplejson
 
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import HttpResponse
 
 from management.models import WorkRecord, Service
-from services.utils import get_resident, get_model, get_model_name
+from services.utils import get_resident, get_model_name
 
 from pregnant.forms import *
 from .models import *
@@ -19,10 +20,7 @@ def get_form(item_alias):
 
 
 def aftercare_1_page(request):
-    resident = get_resident(request)
-    form = Aftercare1Form()
-    return render(request, 'pregnant/pregnant_aftercare_1.html',
-                  {'form': form, 'resident': resident})
+    return render(request, 'pregnant/pregnant_aftercare_1.html')
 
 
 def aftercare_1_submit(request):
@@ -123,23 +121,28 @@ def aftercare_1_submit(request):
     else:
         success = False
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
-def aftercare_1_review(request):
+def aftercare_1_table(request):
     resident = get_resident(request)
     service_item = Service.objects.get(alias='aftercare_1', service_type__alias='pregnant')
     try:
         record = WorkRecord.objects.get(resident=resident, service_item=service_item)
     except WorkRecord.DoesNotExist:
-        success, message = False, ''
+        form = Aftercare1Form()
+        return render(request, 'pregnant/antenatal_1_form_content.html',
+                      {'form': form, 'resident': resident})
     else:
         result = Aftercare1.objects.get(id=record.item_id)
-        #form = Aftercare1Form(instance=result)
-        success = True
-        message = render(request, 'pregnant/aftercare_1_review_content.html',
-                         {'form': result, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+        return render(request, 'pregnant/aftercare_1_review_content.html',
+                      {'form': result, 'resident': resident})
+
+
+def aftercare_1_review(request):
+    pass
 
 
 def aftercare_2_5_page(request):
@@ -185,30 +188,29 @@ def aftercare_2_5_submit(request):
         record.save()
         success = True
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def postpartum_visit(request):
-    resident = get_resident(request)
-    form = PostpartumVisitForm()
-    return render(request, 'pregnant/pregnant_postpartum_visit.html',
-                  {'form': form, 'resident': resident})
+    return render(request, 'pregnant/pregnant_postpartum_visit.html')
 
 
-def postpartum_visit_review(request):
+def postpartum_visit_table(request):
     resident = get_resident(request)
     service_item = Service.objects.get(alias='postpartum_visit', service_type__alias='pregnant')
     try:
         record = WorkRecord.objects.get(resident=resident, service_item=service_item)
     except WorkRecord.DoesNotExist:
-        success, message = False, ''
+        form = PostpartumVisitForm()
+        return render(request, 'pregnant/postpartum_form_content.html',
+                      {'form': form, 'resident': resident})
     else:
         result = PostpartumVisit.objects.get(id=record.item_id)
         form = PostpartumVisitForm(instance=result)
-        success = True
-        message = render(request, 'pregnant/postpartum_review_content.html',
-                         {'form': form, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+        return render(request, 'pregnant/postpartum_review_content.html',
+                      {'form': form, 'resident': resident})
 
 
 def postpartum_visit_submit(request):
@@ -223,30 +225,30 @@ def postpartum_visit_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def postpartum_42day(request):
-    resident = get_resident(request)
-    form = Postpartum42ExamForm()
-    return render(request, 'pregnant/pregnant_postpartum_42_day_examination.html',
-                  {'form': form, 'resident': resident})
+    return render(request, 'pregnant/pregnant_postpartum_42_day_examination.html')
 
 
-def postpartum_42day_review(request):
+def postpartum_42day_table(request):
     resident = get_resident(request)
-    service_item = Service.objects.get(alias='postpartum_42_day_examination', service_type__alias='pregnant')
+    service_item = Service.objects.get(alias='postpartum_42_day_examination',
+                                       service_type__alias='pregnant')
     try:
         record = WorkRecord.objects.get(resident=resident, service_item=service_item)
     except WorkRecord.DoesNotExist:
-        success, message = False, ''
+        form = Postpartum42ExamForm()
+        return render(request, 'pregnant/postpartum42_form_content.html',
+                      {'form': form, 'resident': resident})
     else:
         result = Postpartum42Exam.objects.get(id=record.item_id)
         form = Postpartum42ExamForm(instance=result)
-        success = True
-        message = render(request, 'pregnant/postpartum42_review_content.html',
-                         {'form': form, 'resident': resident}).content
-    return JsonResponse({'success': success, 'message': message})
+        return render(request, 'pregnant/postpartum42_review_content.html',
+                      {'form': form, 'resident': resident})
 
 
 def postpartum_42day_submit(request):
@@ -255,10 +257,13 @@ def postpartum_42day_submit(request):
     if form.is_valid():
         result = form.save()
         resident = get_resident(request)
-        service_item = Service.objects.get(alias='postpartum_42_day_examination', service_type__alias='pregnant')
+        service_item = Service.objects.get(alias='postpartum_42_day_examination',
+                                           service_type__alias='pregnant')
         record = WorkRecord(provider=request.user, resident=resident, service_item=service_item,
-                            app_label='pregnant', model_name='PostpartumVisit',
+                            app_label='pregnant', model_name='Postpartum42Exam',
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})

@@ -2,13 +2,14 @@
 import re
 import types
 from datetime import datetime, date
+import simplejson
 
 from django.db.models import Q
 from django.db.models.loading import get_model
 from django.shortcuts import render
 from django.contrib import auth
 from django.contrib.auth.models import User, Group
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -2611,7 +2612,9 @@ def graph_payment(request):
 
     total_payment *= 1.0
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
-    return JsonResponse(percent, safe=False)
+
+    return HttpResponse(simplejson.dumps(percent), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(percent, safe=False)
 
 
 def psychiatric_info_table(request):
@@ -2943,7 +2946,7 @@ def rectify_apply(request):
 
     return HttpResponse(apply_record.id)
 
-from django.http import JsonResponse
+#from django.http import JsonResponse
 
 
 def get_towns(request):
@@ -2957,7 +2960,8 @@ def get_towns(request):
         json_item = model_to_dict(town, fields=['id', 'name'])
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_towns_edit(request):
@@ -2971,7 +2975,8 @@ def get_towns_edit(request):
         json_item['id'], json_item['name'] = town.id, town.name
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_town_villages(request, town_id):
@@ -2989,7 +2994,8 @@ def get_town_villages(request, town_id):
     except Region.DoesNotExist:
         pass
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_town_villages_edit(request):
@@ -3008,7 +3014,8 @@ def get_town_villages_edit(request):
     except Region.DoesNotExist:
         pass
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def resident_add_test(request):
@@ -3039,7 +3046,8 @@ def resident_add_test(request):
 
     resident.save()
     json_data = {'success': True, 'name': resident.name}
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data)
 
 
 def resident_update_test(request):
@@ -3073,7 +3081,8 @@ def resident_update_test(request):
 
     resident.save()
     json_data = {'success': True, 'name': resident.name}
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data)
 
 
 def resident_del_test(request):
@@ -3088,7 +3097,8 @@ def resident_del_test(request):
         success = False
 
     json_data = {'success': success, 'name': resident_name}
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data)
 
 from django.forms.models import model_to_dict
 
@@ -3122,7 +3132,8 @@ def resident_query_test(request):
         item['birthday'] = resident.birthday.strftime('%Y-%m-%d')
         json_data.append(item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def resident_query_list(request):
@@ -3183,7 +3194,9 @@ def resident_query_list(request):
             item['village'] = ''
         json_items.append(item)
 
-    return JsonResponse({'total': residents.count(), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': residents.count(), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': residents.count(), 'rows': json_items})
 
 from management.models import AdminNav
 
@@ -3196,7 +3209,8 @@ def admin_nav(request):
     for item in nav_items:
         json_data.append(model_to_dict(item))
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def residents(request):
@@ -3220,7 +3234,8 @@ def town_clinic_list_new(request):
     json_data = dict()
     json_data['total'] = len(json_items)
     json_data['rows'] = json_items
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data)
 
 
 def village_clinics(request):
@@ -3232,12 +3247,13 @@ def village_clinic_list_new(request):
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
 
-    query_town = request.POST.get('query_town', '')
-    query_village = request.POST.get('query_village', '')
+    query_town_clinic = request.POST.get('query_town_clinic', '0')
+    query_village = request.POST.get('query_village_clinic_name', '')
 
     village_clinics = Clinic.in_village.all().order_by('id')
-    if query_town and query_town != '0':
-        village_clinics = village_clinics.filter(town_clinic=query_town)
+    if query_town_clinic and query_town_clinic != '0':
+        town_clinic = Clinic.in_town.get(id=int(query_town_clinic))
+        village_clinics = village_clinics.filter(town_clinic=town_clinic)
     if query_village:
         village_clinics = village_clinics.filter(name__icontains=query_village)
 
@@ -3249,25 +3265,20 @@ def village_clinic_list_new(request):
 
         json_items.append(item)
 
-    json_data = dict()
-    json_data['total'] = village_clinics.count()
-    json_data['rows'] = json_items
-    return JsonResponse(json_data)
+    #return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    return JsonResponse({'total': village_clinics.count(), 'rows': json_items})
 
 
 def get_town_clinics(request):
     first_text = request.POST.get('first_text', '')
-    json_data = []
-    json_item = {'id': '0', 'name': first_text}
-    json_data.append(json_item)
+    json_items = [{'id': 0, 'name': first_text}]
 
     town_clinics = Clinic.in_town.all()
     for clinic in town_clinics:
-        json_item = dict()
-        json_item['id'], json_item['name'] = clinic.id, clinic.name
-        json_data.append(json_item)
+        json_items.append(model_to_dict(clinic, fields=['id', 'name']))
 
-    return JsonResponse(json_data, safe=False)
+    #return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    return JsonResponse(json_items, safe=False)
 
 
 def get_town_clinic_edit(request):
@@ -3281,7 +3292,8 @@ def get_town_clinic_edit(request):
         json_item['id'], json_item['name'] = clinic.id, clinic.name
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def village_clinic_add_test(request):
@@ -3303,7 +3315,8 @@ def village_clinic_add_test(request):
     clinic.save()
 
     json_data = {'success': True, 'name': clinic.name}
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data)
 
 
 def village_clinic_del_test(request):
@@ -3319,6 +3332,7 @@ def village_clinic_del_test(request):
         success = False
 
     json_data = {'success': success, 'name': village_clinic_name}
+    # return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
     return JsonResponse(json_data)
 
 
@@ -3342,7 +3356,9 @@ def village_clinic_update_test(request):
         success = False
 
     json_data = {'success': success, 'name': village_clinic_name}
-    return JsonResponse(json_data)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+    # return JsonResponse(json_data)
 
 
 def users(request):
@@ -3391,7 +3407,9 @@ def user_query_list(request):
                 item['name'] = user.userprofile.resident.name
         json_items.append(item)
 
-    return JsonResponse({'total': users.count(), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': users.count(), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': users.count(), 'rows': json_items})
 
 
 def get_town_village_clinics(request, town_clinic_id):
@@ -3409,7 +3427,8 @@ def get_town_village_clinics(request, town_clinic_id):
             json_item['id'], json_item['name'] = clinic.id, clinic.name
             json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_town_clinics_edit(request):
@@ -3423,7 +3442,8 @@ def get_town_clinics_edit(request):
         json_item['id'], json_item['name'] = clinic.id, clinic.name
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_town_village_clinics_edit(request):
@@ -3439,7 +3459,8 @@ def get_town_village_clinics_edit(request):
         json_item['id'], json_item['name'] = clinic.id, clinic.name
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 
 def get_roles(request):
@@ -3454,7 +3475,8 @@ def get_roles(request):
         json_item['id'], json_item['name'] = role.id, role.name
         json_data.append(json_item)
 
-    return JsonResponse(json_data, safe=False)
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
 
 from django.utils import timezone
 
@@ -3488,17 +3510,19 @@ def user_add_test(request):
     else:
         success, msg = False, u'使用该用户名的用户已存在'
 
-    return JsonResponse({'success': success, 'message': msg})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': msg}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': msg})
 
 
 def user_del_test(request):
-    success, msg = False, ''
+    success, message = False, ''
     user_id = int(request.POST.get('user_id', '0'))
     if user_id:
         try:
             user = User.objects.get(id=user_id)
         except User.DoesNotExist:
-            msg = u'用户不存在'
+            message = u'用户不存在'
         else:
             try:
                 user_profile = UserProfile.objects.get(user=user)
@@ -3507,11 +3531,13 @@ def user_del_test(request):
             else:
                 user_profile.delete()
             user.delete()
-            success, msg = True, u'删除用户' + user.username + u'完成'
+            success, message = True, u'删除用户' + user.username + u'完成'
     else:
-        msg = u'用户参数错误'
+        message = u'用户参数错误'
 
-    return JsonResponse({'success': success, 'message': msg})
+    #return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+    #                    content_type='text/html; charset=UTF-8')
+    return JsonResponse({'success': success, 'message': message})
 
 
 def service_types(request):
@@ -3525,18 +3551,20 @@ def service_type_list_new(request):
         item['item_num'] = service_type.service_items.all().count()
         json_items.append(item)
 
-    return JsonResponse({'total': len(json_items), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': len(json_items), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': len(json_items), 'rows': json_items})
 
 
 def service_type_options(request):
     first_text = request.POST.get('first_text', '')
-    json_items = []
-    json_items.append({'id': 0, 'name': first_text})
+    json_items = [{'id': 0, 'name': first_text}]
 
     serivce_types = Service.types.all()
     for service_type in serivce_types:
         item = model_to_dict(service_type, fields=['id', 'name'])
         json_items.append(item)
+    # return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
     return JsonResponse(json_items, safe=False)
 
 
@@ -3562,7 +3590,9 @@ def service_item_list_new(request):
         item['service_type'] = service_item.service_type.name
         json_items.append(item)
 
-    return JsonResponse({'total': service_items.count(), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': service_items.count(), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': service_items.count(), 'rows': json_items})
 
 
 def service_items(request):
@@ -3593,7 +3623,9 @@ def service_item_add_test(request):
     else:
         success = 'false'
         msg = u'服务项目已经存在'
-    return JsonResponse({'success': success, 'message': msg})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': msg}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': msg})
 
 
 def service_item_update_test(request):
@@ -3615,7 +3647,9 @@ def service_item_update_test(request):
         service_item.save()
         success = True
 
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def service_item_del_test(request):
@@ -3630,7 +3664,9 @@ def service_item_del_test(request):
         success = 'true'
         msg = u'服务记录删除完成'
 
-    return JsonResponse({'success': success, 'message': msg})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': msg}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': msg})
 
 
 def records(request):
@@ -3703,7 +3739,9 @@ def record_list_new(request):
 
         json_items.append(item)
 
-    return JsonResponse({'total': records.count(), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': records.count(), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': records.count(), 'rows': json_items})
 
 
 def service_item_options(request):
@@ -3724,7 +3762,8 @@ def service_item_options(request):
             item['service_type_name'] = service_item.service_type.name
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def town_clinic_options(request):
@@ -3735,7 +3774,8 @@ def town_clinic_options(request):
     for town_clinic in town_clinics:
         json_items.append(model_to_dict(town_clinic, fields=['id', 'name']))
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def village_clinic_options(request):
@@ -3752,7 +3792,8 @@ def village_clinic_options(request):
         item = model_to_dict(village_clinic, fields=['id', 'name'])
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def payment(request):
@@ -3830,7 +3871,9 @@ def payment_list_new(request):
             'workload': str(workload[service_item]) + service_item.unit,
             'payment': workload[service_item] * service_item.price})
 
-    return JsonResponse({'total': service_items.count(), 'rows': json_items})
+    return HttpResponse(simplejson.dumps({'total': service_items.count(), 'rows': json_items}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'total': service_items.count(), 'rows': json_items})
 
 
 def roles(request):
@@ -3847,7 +3890,8 @@ def role_list_new(request):
         item['user_num'] = group.users.all().count()
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def get_role_authorize(request):
@@ -3859,7 +3903,8 @@ def get_role_authorize(request):
         if service.level == Service.SERVICE_ITEM:
             json_items.append(str(service.id))
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def role_authorize(request):
@@ -3893,7 +3938,9 @@ def role_authorize(request):
 
     group_profile.save()
 
-    return JsonResponse({'success': 'true'})
+    return HttpResponse(simplejson.dumps({'success': True}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': 'true'})
 
 
 def sms_sent(request):
@@ -3937,7 +3984,8 @@ def sms_sent_list(request):
         item['next_time_date'] = sms.next_time_date.strftime('%Y-%m-%d')
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def sms_setup_page(request):
@@ -4003,7 +4051,8 @@ def sms_setup_list(request):
             item['updater'] = setup.update_by.username
         json_items.append(item)
 
-    return JsonResponse(json_items, safe=False)
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_items, safe=False)
 
 
 def sms_setup_add(request):
@@ -4019,7 +4068,9 @@ def sms_setup_add(request):
     sms_setup.create_by = request.user
 
     sms_setup.save()
-    return JsonResponse({'success': True})
+    return HttpResponse(simplejson.dumps({'success': True}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': True})
 
 
 def sms_setup_update(request):
@@ -4035,7 +4086,9 @@ def sms_setup_update(request):
     sms_setup.update_by = request.user
 
     sms_setup.save()
-    return JsonResponse({'success': True})
+    return HttpResponse(simplejson.dumps({'success': True}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': True})
 
 
 def sms_setup_del(request):
@@ -4047,7 +4100,9 @@ def sms_setup_del(request):
     else:
         sms_setup.delete()
         success = True
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success})
 
 
 def resident_add_hypertension(request):
@@ -4061,7 +4116,9 @@ def resident_add_hypertension(request):
         resident.save()
         success = True
         message = u''
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def resident_add_diabetes(request):
@@ -4075,7 +4132,9 @@ def resident_add_diabetes(request):
         resident.save()
         success = True
         message = u''
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def resident_add_psychiatric(request):
@@ -4089,7 +4148,9 @@ def resident_add_psychiatric(request):
         resident.save()
         success = True
         message = u''
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})
 
 
 def resident_add_pregnant(request):
@@ -4103,4 +4164,6 @@ def resident_add_pregnant(request):
         resident.save()
         success = True
         message = u''
-    return JsonResponse({'success': success, 'message': message})
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+    # return JsonResponse({'success': success, 'message': message})

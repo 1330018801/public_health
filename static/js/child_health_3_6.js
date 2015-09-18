@@ -62,8 +62,48 @@ $(function () {
         form.form('submit', {
             url: '/child/health_3_6_submit/',
             onSubmit: function (param) {
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.item_alias = item_alias;
+                if(!form.find('input[name=weight_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择体重等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=height_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择身高等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=body_growth_evaluate]').is(":checked")){
+                    $.messager.alert('提示', '请选择体格发育评价情况', 'info');
+                    return false;
+                }
+                if(item_alias == 'aftercare_3_year'){
+                    if(!form.find('input[name=hearing]').is(":checked")){
+                        $.messager.alert('提示', '请选择听力是否通过', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=heart_lung]').is(":checked")){
+                    $.messager.alert('提示', '请选择心肺是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=abdomen]').is(":checked")){
+                    $.messager.alert('提示', '请选择腹部是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=transfer_treatment_suggestion]').is(":checked")){
+                    $.messager.alert('提示', '请选择转诊建议', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=guide]').is(":checked")){
+                    $.messager.alert('提示', '请选择指导方式', 'info');
+                    return false;
+                }
+                if(form.form('validate')){
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    param.item_alias = item_alias;
+                    return true;
+                }
+                else{
+                    return false;
+                }
             },
             success: function (data) {
                 var data_obj = eval('(' + data + ')');

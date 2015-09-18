@@ -4,54 +4,54 @@
 
 {% block table_content %}
     <tr>
-        <td colspan="1" width="15%" align="center">随访日期</td>
+        <td colspan="1" width="15%" align="center"><b>随访日期</b></td>
         <td colspan="7">{% block visit_date %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"align="center">危险性</td>
+        <td colspan="1"align="center"><b>危险性</b></td>
         <td colspan="7">{% block dangerousness %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"align="center">目前症状</td>
+        <td colspan="1"align="center"><b>目前症状</b></td>
         <td colspan="7">{% block now_symptom %}{% endblock %}
             {% block now_symptom_extra %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">自知力</td>
+        <td colspan="1" align="center"><b>自知力</b></td>
         <td colspan="7">{% block insight %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">睡眠情况</td>
+        <td colspan="1" align="center"><b>睡眠情况</b></td>
         <td colspan="7">{% block sleep_situation %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">饮食情况</td>
+        <td colspan="1" align="center"><b>饮食情况</b></td>
         <td colspan="7">{% block diet_situation %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="5" align="center">社会功能情况</td>
-        <td colspan="1" width="15%" align="center">个人生活料理</td>
+        <td colspan="1" rowspan="5" align="center"><b>社会功能情况</b></td>
+        <td colspan="1" width="15%" align="center"><b>个人生活料理</b></td>
         <td colspan="6">{% block society_function_individual_life_care %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">家务劳动</td>
+        <td colspan="1" align="center"><b>家务劳动</b></td>
         <td colspan="7">{% block society_function_housework %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">生产劳动及工作</td>
+        <td colspan="1" align="center"><b>生产劳动及工作</b></td>
         <td colspan="7">{% block society_function_productive_work %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">学习能力</td>
+        <td colspan="1" align="center"><b>学习能力</b></td>
         <td colspan="7">{% block society_function_learn_ability %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">社会人际交往</td>
+        <td colspan="1" align="center"><b>社会人际交往</b></td>
         <td colspan="7">{% block society_function_social_interpersonal %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">患者对家庭社会的影响</td>
+        <td colspan="1" align="center"><b>患者对家庭社会的影响</b></td>
         <td colspan="7">
             轻度滋事{% block disease_family_society_effect_mild_disturbance %}{% endblock %}次
             肇事{% block disease_family_society_effect_disturbance %}{% endblock %}次
@@ -61,44 +61,44 @@
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">关锁情况</td>
+        <td colspan="1" align="center"><b>关锁情况</b></td>
         <td colspan="7">{% block lock_situation %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">住院情况</td>
+        <td colspan="1" align="center"><b>住院情况</b></td>
         <td colspan="7">{% block hospitalized_situation %}{% endblock %}
             末次出院时间：{% block last_hospitalized_date %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">实验室检查</td>
+        <td colspan="1" align="center"><b>实验室检查</b></td>
         <td colspan="7">{% block laboratory_examination %}{% endblock %}
             {% block laboratory_examination_yes %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">药物依从性</td>
+        <td colspan="1" align="center"><b>药物依从性</b></td>
         <td colspan="7">{% block take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">药物不良反应</td>
+        <td colspan="1" align="center"><b>药物不良反应</b></td>
         <td colspan="7">{% block medicine_untoward_effect %}{% endblock %}
             {% block medicine_untoward_effect_yes %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">治疗效果</td>
+        <td colspan="1" align="center"><b>治疗效果</b></td>
         <td colspan="7">{% block treatment_effect %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">是否转诊</td>
+        <td colspan="1" align="center"><b>是否转诊</b></td>
         <td colspan="7">{% block transfer_treatment %}{% endblock %}<br />
             转诊原因：{% block transfer_treatment_reason %}{% endblock %}<br />
             转诊至机构及科室：{% block transfer_treatment_institution %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="3" width="15%" align="center">用药情况</td>
+        <td colspan="1" rowspan="3" width="15%" align="center"><b>用药情况</b></td>
         <td colspan="2" width="25%">药物 1：{% block take_medicine_1 %}{% endblock %}</td>
         <td colspan="3" width="35%">用法：{% block take_medicine_1_per %}{% endblock %}{% block take_medicine_1_time %}{% endblock %}</td>
         <td colspan="2" width="25%">每次剂量{% block take_medicine_1_mg %}{% endblock %}</td>
@@ -114,19 +114,19 @@
         <td colspan="2">每次剂量{% block take_medicine_3_mg %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">康复措施</td>
+        <td colspan="1" align="center"><b>康复措施</b></td>
         <td colspan="7">{% block recovery_measure %}{% endblock %}
         {% block recovery_measure_extra %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">本次随访分类</td>
+        <td colspan="1" align="center"><b>本次随访分类</b></td>
         <td colspan="7">{% block visit_classification %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">下次随访日期</td>
+        <td colspan="2" align="center"><b>下次随访日期</b></td>
         <td colspan="2">{% block next_visit_date %}{% endblock %}</td>
-        <td colspan="2" align="center">随访医生签名</td>
+        <td colspan="2" align="center"><b>随访医生签名</b></td>
         <td colspan="2">{% block doctor_signature%}{% endblock %}</td>
     </tr>
 {% endblock %}

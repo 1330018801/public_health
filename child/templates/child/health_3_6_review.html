@@ -84,7 +84,11 @@
 
 {% block guide_3 %}
     {% for item in aftercare_3_year.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+          {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -184,7 +188,11 @@
 
 {% block guide_4 %}
     {% for item in aftercare_4_year.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+          {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -284,7 +292,11 @@
 
 {% block guide_5 %}
     {% for item in aftercare_5_year.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+          {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -384,7 +396,11 @@
 
 {% block guide_6 %}
     {% for item in aftercare_6_year.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+          {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 

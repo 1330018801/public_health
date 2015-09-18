@@ -7,7 +7,11 @@
 
 {% block tbl_1_col_3_guide %}
     {% for item in aftercare_6_month.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_6_month.guide_extra }}
 {% endblock %}
@@ -28,7 +32,11 @@
 
 {% block tbl_2_col_1_guide %}
     {% for item in aftercare_12_month.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_12_month.guide_extra }}
 {% endblock %}
@@ -49,7 +57,11 @@
 
 {% block tbl_2_col_2_guide %}
     {% for item in aftercare_18_month.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_18_month.guide_extra }}
 {% endblock %}
@@ -70,7 +82,11 @@
 
 {% block tbl_2_col_3_guide %}
     {% for item in aftercare_24_month.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_24_month.guide_extra }}
 {% endblock %}
@@ -91,7 +107,11 @@
 
 {% block tbl_2_col_4_guide %}
     {% for item in aftercare_30_month.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_30_month.guide_extra }}
 {% endblock %}
@@ -112,7 +132,11 @@
 
 {% block tbl_3_col_1_guide %}
     {% for item in aftercare_3_year.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ aftercare_3_year.guide_extra }}
 {% endblock %}

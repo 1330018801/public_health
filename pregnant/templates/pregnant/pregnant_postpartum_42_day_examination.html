@@ -1,18 +1,16 @@
 {% load staticfiles %}
 
-<div id="pregnant_postpartum_42_day_examination">
+<div id="postpartum_42day">
     <div id="toolbar" class="datagrid-toolbar">
         <a href="#" id="save">提交记录表</a>
         <a href="#" id="edit">提交修改申请</a>
         <a href="#" id="print">打印记录表</a>
-        <input type="hidden" id="resident_id" value="{{ request.session.resident_id }}" />
-        <input type="hidden" id="resident_name" value="{{ request.session.resident_name }}" />
     </div>
-    <div id="pregnant_postpartum_42_day_examination_table" align="center" style="margin-bottom: 30px; display: none">
-        <form id="pregnant_postpartum_42_day_examination_form" method="POST">
-            {% include 'pregnant/postpartum42_form_content.html' %}
-        </form>
-    </div>
+    <form id="form" method="POST">
+        <div id="table" align="center" style="margin-bottom: 30px;">
+                <!--{% include 'pregnant/postpartum42_form_content.html' %}-->
+        </div>
+    </form>
 </div>
 
 

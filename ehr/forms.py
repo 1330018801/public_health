@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from datetime import date
+
+from django.utils import timezone
 from django.forms import Form, ModelForm, TextInput, RadioSelect, \
     DateInput, Textarea, CheckboxSelectMultiple
 from management.models import Resident
@@ -25,202 +28,113 @@ class PersonalInfoForm(ModelForm):
         widgets = {
             'gender': RadioSelect,
             'birthday': TextInput(attrs={'class': 'easyui-datebox',
-                                         'data-options': 'formatter:myformatter,parser:myparser'}),
-            'identity': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 160px'}),
-            'work_company': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 160px'}),
-            'phone': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
-            'contact_name': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
-            'contact_phone': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+                                         'data-options': 'formatter: myformatter, parser: myparser, '
+                                                         'width: 100, required: true, editable: false'}),
+            'identity': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 160, required: true'}),
+            'work_company': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+            'phone': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 100, required: true'}),
+            'contact_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'}),
+            'contact_phone': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 100, required: true'}),
             'residence_type': RadioSelect,
             'nation': RadioSelect,
-            'nation_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+            'nation_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
             'blood_type': RadioSelect,
             'blood_rh': RadioSelect,
             'education': RadioSelect,
             'occupation': RadioSelect,
             'marriage': RadioSelect,
             'payment_way': CheckboxSelectMultiple,
-            'payment_way_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'payment_way_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 300'}),
             'allergy_history': CheckboxSelectMultiple,
-            'allergy_history_yes_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'allergy_history_yes_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
             'expose_history': CheckboxSelectMultiple,
             'disease_history': CheckboxSelectMultiple,
-            'disease_history_cancer': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
-            'disease_history_occupational': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
-            'disease_history_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+            'disease_history_cancer': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'disease_history_occupational': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
+            'disease_history_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'diagnose_date_2': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter: myformatter, parser: myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_3': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_4': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_5': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_6': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_7': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_8': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_9': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter:myformatter,parser:myparser',
-                                                'style': 'width: 100px'}),
+                                                'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                'width: 100, editable: false'}),
             'diagnose_date_10': TextInput(attrs={'class': 'easyui-datebox',
-                                                 'data-options': 'formatter:myformatter,parser:myparser',
-                                                 'style': 'width: 100px'}),
+                                                 'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                 'width: 100, editable: false'}),
             'diagnose_date_11': TextInput(attrs={'class': 'easyui-datebox',
-                                                 'data-options': 'formatter:myformatter,parser:myparser',
-                                                 'style': 'width: 100px'}),
+                                                 'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                 'width: 100, editable: false'}),
             'diagnose_date_12': TextInput(attrs={'class': 'easyui-datebox',
-                                                 'data-options': 'formatter:myformatter,parser:myparser',
-                                                 'style': 'width: 100px'}),
+                                                 'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                 'width: 100, editable: false'}),
             'diagnose_date_13': TextInput(attrs={'class': 'easyui-datebox',
-                                                 'data-options': 'formatter:myformatter,parser:myparser',
-                                                 'style': 'width: 100px'}),
+                                                 'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                 'width: 100, editable: false'}),
 
             'surgery_history': RadioSelect,
-            'surgery_1_name': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+            'surgery_1_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
             'surgery_1_date': TextInput(attrs={'class': 'easyui-datebox',
-                                               'data-options': 'formatter:myformatter,parser:myparser',
-                                               'style': 'width: 100px'}),
-            'surgery_2_name': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+                                               'data-options': 'formatter: myformatter, parser: myparser, '
+                                                               'width: 100, editable: false'}),
+            'surgery_2_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
             'surgery_2_date': TextInput(attrs={'class': 'easyui-datebox',
-                                               'data-options': 'formatter:myformatter,parser:myparser',
-                                               'style': 'width: 100px'}),
+                                               'data-options': 'formatter: myformatter, parser: myparser, '
+                                                               'width: 100, editable: false'}),
             'injury_history': RadioSelect,
-            'injury_1_name': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+            'injury_1_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
             'injury_1_date': TextInput(attrs={'class': 'easyui-datebox',
-                                              'data-options': 'formatter:myformatter,parser:myparser',
-                                              'style': 'width: 100px'}),
-            'injury_2_name': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+                                              'data-options': 'formatter: myformatter, parser: myparser, '
+                                                              'width: 100, editable: false'}),
+            'injury_2_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
             'injury_2_date': TextInput(attrs={'class': 'easyui-datebox',
-                                              'data-options': 'formatter:myformatter,parser:myparser',
-                                              'style': 'width: 100px'}),
+                                              'data-options': 'formatter: myformatter, parser: myparser, '
+                                                              'width: 100, editable: false'}),
             'transfusion_history': RadioSelect,
-            'transfusion_1_reason': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
+            'transfusion_1_reason': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
             'transfusion_1_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                   'data-options': 'formatter:myformatter,parser:myparser',
-                                                   'style': 'width: 100px'}),
+                                                   'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                   'width: 100, editable: false'}),
             'transfusion_2_reason': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 60px'}),
             'transfusion_2_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                   'data-options': 'formatter:myformatter,parser:myparser',
-                                                   'style': 'width: 100px'}),
+                                                   'data-options': 'formatter: myformatter, parser: myparser, '
+                                                                   'width: 100, editable: false'}),
             'family_history_father': CheckboxSelectMultiple,
-            'family_history_father_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'family_history_father_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
             'family_history_mother': CheckboxSelectMultiple,
-            'family_history_mother_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'family_history_mother_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
             'family_history_sibling': CheckboxSelectMultiple,
-            'family_history_sibling_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'family_history_sibling_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
             'family_history_children': CheckboxSelectMultiple,
-            'family_history_children_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'family_history_children_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
 
             'genetic_disease': RadioSelect,
-            'genetic_disease_yes': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 120px'}),
+            'genetic_disease_yes': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
             'disability': CheckboxSelectMultiple,
-            'disability_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width: 80px'}),
+            'disability_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
 
             'surroundings_kitchen_exhaust': RadioSelect,
             'surroundings_fuel_type': RadioSelect,
             'surroundings_water': RadioSelect,
             'surroundings_toilet': RadioSelect,
             'surrounding_livestock_fence': RadioSelect,
-        }
-
-
-# 重性精神疾病患者信息补充表
-class PsychiatricInfoForm(ModelForm):
-    class Meta:
-        model = PsychiatricInfo
-        fields = '__all__'
-        widgets = {
-            'guardian_name': TextInput(attrs={'class': 'easyui-textbox',
-                                              'style': 'width: 80px',
-                                              'data-options': 'required: true'}),
-            'guardian_relation': TextInput(attrs={'class': 'easyui-textbox',
-                                                  'style': 'width: 120px',
-                                                  'data-options': 'required: true'}),
-            'guardian_address': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'style': 'width: 150px',
-                                                 'data-options': 'required: true'}),
-            'guardian_phone': TextInput(attrs={'class': 'easyui-textbox',
-                                               'style': 'width: 120px',
-                                               'data-options': 'required: true'}),
-            'community_contact_name': TextInput(attrs={'class': 'easyui-textbox',
-                                                       'style': 'width: 80px',
-                                                       'data-options': 'required: true'}),
-            'community_contact_phone': TextInput(attrs={'class': 'easyui-textbox',
-                                                        'style': 'width: 120px',
-                                                        'data-options': 'required: true'}),
-            'assent': RadioSelect,
-            'signature_date': TextInput(attrs={'class': 'easyui-datebox',
-                                               'data-options': 'formatter: myformatter, '
-                                                               'parser: myparser, '
-                                                               'required: true, '
-                                                               'editable: false'}),
-            'disease_begin_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                   'data-options': 'formatter: myformatter,'
-                                                                   'parser: myparser, '
-                                                                   'required: true, '
-                                                                   'editable: false'}),
-            'symptom': CheckboxSelectMultiple,
-            'symptom_other': TextInput(attrs={'class': 'easyui-textbox',
-                                              'style': 'width: 80px'}),
-            'cure_outpatient': RadioSelect,
-            'drug_first_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter: myformatter,'
-                                                                'parser: myparser, '
-                                                                'required: true, '
-                                                                'editable: false'}),
-            'cure_hospital': TextInput(attrs={'class': 'easyui-numberbox',
-                                              'style': 'width: 40px',
-                                              'data-options': 'required: true'}),
-            'diagnose': TextInput(attrs={'class': 'easyui-textbox',
-                                         'style': 'width: 120px',
-                                         'data-options': 'required: true'}),
-            'diagnose_hospital': TextInput(attrs={'class': 'easyui-textbox',
-                                                  'style': 'width: 120px',
-                                                  'data-options': 'required: true'}),
-            'diagnose_date': TextInput(attrs={'class': 'easyui-datebox',
-                                              'data-options': 'formatter: myformatter,'
-                                                              'parser: myparser, '
-                                                              'required: true, '
-                                                              'editable: false'}),
-            'cure_effect': RadioSelect,
-            'social_effect_minor': TextInput(attrs={'class': 'easyui-numberbox',
-                                                    'style': 'width: 40px',
-                                                    'data-options': 'required: true'}),
-            'social_effect_trouble': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'style': 'width: 40px',
-                                                      'data-options': 'required: true'}),
-            'social_effect_disaster': TextInput(attrs={'class': 'easyui-numberbox',
-                                                       'style': 'width: 40px',
-                                                       'data-options': 'required: true'}),
-            'social_effect_self_injury': TextInput(attrs={'class': 'easyui-numberbox',
-                                                          'style': 'width: 40px',
-                                                          'data-options': 'required: true'}),
-            'social_effect_suicide': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'style': 'width: 40px',
-                                                      'data-options': 'required: true'}),
-            'lock': RadioSelect,
-            'economy': RadioSelect,
-            'doctor_advice': Textarea(attrs={'class': 'easyui-textbox',
-                                             'data-options': 'multiline:true',
-                                             'style': 'width: 500px; height: 100px'}),
-            'fill_table_date': TextInput(attrs={'class': 'easyui-datebox',
-                                                'data-options': 'formatter: myformatter,'
-                                                                'parser: myparser, '
-                                                                'required: true, '
-                                                                'editable: false'}),
-            'doctor_signature': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'style': 'width: 80px',
-                                                 'data-options': 'required: true'}),
         }
 
 
@@ -885,105 +799,153 @@ class BodyExamForm(ModelForm):
         fields = '__all__'
         widgets = {
             'visit_date': TextInput(attrs={'class': 'easyui-datebox',
-                                           'data-options': 'formatter:myformatter,parser:myparser'}),
-            'doctor': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'body_temperature': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'pulse': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'breath_frequency': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_left_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_sbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_pressure_right_dbp': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'height': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'weight': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'waistline': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'body_mass_index': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+                                           'data-options': 'formatter:myformatter, parser:myparser, '
+                                                           'width: 100, required: true, editable: false'}),
+            'doctor': TextInput(attrs={'class': 'easyui-textbox',
+                                       'data-options': 'width: 100,required: true'}),
+            'body_temperature': TextInput(attrs={'class': 'easyui-numberbox',
+                                                 'data-options': 'width:40, min: 20, max: 50, '
+                                                                 'precision: 1, required: true'}),
+            'pulse': TextInput(attrs={'class': 'easyui-numberbox',
+                                      'data-options': 'width: 40, min: 50, max: 150, required: true'}),
+            'breath_frequency': TextInput(attrs={'class': 'easyui-numberbox',
+                                                 'data-options': 'width: 40, required: true'}),
+            'blood_pressure_left_sbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                                        'data-options': 'width: 40, required: true'}),
+            'blood_pressure_left_dbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                                        'data-options': 'width: 40, required: true'}),
+            'blood_pressure_right_sbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                                         'data-options': 'width: 40, required: true'}),
+            'blood_pressure_right_dbp': TextInput(attrs={'class': 'easyui-numberbox',
+                                                         'data-options': 'width: 40, required: true'}),
+            'height': TextInput(attrs={'class': 'easyui-numberbox',
+                                       'data-options': 'width: 40,  precision: 1, required: true'}),
+            'weight': TextInput(attrs={'class': 'easyui-numberbox',
+                                       'data-options': 'width: 40,  precision: 1, required: true'}),
+            'waistline': TextInput(attrs={'class': 'easyui-numberbox',
+                                          'data-options': 'width: 40,  precision: 1, required: true'}),
+            'body_mass_index': TextInput(attrs={'class': 'easyui-numberbox',
+                                                'data-options': 'width: 40,  precision: 2, required: true'}),
             'mouth_lip': RadioSelect,
             'mouth_tooth': RadioSelect,
-            'mouth_tooth_missing_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_missing_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_decayed_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomleft': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_upright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
-            'mouth_tooth_denture_bottomright': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:20px'}),
+            'mouth_tooth_missing_upleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                           'data-options': 'width: 20'}),
+            'mouth_tooth_missing_bottomleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                               'data-options': 'width: 20'}),
+            'mouth_tooth_missing_upright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                            'data-options': 'width: 20'}),
+            'mouth_tooth_missing_bottomright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                                'data-options': 'width: 20'}),
+            'mouth_tooth_decayed_upleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                           'data-options': 'width: 20'}),
+            'mouth_tooth_decayed_bottomleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                               'data-options': 'width: 20'}),
+            'mouth_tooth_decayed_upright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                            'data-options': 'width: 20'}),
+            'mouth_tooth_decayed_bottomright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                                'data-options': 'width: 20'}),
+            'mouth_tooth_denture_upleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                           'data-options': 'width: 20'}),
+            'mouth_tooth_denture_bottomleft': TextInput(attrs={'class': 'easyui-numberbox',
+                                                               'data-options': 'width: 20'}),
+            'mouth_tooth_denture_upright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                            'data-options': 'width: 20'}),
+            'mouth_tooth_denture_bottomright': TextInput(attrs={'class': 'easyui-numberbox',
+                                                                'data-options': 'width: 20'}),
             'mouth_throat': RadioSelect,
-            'eyesight_left': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_left_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'eyesight_right_rectified': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'eyesight_left': TextInput(attrs={'class': 'easyui-numberbox',
+                                              'data-options': 'width: 40, required: true, precision: 1'}),
+            'eyesight_right': TextInput(attrs={'class': 'easyui-numberbox',
+                                               'data-options': 'width: 40, required: true, precision: 1'}),
+            'eyesight_left_rectified': TextInput(attrs={'class': 'easyui-numberbox',
+                                                        'data-options': 'width: 40, required: true, precision: 1'}),
+            'eyesight_right_rectified': TextInput(attrs={'class': 'easyui-numberbox',
+                                                         'data-options': 'width: 40, required: true, precision: 1'}),
             'hearing': RadioSelect,
             'movement_function': RadioSelect,
             'skin': RadioSelect,
-            'skin_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'skin_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'lymph_node': RadioSelect,
-            'lymph_node_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'lymph_node_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'lung_barrel_chested': RadioSelect,
             'lung_breath_sound': RadioSelect,
-            'lung_breath_sound_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'lung_breath_sound_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'lung_rale': RadioSelect,
-            'lung_rale_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'heart_rate': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'lung_rale_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
+            'heart_rate': TextInput(attrs={'class': 'easyui-numberbox',
+                                           'data-options': 'width: 40, min: 0, max: 150, required: true'}),
             'heart_rhythm': RadioSelect,
             'heart_noise': RadioSelect,
-            'heart_noise_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'heart_noise_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'stomach_tenderness': RadioSelect,
-            'stomach_tenderness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'stomach_tenderness_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'stomach_enclosed_mass': RadioSelect,
-            'stomach_enclosed_mass_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'stomach_enclosed_mass_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'stomach_hepatomegaly': RadioSelect,
-            'stomach_hepatomegaly_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'stomach_hepatomegaly_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'stomach_slenauxe': RadioSelect,
-            'stomach_slenauxe_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'stomach_slenauxe_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
             'stomach_shifting_dullness': RadioSelect,
-            'stomach_shifting_dullness_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'stomach_shifting_dullness_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80'}),
 
             # 血常规
-            'hemoglobin': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'leucocyte': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_platelets': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:150px'}),
+            'hemoglobin': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 40, min: 0, '
+                                                                                        'max: 300, precision: 1'}),
+            'leucocyte': TextInput(attrs={'class': 'easyui-numberbox',
+                                          'data-options': 'width: 40, min: 0, max: 20, precision: 1'}),
+            'blood_platelets': TextInput(attrs={'class': 'easyui-numberbox',
+                                                'data-options': 'width: 40, min: 0, max: 600, precision: 1'}),
+            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:150'}),
 
             # 尿常规
-            'urine_protein': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'urine_glucose': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'ketone_bodies': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'occult_blood': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
-            'routine_urine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:80px'}),
+            'urine_protein': TextInput(attrs={'class': 'easyui-textbox',
+                                              'data-options': 'width: 80, validType: "posNeg"'}),
+            'urine_glucose': TextInput(attrs={'class': 'easyui-textbox',
+                                              'data-options': 'width: 80, validType: "posNeg"'}),
+            'ketone_bodies': TextInput(attrs={'class': 'easyui-textbox',
+                                              'data-options': 'width: 80, validType: "posNeg"'}),
+            'occult_blood': TextInput(attrs={'class': 'easyui-textbox',
+                                             'data-options': 'width: 80, validType: "posNeg"'}),
+            'routine_urine_test_extra': TextInput(attrs={'class': 'easyui-textbox',
+                                                         'data-options': 'width: 80'}),
 
             # 血糖
-            'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
-            'blood_glucose_mg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
+            'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 60'}),
+            'blood_glucose_mg': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 60'}),
 
             # 心电图
             'electr_gram': RadioSelect,
-            'electr_gram_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:200px'}),
+            'electr_gram_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
 
             # 血清谷丙转氨酶
-            'alt': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'alt': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 60, precision: 1'}),
 
             # 血清谷草转氨酶
-            'ast': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血清肌酐
-            'scr': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-
-            # 血尿素氮
-            'bun': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'ast': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 60, precision: 1'}),
 
             # 总胆红素
-            'tbil': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'tbil': TextInput(attrs={'class': 'easyui-numberbox',
+                                     'data-options': 'width: 40, min: 0, max: 30, precision: 1'}),
+
+            # 血清肌酐
+            'scr': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 200, precision: 1'}),
+
+            # 血尿素氮
+            'bun': TextInput(attrs={'class': 'easyui-numberbox',
+                                    'data-options': 'width: 40, min: 0, max: 15, precision: 1'}),
 
             # 血脂
-            'tc': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'tg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'ldl_c': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
-            'hdl_c': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:40px'}),
+            'tc': TextInput(attrs={'class': 'easyui-numberbox',
+                                   'data-options': 'width: 40, min: 0, max: 15, precision: 1'}),
+            'tg': TextInput(attrs={'class': 'easyui-numberbox',
+                                   'data-options': 'width: 40, min: 0, max: 10, precision: 1'}),
+            'ldl_c': TextInput(attrs={'class': 'easyui-numberbox',
+                                      'data-options': 'width: 40, min: 0, max: 10, precision: 1'}),
+            'hdl_c': TextInput(attrs={'class': 'easyui-numberbox',
+                                      'data-options': 'width: 40, min: 0, max: 11, precision: 1'}),
 
             # 中医体质辨识
             'pinghe': RadioSelect,      # 平和
@@ -998,8 +960,16 @@ class BodyExamForm(ModelForm):
 
         }
 
+    def __init__(self, *args, **kwargs):
+        initial = kwargs.get('initial', {})
+        visit_date = date.today()
+        initial['visit_date'] = visit_date.strftime('%Y-%m-%d')
+        kwargs['initial'] = initial
+        super(BodyExamForm, self).__init__(*args, **kwargs)
+
+    '''
     def clean(self):
-        cleaned_data = super(BodyExamForm, self).clean()
+        cleaned_data = super(OldBodyCheckForm, self).clean()
         if cleaned_data.get('body_temperature') < 20 or cleaned_data.get('body_temperature') > 50:
             msg = "体温的合理范围在20-50℃"
             self.add_error('body_temperature', msg)
@@ -1073,3 +1043,4 @@ class BodyExamForm(ModelForm):
             if cleaned_data.get('hdl_c') < 0 or cleaned_data.get('hdl_c') > 11:
                 msg = "血清高密度脂蛋白胆固醇的合理范围是0-11"
                 self.add_error('hdl_c', msg)
+    '''

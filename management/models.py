@@ -3,7 +3,8 @@ from datetime import date
 
 from django.db import models
 from django.contrib.auth.models import User, Group
-from ehr.models import PersonalInfo, PsychiatricInfo
+from ehr.models import PersonalInfo
+from psychiatric.models import PsychiatricInfo
 from vaccine.models import VaccineCard
 
 

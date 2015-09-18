@@ -4,9 +4,9 @@
 
 {% block table_content %}
     <tr>
-        <td colspan="2" width="25%" align="center">体检日期</td>
+        <td colspan="2" width="25%" align="center"><b>体检日期</b></td>
         <td colspan="2" width="25%" align="center">{% block check_date %}{% endblock %}</td>
-        <td colspan="2" width="25%" align="center">责任医生</td>
+        <td colspan="2" width="25%" align="center"><b>责任医生</b></td>
         <td colspan="2" width="25%" align="center">{% block doctor_name %}{% endblock %}</td>
     </tr>
     <tr>
@@ -14,7 +14,7 @@
         <td colspan="7" align="center" style="font-weight: 600">检查项目</td>
     </tr>
     <tr>
-        <td colspan="1" width="10%" align="center">症状</td>
+        <td colspan="1" width="10%" align="center"><b>症状</b></td>
         <td colspan="7">{% block symptom %}{% endblock %}
         {% block symptom_oterh %}{% endblock %}
         </td>
@@ -22,19 +22,19 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" rowspan="9" width="10%" align="center">一般状况</td>
-        <td colspan="1" width="15%" align="center">体温</td>
+        <td colspan="1" rowspan="9" width="10%" align="center"><b>一般状况</b></td>
+        <td colspan="1" width="15%" align="center"><b>体温</b></td>
         <td colspan="2" width="25%" align="center">{% block body_temperature %}{% endblock %}</td>
-        <td colspan="2" width="25%" align="center">脉率</td>
+        <td colspan="2" width="25%" align="center"><b>脉率</b></td>
         <td colspan="2" width="25%" align="center">{% block pulse %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" rowspan="2" width="15" align="center">呼吸频率</td>
+        <td colspan="1" rowspan="2" width="15" align="center"><b>呼吸频率</b></td>
         <td colspan="2" rowspan="2" width="25%" align="center">{% block breath_frequency %}{% endblock %}</td>
-        <td colspan="2" rowspan="2" width="15%" align="center">血压</td>
-        <td colspan="1" width="10%" align="center">左侧(mmHg)</td>
+        <td colspan="2" rowspan="2" width="15%" align="center"><b>血压</b></td>
+        <td colspan="1" width="10%" align="center"><b>左侧(mmHg)</b></td>
         <td colspan="1" width="25%" align="center">
             {% block blood_pressure_left_sbp %}{% endblock %}/{% block blood_pressure_left_dbp %}{% endblock %}
         </td>
@@ -42,7 +42,7 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="10%" align="center">右侧(mmHg)</td>
+        <td colspan="1" width="10%" align="center"><b>右侧(mmHg)</b></td>
         <td colspan="1" width="25%" align="center">
             {% block blood_pressure_right_sbp %}{% endblock %}/{% block blood_pressure_right_dbp %}{% endblock %}
         </td>
@@ -50,98 +50,98 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="15%" align="center">身高</td>
+        <td colspan="1" width="15%" align="center"><b>身高</b></td>
         <td colspan="2" width="25%" align="center">{% block height %}{% endblock %}</td>
-        <td colspan="2" width="25%" align="center">体重</td>
+        <td colspan="2" width="25%" align="center"><b>体重</b></td>
         <td colspan="2" width="25%" align="center">{% block weight %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="15%" align="center">腰围</td>
+        <td colspan="1" width="15%" align="center"><b>腰围</b></td>
         <td colspan="2" width="25%" align="center">{% block waistline %}{% endblock %}</td>
-        <td colspan="2" width="25%" align="center">体制指数（BMI）</td>
+        <td colspan="2" width="25%" align="center"><b>体制指数（BMI）</b></td>
         <td colspan="2" width="25%" align="center">{% block body_mass_index %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" width="15%" align="center">老年人健康状态自我评估*</td>
+        <td colspan="1" width="15%" align="center"><b>老年人健康状态自我评估*</b></td>
         <td colspan="6" width="75%">{% block old_health_eval %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" width="15%" align="center">老年人生活自理能力自我评估*</td>
+        <td colspan="1" width="15%" align="center"><b>老年人生活自理能力自我评估*</b></td>
         <td colspan="6" width="75%">{% block old_care_eval %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" width="15%" align="center">老年人认知功能*</td>
+        <td colspan="1" width="15%" align="center"><b>老年人认知功能*</b></td>
         <td colspan="6" width="75%">{% block old_cognitive %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" width="15%" align="center">老年人情感状态*</td>
+        <td colspan="1" width="15%" align="center"><b>老年人情感状态*</b></td>
         <td colspan="6" width="75%">{% block old_emotion %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="13" width="10%" align="center">生活方式</td>
-        <td colspan="1" rowspan="3" width="15%" align="center">体育锻炼</td>
-        <td colspan="2" width="25%" align="center">锻炼频率</td>
+        <td colspan="1" rowspan="13" width="10%" align="center"><b>生活方式</b></td>
+        <td colspan="1" rowspan="3" width="15%" align="center"><b>体育锻炼</b></td>
+        <td colspan="2" width="25%" align="center"><b>锻炼频率</b></td>
         <td colspan="4">{% block sport_frequency %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">每次锻炼时间</td>
+        <td colspan="2" width="22.5%" align="center"><b>每次锻炼时间</b></td>
         <td colspan="1" width="10%" align="center">{% block sport_length %}{% endblock %}</td>
-        <td colspan="2" width="17.5%" align="center">坚持锻炼时间</td>
+        <td colspan="2" width="17.5%" align="center"><b>坚持锻炼时间</b></td>
         <td colspan="1" width="17.5%" align="center">{% block sport_duration %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">锻炼方式</td>
+        <td colspan="2" width="22.5%" align="center"><b>锻炼方式</b></td>
         <td colspan="4">{% block sport_items %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" width="15%" align="center">饮食习惯</td>
+        <td colspan="1" width="15%" align="center"><b>饮食习惯</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="3" width="15%" align="center">吸烟情况</td>
-        <td colspan="2" width="15%" align="center">吸烟状况</td>
+        <td colspan="1" rowspan="3" width="15%" align="center"><b>吸烟情况</b></td>
+        <td colspan="2" width="15%" align="center"><b>吸烟状况</b></td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">日吸烟量</td>
+        <td colspan="2" width="22.5%" align="center"><b>日吸烟量</b></td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">开始吸烟时间</td>
+        <td colspan="2" width="22.5%" align="center"><b>开始吸烟时间</b></td>
         <td colspan="1" width="10%"></td>
-        <td colspan="2" width="17.5%" align="center">戒烟年龄</td>
+        <td colspan="2" width="17.5%" align="center"><b>戒烟年龄</b></td>
         <td colspan="1" width="17.5%"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="5" width="15%" align="center">饮酒情况</td>
-        <td colspan="2" width="22.5%" align="center">饮酒频率</td>
+        <td colspan="1" rowspan="5" width="15%" align="center"><b>饮酒情况</b></td>
+        <td colspan="2" width="22.5%" align="center"><b>饮酒频率</b></td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">日饮酒量</td>
+        <td colspan="2" width="22.5%" align="center"><b>日饮酒量</b></td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">是否戒酒</td>
+        <td colspan="2" width="22.5%" align="center"><b>是否戒酒</b></td>
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="2" width="22.5%" align="center">开始饮酒年龄</td>
+        <td colspan="2" width="22.5%" align="center"><b>开始饮酒年龄</b></td>
         <td colspan="1" width="10%"></td>
-        <td colspan="2" width="17.5%" align="center">近一年是否曾醉酒</td>
+        <td colspan="2" width="17.5%" align="center"><b>近一年是否曾醉酒</b></td>
         <td colspan="1" width="17.5"></td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center">
-            饮酒种类
+            <b>饮酒种类</b>
         </td>
         <td colspan="4"></td>
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center">
-            职业病危害因素接触史
+            <b>职业病危害因素接触史</b>
         </td>
         <td colspan="6">
             <span>（工种 从业时间 ）</span><br />
@@ -156,9 +156,9 @@
         style="background-color: lightyellow"
         {% endif %}>
         <td colspan="1" rowspan="4" width="10%" align="center">
-            脏器功能
+            <b>脏器功能</b>
         </td>
-        <td colspan="1" width="15%" align="center">口腔</td>
+        <td colspan="1" width="15%" align="center"><b>口腔</b></td>
         <td colspan="6">
             口唇：{% block mouth_lip %}{% endblock %}<br/>
             齿列：{% block mouth_tooth %}{% endblock %}<br/>
@@ -168,41 +168,41 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="15%" align="center">视力</td>
+        <td colspan="1" width="15%" align="center"><b>视力</b></td>
         <td colspan="6">{% block eyesight %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="15%" align="center">听力</td>
+        <td colspan="1" width="15%" align="center"><b>听力</b></td>
         <td colspan="6">{% block hearing %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" width="15%" align="center">运动功能</td>
+        <td colspan="1" width="15%" align="center"><b>运动功能</b></td>
         <td colspan="6">{% block movement_function %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="20" align="center">查体</td>
-        <td colspan="1" align="center">眼底*</td>
+        <td colspan="1" rowspan="20" align="center"><b>查体</b></td>
+        <td colspan="1" align="center"><b>眼底*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">皮肤</td>
+        <td colspan="1" align="center"><b>皮肤</b></td>
         <td colspan="6">{% block skin %}{% endblock %}
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">巩膜</td>
+        <td colspan="1" align="center"><b>巩膜</b></td>
         <td colspan="6"></td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">淋巴结</td>
+        <td colspan="1" align="center"><b>淋巴结</b></td>
         <td colspan="6">{% block lymph_node %}{% endblock %}
             {% block lymph_node_extra %}{% endblock %}
         </td>
@@ -210,7 +210,7 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" rowspan="3" align="center">肺</td>
+        <td colspan="1" rowspan="3" align="center"><b>肺</b></td>
         <td colspan="6">桶状胸：{% block lung_barrel_chested %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
@@ -228,106 +228,106 @@
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">心脏</td>
+        <td colspan="1" align="center"><b>心脏</b></td>
         <td colspan="6">{% block heart %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">腹部</td>
+        <td colspan="1" align="center"><b>腹部</b></td>
         <td colspan="6">{% block stomach %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">下肢水肿</td>
+        <td colspan="1" align="center"><b>下肢水肿</b></td>
         <td colspan="6">
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">足背动脉搏动</td>
+        <td colspan="1" align="center"><b>足背动脉搏动</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">肛门指诊*</td>
+        <td colspan="1" align="center"><b>肛门指诊*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">乳腺</td>
+        <td colspan="1" align="center"><b>乳腺</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">肛门指诊*</td>
+        <td colspan="1" align="center"><b>肛门指诊*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="5" align="center">妇科</td>
-        <td colspan="1" align="center">外阴</td>
+        <td colspan="1" rowspan="5" align="center"><b>妇科</b></td>
+        <td colspan="1" align="center"><b>外阴</b></td>
         <td colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">阴道</td>
+        <td colspan="1" align="center"><b>阴道</b></td>
         <td colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">宫颈</td>
+        <td colspan="1" align="center"><b>宫颈</b></td>
         <td colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">宫体</td>
+        <td colspan="1" align="center"><b>宫体</b></td>
         <td colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">附件</td>
+        <td colspan="1" align="center"><b>附件</b></td>
         <td colspan="5"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">其他</td>
+        <td colspan="1" align="center"><b>其他</b></td>
         <td colspan="6"></td>
     </tr>
     <tr{% if form.Meta.alias == 'blood_routine_test' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" rowspan="15" align="center">辅助检查</td>
-        <td colspan="1" align="center">血常规*</td>
+        <td colspan="1" rowspan="15" align="center"><b>辅助检查</b></td>
+        <td colspan="1" align="center"><b>血常规*</b></td>
         <td colspan="6">{% block blood_routine_test %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'urine_routine_test' or form.Meta.alias == 'old_body_check'%}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">尿常规*</td>
+        <td colspan="1" align="center"><b>尿常规*</b></td>
         <td colspan="6">{% block urine_routine_test %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'blood_glucose' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">空腹血糖*</td>
+        <td colspan="1" align="center"><b>空腹血糖*</b></td>
         <td colspan="6">{% block blood_glucose %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'electrocardiogram' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">心电图*</td>
+        <td colspan="1" align="center"><b>心电图*</b></td>
         <td colspan="6">{% block electrocardiogram %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">大便潜血*</td>
+        <td colspan="1" align="center"><b>大便潜血*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">尿微量白蛋白*</td>
+        <td colspan="1" align="center"><b>尿微量白蛋白*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">糖化血红蛋白*</td>
+        <td colspan="1" align="center"><b>糖化血红蛋白*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">乙型肝炎表面抗原*</td>
+        <td colspan="1" align="center"><b>乙型肝炎表面抗原*</b></td>
         <td colspan="6"></td>
     </tr>
     <tr{% if form.Meta.alias == 'alanine_aminotransferase' or form.Meta.alias == 'glutamic_oxalacetic_transaminase' or form.Meta.alias == 'total_bilirubin' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">肝功能*</td>
+        <td colspan="1" align="center"><b>肝功能*</b></td>
         <td colspan="6">
             血清谷丙转氨酶{% block alanine_aminotransferase %}{% endblock %}
             血清谷草转氨酶{% block glutamic_oxalacetic_transaminase %}{% endblock %}
@@ -339,10 +339,10 @@
     <tr{% if form.Meta.alias == 'serum_creatinine' or form.Meta.alias == 'blood_urea_nitrogen' or form.Meta.alias == 'old_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">肾功能*</td>
+        <td colspan="1" align="center"><b>肾功能*</b></td>
         <td colspan="6">
-            血清肌酐{% block serum_creatinine %}&nbsp;&nbsp;{% endblock %}
-            血尿素氮{% block blood_urea_nitrogen %}&nbsp;&nbsp;{% endblock %}
+            血清肌酐&nbsp;{% block serum_creatinine %}&nbsp;&nbsp;{% endblock %}
+            血尿素氮&nbsp;{% block blood_urea_nitrogen %}&nbsp;&nbsp;{% endblock %}
             血钾浓度&nbsp;&nbsp;
             血钠浓度&nbsp;&nbsp;
         </td>
@@ -350,29 +350,29 @@
     <tr{% if form.Meta.alias == 'blood_fat' or form.Meta.alias == 'old_body_check' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">血脂*</td>
+        <td colspan="1" align="center"><b>血脂*</b></td>
         <td colspan="6">{% block blood_fat %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center">胸部X线片*</td>
+        <td colspan="1" align="center"><b>胸部X线片*</b></td>
         <td colspan="6">
 
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">B超*</td>
+        <td colspan="1" align="center"><b>B超*</b></td>
         <td colspan="6">
 
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">宫颈涂片*</td>
+        <td colspan="1" align="center"><b>宫颈涂片*</b></td>
         <td colspan="6">
 
         </td>
     </tr>
     <tr>
-        <td colspan="1" align="center">其他*</td>
+        <td colspan="1" align="center"><b>其他*</b></td>
         <td colspan="6">
 
         </td>
@@ -380,94 +380,94 @@
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" rowspan="9" align="center">中医体质辨识*</td>
-        <td colspan="1" align="center">平和质</td>
+        <td colspan="1" rowspan="9" align="center"><b>中医体质辨识*</b></td>
+        <td colspan="1" align="center"><b>平和质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block pinghe %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">气虚质</td>
+        <td colspan="1" align="center"><b>气虚质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block qixu %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">阳虚质</td>
+        <td colspan="1" align="center"><b>阳虚质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block yangxu %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">阴虚质</td>
+        <td colspan="1" align="center"><b>阴虚质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block yinxu %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">痰湿质</td>
+        <td colspan="1" align="center"><b>痰湿质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block tanshi %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">湿热质</td>
+        <td colspan="1" align="center"><b>湿热质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block shire %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">血瘀质</td>
+        <td colspan="1" align="center"><b>血瘀质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block xueyu %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">气郁质</td>
+        <td colspan="1" align="center"><b>气郁质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block qiyu %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
         {% endif %}>
-        <td colspan="1" align="center">特秉质</td>
+        <td colspan="1" align="center"><b>特秉质</b></td>
         <td colspan="6" style="padding-left: 10px">{% block tebing %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="7" align="center">现存主要问题</td>
-        <td colspan="1" align="center">脑血管疾病</td>
+        <td colspan="1" rowspan="7" align="center"><b>现存主要问题</b></td>
+        <td colspan="1" align="center"><b>脑血管疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">肾脏疾病</td>
+        <td colspan="1" align="center"><b>肾脏疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">心脏疾病</td>
+        <td colspan="1" align="center"><b>心脏疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">血管疾病</td>
+        <td colspan="1" align="center"><b>血管疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">眼部疾病</td>
+        <td colspan="1" align="center"><b>眼部疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">神经系统疾病</td>
+        <td colspan="1" align="center"><b>神经系统疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">其他系统疾病</td>
+        <td colspan="1" align="center"><b>其他系统疾病</b></td>
         <td colspan="6"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="6" align="center">住院治疗情况</td>
-        <td colspan="1" rowspan="3" align="center">住院史</td>
-        <td colspan="2" align="center">入/出院日期</td>
-        <td colspan="1" align="center">原因</td>
-        <td colspan="2" align="center">医疗机构名称</td>
-        <td colspan="1" align="center">病案号</td>
+        <td colspan="1" rowspan="6" align="center"><b>住院治疗情况</b></td>
+        <td colspan="1" rowspan="3" align="center"><b>住院史</b></td>
+        <td colspan="2" align="center"><b>入/出院日期</b></td>
+        <td colspan="1" align="center"><b>原因</b></td>
+        <td colspan="2" align="center"><b>医疗机构名称</b></td>
+        <td colspan="1" align="center"><b>病案号</b></td>
     </tr>
     <tr>
         <td colspan="2" align="center">/</td>
@@ -482,11 +482,11 @@
         <td colspan="1" align="center"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="3" align="center">家庭病床史</td>
-        <td colspan="2" align="center">建/撤床日期</td>
-        <td colspan="1" align="center">原因</td>
-        <td colspan="2" align="center">医疗机构名称</td>
-        <td colspan="1" align="center">病案号</td>
+        <td colspan="1" rowspan="3" align="center"><b>家庭病床史</b></td>
+        <td colspan="2" align="center"><b>建/撤床日期</b></td>
+        <td colspan="1" align="center"><b>原因</b></td>
+        <td colspan="2" align="center"><b>医疗机构名称</b></td>
+        <td colspan="1" align="center"><b>病案号</b></td>
     </tr>
     <tr>
         <td colspan="2" align="center">/</td>
@@ -501,12 +501,12 @@
         <td colspan="1" align="center"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="7" align="center">主要用药情况</td>
-        <td colspan="1" align="center">药物名称</td>
-        <td colspan="2" align="center">用法</td>
-        <td colspan="1" align="center">用量</td>
-        <td colspan="2" align="center">用药时间</td>
-        <td colspan="1" align="center">服药依从性<br />1 规律 2 间断 3 不服药</td>
+        <td colspan="1" rowspan="7" align="center"><b>主要用药情况</b></td>
+        <td colspan="1" align="center"><b>药物名称</b></td>
+        <td colspan="2" align="center"><b>用法</b></td>
+        <td colspan="1" align="center"><b>用量</b></td>
+        <td colspan="2" align="center"><b>用药时间</b></td>
+        <td colspan="1" align="center"><b>服药依从性<br />1 规律 2 间断 3 不服药</b></td>
     </tr>
     <tr>
         <td colspan="1"></td>
@@ -551,10 +551,10 @@
         <td colspan="1"></td>
     </tr>
     <tr>
-        <td colspan="1" rowspan="4" align="center">免疫规划预防接种史</td>
-        <td colspan="1" align="center">名称</td>
-        <td colspan="2" align="center">接种日期</td>
-        <td colspan="4" align="center">接种机构</td>
+        <td colspan="1" rowspan="4" align="center"><b>免疫规划预防接种史</b></td>
+        <td colspan="1" align="center"><b>名称</b></td>
+        <td colspan="2" align="center"><b>接种日期</b></td>
+        <td colspan="4" align="center"><b>接种机构</b></td>
     </tr>
     <tr>
         <td colspan="1"></td>
@@ -572,12 +572,12 @@
         <td colspan="4"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">健康评价</td>
+        <td colspan="1" align="center"><b>健康评价</b></td>
         <td colspan="7"></td>
     </tr>
     <tr>
-        <td colspan="1" align="center">健康指导</td>
+        <td colspan="1" align="center"><b>健康指导</b></td>
         <td colspan="3"></td>
-        <td colspan="4">危险因素控制（目标）</td>
+        <td colspan="4"><b>危险因素控制（目标）</b></td>
     </tr>
 {% endblock %}

@@ -230,24 +230,32 @@
 
 {% block blood_glucose %}{{ form.blood_glucose }}&nbsp;mmol/L{% endblock %}
 
-{% block alanine_aminotransferase %}
+{% block sgpt %}
         血清谷丙转氨酶&nbsp;{{ form.sgpt }}&nbsp;U/L&nbsp;&nbsp;
 {% endblock %}
 
-{% block glutamic_oxalacetic_transaminase %}
+{% block sgot %}
         血清谷草转氨酶&nbsp;{{ form.sgot }}&nbsp;U/L<br />
 {% endblock %}
 
-{% block total_bilirubin %}
+{% block albumin %}
+        白蛋白&nbsp;{{ form.albumin }}&nbsp;g/L
+{% endblock %}
+
+{% block tbil %}
         总胆红素&nbsp;{{ form.tbil }}&nbsp;&#956mol/L&nbsp;&nbsp;
 {% endblock %}
 
-{% block serum_creatinine %}
+{% block dbil %}
+        结合胆红素&nbsp;{{ form.dbil }}&nbsp;&#956mol/L&nbsp;&nbsp;
+{% endblock %}
+
+{% block scr %}
         血清肌酐&nbsp;{{ form.scr }}&nbsp;&#956mol/L&nbsp;&nbsp;
 {% endblock %}
 
-{% block blood_urea_nitrogen %}
-        血尿素氮&nbsp;{{ form.bun }}&nbsp;&#956mol/L
+{% block bun %}
+        血尿素氮&nbsp;{{ form.bun }}&nbsp;mmol/L
 {% endblock %}
 
 {% block hepatitis_b_five_item %}

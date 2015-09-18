@@ -6,7 +6,11 @@
 
 {% block tbl_1_col_3_guide %}
     {% for item in form.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
     {{ form.guide_extra }}
 {% endblock %}

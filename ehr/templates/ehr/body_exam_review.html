@@ -5,29 +5,29 @@
 
 # 血常规
 {% block blood_routine_test %}
-    血红蛋白{{ form.hemoglobin }}g/L&nbsp;&nbsp;
-    白细胞{{ form.leucocyte }}×10<sup>9</sup>/L&nbsp;&nbsp;
-    血小板{{ form.blood_platelets }}×10<sup>9</sup>/L<br />
-    其他{{ form.blood_routine_test_extra }}
+    血红蛋白&nbsp;{% if form.hemoglobin %}{{ form.hemoglobin }}g/L{% endif %}&nbsp;&nbsp;
+    白细胞&nbsp;{% if form.leucocyte %}{{ form.leucocyte }}×10<sup>9</sup>/L{% endif %}&nbsp;&nbsp;
+    血小板&nbsp;{% if form.blood_platelets %}{{ form.blood_platelets }}×10<sup>9</sup>/L{% endif %}<br />
+    其他&nbsp;{{ form.blood_routine_test_extra }}
 {% endblock %}
 
 #尿常规
 {% block urine_routine_test %}
-    尿蛋白{{ form.urine_protein }}&nbsp;&nbsp;
-    尿糖{{ form.urine_glucose }}&nbsp;&nbsp;
-    尿酮体{{ form.ketone_bodies }}&nbsp;&nbsp;
-    尿潜血{{ form.occult_blood }}&nbsp;&nbsp;
-    其他{{ form.routine_urine_test_extra }}
+    尿蛋白&nbsp;{% if form.urine_protein %}{{ form.urine_protein }}{% endif %}&nbsp;&nbsp;
+    尿糖&nbsp;{% if form.urine_glucose %}{{ form.urine_glucose }}{% endif %}&nbsp;&nbsp;
+    尿酮体&nbsp;{% if form.ketone_bodies %}{{ form.ketone_bodies }}{% endif %}&nbsp;&nbsp;
+    尿潜血&nbsp;{% if form.occult_blood %}{{ form.occult_blood }}{% endif %}&nbsp;&nbsp;
+    其他&nbsp;{{ form.routine_urine_test_extra }}
 {% endblock %}
 
 # 血清谷丙转氨酶
 {% block alanine_aminotransferase %}
-        &nbsp;{{ form.alt }}U/L&nbsp;&nbsp;
+        &nbsp;{% if form.alt %}{{ form.alt }}U/L{% endif %}&nbsp;&nbsp;
 {% endblock %}
 
 # 血清谷草转氨酶
 {% block glutamic_oxalacetic_transaminase %}
-        &nbsp;{{ form.ast }}U/L&nbsp;&nbsp;
+        &nbsp;{% if form.ast %}{{ form.ast }}U/L{% endif %}&nbsp;&nbsp;
 {% endblock %}
 
 # 血糖
@@ -45,7 +45,9 @@
 
 # 心电图
 {% block electrocardiogram %}
-    {{ form.electr_gram }}
+    {% if form.electr_gram %}
+        {{ form.electr_gram }}
+    {% endif %}
     {% if form.electr_gram == '异常' %}
         &nbsp;&nbsp;{{ form.electr_gram_abnormal }}
     {% endif %}
@@ -53,77 +55,102 @@
 
 # 血脂
 {% block blood_fat %}
-    总胆固醇{{ form.tc }}mmol/L&nbsp;&nbsp;
-    甘油三酯{{ form.tg }}mmol/L<br />
-    血清低密度脂蛋白胆固醇{{ form.ldl_c }}mmol/L<br />
-    血清高密度脂蛋白胆固醇{{ form.hdl_c }}mmol/L
+    {% if form.tc %}总胆固醇&nbsp;{{ form.tc }}mmol/L{% endif %}&nbsp;&nbsp;
+    {% if form.tg %}甘油三酯&nbsp;{{ form.tg }}mmol/L{% endif %}<br />
+    {% if form.ldl_c %}血清低密度脂蛋白胆固醇&nbsp;{{ form.ldl_c }}mmol/L{% endif %}<br />
+    {% if form.hdl_c %}血清高密度脂蛋白胆固醇&nbsp;{{ form.hdl_c }}mmol/L{% endif %}
 {% endblock %}
 
 # 总胆红素
 {% block total_bilirubin %}
-        {{ form.tbil }}&#956mol/L&nbsp;&nbsp;
+        &nbsp;{% if form.tbil %}{{ form.tbil }}&#956mol/L{% endif %}&nbsp;&nbsp;
 {% endblock %}
 
 # 血清肌酐
 {% block serum_creatinine %}
-        {{ form.scr }}&#956mol/L&nbsp;&nbsp;
+        {% if form.scr %}{{ form.scr }}&#956mol/L{% endif %}&nbsp;&nbsp;
 {% endblock %}
 
 # 血尿素氮
 {% block blood_urea_nitrogen %}
-        {{ form.bun }}&#956mol/L&nbsp;&nbsp;
+        {% if form.bun %}{{ form.bun }}&#956mol/L{% endif %}&nbsp;&nbsp;
 {% endblock %}
 
 # 一般体格检查
 {% block body_temperature %}
+    {% if form.body_temperature %}
         {{ form.body_temperature }}℃
+    {% endif %}
 {% endblock %}
 
 {% block pulse %}
+    {% if form.pulse %}
         {{ form.pulse }}次/分钟
+    {% endif %}
 {% endblock %}
 
 {% block breath_frequency %}
+    {% if form.breath_frequency %}
         {{ form.breath_frequency }}次/分钟
+    {% endif %}
 {% endblock %}
 
 {% block blood_pressure_left_sbp %}
+    {% if form.blood_pressure_left_sbp %}
         {{ form.blood_pressure_left_sbp }}
+    {% endif %}
 {% endblock %}
 
 {% block blood_pressure_left_dbp %}
+    {% if form.blood_pressure_left_dbp %}
         {{ form.blood_pressure_left_dbp }}
+    {% endif %}
 {% endblock %}
 
 {% block blood_pressure_right_sbp %}
+    {% if form.blood_pressure_right_sbp %}
         {{ form.blood_pressure_right_sbp }}
+    {% endif %}
 {% endblock %}
 
 {% block blood_pressure_right_dbp %}
+    {% if form.blood_pressure_right_dbp %}
         {{ form.blood_pressure_right_dbp }}
+    {% endif %}
 {% endblock %}
 
 {% block height %}
+    {% if form.height %}
         {{ form.height }}cm
+    {% endif %}
 {% endblock %}
 
 {% block weight %}
+    {% if form.weight %}
         {{ form.weight }}kg
+    {% endif %}
 {% endblock %}
 
 {% block waistline %}
+    {% if form.waistline %}
         {{ form.waistline }}cm
+    {% endif %}
 {% endblock %}
 
 {% block body_mass_index %}
+    {% if form.body_mass_index %}
         {{ form.body_mass_index }}Kg/m<sup>2</sup>
+    {% endif %}
 {% endblock %}
 
 {% block mouth_lip %}
+    {% if form.mouth_lip %}
         {{ form.mouth_lip }}
+    {% endif %}
 {% endblock %}
 
 {% block mouth_tooth %}
+    {% if form.mouth_tooth %}
         {{ form.mouth_tooth }}
             {% if form.mouth_tooth == '缺齿' %}
                 左上{{ form.mouth_tooth_missing_upleft }}
@@ -141,108 +168,153 @@
                 右上{{ form.mouth_tooth_denture_upright }}
                 右下{{ form.mouth_tooth_denture_bottomright }}
             {% endif %}
+    {% endif %}
 {% endblock %}
 
 {% block mouth_throat %}
-    {{ form.mouth_throat }}
+    {% if form.mouth_throat %}
+        {{ form.mouth_throat }}
+    {% endif %}
 {% endblock %}
 
 {% block eyesight %}
-        左眼{{ form.eyesight_left }}&nbsp;&nbsp;
-        右眼{{ form.eyesight_right }}&nbsp;&nbsp;
+        左眼{% if form.eyesight_left %}{{ form.eyesight_left }}{% endif %}&nbsp;&nbsp;
+
+        右眼{% if form.eyesight_right %}{{ form.eyesight_right }}{% endif %}&nbsp;&nbsp;
+
         （矫正视力：
-        左眼{{ form.eyesight_left_rectified }}&nbsp;&nbsp;
-        右眼{{ form.eyesight_right_rectified }}）
+        左眼{% if form.eyesight_left_rectified %}{{ form.eyesight_left_rectified }}{% endif %}&nbsp;&nbsp;
+        右眼{% if form.eyesight_right_rectified %}{{ form.eyesight_right_rectified }}{% endif %}）
 {% endblock %}
 
 {% block hearing %}
+    {% if form.hearing %}
         {{ form.hearing }}
+    {% endif %}
 {% endblock %}
 
 {% block movement_function %}
+    {% if form.movement_function %}
         {{ form.movement_function }}
+    {% endif %}
 {% endblock %}
 
 {% block skin %}
-        {{ form.skin }}&nbsp;&nbsp;
+    {% if form.skin %}
+        {{ form.skin }}
+    {% endif %}&nbsp;&nbsp;
+    {% ifequal form.skin '其他'%}
         {{ form.skin_extra }}
+    {% endifequal %}
 {% endblock %}
 
 
 {% block lymph_node %}
-        {{ form.lymph_node }}&nbsp;&nbsp;
+    {% if form.lymph_node %}
+        {{ form.lymph_node }}
+    {% endif %}&nbsp;&nbsp;
+    {% ifequal form.lymph_node '其他'%}
         {{ form.lymph_node_extra }}
+    {% endifequal %}
 {% endblock %}
 
 
 {% block lung_barrel_chested %}
+    {% if form.lung_barrel_chested %}
         {{ form.lung_barrel_chested }}
+    {% endif %}
 {% endblock %}
 
 {% block lung_breath_sound %}
-        {{ form.lung_breath_sound }}&nbsp;&nbsp;
+    {% if form.lung_breath_sound %}
+        {{ form.lung_breath_sound }}
+    {% endif %}&nbsp;&nbsp;
+    {% ifequal form.lung_breath_sound '是' %}
         {{ form.lung_breath_sound_extra }}
+    {% endifequal %}
 {% endblock %}
 
 {% block lung_rale %}
-        {{ form.lung_rale }}&nbsp;&nbsp;
+    {% if form.lung_rale %}
+        {{ form.lung_rale }}
+    {% endif %}&nbsp;&nbsp;
+    {% ifequal form.lung_rale '其他' %}
         {{ form.lung_rale_extra }}
+    {% endifequal %}
 {% endblock %}
 
 {% block heart %}
-        心率：{{ form.heart_rate }}次/分钟<br />
-        心律：{{ form.heart_rhythm }}
-        杂音：{{ form.heart_noise }}&nbsp;&nbsp;
-        {{ form.heart_noise_extra }}
+        心率：{% if form.heart_rate %}{{ form.heart_rate }}次/分钟{% endif %}<br />
+        心律：{% if form.heart_rhythm %}{{ form.heart_rhythm }}{% endif %}<br>
+        杂音：{% if form.heart_noise %}{{ form.heart_noise }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.heart_noise '有' %}{{ form.heart_noise_extra }}{% endifequal %}
 {% endblock %}
 
 {% block stomach %}
-        压痛：{{ form.stomach_tenderness }}
-        {{ form.stomach_tenderness_extra }}<br />
-        包块：{{ form.stomach_enclosed_mass }}
-        {{ form.stomach_enclosed_mass_extra }}<br />
-        肝大：{{ form.stomach_hepatomegaly }}
-        {{ form.stomach_hepatomegaly_extra }}<br />
-        脾大：{{ form.stomach_slenauxe }}
-        {{ form.stomach_slenauxe_extra }}<br />
-        移动性浊音：{{ form.stomach_shifting_dullness }}
-        {{ form.stomach_shifting_dullness_extra }}
+        压痛：{% if form.stomach_tenderness %}{{ form.stomach_tenderness }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.stomach_tenderness '有' %}{{ form.stomach_tenderness_extra }}{% endifequal %}<br />
+        包块：{% if form.stomach_enclosed_mass %}{{ form.stomach_enclosed_mass }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.stomach_enclosed_mass '有' %}{{ form.stomach_enclosed_mass_extra }}{% endifequal %}<br />
+        肝大：{% if form.stomach_hepatomegaly %}{{ form.stomach_hepatomegaly }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.stomach_hepatomegaly '有' %}{{ form.stomach_hepatomegaly_extra }}{% endifequal %}<br />
+        脾大：{% if form.stomach_slenauxe %}{{ form.stomach_slenauxe }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.stomach_slenauxe '有' %}{{ form.stomach_slenauxe_extra }}{% endifequal %}<br />
+        移动性浊音：{% if form.stomach_shifting_dullness %}{{ form.stomach_shifting_dullness }}{% endif %}&nbsp;&nbsp;
+        {% ifequal form.stomach_shifting_dullness '有' %}{{ form.stomach_shifting_dullness_extra }}{% endifequal %}
 {% endblock %}
 
 # 中医体质辨识
 {% block pinghe %}
+    {% if form.pinghe %}
     {{ form.pinghe }}
+    {% endif %}
 {% endblock %}
 
 {% block qixu %}
+    {% if qixu %}
     {{ form.qixu }}
+    {% endif %}
 {% endblock %}
 
 {% block yangxu %}
+    {% if yangxu %}
     {{ form.yangxu }}
+    {% endif %}
 {% endblock %}
 
 {% block yinxu %}
+    {% if yinxu %}
     {{ form.yinxu }}
+    {% endif %}
 {% endblock %}
 
 {% block tanshi %}
+    {% if tanshi %}
     {{ form.tanshi }}
+    {% endif %}
 {% endblock %}
 
 {% block shire %}
+    {% if shire %}
     {{ form.shire }}
+    {% endif %}
 {% endblock %}
 
 {% block xueyu %}
+    {% if xueyu %}
     {{ form.xueyu }}
+    {% endif %}
 {% endblock %}
 
 {% block qiyu %}
+    {% if qiyu %}
     {{ form.qiyu }}
+    {% endif %}
 {% endblock %}
 
 {% block tebing %}
+    {% if tebing %}
     {{ form.tebing }}
+    {% endif %}
 {% endblock %}
 

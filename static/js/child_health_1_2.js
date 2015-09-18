@@ -62,8 +62,87 @@ $(function () {
         form.form('submit', {
             url: '/child/health_1_2_submit/',
             onSubmit: function (param) {
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.item_alias = item_alias;
+                if(!form.find('input[name=weight_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择体重等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=height_grade]').is(":checked")){
+                    $.messager.alert('提示', '请选择身高等级', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=complexion]').is(":checked")){
+                    $.messager.alert('提示', '请选择面色情况', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=skin]').is(":checked")){
+                    $.messager.alert('提示', '请选择皮肤是否异常', 'info');
+                    return false;
+                }
+                if(item_alias != 'aftercare_30_month'){
+                    if(!form.find('input[name=bregma]').is(":checked")){
+                        $.messager.alert('提示', '请选择前囟是否闭合', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=eye_appearance]').is(":checked")){
+                    $.messager.alert('提示', '请选择眼外观是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=ear_appearance]').is(":checked")){
+                    $.messager.alert('提示', '请选择耳外观是否异常', 'info');
+                    return false;
+                }
+                if(item_alias == 'aftercare_12_month' | item_alias == 'aftercare_24_month'){
+                    if(!form.find('input[name=hearing]').is(":checked")){
+                        $.messager.alert('提示', '请选择听力是否通过', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=heart_lung]').is(":checked")){
+                    $.messager.alert('提示', '请选择心肺是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=abdomen]').is(":checked")){
+                    $.messager.alert('提示', '请选择腹部是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=all_fours]').is(":checked")){
+                    $.messager.alert('提示', '请选择四肢是否异常', 'info');
+                    return false;
+                }
+                if(item_alias != 'aftercare_12_month'){
+                    if(!form.find('input[name=step]').is(":checked")){
+                        $.messager.alert('提示', '请选择步态是否异常', 'info');
+                        return false;
+                    }
+                }
+                if(item_alias != 'aftercare_30_month'){
+                    if(!form.find('input[name=growth_evaluate]').is(":checked")){
+                        $.messager.alert('提示', '请选择发育评估情况', 'info');
+                        return false;
+                    }
+                }
+                if(!form.find('input[name=two_visit_disease]').is(":checked")){
+                    $.messager.alert('提示', '请选择两次随访间患病情况', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=transfer_treatment_suggestion]').is(":checked")){
+                    $.messager.alert('提示', '请选择转诊建议', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=guide]').is(":checked")){
+                    $.messager.alert('提示', '请选择指导方式', 'info');
+                    return false;
+                }
+
+                if(form.form('validate')){
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    param.item_alias = item_alias;
+                    return true;
+                }
+                else{
+                    return false;
+                }
             },
             success: function (data) {
                 var data_obj = eval('(' + data + ')');

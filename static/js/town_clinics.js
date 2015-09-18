@@ -23,8 +23,8 @@ $(function () {
                 selected_row = datagrid.datagrid('getSelected');
             }
         },
-        onDblClickRow: function(index, row) {
-            alert('clinic on the row');
+        onDblClickRow: function(row) {
+            // display the details of the town clinic
         }
     });
 });

@@ -2,11 +2,12 @@ $(function () {
     var toolbar = $('#toolbar');
     var table = $('#psy_info_table');
     var form = $('#psy_info_form');
-    var resident_id = $('#resident_id').val();
 
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_edit = toolbar.find('#edit').linkbutton({ iconCls: 'icon-edit', plain: true });
     var btn_print = toolbar.find('#print').linkbutton({ iconCls: 'icon-print', plain: true });
+
+    btn_edit.linkbutton('disable');
 
     btn_print.bind('click', function () {
         table.find('.print_area').printThis();
@@ -36,6 +37,10 @@ $(function () {
                     $.messager.alert('提示', '请选择关锁情况', 'info');
                     return false;
                 }
+                if (!form.find('input[name=economy]').is(":checked")) {
+                    $.messager.alert('提示', '请选择经济情况况', 'info');
+                    return false;
+                }
 
                 if (form.form('validate')) {
                     param.csrfmiddlewaretoken = $.cookie('csrftoken');
@@ -47,38 +52,13 @@ $(function () {
             success: function (json_data) {
                 var data = eval('(' + json_data + ')');
                 if (data.success) {
-                    $.ajax({
-                        url: '/psychiatric/personal_info_review/', method: 'POST',
-                        data: {'resident_id': resident_id},
-                        success: function (data) {
-                            if (data.success) {
-                                table.html(data.message);
-                                table.refresh();
-                            }
-                        }
-                    });
-                    $.messager.show({title: '提示', msg: '重性精神疾病患者个人信息补充表保存成功', timeout: 1000});
+                    table.panel('refresh');
+                    $.messager.show({title: '提示', msg: '重性精神疾病患者个人信息补充表保存成功', timeout: 2000});
                 } else {
                     $.messager.alert('提示', '重性精神疾病患者个人信息补充表保存失败', 'info');
                 }
             }
         });
     });
-
-    $.ajax({
-        url: '/psychiatric/personal_info_review/', method: 'POST',
-        data: {'resident_id': resident_id},
-        success: function (data) {
-            if (data.success) {
-                table.html(data.message);
-                table.css('display', 'block');
-                btn_save.linkbutton('disable');
-                btn_edit.linkbutton('disable');
-            } else {
-                table.css('display', 'block');
-                btn_edit.linkbutton('disable');
-                btn_print.linkbutton('disable');
-            }
-        }
-    });
+    table.panel({ href: '/psychiatric/personal_info_table/' })
 });

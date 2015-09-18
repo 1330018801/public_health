@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
 import logging
+import simplejson
 
-from django.http import JsonResponse
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from services.utils import get_resident
 from management.models import WorkRecord, Service
+from services.utils import new_year_day
+from ehr.forms import BodyExamForm
+from ehr.models import BodyExam
+
 from .forms import AftercareForm
 from .models import Aftercare
 
@@ -14,10 +19,6 @@ debug = logging.getLogger('debug')
 
 def old_identify_page(request):
     return render(request, 'tcm/old_identify_page.html')
-
-from services.utils import new_year_day
-from ehr.forms import BodyExamForm
-from ehr.models import BodyExam
 
 
 def old_identify_form(request):
@@ -30,7 +31,6 @@ def old_identify_form(request):
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
-
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'tcm'})
 
@@ -63,8 +63,8 @@ def old_identify_submit(request):
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='tcm', model_name='BodyExam', item_id=result.id,
                                   service_item_alias=service_item.alias)
-
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
 
 
 def child_page(request):
@@ -108,5 +108,5 @@ def child_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
-
-    return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')

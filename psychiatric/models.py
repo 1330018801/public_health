@@ -21,7 +21,7 @@ LUNG_RALE_CHOICES = ((u'否', '否'), (u'干罗音', '干罗音'), (u'湿罗音'
 NOTHING_OR_NOT_CHOICES = ((u'无', '无'), (u'有', '有'),)
 HEART_RHYTHM = ((u'齐', '齐'), (u'不齐', '不齐'), (u'绝对不齐', '绝对不齐'),)
 DANGEROUSNESS = ((u'0级', '0级'), (u'1级', '1级'), (u'2级', '2级'),
-                     (u'3级', '3级'), (u'4级', '4级'), (u'5级', '5级'),)
+                 (u'3级', '3级'), (u'4级', '4级'), (u'5级', '5级'),)
 NOW_SYMPTOM = ((u'幻觉', '幻觉'), (u'交流困难', '交流困难'), (u'猜疑', '猜疑'),
               (u'喜怒无常', '喜怒无常'), (u'行为怪异', '行为怪异'), (u'兴奋话多', '兴奋话多'),
               (u'伤人毁物', '伤人毁物'), (u'悲观厌世', '悲观厌世'), (u'无故外走', '无故外走'),
@@ -47,7 +47,7 @@ class RecoveryMeasureChoices(ChoicesAbstract):
     pass
 
 
-class AftercareAbstract(models.Model):
+class Aftercare(models.Model):
     visit_date = models.DateField(max_length=10, verbose_name='随访日期',)
     dangerousness = models.CharField(max_length=10, verbose_name='危险性', choices=DANGEROUSNESS)
     now_symptom = models.ManyToManyField(SymptomChoice, verbose_name='目前症状', blank=True, null=True,)
@@ -79,15 +79,18 @@ class AftercareAbstract(models.Model):
     transfer_treatment_reason = models.CharField(max_length=100, verbose_name='转诊原因', blank=True, null=True,)
     transfer_treatment_institution = models.CharField(max_length=100, verbose_name='转诊至机构及科室', blank=True, null=True,)
     take_medicine_1 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
-    take_medicine_1_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='', blank=True, null=True,)
+    take_medicine_1_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='',
+                                           blank=True, null=True,)
     take_medicine_1_time = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
     take_medicine_1_mg = models.FloatField(blank=True, null=True,)
     take_medicine_2 = models.CharField(max_length=100, verbose_name='药物名称2', blank=True, null=True,)
-    take_medicine_2_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='', blank=True, null=True,)
+    take_medicine_2_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='',
+                                           blank=True, null=True,)
     take_medicine_2_time = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
     take_medicine_2_mg = models.FloatField(blank=True, null=True,)
     take_medicine_3 = models.CharField(max_length=100, verbose_name='药物名称3', blank=True, null=True,)
-    take_medicine_3_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='', blank=True, null=True,)
+    take_medicine_3_per = models.CharField(max_length=10, verbose_name='用法用量', choices=PER, default='',
+                                           blank=True, null=True,)
     take_medicine_3_time = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True,)
     take_medicine_3_mg = models.FloatField(blank=True, null=True,)
     recovery_measure = models.ManyToManyField(RecoveryMeasureChoices, verbose_name='康复措施', blank=True, null=True,)
@@ -97,49 +100,45 @@ class AftercareAbstract(models.Model):
     doctor_signature = models.CharField(max_length=30, verbose_name='随访医生签名', blank=True, null=True)
 
     class Meta:
-        abstract = True
-
-
-class Aftercare(AftercareAbstract):
-    class Meta:
         db_table = 'psychiatric_aftercare'
 
 
-class Aftercare1(AftercareAbstract):
+OUTPATIENT_CHOICES = ((u'未治', u'未治'), (u'间断门诊治疗', u'间断门诊治疗'), (u'连续门诊治疗', u'连续门诊治疗'))
+LOCK_CHOICES = ((u'无关锁', u'无关锁'), (u'关锁', u'关锁'), (u'关锁已解除', u'关锁已解除'))
+ECONOMY_CHOICES = ((u'贫困，在当地贫困标准以下', u'贫困，在当地贫困标准以下'), (u'非贫困', u'非贫困'), (u'不祥', u'不祥'))
+ASSENT_CHOICES = ((u'同意参加管理', u'同意参加管理'), (u'不同意参加管理', u'不同意参加管理'))
+CURE_EFFECT_CHOICES = ((u'痊愈', u'痊愈'), (u'好转', u'好转'), (u'无变化', u'无变化'), (u'加重', u'加重'))
+
+
+class PsychiatricInfo(models.Model):
+    guardian_name = models.CharField(max_length=20, verbose_name='监护人姓名')
+    guardian_relation = models.CharField(max_length=20, verbose_name='与患者关系')
+    guardian_address = models.CharField(max_length=100, verbose_name='监护人地址')
+    guardian_phone = models.CharField(max_length=20, verbose_name='监护人电话')
+    community_contact_name = models.CharField(max_length=20, verbose_name='辖区村（居）委会联系人')
+    community_contact_phone = models.CharField(max_length=20, verbose_name='辖区村（居）委会联系人电话')
+    assent = models.CharField(max_length=20, choices=ASSENT_CHOICES)
+    signature_date = models.DateField(verbose_name='签字时间')
+    disease_begin_date = models.DateField(verbose_name='初次发病时间')
+    symptom = models.ManyToManyField(SymptomChoice, verbose_name='既往主要症状', related_name='choices')
+    symptom_other = models.CharField(max_length=20, null=True, blank=True)
+    cure_outpatient = models.CharField(max_length=20, choices=OUTPATIENT_CHOICES)
+    drug_first_date = models.DateField(verbose_name='首次抗精神病药物治疗时间')
+    cure_hospital = models.IntegerField(verbose_name='曾住精神专科医院/综合医院精神专科')
+    diagnose = models.CharField(max_length=50, verbose_name='诊断')
+    diagnose_hospital = models.CharField(max_length=30, verbose_name='诊断医院')
+    diagnose_date = models.DateField(verbose_name='诊断日期')
+    cure_effect = models.CharField(max_length=10, choices=CURE_EFFECT_CHOICES, verbose_name='最近一次治疗效果')
+    social_effect_minor = models.IntegerField(verbose_name='1 轻度滋事', blank=True, null=True)
+    social_effect_trouble = models.IntegerField(verbose_name='2 肇事', blank=True, null=True)
+    social_effect_disaster = models.IntegerField(verbose_name='3 肇祸', blank=True, null=True)
+    social_effect_self_injury = models.IntegerField(verbose_name='4 自伤', blank=True, null=True)
+    social_effect_suicide = models.IntegerField(verbose_name='5 自杀', blank=True, null=True)
+    lock = models.CharField(max_length=20, choices=LOCK_CHOICES, verbose_name='关锁情况')
+    economy = models.CharField(max_length=50, choices=ECONOMY_CHOICES, verbose_name='经济状况')
+    doctor_advice = models.CharField(max_length=200, verbose_name='专科医生意见（如果有请记录）', null=True, blank=True)
+    fill_table_date = models.DateField(verbose_name='填表日期')
+    doctor_signature = models.CharField(max_length=10, verbose_name='医生签字', null=True, blank=True)
+
     class Meta:
-        db_table = 'psychiatric_aftercare_1'
-
-
-class Aftercare2(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_2'
-
-
-class Aftercare3(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_3'
-
-
-class Aftercare4(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_4'
-
-
-class Aftercare5(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_5'
-
-
-class Aftercare6(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_6'
-
-
-class Aftercare7(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_7'
-
-
-class Aftercare8(AftercareAbstract):
-    class Meta:
-        db_table = 'psychiatric_aftercare_8'
+        db_table = 'ehr_psychiatric_info'
