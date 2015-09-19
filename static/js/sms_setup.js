@@ -66,6 +66,7 @@ $(function() {
             datagrid.datagrid('insertRow', { index: 0, row: {} });
             datagrid.datagrid('beginEdit', 0);
             edit_row = 0;
+            selected_row = datagrid.datagrid('getRows')[0];
             service_type_select(get_edit_field(edit_row, 'service_type'), edit_row);
         }
     });
@@ -236,11 +237,11 @@ $(function() {
             param.status = toolbar.find('#status').combobox('getValue');
         },
         onClickRow: function (index, row) {
-            if (selected_row != undefined && selected_row == row) {
+            if (selected_row == row) {
                 $(this).datagrid('unselectRow', index);
                 selected_row = undefined;
             } else {
-                selected_row = $(this).datagrid('getSelected');
+                selected_row = row;
             }
         },
         onAfterEdit: function() {

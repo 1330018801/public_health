@@ -36,12 +36,12 @@ $(function() {
             { text: '取消', iconCls: 'icon-cancel', handler: function() { $('#role_authorize').dialog('close'); } }
         ],
         onOpen: function() {
-            $(this).css('display', 'block');
-            $(this).dialog('center');
+            dialog.css('display', 'block');
+            dialog.dialog('center');
         },
         onClose: function() {
             select.multiSelect('deselect_all');
-            $(this).css('display', 'none');
+            dialog.css('display', 'none');
         }
     });
 
@@ -158,12 +158,12 @@ $(function() {
         ]],
         onClickRow: function (index, row) {
             if (selected_row == row) {
-                    $(this).datagrid('unselectRow', index);
+                    datagrid.datagrid('unselectRow', index);
                     selected_row = undefined;
                     btn_authorize.linkbutton('disable');
                     btn_del.linkbutton('disable');
             } else {
-                    selected_row = $(this).datagrid('getSelected');
+                    selected_row = datagrid.datagrid('getSelected');
                     btn_authorize.linkbutton('enable');
                     btn_del.linkbutton('enable');
             }
