@@ -367,8 +367,6 @@ from psychiatric.views import body_exam_suspend_submit as psy_body_exam_suspend_
 from pregnant.views import aftercare_1_suspend_submit as preg_aftercare_1_suspend_submit
 from pregnant.models import Aftercare1 as PregnantAftercare1
 from pregnant.forms import Aftercare1Form as PregnantAftercare1Form
-from education.models import EducationActivity
-from education.forms import EducationActivityForm
 
 
 def record_detail_review(request):
@@ -440,33 +438,67 @@ def read_card(request):
 
 
 def real_read_card(request):
-	resident_name = request.POST.get('name')
-	birthday = request.POST.get('birthday')
-	gender = request.POST.get('gender')
-	nation = request.POST.get('nation')
-	address = request.POST.get('address')
-	identity = request.POST.get('identity')
-	debug.info(address)
-	try:
-		resident = Resident.objects.get(identity=identity)
-	except Resident.DoesNotExist:
-		resident = Resident()
-		resident.name = resident_name
-		resident.gender = gender
-		resident.birthday = date(year=1978, month=1, day=1)
-		resident.nation = nation
-		resident.address = address
-		resident.identity = identity
-		resident.save()
-		
-	request.session['resident_id'] = resident.id
-	request.session['resident_name'] = resident.name
-	request.session['resident_ehr_no'] = resident.ehr_no
-	json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
+    resident_name = request.POST.get('name')
+    birthday = request.POST.get('birthday')
+    gender = request.POST.get('gender')
+    nation = request.POST.get('nation')
+    address = request.POST.get('address')
+    identity = request.POST.get('identity')
+    debug.info(address)
+    try:
+        resident = Resident.objects.get(identity=identity)
+    except Resident.DoesNotExist:
+        resident = Resident()
+        resident.name = resident_name
+        resident.gender = gender
+        resident.birthday = date(year=1978, month=1, day=1)
+        resident.nation = nation
+        resident.address = address
+        resident.identity = identity
+        resident.save()
 
-	return JsonResponse(json_data)
-	
-	
+    request.session['resident_id'] = resident.id
+    request.session['resident_name'] = resident.name
+    request.session['resident_ehr_no'] = resident.ehr_no
+    json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
+
+    return JsonResponse(json_data)
+
+
 def provide_service(request):
     return render(request, 'test4.html')
 
+
+def doc_info_page(request):
+    return render(request, 'services/doc_info_page.html')
+
+
+def get_doc_info(request):
+    """
+    返回当前医生用户的信息
+    """
+    user = request.user
+    json_data = model_to_dict(user, fields=['id', 'username'])
+    if user.is_staff:   # 管理员用户
+        pass
+    else:               # 医生用户
+        profile = user.userprofile
+        json_data['role'] = profile.role.name
+        if profile.clinic:
+            if profile.clinic.is_town_clinic:
+                json_data['town_clinic'] = profile.clinic.name
+                json_data['department'] = profile.department
+                json_data['position'] = profile.position
+            else:
+                json_data['town_clinic'] = profile.clinic.town_clinic.name
+                json_data['village_clinic'] = profile.clinic.name
+                json_data['position'] = u'村医'
+    return JsonResponse([json_data], safe=False)
+
+
+def update_password(request):
+    user = request.user
+    user.set_password(request.POST.get('password'))
+    user.save()
+
+    return JsonResponse({'success': True})
