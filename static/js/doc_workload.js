@@ -3,38 +3,32 @@ $(function() {
     var datagrid = $('#doc_workload_table');
 
     var detail_toolbar = accordion.find('#detail_toolbar');
-    var btn_edit = detail_toolbar.find('#edit');
-    var btn_submit = detail_toolbar.find('#submit');
+    var btn_apply = detail_toolbar.find('#modify_apply');
+    var btn_modify = detail_toolbar.find('#modify');
     var btn_print = detail_toolbar.find('#print');
+    var apply_status = $('#apply_status');
 
     var form = accordion.find('#form');
     var table = accordion.find('#table');
 
-    btn_edit.linkbutton({iconCls: 'icon-edit', plain: true});
-    btn_edit.linkbutton('disable');
-    btn_submit.linkbutton({iconCls: 'icon-save', plain: true});
-    btn_submit.linkbutton('disable');
+    btn_apply.linkbutton({iconCls: 'icon-edit', plain: true});
+    btn_modify.linkbutton({iconCls: 'icon-edit', plain: true});
     btn_print.linkbutton({iconCls: 'icon-print', plain: true});
+    btn_apply.linkbutton('disable');
+    btn_modify.linkbutton('disable');
 
-    btn_submit.bind('click', function () {
-        form.form('submit', {
-            url: '/services/suspend_submit/', method: 'POST',
-            onSubmit: function (param) {
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.record_id = selected_row['id'];
-            },
-            success: function (json_data) {
-                var data = eval('(' + json_data + ')');
-                if (data.success) {
-                    table.panel({
-                        href: '/services/record_detail_review/', method: 'POST',
-                        queryParams: {record_id: selected_row['id']}
-                    });
-                    $.messager.show({title: '提示', msg: '暂存记录保存完成', timeout: 1000});
-                    datagrid.datagrid('reload');
-                } else {
-                    $.messager.alert('提示', '暂存记录保存失败', 'info');
-                }
+    btn_modify.bind('click', function () {
+        $.messager.alert('提示', '修改服务结果的功能有待卫生局确认开通', 'info');
+    });
+
+    btn_apply.bind('click', function () {
+        $.ajax({
+            url: '/services/rectify_apply/', method: 'POST',
+            data: {'id': selected_row['id']},
+            success: function () {
+                selected_row['apply_status'] = 1;
+                apply_status.html('申请已提交，等待批准');
+                $.messager.show({title: '提示', msg: '修改服务结果的申请提交完成', timeout: 1500});
             }
         })
     });
@@ -48,6 +42,7 @@ $(function() {
         url: '/services/doc_workload_list/', rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编码', hidden: true},
+            { field: 'apply_status', title: '修改申请', hidden: true},
             { field: 'ehr_no', title: '健康档案编号', width: 10, formatter: function(value) {
                 switch (value) {
                     case null: return '未建档';
@@ -67,14 +62,8 @@ $(function() {
             if (selected_row == row) {
                 $(this).datagrid('unselectRow', index);
                 selected_row = undefined;
-                btn_submit.linkbutton('disable');
             } else {
                 selected_row = row;
-                if (row['status'] == '完成') {
-                    btn_submit.linkbutton('disable');
-                } else if (row['status'] == '暂存') {
-                    btn_submit.linkbutton('enable');
-                }
             }
         },
         onDblClickRow: function (index, row) {
@@ -108,12 +97,26 @@ $(function() {
                     table.panel({
                         href: '/services/record_detail_review/', method: 'POST',
                         queryParams: {record_id: selected_row['id']}
-                    })
+                    });
+                    switch (selected_row['apply_status']) {
+                        case 1: apply_status.html('申请已提交，等待批准'); break;
+                        case 2: apply_status.html('申请已取消'); break;
+                        case 3: apply_status.html('申请已批准'); btn_modify.linkbutton('enable'); break;
+                        case 4: apply_status.html('申请未批准'); break;
+                        case 5: apply_status.html('修改已完成'); break;
+                        case 6: apply_status.html('申请已过期'); break;
+                        default : btn_apply.linkbutton('enable');
+                    }
                 } else {
                     $.messager.alert('提示', '请先选择记录，再查看内容', 'info');
                 }
             }
-            if (index == 0) { table.panel('clear'); }
+            if (index == 0) {
+                apply_status.html('');
+                btn_apply.linkbutton('disable');
+                btn_modify.linkbutton('disable');
+                table.panel('clear');
+            }
         }
     })
 

@@ -644,18 +644,18 @@ class WorkRecord(models.Model):
         ordering = ['-submit_time']
 
 
-class RectificationApply(models.Model):
+class ModifyApply(models.Model):
     # 卫生局和财政局的意见
     WAITING, AGREE, DISAGREE = 1, 2, 3
     # 申请的状态
     SUBMITTED, CANCELED, AGREED, REFUSED, RECTIFIED, OVERDUE = 1, 2, 3, 4, 5, 6
 
-    work_record = models.ForeignKey(WorkRecord)             # 申请修改的服务内容
+    work_record = models.OneToOneField(WorkRecord, related_name='modify_apply')             # 申请修改的服务内容
     apply_time = models.DateTimeField(auto_now_add=True)    # 提交申请的时间
-    finance_opinion = models.IntegerField()                 # 财政局的意见
+    finance_opinion = models.IntegerField(default=WAITING)  # 财政局的意见
     finance_opinion_time = models.DateTimeField(null=True)  # 财政局给出意见的时间
-    health_opinion = models.IntegerField()                  # 卫生局的意见
-    health_opinion_time = models.IntegerField(null=True)    # 卫生局给出意见的时间
+    health_opinion = models.IntegerField(default=WAITING)   # 卫生局的意见
+    health_opinion_time = models.DateTimeField(null=True)    # 卫生局给出意见的时间
     apply_status = models.IntegerField()                    # 申请的状态
     finish_time = models.DateTimeField(null=True)           # 申请处理完成的时间
 

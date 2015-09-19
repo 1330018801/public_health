@@ -141,8 +141,6 @@ urlpatterns = patterns('',
 
     #url(r'^resident_records_details/(\d+)/(\d+)/$', views.resident_records_details, name='resident_records_details'),
 
-    url(r'^rectify_apply/$', views.rectify_apply, name='rectify_apply'),
-
     url(r'^get_towns/$', views.town_options, name='town_options'),
     url(r'^get_town_villages/(?P<town_id>\d+)/$', views.town_village_options, name='town_village_options'),
     url(r'^get_town_villages_edit/$', views.town_village_options, name='town_village_options'),
@@ -195,10 +193,14 @@ urlpatterns = patterns('',
     url(r'^village_clinic_options/$', views.village_clinic_options, name='village_clinic_options'),
     url(r'^payment/$', views.payment_page, name='payment_page'),
     url(r'^payment_list_new/$', views.payment_list_new, name='payment_list_new'),
+
     url(r'^roles/$', views.roles_page, name='roles_page'),
     url(r'^role_list_new/$', views.role_list_new, name='role_list_new'),
     url(r'^get_role_authorize/$', views.get_role_authorize, name='get_role_authorize'),
     url(r'^role_authorize/$', views.role_authorize, name='role_authorize'),
+    url(r'^role_add/$', views.role_add, name='role_add'),
+    url(r'^role_del/$', views.role_del, name='role_del'),
+
     url(r'^sms_sent/$', views.sms_sent, name='sms_sent'),
     url(r'^sms_sent_list/$', views.sms_sent_list, name='sms_sent_list'),
     url(r'^sms_setup_page/$', views.sms_setup_page, name='sms_setup_page'),
@@ -251,4 +253,9 @@ urlpatterns = patterns('',
         name='payment_village_clinics_page'),  # 各卫生院各服务类别支付金额二维表
     url(r'^payment_village_clinics_datagrid/(?P<town_clinic_id>\d+)/$', views.payment_village_clinics_datagrid,
         name='payment_village_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
+
+    url(r'^modify_apply_page/$', views.modify_apply_page, name='modify_apply_page'),
+    url(r'^modify_apply_list/$', views.modify_apply_list, name='modify_apply_list'),
+    url(r'^modify_apply_opinion/$', views.modify_apply_opinion, name='modify_apply_opinion'),
+
 )

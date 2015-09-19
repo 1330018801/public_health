@@ -26,4 +26,7 @@ urlpatterns = patterns('',
     url(r'^doc_info_page/$', views.doc_info_page, name='doc_info_page'),
     url(r'^get_doc_info/$', views.get_doc_info, name='get_doc_info'),
     url(r'^update_password/$', views.update_password, name='update_password'),
+
+    url(r'^rectify_apply/$', views.rectify_apply, name='rectify_apply'),
+
 )

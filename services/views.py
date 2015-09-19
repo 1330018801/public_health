@@ -6,12 +6,14 @@ import logging
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-# from django.core.exceptions import ObjectDoesNotExist
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 from management.models import Service, WorkRecord, Resident
 from .utils import get_resident
+from management.models import ModifyApply
+
 
 debug = logging.getLogger('debug')
 
@@ -354,10 +356,21 @@ def doc_workload_list(request):
             item['status'] = u'完成'
         elif record.status == WorkRecord.SUSPEND:
             item['status'] = u'暂存'
+        try:
+            record.modify_apply
+        except ObjectDoesNotExist:
+            pass
+        else:
+            if timezone.now() > record.modify_apply.apply_time + timedelta(days=2):
+                record.modify_apply.apply_status = ModifyApply.OVERDUE
+                record.modify_apply.save()
+            item['apply_status'] = record.modify_apply.apply_status
         json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
 
+from django.utils import timezone
+from datetime import timedelta
 from ehr.models import BodyExam
 from ehr.forms import BodyExamForm
 from ehr.views import record_detail_review as ehr_record_review
@@ -502,3 +515,14 @@ def update_password(request):
     user.save()
 
     return JsonResponse({'success': True})
+
+
+def rectify_apply(request):
+    record = WorkRecord.objects.get(id=request.POST.get('id'))
+    application = ModifyApply(work_record=record, apply_status=ModifyApply.SUBMITTED)
+    application.save()
+    return HttpResponse({'success': True})
+
+
+
+

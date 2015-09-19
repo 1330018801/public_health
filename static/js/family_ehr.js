@@ -68,7 +68,6 @@ $(function() {
                 }
             });
         }
-
     });
 
     child_undo_btn.bind('click', function () {

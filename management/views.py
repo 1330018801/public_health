@@ -42,30 +42,6 @@ def excel_file(request):
     return response
 
 
-from .models import RectificationApply
-
-
-def rectify_apply(request):
-    '''
-    work_record_id = None
-    if request.method == 'GET':
-        work_record_id = request.GET['id']
-
-    if work_record_id:
-        apply_record = RectificationApply()
-        apply_record.work_record = WorkRecord.objects.get(id=int(work_record_id))
-        apply_record.finance_opinion = RectificationApply.WAITING
-        apply_record.health_opinion = RectificationApply.WAITING
-        apply_record.apply_status = RectificationApply.SUBMITTED
-        apply_record.save()
-
-    return HttpResponse(apply_record.id)
-    '''
-    pass
-
-#from django.http import JsonResponse
-
-
 def resident_add_test(request):
     resident = Resident()
     resident.name = request.POST.get('name')
@@ -983,6 +959,39 @@ def role_authorize(request):
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'success': 'true'})
 
+from management.models import GroupProfile
+
+
+def role_add(request):
+    name = request.POST.get('name')
+    group = Group(name=name)
+    group.save()
+
+    is_staff = int(request.POST.get('is_staff'))
+    profile = GroupProfile(is_staff=is_staff)
+    profile.group = group
+    profile.create_by = request.user
+    profile.save()
+
+    return JsonResponse({'success': True})
+
+
+def role_del(request):
+    try:
+        group = Group.objects.get(id=int(request.POST.get('id')))
+    except Group.DoesNotExist:
+        success = False
+    else:
+        try:
+            group_profile = group.groupprofile
+        except ObjectDoesNotExist:
+            pass
+        else:
+            group_profile.delete()
+        group.delete()
+        success = True
+
+    return JsonResponse({'success': success})
 
 def sms_sent(request):
     return render(request, 'management/sms_sent.html')
@@ -1561,3 +1570,85 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
         item.update(total)
         json_data.append(item)
     return JsonResponse(json_data, safe=False)
+
+
+def modify_apply_page(request):
+    return render(request, 'management/modify_apply_page.html')
+
+from .models import ModifyApply
+from datetime import timedelta
+
+
+def modify_apply_list(request):
+    applications = ModifyApply.objects.all()
+    json_data = []
+    for each in applications:
+        json_item = model_to_dict(each, fields=['id'])
+        json_item['apply_time'] = each.apply_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+        record = each.work_record
+        json_item['username'] = record.provider.username
+        json_item['role'] = record.provider.userprofile.role.name
+        json_item['resident'] = record.resident.name
+
+        if record.provider.userprofile.clinic.is_town_clinic:
+            json_item['town_clinic'] = record.provider.userprofile.clinic.name
+        else:
+            json_item['town_clinic'] = record.provider.userprofile.clinic.town_clinic.name
+            json_item['village_clinic'] = record.provider.userprofile.clinic.name
+        if record.service_item.is_service_item:
+            json_item['service_type'] = record.service_item.service_type.name
+            json_item['service_item'] = record.service_item.name
+
+        if each.finance_opinion:
+            if each.finance_opinion == ModifyApply.WAITING:
+                json_item['finance_opinion'] = u'等待审批'
+            elif each.finance_opinion == ModifyApply.AGREE:
+                json_item['finance_opinion'] = u'同意'
+            elif each.finance_opinion == ModifyApply.DISAGREE:
+                json_item['finance_opinion'] = u'不同意'
+        if each.health_opinion:
+            if each.health_opinion == ModifyApply.WAITING:
+                json_item['health_opinion'] = u'等待审批'
+            elif each.health_opinion == ModifyApply.AGREE:
+                json_item['health_opinion'] = u'同意'
+            elif each.health_opinion == ModifyApply.DISAGREE:
+                json_item['health_opinion'] = u'不同意'
+
+        if each.apply_status != ModifyApply.OVERDUE \
+                and timezone.now() > each.apply_time + timedelta(days=2):
+            each.apply_status = ModifyApply.OVERDUE
+            each.save()
+
+        if each.apply_status == ModifyApply.SUBMITTED:
+            json_item['status'] = u'已提交'
+        elif each.apply_status == ModifyApply.CANCELED:
+            json_item['status'] = u'已取消'
+        elif each.apply_status == ModifyApply.AGREED:
+            json_item['status'] = u'已批准'
+        elif each.apply_status == ModifyApply.REFUSED:
+            json_item['status'] = u'未批准'
+        elif each.apply_status == ModifyApply.RECTIFIED:
+            json_item['status'] = u'已修改'
+        elif each.apply_status == ModifyApply.OVERDUE:
+            json_item['status'] = u'已过期'
+
+        json_data.append(json_item)
+
+    return JsonResponse(json_data, safe=False)
+
+
+def modify_apply_opinion(request):
+    opinion = request.POST.get('opinion')
+    application = ModifyApply.objects.get(id=int(request.POST.get('id')))
+    if opinion == 'agree':
+        application.health_opinion = ModifyApply.AGREE
+        application.finance_opinion = ModifyApply.AGREE
+        application.apply_status = ModifyApply.AGREED
+    elif opinion == 'disagree':
+        application.health_opinion = ModifyApply.DISAGREE
+        application.finance_opinion = ModifyApply.DISAGREE
+        application.apply_status = ModifyApply.REFUSED
+    application.health_opinion_time = timezone.now()
+    application.financial_opinion_time = timezone.now()
+    application.save()
+    return JsonResponse({'success': True})
