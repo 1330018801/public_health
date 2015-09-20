@@ -42,6 +42,7 @@ def new_login(request):
                 return render(request, 'test2.html', {'role': u'超级管理员'})
             if user.is_staff:
                 role = user.userprofile.role.name
+                debug.info(role)
                 return render(request, 'test2.html', {'role': role})
             else:
                 return render(request, 'test4.html')

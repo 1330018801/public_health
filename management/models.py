@@ -701,6 +701,7 @@ class Nav(models.Model):
 
 
 class AdminNav(Nav):
+    town_clinic_admin = models.IntegerField(default=1)
     pass
 
 

@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse, JsonResponse
-from .models import Clinic, Region, UserProfile, Service, Resident, WorkRecord, Sms, SmsTime
+from .models import Clinic, Region, UserProfile, Service, Resident, WorkRecord, Sms, SmsTime, AdminNav
 
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
@@ -222,8 +222,6 @@ def resident_query_list(request):
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'total': residents.count(), 'rows': json_items})
 
-from management.models import AdminNav
-
 
 def admin_nav(request):
     nid = request.POST.get('id', '0')
@@ -231,7 +229,11 @@ def admin_nav(request):
 
     json_data = []
     for item in nav_items:
-        json_data.append(model_to_dict(item))
+        user = request.user
+        if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员' and item.town_clinic_admin == 0:
+            pass
+        else:
+            json_data.append(model_to_dict(item))
 
     return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
 
@@ -1213,21 +1215,28 @@ def graphs(request):
 
 
 def graph_workload(request):
+    user = request.user
+    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+        clinics = user.userprofile.clinic.village_clinics.all()
+    else:
+        clinics = Clinic.in_town.all()
+
     workload = dict()
     for service_type in Service.types.all():
         workload[service_type.name] = dict()
-        for town_clinic in Clinic.in_town.all():
-            workload[service_type.name][town_clinic.name] = 0
+        for clinic in clinics:
+            workload[service_type.name][clinic.name] = 0
 
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:
-                service_type = record.service_item.service_type
-                workload[service_type.name][town_clinic.name] += 1
+        if record.service_item and record.service_item.is_service_item:  # 计费项目
+            try:
+                clinic = record.provider.userprofile.clinic
+            except ObjectDoesNotExist:
+                pass
+            else:
+                if clinic in clinics:
+                    service_type = record.service_item.service_type
+                    workload[service_type.name][clinic.name] += 1
 
     clinics = workload.values()[0].keys()
     series = [{"name": key, "data": value.values()} for key, value in workload.items()]
@@ -1238,21 +1247,28 @@ def graph_workload(request):
 
 
 def graph_payment(request):
+    user = request.user
+    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+        clinics = user.userprofile.clinic.village_clinics.all()
+    else:
+        clinics = Clinic.in_town.all()
+
     payment = dict()
-    for town_clinic in Clinic.in_town.all():
-        payment[town_clinic.name] = 0
+    for clinic in clinics:
+        payment[clinic.name] = 0
 
     total_payment = 0
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:
-                if record.service_item.price:
-                    payment[town_clinic.name] += record.service_item.price
-                    total_payment += record.service_item.price
+        if record.service_item and record.service_item.is_service_item:
+            try:
+                clinic = record.provider.userprofile.clinic
+            except ObjectDoesNotExist:
+                pass
+            else:
+                if clinic in clinics:
+                    if record.service_item.price:
+                        payment[clinic.name] += record.service_item.price
+                        total_payment += record.service_item.price
 
     total_payment *= 1.0
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
@@ -1639,15 +1655,32 @@ def modify_apply_list(request):
 def modify_apply_opinion(request):
     opinion = request.POST.get('opinion')
     application = ModifyApply.objects.get(id=int(request.POST.get('id')))
-    if opinion == 'agree':
-        application.health_opinion = ModifyApply.AGREE
-        application.finance_opinion = ModifyApply.AGREE
-        application.apply_status = ModifyApply.AGREED
-    elif opinion == 'disagree':
-        application.health_opinion = ModifyApply.DISAGREE
-        application.finance_opinion = ModifyApply.DISAGREE
+
+    if request.user.is_superuser:
+        if opinion == 'agree':
+            application.health_opinion = ModifyApply.AGREE
+            application.finance_opinion = ModifyApply.AGREE
+        elif opinion == 'disagree':
+            application.health_opinion = ModifyApply.DISAGREE
+            application.finance_opinion = ModifyApply.DISAGREE
+        application.health_opinion_time = timezone.now()
+        application.finance_opinion_time = timezone.now()
+    elif request.user.userprofile.role.name == u'卫生局管理员':
+        if opinion == 'agree':
+            application.health_opinion = ModifyApply.AGREE
+        elif opinion == 'disagree':
+            application.health_opinion = ModifyApply.DISAGREE
+        application.health_opinion_time = timezone.now()
+    elif request.user.userprofile.role.name == u'财政局管理员':
+        if opinion == 'agree':
+            application.finance_opinion = ModifyApply.AGREE
+        elif opinion == 'disagree':
+            application.finance_opinion = ModifyApply.DISAGREE
+        application.finance_opinion_time = timezone.now()
+
+    if application.health_opinion == ModifyApply.DISAGREE \
+            or application.finance_opinion == ModifyApply.DISAGREE:
         application.apply_status = ModifyApply.REFUSED
-    application.health_opinion_time = timezone.now()
-    application.financial_opinion_time = timezone.now()
+
     application.save()
     return JsonResponse({'success': True})

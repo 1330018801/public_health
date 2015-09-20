@@ -58,7 +58,7 @@ $(function() {
             param.first_text = '全部'
         },
         onLoadSuccess: function () {
-            $(this).combobox('setValue', '0');
+            $(this).combobox('setValue', 0);
         },
         onSelect: function (record) {
             var query_village_clinic = records_tb.find('#query_village_clinic');

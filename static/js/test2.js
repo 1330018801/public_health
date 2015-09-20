@@ -1,7 +1,8 @@
 $(function() {
     var nav = $('#admin_nav');
     var area = $('#admin_area');
-    $.cookie['role'] = $('#role').val(); //记录当前登录用户的类型：超级管理员、卫生局管理员、财政局管理员
+    var role = $('#role').val();
+    $.cookie('role', role); //记录当前登录用户的类型：超级管理员、卫生局管理员、财政局管理员
 
     nav.tree({
         url: '/management/admin_nav/', animate: true,

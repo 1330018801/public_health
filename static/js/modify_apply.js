@@ -9,7 +9,6 @@ $(function() {
 
     btn_agree.bind('click', function () {
         if (selected_row != undefined) {
-            console.log(selected_row['id']);
             $.ajax({
                 url: '/management/modify_apply_opinion/', method: 'POST',
                 data: { opinion: 'agree', id: selected_row['id'] },
@@ -27,7 +26,6 @@ $(function() {
 
     btn_disagree.bind('click', function () {
         if (selected_row != undefined) {
-            console.log(selected_row['id']);
             $.ajax({
                 url: '/management/modify_apply_opinion/', method: 'POST',
                 data: { opinion: 'disagree', id: selected_row['id'] },
@@ -68,7 +66,6 @@ $(function() {
                 selected_row = undefined;
             } else {
                 selected_row = row;
-                console.log(selected_row['id']);
             }
         },
         onBeforeLoad: function(param) {
