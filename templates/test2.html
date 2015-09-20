@@ -5,7 +5,7 @@
 
 <!-- 管理界面主框架 -->
 <div class="easyui-layout" data-options="fit: true">
-    <div data-options="region:'north', noheader: true, minWidth: 1050" style="height:60px; background-color: #888888">
+    <div data-options="region:'north', noheader: true, minWidth: 1050" style="height:60px; background-color: #3278b3">
         <div class="web_logo">
             三河市基本公共卫生服务信息系统
         </div>
@@ -17,8 +17,11 @@
     <div data-options="region:'west', title: '管理功能'" style="width:250px; margin-right: 5px; padding-left: 10px;">
         <ul id="admin_nav"></ul>
     </div>
-    <div data-options="region:'center', noheader: true, minWidth: 800" style="margin-left: 5px">
+    <div data-options="region:'center', noheader: true, minWidth: 800">
         <div id="admin_area"></div>
+    </div>
+    <div data-options="region:'south', noheader: true, minWidth: 1050" style="height:40px; background-color: #3278b3">
+        <div style="font-size: 13px; padding: 10px 20px;">&copy Seimun Inc. All rights reserved.</div>
     </div>
     <input type="hidden" id="role" name="role" value="{{ role }}"/>
 </div>
