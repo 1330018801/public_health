@@ -5,7 +5,8 @@ from django.conf import settings
 
 urlpatterns = patterns('',
                        # url(r'^admin/', include(admin.site.urls)),
-                       url(r'^$', 'public_health.views.login', name='home'),
+                       # url(r'^$', 'public_health.views.login', name='home'),
+                       url(r'^$', 'public_health.views.new_login', name='home'),
                        url(r'^logout/$', 'public_health.views.logout', name='logout'),
                        url(r'^logout_new/$', 'public_health.views.logout_new', name='logout_new'),
                        url(r'^admin_new/$', 'public_health.views.admin_new', name='admin_new'),
@@ -29,7 +30,7 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        url(r'^test/$', 'public_health.views.test', name='test'),
+        url(r'^new_login/$', 'public_health.views.new_login', name='new_login'),
         url(r'^test2/$', 'public_health.views.test2', name='test2'),
         url(r'^test3/$', 'public_health.views.test3', name='test3'),
         url(r'^test4/$', 'public_health.views.test4', name='test4'),

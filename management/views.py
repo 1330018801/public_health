@@ -234,7 +234,6 @@ def admin_nav(request):
         json_data.append(model_to_dict(item))
 
     return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data, safe=False)
 
 
 def residents_page(request):

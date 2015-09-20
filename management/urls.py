@@ -258,4 +258,5 @@ urlpatterns = patterns('',
     url(r'^modify_apply_list/$', views.modify_apply_list, name='modify_apply_list'),
     url(r'^modify_apply_opinion/$', views.modify_apply_opinion, name='modify_apply_opinion'),
 
+
 )

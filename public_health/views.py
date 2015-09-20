@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
+import json
+
 from django.shortcuts import render
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
-from management.forms import Resident2Form
+from management.models import WorkRecord, Service, Clinic
 
 import logging
-log = logging.getLogger('django')
 debug = logging.getLogger('debug')
 
 
@@ -27,9 +27,28 @@ def login(request):
                 return HttpResponseRedirect(reverse('services:provide_service'))
         else:
             err_msg = '用户不存在或者密码错误'
-            log.info('User authentication failed: username={0}, password={1}'
-                     .format(username.encode('utf8'), password.encode('utf8')))
     return render(request, 'login.html', {'err_msg': err_msg})
+
+
+def new_login(request):
+    message = ''
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=username, password=password)
+        if user and user.is_active:
+            auth.login(request, user)
+            if user.is_superuser:
+                return render(request, 'test2.html', {'role': u'超级管理员'})
+            if user.is_staff:
+                role = user.userprofile.role.name
+                return render(request, 'test2.html', {'role': role})
+            else:
+                return render(request, 'test4.html')
+        else:
+            message = u'用户不存在或者密码错误'
+
+    return render(request, 'new_login.html', {'message': message})
 
 
 def logout(request):
@@ -39,17 +58,12 @@ def logout(request):
 
 def logout_new(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('home'))
+    return HttpResponseRedirect(reverse('new_login'))
 
 
 def admin_new(request):
     return render(request, 'test2.html')
 ################################### For Test ###################################
-
-
-def test(request):
-    form = Resident2Form()
-    return render(request, 'test.html', {'form': form})
 
 
 def test2(request):
@@ -74,14 +88,6 @@ def xhr_test(request):
     users = Resident.objects.filter(id__gt=int(user_id))
     data = serializers.serialize("json", users)
     return HttpResponse(data, content_type='application/javascript')
-
-from management.models import WorkRecord
-from management.models import Service
-from management.models import Clinic
-import json
-import logging
-
-log = logging.getLogger('debug')
 
 
 def graph_clinics(request):
@@ -111,7 +117,6 @@ def graph_clinics(request):
     result["clinics"] = clinics
     result["series"] = data
 
-    log.debug(result)
     return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json")
 
 
@@ -121,4 +126,3 @@ def graphs(request):
 
 def graph_types(request):
     pass
-

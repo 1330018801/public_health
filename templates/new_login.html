@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- 管理界面主框架 -->
+<div class="easyui-layout" data-options="fit: true">
+    <div data-options="region:'north', noheader: true" style="height:60px; background-color: #888888">
+        <div class="web_logo">
+            三河市基本公共卫生服务信息系统
+        </div>
+    </div>
+    <div data-options="region:'center', noheader: true" align="center" style="padding: 120px;">
+        <div class="easyui-panel" title="用户登录" style="width: 400px; height: 200px; padding-bottom: 0;" align="center">
+            <form id="login_form" method="POST" action="/new_login/">
+                {% csrf_token %}
+                <table id="login_table" style="padding-top: 20px;">
+                    <tr>
+                        <td width="30%" align="right" style="height: 40px;">用户名：</td>
+                        <td><input class="textbox" data-options="required: true"
+                                   style="padding: 2px 10px;" name="username"/></td>
+                    </tr>
+                    <tr>
+                        <td width="30%" align="right">密码：</td>
+                        <td><input class="textbox" data-options="required: true, validType: 'password'"
+                                   style="padding: 2px 10px;" name="password" type="password"/></td>
+                    </tr>
+                    <!--
+                    <tr>
+                        <td width="30%" align="right" style="height: 60px;">验证码：</td>
+                        <td><input id="checkCode" name="checkCode"/></td>
+                    </tr>
+                    -->
+                    <tr>
+                        <td colspan="2" style="height: 40px;" align="center">
+                            <span id="message" style="color: red;">{{ message }}</span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="accordion-toolbar" align="right" style="height: 20px;">
+                    <input type="submit" class="easyui-linkbutton"
+                           style="margin: 2px 20px; padding: 2px 15px; font-size: 13px;" value="登 录"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,10 +1,11 @@
 $(function() {
     var nav = $('#admin_nav');
     var area = $('#admin_area');
+    $.cookie['role'] = $('#role').val(); //记录当前登录用户的类型：超级管理员、卫生局管理员、财政局管理员
 
     nav.tree({
         url: '/management/admin_nav/', animate: true,
-        onLoadSuccess: function(node, data) {
+        onLoadSuccess: function(data) {
             if (data) {
                 $(data).each(function () {
                     if (this.state == 'closed') {
@@ -12,11 +13,6 @@ $(function() {
                     }
                 })
             }
-            var node = nav.tree('find', 11);
-            nav.tree('select', node.target);
-            area.panel({
-                href: node.url, fit: true, border: false
-            });
         },
         onClick: function(node) {
             if (node.url) {
@@ -26,4 +22,7 @@ $(function() {
             }
         }
     });
+
+    area.panel({ href: '/management/graphs/', fit: true, border: false });
+
 });
