@@ -284,8 +284,8 @@ $(function() {
             { field: 'gender', title: '性别', width: 6,
                 formatter: function(value) {
                     switch (value) {
-                        case '0': return '女';
-                        case '1': return '男';
+                        case 0: return '女';
+                        case 1: return '男';
                         default : return '未知';
                     }
                 },
