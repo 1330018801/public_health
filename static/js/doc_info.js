@@ -69,9 +69,10 @@ $(function () {
     $.extend($.fn.validatebox.defaults.rules, {
         equals: {
             validator: function(value, param){
-                console.log('value:' + value);
-                console.log('param:' + $(param[0]).val());
-                return value == $(param[0]).val();
+                //console.log('value:' + value);
+                //console.log('param:' + $(param[0]).val());
+                //return value == $(param[0]).val();
+                return value == table.find('#passwd1').val();
             },
             message: '两次密码输入不匹配'
         }

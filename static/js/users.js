@@ -108,7 +108,11 @@ $(function() {
     $.extend($.fn.validatebox.defaults.rules, {
         equals: {
             validator: function(value, param){
-                return value == $(param[0]).val();
+                //console.log('value' + value);
+                //console.log('param[0]' + form.find('#pswd2').val());
+                //console.log('param[0]' + $('#pswd2').val());
+                //只要页面刷新一下，这个验证就失败，无法获取param的值，目前还不知道为什么
+                return value == form.find('#pswd2').val();
             },
             message: '两次密码输入不匹配'
         }
@@ -193,6 +197,7 @@ $(function() {
                         success: function(data) {
                             var data_obj = eval('(' + data + ')');
                             if (data_obj.success) {
+                                form.form('clear');
                                 panel.dialog('close');
                                 datagrid.datagrid('reload');
                                 $.messager.show({ title: '提示', msg: data_obj.message, timeout: 2500 });
