@@ -15,12 +15,12 @@ $(function() {
                 success: function (data) {
                     if (data.success) {
                         $.messager.show({title: '提示', msg: '批准修改申请完成', timeout: 1500});
+                        datagrid.datagrid('reload');
                     } else {
                         $.messager.alert('提示', '批准修改申请失败', 'warning');
                     }
                 }
             });
-            datagrid.datagrid('reload');
         }
     });
 
@@ -31,13 +31,13 @@ $(function() {
                 data: { opinion: 'disagree', id: selected_row['id'] },
                 success: function (data) {
                     if (data.success) {
+                        datagrid.datagrid('reload');
                         $.messager.show({title: '提示', msg: '拒绝修改申请完成', timeout: 1500});
                     } else {
                         $.messager.alert('提示', '拒绝修改申请失败', 'warning');
                     }
                 }
             });
-            datagrid.datagrid('reload');
         }
     });
 

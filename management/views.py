@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
 from datetime import datetime, date
 import simplejson
+import xlwt
 
+from django.utils.encoding import smart_unicode
 from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
@@ -40,6 +42,162 @@ def excel_file(request):
 
     wb.save(response)
     return response
+
+
+def excel_new(request):
+    workbook = xlwt.Workbook()
+
+    # 工作量报表
+    sheet_workload = workbook.add_sheet('workload')
+    sheet_workload.write(0, 0, smart_unicode('医疗机构'))
+    sheet_workload.write(0, 1, smart_unicode('健康教育'))
+    sheet_workload.write(0, 2, smart_unicode('预防接种'))
+    sheet_workload.write(0, 3, smart_unicode('0-6岁儿童'))
+    sheet_workload.write(0, 4, smart_unicode('孕产妇'))
+    sheet_workload.write(0, 5, smart_unicode('老年人'))
+    sheet_workload.write(0, 6, smart_unicode('高血压'))
+    sheet_workload.write(0, 7, smart_unicode('2型糖尿病'))
+    sheet_workload.write(0, 8, smart_unicode('重性精神病'))
+    sheet_workload.write(0, 9, smart_unicode('中医药'))
+    sheet_workload.write(0, 10, smart_unicode('传染病报告'))
+    sheet_workload.write(0, 11, smart_unicode('卫生监督'))
+    sheet_workload.write(0, 12, smart_unicode('合计'))
+
+    # 计算工作量的函数，获取工作量
+    records = WorkRecord.objects.all()
+    for i, record in enumerate(records):
+        sheet_workload.write(i + 1, 0, smart_unicode(record.provider.username))
+        sheet_workload.write(i + 1, 1, smart_unicode(record.resident.name))
+        sheet_workload.write(i + 1, 2, smart_unicode(record.service_item.name))
+        sheet_workload.write(i + 1, 3, smart_unicode(record.submit_time))
+
+    # 支付费用报表
+    sheet_payment = workbook.add_sheet('payment')
+    sheet_payment.write(0, 0, smart_unicode('医疗机构'))
+    sheet_payment.write(0, 1, smart_unicode('健康教育'))
+    sheet_payment.write(0, 2, smart_unicode('预防接种'))
+    sheet_payment.write(0, 3, smart_unicode('0-6岁儿童'))
+    sheet_payment.write(0, 4, smart_unicode('孕产妇'))
+    sheet_payment.write(0, 5, smart_unicode('老年人'))
+    sheet_payment.write(0, 6, smart_unicode('高血压'))
+    sheet_payment.write(0, 7, smart_unicode('2型糖尿病'))
+    sheet_payment.write(0, 8, smart_unicode('重性精神病'))
+    sheet_payment.write(0, 9, smart_unicode('中医药'))
+    sheet_payment.write(0, 10, smart_unicode('传染病报告'))
+    sheet_payment.write(0, 11, smart_unicode('卫生监督'))
+    sheet_payment.write(0, 12, smart_unicode('合计'))
+
+    # 计算支付费用的函数，获取支付费用
+    records = WorkRecord.objects.all()
+    for i, record in enumerate(records):
+        sheet_payment.write(i + 1, 0, smart_unicode(record.provider.username))
+        sheet_payment.write(i + 1, 1, smart_unicode(record.resident.name))
+        sheet_payment.write(i + 1, 2, smart_unicode(record.service_item.name))
+        sheet_payment.write(i + 1, 3, smart_unicode(record.submit_time))
+
+    response = HttpResponse(content_type="application/vnd.ms-excel")
+    response['Content-Disposition'] = 'attachment; filename=work_recode.xls'
+
+    workbook.save(response)
+    return response
+
+
+# 某个制定机构下属的医疗机构的各医疗机构的工作量统计
+# 如果没有指定机构，则根据用户类型判断，卫生局和财政局管理员，统计所有卫生院
+# 卫生院管理员，统计所有下属卫生室
+
+
+def is_finance_admin(user):
+    if not user.is_superuser:
+        try:
+            role = user.userprofile.role
+        except ObjectDoesNotExist:
+            pass
+        else:
+            if role.name == u'财政局管理员':
+                return True
+    return False
+
+
+def is_health_admin(user):
+    if not user.is_superuser:
+        try:
+            role = user.userprofile.role
+        except ObjectDoesNotExist:
+            pass
+        else:
+            if role.name == u'卫生局管理员':
+                return True
+    return False
+
+
+def is_town_clinic_admin(user):
+    if user.is_staff:
+        if user.is_superuser or is_finance_admin(user) or is_health_admin(user):
+            return False
+        else:
+            return True
+    return False
+
+
+def workload_sheet(request, clinic_id):
+    if clinic_id is None:
+        user = request.user
+        if user.is_superuser or is_finance_admin(user) or is_health_admin(user):
+            clinics = Clinic.in_town.all()
+        elif user.is_town_clinic_admin(user):
+            clinics = user.userprofile.clinic.village_clinics.all()
+    else:
+        try:
+            clinic = Clinic.objects.get(id=int(clinic_id))
+        except Clinic.DoesNotExist:
+            pass  # 后续处理
+        else:
+            if clinic.is_town_clinic:
+                clinics = clinic.village_clinics.all()
+            else:
+                pass  # 后续处理
+
+    workload = collections.OrderedDict()
+    for clinic in clinics:
+        workload[clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
+
+    workload['合计'] = dict()
+    for service_type in Service.types.all():
+        workload['合计'][service_type.alias] = 0
+
+    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
+    for record in records:
+        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
+            try:
+                clinic = record.provider.userprofile.clinic
+            except ObjectDoesNotExist:
+                pass
+            else:
+                service_type = record.service_item.service_type
+                if clinic.is_town_clinic and clinic in clinics:
+                    workload[clinic.name][service_type.alias] += 1
+                    workload['合计'][service_type.alias] += 1
+                elif clinic.is_village_clinic and clinic in clinics:
+                    workload[clinic.name][service_type.alias] += 1
+                    workload['合计'][service_type.alias] += 1
+                elif clinic.is_village_clinic and clinic not in clinics:
+                    if clinic.town_clinic in clinics:
+                        pass
+    '''
+    json_data = []
+    for key, value in workload.items():
+        try:
+            village_clinic = Clinic.objects.get(town_clinic=town_clinic, name=key)
+        except Clinic.DoesNotExist:
+            item = {'id': 0, 'clinic': key}
+        else:
+            item = {'id': village_clinic.id, 'clinic': key}
+        item.update(value)
+        total = {'total': sum(value.values())}
+        item.update(total)
+        json_data.append(item)
+    '''
 
 
 def resident_add_test(request):
@@ -1373,10 +1531,9 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
         try:
             village_clinic = Clinic.objects.get(town_clinic=town_clinic, name=key)
         except Clinic.DoesNotExist:
-            id = 0
+            item = {'id': 0, 'clinic': key}
         else:
-            id = village_clinic.id
-        item = {'id': id, 'clinic': key}
+            item = {'id': village_clinic.id, 'clinic': key}
         item.update(value)
         total = {'total': sum(value.values())}
         item.update(total)

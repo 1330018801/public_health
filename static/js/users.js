@@ -146,9 +146,9 @@ $(function() {
             }
         }
     });
-    form.find('#pswd').textbox({ required: true, width: 120 });
-    form.find('#pswd_again').textbox({
-        required: true, validType: 'equals["#pswd"]', width: 120
+    form.find('#pswd2').textbox({ required: true, width: 120 });
+    form.find('#pswd2_again').textbox({
+        required: true, validType: 'equals["#pswd2"]', width: 120
     });
     form.find('#town_clinic').combobox({
         url: '/management/get_town_clinics/',
