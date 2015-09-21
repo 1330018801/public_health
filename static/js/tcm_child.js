@@ -78,8 +78,18 @@ $(function () {
         form.form('submit', {
              url: '/tcm/child_submit/',
              onSubmit: function (param) {
-                 param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                 param.item_alias = item_alias;
+                 if(!form.find('input[name=guide]').is(":checked")){
+                     $.messager.alert('提示', '请选择中医药健康管理服务', 'info');
+                     return false;
+                 }
+                 if(form.form('validate')){
+                     param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                     param.item_alias = item_alias;
+                     return true;
+                 }
+                 else{
+                     return false;
+                 }
              },
              success: function (data) {
                  var data_obj = eval('(' + data + ')');

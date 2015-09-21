@@ -29,8 +29,12 @@
 {% block classification_abnormal %}{{ form.classification_abnormal.value }}{% endblock %}
 
 {% block guide %}
-    {% for item in form.guide.all %}
-        {{ item.value }}
+    {% for item in form.guide.value %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block guide_abnormal %}
@@ -49,5 +53,5 @@
     <br>机构及科室：{{ form.transfer_treatment_institution.value }}
     {% endifequal %}
 {% endblock %}
-{% block next_visit_date %}{{ form.next_visit_date.value | date:"Y-m-d" }}{% endblock %}
+{% block next_visit_date %}{{ form.next_visit_date.value }}{% endblock %}
 {% block doctor_signature %}{{ form.doctor_signature.value }}{% endblock %}

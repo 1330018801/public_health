@@ -12,7 +12,11 @@
 
 {% block symptom_1 %}
     {% for item in aftercare_1.symptom.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 

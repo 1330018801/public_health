@@ -18,7 +18,11 @@
 {% block classification_not_recovery %}{{ form.classification_not_recovery.value }}{% endblock %}
 {% block guide %}
     {% for item in form.guide.value %}
-        {{ item }}&nbsp;&nbsp;
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block guide_extra %}{{ form.guide_extra.value }}{% endblock %}

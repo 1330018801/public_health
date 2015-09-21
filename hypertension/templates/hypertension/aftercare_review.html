@@ -13,7 +13,11 @@
 
 {% block symptom_1 %}
     {% for item in aftercare_1.symptom.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -211,7 +215,11 @@
 
 {% block symptom_2 %}
     {% for item in aftercare_2.symptom.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -409,7 +417,11 @@
 
 {% block symptom_3 %}
     {% for item in aftercare_3.symptom.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 
@@ -593,7 +605,11 @@
 
 {% block symptom_4 %}
     {% for item in aftercare_4.symptom.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 

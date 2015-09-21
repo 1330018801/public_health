@@ -21,6 +21,10 @@ $(function () {
                     $.messager.alert('提示', '请选择性别', 'info');
                     return false;
                 }
+                if (!form.find('input[name=mother_gestational_disease]').is(":checked")) {
+                    $.messager.alert('提示', '请选择母亲妊娠期患病情况', 'info');
+                    return false;
+                }
                 if (!form.find('input[name=birth_situation]').is(":checked")) {
                     $.messager.alert('提示', '请选择出生情况', 'info');
                     return false;
@@ -37,8 +41,20 @@ $(function () {
                     $.messager.alert('提示', '请选择新生儿听力筛查', 'info');
                     return false;
                 }
+                if (!form.find('input[name=newborn_disease_screening]').is(":checked")) {
+                    $.messager.alert('提示', '请选择新生儿疾病筛查', 'info');
+                    return false;
+                }
                 if (!form.find('input[name=feed_way]').is(":checked")) {
                     $.messager.alert('提示', '请选择喂养方式', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=complexion]').is(":checked")) {
+                    $.messager.alert('提示', '请选择面色情况', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=icterus_position]').is(":checked")) {
+                    $.messager.alert('提示', '请选择黄疸部位', 'info');
                     return false;
                 }
                 if (!form.find('input[name=bregma_1]').is(":checked")) {
@@ -70,12 +86,16 @@ $(function () {
                     $.messager.alert('提示', '请选择腹部触诊是否异常', 'info');
                     return false;
                 }
+                if (!form.find('input[name=navel]').is(":checked")) {
+                    $.messager.alert('提示', '请选择脐部状态', 'info');
+                    return false;
+                }
                 if (!form.find('input[name=all_fours_activity]').is(":checked")) {
                     $.messager.alert('提示', '请选择四肢活动度是否异常', 'info');
                     return false;
                 }
                 if (!form.find('input[name=neck_enclosed_mass]').is(":checked")) {
-                    $.messager.alert('提示', '请选择颈部包块是否异常', 'info');
+                    $.messager.alert('提示', '请选择有无颈部包块', 'info');
                     return false;
                 }
                 if (!form.find('input[name=skin]').is(":checked")) {
@@ -94,12 +114,12 @@ $(function () {
                     $.messager.alert('提示', '请选择脊柱是否异常', 'info');
                     return false;
                 }
-                if (!form.find('input[name=navel]').is(":checked")) {
-                    $.messager.alert('提示', '请选择脐部状态', 'info');
-                    return false;
-                }
                 if (!form.find('input[name=transfer_treatment_suggestion]').is(":checked")) {
                     $.messager.alert('提示', '请选择转诊建议', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=guide]').is(":checked")) {
+                    $.messager.alert('提示', '请选择指导', 'info');
                     return false;
                 }
 

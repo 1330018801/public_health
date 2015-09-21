@@ -1,4 +1,12 @@
 $(function () {
+    $.extend($.fn.validatebox.defaults.rules, {
+        posNeg: {
+            validator: function (value, param) {
+            return value == '-' | value == '+' | value == '++' | value == '+++' | value == '++++';
+            },
+            message: '请输入正确的阴阳性'
+        }
+    });
     $('#pregnant_aftercare_2_5').panel({ fit: true });
     var toolbar = $('#toolbar');
     var form = $('#form');
@@ -52,8 +60,26 @@ $(function () {
         form.form('submit', {
              url: '/pregnant/aftercare_2_5_submit/',
              onSubmit: function (param) {
-                 param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                 param.aftercare = aftercare;
+                 if(!form.find('input[name=classification]').is(":checked")){
+                    $.messager.alert('提示', '请选择分类', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=guide]').is(":checked")) {
+                    $.messager.alert('提示', '请选择指导', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=transfer_treatment]').is(":checked")){
+                    $.messager.alert('提示', '请选择是否转诊', 'info');
+                    return false;
+                }
+
+                if (form.form('validate')) {
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    param.aftercare = aftercare;
+                    return true;
+                }else{
+                    return false;
+                }
              },
              success: function (data) {
                  var data_obj = eval('(' + data + ')');

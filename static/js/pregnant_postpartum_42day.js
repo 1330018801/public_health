@@ -15,6 +15,35 @@ $(function () {
         form.form('submit', {
             url: '/pregnant/postpartum_42day_submit/', method: 'POST',
             onSubmit: function (param) {
+                if(!form.find('input[name=breast]').is(":checked")){
+                    $.messager.alert('提示', '请选择乳房是否异常', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=lochia]').is(":checked")) {
+                    $.messager.alert('提示', '请选择恶露是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=uterus]').is(":checked")){
+                    $.messager.alert('提示', '请选择子宫是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=wound]').is(":checked")){
+                    $.messager.alert('提示', '请选择伤口是否异常', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=classification]').is(":checked")){
+                    $.messager.alert('提示', '请选择分类', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=guide]').is(":checked")){
+                    $.messager.alert('提示', '请选择指导', 'info');
+                    return false;
+                }
+                if(!form.find('input[name=dispose]').is(":checked")){
+                    $.messager.alert('提示', '请选处理', 'info');
+                    return false;
+                }
+
                 if (form.form('validate')) {
                     param.csrfmiddlewaretoken = $.cookie('csrftoken');
                     return true;

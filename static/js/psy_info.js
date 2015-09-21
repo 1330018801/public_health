@@ -37,6 +37,10 @@ $(function () {
                     $.messager.alert('提示', '请选择关锁情况', 'info');
                     return false;
                 }
+                if (!form.find('input[name=economy]').is(":checked")) {
+                    $.messager.alert('提示', '请选择经济情况况', 'info');
+                    return false;
+                }
 
                 if (form.form('validate')) {
                     param.csrfmiddlewaretoken = $.cookie('csrftoken');

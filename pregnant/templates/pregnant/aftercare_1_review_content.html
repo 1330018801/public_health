@@ -7,26 +7,41 @@
 {% block husband_age %}{{ form.husband_age }}{% endblock %}
 {% block husband_phone %}{{ form.husband_phone }}{% endblock %}
 {% block pregnant_times %}{{ form.pregnant_times }}{% endblock %}
-{% block natural_production %}{{ form.natural_production }}{% endblock %}
-{% block surgery_production %}{{ form.surgery_production }}{% endblock %}
+{% block production_times %}
+        阴道分娩&nbsp;{{ form.natural_production }}&nbsp;次&nbsp;&nbsp;
+        剖宫产&nbsp;{{ form.surgery_production }}&nbsp;次
+{% endblock %}
+
 {% block last_menstruation %}{{ form.last_menstruation | date:"Y-m-d" }}{% endblock %}
 {% block not_sure %}{{ form.not_sure }}{% endblock %}
 {% block due_date %}{{ form.due_date | date:"Y-m-d" }}{% endblock %}
 {% block disease_history %}
     {% for item in form.disease_history.all %}
-        {{ item }}&nbsp;
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block disease_history_other %}{{ form.disease_history_other }}{% endblock %}
 {% block family_history %}
     {% for item in form.family_history.all %}
-        {{ item }}&nbsp;&nbsp;
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block family_history_other %}{{ form.family_history_other }}{% endblock %}
 {% block personal_history %}
     {% for item in form.personal_history.all %}
-        {{ item }}&nbsp;&nbsp;
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block personal_history_other %}{{ form.personal_history_other }}{% endblock %}
@@ -46,8 +61,9 @@
 {% block height %}{{ form.height }}{% endblock %}
 {% block weight %}{{ form.weight }}{% endblock %}
 {% block bmi %}{{ form.bmi }}{% endblock %}
-{% block sbp %}{{ form.sbp }}{% endblock %}
-{% block dbp %}{{ form.dbp }}{% endblock %}
+{% block blood_pressure %}
+    {{ form.sbp }}/{{ form.dbp }}&nbsp;mmHg
+{% endblock %}
 {% block ausculate_heart %}
     {{ form.ausculate_heart }}
 {% endblock %}
@@ -85,13 +101,13 @@
 
 {% block blood_routine_test %}
     {% block hemoglobin %}
-        白细胞计数值{{ form.hemoglobin }}/L&nbsp;&nbsp;
+        白细胞计数值{% if form.hemoglobin %}{{ form.hemoglobin }}/L{% endif %}&nbsp;&nbsp;
     {% endblock %}
     {% block leukocyte %}
-        血红蛋白值{{ form.leukocyte }}g/L&nbsp;&nbsp;
+        血红蛋白值{% if form.leukocyte %}{{ form.leukocyte }}g/L{% endif %}&nbsp;&nbsp;
     {% endblock %}
     {% block thrombocyte %}
-        血小板计数值{{ form.thrombocyte }}/L&nbsp;&nbsp;
+        血小板计数值{% if form.thrombocyte %}{{ form.thrombocyte }}/L{% endif %}&nbsp;&nbsp;
     {% endblock %}
     {% block blood_extra %}
         其他{{ form.blood_extra }}
@@ -117,22 +133,26 @@
 {% endblock %}
 
 {% block blood_type_abo %}
-    {{ form.blood_type_abo }}
+    {% if form.blood_type_abo %}
+        {{ form.blood_type_abo }}
+    {% endif %}
 {% endblock %}
 {% block blood_type_abo_other %}{{ form.blood_type_abo_other }}{% endblock %}
 {% block blood_type_rh %}
-    {{ form.blood_type_rh }}
+    {% if form.blood_type_rh %}
+        {{ form.blood_type_rh }}
+    {% endif %}
 {% endblock %}
 
-{% block blood_glucose %}{{ form.blood_glucose }}mmol/L{% endblock %}
+{% block blood_glucose %}{% if form.blood_glucose %}{{ form.blood_glucose }}mmol/L{% endif %}{% endblock %}
 
-{% block alanine_aminotransferase %}
+{% block sgpt %}
     血清谷丙转氨酶
     {% if form.sgpt %}
         {{ form.sgpt }}U/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
-{% block glutamic_oxalacetic_transaminase %}
+{% block sgot %}
     血清谷草转氨酶
     {% if form.sgot %}
         {{ form.sgot }}U/L<br />
@@ -144,12 +164,13 @@
         {{ form.albumin }}g/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
-{% block total_bilirubin %}
+{% block tbil %}
     总胆红素
     {% if form.tbil %}
         {{ form.tbil }}&#956mol/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
+
 {% block dbil %}
     结合胆红素
     {% if form.dbil %}
@@ -166,7 +187,7 @@
 {% block bun %}
     血尿素氮
     {% if form.bun %}
-        {{ form.bun }}&#956mol/L
+        {{ form.bun }}mmol/L
     {% endif %}
 {% endblock %}
 
@@ -177,7 +198,6 @@
 {% endblock %}
 {% block vaginal_secretion_other %}{{ form.vaginal_secretion_other }}{% endblock %}
 {% block vaginal_clean_degree %}
-    阴道清洁度：
     {% if form.vaginal_clean_degree %}
         {{ form.vaginal_clean_degree }}
     {% endif %}
@@ -186,27 +206,27 @@
 {% block hepatitis_b_five_item %}
     {% block surface_antigen %}
         乙型肝炎表面抗原&nbsp;&nbsp;
-        {{ form.surface_antigen }}<br />
+        {% if form.surface_antigen %}{{ form.surface_antigen }}{% endif %}<br />
     {% endblock %}
 
     {% block surface_antibody %}
         乙型肝炎表面抗体&nbsp;&nbsp;
-        {{ form.surface_antibody }}<br />
+        {% if form.surface_antibody %}{{ form.surface_antibody }}{% endif %}<br />
     {% endblock %}
 
     {% block e_antigen %}
         乙型肝炎e抗原&nbsp;&nbsp;
-        {{ form.e_antigen }}<br />
+        {% if form.e_antigen %}{{ form.e_antigen }}{% endif %}<br />
     {% endblock %}
 
     {% block e_antibody %}
         乙型肝炎e抗体&nbsp;&nbsp;
-        {{ form.e_antibody }}<br />
+        {% if form.e_antibody %}{{ form.e_antibody }}{% endif %}<br />
     {% endblock %}
 
     {% block core_antibody %}
         乙型肝炎核心抗体&nbsp;&nbsp;
-        {{ form.core_antibody }}<br />
+        {% if form.core_antibody %}{{ form.core_antibody }}{% endif %}<br />
     {% endblock %}
 {% endblock %}
 
@@ -232,7 +252,11 @@
 
 {% block guide %}
     {% for item in form.guide.all %}
-        {{ item }}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 

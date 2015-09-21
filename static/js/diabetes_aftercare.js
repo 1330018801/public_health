@@ -61,9 +61,42 @@ $(function () {
                 param.csrfmiddlewaretoken = $.cookie('csrftoken');
                 param.aftercare = aftercare;
                 if (!form.find('input[name=visit_way]').is(":checked")) {
-                    $.messager.alert('提示', '请选随访方式', 'info');
+                    $.messager.alert('提示', '请选择随访方式', 'info');
                     return false;
                 }
+                if (!form.find('input[name=symptom]').is(":checked")) {
+                    $.messager.alert('提示', '请选择症状', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=sign_acrotarsium_artery_pulse]').is(":checked")) {
+                    $.messager.alert('提示', '请选择足背动脉搏动是否触及', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=life_style_guide_mentality]').is(":checked")) {
+                    $.messager.alert('提示', '请选择心理调整情况', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=life_style_guide_medical_compliance]').is(":checked")) {
+                    $.messager.alert('提示', '请选择遵医行为情况', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=take_medicine_compliance]').is(":checked")) {
+                    $.messager.alert('提示', '请选择服药依从性情况', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=medicine_untoward_effect]').is(":checked")) {
+                    $.messager.alert('提示', '请选择有无药物不良反应', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=hypoglycemia_reaction]').is(":checked")) {
+                    $.messager.alert('提示', '请选择低血糖反应情况', 'info');
+                    return false;
+                }
+                if (!form.find('input[name=visit_classification]').is(":checked")) {
+                    $.messager.alert('提示', '请选择此次随访分类情况', 'info');
+                    return false;
+                }
+
                 return form.form('validate');
             },
             success: function (data) {

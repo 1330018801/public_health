@@ -261,7 +261,7 @@ class Aftercare1(models.Model):
     vagina_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
     cervix = models.CharField(max_length=20, verbose_name='宫颈', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
     cervix_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
-    uteri = models.CharField(max_length=20, verbose_name='宫体', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
+    uteri = models.CharField(max_length=20, verbose_name='子宫', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
     uteri_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
     accessory = models.CharField(max_length=20, verbose_name='附件', choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
     accessory_abnormal = models.CharField(max_length=50, verbose_name='', blank=True, null=True)
@@ -287,6 +287,7 @@ class Aftercare1(models.Model):
                                      choices=BLOOD_RH_CHOICES, blank=True, null=True)
 
     blood_glucose = models.FloatField(verbose_name='血糖', blank=True, null=True)
+    # 肝功能
     # 谷丙转氨酶
     sgpt = models.FloatField(verbose_name='血清谷丙转氨酶', blank=True, null=True)
     # 谷草转氨酶
@@ -295,6 +296,7 @@ class Aftercare1(models.Model):
     # 总胆红素
     tbil = models.FloatField(verbose_name='总胆红素', blank=True, null=True)
     dbil = models.FloatField(verbose_name='结合胆红素', blank=True, null=True)
+    # 肾功能
     # 血清肌酐
     scr = models.FloatField(verbose_name='血清肌酐', blank=True, null=True)
     # 血尿素氮

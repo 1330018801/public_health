@@ -31,7 +31,11 @@
 
 {% block guide %}
     {% for item in form.guide.all %}
-        {{ item }}&nbsp;&nbsp;
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block guide_extra %}
