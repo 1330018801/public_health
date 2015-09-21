@@ -464,7 +464,7 @@ def real_read_card(request):
         resident = Resident()
         resident.name = resident_name
         resident.gender = gender
-        resident.birthday = date(year=1978, month=1, day=1)
+        resident.birthday = birthday
         resident.nation = nation
         resident.address = address
         resident.identity = identity
