@@ -15,6 +15,10 @@ $(function() {
         }
     });
 
+    var datagrid = $('#resident_list');
+    var selected_row = undefined;
+    var edit_row = undefined;
+
     // 工具栏初始化
     var toolbar = $('#resident_toolbar');
 
@@ -260,10 +264,7 @@ $(function() {
     });
 
     // 工具栏上按钮的可用状态以及是否显示，决定于这两个变量的值
-    var selected_row = undefined;
-    var edit_row = undefined;
 
-    var datagrid = $('#resident_list');
     datagrid.datagrid({
         toolbar: '#resident_toolbar',
         url: '/management/resident_query_list/',
@@ -335,7 +336,7 @@ $(function() {
             if (inserted.length > 0) {
                 $.ajax({
                     url: '/management/resident_add_test/', method: 'POST',
-                    data: inserted[0],
+                    data: row,
                     success: function (data) {
                         if (data) {
                             datagrid.datagrid('reload');
@@ -346,9 +347,10 @@ $(function() {
                 });
             }
             if (updated.length > 0) {
+                console.log('update row: ' + edit_row);
                 $.ajax({
                     url: '/management/resident_update_test/', method: 'POST',
-                    data: updated[0],
+                    data: row,
                     success: function (data) {
                         if (data) {
                             datagrid.datagrid('load');
@@ -368,7 +370,7 @@ $(function() {
     function townOptions(field, index) {
         var current = $(field.target).combobox('getValue');
         $(field.target).combobox({
-            url: '/management/get_towns_edit/',
+            url: '/management/get_towns/',
             valueField: 'name',textField: 'name', editable: false,
             onLoadSuccess: function() {
                 if (current) {
@@ -399,7 +401,7 @@ $(function() {
             url: '/management/get_town_villages_edit/',
             valueField: 'name', textField: 'name', editable: false,
             onBeforeLoad: function(param) {
-                param.town_name = town_name
+                param.town_name = town_name;
             },
             onLoadSuccess: function() {
                 $(this).combobox('setValue', '');

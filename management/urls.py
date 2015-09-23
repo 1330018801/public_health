@@ -143,13 +143,13 @@ urlpatterns = patterns('',
 
     url(r'^get_towns/$', views.town_options, name='town_options'),
     url(r'^get_town_villages/(?P<town_id>\d+)/$', views.town_village_options, name='town_village_options'),
-    url(r'^get_town_villages_edit/$', views.town_village_options, name='town_village_options'),
+    url(r'^get_town_villages_edit/$', views.town_name_village_options, name='town_village_options'),
 
     url(r'^get_town_clinics/$', views.town_clinic_options, name='town_clinic_options'),
     url(r'^get_town_clinic_edit/$', views.town_clinic_options, name='get_town_clinic_edit'),
 
     #url(r'^get_towns_edit/$', views.get_towns_edit, name='get_tonws_edit'),
-    url(r'^get_town_villages_edit/(?P<town_id>\d+)/$', views.town_village_options, name='town_village_options'),
+    #url(r'^get_town_villages_edit/(?P<town_id>\d+)/$', views.town_village_options, name='town_village_options'),
     url(r'^resident_add_test/$', views.resident_add_test, name='resident_add_test'),
     url(r'^resident_update_test/$', views.resident_update_test, name='resident_add_test'),
     url(r'^resident_del_test/$', views.resident_del_test, name='resident_del_test'),
