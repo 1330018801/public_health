@@ -29,21 +29,6 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='InformationReport',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('institution', models.CharField(max_length=50, verbose_name=b'')),
-                ('discover_date', models.DateTimeField(verbose_name=b'')),
-                ('information_type', models.CharField(max_length=50, verbose_name=b'')),
-                ('information_content', models.TextField(max_length=1000, verbose_name=b'')),
-                ('report_date', models.DateTimeField(verbose_name=b'')),
-                ('reporter', models.CharField(max_length=50, verbose_name=b'')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
             name='Inspection',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
@@ -56,21 +41,6 @@ class Migration(migrations.Migration):
                 ('update_time', models.DateTimeField(auto_now=True, verbose_name=b'\xe4\xbf\xae\xe6\x94\xb9\xe6\x97\xb6\xe9\x97\xb4')),
                 ('create_by', models.ForeignKey(verbose_name=b'\xe7\x99\xbb\xe8\xae\xb0\xe4\xba\xba', to=settings.AUTH_USER_MODEL)),
                 ('institution', models.ForeignKey(verbose_name=b'\xe6\x9c\xba\xe6\x9e\x84', to='management.Clinic')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='Patrol',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('institution', models.CharField(max_length=50, verbose_name=b'')),
-                ('place_content', models.TextField(max_length=1000, verbose_name=b'')),
-                ('main_problem', models.TextField(max_length=2000, verbose_name=b'')),
-                ('patrol_date', models.DateField(verbose_name=b'')),
-                ('patrolman', models.CharField(max_length=50, verbose_name=b'')),
-                ('remarks', models.TextField(max_length=1000, null=True, verbose_name=b'', blank=True)),
             ],
             options={
             },

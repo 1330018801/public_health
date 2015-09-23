@@ -457,14 +457,17 @@ def real_read_card(request):
     nation = request.POST.get('nation')
     address = request.POST.get('address')
     identity = request.POST.get('identity')
-    debug.info(address)
     try:
         resident = Resident.objects.get(identity=identity)
     except Resident.DoesNotExist:
         resident = Resident()
         resident.name = resident_name
         resident.gender = gender
-        resident.birthday = birthday
+        if len(birthday) != 8:
+            resident.birthday = '1900-01-01'
+        else:
+            year = birthday[0:4], month = birthday[4:6], day = birthday[6:8]
+            resident.birthday = date(int(year), int(month), int(day))
         resident.nation = nation
         resident.address = address
         resident.identity = identity

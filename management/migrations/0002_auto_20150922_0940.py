@@ -46,9 +46,9 @@ class Migration(migrations.Migration):
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='rectificationapply',
+            model_name='modifyapply',
             name='work_record',
-            field=models.ForeignKey(to='management.WorkRecord'),
+            field=models.OneToOneField(related_name='modify_apply', to='management.WorkRecord'),
             preserve_default=True,
         ),
         migrations.AddField(

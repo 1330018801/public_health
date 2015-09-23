@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
                 ('iconCls', models.CharField(max_length=50, null=True)),
                 ('url', models.CharField(max_length=50, null=True)),
                 ('nid', models.IntegerField(default=0)),
+                ('town_clinic_admin', models.IntegerField(default=1)),
             ],
             options={
                 'abstract': False,
@@ -86,14 +87,14 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='RectificationApply',
+            name='ModifyApply',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('apply_time', models.DateTimeField(auto_now_add=True)),
-                ('finance_opinion', models.IntegerField()),
+                ('finance_opinion', models.IntegerField(default=1)),
                 ('finance_opinion_time', models.DateTimeField(null=True)),
-                ('health_opinion', models.IntegerField()),
-                ('health_opinion_time', models.IntegerField(null=True)),
+                ('health_opinion', models.IntegerField(default=1)),
+                ('health_opinion_time', models.DateTimeField(null=True)),
                 ('apply_status', models.IntegerField()),
                 ('finish_time', models.DateTimeField(null=True)),
             ],
@@ -216,6 +217,7 @@ class Migration(migrations.Migration):
                 ('iconCls', models.CharField(max_length=50, null=True)),
                 ('url', models.CharField(max_length=50, null=True)),
                 ('nid', models.IntegerField(default=0)),
+                ('classification', models.CharField(max_length=20)),
             ],
             options={
                 'abstract': False,
@@ -248,8 +250,8 @@ class Migration(migrations.Migration):
             name='WorkRecord',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('app_label', models.CharField(max_length=50)),
-                ('model_name', models.CharField(max_length=50)),
+                ('app_label', models.CharField(max_length=50, null=True)),
+                ('model_name', models.CharField(max_length=50, null=True)),
                 ('group_item_id', models.IntegerField(null=True)),
                 ('item_id', models.IntegerField(null=True)),
                 ('service_item_alias', models.CharField(max_length=50, null=True)),
@@ -261,7 +263,7 @@ class Migration(migrations.Migration):
                 ('update_by', models.FloatField(null=True, verbose_name=django.contrib.auth.models.User)),
                 ('provider', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
                 ('resident', models.ForeignKey(to='management.Resident')),
-                ('service_item', models.ForeignKey(to='management.Service')),
+                ('service_item', models.ForeignKey(to='management.Service', null=True)),
             ],
             options={
                 'ordering': ['-submit_time'],
