@@ -112,7 +112,7 @@ $(function() {
     btn_rm.bind('click', function () {
         var rows = datagrid.datagrid('getSelections');
         if (rows.length > 0) {
-            $.messager.confirm('确认操作', '要删除所选择的卫生室吗？', function(flag) {
+            $.messager.confirm('确认操作', '要删除所选择的居民吗？', function(flag) {
                 if (flag) {
                     var ids = [];
                     for (var i = 0; i < rows.length; i++) {
@@ -136,7 +136,7 @@ $(function() {
                 }
             });
         } else {
-            $.messager.alert('提示', '请选择所要删除的卫生室', 'info');
+            $.messager.alert('提示', '请选择所要删除的居民', 'info');
         }
     });
 
