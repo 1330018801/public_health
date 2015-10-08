@@ -4,11 +4,16 @@ import simplejson
 import xlwt
 
 from django.utils.encoding import smart_unicode
+from django.utils import timezone
 from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse, JsonResponse
-from .models import Clinic, Region, UserProfile, Service, Resident, WorkRecord, Sms, SmsTime, AdminNav
+from django.contrib.auth.decorators import login_required
+from django.forms.models import model_to_dict
+from django.core.exceptions import ObjectDoesNotExist
+
+from .models import Clinic, Region, UserProfile, Service, Resident, WorkRecord, Sms, SmsTime, AdminNav, GroupProfile
 
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
@@ -17,6 +22,7 @@ import logging
 debug = logging.getLogger('debug')
 
 
+@login_required(login_url='/')
 def excel_file(request):
     import xlwt
     from django.utils.encoding import smart_unicode
@@ -44,6 +50,7 @@ def excel_file(request):
     return response
 
 
+@login_required(login_url='/')
 def excel_new(request):
     workbook = xlwt.Workbook()
 
@@ -108,6 +115,9 @@ def excel_new(request):
 
 
 def is_finance_admin(user):
+    """
+    功能函数：判断用户是否是财政局管理员
+    """
     if not user.is_superuser:
         try:
             role = user.userprofile.role
@@ -120,6 +130,9 @@ def is_finance_admin(user):
 
 
 def is_health_admin(user):
+    """
+    功能函数：判断用户是否是财卫生局管理员
+    """
     if not user.is_superuser:
         try:
             role = user.userprofile.role
@@ -132,6 +145,9 @@ def is_health_admin(user):
 
 
 def is_town_clinic_admin(user):
+    """
+    功能函数：判断用户是否是卫生院管理员
+    """
     if user.is_staff:
         if user.is_superuser or is_finance_admin(user) or is_health_admin(user):
             return False
@@ -140,6 +156,7 @@ def is_town_clinic_admin(user):
     return False
 
 
+@login_required(login_url='/')
 def workload_sheet(request, clinic_id):
     if clinic_id is None:
         user = request.user
@@ -200,7 +217,48 @@ def workload_sheet(request, clinic_id):
     '''
 
 
-def resident_add_test(request):
+@login_required(login_url='/')
+def admin_nav(request):
+    """
+    函数说明：管理员工作界面中的左侧导航栏内容，
+             如果是超级管理员、卫生局管理员、财政局管理员，返回全部菜单项目
+             如果是卫生院管理员，则返回符合其权限的菜单项目。
+             在AdminNav模型中town_clinic_admin字段不为0，则该菜单项是卫生院管理员的权限
+    """
+    nid = request.POST.get('id', '0')
+    nav_items = AdminNav.objects.filter(nid=int(nid))
+
+    json_data = []
+    for item in nav_items:
+        user = request.user
+        if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员' and item.town_clinic_admin == 0:
+            pass
+        else:
+            json_data.append(model_to_dict(item))
+
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+
+#################################################################################
+
+##                       管理员工作界面：居民管理（增删改查）
+
+#################################################################################
+
+
+@login_required(login_url='/')
+def residents_page(request):
+    """
+    函数说明：管理员工作界面中，居民管理的主页面
+    """
+    return render(request, 'management/residents.html')
+
+
+@login_required(login_url='/')
+def resident_add(request):
+    """
+    函数说明：在管理员工作界面，手动增加系统中的居民，区别于读取身份证时，自动增加系统中的居民
+    """
     resident = Resident()
     resident.name = request.POST.get('name')
     resident.gender = request.POST.get('gender')
@@ -232,7 +290,11 @@ def resident_add_test(request):
     # return JsonResponse(json_data)
 
 
-def resident_update_test(request):
+@login_required(login_url='/')
+def resident_update(request):
+    """
+    函数说明：在管理员工作界面，修改系统中居民的信息
+    """
     resident_id = request.POST.get('id')
     resident = Resident.objects.get(id=int(resident_id))
 
@@ -267,7 +329,11 @@ def resident_update_test(request):
     # return JsonResponse(json_data)
 
 
-def resident_del_test(request):
+@login_required(login_url='/')
+def resident_del(request):
+    """
+    函数说明：在管理员工作界面中，删除系统中的居民
+    """
     resident_id = request.POST.get('resident_id')
     success = True
     resident_name = ''
@@ -282,10 +348,13 @@ def resident_del_test(request):
     return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_data)
 
-from django.forms.models import model_to_dict
 
-
-def resident_query_test(request):
+@login_required(login_url='/')
+def resident_query(request):
+    """
+    函数说明：在管理员工作界面中，查询居民操作
+    返回结果：符合查询条件的居民信息以json形式返回
+    """
     residents = Resident.objects.all()
 
     town = request.POST.get('town')
@@ -318,7 +387,12 @@ def resident_query_test(request):
     # return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def resident_query_list(request):
+    """
+    函数说明：在管理员工作界面，查询居民操作
+    返回结果：在easyui的datagrid中分页显示查询结果，返回json对象数组
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -381,30 +455,94 @@ def resident_query_list(request):
     # return JsonResponse({'total': residents.count(), 'rows': json_items})
 
 
-def admin_nav(request):
-    nid = request.POST.get('id', '0')
-    nav_items = AdminNav.objects.filter(nid=int(nid))
-
-    json_data = []
-    for item in nav_items:
-        user = request.user
-        if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员' and item.town_clinic_admin == 0:
-            pass
-        else:
-            json_data.append(model_to_dict(item))
-
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-
-
-def residents_page(request):
-    return render(request, 'management/residents.html')
+@login_required(login_url='/')
+def resident_add_hypertension(request):
+    """
+    函数说明：将指定居民加入高血压人群的操作
+    """
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    if resident.hypertension == 1:
+        success, message = False, u'已经在高血压人群中'
+    else:
+        resident.hypertension = 1
+        resident.save()
+        success, message = True, u''
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
 
 
+@login_required(login_url='/')
+def resident_add_diabetes(request):
+    """
+    函数说明：将指定居民加入糖尿病人群的操作
+    """
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    if resident.diabetes == 1:
+        success, message = False, u'已经在高血压人群中'
+    else:
+        resident.diabetes = 1
+        resident.save()
+        success, message = True, u''
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def resident_add_psychiatric(request):
+    """
+    函数说明：将指定居民加入重性精神疾病人群的操作
+    """
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    if resident.psychiatric == 1:
+        success, message = False, u'已经在高血压人群中'
+    else:
+        resident.psychiatric = 1
+        resident.save()
+        success, message = True, u''
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def resident_add_pregnant(request):
+    """
+    函数说明：将指定居民加入孕产妇人群的操作
+    """
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    if resident.pregnant == 1:
+        success, message = False, u'已经在高血压人群中'
+    else:
+        resident.pregnant = 1
+        resident.save()
+        success, message = True, u''
+    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
+                        content_type='text/html; charset=UTF-8')
+
+#################################################################################
+
+##                       管理员工作界面：乡镇卫生院管理（增删改查）
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def town_clinics(request):
+    """
+    函数说明：管理员工作界面中，乡镇卫生院管理的主页面
+    """
     return render(request, 'management/town_clinics.html')
 
 
-def town_clinic_list_new(request):
+@login_required(login_url='/')
+def town_clinic_list(request):
+    """
+    函数说明：返回所有乡镇卫生院信息
+    返回结果：json对象数组
+    """
     json_items = []
     for town_clinic in Clinic.in_town.all():
         item = model_to_dict(town_clinic, fields=['id', 'name', 'address'])
@@ -420,12 +558,27 @@ def town_clinic_list_new(request):
     return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_data)
 
+#################################################################################
 
+##                       管理员工作界面：村卫生室管理（增删改查）
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def village_clinics_page(request):
+    """
+    函数说明：管理员工作界面中，村卫生室管理的主页面
+    """
     return render(request, 'management/village_clinics.html')
 
 
-def village_clinic_list_new(request):
+@login_required(login_url='/')
+def village_clinic_list(request):
+    """
+    函数说明：管理员工作界面中，村卫生室查询列表
+    返回结果：在easyui的datagrid中，分页显示的json对象数据组
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -451,111 +604,13 @@ def village_clinic_list_new(request):
     #return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
     return JsonResponse({'total': village_clinics.count(), 'rows': json_items})
 
-# 乡镇卫生院和村卫生室列表，用于页面上下拉列表的选项
-# 乡镇和村庄（街道）列表，用于页面上下拉列表的选项
-# 服务类别和服务项目列表，用于页面上下拉列表的选项
 
-
-def town_options(request):
+@login_required(login_url='/')
+def village_clinic_add(request):
     """
-    参数：request的POST传递参数first_text，作为列表第一项的名称
-    返回值：返回所有乡镇的列表，列表的第一项id为0，名称由POST所传递的first_text确定
+    函数说明：管理员工作界面中，增加村卫生室操作
+    现存问题：没有检查该村卫生室是否已经存在！
     """
-    first_text = request.POST.get('first_text') if 'first_text' in request.POST else u'全部'
-    json_data = [{'id': 0, 'name': first_text}]
-    json_data += [model_to_dict(town, fields=['id', 'name']) for town in Region.towns.all()]
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-
-
-def town_village_options(request, town_id):
-    """
-    参数：URL链接中town_id指定乡镇id
-    返回值：town_id所指定乡镇所下属的所有村庄（街道）列表
-    """
-    json_data = [{'id': '0', 'name': '全部'}]
-    try:
-        villages = Region.villages.filter(town=Region.towns.get(id=town_id))
-    except Region.DoesNotExist:
-        pass
-    else:
-        json_data += [model_to_dict(village, fields=['id', 'name']) for village in villages]
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-
-
-def town_name_village_options(request):
-    """
-    参数：request.POST中的town_name指定乡镇名称
-    返回值：town_name所指定乡镇下属的所有村庄（街道）列表
-    """
-    json_data = [{'id': '0', 'name': ''}]
-    town_name = request.POST.get('town_name')
-    try:
-        villages = Region.villages.filter(town=Region.towns.get(name=town_name))
-    except Region.DoesNotExist:
-        pass
-    else:
-        json_data += [model_to_dict(village, fields=['id', 'name']) for village in villages]
-
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-
-
-def town_clinic_options(request):
-    """
-    参数：request.POST中的first_text指定列表第一项的名称
-    返回值：返回所有乡镇卫生院列表，第一项id为0，名称由first_text指定
-    """
-    first_text = request.POST.get('first_text', '')
-    json_items = [{'id': 0, 'name': first_text}]
-    json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
-    return JsonResponse(json_items, safe=False)
-
-
-def village_clinic_options(request):
-    """
-    参数：request.POST中的first_text指定列表第一项的名称
-    参数：request.POST中的query_town_clinic指定筛选该乡镇卫生院下属的村卫生室
-    返回值：返回指定乡镇卫生院下属的村卫生室列表，第一项id为0，名称由first_text指定
-    """
-    first_text = request.POST.get('first_text', '')
-    query_town_clinic = int(request.POST.get('query_town_clinic', 0))
-    json_items = [{'id': 0, 'name': first_text}]
-    options = Clinic.in_village.all()
-    if query_town_clinic:
-        town_clinic = Clinic.in_town.get(id=query_town_clinic)
-        options = options.filter(town_clinic=town_clinic)
-    json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in options]
-    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
-
-
-def get_town_village_clinics(request, town_clinic_id):
-    first_text = request.POST.get('first_text', '')
-    json_data = [{'id': '0', 'name': first_text}]
-
-    if town_clinic_id != '0':
-        town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
-        clinics = Clinic.in_village.filter(town_clinic=town_clinic)
-        json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in clinics]
-
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-
-
-def get_town_clinics_edit(request):
-    json_data = [{'id': '0', 'name': ''}]
-    json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data, safe=False)
-
-
-def get_town_village_clinics_edit(request):
-    town_clinic_name = request.POST.get('town_clinic_name')
-    clinics = Clinic.in_village.filter(town_clinic__name=town_clinic_name)
-    json_data = [{'id': '0', 'name': ''}]
-    json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in clinics]
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data, safe=False)
-
-
-def village_clinic_add_test(request):
     name = request.POST.get('name', '')
     town_clinic_name = request.POST.get('town_clinic', '')
     address = request.POST.get('address', '')
@@ -578,7 +633,12 @@ def village_clinic_add_test(request):
     # return JsonResponse(json_data)
 
 
-def village_clinic_del_test(request):
+@login_required(login_url='/')
+def village_clinic_del(request):
+    """
+    函数说明：管理员工作界面中，删除村卫生室的操作
+    现存问题：没有检查该村卫生室是否存在村医，以及该如何处理存在村医的村卫生室删除问题？
+    """
     village_clinic_id = request.POST.get('village_clinic_id')
     success = True
     village_clinic_name = ''
@@ -594,7 +654,12 @@ def village_clinic_del_test(request):
     return JsonResponse(json_data)
 
 
-def village_clinic_update_test(request):
+@login_required(login_url='/')
+def village_clinic_update(request):
+    """
+    函数说明：管理员工作界面中，更新村卫生室信息的操作
+    现存问题：没有检查所属乡镇卫生院的名称是否正确，如果不正确应该提示不存在该卫生院
+    """
     success = True
     village_clinic_name = ''
 
@@ -605,25 +670,210 @@ def village_clinic_update_test(request):
 
     try:
         village_clinic = Clinic.in_village.get(id=int(village_clinic_id))
+    except Clinic.DoesNotExist:
+        success = False
+    else:
         village_clinic.name = name
         village_clinic.address = address
         village_clinic.town_clinic = Clinic.in_town.get(name=town_clinic_name)
-        village_clinic_name = name
         village_clinic.save()
-    except Clinic.DoesNotExist:
-        success = False
 
     json_data = {'success': success, 'name': village_clinic_name}
     return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
 
     # return JsonResponse(json_data)
 
+#################################################################################
 
+##                       管理员工作界面：提供下拉列表选项的函数
+
+#################################################################################
+
+
+@login_required(login_url='/')
+def town_options(request):
+    """
+    参数：request的POST传递参数first_text，作为列表第一项的名称
+    返回值：返回所有乡镇的列表，列表的第一项id为0，名称由POST所传递的first_text确定
+    """
+    first_text = request.POST.get('first_text') if 'first_text' in request.POST else u'全部'
+    json_data = [{'id': 0, 'name': first_text}]
+    json_data += [model_to_dict(town, fields=['id', 'name']) for town in Region.towns.all()]
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def town_village_options(request, town_id):
+    """
+    参数：URL链接中town_id指定乡镇id
+    返回值：town_id所指定乡镇所下属的所有村庄（街道）列表
+    """
+    json_data = [{'id': '0', 'name': '全部'}]
+    try:
+        villages = Region.villages.filter(town=Region.towns.get(id=town_id))
+    except Region.DoesNotExist:
+        pass
+    else:
+        json_data += [model_to_dict(village, fields=['id', 'name']) for village in villages]
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def town_name_village_options(request):
+    """
+    参数：request.POST中的town_name指定乡镇名称
+    返回值：town_name所指定乡镇下属的所有村庄（街道）列表
+    """
+    json_data = [{'id': '0', 'name': ''}]
+    town_name = request.POST.get('town_name')
+    try:
+        villages = Region.villages.filter(town=Region.towns.get(name=town_name))
+    except Region.DoesNotExist:
+        pass
+    else:
+        json_data += [model_to_dict(village, fields=['id', 'name']) for village in villages]
+
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def town_clinic_options(request):
+    """
+    参数：request.POST中的first_text指定列表第一项的名称
+    返回值：返回所有乡镇卫生院列表，第一项id为0，名称由first_text指定
+    """
+    first_text = request.POST.get('first_text', '')
+    json_items = [{'id': 0, 'name': first_text}]
+    json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
+    return JsonResponse(json_items, safe=False)
+
+
+@login_required(login_url='/')
+def village_clinic_options(request):
+    """
+    参数：request.POST中的first_text指定列表第一项的名称
+    参数：request.POST中的query_town_clinic指定筛选该乡镇卫生院下属的村卫生室
+    返回值：返回指定乡镇卫生院下属的村卫生室列表，第一项id为0，名称由first_text指定
+    """
+    first_text = request.POST.get('first_text', '')
+    query_town_clinic = int(request.POST.get('query_town_clinic', 0))
+    json_items = [{'id': 0, 'name': first_text}]
+    options = Clinic.in_village.all()
+    if query_town_clinic:
+        town_clinic = Clinic.in_town.get(id=query_town_clinic)
+        options = options.filter(town_clinic=town_clinic)
+    json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in options]
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def get_town_village_clinics(request, town_clinic_id):
+    """
+    参数：URL链接中town_clinic_id指定乡镇卫生院id
+    返回值：town_clinic_id所指定乡镇卫生院所下属的所有村卫生室列表
+    """
+    first_text = request.POST.get('first_text', '')
+    json_data = [{'id': '0', 'name': first_text}]
+
+    if town_clinic_id != '0':
+        town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
+        clinics = Clinic.in_village.filter(town_clinic=town_clinic)
+        json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in clinics]
+
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+
+
+@login_required(login_url='/')
+def get_town_clinics_edit(request):
+    json_data = [{'id': '0', 'name': ''}]
+    json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
+
+
+@login_required(login_url='/')
+def get_town_village_clinics_edit(request):
+    town_clinic_name = request.POST.get('town_clinic_name')
+    clinics = Clinic.in_village.filter(town_clinic__name=town_clinic_name)
+    json_data = [{'id': '0', 'name': ''}]
+    json_data += [model_to_dict(clinic, fields=['id', 'name']) for clinic in clinics]
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
+
+
+@login_required(login_url='/')
+def get_roles(request):
+    first_text = request.POST.get('first_text', '')
+    json_data = []
+    json_item = {'id': 0, 'name': first_text}
+    json_data.append(json_item)
+
+    roles = Group.objects.all()
+    for role in roles:
+        json_item = dict()
+        json_item['id'], json_item['name'] = role.id, role.name
+        json_data.append(json_item)
+
+    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
+    # return JsonResponse(json_data, safe=False)
+
+
+@login_required(login_url='/')
+def service_type_options(request):
+    first_text = request.POST.get('first_text', '')
+    json_items = [{'id': 0, 'name': first_text}]
+
+    service_types = Service.types.all()
+    for service_type in service_types:
+        item = model_to_dict(service_type, fields=['id', 'name'])
+        json_items.append(item)
+    # return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+    return JsonResponse(json_items, safe=False)
+
+
+@login_required(login_url='/')
+def service_item_options(request):
+    first_text = request.POST.get('first_text', '')
+    query_service_type = int(request.POST.get('query_service_type', '0'))
+    service_type_name = request.POST.get('service_type_name', '')
+
+    json_items = [{'id': 0, 'name': first_text}]
+
+    service_items = Service.items.all()
+    if query_service_type:
+        service_type = Service.types.get(id=query_service_type)
+        service_items = service_items.filter(service_type=service_type)
+
+    for service_item in service_items:
+        item = model_to_dict(service_item, fields=['id', 'name'])
+        if service_type_name:
+            item['service_type_name'] = service_item.service_type.name
+        json_items.append(item)
+
+    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+
+
+#################################################################################
+
+##                       管理员工作界面：系统用户管理操作（增删改查）
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def users_page(request):
+    """
+    函数说明：管理员操作界面下，用户管理的主页面
+    """
     return render(request, 'management/users.html')
 
 
+@login_required(login_url='/')
 def user_query_list(request):
+    """
+    函数说明：管理员操作界面下，查询用户并生成列表
+    返回结果：easyui中datagrid分页现实所需的json对象数组
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -670,25 +920,11 @@ def user_query_list(request):
     # return JsonResponse({'total': users.count(), 'rows': json_items})
 
 
-def get_roles(request):
-    first_text = request.POST.get('first_text', '')
-    json_data = []
-    json_item = {'id': 0, 'name': first_text}
-    json_data.append(json_item)
-
-    roles = Group.objects.all()
-    for role in roles:
-        json_item = dict()
-        json_item['id'], json_item['name'] = role.id, role.name
-        json_data.append(json_item)
-
-    return HttpResponse(simplejson.dumps(json_data), content_type='text/html; charset=UTF-8')
-    # return JsonResponse(json_data, safe=False)
-
-from django.utils import timezone
-
-
-def user_add_test(request):
+@login_required(login_url='/')
+def user_add(request):
+    """
+    函数说明：添加用户操作
+    """
     username = request.POST.get('username').strip()
     try:
         User.objects.get(username=username)
@@ -722,7 +958,11 @@ def user_add_test(request):
     # return JsonResponse({'success': success, 'message': msg})
 
 
-def user_del_test(request):
+@login_required(login_url='/')
+def user_del(request):
+    """
+    函数说明：删除用户操作
+    """
     success, message = False, ''
     user_id = int(request.POST.get('user_id', '0'))
     if user_id:
@@ -747,11 +987,26 @@ def user_del_test(request):
     return JsonResponse({'success': success, 'message': message})
 
 
+#################################################################################
+
+##                       管理员工作界面：服务类别管理操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def service_types_page(request):
+    """
+    函数说明：管理员操作界面下，服务类别管理的主页面
+    """
     return render(request, 'management/service_types.html')
 
 
-def service_type_list_new(request):
+@login_required(login_url='/')
+def service_type_list(request):
+    """
+    函数说明：管理员操作界面下，服务类别列表操作，一般不会有服务类别的增删改操作
+    """
     json_items = []
     for service_type in Service.types.all():
         item = model_to_dict(service_type, fields=['id', 'name', 'real_weight', 'should_weight'])
@@ -763,19 +1018,27 @@ def service_type_list_new(request):
     # return JsonResponse({'total': len(json_items), 'rows': json_items})
 
 
-def service_type_options(request):
-    first_text = request.POST.get('first_text', '')
-    json_items = [{'id': 0, 'name': first_text}]
-
-    serivce_types = Service.types.all()
-    for service_type in serivce_types:
-        item = model_to_dict(service_type, fields=['id', 'name'])
-        json_items.append(item)
-    # return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
-    return JsonResponse(json_items, safe=False)
+@login_required(login_url='/')
+def service_items_page(request):
+    """
+    函数说明：管理员操作界面下，服务项目管理的主页面
+    """
+    return render(request, 'management/service_items.html')
 
 
-def service_item_list_new(request):
+#################################################################################
+
+##                       管理员工作界面：服务项目管理操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
+def service_item_list(request):
+    """
+    函数说明：管理员操作界面下，服务项目查询列表操作
+    返回结果：easyui中datagrid分页显示，所需的json对象数组
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -802,40 +1065,38 @@ def service_item_list_new(request):
     # return JsonResponse({'total': service_items.count(), 'rows': json_items})
 
 
-def service_items_page(request):
-    return render(request, 'management/service_items.html')
-
-
-def service_item_add_test(request):
-    serivce_type_name = request.POST.get('service_type', '')
-    serivce_item_name = request.POST.get('name')
+@login_required(login_url='/')
+def service_item_add(request):
+    """
+    函数说明：增加服务项目操作，此操作不能开放给管理员用户！
+    """
+    service_type_name = request.POST.get('service_type', '')
+    service_item_name = request.POST.get('name')
     service_price = request.POST.get('price', '')
     service_unit = request.POST.get('unit', '')
 
-    service_type = Service.types.get(name=serivce_type_name)
+    service_type = Service.types.get(name=service_type_name)
+    service_items = Service.items.filter(service_type=service_type)
     try:
-        service_items = Service.items.filter(service_type=service_type)
-        service_item = service_items.get(name=serivce_item_name)
+        service_items.get(name=service_item_name)
     except Service.DoesNotExist:
-        service_item = Service()
-        service_item.name = serivce_item_name
-        service_item.price = service_price
-        service_item.unit = service_unit
-        service_item.level = Service.SERVICE_ITEM
-        service_item.service_type = service_type
-        service_item.create_by = request.user
+        service_item = Service(name=service_item_name, price=service_price,
+                               unit=service_unit, level=Service.SERVICE_ITEM,
+                               service_type=service_type, create_by=request.user)
         service_item.save()
-        success = 'true'
-        msg = u'服务项目创建完成'
+        success, msg = 'true', u'服务项目创建完成'
     else:
-        success = 'false'
-        msg = u'服务项目已经存在'
+        success, msg = 'false', u'服务项目已经存在'
     return HttpResponse(simplejson.dumps({'success': success, 'message': msg}),
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'success': success, 'message': msg})
 
 
-def service_item_update_test(request):
+@login_required(login_url='/')
+def service_item_update(request):
+    """
+    函数说明：更新服务项目信息的操作，包括对服务项目的名称、价格和单位的更新
+    """
     service_item_id = int(request.POST.get('id'))
     name = request.POST.get('name')
     unit = request.POST.get('unit')
@@ -859,7 +1120,11 @@ def service_item_update_test(request):
     # return JsonResponse({'success': success})
 
 
-def service_item_del_test(request):
+@login_required(login_url='/')
+def service_item_del(request):
+    """
+    函数说明：删除服务项目的操作，此操作不应该开放给管理员用户
+    """
     service_item_id = int(request.POST.get('service_item_id'))
     try:
         service_item = Service.items.get(id=service_item_id)
@@ -876,11 +1141,25 @@ def service_item_del_test(request):
     # return JsonResponse({'success': success, 'message': msg})
 
 
+#################################################################################
+
+##                       管理员工作界面：服务记录管理操作
+
+#################################################################################
+
+@login_required(login_url='/')
 def records_page(request):
+    """
+    函数说明：服务记录列表的主页面
+    """
     return render(request, 'management/records_page.html')
 
 
-def record_list_new(request):
+@login_required(login_url='/')
+def record_list(request):
+    """
+    函数说明：在easyui的datagrid中显示服务记录列表
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -950,32 +1229,26 @@ def record_list_new(request):
                         content_type='text/html; charset=UTF-8')
 
 
-def service_item_options(request):
-    first_text = request.POST.get('first_text', '')
-    query_service_type = int(request.POST.get('query_service_type', '0'))
-    service_type_name = request.POST.get('service_type_name', '')
+#################################################################################
 
-    json_items = [{'id': 0, 'name': first_text}]
+##                       管理员工作界面：服务计费管理操作
 
-    service_items = Service.items.all()
-    if query_service_type:
-        service_type = Service.types.get(id=query_service_type)
-        service_items = service_items.filter(service_type=service_type)
-
-    for service_item in service_items:
-        item = model_to_dict(service_item, fields=['id', 'name'])
-        if service_type_name:
-            item['service_type_name'] = service_item.service_type.name
-        json_items.append(item)
-
-    return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
+#################################################################################
 
 
+@login_required(login_url='/')
 def payment_page(request):
+    """
+    函数说明：服务计费的主页面
+    """
     return render(request, 'management/payment_page.html')
 
 
-def payment_list_new(request):
+@login_required(login_url='/')
+def payment_list(request):
+    """
+    函数说明：在easyui的datagrid中列出各项服务项目的计费情况
+    """
     page = int(request.POST.get('page'))
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
@@ -1052,14 +1325,28 @@ def payment_list_new(request):
     # return JsonResponse({'total': service_items.count(), 'rows': json_items})
 
 
+#################################################################################
+
+##                       管理员工作界面：用户角色管理操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def roles_page(request):
+    """
+    函数说明：角色管理的主页面
+    """
     return render(request, 'management/roles.html')
 
 
-def role_list_new(request):
-    groups = Group.objects.all()
+@login_required(login_url='/')
+def role_list(request):
+    """
+    函数说明：列表当前所有角色操作
+    """
     json_items = []
-    for group in groups:
+    for group in Group.objects.all():
         item = model_to_dict(group, fields=['id', 'name'])
         if group.groupprofile:
             item['is_staff'] = group.groupprofile.is_staff
@@ -1070,7 +1357,11 @@ def role_list_new(request):
     # return JsonResponse(json_items, safe=False)
 
 
+@login_required(login_url='/')
 def get_role_authorize(request):
+    """
+    函数说明：获取某个指定角色的授权
+    """
     role_id = int(request.POST.get('role_id'))
     role = Group.objects.get(id=role_id)
 
@@ -1083,7 +1374,11 @@ def get_role_authorize(request):
     # return JsonResponse(json_items, safe=False)
 
 
+@login_required(login_url='/')
 def role_authorize(request):
+    """
+    函数说明：对某个指定角色进行授权
+    """
     role_id = int(request.POST.get('role_id'))
     group_profile = Group.objects.get(id=role_id).groupprofile
     service_item_select = request.POST.getlist('service_item_select')
@@ -1118,10 +1413,12 @@ def role_authorize(request):
                         content_type='text/html; charset=UTF-8')
     # return JsonResponse({'success': 'true'})
 
-from management.models import GroupProfile
 
-
+@login_required(login_url='/')
 def role_add(request):
+    """
+    函数说明：添加角色操作，该功能不开放给管理员用户
+    """
     name = request.POST.get('name')
     group = Group(name=name)
     group.save()
@@ -1136,6 +1433,9 @@ def role_add(request):
 
 
 def role_del(request):
+    """
+    函数说明：删除某个指定角色，该功能不开放给管理员用户
+    """
     try:
         group = Group.objects.get(id=int(request.POST.get('id')))
     except Group.DoesNotExist:
@@ -1152,11 +1452,27 @@ def role_del(request):
 
     return JsonResponse({'success': success})
 
+
+#################################################################################
+
+##                       管理员工作界面：已发送短信列表操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def sms_sent(request):
+    """
+    函数说明：已发送短信列表主页面
+    """
     return render(request, 'management/sms_sent.html')
 
 
+@login_required(login_url='/')
 def sms_sent_list(request):
+    """
+    函数说明：按照条件查询已发送短信并列表操作
+    """
     sms_begin = request.POST.get('sms_begin')
     sms_end = request.POST.get('sms_end')
     service_type = int(request.POST.get('service_type'))
@@ -1196,14 +1512,26 @@ def sms_sent_list(request):
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_items, safe=False)
 
+#################################################################################
 
+##                       管理员工作界面：已发送短信列表操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def sms_setup_page(request):
+    """
+    函数说明：短信设置主页面
+    """
     return render(request, 'management/sms_setup.html')
 
-from django.core.exceptions import ObjectDoesNotExist
 
-
+@login_required(login_url='/')
 def sms_setup_list(request):
+    """
+    函数说明：按照条件查询短信设置并列表操作
+    """
     service_type = int(request.POST.get('service_type'))
     service_item = int(request.POST.get('service_item'))
     sms_begin = request.POST.get('sms_begin')
@@ -1264,7 +1592,11 @@ def sms_setup_list(request):
     # return JsonResponse(json_items, safe=False)
 
 
+@login_required(login_url='/')
 def sms_setup_add(request):
+    """
+    函数说明：添加短信设置操作
+    """
     service_type = int(request.POST.get('service_type'))
     service_item = int(request.POST.get('service_item'))
     service_time = request.POST.get('service_time')
@@ -1281,7 +1613,11 @@ def sms_setup_add(request):
                         content_type='text/html; charset=UTF-8')
 
 
+@login_required(login_url='/')
 def sms_setup_update(request):
+    """
+    函数说明：更新短信设置操作
+    """
     sms_setup_id = int(request.POST.get('id'))
     service_type = int(request.POST.get('service_type'))
     service_item = int(request.POST.get('service_item'))
@@ -1298,7 +1634,11 @@ def sms_setup_update(request):
                         content_type='text/html; charset=UTF-8')
 
 
+@login_required(login_url='/')
 def sms_setup_del(request):
+    """
+    函数说明：删除短信设置操作
+    """
     sms_setup_id = int(request.POST.get('id'))
     try:
         sms_setup = SmsTime.objects.get(id=sms_setup_id)
@@ -1312,67 +1652,29 @@ def sms_setup_del(request):
     # return JsonResponse({'success': success})
 
 
-def resident_add_hypertension(request):
-    resident_id = int(request.POST.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    if resident.hypertension == 1:
-        success, message = False, u'已经在高血压人群中'
-    else:
-        resident.hypertension = 1
-        resident.save()
-        success, message = True, u''
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-
-
-def resident_add_diabetes(request):
-    resident_id = int(request.POST.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    if resident.diabetes == 1:
-        success, message = False, u'已经在高血压人群中'
-    else:
-        resident.diabetes = 1
-        resident.save()
-        success, message = True, u''
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-
-
-def resident_add_psychiatric(request):
-    resident_id = int(request.POST.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    if resident.psychiatric == 1:
-        success = False
-        message = u'已经在高血压人群中'
-    else:
-        resident.psychiatric = 1
-        resident.save()
-        success = True
-        message = u''
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-
-
-def resident_add_pregnant(request):
-    resident_id = int(request.POST.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
-    if resident.pregnant == 1:
-        success, message = False, u'已经在高血压人群中'
-    else:
-        resident.pregnant = 1
-        resident.save()
-        success, message = True, u''
-    return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
-                        content_type='text/html; charset=UTF-8')
-
 import json
 
 
+#################################################################################
+
+##                       管理员工作界面：首页的统计图（工作量和费用统计图）
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def graphs(request):
+    """
+    函数说明：统计图的主页面
+    """
     return render(request, 'management/graphs.html')
 
 
+@login_required(login_url='/')
 def graph_workload(request):
+    """
+    函数说明：工作量统计图
+    """
     user = request.user
     if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
         clinics = user.userprofile.clinic.village_clinics.all()
@@ -1400,11 +1702,14 @@ def graph_workload(request):
     series = [{"name": key, "data": value.values()} for key, value in workload.items()]
     result = {"clinics": clinics, "series": series}
 
-    #log.debug(result)
     return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json")
 
 
+@login_required(login_url='/')
 def graph_payment(request):
+    """
+    函数说明：支付费用统计图
+    """
     user = request.user
     if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
         clinics = user.userprofile.clinic.village_clinics.all()
@@ -1434,16 +1739,26 @@ def graph_payment(request):
     return HttpResponse(simplejson.dumps(percent), content_type='text/html; charset=UTF-8')
     # return JsonResponse(percent, safe=False)
 
-"""
-工作量统计及相关功能页面
-"""
+#################################################################################
+
+##                       管理员工作界面：工作量统计查询操作
+
+#################################################################################
 
 
+@login_required(login_url='/')
 def workload_stat_page(request):
+    """
+    函数说明：工作量统计主页面
+    """
     return render(request, 'management/workload_stat_page.html')
 
 
+@login_required(login_url='/')
 def workload_town_clinics_page(request):
+    """
+    函数说明：乡镇卫生院工作量统计的主页面
+    """
     return render(request, 'management/workload_town_clinics_page.html')
 
 
@@ -1451,9 +1766,10 @@ from services.utils import new_year_day
 import collections
 
 
+@login_required(login_url='/')
 def workload_town_clinics_datagrid(request):
     """
-    函数说明：计算各个卫生院各个服务类别的工作量及合计
+    函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
     workload = collections.OrderedDict()
 
@@ -1480,26 +1796,31 @@ def workload_town_clinics_datagrid(request):
         try:
             clinic = Clinic.in_town.get(name=key)
         except Clinic.DoesNotExist:
-            id = 0
+            clinic_id = 0
         else:
-            id = clinic.id
-        item = {'id': id, 'clinic': key}
+            clinic_id = clinic.id
+        item = {'id': clinic_id, 'clinic': key}
         item.update(value)
         total = {'total': sum(value.values())}
         item.update(total)
         json_data.append(item)
-    debug.info(len(json_data))
+
     return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def workload_village_clinics_page(request, town_clinic_id):
+    """
+    函数说明：指定乡镇卫生院下属各个村卫生室的工作量统计的主页面
+    """
     return render(request, 'management/workload_village_clinics_page.html',
                   {'town_clinic_id': town_clinic_id})
 
 
+@login_required(login_url='/')
 def workload_village_clinics_datagrid(request, town_clinic_id):
     """
-    函数说明：计算指定卫生院各个服务类别的工作量及合计
+    函数说明：计算指定卫生院各个服务类别的工作量及合计，并在datagrid中列表显示
     参数：town_clinic_id，指定卫生院的id
     返回：指定卫生院下属卫生室的各服务类别的工作量及合计
     """
@@ -1515,7 +1836,7 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
 
     records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
     for record in records:
-        if record.service_item and record.service_item.is_service_item: # 这是一个计费项目
+        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
                 clinic = record.provider.userprofile.clinic
             except ObjectDoesNotExist:
@@ -1541,13 +1862,18 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
     return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def workload_doctors_page(request, clinic_id):
+    """
+    函数说明：医生工作量统计的主页面
+    """
     return render(request, 'management/workload_doctors_page.html', {'clinic_id': clinic_id})
 
 
+@login_required(login_url='/')
 def workload_doctors_datagrid(request, clinic_id):
     """
-    函数说明：计算指定卫生机构中各位医生的工作量（分类和合计）
+    函数说明：计算指定卫生机构中各位医生的工作量（分类和合计），并在easyui的datagrid中列表显示
     参数：clinic_id，指定卫生机构的id
     返回：指定卫生机构中各位医生的各服务类别的工作量及合计
     """
@@ -1579,10 +1905,10 @@ def workload_doctors_datagrid(request, clinic_id):
         try:
             doctor = User.objects.get(username=key)
         except User.DoesNotExist:
-            id = 0
+            doctor_id = 0
         else:
-            id = doctor.id
-        item = {'id': id, 'name': key}
+            doctor_id = doctor.id
+        item = {'id': doctor_id, 'name': key}
         item.update(value)
         total = {'total': sum(value.values())}
         item.update(total)
@@ -1590,11 +1916,19 @@ def workload_doctors_datagrid(request, clinic_id):
     return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def workload_list_page(request, provider_id):
+    """
+    函数说明：某指定医生工作记录列表的主页面
+    """
     return render(request, 'management/workload_list_page.html', {'provider_id': provider_id})
 
 
+@login_required(login_url='/')
 def workload_list_datagrid(request, provider_id):
+    """
+    函数说明：某指定医生工作记录，在easyui的datagrid中列表显示
+    """
     provider = User.objects.get(id=int(provider_id))
     records = WorkRecord.objects.filter(provider=provider).order_by('-submit_time')
 
@@ -1625,12 +1959,20 @@ def workload_list_datagrid(request, provider_id):
     return JsonResponse(json_items, safe=False)
 
 
+@login_required(login_url='/')
 def resident_records_page(request, resident_id):
+    """
+    函数说明：某指定居民的服务记录列表的主页面
+    """
     return render(request, 'management/resident_records_datagrid.html',
                   {'resident_id': resident_id})
 
 
+@login_required(login_url='/')
 def resident_records_datagrid(request, resident_id):
+    """
+    函数说明：某指定居民的服务记录，并在easyui的datagrid中列表显示
+    """
     resident = Resident.objects.get(id=int(resident_id))
     records = WorkRecord.objects.filter(resident=resident).order_by('-submit_time')
 
@@ -1654,22 +1996,33 @@ def resident_records_datagrid(request, resident_id):
             json_items.append(item)
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
-"""
-支付金额相关的统计页面和功能
-"""
+#################################################################################
+
+##                       管理员工作界面：支付费用统计查询操作
+
+#################################################################################
 
 
+@login_required(login_url='/')
 def payment_stat_page(request):
+    """
+    函数说明：支付费用统计的主页面
+    """
     return render(request, 'management/payment_stat_page.html')
 
 
+@login_required(login_url='/')
 def payment_town_clinics_page(request):
+    """
+    函数说明：乡镇卫生院支付费用统计的主页面
+    """
     return render(request, 'management/payment_town_clinics_page.html')
 
 
+@login_required(login_url='/')
 def payment_town_clinics_datagrid(request):
     """
-    函数说明：计算各个卫生院各个服务类别的工作量及合计
+    函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
     payment = collections.OrderedDict()
 
@@ -1696,10 +2049,10 @@ def payment_town_clinics_datagrid(request):
         try:
             clinic = Clinic.in_town.get(name=key)
         except Clinic.DoesNotExist:
-            id = 0
+            clinic_id = 0
         else:
-            id = clinic.id
-        item = {'id': id, 'clinic': key}
+            clinic_id = clinic.id
+        item = {'id': clinic_id, 'clinic': key}
         item.update(value)
         total = {'total': sum(value.values())}
         item.update(total)
@@ -1707,11 +2060,20 @@ def payment_town_clinics_datagrid(request):
     return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def payment_village_clinics_page(request, town_clinic_id):
-    return render(request, 'management/payment_village_clinics_page.html', {'town_clinic_id': town_clinic_id})
+    """
+    函数说明：某指定卫生院下属村卫生室的支付费用的主页面
+    """
+    return render(request, 'management/payment_village_clinics_page.html',
+                  {'town_clinic_id': town_clinic_id})
 
 
+@login_required(login_url='/')
 def payment_village_clinics_datagrid(request, town_clinic_id):
+    """
+    函数说明：某指定卫生院下属村卫生室的支付费用，在easyui的datagrid中列表显示
+    """
     payment = collections.OrderedDict()
     town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
 
@@ -1743,15 +2105,29 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
         json_data.append(item)
     return JsonResponse(json_data, safe=False)
 
+#################################################################################
 
+##                       管理员工作界面：修改服务结果申请的管理操作
+
+#################################################################################
+
+
+@login_required(login_url='/')
 def modify_apply_page(request):
+    """
+    函数说明：修改服务结果申请管理的主页面
+    """
     return render(request, 'management/modify_apply_page.html')
 
 from .models import ModifyApply
 from datetime import timedelta
 
 
+@login_required(login_url='/')
 def modify_apply_list(request):
+    """
+    函数说明：修改服务结果申请的列表
+    """
     applications = ModifyApply.objects.all()
     json_data = []
     for each in applications:
@@ -1809,7 +2185,11 @@ def modify_apply_list(request):
     return JsonResponse(json_data, safe=False)
 
 
+@login_required(login_url='/')
 def modify_apply_opinion(request):
+    """
+    函数说明：修改服务结果申请的审批意见操作
+    """
     opinion = request.POST.get('opinion')
     application = ModifyApply.objects.get(id=int(request.POST.get('id')))
 
