@@ -4,12 +4,8 @@ from django.conf import settings
 
 
 urlpatterns = patterns('',
-                       # url(r'^admin/', include(admin.site.urls)),
-                       # url(r'^$', 'public_health.views.login', name='home'),
-                       url(r'^$', 'public_health.views.new_login', name='home'),
+                       url(r'^$', 'public_health.views.login', name='login'),
                        url(r'^logout/$', 'public_health.views.logout', name='logout'),
-                       url(r'^logout_new/$', 'public_health.views.logout_new', name='logout_new'),
-                       url(r'^admin_new/$', 'public_health.views.admin_new', name='admin_new'),
 
                        url(r'^management/', include('management.urls', namespace='management')),
                        url(r'^services/', include('services.urls', namespace='services')),
@@ -27,14 +23,3 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^new_login/$', 'public_health.views.new_login', name='new_login'),
-        url(r'^test2/$', 'public_health.views.test2', name='test2'),
-        url(r'^test3/$', 'public_health.views.test3', name='test3'),
-        url(r'^test4/$', 'public_health.views.test4', name='test4'),
-        url(r'^xhr_test/$', 'public_health.views.xhr_test', name='xhr_test'),
-        url(r'^graphs/$', 'public_health.views.graphs', name='graphs'),
-        url(r'^graph_clinics/$', 'public_health.views.graph_clinics', name='graph_clinics'),
-    )
