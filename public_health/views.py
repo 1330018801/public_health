@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.contrib import auth
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib.auth.decorators import login_required
 
 import logging
 debug = logging.getLogger('debug')
@@ -32,7 +31,6 @@ def login(request):
     return render(request, 'login.html', {'message': message})
 
 
-@login_required(login_url='/')
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('login'))
