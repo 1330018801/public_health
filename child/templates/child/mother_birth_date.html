@@ -1,0 +1,28 @@
+<!-- mother_birth_date -->
+	<div class="col-md-2" align="right">
+        {% if form.birth_date.errors %}
+            <span style="background: #ffff00">{{ form.birth_date.label_tag }}</span>
+        {% else %}
+            {{ form.birth_date.label_tag }}
+        {% endif %}
+	</div>
+    <div class="col-md-4">
+            <div class='input-group date' id='datepicker3'>
+                <input type='text' id="{{ form.mother_birth_date_id }}" class="form-control"
+                       name="{{ form.mother_birth_date.name }}">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datepicker3').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                language: 'zh-CN',
+                todayHighlight: true
+            });
+        });
+    </script>
+      <!-- delineate -->

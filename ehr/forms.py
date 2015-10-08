@@ -432,56 +432,6 @@ class ConstitutionIdentificationForm(ModelForm):
         }
 
 
-'''
-class CombinedFormBase(Form):
-    form_classes = []
-
-    def __init__(self, *args, **kwargs):
-        super(CombinedFormBase, self).__init__(*args, **kwargs)
-        for f in self.form_classes:
-            name = f.__name__.lower()
-            setattr(self, name, f(*args, **kwargs))
-            form = getattr(self, name)
-            self.fields.update(form.fields)
-            self.initial.update(form.initial)
-
-    def is_valid(self):
-        isValid = True
-        for f in self.form_classes:
-            name = f.__name__.lower()
-            form = getattr(self, name)
-            if not form.is_valid():
-                isValid = False
-
-        if not super(CombinedFormBase, self).is_valid():
-            isValid = False
-        for f in self.form_classes:
-            name = f.__name__.lower()
-            form = getattr(self, name)
-            self.errors.update(form.errors)
-        return isValid
-
-    def clean(self):
-        cleaned_data = super(CombinedFormBase, self).clean()
-        for f in self.form_classes:
-            name = f.__name__.lower()
-            form = getattr(self, name)
-            cleaned_data.update(form.cleaned_data)
-        return cleaned_data
-
-
-class OldBodyCheckForm(CombinedFormBase):
-    form_classes = [
-        PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, BloodGlucoseForm,
-        ElectrocardiogramForm, AlanineAminotransferaseForm, GlutamicOxalaceticTransaminaseForm,
-        SerumCreatinineForm, BloodUreaNitrogenForm, TotalBilirubinForm, BloodFatForm
-    ]
-
-    class Meta:
-        alias = 'old_body_check'
-'''
-
-
 # 20150907，当前考虑用一个model来记录所有服务类型的体检数据，
 # 一个人一年只能填写一张体检表
 

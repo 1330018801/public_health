@@ -28,11 +28,11 @@ def personal_info_table(request):
     resident = get_resident(request)
     if resident.psychiatric_info_table:
         form = PsychiatricInfoForm(instance=resident.psychiatric_info_table)
-        return render(request, 'ehr/psychiatric_info_review_content.html',
+        return render(request, 'psychiatric/psychiatric_info_review_content.html',
                       {'form': form, 'resident': resident})
     else:
         form = PsychiatricInfoForm()
-        return render(request, 'ehr/psychiatric_info_form_content.html',
+        return render(request, 'psychiatric/psychiatric_info_form_content.html',
                       {'form': form, 'resident': resident})
 
 
