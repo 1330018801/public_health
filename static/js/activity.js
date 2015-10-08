@@ -56,7 +56,7 @@ $(function() {
     btn_add.bind('click', function () {
         table.dialog({
             title: '健康教育活动记录表',
-            width: 820, height: 400, cache: true, modal: true, resizable: true,
+            width: 840, height: 400, cache: true, modal: true, resizable: true,
             buttons: [{
                 text: '提交', iconCls: 'icon-ok',
                 handler: function () {

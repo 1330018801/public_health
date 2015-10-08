@@ -1,5 +1,10 @@
-<h4 align="center" style="padding: 5px;">健康教育活动登记表</h4>
-<table class="table_body">
+{% extends "table_base.html" %}
+
+{% block table_title %}健康教育活动登记表{% endblock %}
+
+{% block table_neck %}{% endblock %}
+
+{% block table_content %}
     <tr>
         <td colspan="8" style="width: 370px;"><label for="act_time">活动时间：</label>
             {% block act_time %}<input id="act_time" name="act_time"/>{% endblock %}
@@ -43,14 +48,14 @@
         <td colspan="3" style="border-right-color: #ffffff;">
             <label for="content" style="width: 100px;">活动内容：</label></td>
         <td colspan="13" >{% block content %}
-            <textarea rows="5" cols="95" id="content" name="content" style="border: solid 1px #dbdbdb"></textarea>
+            <textarea rows="5" cols="85" id="content" name="content" style="border: solid 1px #dbdbdb"></textarea>
         {% endblock %}</td>
     </tr>
     <tr>
         <td colspan="3" style="border-right-color: #ffffff;">
             <label for="summary">活动总结评价：</label></td>
         <td colspan="13">{% block summary %}
-            <textarea rows="5" cols="95" id="summary" name="summary" style="border: solid 1px #dbdbdb"></textarea>
+            <textarea rows="5" cols="85" id="summary" name="summary" style="border: solid 1px #dbdbdb"></textarea>
         {% endblock %}</td>
     </tr>
     <tr>
@@ -58,4 +63,4 @@
             <label for="photo">存档材料附后：</label></td>
         <td colspan="13">{% block photo %}<input id="photo" name="photo" />{% endblock %}</td>
     </tr>
-</table>
+{% endblock %}
