@@ -262,7 +262,6 @@ def record_detail_review(request):
     elif record.app_label == 'psychiatric':
         template = 'psychiatric/psy_visit_review_content.html'
     elif record.app_label == 'education':
-        debug.info(form.act_type)
         template = 'education/activity_table_review.html'
     else:
         template = '%s/%s_review_content.html' % (record.app_label, item_alias)
