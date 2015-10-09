@@ -41,11 +41,19 @@ $(function() {
     var body_exam_undo_btn = $('#body_exam_undo').linkbutton({ iconCls: 'icon-undo', plain: true});
     var body_exam_print_btn = $('#body_exam_print').linkbutton({ iconCls: 'icon-print', plain: true});
 
-    old_add_btn.linkbutton('disable');
+    //old_add_btn.linkbutton('disable');
+    old_add_btn.hide();
+
     child_save_btn.linkbutton('disable');
     child_undo_btn.linkbutton('disable');
+    child_edit_btn.hide();
+
     member_rm_btn.linkbutton('disable');
     chg_resident_btn.linkbutton('disable');
+    personal_info_edit_btn.linkbutton('disable');
+    personal_info_undo_btn.linkbutton('disable');
+    body_exam_edit_btn.linkbutton('disable');
+    body_exam_undo_btn.linkbutton('disable');
 
     child_add_btn.bind('click', function () {
         if (edit_row == undefined) {
@@ -70,6 +78,10 @@ $(function() {
         }
     });
 
+    child_edit_btn.bind('click', function () {
+        $.messager.alert('提示', '暂时未开通此功能', 'info');
+    });
+
     child_undo_btn.bind('click', function () {
         child_add_btn.linkbutton('enable');
         child_edit_btn.linkbutton('enable');
@@ -90,19 +102,33 @@ $(function() {
     });
 
     chg_resident_btn.bind('click', function () {
-        $.ajax({
-            url: '/ehr/change_resident/', method: 'POST',
-            data: {'id': selected_row['id']},
-            success: function (data) {
-                if (data.success) {
-                    $('#resident').html(data.message);
-                    $.messager.show({title: '提示', msg: '当前服务对象切换为' + data.message, timeout: 1000});
-                    selected_row = undefined;
-                } else {
-                    $.messager.alert('提示', '服务对象切换失败', 'warning');
-                }
+        //当前，只有备切换对象的年龄小于16周岁时，才能切换成功
+        if (selected_row) {
+            //
+            if (selected_row['age'] > 16) {
+                $.messager.alert('提示', '只能切换给16周岁以下无身份证的居民', 'info');
+            } else {
+                $.ajax({
+                    url: '/ehr/change_resident/', method: 'POST',
+                    data: {'id': selected_row['id']},
+                    success: function (data) {
+                        if (data.success) {
+                            $.cookie('resident_id', selected_row['id']);
+                            $.cookie('resident_name', selected_row['name']);
+                            $.cookie('resident_ehr_no', selected_row['ehr_no']);
+                            $('#resident').html(data.message);
+                            $.messager.show({title: '提示', msg: '当前服务对象切换为' + data.message, timeout: 1000});
+                            selected_row = undefined;
+                            chg_resident_btn.linkbutton('disabled');
+                        } else {
+                            $.messager.alert('提示', '服务对象切换失败', 'warning');
+                        }
+                    }
+                });
             }
-        });
+        } else {
+            $.messager.alert('提示', '请在列表中选择被切换对象', 'info');
+        }
     });
 
     member_rm_btn.bind('click', function () {
@@ -349,12 +375,8 @@ $(function() {
         columns: [[
             { field: 'id', title: '编码', hidden: true},
             { field: 'ehr_no', title: '健康档案编号', width: 10, formatter: function(value) {
-                if (value == null) {
-                    return '未建档';
-                }
-                if (value == '13108200000000000') {
-                    return '未编号';
-                }
+                if (value == null) return '未建档';
+                if (value == '13108200000000000') return '未编号';
                 return value;
             } },
             { field: 'name', title: '姓名', width: 5, editor: {
@@ -371,9 +393,10 @@ $(function() {
                 type: 'textbox', options: { required: true }
             } },
             { field: 'identity', title: '身份证号码', width: 10 },
-            { field: 'address', title: '住址', width: 15, editor: {
+            { field: 'address', title: '住址', width: 8, editor: {
                 type: 'textbox'
             } },
+            { field: 'speciality', title: '所属重点人群', width: 10 },
             { field: 'mobile', title: '电话', width: 6 }
         ]],
         onClickRow: function (index, row) {
@@ -385,8 +408,9 @@ $(function() {
             } else {
                 selected_row = row;
                 member_rm_btn.linkbutton('enable');
-                if (row['age'] < 18) {
-                    // 如果选中的是当前居民，不能自己切换到自己
+                if (row['age'] > 16 || row['id'] == $.cookie('resident_id')) {
+                    chg_resident_btn.linkbutton('disable');
+                } else {
                     chg_resident_btn.linkbutton('enable');
                 }
             }

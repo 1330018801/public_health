@@ -44,6 +44,34 @@ def family_list(request):
             item['gender'] = u'未知'
         item['age'] = each.age
         item['birthday'] = each.birthday.strftime('%Y-%m-%d')
+        item['speciality'] = ''
+        if each.diabetes:
+            item['speciality'] = '孕'
+        if each.hypertension:
+            if item['speciality']:
+                item['speciality'] += ' /高血压'
+            else:
+                item['speciality'] += '高血压'
+        if each.diabetes:
+            if item['speciality']:
+                item['speciality'] += ' /糖尿病'
+            else:
+                item['speciality'] += '糖尿病'
+        if each.psychiatric:
+            if item['speciality']:
+                item['speciality'] += ' /精神病'
+            else:
+                item['speciality'] += '精神病'
+        if each.is_old_man:
+            if item['speciality']:
+                item['speciality'] += ' /老年人'
+            else:
+                item['speciality'] += '老年人'
+        if each.is_0_6_child:
+            if item['speciality']:
+                item['speciality'] += ' /0-6岁儿童'
+            else:
+                item['speciality'] += '0-6岁儿童'
         json_items.append(item)
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
