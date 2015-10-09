@@ -69,31 +69,31 @@ class NewbornFamilyVisitForm(ModelForm):
             'identity': TextInput(attrs={'class': 'easyui-numberbox',
                                          'data-options': 'width: 200'}),
             'address': TextInput(attrs={'class': 'easyui-textbox',
-                                        'data-options': 'width: 300, required: true'}),
+                                        'data-options': 'width: 250, required: true'}),
             'father_name': TextInput(attrs={'class': 'easyui-textbox',
                                             'data-options': 'width: 80, required: true'}),
             'father_occupation': TextInput(attrs={'class': 'easyui-textbox',
                                                   'data-options': 'width: 80, required: true'}),
             'father_contact_number': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'data-options': 'width: 100, required: true'}),
+                                                      'data-options': 'width: 95, required: true'}),
             'father_birthday': TextInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, width: 100,'
                                                                 'required: true, '
                                                                 'editable: false,'
-                                                                'width: 100'}),
+                                                                'width: 110'}),
             'mother_name': TextInput(attrs={'class': 'easyui-textbox',
                                             'data-options': 'width: 80, required: true'}),
             'mother_occupation': TextInput(attrs={'class': 'easyui-textbox',
                                                   'data-options': 'width:80, required: true'}),
             'mother_contact_number': TextInput(attrs={'class': 'easyui-numberbox',
-                                                      'data-options': 'width: 100, required: true'}),
+                                                      'data-options': 'width: 95, required: true'}),
             'mother_birthday': TextInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, '
                                                                 'parser: myparser, width: 100,'
                                                                 'required: true, '
                                                                 'editable: false,'
-                                                                'width: 100'}),
+                                                                'width: 110'}),
             'gestational_weeks': TextInput(attrs={'class': 'easyui-numberbox',
                                                   'data-options': 'width: 25, required: true'}),
             'mother_gestational_disease': RadioSelect,
@@ -194,13 +194,13 @@ class NewbornFamilyVisitForm(ModelForm):
                                            'data-options': 'required: true, '
                                                            'formatter: myformatter,'
                                                            'parser: myparser, '
-                                                           'width: 100,'
+                                                           'width: 110,'
                                                            'required: true, editable: false'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'required: true, '
                                                                 'formatter: myformatter, '
                                                                 'parser: myparser,'
-                                                                'width: 100, '
+                                                                'width: 110, '
                                                                 'required: true, editable: false,'}),
             'next_visit_place': TextInput(attrs={'class': 'easyui-textbox',
                                                  'data-options': 'width: 128, required: true'}),
