@@ -63,7 +63,7 @@ class NewbornFamilyVisitForm(ModelForm):
             'gender': RadioSelect,
             'birthday': DateInput(attrs={'class': 'easyui-datebox',
                                          'data-options': 'formatter: myformatter, '
-                                                         'parser: myparser, width: 100,'
+                                                         'parser: myparser, width: 110,'
                                                          'required: true, '
                                                          'editable: false'}),
             'identity': TextInput(attrs={'class': 'easyui-numberbox',
@@ -241,7 +241,7 @@ class Aftercare1MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser,'
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -283,7 +283,7 @@ class Aftercare1MonthForm(ModelForm):
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter:myformatter,'
                                                                 'parser:myparser,'
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -315,7 +315,7 @@ class Aftercare3MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width:40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -359,7 +359,7 @@ class Aftercare3MonthForm(ModelForm):
             'guide': CheckboxSelectMultiple(),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true'}),
+                                                                'width: 110, required: true'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 80, required: true'})
         }
 
@@ -391,7 +391,7 @@ class Aftercare6MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter:myformatter, parser:myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -433,7 +433,7 @@ class Aftercare6MonthForm(ModelForm):
             'guide': CheckboxSelectMultiple(),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser,'
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -465,7 +465,7 @@ class Aftercare8MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -505,7 +505,7 @@ class Aftercare8MonthForm(ModelForm):
             'guide': CheckboxSelectMultiple(),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser:myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -537,7 +537,7 @@ class Aftercare12MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -576,7 +576,7 @@ class Aftercare12MonthForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser,'
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -605,7 +605,7 @@ class Aftercare18MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100 ,required: true, editable: false'}),
+                                                           'width: 110 ,required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -645,7 +645,7 @@ class Aftercare18MonthForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -677,7 +677,7 @@ class Aftercare24MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser,'
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -717,7 +717,7 @@ class Aftercare24MonthForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -746,7 +746,7 @@ class Aftercare30MonthForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -780,7 +780,7 @@ class Aftercare30MonthForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -812,7 +812,7 @@ class Aftercare3YearForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -844,7 +844,7 @@ class Aftercare3YearForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -876,7 +876,7 @@ class Aftercare4YearForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -912,7 +912,7 @@ class Aftercare4YearForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -944,7 +944,7 @@ class Aftercare5YearForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -977,7 +977,7 @@ class Aftercare5YearForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
@@ -1009,7 +1009,7 @@ class Aftercare6YearForm(ModelForm):
         widgets = {
             'visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, parser: myparser, '
-                                                           'width: 100, required: true, editable: false'}),
+                                                           'width: 110, required: true, editable: false'}),
             'weight': TextInput(attrs={'class': 'easyui-numberbox',
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
@@ -1042,7 +1042,7 @@ class Aftercare6YearForm(ModelForm):
             'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 135'}),
             'next_visit_date': DateInput(attrs={'class': 'easyui-datebox',
                                                 'data-options': 'formatter: myformatter, parser: myparser, '
-                                                                'width: 100, required: true, editable: false'}),
+                                                                'width: 110, required: true, editable: false'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'})
         }
 
