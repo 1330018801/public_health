@@ -5,8 +5,6 @@ $(function () {
     var form = area.find('#form');
 
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
-    var btn_edit = toolbar.find('#edit').linkbutton({ iconCls: 'icon-edit', plain: true });
-    btn_edit.linkbutton('disable');
     var btn_print = toolbar.find('#print').linkbutton({ iconCls: 'icon-print', plain: true });
 
     btn_print.bind('click', function () {
