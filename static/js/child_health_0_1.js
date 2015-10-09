@@ -208,7 +208,31 @@ $(function () {
                     } else {
                         $.messager.alert('提示', '随访记录保存失败', 'warning');
                     }
-                    panel.panel({ href: '/child/health_0_1_review/' });
+                    panel.panel({
+                        href: '/child/health_0_1_review/',
+                        onLoad: function () {
+                            if ($.trim(panel.find('.1_month').html())) {
+                                btn_add_1.linkbutton('disable');
+                            } else {
+                                btn_add_1.linkbutton('enable');
+                            }
+                            if ($.trim(panel.find('.3_month').html())) {
+                                btn_add_2.linkbutton('disable');
+                            } else {
+                                btn_add_2.linkbutton('enable');
+                            }
+                            if ($.trim(panel.find('.6_month').html())) {
+                                btn_add_3.linkbutton('disable');
+                            } else {
+                                btn_add_3.linkbutton('enable');
+                            }
+                            if ($.trim(panel.find('.8_month').html())) {
+                                btn_add_4.linkbutton('disable');
+                            } else {
+                                btn_add_4.linkbutton('enable');
+                            }
+                        }
+                    });
                     btn_save.linkbutton('disable');
                     btn_undo.linkbutton('disable');
                     btn_print.linkbutton('enable');

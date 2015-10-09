@@ -313,7 +313,8 @@ class Aftercare12Month(Aftercare12To30Month):
     bregma_length = models.FloatField(verbose_name='', blank=True, null=True)
     bregma_width = models.FloatField(verbose_name='', blank=True, null=True)
     hearing = models.CharField(max_length=20, verbose_name='听力', choices=PASS_OR_NO)
-    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征', choices=RICKETS_SIGN_2)
+    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征',
+                                    choices=RICKETS_SIGN_2, blank=True, null=True)
     take_vitamin_d = models.FloatField(verbose_name='服用维生素D')
     growth_evaluate = models.CharField(max_length=10, verbose_name='发育评估', choices=GROWTH_EVALUATE)
     guide = models.ManyToManyField(GuideChoices,  verbose_name='指导', blank=True, null=True)
@@ -327,7 +328,8 @@ class Aftercare18Month(Aftercare12To30Month):
     bregma_length = models.FloatField(verbose_name='', blank=True, null=True)
     bregma_width = models.FloatField(verbose_name='', blank=True, null=True)
     step = models.CharField(max_length=20, verbose_name='步态', choices=NORMAL_OR_ABNORMAL)
-    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征', choices=RICKETS_SIGN_2)
+    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征',
+                                    choices=RICKETS_SIGN_2, blank=True, null=True)
     hemoglobin_value = models.FloatField(verbose_name='血红蛋白值')
     take_vitamin_d = models.FloatField(verbose_name='服用维生素D')
     growth_evaluate = models.CharField(max_length=10, verbose_name='发育评估', choices=GROWTH_EVALUATE)
@@ -351,7 +353,8 @@ class Aftercare24Month(Aftercare12To30Month):
     bregma_width = models.FloatField(verbose_name='', blank=True, null=True)
     hearing = models.CharField(max_length=20, verbose_name='听力', choices=PASS_OR_NO)
     step = models.CharField(max_length=20, verbose_name='步态', choices=NORMAL_OR_ABNORMAL)
-    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征', choices=RICKETS_SIGN_2)
+    rickets_sign = models.CharField(max_length=20, verbose_name='可疑佝偻病体征',
+                                    choices=RICKETS_SIGN_2, blank=True, null=True)
     take_vitamin_d = models.FloatField(verbose_name='服用维生素D')
     growth_evaluate = models.CharField(max_length=10, verbose_name='发育评估', choices=GROWTH_EVALUATE)
     guide = models.ManyToManyField(Guide1Choices,  verbose_name='指导', blank=True, null=True)
