@@ -181,6 +181,26 @@ class Family(models.Model):
     pass
 
 
+class OldManManager(models.Manager):
+    """
+    检索出老年人：出生年到今年达到65年
+    """
+    def get_queryset(self):
+        import datetime
+        start_date = datetime.date(1800, 1, 1)
+        end_date = datetime.date(datetime.date.today().year-64, 1, 1)
+        return super(VillageClinicManager, self).get_queryset().filter(birthday__range=(start_date, end_date))
+
+
+class OldManManager(models.Manager):
+    """
+    检索出0-6岁儿童：到今天不满7周岁
+    """
+    def get_queryset(self):
+
+        return super(VillageClinicManager, self).get_queryset().filter(level=Clinic.VILLAGE_CLINIC)
+
+
 class Resident(ChangeLogModel):
     """
     描述居民基本信息的类

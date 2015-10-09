@@ -420,6 +420,7 @@ def resident_query_list(request):
             residents = residents.filter(ehr_no__isnull=True)
 
     if query_crowd and query_crowd != 'all':
+
         if query_crowd == 'hypertension':
             residents = residents.filter(hypertension=1)
         if query_crowd == 'diabetes':
@@ -428,10 +429,19 @@ def resident_query_list(request):
             residents = residents.filter(psychiatric=1)
         if query_crowd == 'pregnant':
             residents = residents.filter(pregnant=1)
-        #if query_crowd == 'old':
-        #    residents = residents.filter(age__gte=65)
-        #if query_crowd == 'child':
-            residents = residents.filter(age__lt=7)
+        if query_crowd == 'old':
+            import datetime
+            start_date = datetime.date(1800, 1, 1)
+            end_date = datetime.date(datetime.date.today().year-64, 1, 1)
+            residents = residents.filter(birthday__range=(start_date, end_date))
+        if query_crowd == 'child':
+            import datetime
+            today = datetime.date.today()
+            if today.month == 2 and today.day == 29:
+                start_date = datetime.date(today.year-7, 2, 28)
+            else:
+                start_date = datetime.date(today.year-7, today.month, today.day)
+            residents = residents.filter(birthday__range=(start_date, today))
 
     json_items = []
     for resident in residents[first: first + page_size]:
@@ -467,7 +477,7 @@ def resident_add_hypertension(request):
     else:
         resident.hypertension = 1
         resident.save()
-        success, message = True, u''
+        success, message = True, resident.name + u'加入了高血压人群'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
 
@@ -484,7 +494,7 @@ def resident_add_diabetes(request):
     else:
         resident.diabetes = 1
         resident.save()
-        success, message = True, u''
+        success, message = True, resident.name + u'加入了糖尿病人群'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
 
@@ -501,7 +511,7 @@ def resident_add_psychiatric(request):
     else:
         resident.psychiatric = 1
         resident.save()
-        success, message = True, u''
+        success, message = True, resident.name + u'加入了重性精神疾病人群'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
 
@@ -518,7 +528,7 @@ def resident_add_pregnant(request):
     else:
         resident.pregnant = 1
         resident.save()
-        success, message = True, u''
+        success, message = True, resident.name + u'加入了孕产妇人群'
     return HttpResponse(simplejson.dumps({'success': success, 'message': message}),
                         content_type='text/html; charset=UTF-8')
 
