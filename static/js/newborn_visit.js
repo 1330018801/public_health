@@ -139,6 +139,13 @@ $(function () {
             }
         });
     });
-    table.panel({ href: '/child/newborn_visit_table/', method: 'POST' })
+    table.panel({
+        href: '/child/newborn_visit_table/', method: 'POST',
+        onLoad: function () {
+            if (form.find('input[name=gender]').length == 0) { // 已经填写过表格
+                btn_save.hide();
+            }
+        }
+    })
 
 });
