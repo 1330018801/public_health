@@ -3,7 +3,7 @@
 {% comment %}第1次随访表格{% endcomment %}
 
 {% block visit_date_1 %}
-    {{ aftercare_1.visit_date | date:"Y-m-d"}}
+    {{ aftercare_1.visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block visit_way_1 %}
@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_1 %}
-    {{ aftercare_1.sign_sbp }}/{{ aftercare_1.sign_dbp }}
+    {{ aftercare_1.sign_sbp }} / {{ aftercare_1.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_1 %}
@@ -207,7 +207,7 @@
 {% comment %}第2次随访表格{% endcomment %}
 
 {% block visit_date_2 %}
-    {{ aftercare_2.visit_date | date:"Y-m-d"}}
+    {{ aftercare_2.visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block visit_way_2 %}
@@ -225,7 +225,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_2 %}
-    {{ aftercare_2.sign_sbp }}/{{ aftercare_2.sign_dbp }}
+    {{ aftercare_2.sign_sbp }} / {{ aftercare_2.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_2 %}
@@ -409,7 +409,7 @@
 {% comment %}第3次随访表格{% endcomment %}
 
 {% block visit_date_3 %}
-    {{ aftercare_3.visit_date | date:"Y-m-d"}}
+    {{ aftercare_3.visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block visit_way_3 %}
@@ -427,7 +427,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_3 %}
-    {{ aftercare_3.sign_sbp }}/{{ aftercare_3.sign_dbp }}
+    {{ aftercare_3.sign_sbp }} / {{ aftercare_3.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_3 %}
@@ -609,7 +609,7 @@
 {% comment %}第4次随访表格{% endcomment %}
 
 {% block visit_date_4 %}
-    {{ aftercare_4.visit_date }}
+    {{ aftercare_4.visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block visit_way_4 %}
@@ -627,7 +627,7 @@
 {% endblock %}
 
 {% block sign_blood_pressure_4 %}
-    {{ aftercare_4.sign_sbp }}/{{ aftercare_4.sign_dbp }}
+    {{ aftercare_4.sign_sbp }} / {{ aftercare_4.sign_dbp }}
 {% endblock %}
 
 {% block sign_weight_4 %}
@@ -799,7 +799,7 @@
 {% endblock %}
 
 {% block next_visit_date_4 %}
-    {{ aftercare_4.next_visit_date }}
+    {{ aftercare_4.next_visit_date | date:"Y-m-d"}}
 {% endblock %}
 
 {% block doctor_signature_4 %}
