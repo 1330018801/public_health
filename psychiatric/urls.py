@@ -5,6 +5,7 @@ from psychiatric import views
 
 urlpatterns = patterns('',
     url(r'^aftercare_page/$', views.aftercare_page, name='aftercare_page'),
+    url(r'^aftercare_review/$', views.aftercare_review, name='aftercare_review'),
     url(r'^aftercare_form/$', views.aftercare_form, name='aftercare_form'),
     url(r'^aftercare_submit/$', views.aftercare_submit, name='aftercare_submit'),
 

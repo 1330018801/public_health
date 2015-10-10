@@ -56,6 +56,22 @@ def aftercare_page(request):
     return render(request, 'psychiatric/aftercare_page.html')
 
 
+def aftercare_review(request):
+    resident = get_resident(request)
+    aftercare_status = dict()
+    for item in range(1, 9):
+        aftercare = 'aftercare_' + str(item)
+        service_item = Service.items.get(alias=aftercare, service_type__alias='psychiatric')
+        try:
+            WorkRecord.objects.get(resident=resident, service_item=service_item, submit_time__gte=new_year_day())
+        except WorkRecord.DoesNotExist:
+            aftercare_status[aftercare] = False
+        else:
+            aftercare_status[aftercare] = True
+    from django.http import JsonResponse
+    return JsonResponse(aftercare_status)
+
+
 def aftercare_form(request):
     resident = get_resident(request)
     item_alias = request.POST.get('item_alias')
@@ -105,7 +121,6 @@ def body_exam_form(request):
                                        submit_time__gte=new_year_day()).first()
     if record:
         result = BodyExam.objects.get(id=record.item_id)
-        debug.info(result.id)
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()
