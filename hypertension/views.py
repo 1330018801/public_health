@@ -57,6 +57,8 @@ def aftercare_submit(request):
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
         success = True
+    else:
+        debug.info(form.errors.as_data())
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
 

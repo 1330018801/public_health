@@ -50,7 +50,7 @@ class Aftercare(models.Model):
     sign_bmi = models.FloatField(verbose_name='体质指数')
     sign_bmi_next = models.FloatField(verbose_name='')
     sign_heart_rhythm = models.FloatField(verbose_name='心率')
-    sign_extra = models.CharField(max_length=100, verbose_name='其他')
+    sign_extra = models.CharField(max_length=100, verbose_name='其他', blank=True, null=True)
     life_style_guide_smoke = models.PositiveSmallIntegerField(verbose_name='日吸烟量')
     life_style_guide_smoke_next = models.PositiveSmallIntegerField(verbose_name='')
     life_style_guide_liquor = models.PositiveSmallIntegerField(verbose_name='日饮酒量')

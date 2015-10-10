@@ -86,11 +86,11 @@
 {% endblock %}
 
 {% block life_style_guide_salt_1 %}
-    {{ aftercare_1.life_style_salt }}
+    {{ aftercare_1.life_style_guide_salt }}
 {% endblock %}
 
 {% block life_style_guide_salt_next_1 %}
-    {{ aftercare_1.life_style_salt_next }}
+    {{ aftercare_1.life_style_guide_salt_next }}
 {% endblock %}
 
 {% block life_style_guide_mentality_1 %}
@@ -291,7 +291,7 @@
     {{ aftercare_2.life_style_guide_salt }}
 {% endblock %}
 
-{% block life_style_salt_next_2 %}
+{% block life_style_guide_salt_next_2 %}
     {{ aftercare_2.life_style_guide_salt_next }}
 {% endblock %}
 
@@ -596,7 +596,7 @@
 
 {% if aftercare_4 %}
 {% block visit_date_4 %}
-    {{ aftercare_4.visit_date }}
+    {{ aftercare_4.visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block visit_way_4 %}
@@ -788,7 +788,7 @@
 {% endblock %}
 
 {% block next_visit_date_4 %}
-    {{ aftercare_4.next_visit_date }}
+    {{ aftercare_4.next_visit_date | date:"Y-m-d" }}
 {% endblock %}
 
 {% block doctor_signature_4 %}

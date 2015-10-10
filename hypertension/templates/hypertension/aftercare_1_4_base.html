@@ -9,16 +9,16 @@
         <td width="20%" colspan="4" align="center">
             <b>随访日期</b>
         </td>
-        <td width="20%" colspan="4">
+        <td width="20%" colspan="4" class="aftercare_1">
             {% block visit_date_1 %}{% endblock %}
         </td>
-        <td width="20%" colspan="4">
+        <td width="20%" colspan="4" class="aftercare_2">
             {% block visit_date_2 %}{% endblock %}
         </td>
-        <td width="20%" colspan="4">
+        <td width="20%" colspan="4" class="aftercare_3">
             {% block visit_date_3 %}{% endblock %}
         </td>
-        <td colspan="4">
+        <td colspan="4" class="aftercare_4">
             {% block visit_date_4 %}{% endblock %}
         </td>
     </tr>
@@ -152,16 +152,20 @@
             <b>日吸烟量（支）</b>
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_smoke_1 %}{% endblock %}/{% block life_style_guide_smoke_next_1 %}{% endblock %}
+            {% block life_style_guide_smoke_1 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_1 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_smoke_2 %}{% endblock %}/{% block life_style_guide_smoke_next_2 %}{% endblock %}
+            {% block life_style_guide_smoke_2 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_2 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_smoke_3 %}{% endblock %}/{% block life_style_guide_smoke_next_3 %}{% endblock %}
+            {% block life_style_guide_smoke_3 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_3 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_smoke_4 %}{% endblock %}/{% block life_style_guide_smoke_next_4 %}{% endblock %}
+            {% block life_style_guide_smoke_4 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_4 %}{% endblock %}
         </td>
     </tr>
     <tr>
@@ -169,16 +173,20 @@
             <b>日饮酒量（两）</b>
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_liquor_1 %}{% endblock %}/{% block life_style_guide_liquor_next_1 %}{% endblock %}
+            {% block life_style_guide_liquor_1 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_1 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_liquor_2 %}{% endblock %}/{% block life_style_guide_liquor_next_2 %}{% endblock %}
+            {% block life_style_guide_liquor_2 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_2 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_liquor_3 %}{% endblock %}/{% block life_style_guide_liquor_next_3 %}{% endblock %}
+            {% block life_style_guide_liquor_3 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_3 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_liquor_4 %}{% endblock %}/{% block life_style_guide_liquor_next_4 %}{% endblock %}
+            {% block life_style_guide_liquor_4 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_4 %}{% endblock %}
         </td>
     </tr>
     <tr>
@@ -186,16 +194,32 @@
             <b>运动</b>
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_sport1_1 %}{% endblock %}次/周<br>{% block life_style_guide_sport2_1 %}{% endblock %}分钟/次<hr style="border: 1px solid grey;width: 110px;">{% block life_style_guide_sport3_1 %}{% endblock %}次/周<br>{% block life_style_guide_sport4_1 %}{% endblock %}分钟/次
+            {% block life_style_guide_sport1_1 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_1 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 110px;">
+            {% block life_style_guide_sport3_1 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_1 %}{% endblock %}分钟/次
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_sport1_2 %}{% endblock %}次/周<br>{% block life_style_guide_sport2_2 %}{% endblock %}分钟/次<hr style="border: 1px solid grey;width: 110px;">{% block life_style_guide_sport3_2 %}{% endblock %}次/周<br>{% block life_style_guide_sport4_2 %}{% endblock %}分钟/次
+            {% block life_style_guide_sport1_2 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_2 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 110px;">
+            {% block life_style_guide_sport3_2 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_2 %}{% endblock %}分钟/次
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_sport1_3 %}{% endblock %}次/周<br>{% block life_style_guide_sport2_3 %}{% endblock %}分钟/次<hr style="border: 1px solid grey;width: 110px;">{% block life_style_guide_sport3_3 %}{% endblock %}次/周<br>{% block life_style_guide_sport4_3 %}{% endblock %}分钟/次
+            {% block life_style_guide_sport1_3 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_3 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 110px;">
+            {% block life_style_guide_sport3_3 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_3 %}{% endblock %}分钟/次
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_sport1_4 %}{% endblock %}次/周<br>{% block life_style_guide_sport2_4 %}{% endblock %}分钟/次<hr style="border: 1px solid grey;width: 110px;">{% block life_style_guide_sport3_4 %}{% endblock %}次/周<br>{% block life_style_guide_sport4_4 %}{% endblock %}分钟/次
+            {% block life_style_guide_sport1_4 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_4 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 110px;">
+            {% block life_style_guide_sport3_4 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_4 %}{% endblock %}分钟/次
         </td>
     </tr>
     <tr>
@@ -203,16 +227,20 @@
             <b>摄盐情况（咸淡）</b>
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_salt_1 %}{% endblock %}/<br>{% block life_style_guide_salt_next_1 %}{% endblock %}
+            {% block life_style_guide_salt_1 %}{% endblock %}/
+            {% block life_style_guide_salt_next_1 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_salt_2 %}{% endblock %}/<br>{% block life_style_guide_salt_next_2 %}{% endblock %}
+            {% block life_style_guide_salt_2 %}{% endblock %}/
+            {% block life_style_guide_salt_next_2 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_salt_3 %}{% endblock %}/<br>{% block life_style_guide_salt_next_3 %}{% endblock %}
+            {% block life_style_guide_salt_3 %}{% endblock %}/
+            {% block life_style_guide_salt_next_3 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block life_style_guide_salt_4 %}{% endblock %}/<br>{% block life_style_guide_salt_next_4 %}{% endblock %}
+            {% block life_style_guide_salt_4 %}{% endblock %}/
+            {% block life_style_guide_salt_next_4 %}{% endblock %}
         </td>
     </tr>
     <tr>
@@ -288,16 +316,20 @@
             <b>药物不良反应</b>
         </td>
         <td width="20%" colspan="4">
-            {% block medicine_untoward_effect_1 %}{% endblock %}{% block medicine_untoward_effect_yes_1 %}{% endblock %}
+            {% block medicine_untoward_effect_1 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_1 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block medicine_untoward_effect_2 %}{% endblock %}{% block medicine_untoward_effect_yes_2 %}{% endblock %}
+            {% block medicine_untoward_effect_2 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_2 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block medicine_untoward_effect_3 %}{% endblock %}{% block medicine_untoward_effect_yes_3 %}{% endblock %}
+            {% block medicine_untoward_effect_3 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_3 %}{% endblock %}
         </td>
         <td width="20%" colspan="4">
-            {% block medicine_untoward_effect_4 %}{% endblock %}{% block medicine_untoward_effect_yes_4 %}{% endblock %}
+            {% block medicine_untoward_effect_4 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_4 %}{% endblock %}
         </td>
     </tr>
     <tr>
