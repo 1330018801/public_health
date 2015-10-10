@@ -11,8 +11,8 @@
 {% block assent %}
     {{ form.assent.value }}
 {% endblock %}
-{% block signature_date %}{{ form.signature_date.value | date:"Y-m-d"}}{% endblock %}
-{% block disease_begin_date %}{{ form.disease_begin_date.value | date:"Y-m-d"}}{% endblock %}
+{% block signature_date %}{{ form.signature_date.value }}{% endblock %}
+{% block disease_begin_date %}{{ form.disease_begin_date.value | date:"Y-m-d" }}{% endblock %}
 {% block symptom %}
     {% for item in form.symptom.value %}
         {{ item }}
@@ -22,11 +22,11 @@
 {% block cure_outpatient %}
     {{ form.cure_outpatient.value }}
 {% endblock %}
-{% block drug_first_date %}{{ form.drug_first_date.value | date:"Y-m-d"}}{% endblock %}
+{% block drug_first_date %}{{ form.drug_first_date.value | date:"Y-m-d" }}{% endblock %}
 {% block cure_hospital %}{{ form.cure_hospital.value }}{% endblock %}
 {% block diagnose %}{{ form.diagnose.value }}{% endblock %}
 {% block diagnose_hospital %}{{ form.diagnose_hospital.value }}{% endblock %}
-{% block diagnose_date %}{{ form.diagnose_date.value | date:"Y-m-d"}}{% endblock %}
+{% block diagnose_date %}{{ form.diagnose_date.value | date:"Y-m-d" }}{% endblock %}
 {% block cure_effect %}
     {{ form.cure_effect.value }}
 {% endblock %}
@@ -42,5 +42,5 @@
     {{ form.economy.value }}
 {% endblock %}
 {% block doctor_advice %}{{ form.doctor_advice.value }}{% endblock %}
-{% block fill_table_date %}{{ form.fill_table_date.value | date:"Y-m-d"}}{% endblock %}
+{% block fill_table_date %}{{ form.fill_table_date.value }}{% endblock %}
 {% block doctor_signature %}{{ form.doctor_signature.value }}{% endblock %}

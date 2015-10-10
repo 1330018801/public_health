@@ -104,7 +104,7 @@ class PsychiatricInfoForm(ModelForm):
             'guardian_relation': TextInput(attrs={'class': 'easyui-textbox',
                                                   'data-options': 'width: 120, required: true'}),
             'guardian_address': TextInput(attrs={'class': 'easyui-textbox',
-                                                 'data-options': 'width: 200, required: true'}),
+                                                 'data-options': 'width: 180, required: true'}),
             'guardian_phone': TextInput(attrs={'class': 'easyui-textbox',
                                                'data-options': 'width: 120, required: true'}),
             'community_contact_name': TextInput(attrs={'class': 'easyui-textbox',
@@ -117,13 +117,13 @@ class PsychiatricInfoForm(ModelForm):
                                                                'parser: myparser, '
                                                                'required: true, '
                                                                'editable: false, '
-                                                               'width: 100'}),
+                                                               'width: 110'}),
             'disease_begin_date': TextInput(attrs={'class': 'easyui-datebox',
                                                    'data-options': 'formatter: myformatter,'
                                                                    'parser: myparser, '
                                                                    'required: true, '
                                                                    'editable: false,'
-                                                                   'width: 100'}),
+                                                                   'width: 110'}),
             'symptom': CheckboxSelectMultiple,
             'symptom_other': TextInput(attrs={'class': 'easyui-textbox',
                                               'data-options': 'width: 80'}),
@@ -133,7 +133,7 @@ class PsychiatricInfoForm(ModelForm):
                                                                 'parser: myparser, '
                                                                 'required: true, '
                                                                 'editable: false,'
-                                                                'width: 100'}),
+                                                                'width: 110'}),
             'cure_hospital': TextInput(attrs={'class': 'easyui-numberbox',
                                               'data-options': 'width: 40, required: true'}),
             'diagnose': TextInput(attrs={'class': 'easyui-textbox',
@@ -145,7 +145,7 @@ class PsychiatricInfoForm(ModelForm):
                                                               'parser: myparser, '
                                                               'required: true, '
                                                               'editable: false,'
-                                                              'width: 100'}),
+                                                              'width: 110'}),
             'cure_effect': RadioSelect,
             'social_effect_minor': TextInput(attrs={'class': 'easyui-numberbox',
                                                     'data-options': 'width: 40, required: true'}),
@@ -166,7 +166,7 @@ class PsychiatricInfoForm(ModelForm):
                                                                 'parser: myparser, '
                                                                 'required: true, '
                                                                 'editable: false,'
-                                                                'width: 100'}),
+                                                                'width: 110'}),
             'doctor_signature': TextInput(attrs={'class': 'easyui-textbox',
                                                  'data-options': 'width: 80, required: true'}),
         }

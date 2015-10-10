@@ -3,13 +3,10 @@
 <div id="psy_info">
     <div id="toolbar" class="datagrid-toolbar">
         <a href="#" id="save">提交记录表</a>
-        <a href="#" id="edit">提交修改申请</a>
         <a href="#" id="print">打印记录表</a>
-        <input type="hidden" id="resident_id" value="{{ request.session.resident_id }}" />
-        <input type="hidden" id="resident_name" value="{{ request.session.resident_name }}" />
     </div>
     <form id="psy_info_form" method="POST">
-        <div id="psy_info_table" align="center" style="margin-bottom: 30px;">
+        <div id="psy_info_table" align="center" style="padding-bottom: 30px;">
         </div>
     </form>
 </div>
