@@ -397,7 +397,7 @@ class AftercareForm(ModelForm):
                                                            'max: 300, precision: 1,'
                                                            'required: true'}, ),
             'urine_protein': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 128, validType: "posNeg", required: true'}, ),
+                                              'data-options': 'width: 50, validType: "posNeg", required: true'}, ),
             'extra_auxiliary_examination': Textarea(attrs={'class': 'easyui-textbox',
                                                            'data-options': 'multiline:true,'
                                                                            'width: 128,'
