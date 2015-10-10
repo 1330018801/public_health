@@ -142,9 +142,11 @@ def postpartum_visit_table(request):
         return render(request, 'pregnant/postpartum_form_content.html',
                       {'form': form, 'resident': resident})
     else:
-        result = PostpartumVisit.objects.get(id=record.item_id)
-        form = PostpartumVisitForm(instance=result)
-        return render(request, 'pregnant/postpartum_review_content.html',
+        # result = PostpartumVisit.objects.get(id=record.item_id)
+        # form = PostpartumVisitForm(instance=result)
+        # return render(request, 'pregnant/postpartum_review_content.html', {'form': form, 'resident': resident})
+        form = PostpartumVisit.objects.get(id=record.item_id)
+        return render(request, 'pregnant/postpartum_visit_review_content.html',
                       {'form': form, 'resident': resident})
 
 
@@ -180,9 +182,8 @@ def postpartum_42day_table(request):
         return render(request, 'pregnant/postpartum42_form_content.html',
                       {'form': form, 'resident': resident})
     else:
-        result = Postpartum42Exam.objects.get(id=record.item_id)
-        form = Postpartum42ExamForm(instance=result)
-        return render(request, 'pregnant/postpartum42_review_content.html',
+        form = Postpartum42Exam.objects.get(id=record.item_id)
+        return render(request, 'pregnant/postpartum_42_day_examination_review_content.html',
                       {'form': form, 'resident': resident})
 
 

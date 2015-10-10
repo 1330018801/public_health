@@ -1,11 +1,5 @@
 {% extends 'pregnant/postpartum42_base.html' %}
 
-{% block table_neck_extra %}
-    {% for item in form.errors %}
-        {{ item }}
-    {% endfor %}
-{% endblock %}
-
 {% block visit_date %}{{ form.visit_date }}{% endblock %}
 {% block general_health_situation %}{{ form.general_health_situation }}{% endblock %}
 {% block general_mentality_situation %}{{ form.general_mentality_situation }}{% endblock %}

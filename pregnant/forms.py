@@ -465,7 +465,10 @@ class PostpartumVisitForm(ModelForm):
             'transfer_treatment': RadioSelect,
             'guide': CheckboxSelectMultiple,
             'body_temperature': TextInput(attrs={'class': 'easyui-numberbox',
-                                                 'data-options': 'width: 40, min: 20, max: 50, precision: 1,'
+                                                 'data-options': 'width: 40, '
+                                                                 'min: 20, '
+                                                                 'max: 50, '
+                                                                 'precision: 1,'
                                                                  'required: true'}),
             'sbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
@@ -526,9 +529,9 @@ class Postpartum42ExamForm(ModelForm):
         widgets = {
             'visit_date': TextInput(attrs={'class': 'easyui-datebox',
                                            'data-options': 'formatter: myformatter, '
-                                                           'parser: myparser,'
-                                                           'width: 100,'
-                                                           'required: true,'
+                                                           'parser: myparser, '
+                                                           'width: 100, '
+                                                           'required: true, '
                                                            'editable: false'}),
             'general_health_situation': Textarea(attrs={'class': 'easyui-textbox',
                                                         'data-options': 'multiline:true,'
@@ -544,7 +547,7 @@ class Postpartum42ExamForm(ModelForm):
                                     'data-options': 'width: 40,'
                                                     'required: true'}),
             'dbp': TextInput(attrs={'class': 'easyui-numberbox',
-                                    'data-options': 'width: 40,,'
+                                    'data-options': 'width: 40,'
                                                     'required: true'}),
             'breast': RadioSelect,
             'breast_abnormal': TextInput(attrs={'class': 'easyui-textbox',
