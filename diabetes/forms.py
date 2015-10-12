@@ -67,7 +67,8 @@ class AftercareForm(ModelForm):
             'auxiliary_examination_extra_examination_date': DateInput(attrs={'class': 'easyui-datebox',
                                                                              'data-options': 'formatter: myformatter,'
                                                                                              'parser:myparser,'
-                                                                                             'width: 128'}),
+                                                                                             'width: 128, '
+                                                                                             'editable: false'}),
             'auxiliary_examination_extra_examination': TextInput(attrs={'class': 'easyui-textbox',
                                                                         'data-options': 'width: 128'}),
             'take_medicine_compliance': RadioSelect,
