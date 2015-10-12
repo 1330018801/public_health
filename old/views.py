@@ -6,7 +6,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from ehr.forms import PhysicalExaminationForm, BloodRoutineTestForm, UrineRoutineTestForm, \
     BloodGlucoseForm, ElectrocardiogramForm, GlutamicOxalaceticTransaminaseForm, BloodFatForm, \
-    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm
+    AlanineAminotransferaseForm, TotalBilirubinForm, SerumCreatinineForm, BloodUreaNitrogenForm, \
+    BUltrasonicForm
 from management.models import WorkRecord, Service
 from services.utils import get_resident, new_year_day
 from ehr.forms import BodyExamForm
@@ -79,6 +80,7 @@ def body_exam_save(request, save_type):
                                       item_id=result.id, service_item_alias=service_item.alias)
     else:
         success = False
+        debug.info(form.errors.as_data())
     return success
 
 
@@ -152,15 +154,14 @@ def body_exam_commit_workrecord(request, resident, result):
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='old', model_name='BodyExam',
                                   item_id=result.id, service_item_alias=service_item.alias)
-
     if BloodGlucoseForm(request.POST).is_valid():
         service_item = Service.items.get(alias='blood_glucose',
                                          service_type__alias='old')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='old', model_name='BodyExam',
                                   item_id=result.id, service_item_alias=service_item.alias)
-
     if ElectrocardiogramForm(request.POST).is_valid():
+
         service_item = Service.items.get(alias='electrocardiogram',
                                          service_type__alias='old')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
@@ -204,6 +205,13 @@ def body_exam_commit_workrecord(request, resident, result):
 
     if BloodFatForm(request.POST).is_valid():
         service_item = Service.items.get(alias='blood_fat',
+                                         service_type__alias='old')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='old', model_name='BodyExam',
+                                  item_id=result.id, service_item_alias=service_item.alias)
+
+    if BUltrasonicForm(request.POST).is_valid():
+        service_item = Service.items.get(alias='b_ultrasonic',
                                          service_type__alias='old')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='old', model_name='BodyExam',

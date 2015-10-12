@@ -334,6 +334,14 @@ MOST = ((u'是', '是'), (u'基本是', '基本是'),)
 TEND = ((u'是', '是'), (u'倾向是', '倾向是'),)
 
 
+# 彩超
+class BUltrasonic(models.Model):
+    b_ultrasonic = models.CharField(max_length=200, verbose_name='彩超')
+
+    class Meta:
+        abstract = True
+
+
 # 中医体质辨识
 class ConstitutionIdentification(models.Model):
     pinghe = models.CharField(max_length=15, verbose_name='平和质', choices=MOST)
@@ -469,6 +477,9 @@ class BodyExam(models.Model):
     tg = models.FloatField(verbose_name='甘油三脂', blank=True, null=True)
     ldl_c = models.FloatField(verbose_name='血清低密度脂蛋白胆固醇', blank=True, null=True)
     hdl_c = models.FloatField(verbose_name='血清高密度脂蛋白胆固醇', blank=True, null=True)
+
+    # 彩超
+    b_ultrasonic = models.CharField(max_length=200, verbose_name='彩超', blank=True, null=True)
 
     # 中医体质辨识（中医药）
     pinghe = models.CharField(max_length=15, verbose_name='平和质', choices=MOST, blank=True, null=True)

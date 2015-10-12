@@ -10,7 +10,7 @@
 
 {% block check_date %}
     {% if form.visit_date.value %}
-        {{ form.visit_date.value }}<input style="display: none;" type="text" value="{{ form.visit_date.value }}" name="visit_date">
+        {{ form.visit_date.value }}
     {% else %}
         {{ form.visit_date }}
     {% endif %}
@@ -508,6 +508,14 @@
             {% endif %}
         {% endfor %}
         {{ form.stomach_shifting_dullness_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block b_ultrasonic %}
+    {% if form.b_ultrasonic.value %}
+        {{ form.b_ultrasonic.value }}
+    {% elif type_alias == 'old' %}
+        {{ form.b_ultrasonic }}
     {% endif %}
 {% endblock %}
 

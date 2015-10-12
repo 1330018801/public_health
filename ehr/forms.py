@@ -273,12 +273,13 @@ class BloodGlucoseForm(ModelForm):
             'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
             'blood_glucose_mg': TextInput(attrs={'class': 'easyui-textbox', 'style': 'width:60px'}),
         }
-
+    '''
     def clean(self):
         cleaned_data = super(BloodGlucoseForm, self).clean()
         if cleaned_data.get('blood_glucose_mmol') is None and cleaned_data.get('blood_glucose_mg') is None:
             msg = "请选填一类血糖值"
             self.add_error('alt', msg)
+    '''
 
 
 # 心电图：主要用于验证提交的内容是否完整，可以算作一次工作量
@@ -411,6 +412,14 @@ class BloodFatForm(ModelForm):
             msg = "血清高密度脂蛋白胆固醇的合理范围是0-11"
             self.add_error('hdl_c', msg)
     '''
+
+
+# 彩超
+class BUltrasonicForm(ModelForm):
+    class Meta:
+        model = BUltrasonic
+        alias = 'b_ultrasonic'
+        fields = '__all__'
 
 
 # 中医体质辨识：主要用于验证提交的内容是否完整，可以算作一次工作量
@@ -590,6 +599,10 @@ class BodyExamForm(ModelForm):
                                       'data-options': 'width: 40, min: 0, max: 10, precision: 1'}),
             'hdl_c': TextInput(attrs={'class': 'easyui-numberbox',
                                       'data-options': 'width: 40, min: 0, max: 11, precision: 1'}),
+
+            # 彩超
+            'b_ultrasonic': TextInput(attrs={'class': 'easyui-textbox',
+                                             'data-options': 'width: 500'}),
 
             # 中医体质辨识
             'pinghe': RadioSelect,      # 平和
