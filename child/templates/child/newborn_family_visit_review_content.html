@@ -79,7 +79,9 @@
 {% endblock %}
 
 {% block apgar_score %}
-    {{ form.apgar_score }}
+    {% if form.apgar_score %}
+        {{ form.apgar_score }}
+    {% endif %}
 {% endblock %}
 
 {% block malformation_or_not %}
@@ -119,23 +121,33 @@
 {% endblock %}
 
 {% block drink_milk_volume %}
-    {{ form.drink_milk_volume }}
+    {% if form.drink_milk_volume %}
+        {{ form.drink_milk_volume }}
+    {% endif %}
 {% endblock %}
 
 {% block drink_milk_times %}
-    {{ form.drink_milk_times }}
+    {% if form.drink_milk_times  %}
+        {{ form.drink_milk_times }}
+    {% endif %}
 {% endblock %}
 
 {% block emesis %}
-    {{ form.emesis }}
+    {% if form.emesis %}
+        {{ form.emesis }}
+    {% endif %}
 {% endblock %}
 
 {% block shit %}
-    {{ form.shit }}
+    {% if form.shit %}
+        {{ form.shit }}
+    {% endif %}
 {% endblock %}
 
 {% block shit_times %}
-    {{ form.shit_times }}
+    {% if form.shit_times %}
+        {{ form.shit_times }}
+    {% endif %}
 {% endblock %}
 
 {% block body_temperature %}

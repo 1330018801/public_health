@@ -48,7 +48,7 @@
 {% block hospitalized_situation %}
     {{ form.hospitalized_situation }}
 {% endblock %}
-{% block last_hospitalized_date %}{{ form.last_hospitalized_date }}{% endblock %}
+{% block last_hospitalized_date %}{{ form.last_hospitalized_date | date:"Y-m-d" }}{% endblock %}
 
 {% block laboratory_examination %}
     {{ form.laboratory_examination }}
@@ -76,22 +76,28 @@
 
 {% block take_medicine_1 %}{{ form.take_medicine_1 }}{% endblock %}
 {% block take_medicine_1_per %}每
-    {{ form.take_medicine_1_per }}
+    {% if form.take_medicine_1_per %}
+        {{ form.take_medicine_1_per }}
+    {% endif %}
 {% endblock %}
-{% block take_medicine_1_time %}{{ form.take_medicine_1_time }}次{% endblock %}
-{% block take_medicine_1_mg %}{{ form.take_medicine_1_mg }}mg{% endblock %}
+{% block take_medicine_1_time %}{% if form.take_medicine_1_time %}{{ form.take_medicine_1_time }}{% endif %}次{% endblock %}
+{% block take_medicine_1_mg %}{% if form.take_medicine_1_mg %}{{ form.take_medicine_1_mg }}{% endif %}mg{% endblock %}
 {% block take_medicine_2 %}{{ form.take_medicine_2 }}{% endblock %}
 {% block take_medicine_2_per %}每
-    {{ form.take_medicine_2_per }}
+    {% if form.take_medicine_2_per %}
+        {{ form.take_medicine_2_per }}
+    {% endif %}
 {% endblock %}
-{% block take_medicine_2_time %}{{ form.take_medicine_2_time }}次{% endblock %}
-{% block take_medicine_2_mg %}{{ form.take_medicine_2_mg }}mg{% endblock %}
+{% block take_medicine_2_time %}{% if form.take_medicine_2_time %}{{ form.take_medicine_2_time }}{% endif %}次{% endblock %}
+{% block take_medicine_2_mg %}{% if form.take_medicine_2_mg %}{{ form.take_medicine_2_mg }}{% endif %}mg{% endblock %}
 {% block take_medicine_3 %}{{ form.take_medicine_3 }}{% endblock %}
 {% block take_medicine_3_per %}每
-    {{ form.take_medicine_3_per }}
+    {% if form.take_medicine_3_per %}
+        {{ form.take_medicine_3_per }}
+    {% endif %}
 {% endblock %}
-{% block take_medicine_3_time %}{{ form.take_medicine_3_time }}次{% endblock %}
-{% block take_medicine_3_mg %}{{ form.take_medicine_3_mg }}mg{% endblock %}
+{% block take_medicine_3_time %}{% if form.take_medicine_3_time %}{{ form.take_medicine_3_time }}{% endif %}次{% endblock %}
+{% block take_medicine_3_mg %}{% if form.take_medicine_3_mg %}{{ form.take_medicine_3_mg }}{% endif %}mg{% endblock %}
 {% block recovery_measure %}
     {% for item in form.recovery_measure.all %}
         {{ item }}&nbsp;&nbsp;

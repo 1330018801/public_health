@@ -75,27 +75,37 @@
 {% block ausculate_lung_abnormal %}{{ form.ausculate_lung_abnormal }}{% endblock %}
 
 {% block vulva %}
-    {{ form.vulva }}
+    {% if form.vulva %}
+        {{ form.vulva }}
+    {% endif %}
 {% endblock %}
 {% block vulva_abnormal %}{{ form.vulva_abnormal }}{% endblock %}
 
 {% block vagina %}
-    {{ form.vagina }}
+    {% if form.vagina %}
+        {{ form.vagina }}
+    {% endif %}
 {% endblock %}
 {% block vagina_abnormal %}{{ form.vagina_abnormal }}{% endblock %}
 
 {% block cervix %}
-    {{ form.cervix }}
+    {% if form.cervix %}
+        {{ form.cervix }}
+    {% endif %}
 {% endblock %}
 {% block cervix_abnormal %}{{ form.cervix_abnormal }}{% endblock %}
 
 {% block uteri %}
-    {{ form.uteri }}
+    {% if form.uteri %}
+        {{ form.uteri }}
+    {% endif %}
 {% endblock %}
 {% block uteri_abnormal %}{{ form.uteri_abnormal }}{% endblock %}
 
 {% block accessory %}
-    {{ form.accessory }}
+    {% if form.accessory %}
+        {{ form.accessory }}
+    {% endif %}
 {% endblock %}
 {% block accessory_abnormal %}{{ form.accessory_abnormal }}{% endblock %}
 
@@ -245,7 +255,9 @@
 {% block b_scan %}{{ form.b_scan }}{% endblock %}
 
 {% block total_evaluation %}
-    {{ form.total_evaluation }}
+    {% if form.total_evaluation %}
+        {{ form.total_evaluation }}
+    {% endif %}
 {% endblock %}
 
 {% block total_evaluation_abnormal %}{{ form.total_evaluation_abnormal }}{% endblock %}
@@ -263,7 +275,9 @@
 {% block guide_other %}{{ form.guide_other }}{% endblock %}
 
 {% block transfer %}
-    {{ form.transfer }}
+    {% if form.transfer %}
+        {{ form.transfer }}
+    {% endif %}
 {% endblock %}
 
 {% block transfer_reason %}

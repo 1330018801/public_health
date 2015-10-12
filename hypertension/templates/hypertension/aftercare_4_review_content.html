@@ -119,11 +119,15 @@
 {% endblock %}
 
 {% block take_medicine_1_day_4 %}
-    {{ form.take_medicine_1_day }}
+    {% if form.take_medicine_1_day %}
+        {{ form.take_medicine_1_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_1_time_4 %}
-    {{ form.take_medicine_1_time }}
+    {% if form.take_medicine_1_time %}
+        {{ form.take_medicine_1_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_2_4 %}
@@ -131,11 +135,15 @@
 {% endblock %}
 
 {% block take_medicine_2_day_4 %}
-    {{ form.take_medicine_2_day }}
+    {% if form.take_medicine_2_day %}
+        {{ form.take_medicine_2_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_2_time_4 %}
-    {{ form.take_medicine_2_time }}
+    {% if form.take_medicine_2_time %}
+        {{ form.take_medicine_2_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_3_4 %}
@@ -143,11 +151,15 @@
 {% endblock %}
 
 {% block take_medicine_3_day_4 %}
-    {{ form.take_medicine_3_day }}
+    {% if form.take_medicine_3_day %}
+        {{ form.take_medicine_3_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_3_time_4 %}
-    {{ form.take_medicine_3_time }}
+    {% if form.take_medicine_3_time %}
+        {{ form.take_medicine_3_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_qt_4 %}
@@ -155,11 +167,15 @@
 {% endblock %}
 
 {% block take_medicine_qt_day_4 %}
-    {{ form.take_medicine_qt_day }}
+    {% if form.take_medicine_qt_day %}
+        {{ form.take_medicine_qt_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_qt_time_4 %}
-    {{ form.take_medicine_qt_time }}
+    {% if form.take_medicine_qt_time %}
+        {{ form.take_medicine_qt_time }}
+    {% endif %}
 {% endblock %}
 
 {% block transfer_treatment_reason_4 %}

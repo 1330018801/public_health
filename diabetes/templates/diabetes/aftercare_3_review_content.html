@@ -103,7 +103,9 @@
 {% endblock %}
 
 {% block auxiliary_examination_extra_hemoglobin_3 %}
-    {{ form.auxiliary_examination_extra_hemoglobin }}
+    {% if form.auxiliary_examination_extra_hemoglobin %}
+        {{ form.auxiliary_examination_extra_hemoglobin }}
+    {% endif %}
 {% endblock %}
 
 {% block auxiliary_examination_extra_examination_date_3 %}

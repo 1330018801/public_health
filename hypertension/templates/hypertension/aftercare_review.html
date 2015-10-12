@@ -532,11 +532,15 @@
 {% endblock %}
 
 {% block take_medicine_1_day_3 %}
-    {{ aftercare_3.take_medicine_1_day }}
+    {% if aftercare_3.take_medicine_1_day %}
+        {{ aftercare_3.take_medicine_1_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_1_time_3 %}
-    {{ aftercare_3.take_medicine_1_time }}
+    {% if aftercare_3.take_medicine_1_time %}
+        {{ aftercare_3.take_medicine_1_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_2_3 %}
@@ -544,11 +548,15 @@
 {% endblock %}
 
 {% block take_medicine_2_day_3 %}
-    {{ aftercare_3.take_medicine_2_day }}
+    {% if aftercare_3.take_medicine_2_day %}
+        {{ aftercare_3.take_medicine_2_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_2_time_3 %}
-    {{ aftercare_3.take_medicine_2_time }}
+    {% if aftercare_3.take_medicine_2_time %}
+        {{ aftercare_3.take_medicine_2_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_3_3 %}
@@ -556,11 +564,15 @@
 {% endblock %}
 
 {% block take_medicine_3_day_3 %}
-    {{ aftercare_3.take_medicine_3_day }}
+    {% if aftercare_3.take_medicine_3_day %}
+        {{ aftercare_3.take_medicine_3_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_3_time_3 %}
-    {{ aftercare_3.take_medicine_3_time }}
+    {% if aftercare_3.take_medicine_3_time %}
+        {{ aftercare_3.take_medicine_3_time }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_qt_3 %}
@@ -568,11 +580,15 @@
 {% endblock %}
 
 {% block take_medicine_qt_day_3 %}
-    {{ aftercare_3.take_medicine_qt_day }}
+    {% if aftercare_3.take_medicine_qt_day %}
+        {{ aftercare_3.take_medicine_qt_day }}
+    {% endif %}
 {% endblock %}
 
 {% block take_medicine_qt_time_3 %}
-    {{ aftercare_3.take_medicine_qt_time }}
+    {% if aftercare_3.take_medicine_qt_time %}
+        {{ aftercare_3.take_medicine_qt_time }}
+    {% endif %}
 {% endblock %}
 
 {% block transfer_treatment_reason_3 %}
