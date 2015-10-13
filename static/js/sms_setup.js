@@ -148,7 +148,6 @@ $(function() {
     });
 
     toolbar.find('#service_item').combobox({
-        //url: '/management/service_item_options/',
         valueField: 'id', textField: 'name', width: 150, editable: false,
         data: [{'id': 0, 'name': ''}],
         onLoadSuccess: function () {
