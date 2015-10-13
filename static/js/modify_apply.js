@@ -8,36 +8,44 @@ $(function() {
     btn_disagree.linkbutton({ plain: true, iconCls: 'icon-cancel'});
 
     btn_agree.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/modify_apply_opinion/', method: 'POST',
-                data: { opinion: 'agree', id: selected_row['id'] },
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({title: '提示', msg: '批准修改申请完成', timeout: 1500});
-                        datagrid.datagrid('reload');
-                    } else {
-                        $.messager.alert('提示', '批准修改申请失败', 'warning');
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/modify_apply_opinion/', method: 'POST',
+                    data: { opinion: 'agree', id: selected_row['id'] },
+                    success: function (data) {
+                        if (data.success) {
+                            $.messager.show({title: '提示', msg: '批准修改申请完成', timeout: 1500});
+                            datagrid.datagrid('reload');
+                        } else {
+                            $.messager.alert('提示', '批准修改申请失败', 'warning');
+                        }
                     }
-                }
-            });
+                });
+            } else{
+                $.messager.alert('提示', '请在列表中选择一项申请', 'info');
+            }
         }
     });
 
     btn_disagree.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/modify_apply_opinion/', method: 'POST',
-                data: { opinion: 'disagree', id: selected_row['id'] },
-                success: function (data) {
-                    if (data.success) {
-                        datagrid.datagrid('reload');
-                        $.messager.show({title: '提示', msg: '拒绝修改申请完成', timeout: 1500});
-                    } else {
-                        $.messager.alert('提示', '拒绝修改申请失败', 'warning');
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/modify_apply_opinion/', method: 'POST',
+                    data: { opinion: 'disagree', id: selected_row['id'] },
+                    success: function (data) {
+                        if (data.success) {
+                            datagrid.datagrid('reload');
+                            $.messager.show({title: '提示', msg: '拒绝修改申请完成', timeout: 1500});
+                        } else {
+                            $.messager.alert('提示', '拒绝修改申请失败', 'warning');
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                $.messager.alert('提示', '请在列表中选择一项申请', 'info');
+            }
         }
     });
 
@@ -63,6 +71,7 @@ $(function() {
         ]],
         onClickRow: function (index, row) {
             if (selected_row == row) {
+                $(this).datagrid('unselectRow', index);
                 selected_row = undefined;
             } else {
                 selected_row = row;

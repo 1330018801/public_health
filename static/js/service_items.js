@@ -69,7 +69,7 @@ $(function() {
                         ids.push(rows[i].id);
                     }
                     $.ajax({
-                        url: '/management/service_item_del_test/', method: 'POST',
+                        url: '/management/service_item_del/', method: 'POST',
                         data: { service_item_id: ids[0] },
                         success: function (data) {
                             if (data) {
@@ -140,7 +140,7 @@ $(function() {
 
             if (inserted.length > 0) {
                 $.ajax({
-                    url: '/management/service_item_add_test/', method: 'POST',
+                    url: '/management/service_item_add/', method: 'POST',
                     data: inserted[0],
                     success: function (data) {
                         if (data) {
@@ -154,7 +154,7 @@ $(function() {
             }
             if (updated.length > 0) {
                 $.ajax({
-                    url: '/management/service_item_update_test/', method: 'POST',
+                    url: '/management/service_item_update/', method: 'POST',
                     data: updated[0],
                     success: function (data) {
                         if (data.success) {

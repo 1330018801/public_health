@@ -860,6 +860,7 @@ def service_item_options(request):
             item['service_type_name'] = service_item.service_type.name
         json_items.append(item)
 
+    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
 
@@ -1380,6 +1381,7 @@ def get_role_authorize(request):
         if service.level == Service.SERVICE_ITEM:
             json_items.append(str(service.id))
 
+    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_items, safe=False)
 
@@ -1558,7 +1560,7 @@ def sms_setup_list(request):
         sms_setups = sms_setups.filter(service_item__service_type=service_type)
     if service_item:
         service_item = Service.items.get(id=service_item)
-        sms_setups = sms_setups.filter(service_item_=service_item)
+        sms_setups = sms_setups.filter(service_item=service_item)
 
     sms_begin = datetime.strptime(sms_begin, '%Y-%m-%d').date()
     sms_end = datetime.strptime(sms_end, '%Y-%m-%d').date()

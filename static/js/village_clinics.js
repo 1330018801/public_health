@@ -63,7 +63,7 @@ $(function() {
             $.messager.confirm('确认操作', '要删除所选择的卫生室吗？', function(flag) {
                 if (flag) {
                     $.ajax({
-                        url: '/management/village_clinic_del_test/', method: 'POST',
+                        url: '/management/village_clinic_del/', method: 'POST',
                         data: { village_clinic_id: selected_row['id'] },
                         success: function (data) {
                             if (data.success) {
@@ -137,7 +137,7 @@ $(function() {
 
             if (inserted.length > 0) {
                 $.ajax({
-                    url: '/management/village_clinic_add_test/', method: 'POST',
+                    url: '/management/village_clinic_add/', method: 'POST',
                     data: inserted[0],
                     success: function (data) {
                         if (data) {
@@ -150,7 +150,7 @@ $(function() {
             }
             if (updated.length > 0) {
                 $.ajax({
-                    url: '/management/village_clinic_update_test/', method: 'POST',
+                    url: '/management/village_clinic_update/', method: 'POST',
                     data: updated[0],
                     success: function (data) {
                         if (data) {

@@ -189,7 +189,7 @@ $(function() {
                 text: '提交', iconCls: 'icon-ok',
                 handler: function() {
                     form.form('submit', {
-                        url: '/management/user_add_test/',
+                        url: '/management/user_add/',
                         onSubmit: function(param) {
                             param.csrfmiddlewaretoken = $.cookie('csrftoken');
                             return form.form('validate');
@@ -245,7 +245,7 @@ $(function() {
             $.messager.confirm('提示', '要删除所选择的用户记录吗？', function(flag) {
                 if (flag) {
                     $.ajax({
-                        url: '/management/user_del_test/', method: 'POST',
+                        url: '/management/user_del/', method: 'POST',
                         data: { user_id: selected_row['id']},
                         success: function (data) {
                             if (data.success) {

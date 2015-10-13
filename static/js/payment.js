@@ -83,7 +83,9 @@ $(function() {
     var query_resident = toolbar.find('#query_resident').textbox({ width: 100 });
 
     btn_query.bind('click', function() {
-        datagrid.datagrid('reload');
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('reload');
+        }
     });
 
     //

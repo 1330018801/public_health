@@ -28,10 +28,10 @@ urlpatterns = patterns('',
 
     # 管理员工作界面中，对系统中居民的操作
     url(r'^residents/$', views.residents_page, name='residents_page'),
-    url(r'^resident_add_test/$', views.resident_add, name='resident_add'),
-    url(r'^resident_update_test/$', views.resident_update, name='resident_update'),
-    url(r'^resident_del_test/$', views.resident_del, name='resident_del'),
-    url(r'^resident_query_test/$', views.resident_query, name='resident_query'),
+    url(r'^resident_add/$', views.resident_add, name='resident_add'),
+    url(r'^resident_update/$', views.resident_update, name='resident_update'),
+    url(r'^resident_del/$', views.resident_del, name='resident_del'),
+    url(r'^resident_query/$', views.resident_query, name='resident_query'),
     url(r'^resident_query_list/$', views.resident_query_list, name='resident_query_list'),
     url(r'^resident_add_hypertension/$', views.resident_add_hypertension, name='resident_add_hypertension'),
     url(r'^resident_add_diabetes/$', views.resident_add_diabetes, name='resident_add_diabetes'),
@@ -45,15 +45,15 @@ urlpatterns = patterns('',
 
     # 管理员工作界面中，村卫生室管理操作
     url(r'^village_clinics/$', views.village_clinics_page, name='village_clinics_page'),
-    url(r'^village_clinic_add_test/$', views.village_clinic_add, name='village_clinic_add'),
-    url(r'^village_clinic_del_test/$', views.village_clinic_del, name='village_clinic_del'),
-    url(r'^village_clinic_update_test/$', views.village_clinic_update, name='village_clinic_update'),
+    url(r'^village_clinic_add/$', views.village_clinic_add, name='village_clinic_add'),
+    url(r'^village_clinic_del/$', views.village_clinic_del, name='village_clinic_del'),
+    url(r'^village_clinic_update/$', views.village_clinic_update, name='village_clinic_update'),
 
     # 管理员工作界面中，系统用户管理操作
     url(r'^users/$', views.users_page, name='users_page'),
     url(r'^user_query_list/$', views.user_query_list, name='user_query_list'),
-    url(r'^user_add_test/$', views.user_add, name='user_add'),
-    url(r'^user_del_test/$', views.user_del, name='user_del'),
+    url(r'^user_add/$', views.user_add, name='user_add'),
+    url(r'^user_del/$', views.user_del, name='user_del'),
 
     # 管理员工作界面中，服务类别管理操作
     url(r'^service_types/$', views.service_types_page, name='service_types_page'),
@@ -62,9 +62,9 @@ urlpatterns = patterns('',
     # 管理员工作界面中，服务项目管理操作
     url(r'^service_item_list_new/$', views.service_item_list, name='service_item_list'),
     url(r'^service_items/$', views.service_items_page, name='service_items_page'),
-    url(r'^service_item_add_test/$', views.service_item_add, name='service_item_add'),
-    url(r'^service_item_update_test/$', views.service_item_update, name='service_item_update'),
-    url(r'^service_item_del_test/$', views.service_item_del, name='service_item_del'),
+    url(r'^service_item_add/$', views.service_item_add, name='service_item_add'),
+    url(r'^service_item_update/$', views.service_item_update, name='service_item_update'),
+    url(r'^service_item_del/$', views.service_item_del, name='service_item_del'),
 
     # 管理员工作界面中，服务记录明细管理操作
     url(r'^records/$', views.records_page, name='records_page'),
@@ -76,7 +76,7 @@ urlpatterns = patterns('',
 
     # 管理员工作界面中，用户角色管理操作
     url(r'^roles/$', views.roles_page, name='roles_page'),
-    url(r'^role_list_new/$', views.role_list, name='role_list'),
+    url(r'^role_list/$', views.role_list, name='role_list'),
     url(r'^get_role_authorize/$', views.get_role_authorize, name='get_role_authorize'),
     url(r'^role_authorize/$', views.role_authorize, name='role_authorize'),
     url(r'^role_add/$', views.role_add, name='role_add'),
