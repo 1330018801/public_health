@@ -1,0 +1,25 @@
+{% extends 'tcm/child_base.html' %}
+
+{% block tbl_1_col_3_visit_date %}
+    {{ form.visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_1_col_3_guide %}
+    {% for item in form.guide.all %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
+    {% endfor %}
+    {{ form.guide_extra }}
+{% endblock %}
+
+{% block tbl_1_col_3_next_visit_date %}
+    {{ form.next_visit_date | date:"Y-m-d"}}
+{% endblock %}
+
+{% block tbl_1_col_3_doctor_signature %}
+    {{ form.doctor_signature }}
+{% endblock %}
+
