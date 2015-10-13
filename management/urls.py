@@ -72,7 +72,7 @@ urlpatterns = patterns('',
 
     # 管理员工作界面中，服务计费管理操作
     url(r'^payment/$', views.payment_page, name='payment_page'),
-    url(r'^payment_list_new/$', views.payment_list, name='payment_list'),
+    url(r'^payment_list/$', views.payment_list, name='payment_list'),
 
     # 管理员工作界面中，用户角色管理操作
     url(r'^roles/$', views.roles_page, name='roles_page'),

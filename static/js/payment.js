@@ -95,7 +95,7 @@ $(function() {
     //
     var datagrid = $('#payment');
     datagrid.datagrid({
-        title: '工作量和费用统计', url: '/management/payment_list_new/',
+        title: '工作量和费用统计', url: '/management/payment_list/',
         toolbar: '#payment_toolbar',
         rownumbers: true, singleSelect: true, fitColumns: true,
         pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,

@@ -1288,7 +1288,7 @@ def payment_list(request):
     if query_service_item:
         service_item = Service.items.get(id=int(query_service_item))
         records = records.filter(service_item=service_item)
-        service_items = [service_item]
+        service_items = service_items.filter(id=service_item.id)
     if query_doctor:
         records = records.filter(provider__username=query_doctor)
     if query_resident:
