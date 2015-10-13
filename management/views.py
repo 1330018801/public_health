@@ -1322,14 +1322,14 @@ def payment_list(request):
         total_workload += workload[service_item]
         total_payment += workload[service_item] * service_item.price
     json_items = [{'service_type': '合计', 'service_item': '',
-                   'workload': total_workload, 'payment': total_payment}]
+                   'workload': total_workload, 'payment': format(total_payment, '0.2f')}]
 
     for service_item in service_items[first: first + page_size]:
         json_items.append({
             'service_type': service_item.service_type.name,
             'service_item': service_item.name,
             'workload': str(workload[service_item]) + service_item.unit,
-            'payment': workload[service_item] * service_item.price})
+            'payment': format(workload[service_item] * service_item.price, '0.2f')})
 
     return HttpResponse(simplejson.dumps({'total': service_items.count(), 'rows': json_items}),
                         content_type='text/html; charset=UTF-8')
