@@ -84,182 +84,198 @@ $(function() {
     // 工具栏事件绑定
 
     btn_add.bind('click', function () {
-        datagrid.datagrid('insertRow', { index: 0, row: {} });
-        edit_row = 0;
-        btn_save.show(); btn_undo.show();
-        btn_add.linkbutton('disable');
-        btn_edit.linkbutton('disable');
-        btn_rm.linkbutton('disable');
-        datagrid.datagrid('beginEdit', edit_row);
-        townOptions(get_edit_field(edit_row, 'town'), edit_row);
-    });
-
-    btn_edit.bind('click', function () {
-        if (selected_row == undefined) {
-            $.messager.alert('警告', '请先选定记录再修改！', 'warning');
-        } else {
-            edit_row = datagrid.datagrid('getRowIndex', selected_row);
-            btn_save.show(); btn_undo.show();
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('insertRow', { index: 0, row: {} });
+            edit_row = 0;
+            btn_save.show();
+            btn_undo.show();
             btn_add.linkbutton('disable');
             btn_edit.linkbutton('disable');
             btn_rm.linkbutton('disable');
             datagrid.datagrid('beginEdit', edit_row);
-            // 如果该居民没有建档，那么无法编辑其健康档案编号
-            var ehr_no = get_edit_field(edit_row, 'ehr_no');
-            if (selected_row['ehr_no'] == null) {
-                $(ehr_no.target).textbox('disable');
-            }
             townOptions(get_edit_field(edit_row, 'town'), edit_row);
         }
     });
 
-    btn_rm.bind('click', function () {
-        var rows = datagrid.datagrid('getSelections');
-        if (rows.length > 0) {
-            $.messager.confirm('确认操作', '要删除所选择的居民吗？', function(flag) {
-                if (flag) {
-                    var ids = [];
-                    for (var i = 0; i < rows.length; i++) {
-                        ids.push(rows[i].id);
-                    }
-                    $.ajax({
-                        url: '/management/resident_del_test/', method: 'POST',
-                        data: { resident_id: ids[0] },
-                        success: function (data) {
-                            if (data) {
-                                datagrid.datagrid('reload');
-                                datagrid.datagrid('unselectAll');
-                                selected_row = undefined;
-                                btn_edit.linkbutton('disable');
-                                btn_rm.linkbutton('disable');
-                                edit_row = undefined;
-                                $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息成功！' })
-                            }
-                        }
-                    });
+    btn_edit.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row == undefined) {
+                $.messager.alert('警告', '请先选定记录再修改！', 'warning');
+            } else {
+                edit_row = datagrid.datagrid('getRowIndex', selected_row);
+                btn_save.show();
+                btn_undo.show();
+                btn_add.linkbutton('disable');
+                btn_edit.linkbutton('disable');
+                btn_rm.linkbutton('disable');
+                datagrid.datagrid('beginEdit', edit_row);
+                // 如果该居民没有建档，那么无法编辑其健康档案编号
+                var ehr_no = get_edit_field(edit_row, 'ehr_no');
+                if (selected_row['ehr_no'] == null) {
+                    $(ehr_no.target).textbox('disable');
                 }
-            });
-        } else {
-            $.messager.alert('提示', '请选择所要删除的居民', 'info');
+                townOptions(get_edit_field(edit_row, 'town'), edit_row);
+            }
+        }
+    });
+
+    btn_rm.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            var rows = datagrid.datagrid('getSelections');
+            if (rows.length > 0) {
+                $.messager.confirm('确认操作', '要删除所选择的居民吗？', function (flag) {
+                    if (flag) {
+                        var ids = [];
+                        for (var i = 0; i < rows.length; i++) {
+                            ids.push(rows[i].id);
+                        }
+                        $.ajax({
+                            url: '/management/resident_del_test/', method: 'POST',
+                            data: { resident_id: ids[0] },
+                            success: function (data) {
+                                if (data) {
+                                    datagrid.datagrid('reload');
+                                    datagrid.datagrid('unselectAll');
+                                    selected_row = undefined;
+                                    btn_edit.linkbutton('disable');
+                                    btn_rm.linkbutton('disable');
+                                    edit_row = undefined;
+                                    $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息成功！' })
+                                }
+                            }
+                        });
+                    }
+                });
+            } else {
+                $.messager.alert('提示', '请选择所要删除的居民', 'info');
+            }
         }
     });
 
     btn_query.bind('click', function () {
-        datagrid.datagrid('reload');
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('reload');
+        }
     });
 
     btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('endEdit', edit_row);
+        }
     });
 
     btn_undo.bind('click', function () {
-        datagrid.datagrid('rejectChanges');
-        selected_row = undefined; edit_row = undefined;
-        btn_save.hide(); btn_undo.hide();
-        btn_add.linkbutton('enable');
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('rejectChanges');
+            selected_row = undefined;
+            edit_row = undefined;
+            btn_save.hide();
+            btn_undo.hide();
+            btn_add.linkbutton('enable');
+        }
     });
 
     btn_hypt.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/resident_add_hypertension/', method: 'POST',
-                data: {resident_id: selected_row['id']},
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入高血压人群成功',
-                            timeout: 1000
-                        });
-                    } else {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入高血压人群失败: '+data.message,
-                            timeout: 1000
-                        });
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/resident_add_hypertension/', method: 'POST',
+                    data: {resident_id: selected_row['id']},
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        if (data.success) {
+                            $.messager.show({
+                                title: '提示',
+                                msg: selected_row['name'] + '添加进入高血压人群成功',
+                                timeout: 1000
+                            });
+                        } else {
+                            $.messager.alert('提示', selected_row['name'] + '添加进入高血压人群失败: '
+                                + data.message, 'warning');
+                        }
                     }
-                }
-            });
-        } else {
-            $.messager.alert('提示', '请选择将要加入高血压人群的居民', 'info');
+                });
+            } else {
+                $.messager.alert('提示', '请选择将要加入高血压人群的居民', 'info');
+            }
         }
     });
 
     btn_diab.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/resident_add_diabetes/', method: 'POST',
-                data: {resident_id: selected_row['id']},
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入2型糖尿病人群成功',
-                            timeout: 1000
-                        });
-                    } else {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入2型糖尿病人群失败: '+data.message,
-                            timeout: 1000
-                        });
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/resident_add_diabetes/', method: 'POST',
+                    data: {resident_id: selected_row['id']},
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        if (data.success) {
+                            $.messager.show({
+                                title: '提示',
+                                msg: selected_row['name'] + '添加进入2型糖尿病人群成功',
+                                timeout: 1000
+                            });
+                        } else {
+                            $.messager.alert('提示', selected_row['name'] + '添加进入2型糖尿病人群失败: '
+                                + data.message, 'warning');
+                        }
                     }
-                }
-            });
-        } else {
-            $.messager.alert('提示', '请选择将要加入2型糖尿病人群的居民', 'info');
+                });
+            } else {
+                $.messager.alert('提示', '请选择将要加入2型糖尿病人群的居民', 'info');
+            }
         }
     });
 
     btn_psyc.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/resident_add_psychiatric/', method: 'POST',
-                data: {resident_id: selected_row['id']},
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入重性精神疾病人群成功',
-                            timeout: 1000
-                        });
-                    } else {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入重性精神疾病人群失败: '+data.message,
-                            timeout: 1000
-                        });
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/resident_add_psychiatric/', method: 'POST',
+                    data: {resident_id: selected_row['id']},
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        if (data.success) {
+                            $.messager.show({
+                                title: '提示',
+                                msg: selected_row['name'] + '添加进入重性精神疾病人群成功',
+                                timeout: 1000
+                            });
+                        } else {
+                            $.messager.alert('提示', selected_row['name'] + '添加进入重性精神疾病人群失败: '
+                                + data.message, 'warning');
+                        }
                     }
-                }
-            });
-        } else {
-            $.messager.alert('提示', '请选择将要加入重性精神疾病人群的居民', 'info');
+                });
+            } else {
+                $.messager.alert('提示', '请选择将要加入重性精神疾病人群的居民', 'info');
+            }
         }
     });
 
     btn_preg.bind('click', function () {
-        if (selected_row != undefined) {
-            $.ajax({
-                url: '/management/resident_add_pregnant/', method: 'POST',
-                data: {resident_id: selected_row['id']},
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入孕产妇人群成功',
-                            timeout: 1000
-                        });
-                    } else {
-                        $.messager.show({
-                            title: '提示',
-                            msg: selected_row['name']+'添加进入孕产妇人群失败: '+data.message,
-                            timeout: 1000
-                        });
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.ajax({
+                    url: '/management/resident_add_pregnant/', method: 'POST',
+                    data: {resident_id: selected_row['id']},
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        if (data.success) {
+                            $.messager.show({
+                                title: '提示',
+                                msg: selected_row['name'] + '添加进入孕产妇人群成功',
+                                timeout: 1000
+                            });
+                        } else {
+                            $.messager.alert( '提示', selected_row['name'] + '添加进入孕产妇人群失败: '
+                                + data.message, 'warning');
+                        }
                     }
-                }
-            });
-        } else {
-            $.messager.alert('提示', '请选择将要加入孕产妇人群的居民', 'info');
+                });
+            } else {
+                $.messager.alert('提示', '请选择将要加入孕产妇人群的居民', 'info');
+            }
         }
     });
 

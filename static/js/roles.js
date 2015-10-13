@@ -58,83 +58,97 @@ $(function() {
     btn_authorize.linkbutton('disable');
 
     btn_del.bind('click', function () {
-        if (selected_row) {
-            $.ajax({
-                url: '/management/role_del/', method: 'POST',
-                data : {'id': selected_row['id']},
-                success: function (data) {
-                    if (data.success) {
-                        $.messager.show({title: '提示', msg: '删除角色完成', timeout: 1500})
-                    } else {
-                        $.messager.alert('提示', '删除角色失败', 'warning');
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row) {
+                $.ajax({
+                    url: '/management/role_del/', method: 'POST',
+                    data: {'id': selected_row['id']},
+                    success: function (data) {
+                        if (data.success) {
+                            $.messager.show({title: '提示', msg: '删除角色完成', timeout: 1500})
+                        } else {
+                            $.messager.alert('提示', '删除角色失败', 'warning');
+                        }
                     }
-                }
-            });
-            datagrid.datagrid('reload');
-        } else {
-            $.messager.alert('提示', '请选择所要删除的角色', 'info');
+                });
+                datagrid.datagrid('reload');
+            } else {
+                $.messager.alert('提示', '请选择所要删除的角色', 'info');
+            }
         }
     });
 
     btn_add.bind('click', function () {
-        btn_add.linkbutton('disable');
-        btn_del.linkbutton('disable');
-        btn_authorize.linkbutton('disable');
-        btn_save.linkbutton('enable');
-        btn_undo.linkbutton('enable');
-        datagrid.datagrid('insertRow', { index: 0, row: {} });
-        datagrid.datagrid('beginEdit', 0);
-        edit_row = 0;
+        if ($(this).linkbutton('options').disabled == false) {
+            btn_add.linkbutton('disable');
+            btn_del.linkbutton('disable');
+            btn_authorize.linkbutton('disable');
+            btn_save.linkbutton('enable');
+            btn_undo.linkbutton('enable');
+            datagrid.datagrid('insertRow', { index: 0, row: {} });
+            datagrid.datagrid('beginEdit', 0);
+            edit_row = 0;
 
-        var field = datagrid.datagrid('getEditor', { index: edit_row, field: 'is_staff' });
-        $(field.target).combobox({
-            valueField: 'value', textField: 'text', panelHeight: 48,
-            data: [{'value': 0, 'text': '服务提供者'},
-                   {'value': 1, 'text': '管理员'}],
-            onLoadSuccess: function() {
-                $(this).combobox('setValue', 0);
-            }
-        });
+            var field = datagrid.datagrid('getEditor', { index: edit_row, field: 'is_staff' });
+            $(field.target).combobox({
+                valueField: 'value', textField: 'text', panelHeight: 48,
+                data: [
+                    {'value': 0, 'text': '服务提供者'},
+                    {'value': 1, 'text': '管理员'}
+                ],
+                onLoadSuccess: function () {
+                    $(this).combobox('setValue', 0);
+                }
+            });
+        }
     });
 
     btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('endEdit', edit_row);
+        }
     });
 
     btn_undo.bind('click', function () {
-        btn_add.linkbutton('enable');
-        btn_del.linkbutton('disable');
-        btn_authorize.linkbutton('disable');
-        btn_save.linkbutton('disable');
-        btn_undo.linkbutton('disable');
-        edit_row = undefined;
-        selected_row = undefined;
-        datagrid.datagrid('rejectChanges');
+        if ($(this).linkbutton('options').disabled == false) {
+            btn_add.linkbutton('enable');
+            btn_del.linkbutton('disable');
+            btn_authorize.linkbutton('disable');
+            btn_save.linkbutton('disable');
+            btn_undo.linkbutton('disable');
+            edit_row = undefined;
+            selected_row = undefined;
+            datagrid.datagrid('rejectChanges');
+        }
     });
 
     btn_authorize.bind('click', function() {
-        if (selected_row) {
-            $.ajax({
-                url: '/management/service_item_options/', method: 'POST',
-                data: { 'service_type_name': 'true' },
-                success: function (data) {
-                    $.each(data, function(index, item) {
-                        if (item.id) {
-                            select.multiSelect('addOption',
-                                {value: item.id, text: item.name, index: 0, nested: item.service_type_name});
-                        }
-                    });
-                    $.ajax({
-                        url: '/management/get_role_authorize/',
-                        method: 'POST',
-                        data: { 'role_id': selected_row.id },
-                        success: function(data) {
-                            select.multiSelect('select', data);
-                        }
-                    });
-                    $('#role_authorize').dialog('open');
-                }
-            })
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row) {
+                $.ajax({
+                    url: '/management/service_item_options/', method: 'POST',
+                    data: { 'service_type_name': 'true' },
+                    success: function (data) {
+                        data = eval('(' + data + ')');
+                        $.each(data, function (index, item) {
+                            if (item.id) {
+                                select.multiSelect('addOption',
+                                    {value: item.id, text: item.name, index: 0, nested: item.service_type_name});
+                            }
+                        });
+                        $.ajax({
+                            url: '/management/get_role_authorize/',
+                            method: 'POST',
+                            data: { 'role_id': selected_row.id },
+                            success: function (data) {
+                                data = eval('(' + data + ')');
+                                select.multiSelect('select', data);
+                            }
+                        });
+                        $('#role_authorize').dialog('open');
+                    }
+                })
+            }
         }
     });
 
@@ -142,7 +156,7 @@ $(function() {
     var edit_row = undefined;
 
     datagrid.datagrid({
-        title: '系统用户角色列表', url: '/management/role_list_new/',
+        title: '系统用户角色列表', url: '/management/role_list/',
         toolbar: '#roles_toolbar', rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编码', hidden: true},
@@ -163,7 +177,7 @@ $(function() {
                     btn_authorize.linkbutton('disable');
                     btn_del.linkbutton('disable');
             } else {
-                    selected_row = datagrid.datagrid('getSelected');
+                    selected_row = row;
                     btn_authorize.linkbutton('enable');
                     btn_del.linkbutton('enable');
             }

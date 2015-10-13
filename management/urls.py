@@ -76,7 +76,7 @@ urlpatterns = patterns('',
 
     # 管理员工作界面中，用户角色管理操作
     url(r'^roles/$', views.roles_page, name='roles_page'),
-    url(r'^role_list_new/$', views.role_list, name='role_list'),
+    url(r'^role_list/$', views.role_list, name='role_list'),
     url(r'^get_role_authorize/$', views.get_role_authorize, name='get_role_authorize'),
     url(r'^role_authorize/$', views.role_authorize, name='role_authorize'),
     url(r'^role_add/$', views.role_add, name='role_add'),
