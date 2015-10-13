@@ -30,8 +30,7 @@ $(function() {
     var btn_rm = toolbar.find('#remove').linkbutton({ iconCls: 'icon-remove', plain: true });
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_undo = toolbar.find('#undo').linkbutton({ iconCls: 'icon-undo', plain: true });
-    btn_save.hide(); btn_undo.hide(); btn_edit.hide();
-    btn_rm.hide(); btn_save.hide(); btn_undo.hide();
+    btn_save.hide(); btn_undo.hide(); btn_edit.hide(); btn_rm.hide();
 
     var table = $('#act_tbl');
     table.find('#act_time').datetimebox({ required: true, showSeconds: false, width: 120 });
@@ -104,15 +103,6 @@ $(function() {
         })
     });
 
-    btn_rm.bind('click', function () {
-    });
-
-    btn_save.bind('click', function () {
-    });
-
-    btn_undo.bind('click', function () {
-    });
-
     toolbar.find('#begin_date').datebox({
         width: 100, editable: false, formatter: myformatter, parser :myparser
     });
@@ -162,11 +152,9 @@ $(function() {
             { field: 'submit_time', title: '提交时间', width: 10 }
         ]],
         onBeforeLoad: function(param) {
-            /*
             param.begin_date = toolbar.find('#begin_date').datebox('getValue');
             param.end_date = toolbar.find('#end_date').datebox('getValue');
-            param.reporter = toolbar.find('#reporter').textbox('getValue');
-            */
+            param.act_type = toolbar.find('#act_type').textbox('getText');
         },
         onClickRow: function (index, row) {
             if (selected_row == row) {
@@ -184,41 +172,6 @@ $(function() {
             review.css('display', 'block');
             review.dialog('open');
             review.dialog('center')
-        },
-        onAfterEdit: function() {
-            /*
-            $('#save, #undo').hide();
-            var inserted_row = $(this).datagrid('getChanges', 'inserted');
-            var updated_row = $(this).datagrid('getChanges', 'updated');
-
-            if (inserted_row.length > 0) {
-                $.ajax({
-                    url: '/supervision/info_report_add/', method: 'POST',
-                    data: inserted_row[0],
-                    success: function() {
-                        datagrid.datagrid('load');
-                        datagrid.datagrid('unselectAll');
-                        $.messager.show({ title: '提示', timeout: 1000, msg: '卫生监督协管信息报告登记成功！'});
-                    }
-                });
-            }
-            if (updated_row.length > 0) {
-                $.ajax({
-                    url: '/supervision/info_report_update/', method: 'POST',
-                    data: updated_row[0],
-                    success: function () {
-                        datagrid.datagrid('load');
-                        datagrid.datagrid('unselectAll');
-                        $.messager.show({ title: '提示', timeout: 1000, msg: '卫生监督协管信息报告登记更新成功！' });
-                    }
-                });
-            }
-            edit_row = undefined;
-            selected_row = undefined;
-            btn_add.linkbutton('enable');
-            btn_edit.linkbutton('enable');
-            btn_rm.linkbutton('enable');
-            */
         }
     });
 

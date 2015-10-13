@@ -19,7 +19,15 @@ def activity_page(request):
 
 
 def activity_list(request):
-    activities = EducationActivity.objects.all()
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
+    act_type = request.POST.get('act_type')
+
+    activities = EducationActivity.objects.filter(act_time__range=(begin_date, end_date))
+
+    if act_type != u'全部':
+        debug.info(act_type)
+        activities = activities.filter(act_type=act_type)
 
     json_items = []
     for act in activities:
