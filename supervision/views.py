@@ -29,15 +29,13 @@ def inspection_list(request):
     # 另外，是否应该在WorkRecord中查找呢，有这个必要吗
     begin_date = request.POST.get('begin_date')
     end_date = request.POST.get('end_date')
-    inspector = request.POST.get('inspector')
 
     begin_date = datetime.strptime(begin_date, '%Y-%m-%d').date()
     end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
 
     inspections = Inspection.objects.all()
     inspections = inspections.filter(inspection_date__range=(begin_date, end_date))
-    if inspector:
-        inspections = inspections.filter(inspector__contains=inspector)
+    debug.info(inspections.count())
 
     json_items = []
     for inspection in inspections:
@@ -116,7 +114,9 @@ def info_report_page(request):
 
 
 def info_report_list(request):
-    info_reports = InfoReport.objects.all()
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
+    info_reports = InfoReport.objects.filter(report_time__range=(begin_date, end_date))
 
     json_items = []
     for report in info_reports:

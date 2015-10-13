@@ -9,50 +9,62 @@ $(function() {
     var btn_rm = toolbar.find('#remove').linkbutton({ iconCls: 'icon-remove', plain: true });
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_undo = toolbar.find('#undo').linkbutton({ iconCls: 'icon-undo', plain: true });
-    btn_save.hide(); btn_undo.hide();
+    btn_save.hide(); btn_undo.hide(); btn_edit.linkbutton('disable');
 
     btn_add.bind('click', function () {
-        if (edit_row == undefined) {
-            btn_save.show(); btn_undo.show();
-            btn_add.linkbutton('disable');
-            btn_edit.linkbutton('disable');
-            btn_rm.linkbutton('disable');
-            datagrid.datagrid('insertRow', { index: 0, row: {} });
-            datagrid.datagrid('beginEdit', 0);
-            edit_row = 0;
+        if ($(this).linkbutton('options').disabled == false) {
+            if (edit_row == undefined) {
+                btn_save.show();
+                btn_undo.show();
+                btn_add.linkbutton('disable');
+                btn_edit.linkbutton('disable');
+                btn_rm.linkbutton('disable');
+                datagrid.datagrid('insertRow', { index: 0, row: {} });
+                datagrid.datagrid('beginEdit', 0);
+                edit_row = 0;
+            }
         }
     });
 
     btn_rm.bind('click', function () {
-        if (selected_row) {
-            $.messager.confirm('确认操作', '是要删除所选择的巡查登记吗？', function(flag) { if (flag) {
-                $.ajax({
-                    url: '/supervision/inspection_del/', method: 'POST',
-                    data: { id: selected_row.id },
-                    success: function () {
-                        datagrid.datagrid('load');
-                        datagrid.datagrid('unselectAll');
-                        $.messager.show({ title: '提示', msg: '巡查登记删除成功！' });
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row) {
+                $.messager.confirm('确认操作', '是要删除所选择的巡查登记吗？', function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            url: '/supervision/inspection_del/', method: 'POST',
+                            data: { id: selected_row.id },
+                            success: function () {
+                                datagrid.datagrid('load');
+                                datagrid.datagrid('unselectAll');
+                                $.messager.show({ title: '提示', msg: '巡查登记删除成功！' });
+                            }
+                        });
                     }
                 });
-            }});
-        } else {
-            $.messager.alert('提示', '请选择所要删除的记录', 'info');
+            } else {
+                $.messager.alert('提示', '请选择所要删除的记录', 'info');
+            }
         }
     });
 
     btn_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('endEdit', edit_row);
+        }
     });
 
     btn_undo.bind('click', function () {
-        btn_save.hide(); btn_undo.hide();
-        btn_add.linkbutton('enable');
-        btn_edit.linkbutton('enable');
-        btn_rm.linkbutton('enable');
-        edit_row = undefined;
-        selected_row = undefined;
-        datagrid.datagrid('rejectChanges');
+        if ($(this).linkbutton('options').disabled == false) {
+            btn_save.hide();
+            btn_undo.hide();
+            btn_add.linkbutton('enable');
+            btn_edit.linkbutton('enable');
+            btn_rm.linkbutton('enable');
+            edit_row = undefined;
+            selected_row = undefined;
+            datagrid.datagrid('rejectChanges');
+        }
     });
 
     toolbar.find('#begin_date').datebox({
@@ -63,14 +75,15 @@ $(function() {
         width: 100, editable: false, formatter: myformatter, parser :myparser
     });
     toolbar.find('#end_date').datebox('setValue', myformatter(new Date()));
-    toolbar.find('#inspector').textbox({width: 100});
 
     var btn_query = toolbar.find('#btn_query').linkbutton({
         iconCls: 'icon-glyphicons-28-search',
         plain: true
     });
     btn_query.bind('click', function() {
-        datagrid.datagrid('load');
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('load');
+        }
     });
 
     var datagrid = $('#inspections').datagrid({
@@ -102,7 +115,6 @@ $(function() {
         onBeforeLoad: function(param) {
             param.begin_date = toolbar.find('#begin_date').datebox('getValue');
             param.end_date = toolbar.find('#end_date').datebox('getValue');
-            param.inspector = toolbar.find('#inspector').textbox('getValue');
         },
         onClickRow: function (index, row) {
             if (selected_row != undefined && selected_row == row) {
