@@ -94,7 +94,7 @@ $(function() {
 
     $('#records').datagrid({
         title: '服务记录列表', toolbar: '#records_tb',
-        url: '/management/record_list_new/',
+        url: '/management/record_list/',
         rownumbers: true, singleSelect: true, fitColumns: true,
         pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
         columns: [[
@@ -116,6 +116,25 @@ $(function() {
             param.query_service_item = records_tb.find('#query_service_item').combobox('getValue');
             param.query_doctor = records_tb.find('#query_doctor').val();
             param.query_resident = records_tb.find('#query_resident').val();
+        },
+        onDblClickRow: function (index, row) {
+            var detail = $('#record_detail_review').dialog({
+                title: '服务详情', width: 820, height: 500, method: 'POST', modal: true,
+                href: '/ehr/record_detail_review/', queryParams: {record_id: row['id']},
+                buttons: [{
+                    text: '打印', iconCls: 'icon-print',
+                    handler: function () {
+                        detail.find('.print_area').printThis();
+                    }
+                },{
+                    text: '关闭', iconCls: 'icon-cancel',
+                    handler: function () {
+                        detail.dialog('close');
+                    }
+                }]
+            });
+            detail.css('display', 'block');
+            detail.dialog('center');
         }
     });
 
