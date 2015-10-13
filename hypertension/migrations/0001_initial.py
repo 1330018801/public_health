@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('sign_bmi', models.FloatField(verbose_name=b'\xe4\xbd\x93\xe8\xb4\xa8\xe6\x8c\x87\xe6\x95\xb0')),
                 ('sign_bmi_next', models.FloatField(verbose_name=b'')),
                 ('sign_heart_rhythm', models.FloatField(verbose_name=b'\xe5\xbf\x83\xe7\x8e\x87')),
-                ('sign_extra', models.CharField(max_length=100, verbose_name=b'\xe5\x85\xb6\xe4\xbb\x96')),
+                ('sign_extra', models.CharField(max_length=100, null=True, verbose_name=b'\xe5\x85\xb6\xe4\xbb\x96', blank=True)),
                 ('life_style_guide_smoke', models.PositiveSmallIntegerField(verbose_name=b'\xe6\x97\xa5\xe5\x90\xb8\xe7\x83\x9f\xe9\x87\x8f')),
                 ('life_style_guide_smoke_next', models.PositiveSmallIntegerField(verbose_name=b'')),
                 ('life_style_guide_liquor', models.PositiveSmallIntegerField(verbose_name=b'\xe6\x97\xa5\xe9\xa5\xae\xe9\x85\x92\xe9\x87\x8f')),

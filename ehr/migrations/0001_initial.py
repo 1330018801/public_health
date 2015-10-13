@@ -105,6 +105,7 @@ class Migration(migrations.Migration):
                 ('tg', models.FloatField(null=True, verbose_name=b'\xe7\x94\x98\xe6\xb2\xb9\xe4\xb8\x89\xe8\x84\x82', blank=True)),
                 ('ldl_c', models.FloatField(null=True, verbose_name=b'\xe8\xa1\x80\xe6\xb8\x85\xe4\xbd\x8e\xe5\xaf\x86\xe5\xba\xa6\xe8\x84\x82\xe8\x9b\x8b\xe7\x99\xbd\xe8\x83\x86\xe5\x9b\xba\xe9\x86\x87', blank=True)),
                 ('hdl_c', models.FloatField(null=True, verbose_name=b'\xe8\xa1\x80\xe6\xb8\x85\xe9\xab\x98\xe5\xaf\x86\xe5\xba\xa6\xe8\x84\x82\xe8\x9b\x8b\xe7\x99\xbd\xe8\x83\x86\xe5\x9b\xba\xe9\x86\x87', blank=True)),
+                ('b_ultrasonic', models.CharField(max_length=200, null=True, verbose_name=b'\xe5\xbd\xa9\xe8\xb6\x85', blank=True)),
                 ('pinghe', models.CharField(blank=True, max_length=15, null=True, verbose_name=b'\xe5\xb9\xb3\xe5\x92\x8c\xe8\xb4\xa8', choices=[('\u662f', b'\xe6\x98\xaf'), ('\u57fa\u672c\u662f', b'\xe5\x9f\xba\xe6\x9c\xac\xe6\x98\xaf')])),
                 ('qixu', models.CharField(blank=True, max_length=15, null=True, verbose_name=b'\xe6\xb0\x94\xe8\x99\x9a\xe8\xb4\xa8', choices=[('\u662f', b'\xe6\x98\xaf'), ('\u503e\u5411\u662f', b'\xe5\x80\xbe\xe5\x90\x91\xe6\x98\xaf')])),
                 ('yangxu', models.CharField(blank=True, max_length=15, null=True, verbose_name=b'\xe9\x98\xb3\xe8\x99\x9a\xe8\xb4\xa8', choices=[('\u662f', b'\xe6\x98\xaf'), ('\u503e\u5411\u662f', b'\xe5\x80\xbe\xe5\x90\x91\xe6\x98\xaf')])),
