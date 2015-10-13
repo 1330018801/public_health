@@ -345,7 +345,7 @@ $(function() {
                 btn_rm.linkbutton('enable');
             }
         },
-        onAfterEdit: function() {
+        onAfterEdit: function(index, row) {
             var inserted = datagrid.datagrid('getChanges', 'inserted');
             var updated = datagrid.datagrid('getChanges', 'updated');
 
