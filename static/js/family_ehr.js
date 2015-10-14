@@ -221,6 +221,7 @@ $(function() {
                     $.messager.alert('提示', '请选择家族史—母亲患病情况', 'info');
                     return false;
                 }
+                /*
                 if(!personal_info_form.find('input[name=family_history_sibling]').is(":checked")){
                     $.messager.alert('提示', '请选择家族史—兄弟姐妹患病情况', 'info');
                     return false;
@@ -229,6 +230,7 @@ $(function() {
                     $.messager.alert('提示', '请选择家族史—子女患病情况', 'info');
                     return false;
                 }
+                */
                 if(!personal_info_form.find('input[name=genetic_disease]').is(":checked")){
                     $.messager.alert('提示', '请选择有无遗传病史', 'info');
                     return false;
@@ -243,10 +245,9 @@ $(function() {
                 }
             },
             success: function (data) {
-                var data_obj = eval('(' + data + ')');
-                if (data_obj.success) {
-                    $.messager.alert('提示', '个人基本信息表保存完成', 'info');
-                    //var personal_info_panel = ehr_accordion.accordion('getSelected');
+                var data = eval('(' + data + ')');
+                if (data.success) {
+                    $.messager.show({title: '提示', msg: '个人基本信息表保存完成', timeout: 1000});
                     personal_info_table.panel('refresh');
                     family_datagrid.datagrid('reload');
                 } else {
@@ -311,10 +312,9 @@ $(function() {
                 param.resident_id = selected_row['id'];
             },
             success: function (data) {
-                var data_obj = eval('(' + data + ')');
-                if (data_obj.success) {
-                    $.messager.alert('提示', '健康体检表保存完成', 'info');
-                    //var personal_info_panel = ehr_accordion.accordion('getSelected');
+                var data = eval('(' + data + ')');
+                if (data.success) {
+                    $.messager.show({title: '提示', msg: '健康体检表保存完成', timeout: 1000});
                     body_exam_table.panel('refresh');
                     family_datagrid.datagrid('reload');
                 } else {
@@ -503,20 +503,9 @@ $(function() {
             } else if (index == 1) {
                 if (selected_row != undefined) {
                     personal_info_table.panel({
-                        href: '/ehr/personal_info_review_new/', method: 'POST',
+                        href: '/ehr/personal_info_review/', method: 'POST',
                         queryParams: {resident_id: selected_row['id']}
                     });
-                    /*
-                    if (selected_row['ehr_no'] == null) {
-                        personal_info_save_btn.linkbutton('enable');
-                        personal_info_undo_btn.linkbutton('enable');
-                        personal_info_edit_btn.linkbutton('disable');
-                    } else {
-                        personal_info_edit_btn.linkbutton('enable');
-                        personal_info_save_btn.linkbutton('disable');
-                        personal_info_undo_btn.linkbutton('disable');
-                    }
-                    */
                 } else {
                     $.messager.alert('提示', '请在家庭成员列表中选择居民', 'info');
                 }
