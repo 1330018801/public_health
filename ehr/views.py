@@ -169,7 +169,7 @@ def personal_info_submit(request):
         if resident.ehr_no is None:
             ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
             ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
-            town_no = request.user.userprofile.clinic.region.town.id
+            town_no = request.user.userprofile.clinic.town_clinic.region.id
             resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
             resident.save()
         success = True
@@ -181,23 +181,15 @@ def personal_info_submit(request):
                         content_type='text/html; charset=UTF-8')
 
 
-def personal_info_table_new(request):
-    form = PersonalInfoForm()
-    content = render(request, 'ehr/personal_info_form_content.html', {'form': form}).content
-    return HttpResponse(content)
-
-
-def personal_info_review_new(request):
+def personal_info_review(request):
     resident_id = int(request.POST.get('resident_id'))
     resident = Resident.objects.get(id=resident_id)
     personal_info = resident.personal_info_table
     if personal_info:
-        debug.info(personal_info.id)
         form = PersonalInfoForm(instance=personal_info)
         return render(request, 'ehr/personal_info_review_content.html',
                       {'form': form, 'resident': resident})
     else:
-        debug.info('aaa')
         initial = {'identity': resident.identity, 'birthday': resident.birthday}
         form = PersonalInfoForm(initial=initial)
         return render(request, 'ehr/personal_info_form_content.html',
