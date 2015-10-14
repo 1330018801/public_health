@@ -34,6 +34,7 @@ $(function () {
                 success: function (json_data) {
                     var data = eval('(' + json_data + ')');
                     if (data.success) {
+                        table.panel('refresh');
                         $.messager.alert('提示', '第一次产前随访记录表暂存完成', 'info');
                     } else {
                         $.messager.alert('提示', '第一次产前随访记录表暂存失败', 'info');
