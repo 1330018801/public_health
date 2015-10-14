@@ -237,7 +237,9 @@ def body_exam_submit(request):
     else:
         debug.info(form.errors.as_data())
 
-    return JsonResponse({'success': success})
+    # return JsonResponse({'success': success})
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
 
 
 def record_list(request):
