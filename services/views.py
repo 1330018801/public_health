@@ -466,8 +466,7 @@ def real_read_card(request):
         if len(birthday) != 8:
             resident.birthday = '1900-01-01'
         else:
-            year = birthday[0:4], month = birthday[4:6], day = birthday[6:8]
-            resident.birthday = year + '-' + month + '-' + day
+            resident.birthday = birthday[0:4] + '-' + birthday[4:6] + '-' + birthday[6:8]
         resident.nation = nation
         resident.address = address
         resident.identity = identity
