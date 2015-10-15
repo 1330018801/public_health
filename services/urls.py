@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^break_service/$', views.break_the_service, name='break_service'),
     url(r'^svc_nav/$', views.svc_nav, name='svc_nav'),
     url(r'^doc_nav/$', views.doc_nav, name='doc_nav'),
+
     url(r'^doc_workload/$', views.doc_workload_page, name='doc_workload_page'),
     url(r'^doc_workload_list/$', views.doc_workload_list, name='doc_workload_list'),
     url(r'^record_detail_review/$', views.record_detail_review, name='record_detail_review'),

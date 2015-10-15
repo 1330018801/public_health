@@ -548,19 +548,19 @@ class BodyExamForm(ModelForm):
                                           'data-options': 'width: 40, min: 0, max: 20, precision: 1'}),
             'blood_platelets': TextInput(attrs={'class': 'easyui-numberbox',
                                                 'data-options': 'width: 40, min: 0, max: 600, precision: 1'}),
-            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:150'}),
+            'blood_routine_test_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:200'}),
 
             # 尿常规
             'urine_protein': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 80, validType: "posNeg"'}),
+                                              'data-options': 'width: 60, validType: "posNeg", required: true'}),
             'urine_glucose': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 80, validType: "posNeg"'}),
+                                              'data-options': 'width: 60, validType: "posNeg", required: true'}),
             'ketone_bodies': TextInput(attrs={'class': 'easyui-textbox',
-                                              'data-options': 'width: 80, validType: "posNeg"'}),
+                                              'data-options': 'width: 60, validType: "posNeg", required: true'}),
             'occult_blood': TextInput(attrs={'class': 'easyui-textbox',
-                                             'data-options': 'width: 80, validType: "posNeg"'}),
+                                             'data-options': 'width: 60, validType: "posNeg", required: true'}),
             'routine_urine_test_extra': TextInput(attrs={'class': 'easyui-textbox',
-                                                         'data-options': 'width: 80'}),
+                                                         'data-options': 'width: 200'}),
 
             # 血糖
             'blood_glucose_mmol': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 60'}),
@@ -602,7 +602,7 @@ class BodyExamForm(ModelForm):
 
             # 彩超
             'b_ultrasonic': TextInput(attrs={'class': 'easyui-textbox',
-                                             'data-options': 'width: 500'}),
+                                             'data-options': 'width: 500, required: true'}),
 
             # 中医体质辨识
             'pinghe': RadioSelect,      # 平和
