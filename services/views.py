@@ -356,6 +356,8 @@ def doc_workload_list(request):
             item['status'] = u'完成'
         elif record.status == WorkRecord.SUSPEND:
             item['status'] = u'暂存'
+        elif record.status == WorkRecord.SUSPEND_SUBMIT:
+            item['status'] = u'暂存/完成'
         try:
             record.modify_apply
         except ObjectDoesNotExist:
@@ -402,15 +404,13 @@ def record_detail_review(request):
             return render(request, 'pregnant/antenatal_1_form_content.html',
                           {'form': form, 'resident': record.resident})
 
-    elif record.status == WorkRecord.FINISHED:
+    elif record.status == WorkRecord.FINISHED or record.status == WorkRecord.SUSPEND_SUBMIT:
         return ehr_record_review(request)
 
 
 def suspend_submit(request):
     record_id = int(request.POST.get('record_id'))
     record = WorkRecord.objects.get(id=record_id)
-    record.status = WorkRecord.FINISHED
-    record.save()
     if record.service_item.alias == 'body_exam_table' and record.app_label == 'old':
         return old_body_exam_suspend_submit(request, record)
     if record.service_item.alias == 'body_exam_table' and record.app_label == 'psychiatric':
