@@ -136,6 +136,8 @@ def body_exam_suspend_submit(request, record):
         if created:
             debug.info('create a new record BodyExam !!!')
         body_exam_commit_workrecord(request, record.resident, result)
+        record.status = WorkRecord.SUSPEND_SUBMIT
+        record.save()
         success = True
     else:
         success = False

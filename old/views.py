@@ -35,13 +35,6 @@ def body_exam_form(request):
 
 
 def body_exam_suspend_submit(request, record):
-    result, created = BodyExam.objects.update_or_create(id=record.item_id, defaults=request.POST)
-    body_exam_commit_workrecord(request, record.resident, result)
-    return HttpResponse(simplejson.dumps({'success': True}),
-                        content_type='text/html; charset=UTF-8')
-
-
-def body_exam_suspend_submit(request, record):
     form = BodyExamForm(request.POST)
     if form.is_valid():
         submit_data = {field: value for field, value in form.cleaned_data.items() if value}
@@ -49,6 +42,8 @@ def body_exam_suspend_submit(request, record):
         if created:
             debug.info('create a new record BodyExam !!!')
         body_exam_commit_workrecord(request, record.resident, result)
+        record.status = WorkRecord.SUSPEND_SUBMIT
+        record.save()
         success = True
     else:
         success = False
