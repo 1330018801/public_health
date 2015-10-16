@@ -638,7 +638,7 @@ class WorkRecord(models.Model):
     # for evaluation
     NO_EVALUATION, UNSATISFIED, NORMAL, SATISFIED = (0, 1, 2, 3)
     # for status
-    BEGAN, SUSPEND, FINISHED, PAID, CANCELLED, ERROR = (1, 2, 3, 4, 5, 6)
+    BEGAN, SUSPEND, FINISHED, PAID, CANCELLED, ERROR, SUSPEND_SUBMIT = (1, 2, 3, 4, 5, 6, 7)
 
     provider = models.ForeignKey(User)
     resident = models.ForeignKey(Resident)

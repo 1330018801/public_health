@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 from management.models import Service, WorkRecord, Resident
-from .utils import get_resident
 from management.models import ModifyApply
 
 
@@ -409,8 +408,6 @@ def record_detail_review(request):
 def suspend_submit(request):
     record_id = int(request.POST.get('record_id'))
     record = WorkRecord.objects.get(id=record_id)
-    record.status = WorkRecord.FINISHED
-    record.save()
     if record.service_item.alias == 'body_exam_table' and record.app_label == 'old':
         return old_body_exam_suspend_submit(request, record)
     if record.service_item.alias == 'body_exam_table' and record.app_label == 'psychiatric':

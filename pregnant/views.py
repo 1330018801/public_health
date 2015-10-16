@@ -26,6 +26,8 @@ def aftercare_1_page(request):
 def aftercare_1_suspend_submit(request, record):
     result, created = Aftercare1.objects.update_or_create(id=record.item_id, defaults=request.POST)
     aftercare_1_commit_workrecord(request, record.resident, result)
+    record.status = WorkRecord.SUSPEND_SUBMIT
+    record.save()
     return HttpResponse(simplejson.dumps({'success': True}),
                         content_type='text/html; charset=UTF-8')
 
