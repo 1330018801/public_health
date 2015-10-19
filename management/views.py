@@ -860,7 +860,6 @@ def service_item_options(request):
             item['service_type_name'] = service_item.service_type.name
         json_items.append(item)
 
-    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
 
@@ -1381,7 +1380,6 @@ def get_role_authorize(request):
         if service.level == Service.SERVICE_ITEM:
             json_items.append(str(service.id))
 
-    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_items, safe=False)
 
@@ -1685,13 +1683,16 @@ def graphs(request):
 @login_required(login_url='/')
 def graph_workload(request):
     """
-    函数说明：工作量统计图
+    函数说明：工作量统计图，如果是全局管理员，查看到11个乡镇卫生院的工作量统计图，
+            如果是卫生院管理员，查看到该卫生院下属所有村卫生室的工作量统计图。
     """
     user = request.user
-    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':   # 卫生院管理员
         clinics = user.userprofile.clinic.village_clinics.all()
-    else:
+    else:                                                                       # 全局管理员
         clinics = Clinic.in_town.all()
+
+    t0 = datetime.now()
 
     workload = dict()
     for service_type in Service.types.all():
@@ -1699,6 +1700,9 @@ def graph_workload(request):
         for clinic in clinics:
             workload[service_type.name][clinic.name] = 0
 
+    t1 = datetime.now()
+    debug.info('Time interval 1: {}'.format(t1 - t0))
+    '''
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
         if record.service_item and record.service_item.is_service_item:  # 计费项目
             try:
@@ -1709,6 +1713,16 @@ def graph_workload(request):
                 if clinic in clinics:
                     service_type = record.service_item.service_type
                     workload[service_type.name][clinic.name] += 1
+    '''
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, service_item__isnull=False,
+                                            provider__userprofile__clinic__in=clinics):
+        if record.service_item.is_service_item:
+            service_type = record.service_item.service_type
+            clinic = record.provider.userprofile.clinic
+            workload[service_type.name][clinic.name] += 1
+
+    t2 = datetime.now()
+    debug.info('Time interval 2: {}'.format(t2 - t1))
 
     clinics = workload.values()[0].keys()
     series = [{"name": key, "data": value.values()} for key, value in workload.items()]
@@ -1728,11 +1742,16 @@ def graph_payment(request):
     else:
         clinics = Clinic.in_town.all()
 
+    t0 = datetime.now()
+
     payment = dict()
     for clinic in clinics:
         payment[clinic.name] = 0
 
-    total_payment = 0
+    t1 = datetime.now()
+    debug.info("The interval 3: {}".format(t1 - t0))
+
+    '''
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
         if record.service_item and record.service_item.is_service_item:
             try:
@@ -1744,8 +1763,20 @@ def graph_payment(request):
                     if record.service_item.price:
                         payment[clinic.name] += record.service_item.price
                         total_payment += record.service_item.price
+    '''
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                            service_item__isnull=False,
+                                            provider__userprofile__clinic__in=clinics,
+                                            service_item__price__isnull=False):
+        if record.service_item.is_service_item:
+            clinic = record.provider.userprofile.clinic
+            payment[clinic.name] += record.service_item.price
 
-    total_payment *= 1.0
+    total_payment = sum(payment.values()) * 1.0
+
+    t2 = datetime.now()
+    debug.info("The interval 4: {}".format(t2 - t1))
+
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
 
     return HttpResponse(simplejson.dumps(percent), content_type='text/html; charset=UTF-8')
