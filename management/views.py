@@ -2074,20 +2074,16 @@ def payment_town_clinics_datagrid(request):
     for town_clinic in Clinic.in_town.all():
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    payment['合计'] = dict()
-    for service_type in Service.types.all():
-        payment['合计'][service_type.alias] = 0
+    payment['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time()):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-                service_type = record.service_item.service_type
-                payment[town_clinic.name][service_type.alias] += record.service_item.price
-                payment['合计'][service_type.alias] += record.service_item.price
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                payment[town_clinic.name][service_type.alias] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    provider__userprofile__clinic__town_clinic=town_clinic,
+                    service_item=service_item).count() * service_item.price
+            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in payment.items():
@@ -2122,13 +2118,16 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
     payment = collections.OrderedDict()
     town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
 
-    for village_clinic in town_clinic.village_clinics.all():
-        payment[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
+    clinics = town_clinic.village_clinics.all()
+    services = Service.types.all()
 
-    payment['合计'] = dict()
-    for service_type in Service.types.all():
-        payment['合计'][service_type.alias] = 0
+    for clinic in clinics:
+        payment[clinic.name] = {service_type.alias: 0 for service_type in services}
 
+    payment['合计'] = {service_type.alias: 0 for service_type in services}
+
+    # t0 = datetime.now()
+    '''
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time()):
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
@@ -2140,6 +2139,18 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
                     service_type = record.service_item.service_type
                     payment[clinic.name][service_type.alias] += record.service_item.price
                     payment['合计'][service_type.alias] += record.service_item.price
+    '''
+    for clinic in clinics:
+        for service_type in services:
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                payment[clinic.name][service_type.alias] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    provider__userprofile__clinic=clinic,
+                    service_item=service_item).count() * service_item.price
+            payment['合计'][service_type.alias] += payment[clinic.name][service_type.alias]
+
+    # t1 = datetime.now()
+    # debug.info("******************************************************{}".format(t1 - t0))
 
     json_data = []
     for key, value in payment.items():
