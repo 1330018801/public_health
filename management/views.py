@@ -1693,11 +1693,8 @@ def graph_workload(request):
     else:
         clinics = Clinic.in_town.all()
 
-    workload = dict()
-    for service_type in Service.types.all():
-        workload[service_type.name] = dict()
-        for clinic in clinics:
-            workload[service_type.name][clinic.name] = 0
+    workload = {service_type.name: {clinic.name: 0 for clinic in clinics}
+                for service_type in Service.types.all()}
 
     for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
         if record.service_item and record.service_item.is_service_item:  # 计费项目
@@ -1784,13 +1781,10 @@ def workload_town_clinics_datagrid(request):
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
     workload = collections.OrderedDict()
-
     for town_clinic in Clinic.in_town.all():
         workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
@@ -1839,22 +1833,15 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
     for village_clinic in town_clinic.village_clinics.all():
         workload[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
-    for record in records:
-        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-            try:
-                clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                service_type = record.service_item.service_type
-                if clinic.town_clinic == town_clinic:
-                    workload[clinic.name][service_type.alias] += 1
-                    workload['合计'][service_type.alias] += 1
+    for village_clinic in town_clinic.village_clinics.all():
+        for service_type in Service.types.all():
+            workload[village_clinic.name][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider__userprofile__clinic=village_clinic).count()
+            workload['合计'][service_type.alias] += workload[village_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
