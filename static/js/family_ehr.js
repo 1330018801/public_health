@@ -119,7 +119,7 @@ $(function() {
                             $('#resident').html(data.message);
                             $.messager.show({title: '提示', msg: '当前服务对象切换为' + data.message, timeout: 1000});
                             selected_row = undefined;
-                            chg_resident_btn.linkbutton('disabled');
+                            chg_resident_btn.linkbutton('disable');
                         } else {
                             $.messager.alert('提示', '服务对象切换失败', 'warning');
                         }
