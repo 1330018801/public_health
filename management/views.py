@@ -1879,22 +1879,15 @@ def workload_doctors_datagrid(request, clinic_id):
     for doctor in clinic.users.all():
         workload[doctor.user.username] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
-    for record in records:
-        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-            try:
-                provider_clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                if provider_clinic == clinic:  # 指定医疗机构的服务记录被累加
-                    service_type = record.service_item.service_type
-                    workload[record.provider.username][service_type.alias] += 1
-                    workload['合计'][service_type.alias] += 1
+    for doctor in clinic.users.all():
+        for service_type in Service.types.all():
+            workload[doctor.user.username][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider=doctor.user).count()
+            workload['合计'][service_type.alias] += workload[doctor.user.username][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
@@ -1926,7 +1919,7 @@ def workload_list_datagrid(request, provider_id):
     函数说明：某指定医生工作记录，在easyui的datagrid中列表显示
     """
     provider = User.objects.get(id=int(provider_id))
-    records = WorkRecord.objects.filter(provider=provider).order_by('-submit_time')
+    records = WorkRecord.objects.filter(provider=provider, status=WorkRecord.FINISHED).order_by('-submit_time')
 
     json_items = []
     for record in records:
@@ -1950,6 +1943,9 @@ def workload_list_datagrid(request, provider_id):
             item['status'] = u'完成'
         elif record.status == WorkRecord.SUSPEND:
             item['status'] = u'暂存'
+        elif record.status == WorkRecord.SUSPEND_SUBMIT:
+            item['status'] == u'暂存/完成'
+
         json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
