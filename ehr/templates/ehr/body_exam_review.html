@@ -61,6 +61,10 @@
     {% if form.hdl_c %}血清高密度脂蛋白胆固醇&nbsp;{{ form.hdl_c }}mmol/L{% endif %}
 {% endblock %}
 
+{% block b_ultrasonic %}
+    {% if form.b_ultrasonic %}{{ form.b_ultrasonic }}{% endif %}
+{% endblock %}
+
 # 总胆红素
 {% block total_bilirubin %}
         &nbsp;{% if form.tbil %}{{ form.tbil }}&#956mol/L{% endif %}&nbsp;&nbsp;

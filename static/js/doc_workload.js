@@ -36,14 +36,16 @@ $(function() {
         if ($(this).linkbutton('options').disabled == false) {
             if (selected_row['service_item'] == '第一次产前随访') {
                 form.form('submit', {
-                    url: '/pregnant/aftercare_1_submit/', method: 'POST',
+                    url: '/services/suspend_submit/', method: 'POST',
                     onSubmit: function (param) {
+                        param.record_id = selected_row['id'];
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
                     },
                     success: function (json_data) {
                         var data = eval('(' + json_data + ')');
                         if (data.success) {
                             table.panel('refresh');
+                            datagrid.datagrid('reload');
                             $.messager.show({title: '提示', msg: '第一次产前随访记录保存成功', timeout: 1000});
                         } else {
                             $.messager.alert('提示', '第一次产前随访记录保存失败', 'info');
@@ -53,14 +55,16 @@ $(function() {
             }
             if (selected_row['service_item'] == '精神病患者健康体检') {
                 form.form('submit', {
-                    url: '/psychiatric/body_exam_submit/', method: 'POST',
+                    url: '/services/suspend_submit/', method: 'POST',
                     onSubmit: function (param) {
+                        param.record_id = selected_row['id'];
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
                     },
                     success: function (json_data) {
                         var data = eval('(' + json_data + ')');
                         if (data.success) {
                             table.panel('refresh');
+                            datagrid.datagrid('reload');
                             $.messager.show({title: '提示', msg: '重性精神疾病患者健康体检保存成功', timeout: 1000});
                         } else {
                             $.messager.alert('提示', '重性精神疾病患者健康体检保存失败', 'info');
@@ -70,14 +74,16 @@ $(function() {
             }
             if (selected_row['service_item'] == '老年人健康体检') {
                 form.form('submit', {
-                    url: '/old/body_exam_submit/', method: 'POST',
+                    url: '/services/suspend_submit/', method: 'POST',
                     onSubmit: function (param) {
+                        param.record_id = selected_row['id'];
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
                     },
                     success: function (json_data) {
                         var data = eval('(' + json_data + ')');
                         if (data.success) {
                             table.panel('refresh');
+                            datagrid.datagrid('reload');
                             $.messager.show({title: '提示', msg: '老年人健康体检保存成功', timeout: 1000});
                         } else {
                             $.messager.alert('提示', '老年人健康体检保存失败', 'info');
