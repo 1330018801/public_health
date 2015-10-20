@@ -183,7 +183,7 @@ def workload_sheet(request, clinic_id):
     for service_type in Service.types.all():
         workload['合计'][service_type.alias] = 0
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
+    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
     for record in records:
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
@@ -1774,7 +1774,7 @@ def workload_town_clinics_page(request):
     return render(request, 'management/workload_town_clinics_page.html')
 
 
-from services.utils import new_year_day
+from services.utils import new_year_time
 import collections
 
 
@@ -1792,16 +1792,13 @@ def workload_town_clinics_datagrid(request):
     for service_type in Service.types.all():
         workload['合计'][service_type.alias] = 0
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-                service_type = record.service_item.service_type
-                workload[town_clinic.name][service_type.alias] += 1
-                workload['合计'][service_type.alias] += 1
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            workload[town_clinic.name][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider__userprofile__clinic__town_clinic=town_clinic).count()
+            workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
@@ -1846,7 +1843,7 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
     for service_type in Service.types.all():
         workload['合计'][service_type.alias] = 0
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
+    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
     for record in records:
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
@@ -1899,7 +1896,7 @@ def workload_doctors_datagrid(request, clinic_id):
     for service_type in Service.types.all():
         workload['合计'][service_type.alias] = 0
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
+    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
     for record in records:
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
@@ -2045,7 +2042,7 @@ def payment_town_clinics_datagrid(request):
     for service_type in Service.types.all():
         payment['合计'][service_type.alias] = 0
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time()):
         try:
             town_clinic = record.provider.userprofile.clinic.town_clinic
         except ObjectDoesNotExist:
@@ -2096,7 +2093,7 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
     for service_type in Service.types.all():
         payment['合计'][service_type.alias] = 0
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time()):
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
                 clinic = record.provider.userprofile.clinic
