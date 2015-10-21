@@ -1721,8 +1721,9 @@ def graph_workload(request):
         for clinic in clinics:
             for service_type in Service.types.all():
                 workload[service_type.name][clinic.name] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, service_item__level=Service.SERVICE_ITEM,
-                    service_item__service_type=service_type, provider__userprofile__clinic__town_clinic=clinic).count()
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                    provider__userprofile__clinic__town_clinic=clinic).count()
     else:
         for clinic in clinics:
             for service_type in Service.types.all():
@@ -1752,30 +1753,6 @@ def graph_payment(request):
 
     payment = dict()
 
-    t1 = datetime.now()
-
-    '''
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
-        if record.service_item and record.service_item.is_service_item:
-            try:
-                clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                if record.service_item.price:
-                    if clinic in clinics:
-                        payment[clinic.name] += record.service_item.price
-                    elif clinic.town_clinic in clinics:
-                        payment[clinic.town_clinic.name] += record.service_item.price
-
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                            service_item__isnull=False,
-                                            service_item__level=Service.SERVICE_ITEM,
-                                            provider__userprofile__clinic__town_clinic__in=clinics):
-        clinic = record.provider.userprofile.clinic.town_clinic
-        payment[clinic.name] += record.service_item.price
-    '''
-
     if global_admin:
         for clinic in clinics:
             payment[clinic.name] = 0
@@ -1792,10 +1769,6 @@ def graph_payment(request):
                     provider__userprofile__clinic=clinic).count() * service_item.price
 
     total_payment = sum(payment.values()) * 1.0
-
-    t2 = datetime.now()
-    debug.info("The interval 4: {}".format(t2 - t1))
-
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
 
     return HttpResponse(simplejson.dumps(percent), content_type='text/html; charset=UTF-8')
