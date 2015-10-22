@@ -50,12 +50,11 @@ def excel_file(request):
     return response
 
 
-@login_required(login_url='/')
-def excel_new(request):
+def excel_sheets(request):
     workbook = xlwt.Workbook()
 
     # 工作量报表
-    sheet_workload = workbook.add_sheet('workload')
+    sheet_workload = workbook.add_sheet(u'工作量统计')
     sheet_workload.write(0, 0, smart_unicode('医疗机构'))
     sheet_workload.write(0, 1, smart_unicode('健康教育'))
     sheet_workload.write(0, 2, smart_unicode('预防接种'))
@@ -71,15 +70,34 @@ def excel_new(request):
     sheet_workload.write(0, 12, smart_unicode('合计'))
 
     # 计算工作量的函数，获取工作量
+    clinics = Clinic.in_town.all().order_by('id')
+    workload = dict()
+    for clinic in Clinic.in_town.all().order_by('id'):
+        workload[clinic.name] = dict()
+        for service_type in Service.types.all().order_by('id'):
+            workload[clinic.name][service_type.name] = 0
+
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, service_item__isnull=False,
+                                            provider__userprofile__clinic__in=clinics):
+        if record.service_item.is_service_item:
+            service_type = record.service_item.service_type
+            clinic = record.provider.userprofile.clinic
+            workload[clinic.name][service_type.name] += 1
+
+    for i, clinic in enumerate(Service.types.all().order_by('id')):
+        sheet_workload.write(i + 1, 0, smart_unicode(clinic.name))
+
+    '''
     records = WorkRecord.objects.all()
     for i, record in enumerate(records):
         sheet_workload.write(i + 1, 0, smart_unicode(record.provider.username))
         sheet_workload.write(i + 1, 1, smart_unicode(record.resident.name))
         sheet_workload.write(i + 1, 2, smart_unicode(record.service_item.name))
         sheet_workload.write(i + 1, 3, smart_unicode(record.submit_time))
+    '''
 
     # 支付费用报表
-    sheet_payment = workbook.add_sheet('payment')
+    sheet_payment = workbook.add_sheet(u'支付金额统计')
     sheet_payment.write(0, 0, smart_unicode('医疗机构'))
     sheet_payment.write(0, 1, smart_unicode('健康教育'))
     sheet_payment.write(0, 2, smart_unicode('预防接种'))
@@ -95,12 +113,14 @@ def excel_new(request):
     sheet_payment.write(0, 12, smart_unicode('合计'))
 
     # 计算支付费用的函数，获取支付费用
+    '''
     records = WorkRecord.objects.all()
     for i, record in enumerate(records):
         sheet_payment.write(i + 1, 0, smart_unicode(record.provider.username))
         sheet_payment.write(i + 1, 1, smart_unicode(record.resident.name))
         sheet_payment.write(i + 1, 2, smart_unicode(record.service_item.name))
         sheet_payment.write(i + 1, 3, smart_unicode(record.submit_time))
+    '''
 
     response = HttpResponse(content_type="application/vnd.ms-excel")
     response['Content-Disposition'] = 'attachment; filename=work_recode.xls'
@@ -183,7 +203,7 @@ def workload_sheet(request, clinic_id):
     for service_type in Service.types.all():
         workload['合计'][service_type.alias] = 0
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
+    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time())
     for record in records:
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
@@ -860,7 +880,6 @@ def service_item_options(request):
             item['service_type_name'] = service_item.service_type.name
         json_items.append(item)
 
-    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
 
@@ -1381,7 +1400,6 @@ def get_role_authorize(request):
         if service.level == Service.SERVICE_ITEM:
             json_items.append(str(service.id))
 
-    debug.info(len(json_items))
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
     # return JsonResponse(json_items, safe=False)
 
@@ -1685,30 +1703,33 @@ def graphs(request):
 @login_required(login_url='/')
 def graph_workload(request):
     """
-    函数说明：工作量统计图
+    函数说明：工作量统计图，如果是全局管理员，查看到11个乡镇卫生院的工作量统计图，
+            如果是卫生院管理员，查看到该卫生院下属所有村卫生室的工作量统计图。
     """
     user = request.user
-    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':   # 卫生院管理员
+        global_admin = False
         clinics = user.userprofile.clinic.village_clinics.all()
-    else:
+    else:                                                                       # 全局管理员
+        global_admin = True
         clinics = Clinic.in_town.all()
 
-    workload = dict()
-    for service_type in Service.types.all():
-        workload[service_type.name] = dict()
-        for clinic in clinics:
-            workload[service_type.name][clinic.name] = 0
+    workload = {service_type.name: {clinic.name: 0 for clinic in clinics}
+                for service_type in Service.types.all()}
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
-        if record.service_item and record.service_item.is_service_item:  # 计费项目
-            try:
-                clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                if clinic in clinics:
-                    service_type = record.service_item.service_type
-                    workload[service_type.name][clinic.name] += 1
+    if global_admin:
+        for clinic in clinics:
+            for service_type in Service.types.all():
+                workload[service_type.name][clinic.name] = WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                    provider__userprofile__clinic__town_clinic=clinic).count()
+    else:
+        for clinic in clinics:
+            for service_type in Service.types.all():
+                workload[service_type.name][clinic.name] = WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, service_item__level=Service.SERVICE_ITEM,
+                    service_item__service_type=service_type, provider__userprofile__clinic=clinic).count()
 
     clinics = workload.values()[0].keys()
     series = [{"name": key, "data": value.values()} for key, value in workload.items()]
@@ -1724,28 +1745,30 @@ def graph_payment(request):
     """
     user = request.user
     if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+        global_admin = False
         clinics = user.userprofile.clinic.village_clinics.all()
     else:
+        global_admin = True
         clinics = Clinic.in_town.all()
 
     payment = dict()
-    for clinic in clinics:
-        payment[clinic.name] = 0
 
-    total_payment = 0
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED):
-        if record.service_item and record.service_item.is_service_item:
-            try:
-                clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                if clinic in clinics:
-                    if record.service_item.price:
-                        payment[clinic.name] += record.service_item.price
-                        total_payment += record.service_item.price
+    if global_admin:
+        for clinic in clinics:
+            payment[clinic.name] = 0
+            for service_item in Service.items.all():
+                payment[clinic.name] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, service_item=service_item,
+                    provider__userprofile__clinic__town_clinic=clinic).count() * service_item.price
+    else:
+        for clinic in clinics:
+            payment[clinic.name] = 0
+            for service_item in Service.items.all():
+                payment[clinic.name] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, service_item=service_item,
+                    provider__userprofile__clinic=clinic).count() * service_item.price
 
-    total_payment *= 1.0
+    total_payment = sum(payment.values()) * 1.0
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
 
     return HttpResponse(simplejson.dumps(percent), content_type='text/html; charset=UTF-8')
@@ -1774,7 +1797,7 @@ def workload_town_clinics_page(request):
     return render(request, 'management/workload_town_clinics_page.html')
 
 
-from services.utils import new_year_day
+from services.utils import new_year_time
 import collections
 
 
@@ -1784,24 +1807,18 @@ def workload_town_clinics_datagrid(request):
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
     workload = collections.OrderedDict()
-
     for town_clinic in Clinic.in_town.all():
         workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-                service_type = record.service_item.service_type
-                workload[town_clinic.name][service_type.alias] += 1
-                workload['合计'][service_type.alias] += 1
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            workload[town_clinic.name][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider__userprofile__clinic__town_clinic=town_clinic).count()
+            workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
@@ -1842,22 +1859,15 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
     for village_clinic in town_clinic.village_clinics.all():
         workload[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
-    for record in records:
-        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-            try:
-                clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                service_type = record.service_item.service_type
-                if clinic.town_clinic == town_clinic:
-                    workload[clinic.name][service_type.alias] += 1
-                    workload['合计'][service_type.alias] += 1
+    for village_clinic in town_clinic.village_clinics.all():
+        for service_type in Service.types.all():
+            workload[village_clinic.name][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider__userprofile__clinic=village_clinic).count()
+            workload['合计'][service_type.alias] += workload[village_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
@@ -1895,22 +1905,15 @@ def workload_doctors_datagrid(request, clinic_id):
     for doctor in clinic.users.all():
         workload[doctor.user.username] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    workload['合计'] = dict()
-    for service_type in Service.types.all():
-        workload['合计'][service_type.alias] = 0
+    workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    records = WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day())
-    for record in records:
-        if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-            try:
-                provider_clinic = record.provider.userprofile.clinic
-            except ObjectDoesNotExist:
-                pass
-            else:
-                if provider_clinic == clinic:  # 指定医疗机构的服务记录被累加
-                    service_type = record.service_item.service_type
-                    workload[record.provider.username][service_type.alias] += 1
-                    workload['合计'][service_type.alias] += 1
+    for doctor in clinic.users.all():
+        for service_type in Service.types.all():
+            workload[doctor.user.username][service_type.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
+                provider=doctor.user).count()
+            workload['合计'][service_type.alias] += workload[doctor.user.username][service_type.alias]
 
     json_data = []
     for key, value in workload.items():
@@ -1942,7 +1945,7 @@ def workload_list_datagrid(request, provider_id):
     函数说明：某指定医生工作记录，在easyui的datagrid中列表显示
     """
     provider = User.objects.get(id=int(provider_id))
-    records = WorkRecord.objects.filter(provider=provider).order_by('-submit_time')
+    records = WorkRecord.objects.filter(provider=provider, status=WorkRecord.FINISHED).order_by('-submit_time')
 
     json_items = []
     for record in records:
@@ -1966,6 +1969,9 @@ def workload_list_datagrid(request, provider_id):
             item['status'] = u'完成'
         elif record.status == WorkRecord.SUSPEND:
             item['status'] = u'暂存'
+        elif record.status == WorkRecord.SUSPEND_SUBMIT:
+            item['status'] = u'暂存/完成'
+
         json_items.append(item)
 
     return JsonResponse(json_items, safe=False)
@@ -2041,20 +2047,16 @@ def payment_town_clinics_datagrid(request):
     for town_clinic in Clinic.in_town.all():
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    payment['合计'] = dict()
-    for service_type in Service.types.all():
-        payment['合计'][service_type.alias] = 0
+    payment['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
-        try:
-            town_clinic = record.provider.userprofile.clinic.town_clinic
-        except ObjectDoesNotExist:
-            pass
-        else:
-            if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
-                service_type = record.service_item.service_type
-                payment[town_clinic.name][service_type.alias] += record.service_item.price
-                payment['合计'][service_type.alias] += record.service_item.price
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                payment[town_clinic.name][service_type.alias] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    provider__userprofile__clinic__town_clinic=town_clinic,
+                    service_item=service_item).count() * service_item.price
+            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
 
     json_data = []
     for key, value in payment.items():
@@ -2089,14 +2091,17 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
     payment = collections.OrderedDict()
     town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
 
-    for village_clinic in town_clinic.village_clinics.all():
-        payment[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
+    clinics = town_clinic.village_clinics.all()
+    services = Service.types.all()
 
-    payment['合计'] = dict()
-    for service_type in Service.types.all():
-        payment['合计'][service_type.alias] = 0
+    for clinic in clinics:
+        payment[clinic.name] = {service_type.alias: 0 for service_type in services}
 
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_day()):
+    payment['合计'] = {service_type.alias: 0 for service_type in services}
+
+    # t0 = datetime.now()
+    '''
+    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, submit_time__gte=new_year_time()):
         if record.service_item and record.service_item.is_service_item:  # 这是一个计费项目
             try:
                 clinic = record.provider.userprofile.clinic
@@ -2107,6 +2112,18 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
                     service_type = record.service_item.service_type
                     payment[clinic.name][service_type.alias] += record.service_item.price
                     payment['合计'][service_type.alias] += record.service_item.price
+    '''
+    for clinic in clinics:
+        for service_type in services:
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                payment[clinic.name][service_type.alias] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    provider__userprofile__clinic=clinic,
+                    service_item=service_item).count() * service_item.price
+            payment['合计'][service_type.alias] += payment[clinic.name][service_type.alias]
+
+    # t1 = datetime.now()
+    # debug.info("******************************************************{}".format(t1 - t0))
 
     json_data = []
     for key, value in payment.items():

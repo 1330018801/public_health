@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 
 from management.models import Service, WorkRecord, Resident
-from .utils import get_resident
 from management.models import ModifyApply
 
 
