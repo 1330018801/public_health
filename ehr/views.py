@@ -271,13 +271,17 @@ def record_detail_review(request):
     else:
         item_alias = record.service_item.alias
 
-    if item_alias == 'body_exam_table' or item_alias == 'constitution_identification':
+    if item_alias == 'body_exam_table' \
+            or item_alias == 'constitution_identification' \
+            or item_alias == 'physical_examination':
         model_obj = apps.get_model(app_label='ehr', model_name=record.model_name)
     else:
         model_obj = apps.get_model(app_label=record.app_label, model_name=record.model_name)
 
     form = model_obj.objects.get(id=record.item_id)
-    if item_alias == 'body_exam_table' or item_alias == 'constitution_identification':
+    if item_alias == 'body_exam_table' \
+            or item_alias == 'constitution_identification' \
+            or item_alias == 'physical_examination':
         template = 'ehr/body_exam_review.html'
     elif record.app_label == 'vaccine' and record.service_item.alias != 'vaccine_card':
         template = 'vaccine/vaccine_review.html'
