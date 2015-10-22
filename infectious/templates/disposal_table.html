@@ -1,0 +1,32 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}传染病和突发公共卫生事件处理{% endblock %}
+
+{% block table_neck %}{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>病人医疗救治和管理</b></label></td>
+        <td colspan="9">{% block patient_cure_management %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>传染病接触者和健康危害暴露人群的管理</b></label></td>
+        <td colspan="9">{% block in_contact_management %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>流行病学调查</b></label></td>
+        <td colspan="9">{% block epidemiology_survey %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>疫点疫区处理</b></label></td>
+        <td colspan="9">{% block epidemic_disposal %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>应急接种和预防性服务</b></label></td>
+        <td colspan="9">{% block inoculation_prophylaxis %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>宣传教育</b></label></td>
+        <td colspan="9">{% block publicity_education %}{% endblock %}</td>
+    </tr>
+{% endblock %}

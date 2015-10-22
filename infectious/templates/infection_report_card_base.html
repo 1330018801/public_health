@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        td{
+            border:none;
+        }
+    </style>
+</head>
+<body>
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <td colspan="16"><label for="">患者姓名*：</label>
+            {% block act_time %}{% endblock %}（患儿家长姓名：{% block child_patient_parent_name %}{% endblock %}）
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">身份证号：</label>
+            {% block act_type %}{% endblock %}&nbsp;性别*：
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">出生日期：</label>
+            {% block subject %}{% endblock %}（如出生日期不详，实足年龄：{% block real_age %}{% endblock %}&nbsp;年龄单位：{% block age %}{% endblock %}{% block month %}{% endblock %}{% block day %}{% endblock %})
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">工作单位：</label>
+            {% block organizer %}{% endblock %}&nbsp;联系电话：{% block contact_numbers %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">病人属于*：</label>
+            {% block crowd_type %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">现住址（详填）*：</label>
+            {% block province %}{% endblock %}省{% block city %}{% endblock %}市{% block county %}{% endblock %}县（区）{% block countryside%}{% endblock %}乡（镇、街道）{% block village %}{% endblock %}村{% block address %}{% endblock %}（门牌号）
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">患者职业*：</label></td>
+    </tr>
+    <tr>
+        <td colspan="16">{% block photo %}{% endblock %}<br><br><br></td>
+    </tr>
+    <tr>
+        <td colspan="2" width="12.5%"><label for="">病例分类*：</label></td>
+        <td colspan="14">
+            ⑴{% block case_classification_1 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"  width="12.5%"><label for=""></label></td>
+        <td colspan="14">
+            ⑵{% block case_classification_2 %}{% endblock %}<br>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">发病日期*：</label>
+            {% block attack_date %}{% endblock %}（病原携带者填初检日期或就诊日期）
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">诊断日期*：</label>
+            {% block diagnosis_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16"><label for="">死亡日期：</label>
+            {% block die_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16" style="border: 1px solid grey;"><label for="">甲类传染病*：</label><br>{% block category_a_infection %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="16" style="border: 1px solid grey;"><label for="">乙类传染病*：</label><br>{% block category_b_infection %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="16" style="border: 1px solid grey;"><label for="">丙类传染病*：</label><br>{% block category_c_infection %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="16" style="border: 1px solid grey;"><label for="">其他法定管理以及重点监测传染病：</label><br>{% block extra_infection %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="8" width="50%"><label for="">订正病名：</label>
+            {% block correct_disease %}{% endblock %}
+        </td>
+        <td colspan="8"><label for="">退卡原因：</label>
+            {% block return_card_reason %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8" width="50%"><label for="">报告单位：</label>
+            {% block report_department %}{% endblock %}
+        </td>
+        <td colspan="8"><label for="">联系电话：</label>
+            {% block contact_numbers %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="8" width="50%"><label for="">报告医生：</label>
+            {% block report_doctor %}{% endblock %}
+        </td>
+        <td colspan="8"><label for="">填卡日期*：</label>
+            {% block fill_card_date %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="16" style="border: 1px solid grey;"><label for="">备注：</label><br>
+            {% block remarks %}{% endblock %}
+        </td>
+    </tr>
+</table>
+</body>
+</html>

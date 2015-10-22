@@ -1,0 +1,24 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}传染病疫情和突发公卫事件风险管理{% endblock %}
+
+{% block table_neck %}{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>风险排查</b></label></td>
+        <td colspan="9">{% block risk_inspection %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>风险信息</b></label></td>
+        <td colspan="9">{% block risk_information %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>风险评估</b></label></td>
+        <td colspan="9">{% block risk_evaluation %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="3" style="width: 25%;" align="center"><label><b>应急预案</b></label></td>
+        <td colspan="9">{% block contingency_plan %}{% endblock %}</td>
+    </tr>
+{% endblock %}
