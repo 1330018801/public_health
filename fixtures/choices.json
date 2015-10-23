@@ -1135,5 +1135,47 @@
     },
     "model": "child.guide1choices",
     "pk": "口腔保健"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoices",
+    "pk": "其他"
 }
 ]
