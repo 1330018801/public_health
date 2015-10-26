@@ -1,10 +1,2258 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'tcm/old_identify_table.html' %}
 
-</body>
-</html>
+{# 第1题 #}
+{% block q1_1 %}
+    {% if form.q1.value == 1 %}
+        {{ form.q1.value }}
+    {% elif form.q1.value == None %}
+        {% for item in form.q1 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q1_2 %}
+    {% if form.q1.value == 2 %}
+        {{ form.q1.value }}
+    {% elif form.q1.value == None %}
+        {% for item in form.q1 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q1_3 %}
+    {% if form.q1.value == 3 %}
+        {{ form.q1.value }}
+    {% elif form.q1.value == None %}
+        {% for item in form.q1 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q1_4 %}
+    {% if form.q1.value == 4 %}
+        {{ form.q1.value }}
+    {% elif form.q1.value == None %}
+        {% for item in form.q1 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q1_5 %}
+    {% if form.q1.value == 5 %}
+        {{ form.q1.value }}
+    {% elif form.q1.value == None %}
+        {% for item in form.q1 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第2题 #}
+{% block q2_1 %}
+    {% if form.q2.value == 1 %}
+        {{ form.q2.value }}
+    {% elif form.q2.value == None %}
+        {% for item in form.q2 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q2_2 %}
+    {% if form.q2.value == 2 %}
+        {{ form.q2.value }}
+    {% elif form.q2.value == None %}
+        {% for item in form.q2 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q2_3 %}
+    {% if form.q2.value == 3 %}
+        {{ form.q2.value }}
+    {% elif form.q2.value == None %}
+        {% for item in form.q2 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q2_4 %}
+    {% if form.q2.value == 4 %}
+        {{ form.q2.value }}
+    {% elif form.q2.value == None %}
+        {% for item in form.q2 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q2_5 %}
+    {% if form.q2.value == 5 %}
+        {{ form.q2.value }}
+    {% elif form.q2.value == None %}
+        {% for item in form.q2 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第3题 #}
+{% block q3_1 %}
+    {% if form.q3.value == 1 %}
+        {{ form.q3.value }}
+    {% elif form.q3.value == None %}
+        {% for item in form.q3 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q3_2 %}
+    {% if form.q3.value == 2 %}
+        {{ form.q3.value }}
+    {% elif form.q3.value == None %}
+        {% for item in form.q3 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q3_3 %}
+    {% if form.q3.value == 3 %}
+        {{ form.q3.value }}
+    {% elif form.q3.value == None %}
+        {% for item in form.q3 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q3_4 %}
+    {% if form.q3.value == 4 %}
+        {{ form.q3.value }}
+    {% elif form.q3.value == None %}
+        {% for item in form.q3 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q3_5 %}
+    {% if form.q3.value == 5 %}
+        {{ form.q3.value }}
+    {% elif form.q3.value == None %}
+        {% for item in form.q3 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第4题 #}
+{% block q4_1 %}
+    {% if form.q4.value == 1 %}
+        {{ form.q4.value }}
+    {% elif form.q4.value == None %}
+        {% for item in form.q4 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q4_2 %}
+    {% if form.q4.value == 2 %}
+        {{ form.q4.value }}
+    {% elif form.q4.value == None %}
+        {% for item in form.q4 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q4_3 %}
+    {% if form.q4.value == 3 %}
+        {{ form.q4.value }}
+    {% elif form.q4.value == None %}
+        {% for item in form.q4 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q4_4 %}
+    {% if form.q4.value == 4 %}
+        {{ form.q4.value }}
+    {% elif form.q4.value == None %}
+        {% for item in form.q4 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q4_5 %}
+    {% if form.q4.value == 5 %}
+        {{ form.q4.value }}
+    {% elif form.q4.value == None %}
+        {% for item in form.q4 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第5题 #}
+{% block q5_1 %}
+    {% if form.q5.value == 1 %}
+        {{ form.q5.value }}
+    {% elif form.q5.value == None %}
+        {% for item in form.q5 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q5_2 %}
+    {% if form.q5.value == 2 %}
+        {{ form.q5.value }}
+    {% elif form.q5.value == None %}
+        {% for item in form.q5 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q5_3 %}
+    {% if form.q5.value == 3 %}
+        {{ form.q5.value }}
+    {% elif form.q5.value == None %}
+        {% for item in form.q5 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q5_4 %}
+    {% if form.q5.value == 4 %}
+        {{ form.q5.value }}
+    {% elif form.q5.value == None %}
+        {% for item in form.q5 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q5_5 %}
+    {% if form.q5.value == 5 %}
+        {{ form.q5.value }}
+    {% elif form.q5.value == None %}
+        {% for item in form.q5 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第6题 #}
+{% block q6_1 %}
+    {% if form.q6.value == 1 %}
+        {{ form.q6.value }}
+    {% elif form.q6.value == None %}
+        {% for item in form.q6 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q6_2 %}
+    {% if form.q6.value == 2 %}
+        {{ form.q6.value }}
+    {% elif form.q6.value == None %}
+        {% for item in form.q6 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q6_3 %}
+    {% if form.q6.value == 3 %}
+        {{ form.q6.value }}
+    {% elif form.q6.value == None %}
+        {% for item in form.q6 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q6_4 %}
+    {% if form.q6.value == 4 %}
+        {{ form.q6.value }}
+    {% elif form.q6.value == None %}
+        {% for item in form.q6 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q6_5 %}
+    {% if form.q6.value == 5 %}
+        {{ form.q6.value }}
+    {% elif form.q6.value == None %}
+        {% for item in form.q6 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第7题 #}
+{% block q7_1 %}
+    {% if form.q7.value == 1 %}
+        {{ form.q7.value }}
+    {% elif form.q7.value == None %}
+        {% for item in form.q7 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q7_2 %}
+    {% if form.q7.value == 2 %}
+        {{ form.q7.value }}
+    {% elif form.q7.value == None %}
+        {% for item in form.q7 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q7_3 %}
+    {% if form.q7.value == 3 %}
+        {{ form.q7.value }}
+    {% elif form.q7.value == None %}
+        {% for item in form.q7 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q7_4 %}
+    {% if form.q7.value == 4 %}
+        {{ form.q7.value }}
+    {% elif form.q7.value == None %}
+        {% for item in form.q7 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q7_5 %}
+    {% if form.q7.value == 5 %}
+        {{ form.q7.value }}
+    {% elif form.q7.value == None %}
+        {% for item in form.q7 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第8题 #}
+{% block q8_1 %}
+    {% if form.q8.value == 1 %}
+        {{ form.q8.value }}
+    {% elif form.q8.value == None %}
+        {% for item in form.q8 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q8_2 %}
+    {% if form.q8.value == 2 %}
+        {{ form.q8.value }}
+    {% elif form.q8.value == None %}
+        {% for item in form.q8 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q8_3 %}
+    {% if form.q8.value == 3 %}
+        {{ form.q8.value }}
+    {% elif form.q8.value == None %}
+        {% for item in form.q8 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q8_4 %}
+    {% if form.q8.value == 4 %}
+        {{ form.q8.value }}
+    {% elif form.q8.value == None %}
+        {% for item in form.q8 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q8_5 %}
+    {% if form.q8.value == 5 %}
+        {{ form.q8.value }}
+    {% elif form.q8.value == None %}
+        {% for item in form.q8 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第9题 #}
+{% block q9_1 %}
+    {% if form.q9.value == 1 %}
+        {{ form.q9.value }}
+    {% elif form.q9.value == None %}
+        {% for item in form.q9 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q9_2 %}
+    {% if form.q9.value == 2 %}
+        {{ form.q9.value }}
+    {% elif form.q9.value == None %}
+        {% for item in form.q9 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q9_3 %}
+    {% if form.q9.value == 3 %}
+        {{ form.q9.value }}
+    {% elif form.q9.value == None %}
+        {% for item in form.q9 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q9_4 %}
+    {% if form.q9.value == 4 %}
+        {{ form.q9.value }}
+    {% elif form.q9.value == None %}
+        {% for item in form.q9 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q9_5 %}
+    {% if form.q9.value == 5 %}
+        {{ form.q9.value }}
+    {% elif form.q9.value == None %}
+        {% for item in form.q9 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第10题 #}
+{% block q10_1 %}
+    {% if form.q10.value == 1 %}
+        {{ form.q10.value }}
+    {% elif form.q10.value == None %}
+        {% for item in form.q10 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q10_2 %}
+    {% if form.q10.value == 2 %}
+        {{ form.q10.value }}
+    {% elif form.q10.value == None %}
+        {% for item in form.q10 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q10_3 %}
+    {% if form.q10.value == 3 %}
+        {{ form.q10.value }}
+    {% elif form.q10.value == None %}
+        {% for item in form.q10 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q10_4 %}
+    {% if form.q10.value == 4 %}
+        {{ form.q10.value }}
+    {% elif form.q10.value == None %}
+        {% for item in form.q10 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q10_5 %}
+    {% if form.q10.value == 5 %}
+        {{ form.q10.value }}
+    {% elif form.q10.value == None %}
+        {% for item in form.q10 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第11题 #}
+{% block q11_1 %}
+    {% if form.q11.value == 1 %}
+        {{ form.q11.value }}
+    {% elif form.q11.value == None %}
+        {% for item in form.q11 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q11_2 %}
+    {% if form.q11.value == 2 %}
+        {{ form.q11.value }}
+    {% elif form.q11.value == None %}
+        {% for item in form.q11 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q11_3 %}
+    {% if form.q11.value == 3 %}
+        {{ form.q11.value }}
+    {% elif form.q11.value == None %}
+        {% for item in form.q11 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q11_4 %}
+    {% if form.q11.value == 4 %}
+        {{ form.q11.value }}
+    {% elif form.q11.value == None %}
+        {% for item in form.q11 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q11_5 %}
+    {% if form.q11.value == 5 %}
+        {{ form.q11.value }}
+    {% elif form.q11.value == None %}
+        {% for item in form.q11 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第12题 #}
+{% block q12_1 %}
+    {% if form.q12.value == 1 %}
+        {{ form.q12.value }}
+    {% elif form.q12.value == None %}
+        {% for item in form.q12 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q12_2 %}
+    {% if form.q12.value == 2 %}
+        {{ form.q12.value }}
+    {% elif form.q12.value == None %}
+        {% for item in form.q12 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q12_3 %}
+    {% if form.q12.value == 3 %}
+        {{ form.q12.value }}
+    {% elif form.q12.value == None %}
+        {% for item in form.q12 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q12_4 %}
+    {% if form.q12.value == 4 %}
+        {{ form.q12.value }}
+    {% elif form.q12.value == None %}
+        {% for item in form.q12 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q12_5 %}
+    {% if form.q12.value == 5 %}
+        {{ form.q12.value }}
+    {% elif form.q12.value == None %}
+        {% for item in form.q12 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第13题 #}
+{% block q13_1 %}
+    {% if form.q13.value == 1 %}
+        {{ form.q13.value }}
+    {% elif form.q13.value == None %}
+        {% for item in form.q13 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q13_2 %}
+    {% if form.q13.value == 2 %}
+        {{ form.q13.value }}
+    {% elif form.q13.value == None %}
+        {% for item in form.q13 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q13_3 %}
+    {% if form.q13.value == 3 %}
+        {{ form.q13.value }}
+    {% elif form.q13.value == None %}
+        {% for item in form.q13 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q13_4 %}
+    {% if form.q13.value == 4 %}
+        {{ form.q13.value }}
+    {% elif form.q13.value == None %}
+        {% for item in form.q13 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q13_5 %}
+    {% if form.q13.value == 5 %}
+        {{ form.q13.value }}
+    {% elif form.q13.value == None %}
+        {% for item in form.q13 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第14题 #}
+{% block q14_1 %}
+    {% if form.q14.value == 1 %}
+        {{ form.q14.value }}
+    {% elif form.q14.value == None %}
+        {% for item in form.q14 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q14_2 %}
+    {% if form.q14.value == 2 %}
+        {{ form.q14.value }}
+    {% elif form.q14.value == None %}
+        {% for item in form.q14 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q14_3 %}
+    {% if form.q14.value == 3 %}
+        {{ form.q14.value }}
+    {% elif form.q14.value == None %}
+        {% for item in form.q14 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q14_4 %}
+    {% if form.q14.value == 4 %}
+        {{ form.q14.value }}
+    {% elif form.q14.value == None %}
+        {% for item in form.q14 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q14_5 %}
+    {% if form.q14.value == 5 %}
+        {{ form.q14.value }}
+    {% elif form.q14.value == None %}
+        {% for item in form.q14 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第15题 #}
+{% block q15_1 %}
+    {% if form.q15.value == 1 %}
+        {{ form.q15.value }}
+    {% elif form.q15.value == None %}
+        {% for item in form.q15 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q15_2 %}
+    {% if form.q15.value == 2 %}
+        {{ form.q15.value }}
+    {% elif form.q15.value == None %}
+        {% for item in form.q15 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q15_3 %}
+    {% if form.q15.value == 3 %}
+        {{ form.q15.value }}
+    {% elif form.q15.value == None %}
+        {% for item in form.q15 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q15_4 %}
+    {% if form.q15.value == 4 %}
+        {{ form.q15.value }}
+    {% elif form.q15.value == None %}
+        {% for item in form.q15 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q15_5 %}
+    {% if form.q15.value == 5 %}
+        {{ form.q15.value }}
+    {% elif form.q15.value == None %}
+        {% for item in form.q15 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第16题 #}
+{% block q16_1 %}
+    {% if form.q16.value == 1 %}
+        {{ form.q16.value }}
+    {% elif form.q16.value == None %}
+        {% for item in form.q16 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q16_2 %}
+    {% if form.q16.value == 2 %}
+        {{ form.q16.value }}
+    {% elif form.q16.value == None %}
+        {% for item in form.q16 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q16_3 %}
+    {% if form.q16.value == 3 %}
+        {{ form.q16.value }}
+    {% elif form.q16.value == None %}
+        {% for item in form.q16 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q16_4 %}
+    {% if form.q16.value == 4 %}
+        {{ form.q16.value }}
+    {% elif form.q16.value == None %}
+        {% for item in form.q16 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q16_5 %}
+    {% if form.q16.value == 5 %}
+        {{ form.q16.value }}
+    {% elif form.q16.value == None %}
+        {% for item in form.q16 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第17题 #}
+{% block q17_1 %}
+    {% if form.q17.value == 1 %}
+        {{ form.q17.value }}
+    {% elif form.q17.value == None %}
+        {% for item in form.q17 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q17_2 %}
+    {% if form.q17.value == 2 %}
+        {{ form.q17.value }}
+    {% elif form.q17.value == None %}
+        {% for item in form.q17 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q17_3 %}
+    {% if form.q17.value == 3 %}
+        {{ form.q17.value }}
+    {% elif form.q17.value == None %}
+        {% for item in form.q17 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q17_4 %}
+    {% if form.q17.value == 4 %}
+        {{ form.q17.value }}
+    {% elif form.q17.value == None %}
+        {% for item in form.q17 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q17_5 %}
+    {% if form.q17.value == 5 %}
+        {{ form.q17.value }}
+    {% elif form.q17.value == None %}
+        {% for item in form.q17 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第18题 #}
+{% block q18_1 %}
+    {% if form.q18.value == 1 %}
+        {{ form.q18.value }}
+    {% elif form.q18.value == None %}
+        {% for item in form.q18 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q18_2 %}
+    {% if form.q18.value == 2 %}
+        {{ form.q18.value }}
+    {% elif form.q18.value == None %}
+        {% for item in form.q18 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q18_3 %}
+    {% if form.q18.value == 3 %}
+        {{ form.q18.value }}
+    {% elif form.q18.value == None %}
+        {% for item in form.q18 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q18_4 %}
+    {% if form.q18.value == 4 %}
+        {{ form.q18.value }}
+    {% elif form.q18.value == None %}
+        {% for item in form.q18 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q18_5 %}
+    {% if form.q18.value == 5 %}
+        {{ form.q18.value }}
+    {% elif form.q18.value == None %}
+        {% for item in form.q18 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第19题 #}
+{% block q19_1 %}
+    {% if form.q19.value == 1 %}
+        {{ form.q19.value }}
+    {% elif form.q19.value == None %}
+        {% for item in form.q19 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q19_2 %}
+    {% if form.q19.value == 2 %}
+        {{ form.q19.value }}
+    {% elif form.q19.value == None %}
+        {% for item in form.q19 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q19_3 %}
+    {% if form.q19.value == 3 %}
+        {{ form.q19.value }}
+    {% elif form.q19.value == None %}
+        {% for item in form.q19 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q19_4 %}
+    {% if form.q19.value == 4 %}
+        {{ form.q19.value }}
+    {% elif form.q19.value == None %}
+        {% for item in form.q19 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q19_5 %}
+    {% if form.q19.value == 5 %}
+        {{ form.q19.value }}
+    {% elif form.q19.value == None %}
+        {% for item in form.q19 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第20题 #}
+{% block q20_1 %}
+    {% if form.q20.value == 1 %}
+        {{ form.q20.value }}
+    {% elif form.q20.value == None %}
+        {% for item in form.q20 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q20_2 %}
+    {% if form.q20.value == 2 %}
+        {{ form.q20.value }}
+    {% elif form.q20.value == None %}
+        {% for item in form.q20 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q20_3 %}
+    {% if form.q20.value == 3 %}
+        {{ form.q20.value }}
+    {% elif form.q20.value == None %}
+        {% for item in form.q20 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q20_4 %}
+    {% if form.q20.value == 4 %}
+        {{ form.q20.value }}
+    {% elif form.q20.value == None %}
+        {% for item in form.q20 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q20_5 %}
+    {% if form.q20.value == 5 %}
+        {{ form.q20.value }}
+    {% elif form.q20.value == None %}
+        {% for item in form.q20 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第21题 #}
+{% block q21_1 %}
+    {% if form.q21.value == 1 %}
+        {{ form.q21.value }}
+    {% elif form.q21.value == None %}
+        {% for item in form.q21 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q21_2 %}
+    {% if form.q21.value == 2 %}
+        {{ form.q21.value }}
+    {% elif form.q21.value == None %}
+        {% for item in form.q21 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q21_3 %}
+    {% if form.q21.value == 3 %}
+        {{ form.q21.value }}
+    {% elif form.q21.value == None %}
+        {% for item in form.q21 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q21_4 %}
+    {% if form.q21.value == 4 %}
+        {{ form.q21.value }}
+    {% elif form.q21.value == None %}
+        {% for item in form.q21 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q21_5 %}
+    {% if form.q21.value == 5 %}
+        {{ form.q21.value }}
+    {% elif form.q21.value == None %}
+        {% for item in form.q21 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第22题 #}
+{% block q22_1 %}
+    {% if form.q22.value == 1 %}
+        {{ form.q22.value }}
+    {% elif form.q22.value == None %}
+        {% for item in form.q22 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q22_2 %}
+    {% if form.q22.value == 2 %}
+        {{ form.q22.value }}
+    {% elif form.q22.value == None %}
+        {% for item in form.q22 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q22_3 %}
+    {% if form.q22.value == 3 %}
+        {{ form.q22.value }}
+    {% elif form.q22.value == None %}
+        {% for item in form.q22 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q22_4 %}
+    {% if form.q22.value == 4 %}
+        {{ form.q22.value }}
+    {% elif form.q22.value == None %}
+        {% for item in form.q22 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q22_5 %}
+    {% if form.q22.value == 5 %}
+        {{ form.q22.value }}
+    {% elif form.q22.value == None %}
+        {% for item in form.q22 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第23题 #}
+{% block q23_1 %}
+    {% if form.q23.value == 1 %}
+        {{ form.q23.value }}
+    {% elif form.q23.value == None %}
+        {% for item in form.q23 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q23_2 %}
+    {% if form.q23.value == 2 %}
+        {{ form.q23.value }}
+    {% elif form.q23.value == None %}
+        {% for item in form.q23 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q23_3 %}
+    {% if form.q23.value == 3 %}
+        {{ form.q23.value }}
+    {% elif form.q23.value == None %}
+        {% for item in form.q23 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q23_4 %}
+    {% if form.q23.value == 4 %}
+        {{ form.q23.value }}
+    {% elif form.q23.value == None %}
+        {% for item in form.q23 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q23_5 %}
+    {% if form.q23.value == 5 %}
+        {{ form.q23.value }}
+    {% elif form.q23.value == None %}
+        {% for item in form.q23 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第24题 #}
+{% block q24_1 %}
+    {% if form.q24.value == 1 %}
+        {{ form.q24.value }}
+    {% elif form.q24.value == None %}
+        {% for item in form.q24 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q24_2 %}
+    {% if form.q24.value == 2 %}
+        {{ form.q24.value }}
+    {% elif form.q24.value == None %}
+        {% for item in form.q24 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q24_3 %}
+    {% if form.q24.value == 3 %}
+        {{ form.q24.value }}
+    {% elif form.q24.value == None %}
+        {% for item in form.q24 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q24_4 %}
+    {% if form.q24.value == 4 %}
+        {{ form.q24.value }}
+    {% elif form.q24.value == None %}
+        {% for item in form.q24 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q24_5 %}
+    {% if form.q24.value == 5 %}
+        {{ form.q24.value }}
+    {% elif form.q24.value == None %}
+        {% for item in form.q24 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+
+{# 第25题 #}
+{% block q25_1 %}
+    {% if form.q25.value == 1 %}
+        {{ form.q25.value }}
+    {% elif form.q25.value == None %}
+        {% for item in form.q25 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q25_2 %}
+    {% if form.q25.value == 2 %}
+        {{ form.q25.value }}
+    {% elif form.q25.value == None %}
+        {% for item in form.q25 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q25_3 %}
+    {% if form.q25.value == 3 %}
+        {{ form.q25.value }}
+    {% elif form.q25.value == None %}
+        {% for item in form.q25 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q25_4 %}
+    {% if form.q25.value == 4 %}
+        {{ form.q25.value }}
+    {% elif form.q25.value == None %}
+        {% for item in form.q25 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q25_5 %}
+    {% if form.q25.value == 5 %}
+        {{ form.q25.value }}
+    {% elif form.q25.value == None %}
+        {% for item in form.q25 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第26题 #}
+{% block q26_1 %}
+    {% if form.q26.value == 1 %}
+        {{ form.q26.value }}
+    {% elif form.q26.value == None %}
+        {% for item in form.q26 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q26_2 %}
+    {% if form.q6.value == 2 %}
+        {{ form.q26.value }}
+    {% elif form.q26.value == None %}
+        {% for item in form.q26 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q26_3 %}
+    {% if form.q26.value == 3 %}
+        {{ form.q26.value }}
+    {% elif form.q26.value == None %}
+        {% for item in form.q26 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q26_4 %}
+    {% if form.q26.value == 4 %}
+        {{ form.q26.value }}
+    {% elif form.q26.value == None %}
+        {% for item in form.q26 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q26_5 %}
+    {% if form.q26.value == 5 %}
+        {{ form.q26.value }}
+    {% elif form.q26.value == None %}
+        {% for item in form.q26 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第27题 #}
+{% block q27_1 %}
+    {% if form.q27.value == 1 %}
+        {{ form.q27.value }}
+    {% elif form.q27.value == None %}
+        {% for item in form.q27 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q27_2 %}
+    {% if form.q27.value == 2 %}
+        {{ form.q27.value }}
+    {% elif form.q27.value == None %}
+        {% for item in form.q27 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q27_3 %}
+    {% if form.q27.value == 3 %}
+        {{ form.q27.value }}
+    {% elif form.q27.value == None %}
+        {% for item in form.q27 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q27_4 %}
+    {% if form.q27.value == 4 %}
+        {{ form.q27.value }}
+    {% elif form.q27.value == None %}
+        {% for item in form.q27 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q27_5 %}
+    {% if form.q27.value == 5 %}
+        {{ form.q27.value }}
+    {% elif form.q27.value == None %}
+        {% for item in form.q27 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第28题 #}
+{% block q28_1 %}
+    {% if form.q28.value == 1 %}
+        {{ form.q28.value }}
+    {% elif form.q28.value == None %}
+        {% for item in form.q28 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q28_2 %}
+    {% if form.q28.value == 2 %}
+        {{ form.q28.value }}
+    {% elif form.q28.value == None %}
+        {% for item in form.q28 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q28_3 %}
+    {% if form.q28.value == 3 %}
+        {{ form.q28.value }}
+    {% elif form.q28.value == None %}
+        {% for item in form.q28 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q28_4 %}
+    {% if form.q28.value == 4 %}
+        {{ form.q28.value }}
+    {% elif form.q28.value == None %}
+        {% for item in form.q28 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q28_5 %}
+    {% if form.q28.value == 5 %}
+        {{ form.q28.value }}
+    {% elif form.q28.value == None %}
+        {% for item in form.q28 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第29题 #}
+{% block q29_1 %}
+    {% if form.q29.value == 1 %}
+        {{ form.q29.value }}
+    {% elif form.q29.value == None %}
+        {% for item in form.q29 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q29_2 %}
+    {% if form.q29.value == 2 %}
+        {{ form.q29.value }}
+    {% elif form.q29.value == None %}
+        {% for item in form.q29 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q29_3 %}
+    {% if form.q29.value == 3 %}
+        {{ form.q29.value }}
+    {% elif form.q29.value == None %}
+        {% for item in form.q29 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q29_4 %}
+    {% if form.q29.value == 4 %}
+        {{ form.q29.value }}
+    {% elif form.q29.value == None %}
+        {% for item in form.q29 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q29_5 %}
+    {% if form.q29.value == 5 %}
+        {{ form.q29.value }}
+    {% elif form.q29.value == None %}
+        {% for item in form.q29 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第30题 #}
+{% block q30_1 %}
+    {% if form.q30.value == 1 %}
+        {{ form.q30.value }}
+    {% elif form.q30.value == None %}
+        {% for item in form.q30 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q30_2 %}
+    {% if form.q30.value == 2 %}
+        {{ form.q30.value }}
+    {% elif form.q30.value == None %}
+        {% for item in form.q30 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q30_3 %}
+    {% if form.q30.value == 3 %}
+        {{ form.q30.value }}
+    {% elif form.q30.value == None %}
+        {% for item in form.q30 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q30_4 %}
+    {% if form.q30.value == 4 %}
+        {{ form.q30.value }}
+    {% elif form.q30.value == None %}
+        {% for item in form.q30 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q30_5 %}
+    {% if form.q30.value == 5 %}
+        {{ form.q30.value }}
+    {% elif form.q30.value == None %}
+        {% for item in form.q30 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第31题 #}
+{% block q31_1 %}
+    {% if form.q31.value == 1 %}
+        {{ form.q31.value }}
+    {% elif form.q31.value == None %}
+        {% for item in form.q31 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q31_2 %}
+    {% if form.q31.value == 2 %}
+        {{ form.q31.value }}
+    {% elif form.q31.value == None %}
+        {% for item in form.q31 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q31_3 %}
+    {% if form.q31.value == 3 %}
+        {{ form.q31.value }}
+    {% elif form.q31.value == None %}
+        {% for item in form.q31 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q31_4 %}
+    {% if form.q31.value == 4 %}
+        {{ form.q31.value }}
+    {% elif form.q31.value == None %}
+        {% for item in form.q31 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q31_5 %}
+    {% if form.q31.value == 5 %}
+        {{ form.q31.value }}
+    {% elif form.q31.value == None %}
+        {% for item in form.q31 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第32题 #}
+{% block q32_1 %}
+    {% if form.q32.value == 1 %}
+        {{ form.q32.value }}
+    {% elif form.q32.value == None %}
+        {% for item in form.q32 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q32_2 %}
+    {% if form.q32.value == 2 %}
+        {{ form.q32.value }}
+    {% elif form.q32.value == None %}
+        {% for item in form.q32 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q32_3 %}
+    {% if form.q32.value == 3 %}
+        {{ form.q32.value }}
+    {% elif form.q32.value == None %}
+        {% for item in form.q32 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q32_4 %}
+    {% if form.q32.value == 4 %}
+        {{ form.q32.value }}
+    {% elif form.q32.value == None %}
+        {% for item in form.q32 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q32_5 %}
+    {% if form.q32.value == 5 %}
+        {{ form.q32.value }}
+    {% elif form.q32.value == None %}
+        {% for item in form.q32 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{# 第33题 #}
+{% block q33_1 %}
+    {% if form.q33.value == 1 %}
+        {{ form.q33.value }}
+    {% elif form.q33.value == None %}
+        {% for item in form.q33 %}
+            {% if forloop.counter0 == 1 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q33_2 %}
+    {% if form.q33.value == 2 %}
+        {{ form.q33.value }}
+    {% elif form.q33.value == None %}
+        {% for item in form.q33 %}
+            {% if forloop.counter0 == 2 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q33_3 %}
+    {% if form.q33.value == 3 %}
+        {{ form.q33.value }}
+    {% elif form.q33.value == None %}
+        {% for item in form.q33 %}
+            {% if forloop.counter0 == 3 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q33_4 %}
+    {% if form.q33.value == 4 %}
+        {{ form.q33.value }}
+    {% elif form.q33.value == None %}
+        {% for item in form.q33 %}
+            {% if forloop.counter0 == 4 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block q33_5 %}
+    {% if form.q33.value == 5 %}
+        {{ form.q33.value }}
+    {% elif form.q33.value == None %}
+        {% for item in form.q33 %}
+            {% if forloop.counter0 == 5 %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_qixu %}
+    {% if form.constitution_identify_points_qixu.value %}
+        {{ form.constitution_identify_points_qixu.value }}
+    {% else %}
+        {{ form.constitution_identify_points_qixu }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_qixu %}
+    {% if form.constitution_identify_yes_trend_qixu.value %}
+        {{ form.constitution_identify_yes_trend_qixu.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_qixu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block constitution_identify_points_yangxu %}
+    {% if form.constitution_identify_points_yangxu.value %}
+        {{ form.constitution_identify_points_yangxu.value }}
+    {% else %}
+        {{ form.constitution_identify_points_yangxu }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_yangxu %}
+    {% if form.constitution_identify_yes_trend_yangxu.value %}
+        {{ form.constitution_identify_yes_trend_yangxu.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_yangxu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block constitution_identify_points_yinxu %}
+    {% if form.constitution_identify_points_yinxu.value %}
+        {{ form.constitution_identify_points_yinxu.value }}
+    {% else %}
+        {{ form.constitution_identify_points_yinxu }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_yinxu %}
+    {% if form.constitution_identify_yes_trend_yinxu.value %}
+        {{ form.constitution_identify_yes_trend_yinxu.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_yinxu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_tanshi %}
+    {% if form.constitution_identify_points_tanshi.value %}
+        {{ form.constitution_identify_points_tanshi.value }}
+    {% else %}
+        {{ form.constitution_identify_points_tanshi }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_tanshi %}
+    {% if form.constitution_identify_yes_trend_tanshi.value %}
+        {{ form.constitution_identify_yes_trend_tanshi.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_tanshi %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_shire %}
+    {% if form.constitution_identify_points_shire.value %}
+        {{ form.constitution_identify_points_shire.value }}
+    {% else %}
+        {{ form.constitution_identify_points_shire }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_shire %}
+    {% if form.constitution_identify_yes_trend_shire.value %}
+        {{ form.constitution_identify_yes_trend_shire.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_shire %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_xueyu %}
+    {% if form.constitution_identify_points_xueyu.value %}
+        {{ form.constitution_identify_points_xueyu.value }}
+    {% else %}
+        {{ form.constitution_identify_points_xueyu }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_xueyu %}
+    {% if form.constitution_identify_yes_trend_xueyu.value %}
+        {{ form.constitution_identify_yes_trend_xueyu.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_xueyu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_qiyu %}
+    {% if form.constitution_identify_points_qiyu.value %}
+        {{ form.constitution_identify_points_qiyu.value }}
+    {% else %}
+        {{ form.constitution_identify_points_qiyu }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_qiyu %}
+    {% if form.constitution_identify_yes_trend_qiyxu.value %}
+        {{ form.constitution_identify_yes_trend_qiyu.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_qiyu %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_tebing %}
+    {% if form.constitution_identify_points_tebing.value %}
+        {{ form.constitution_identify_points_tebing.value }}
+    {% else %}
+        {{ form.constitution_identify_points_tebing }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_tebing %}
+    {% if form.constitution_identify_yes_trend_tebing.value %}
+        {{ form.constitution_identify_yes_trend_tebing.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_tebing %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
+{% block constitution_identify_points_pinghe %}
+    {% if form.constitution_identify_points_pinghe.value %}
+        {{ form.constitution_identify_points_pinghe.value }}
+    {% else %}
+        {{ form.constitution_identify_points_pinghe }}
+    {% endif %}
+{% endblock %}
+{% block constitution_identify_yes_trend_pinghe %}
+    {% if form.constitution_identify_yes_trend_pinghe.value %}
+        {{ form.constitution_identify_yes_trend_pinghe.value }}
+    {% else %}
+        {% for item in form.constitution_identify_yes_trend_pinghe %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_qixu %}
+    {% comment %}{% if form.health_care_guide_qixu.value %}
+        {% for item in form.health_care_guide_qixu.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_qixu.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}{% endcomment %}
+        {% for item in form.health_care_guide_qixu %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_qixu }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% comment %}{% endif %}{% endcomment %}
+{% endblock %}

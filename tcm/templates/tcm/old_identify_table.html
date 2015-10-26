@@ -5,5 +5,318 @@
 {% endblock %}
 
 {% block table_content %}
-
+<tr>
+        <td colspan="5">请根据近一年的体验和感觉，回答以下问题。</td>
+        <td colspan="1" align="center">没有（根据不/从来没有）</td>
+        <td colspan="1" align="center">很少（有一点/偶尔）</td>
+        <td colspan="1" align="center">有时（有些/少数时间）</td>
+        <td colspan="1" align="center">经常（相当/多数时间）</td>
+        <td colspan="1" align="center">总是（经常/每天）</td>
+    </tr>
+    <tr>
+        <td colspan="5">(1)您精力充沛吗？（指精神头足，乐于做事）</td>
+        <td colspan="1" align="center">{% block q1_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q1_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q1_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q1_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q1_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(2)您容易疲乏吗？（指体力如何，是否稍微活动一下或做一点家务劳动就感到累）</td>
+        <td colspan="1" align="center">{% block q2_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q2_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q2_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q2_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q2_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(3)您容易气短，呼吸短促，接不上气吗？</td>
+        <td colspan="1" align="center">{% block q3_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q3_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q3_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q3_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q3_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(4)您说话声音低弱无力吗？（指说话没有力气）</td>
+        <td colspan="1" align="center">{% block q4_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q4_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q4_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q4_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q4_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(5)您感到闷闷不乐、情绪低沉吗？（指心情不愉快，情绪低落）</td>
+        <td colspan="1" align="center">{% block q5_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q5_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q5_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q5_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q5_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(6)您容易精神紧张、焦虑不安吗？（指遇事是否心情紧张）</td>
+        <td colspan="1" align="center">{% block q6_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q6_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q6_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q6_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q6_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(7)您因为生活状态改变而感到孤独、失落吗？</td>
+        <td colspan="1" align="center">{% block q7_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q7_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q7_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q7_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q7_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(8)您容易感到害怕或受到惊吓吗？</td>
+        <td colspan="1" align="center">{% block q8_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q8_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q8_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q8_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q8_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(9)您感到身体超重不轻松吗？（感觉身体沉重）[BMI指数=体重（kg）/身高<sup>2</sup>（m）]</td>
+        <td colspan="1" align="center">{% block q9_1 %}{% endblock %}<br>(BMI ＜ 24)</td>
+        <td colspan="1" align="center">{% block q9_2 %}{% endblock %}<br>(24 ≤ BMI ＜ 25)</td>
+        <td colspan="1" align="center">{% block q9_3 %}{% endblock %}<br>(25 ≤ BMI ＜ 26)</td>
+        <td colspan="1" align="center">{% block q9_4 %}{% endblock %}<br>(26 ≤ BMI ＜ 28)</td>
+        <td colspan="1" align="center">{% block q9_5 %}{% endblock %}<br>(BMI ≥ 28)</td>
+    </tr>
+    <tr>
+        <td colspan="5">(10)您眼睛干涩吗？</td>
+        <td colspan="1" align="center">{% block q10_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q10_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q10_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q10_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q10_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(11)您手脚发凉吗？（不包含因周围温度低或穿的少导致的手脚发冷）</td>
+        <td colspan="1" align="center">{% block q11_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q11_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q11_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q11_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q11_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(12)您胃脘部、背部或腰膝部怕冷吗？（指上腹部、背部、腰部或膝关节等，有一处或多处怕冷）</td>
+        <td colspan="1" align="center">{% block q12_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q12_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q12_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q12_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q12_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(13)你比一般人耐受不了寒冷吗？（指比别人容易害怕冬天或是夏天的冷空调、电扇等）</td>
+        <td colspan="1" align="center">{% block q13_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q13_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q13_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q13_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q13_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(14)您容易患感冒吗？（指每年感冒的次数）</td>
+        <td colspan="1" align="center">{% block q14_1 %}{% endblock %}<br>一年＜2次</td>
+        <td colspan="1" align="center">{% block q14_2 %}{% endblock %}<br>一年感冒2-4次</td>
+        <td colspan="1" align="center">{% block q14_3 %}{% endblock %}<br>一年感冒5-6次</td>
+        <td colspan="1" align="center">{% block q14_4 %}{% endblock %}<br>一年8次以上</td>
+        <td colspan="1" align="center">{% block q14_5 %}{% endblock %}<br>几乎每月都感冒</td>
+    </tr>
+    <tr>
+        <td colspan="5">(15)您没有感冒时也会鼻塞、流鼻涕吗？</td>
+        <td colspan="1" align="center">{% block q15_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q15_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q15_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q15_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q15_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(16)您有口粘口腻，或睡眠打鼾吗？</td>
+        <td colspan="1" align="center">{% block q16_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q16_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q16_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q16_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q16_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(17)您容易过敏（对药物、食物、气味、花粉或在季节交替、气候变化时）吗？</td>
+        <td colspan="1" align="center">{% block q17_1 %}{% endblock %}<br>几乎没有</td>
+        <td colspan="1" align="center">{% block q17_2 %}{% endblock %}<br>一年1、2次</td>
+        <td colspan="1" align="center">{% block q17_3 %}{% endblock %}<br>一年3、4次</td>
+        <td colspan="1" align="center">{% block q17_4 %}{% endblock %}<br>一年5、6次</td>
+        <td colspan="1" align="center">{% block q17_5 %}{% endblock %}<br>每次遇到上述原因都过敏</td>
+    </tr>
+    <tr>
+        <td colspan="5">(18)您的皮肤容易起荨麻疹吗？（包括风团、风疹块、凤疙瘩）</td>
+        <td colspan="1" align="center">{% block q18_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q18_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q18_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q18_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q18_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(19)您的皮肤在不知不觉中会出现青紫瘀斑、皮下出血吗？（指皮肤在没有外伤的情况下出现青一块紫一块的情况）</td>
+        <td colspan="1" align="center">{% block q19_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q19_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q19_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q19_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q19_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(20)您的皮肤一抓就红，并出现抓痕吗？（指被指甲或钝物划过后皮肤的反应）</td>
+        <td colspan="1" align="center">{% block q20_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q20_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q20_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q20_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q20_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(21)您皮肤或口唇干吗？</td>
+        <td colspan="1" align="center">{% block q21_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q21_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q21_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q21_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q21_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(22)您有肢体麻木或固定部位疼痛的感觉吗？</td>
+        <td colspan="1" align="center">{% block q22_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q22_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q22_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q22_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q22_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(23)您面部或鼻部有油腻感或者油亮发光吗？（指脸上或鼻子）</td>
+        <td colspan="1" align="center">{% block q23_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q23_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q23_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q23_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q23_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(24)您有面色或目眶晦黯，或出现褐色斑块/斑点吗？</td>
+        <td colspan="1" align="center">{% block q24_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q24_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q24_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q24_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q24_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(25)您有皮肤湿疹、疮疖吗？</td>
+        <td colspan="1" align="center">{% block q25_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q25_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q25_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q25_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q25_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(26)您感到口干咽燥、总想喝水吗？</td>
+        <td colspan="1" align="center">{% block q26_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q26_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q26_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q26_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q26_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(27)您感到口苦或嘴里有异味吗？（指口苦或口臭）</td>
+        <td colspan="1" align="center">{% block q27_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q27_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q27_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q27_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q27_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(28)您腹部肥大吗？</td>
+        <td colspan="1" align="center">{% block q28_1 %}{% endblock %}<br>（腹围＜80cm，相当于2.4尺）</td>
+        <td colspan="1" align="center">{% block q28_2 %}{% endblock %}<br>（腹围80-85cm，2.4-2.55尺）</td>
+        <td colspan="1" align="center">{% block q28_3 %}{% endblock %}<br>（腹围86-90cm，2.56-2.7尺）</td>
+        <td colspan="1" align="center">{% block q28_4 %}{% endblock %}<br>（腹围91-105cm，2.71-3.15尺）</td>
+        <td colspan="1" align="center">{% block q28_5 %}{% endblock %}<br>（腹围＞105cm，或3.15尺）</td>
+    </tr>
+    <tr>
+        <td colspan="5">(29)您吃（喝）凉的东西会感到不舒服或者怕吃（喝）凉的东西吗？（指不喜欢吃凉的食物，或吃了凉的食物后会不舒服）</td>
+        <td colspan="1" align="center">{% block q29_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q29_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q29_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q29_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q29_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(30)您有大便黏滞不爽、解不尽的感觉吗？（大便容易粘在马桶或便坑壁上）</td>
+        <td colspan="1" align="center">{% block q30_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q30_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q30_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q30_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q30_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(31)您容易大便干燥吗？</td>
+        <td colspan="1" align="center">{% block q31_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q31_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q31_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q31_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q31_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(32)您舌苔厚腻或有舌苔厚厚的感觉吗？（如果自我感觉不清楚可由调查员观察后填写）</td>
+        <td colspan="1" align="center">{% block q32_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q32_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q32_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q32_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q32_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="5">(33)您舌下静脉瘀紫或增粗吗？（可由调查员辅助观察后填写）</td>
+        <td colspan="1" align="center">{% block q33_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q33_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q33_3 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q33_4 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block q33_5 %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">体质类型</td>
+        <td colspan="1" align="center">气虚质</td>
+        <td colspan="1" align="center">阳虚质</td>
+        <td colspan="1" align="center">阴虚质</td>
+        <td colspan="1" align="center">痰湿质</td>
+        <td colspan="1" align="center">湿热质</td>
+        <td colspan="1" align="center">血瘀质</td>
+        <td colspan="1" align="center">气郁质</td>
+        <td colspan="1" align="center">特秉质</td>
+        <td colspan="1" align="center">平和质</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">体质辨识</td>
+        <td colspan="1">得分{% block constitution_identify_points_qixu %}{% endblock %}{% block constitution_identify_yes_trend_qixu %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_yangxu %}{% endblock %}{% block constitution_identify_yes_trend_yangxu %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_yinxu %}{% endblock %}{% block constitution_identify_yes_trend_yinxu %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_tanshi %}{% endblock %}{% block constitution_identify_yes_trend_tanshi %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_shire %}{% endblock %}{% block constitution_identify_yes_trend_shire %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_xueyu %}{% endblock %}{% block constitution_identify_yes_trend_xueyu %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_qiyu %}{% endblock %}{% block constitution_identify_yes_trend_qiyu %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_tebing %}{% endblock %}{% block constitution_identify_yes_trend_tebing %}{% endblock %}</td>
+        <td colspan="1">得分{% block constitution_identify_points_pinghe %}{% endblock %}{% block constitution_identify_yes_trend_pinghe %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="1" align="center">中医药保健指导</td>
+        <td colspan="1">{% block health_care_guide_qixu %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_yangxu %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_yinxu %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_tanshi %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_shire %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_xueyu %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_qiyu %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_tebing %}{% endblock %}</td>
+        <td colspan="1">{% block health_care_guide_pinghe %}{% endblock %}</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">填表日期</td>
+        <td colspan="3" align="center">{% block fill_table_date %}{% endblock %}</td>
+        <td colspan="2" align="center">医生签名</td>
+        <td colspan="3" align="center">{% block doctor_signature %}{% endblock %}</td>
+    </tr>
 {% endblock %}

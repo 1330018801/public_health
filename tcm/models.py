@@ -56,7 +56,8 @@ class Aftercare(models.Model):
 
 
 CHOICES = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
-
+YES_TREND = ((u'是', '是'), (u'倾向是', '倾向是'))
+YES_MAINLY = ((u'是', '是'), (u'基本是', '基本是'))
 
 class TcmOldIdentifyChoicesAbstract(models.Model):
     choice = models.CharField(max_length=50, primary_key=True)
@@ -149,15 +150,15 @@ class OldIdentify(models.Model):
     constitution_identify_points_qiyu = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True)
     constitution_identify_points_tebing = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True)
     constitution_identify_points_pinghe = models.PositiveSmallIntegerField(verbose_name='', blank=True, null=True)
-    constitution_identify_yes_trend_qixu = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_yangxu = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_yinxu = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_tanshi = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_shire = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_xueyu = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_qiyu = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_tebing = models.CharField(max_length=20, blank=True, null=True)
-    constitution_identify_yes_trend_pinghe = models.CharField(max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_qixu = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_yangxu = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_yinxu = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_tanshi = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_shire = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_xueyu = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_qiyu = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_tebing = models.CharField(choices=YES_TREND, max_length=20, blank=True, null=True)
+    constitution_identify_yes_trend_pinghe = models.CharField(choices=YES_MAINLY, max_length=20, blank=True, null=True)
     health_care_guide_qixu = models.ManyToManyField(TcmOldIdentifyChoicesQixu, verbose_name='', blank=True, null=True)
     health_care_guide_yangxu = models.ManyToManyField(TcmOldIdentifyChoicesYangxu, verbose_name='', blank=True, null=True)
     health_care_guide_yinxu = models.ManyToManyField(TcmOldIdentifyChoicesYinxu, verbose_name='', blank=True, null=True)
