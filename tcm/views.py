@@ -11,8 +11,8 @@ from services.utils import new_year_day
 from ehr.forms import BodyExamForm
 from ehr.models import BodyExam
 
-from .forms import AftercareForm
-from .models import Aftercare
+from .forms import AftercareForm, OldIdentifyForm
+from .models import Aftercare, OldIdentify
 
 debug = logging.getLogger('debug')
 
@@ -21,6 +21,7 @@ def old_identify_page(request):
     return render(request, 'tcm/old_identify_page.html')
 
 
+'''
 def old_identify_form(request):
     resident = get_resident(request)
     records = WorkRecord.objects.filter(resident=resident,
@@ -33,6 +34,20 @@ def old_identify_form(request):
         form = BodyExamForm()
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
                                                        'type_alias': 'tcm'})
+'''
+
+
+def old_identify_form(request):
+    resident = get_resident(request)
+    records = WorkRecord.objects.filter(resident=resident,
+                                        model_name='OldIdentify',
+                                        submit_time__gte=new_year_day())
+    if records.count():
+        result = OldIdentify.objects.get(id=records[0].item_id)
+        form = OldIdentifyForm(instance=result)
+    else:
+        form = OldIdentifyForm()
+    return render(request, 'tcm/old_identify_form.html', {'form': form, 'resident': resident, 'type_alias': 'tcm'})
 
 
 def old_identify_submit(request):
