@@ -65,8 +65,9 @@ def old_identify_submit(request):
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='tcm', model_name='BodyExam', item_id=result.id,
                                   service_item_alias=service_item.alias)
-    return HttpResponse(simplejson.dumps({'success': success}),
-                        content_type='text/html; charset=UTF-8')
+
+    from services.utils import json_result
+    return json_result({'success': success})
 
 
 def child_page(request):

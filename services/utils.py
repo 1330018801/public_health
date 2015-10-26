@@ -30,3 +30,11 @@ def new_year_time():
     year = datetime.now().year
     return bj_tz.localize(datetime(year, 1, 1, 0, 0, 0))
 
+
+from django.http import HttpResponse
+import simplejson
+
+
+def json_result(d):
+    return HttpResponse(simplejson.dumps(d), content_type='text/html; charset=UTF-8')
+
