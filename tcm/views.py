@@ -49,7 +49,7 @@ def old_identify_form(request):
         form = OldIdentifyForm()
     return render(request, 'tcm/old_identify_form.html', {'form': form, 'resident': resident, 'type_alias': 'tcm'})
 
-
+'''
 def old_identify_submit(request):
     """
     由于在old_identify_form函数中传递了type_alias参数，因此在页面上只显示老年人
@@ -80,6 +80,57 @@ def old_identify_submit(request):
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='tcm', model_name='BodyExam', item_id=result.id,
                                   service_item_alias=service_item.alias)
+    return HttpResponse(simplejson.dumps({'success': success}),
+                        content_type='text/html; charset=UTF-8')
+'''
+
+
+def old_identify_submit(request):
+    resident = get_resident(request)
+    success = False
+    result = None
+
+    form = OldIdentifyForm(request.POST)
+    if form.is_valid():
+        result = form.save()
+        success = True
+    else:
+        debug.info(form.errors.as_data())
+        success = False
+
+    if success:
+        record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                           submit_time__gte=new_year_day()).first()
+
+        if record:
+            result = BodyExam.objects.get(id=record.item_id)
+            result.pinghe = result.constitution_identify_yes_trend_pinghe
+            result.qixu = result.constitution_identify_yes_trend_qixu
+            result.yangxu = result.constitution_identify_yes_trend_yangxu
+            result.yinxu = result.constitution_identify_yes_trend_yinxu
+            result.tanshi = result.constitution_identify_yes_trend_tanshi
+            result.shire = result.constitution_identify_yes_trend_shire
+            result.xueyu = result.constitution_identify_yes_trend_xueyu
+            result.qiyu = result.constitution_identify_yes_trend_qiyu
+            result.tebing = result.constitution_identify_yes_trend_tebing
+            result.save()
+            success = True
+        else:
+            form = BodyExamForm(initial={'pinghe': result.constitution_identify_yes_trend_pinghe,
+                                         'qixu': result.constitution_identify_yes_trend_qixu,
+                                         'yangxu': result.constitution_identify_yes_trend_yangxu,
+                                         'yinxu': result.constitution_identify_yes_trend_yinxu,
+                                         'tanshi': result.constitution_identify_yes_trend_tanshi,
+                                         'shire': result.constitution_identify_yes_trend_shire,
+                                         'xueyu': result.constitution_identify_yes_trend_xueyu,
+                                         'qiyu': result.constitution_identify_yes_trend_qiyu,
+                                         'tebing': result.constitution_identify_yes_trend_tebing})
+
+        service_item = Service.items.get(alias='constitution_identification', service_type__alias='tcm')
+        WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                  app_label='tcm', model_name='OldIdentify', item_id=result.id,
+                                  service_item_alias=service_item.alias)
+
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
 

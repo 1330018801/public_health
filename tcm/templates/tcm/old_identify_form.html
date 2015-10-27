@@ -2234,7 +2234,7 @@
 {% endblock %}
 
 {% block health_care_guide_qixu %}
-    {% comment %}{% if form.health_care_guide_qixu.value %}
+    {% if form.health_care_guide_qixu.all %}
         {% for item in form.health_care_guide_qixu.all %}
             {% if forloop.last %}
                 {% if item == '其他' %}
@@ -2246,7 +2246,7 @@
                 {{ item }}<br>
             {% endif %}
         {% endfor %}
-    {% else %}{% endcomment %}
+    {% else %}
         {% for item in form.health_care_guide_qixu %}
             {% if forloop.last %}
                 {{ item }}<br>{{ form.health_care_guide_extra_qixu }}
@@ -2254,5 +2254,213 @@
                 {{ item }}<br>
             {% endif %}
         {% endfor %}
-    {% comment %}{% endif %}{% endcomment %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_yangxu %}
+    {% if form.health_care_guide_yangxu.all %}
+        {% for item in form.health_care_guide_yangxu.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_yangxu.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_yangxu %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_yangxu }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_yinxu %}
+    {% if form.health_care_guide_yinxu.all %}
+        {% for item in form.health_care_guide_yinxu.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_yinxu.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_yinxu %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_yinxu }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_tanshi %}
+    {% if form.health_care_guide_tanshi.all %}
+        {% for item in form.health_care_guide_tanshi.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_tanshi.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_tanshi %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_tanshi }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_shire %}
+    {% if form.health_care_guide_shire.all %}
+        {% for item in form.health_care_guide_shire.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_shire.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_shire %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_shire }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_xueyu %}
+    {% if form.health_care_guide_xueyu.all %}
+        {% for item in form.health_care_guide_xueyu.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_xueyu.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_xueyu %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_xueyu }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_qiyu %}
+    {% if form.health_care_guide_qiyu.all %}
+        {% for item in form.health_care_guide_qiyu.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_qiyu.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_qiyu %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_qiyu }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_tebing %}
+    {% if form.health_care_guide_tebing.all %}
+        {% for item in form.health_care_guide_tebing.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_tebing.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_tebing %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_tebing }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block health_care_guide_pinghe %}
+    {% if form.health_care_guide_pinghe.all %}
+        {% for item in form.health_care_guide_pinghe.all %}
+            {% if forloop.last %}
+                {% if item == '其他' %}
+                    {{ item }}<br>{{ form.health_care_guide_extra_pinghe.value }}
+                {% else %}
+                    {{ item }}
+                {% endif %}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% for item in form.health_care_guide_pinghe %}
+            {% if forloop.last %}
+                {{ item }}<br>{{ form.health_care_guide_extra_pinghe }}
+            {% else %}
+                {{ item }}<br>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block fill_table_date %}
+    {% if form.fill_table_date.value %}
+        {{ form.fill_table_date.value }}
+    {% else %}
+        {{ form.fill_table_date }}
+    {% endif %}
+{% endblock %}
+
+{% block doctor_signature %}
+    {% if form.doctor_signature.value %}
+        {{ form.doctor_signature.value }}<input type="text" style="display: none" value="{{ form.doctor_signature.value }}" name="doctor_signature"/>
+    {% else %}
+        {{ form.doctor_signature }}
+    {% endif %}
 {% endblock %}
