@@ -2050,26 +2050,6 @@ def payment_town_clinics_page(request):
     """
     return render(request, 'management/payment_town_clinics_page.html')
 
-import Queue
-from multiprocessing import Process, cpu_count
-
-
-def worker_payment_1(queue, payment):
-    queue_full = True
-    while queue_full:
-        try:
-            town_clinic_name, service_type_alias = queue.get()
-            debug.info(town_clinic_name, service_type_alias)
-            town_clinic = Clinic.objects.get(name=town_clinic_name)
-            service_type = Service.objects.get(alias=service_type_alias)
-            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
-                payment[town_clinic_name][service_type_alias] += WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    clinic__town_clinic=town_clinic,
-                    service_item=service_item).count() * service_item.price
-        except Queue.Empty:
-            queue_full = False
-
 
 @login_required(login_url='/')
 def payment_town_clinics_datagrid(request):
@@ -2077,49 +2057,23 @@ def payment_town_clinics_datagrid(request):
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
     payment = collections.OrderedDict()
-
     for town_clinic in Clinic.in_town.all():
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
-
     payment['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    t_begin = datetime.now()
+    t0 = datetime.now()
 
-    q = Queue.Queue()
-    jobs = []
-    cpu_num = cpu_count()
-
-    debug.info('cpu number: {}'.format(cpu_num))
-
-    for i in range(cpu_num):
-        p = Process(target=worker_payment_1, args=(q, payment))
-        jobs.append(p)
-        p.start()
-
-    for town_clinic in Clinic.in_town.all():
-        for service_type in Service.types.all():
-            q.put((town_clinic.name, service_type.alias))
-
-    for j in jobs:
-        j.join()
-
-    for town_clinic in Clinic.in_town.all():
-        for service_type in Service.types.all():
-            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
-
-    '''
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
                 payment[town_clinic.name][service_type.alias] += WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    clinic__town_clinic=town_clinic,
+                    provider__userprofile__clinic__town_clinic=town_clinic,
                     service_item=service_item).count() * service_item.price
             payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
-    '''
 
-    t_end = datetime.now()
-    debug.info("total time: {}".format(t_end - t_begin))
+    t1 = datetime.now()
+    debug.info("Interval: {}".format(t1 - t0))
 
     json_data = []
     for key, value in payment.items():
