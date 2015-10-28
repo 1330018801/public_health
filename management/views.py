@@ -1812,13 +1812,27 @@ def workload_town_clinics_datagrid(request):
 
     workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
+    sql_count = 0
+    t_begin = datetime.now()
+
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
+
+            t0 = datetime.now()
+
             workload[town_clinic.name][service_type.alias] = WorkRecord.objects.filter(
                 status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                 service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
                 provider__userprofile__clinic__town_clinic=town_clinic).count()
+
+            t1 = datetime.now()
+            sql_count += 1
+            debug.info("sql_count: {0}; interval: {1}".format(sql_count, t1 - t0))
+
             workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
+
+    t_end = datetime.now()
+    debug.info("total time: {}".format(t_end - t_begin))
 
     json_data = []
     for key, value in workload.items():
@@ -2036,6 +2050,26 @@ def payment_town_clinics_page(request):
     """
     return render(request, 'management/payment_town_clinics_page.html')
 
+import Queue
+from multiprocessing import Process, cpu_count
+
+
+def worker_payment_1(queue, payment):
+    queue_full = True
+    while queue_full:
+        try:
+            town_clinic_name, service_type_alias = queue.get()
+            debug.info(town_clinic_name, service_type_alias)
+            town_clinic = Clinic.objects.get(name=town_clinic_name)
+            service_type = Service.objects.get(alias=service_type_alias)
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                payment[town_clinic_name][service_type_alias] += WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    clinic__town_clinic=town_clinic,
+                    service_item=service_item).count() * service_item.price
+        except Queue.Empty:
+            queue_full = False
+
 
 @login_required(login_url='/')
 def payment_town_clinics_datagrid(request):
@@ -2049,14 +2083,43 @@ def payment_town_clinics_datagrid(request):
 
     payment['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
+    t_begin = datetime.now()
+
+    q = Queue.Queue()
+    jobs = []
+    cpu_num = cpu_count()
+
+    debug.info('cpu number: {}'.format(cpu_num))
+
+    for i in range(cpu_num):
+        p = Process(target=worker_payment_1, args=(q, payment))
+        jobs.append(p)
+        p.start()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            q.put((town_clinic.name, service_type.alias))
+
+    for j in jobs:
+        j.join()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
+
+    '''
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
                 payment[town_clinic.name][service_type.alias] += WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    provider__userprofile__clinic__town_clinic=town_clinic,
+                    clinic__town_clinic=town_clinic,
                     service_item=service_item).count() * service_item.price
             payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
+    '''
+
+    t_end = datetime.now()
+    debug.info("total time: {}".format(t_end - t_begin))
 
     json_data = []
     for key, value in payment.items():
