@@ -658,7 +658,7 @@ class WorkRecord(models.Model):
     begin_time = models.DateTimeField(auto_now_add=True)
     submit_time = models.DateTimeField(null=True, auto_now_add=True)
     update_time = models.DateTimeField(null=True, auto_now=True)
-    update_by = models.ForeignKey(User, null=True)
+    update_by = models.ForeignKey(User, related_name='update_records', null=True)
 
     class Meta:
         ordering = ['-submit_time']
