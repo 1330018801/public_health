@@ -38,6 +38,7 @@ def old_identify_form(request):
 
 
 def old_identify_form(request):
+    not_form = True
     resident = get_resident(request)
     records = WorkRecord.objects.filter(resident=resident,
                                         model_name='OldIdentify',
@@ -47,7 +48,10 @@ def old_identify_form(request):
         form = OldIdentifyForm(instance=result)
     else:
         form = OldIdentifyForm()
-    return render(request, 'tcm/old_identify_form.html', {'form': form, 'resident': resident, 'type_alias': 'tcm'})
+        not_form = False
+        debug.info(form)
+    return render(request, 'tcm/old_identify_form.html', {'form': form, 'resident': resident, 'type_alias': 'tcm',
+                                                          'not_form': not_form})
 
 '''
 def old_identify_submit(request):
@@ -103,28 +107,30 @@ def old_identify_submit(request):
                                            submit_time__gte=new_year_day()).first()
 
         if record:
-            result = BodyExam.objects.get(id=record.item_id)
-            result.pinghe = result.constitution_identify_yes_trend_pinghe
-            result.qixu = result.constitution_identify_yes_trend_qixu
-            result.yangxu = result.constitution_identify_yes_trend_yangxu
-            result.yinxu = result.constitution_identify_yes_trend_yinxu
-            result.tanshi = result.constitution_identify_yes_trend_tanshi
-            result.shire = result.constitution_identify_yes_trend_shire
-            result.xueyu = result.constitution_identify_yes_trend_xueyu
-            result.qiyu = result.constitution_identify_yes_trend_qiyu
-            result.tebing = result.constitution_identify_yes_trend_tebing
-            result.save()
+            result0 = BodyExam.objects.get(id=record.item_id)
+            result0.pinghe = result.yes_trend_pinghe
+            result0.qixu = result.yes_trend_qixu
+            result0.yangxu = result.yes_trend_yangxu
+            result0.yinxu = result.yes_trend_yinxu
+            result0.tanshi = result.yes_trend_tanshi
+            result0.shire = result.yes_trend_shire
+            result0.xueyu = result.yes_trend_xueyu
+            result0.qiyu = result.yes_trend_qiyu
+            result0.tebing = result.yes_trend_tebing
+            result0.save()
             success = True
         else:
-            form = BodyExamForm(initial={'pinghe': result.constitution_identify_yes_trend_pinghe,
-                                         'qixu': result.constitution_identify_yes_trend_qixu,
-                                         'yangxu': result.constitution_identify_yes_trend_yangxu,
-                                         'yinxu': result.constitution_identify_yes_trend_yinxu,
-                                         'tanshi': result.constitution_identify_yes_trend_tanshi,
-                                         'shire': result.constitution_identify_yes_trend_shire,
-                                         'xueyu': result.constitution_identify_yes_trend_xueyu,
-                                         'qiyu': result.constitution_identify_yes_trend_qiyu,
-                                         'tebing': result.constitution_identify_yes_trend_tebing})
+            form0 = BodyExamForm(initial={'pinghe': result.yes_trend_pinghe,
+                                         'qixu': result.yes_trend_qixu,
+                                         'yangxu': result.yes_trend_yangxu,
+                                         'yinxu': result.yes_trend_yinxu,
+                                         'tanshi': result.yes_trend_tanshi,
+                                         'shire': result.yes_trend_shire,
+                                         'xueyu': result.yes_trend_xueyu,
+                                         'qiyu': result.yes_trend_qiyu,
+                                         'tebing': result.yes_trend_tebing})
+            form0.save()
+            success = True
 
         service_item = Service.items.get(alias='constitution_identification', service_type__alias='tcm')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
