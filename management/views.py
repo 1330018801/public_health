@@ -2050,6 +2050,24 @@ def payment_town_clinics_page(request):
     """
     return render(request, 'management/payment_town_clinics_page.html')
 
+from threading import Thread, Lock
+import multiprocessing
+from Queue import Queue
+
+
+def worker(q, p, l):
+    while True:
+        town_clinic, service_item = q.get()
+        pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                        submit_time__gte=new_year_time(),
+                                        provider__userprofile__clinic__town_clinic=town_clinic,
+                                        service_item=service_item).count() * service_item.price
+        l.acquire()
+        p[town_clinic.name][service_item.service_type.alias] += pay
+        #p['合计'][service_type.alias] += pay
+        l.release()
+        q.task_done()
+
 
 @login_required(login_url='/')
 def payment_town_clinics_datagrid(request):
@@ -2063,6 +2081,27 @@ def payment_town_clinics_datagrid(request):
 
     t0 = datetime.now()
 
+    cpu_num = multiprocessing.cpu_count()
+    lock = Lock()
+    queue = Queue()
+
+    for i in range(cpu_num):
+        t = Thread(target=worker, args=(queue, payment, lock))
+        t.setDaemon(True)
+        t.start()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
+                queue.put((town_clinic, service_item))
+
+    queue.join()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
+
+    '''
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
@@ -2071,6 +2110,7 @@ def payment_town_clinics_datagrid(request):
                     provider__userprofile__clinic__town_clinic=town_clinic,
                     service_item=service_item).count() * service_item.price
             payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
+    '''
 
     t1 = datetime.now()
     debug.info("Interval: {}".format(t1 - t0))
