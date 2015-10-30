@@ -2222,19 +2222,17 @@ def payment_town_clinics_datagrid(request):
 
     # t0 = datetime.now()
 
-    lock = Lock()
     queue = Queue()
 
     def worker():
         while True:
-            c, s = queue.get()
-            pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                            submit_time__gte=new_year_time(),
-                                            provider__userprofile__clinic__town_clinic=c,
-                                            service_item=s).count() * s.price
-            lock.acquire()
-            payment[c.name][s.service_type.alias] += pay
-            lock.release()
+            c, st = queue.get()
+            for si in st.service_items.filter(level=Service.SERVICE_ITEM):
+                count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                  submit_time__gte=new_year_time(),
+                                                  provider__userprofile__clinic__town_clinic=c,
+                                                  service_item=si).count()
+                payment[c.name][st.alias] += (count * si.price)
             queue.task_done()
 
     for i in range(cpu_count):
@@ -2244,8 +2242,7 @@ def payment_town_clinics_datagrid(request):
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
-            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
-                queue.put((town_clinic, service_item))
+            queue.put((town_clinic, service_type))
 
     queue.join()
 
@@ -2310,19 +2307,17 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
 
     # t0 = datetime.now()
 
-    lock = Lock()
     queue = Queue()
 
     def worker():
         while True:
-            c, s = queue.get()
-            count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                              submit_time__gte=new_year_time(),
-                                              provider__userprofile__clinic=clinic,
-                                              service_item=s).count()
-            lock.acquire()
-            payment[c.name][s.service_type.alias] += count * s.price
-            lock.release()
+            c, st = queue.get()
+            for si in st.service_items.filter(level=Service.SERVICE_ITEM):
+                count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                  submit_time__gte=new_year_time(),
+                                                  provider__userprofile__clinic=c,
+                                                  service_item=si).count()
+                payment[c.name][st.alias] += count * si.price
             queue.task_done()
 
     for i in range(cpu_count):
@@ -2332,8 +2327,7 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
 
     for clinic in clinics:
         for service_type in services:
-            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
-                queue.put((clinic, service_item))
+            queue.put((clinic, service_type))
 
     queue.join()
 
