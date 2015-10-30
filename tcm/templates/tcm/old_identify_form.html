@@ -2063,7 +2063,7 @@
         {% for item in form.yes_trend_qixu %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2085,7 +2085,7 @@
         {% for item in form.yes_trend_yangxu %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2107,7 +2107,7 @@
         {% for item in form.yes_trend_yinxu %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2130,7 +2130,7 @@
         {% for item in form.yes_trend_tanshi %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2153,7 +2153,7 @@
         {% for item in form.yes_trend_shire %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2176,7 +2176,7 @@
         {% for item in form.yes_trend_xueyu %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2199,7 +2199,7 @@
         {% for item in form.yes_trend_qiyu %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2222,7 +2222,7 @@
         {% for item in form.yes_trend_tebing %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2245,7 +2245,7 @@
         {% for item in form.yes_trend_pinghe %}
             {% if forloop.first %}
             {% else %}
-                {{ item }}
+                {{ item }}<br>
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2315,7 +2315,7 @@
     {% else %}
         {% for item in form.health_care_guide_yinxu %}
             {% if forloop.last %}
-                {{ item }}><br>{{ form.health_care_guide_extra_yinxu }}
+                {{ item }}<br>{{ form.health_care_guide_extra_yinxu }}
             {% else %}
                 {{ item }}<br>
             {% endif %}
@@ -2469,7 +2469,7 @@
 
 {% block fill_table_date %}
     {% if form.fill_table_date.value %}
-        {{ form.fill_table_date.value }}
+        {{ form.fill_table_date.value }}<input type="text" name="fill_table_date" style="display: none;" value="{{ form.fill_table_date.value }}">
     {% else %}
         {{ form.fill_table_date }}
     {% endif %}
@@ -2477,7 +2477,7 @@
 
 {% block doctor_signature %}
     {% if form.doctor_signature.value %}
-        {{ form.doctor_signature.value }}<input type="text" style="display: none" value="{{ form.doctor_signature.value }}" name="doctor_signature"/>
+        {{ form.doctor_signature.value }}
     {% else %}
         {{ form.doctor_signature }}
     {% endif %}

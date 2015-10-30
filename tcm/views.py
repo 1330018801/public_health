@@ -49,7 +49,7 @@ def old_identify_form(request):
     else:
         form = OldIdentifyForm()
         not_form = False
-        debug.info(form)
+        #debug.info(form)
     return render(request, 'tcm/old_identify_form.html', {'form': form, 'resident': resident, 'type_alias': 'tcm',
                                                           'not_form': not_form})
 
@@ -120,7 +120,7 @@ def old_identify_submit(request):
             result0.save()
             success = True
         else:
-            form0 = BodyExamForm(initial={'pinghe': result.yes_trend_pinghe,
+            form0 = BodyExamForm({'pinghe': result.yes_trend_pinghe,
                                          'qixu': result.yes_trend_qixu,
                                          'yangxu': result.yes_trend_yangxu,
                                          'yinxu': result.yes_trend_yinxu,
@@ -129,14 +129,14 @@ def old_identify_submit(request):
                                          'xueyu': result.yes_trend_xueyu,
                                          'qiyu': result.yes_trend_qiyu,
                                          'tebing': result.yes_trend_tebing})
-            form0.save()
-            success = True
+            if form0.is_valid():
+                form0.save()
 
         service_item = Service.items.get(alias='constitution_identification', service_type__alias='tcm')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='tcm', model_name='OldIdentify', item_id=result.id,
                                   service_item_alias=service_item.alias)
-
+        #debug.info(simplejson.dumps({'success': success}))
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')
 

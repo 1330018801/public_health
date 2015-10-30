@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    /*var yes_trend_qixu = $('input[name=yes_trend_qixu]');*/
+    var yes_trend_qixu = $('input[name=yes_trend_qixu]');
     var yes_trend_yangxu = $('input[name=yes_trend_yangxu]');
     var yes_trend_yinxu = $('input[name=yes_trend_yinxu]');
     var yes_trend_tanshi = $('input[name=yes_trend_tanshi]');
@@ -10,6 +10,8 @@ $(document).ready(function () {
     var yes_trend_pinghe = $('input[name=yes_trend_pinghe]');
 
     /*alert($("input[name='yes_trend_qixu']").get(0).disabled);*/
+    //alert($('#id_yes_trend_qixu_0').html());
+    //$('input[name=yes_trend_qixu]').eq(1).attr("checked", true);
     /*yes_trend_qixu[0].disabled=true;
     yes_trend_yangxu.disabled=true;
     yes_trend_yinxu.disabled=true;
@@ -207,6 +209,43 @@ $(document).ready(function () {
                     return false;
                 }
 
+                if(form.find('input[name=yes_trend_qixu]').is(":checked") && !form.find('input[name=health_care_guide_qixu]').is(":checked")){
+                    $.messager.alert('提示', '请选择气虚质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_yangxu]').is(":checked") && !form.find('input[name=health_care_guide_yangxu]').is(":checked")){
+                    $.messager.alert('提示', '请选择阳虚质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_yinxu]').is(":checked") && !form.find('input[name=health_care_guide_yinxu]').is(":checked")){
+                    $.messager.alert('提示', '请选择阴虚质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_tanshi]').is(":checked") && !form.find('input[name=health_care_guide_tanshi]').is(":checked")){
+                    $.messager.alert('提示', '请选择痰湿质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_shire]').is(":checked") && !form.find('input[name=health_care_guide_shire]').is(":checked")){
+                    $.messager.alert('提示', '请选择湿热质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_xueyu]').is(":checked") && !form.find('input[name=health_care_guide_xueyu]').is(":checked")){
+                    $.messager.alert('提示', '请选择血瘀质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_qiyu]').is(":checked") && !form.find('input[name=health_care_guide_qiyu]').is(":checked")){
+                    $.messager.alert('提示', '请选择气郁质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_tebing]').is(":checked") && !form.find('input[name=health_care_guide_tebing]').is(":checked")){
+                    $.messager.alert('提示', '请选择特禀质的中医药保健指导', 'info');
+                    return false;
+                }
+                if(form.find('input[name=yes_trend_pinghe]').is(":checked") && !form.find('input[name=health_care_guide_pinghe]').is(":checked")){
+                    $.messager.alert('提示', '请选择平和质的中医药保健指导', 'info');
+                    return false;
+                }
+
                 if (form.form('validate')) {
                     param.csrfmiddlewaretoken = $.cookie('csrftoken');
                     return true;
@@ -215,10 +254,11 @@ $(document).ready(function () {
                 }
             },
             success: function (json_data) {
+                //alert(json_data);
                 var data = eval('(' + json_data + ')');
                 if (data.success) {
                     panel.panel('refresh', '/tcm/old_identify_form/');
-                    $.messager.show({title: '提示', msg: '老年人中医药健康管理服务记录表保存成功', timeout: 1000});
+                    $.messager.show({title: '提示', msg: '老年人中医药健康管理服务记录表保存成功', timeout: 2000});
                 } else {
                     $.messager.alert('提示', '老年人中医药健康管理服务记录表保存失败', 'info');
                 }
@@ -349,32 +389,32 @@ function totalPoint(){                    //根据被选中选项的值计算总
     /*var haha = document.getElementById("id_points_qixu");
     haha.value = points_qixu;*/
 
-    document.getElementById("id_points_qixu").innerText = points_qixu;
+    document.getElementById("id_points_qixu").innerText = points_qixu.toString();
     //document.getElementById("hh").value = points_qixu;
     document.getElementById("points_qixu").value = points_qixu;
 
-    document.getElementById("id_points_yangxu").innerText = points_yangxu;
+    document.getElementById("id_points_yangxu").innerText = points_yangxu.toString();
     document.getElementById("points_yangxu").value = points_yangxu;
 
-    document.getElementById("id_points_yinxu").innerText = points_yinxu;
+    document.getElementById("id_points_yinxu").innerText = points_yinxu.toString();
     document.getElementById("points_yinxu").value = points_yinxu;
 
-    document.getElementById("id_points_tanshi").innerText = points_tanshi;
+    document.getElementById("id_points_tanshi").innerText = points_tanshi.toString();
     document.getElementById("points_tanshi").value = points_tanshi;
 
-    document.getElementById("id_points_shire").innerText = points_shire;
+    document.getElementById("id_points_shire").innerText = points_shire.toString();
     document.getElementById("points_shire").value = points_shire;
 
-    document.getElementById("id_points_xueyu").innerText = points_xueyu;
+    document.getElementById("id_points_xueyu").innerText = points_xueyu.toString();
     document.getElementById("points_xueyu").value = points_xueyu;
 
-    document.getElementById("id_points_qiyu").innerText = points_qiyu;
+    document.getElementById("id_points_qiyu").innerText = points_qiyu.toString();
     document.getElementById("points_qiyu").value = points_qiyu;
 
-    document.getElementById("id_points_tebing").innerText = points_tebing;
+    document.getElementById("id_points_tebing").innerText = points_tebing.toString();
     document.getElementById("points_tebing").value = points_tebing;
 
-    document.getElementById("id_points_pinghe").innerText = points_pinghe;
+    document.getElementById("id_points_pinghe").innerText = points_pinghe.toString();
     document.getElementById("points_pinghe").value = points_pinghe;
 
     //alert('qixu'+ point_qixu);

@@ -59,6 +59,7 @@ CHOICES = ((1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'))
 YES_TREND = ((u'是', '是'), (u'倾向是', '倾向是'))
 YES_MAINLY = ((u'是', '是'), (u'基本是', '基本是'))
 
+
 class TcmOldIdentifyChoicesAbstract(models.Model):
     choice = models.CharField(max_length=50, primary_key=True)
     order = models.PositiveSmallIntegerField()
