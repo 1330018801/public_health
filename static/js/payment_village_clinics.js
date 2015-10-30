@@ -22,27 +22,6 @@ $(function () {
             { field: 'infection', title: '传染病报告', width: 20 },
             { field: 'supervision', title: '卫生监督', width: 20 },
             { field: 'total', title: '合计', width: 20 }
-        ]],
-        onClickRow: function (index, row) {
-            /*
-            if (selected_row == row) {
-                $(this).datagrid('unselectRow', index);
-                selected_row = undefined;
-            } else {
-                selected_row = $(this).datagrid('getSelected');
-            }
-            */
-        },
-        onDblClickRow: function(index, row) {
-            /*
-            var tabs = datagrid.parents('#payment_stat_tabs');
-            console.log(row['id']);
-            console.log(row['clinic']);
-            tabs.tabs('add', {
-                title: row['clinic'] + '工作量', closable: true,
-                href: '/management/payment_doctors_page/' + row['id'] + '/'
-            });
-            */
-        }
+        ]]
     });
 });

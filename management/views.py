@@ -1704,27 +1704,6 @@ def graphs(request):
     return render(request, 'management/graphs.html')
 
 
-def worker_7(queue, workload, lock, global_admin):
-    while True:
-        clinic, service_type = queue.get()
-        if global_admin:
-            work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                             submit_time__gte=new_year_time(),
-                                             service_item__level=Service.SERVICE_ITEM,
-                                             service_item__service_type=service_type,
-                                             provider__userprofile__clinic__town_clinic=clinic).count()
-        else:
-            work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                             submit_time__gte=new_year_time(),
-                                             service_item__level=Service.SERVICE_ITEM,
-                                             service_item__service_type=service_type,
-                                             provider__userprofile__clinic=clinic).count()
-        lock.acquire()
-        workload[service_type.name][clinic.name] += work
-        lock.release()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def graph_workload(request):
     """
@@ -1746,8 +1725,28 @@ def graph_workload(request):
     queue = Queue()
     lock = Lock()
 
+    def worker():
+        while True:
+            c, s = queue.get()
+            if global_admin:
+                work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                 submit_time__gte=new_year_time(),
+                                                 service_item__level=Service.SERVICE_ITEM,
+                                                 service_item__service_type=s,
+                                                 provider__userprofile__clinic__town_clinic=c).count()
+            else:
+                work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                 submit_time__gte=new_year_time(),
+                                                 service_item__level=Service.SERVICE_ITEM,
+                                                 service_item__service_type=s,
+                                                 provider__userprofile__clinic=c).count()
+            lock.acquire()
+            workload[s.name][c.name] += work
+            lock.release()
+            queue.task_done()
+
     for i in range(cpu_count):
-        thread = Thread(target=worker_7, args=(queue, workload, lock, global_admin))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -1783,25 +1782,6 @@ def graph_workload(request):
     return HttpResponse(json.dumps(result, ensure_ascii=False), content_type="application/json")
 
 
-def worker_6(queue, payment, lock, global_admin):
-    while True:
-        clinic, service_item = queue.get()
-        if global_admin:
-            pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                            service_item=service_item,
-                                            submit_time__gte=new_year_time(),
-                                            provider__userprofile__clinic__town_clinic=clinic).count() * service_item.price
-        else:
-            pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                            service_item=service_item,
-                                            submit_time__gte=new_year_time(),
-                                            provider__userprofile__clinic=clinic).count() * service_item.price
-        lock.acquire()
-        payment[clinic.name] += pay
-        lock.release()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def graph_payment(request):
     """
@@ -1822,8 +1802,26 @@ def graph_payment(request):
     queue = Queue()
     lock = Lock()
 
+    def worker():
+        while True:
+            c, s = queue.get()
+            if global_admin:
+                pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                service_item=s,
+                                                submit_time__gte=new_year_time(),
+                                                provider__userprofile__clinic__town_clinic=c).count() * s.price
+            else:
+                pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                service_item=service_item,
+                                                submit_time__gte=new_year_time(),
+                                                provider__userprofile__clinic=c).count() * s.price
+            lock.acquire()
+            payment[c.name] += pay
+            lock.release()
+            queue.task_done()
+
     for i in range(cpu_count):
-        thread = Thread(target=worker_6, args=(queue, payment, lock, global_admin))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -1880,16 +1878,6 @@ def workload_town_clinics_page(request):
     return render(request, 'management/workload_town_clinics_page.html')
 
 
-def worker_3(queue, workload, lock):
-    while True:
-        town_clinic, service_type = queue.get()
-        workload[town_clinic.name][service_type.alias] = WorkRecord.objects.filter(
-            status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-            service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-            provider__userprofile__clinic__town_clinic=town_clinic).count()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def workload_town_clinics_datagrid(request):
     """
@@ -1901,17 +1889,25 @@ def workload_town_clinics_datagrid(request):
 
     workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    # t_begin = datetime.now()
+    # t0 = datetime.now()
 
     queue = Queue()
-    lock = Lock()
+
+    def worker():
+        while True:
+            c, s = queue.get()
+            workload[c.name][s.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
+                provider__userprofile__clinic__town_clinic=c).count()
+            queue.task_done()
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             queue.put((town_clinic, service_type))
 
     for i in range(cpu_count):
-        thread = Thread(target=worker_3, args=(queue, workload, lock))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -1931,8 +1927,8 @@ def workload_town_clinics_datagrid(request):
             workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
     '''
 
-    # t_end = datetime.now()
-    # debug.info("total time: {}".format(t_end - t_begin))
+    # t1 = datetime.now()
+    # debug.info("total time: {}".format(t1 - t0))
 
     json_data = []
     for key, value in workload.items():
@@ -1960,16 +1956,6 @@ def workload_village_clinics_page(request, town_clinic_id):
                   {'town_clinic_id': town_clinic_id})
 
 
-def worker_4(queue, workload, lock):
-    while True:
-        village_clinic, service_type = queue.get()
-        workload[village_clinic.name][service_type.alias] = WorkRecord.objects.filter(
-            status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-            service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-            provider__userprofile__clinic=village_clinic).count()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def workload_village_clinics_datagrid(request, town_clinic_id):
     """
@@ -1986,10 +1972,18 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
     # t0 = datetime.now()
 
     queue = Queue()
-    lock = Lock()
+
+    def worker():
+        while True:
+            c, s = queue.get()
+            workload[c.name][s.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
+                provider__userprofile__clinic=c).count()
+            queue.task_done()
 
     for i in range(cpu_count):
-        thread = Thread(target=worker_4, args=(queue, workload, lock))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -2038,16 +2032,6 @@ def workload_doctors_page(request, clinic_id):
     return render(request, 'management/workload_doctors_page.html', {'clinic_id': clinic_id})
 
 
-def worker_5(queue, workload, lock):
-    while True:
-        doctor, service_type = queue.get()
-        workload[doctor.user.username][service_type.alias] = WorkRecord.objects.filter(
-            status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-            service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-            provider=doctor.user).count()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def workload_doctors_datagrid(request, clinic_id):
     """
@@ -2066,10 +2050,18 @@ def workload_doctors_datagrid(request, clinic_id):
     # t0 = datetime.now()
 
     queue = Queue()
-    lock = Lock()
+
+    def worker():
+        while True:
+            d, s = queue.get()
+            workload[d.user.username][s.alias] = WorkRecord.objects.filter(
+                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
+                provider=d.user).count()
+            queue.task_done()
 
     for i in range(cpu_count):
-        thread = Thread(target=worker_5, args=(queue, workload, lock))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -2218,19 +2210,6 @@ def payment_town_clinics_page(request):
     return render(request, 'management/payment_town_clinics_page.html')
 
 
-def worker_1(queue, payment, lock):
-    while True:
-        town_clinic, service_item = queue.get()
-        pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                        submit_time__gte=new_year_time(),
-                                        provider__userprofile__clinic__town_clinic=town_clinic,
-                                        service_item=service_item).count() * service_item.price
-        lock.acquire()
-        payment[town_clinic.name][service_item.service_type.alias] += pay
-        lock.release()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def payment_town_clinics_datagrid(request):
     """
@@ -2246,8 +2225,20 @@ def payment_town_clinics_datagrid(request):
     lock = Lock()
     queue = Queue()
 
+    def worker():
+        while True:
+            c, s = queue.get()
+            pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                            submit_time__gte=new_year_time(),
+                                            provider__userprofile__clinic__town_clinic=c,
+                                            service_item=s).count() * s.price
+            lock.acquire()
+            payment[c.name][s.service_type.alias] += pay
+            lock.release()
+            queue.task_done()
+
     for i in range(cpu_count):
-        thread = Thread(target=worker_1, args=(queue, payment, lock))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
@@ -2301,19 +2292,6 @@ def payment_village_clinics_page(request, town_clinic_id):
                   {'town_clinic_id': town_clinic_id})
 
 
-def worker_2(queue, payment, lock):
-    while True:
-        clinic, service_item = queue.get()
-        pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                        submit_time__gte=new_year_time(),
-                                        provider__userprofile__clinic=clinic,
-                                        service_item=service_item).count() * service_item.price
-        lock.acquire()
-        payment[clinic.name][service_item.service_type.alias] += pay
-        lock.release()
-        queue.task_done()
-
-
 @login_required(login_url='/')
 def payment_village_clinics_datagrid(request, town_clinic_id):
     """
@@ -2335,8 +2313,20 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
     lock = Lock()
     queue = Queue()
 
+    def worker():
+        while True:
+            c, s = queue.get()
+            count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                              submit_time__gte=new_year_time(),
+                                              provider__userprofile__clinic=clinic,
+                                              service_item=s).count()
+            lock.acquire()
+            payment[c.name][s.service_type.alias] += count * s.price
+            lock.release()
+            queue.task_done()
+
     for i in range(cpu_count):
-        thread = Thread(target=worker_2, args=(queue, payment, lock))
+        thread = Thread(target=worker)
         thread.setDaemon(True)
         thread.start()
 
