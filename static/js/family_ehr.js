@@ -165,6 +165,7 @@ $(function() {
                     $.messager.alert('提示', '请选择民族', 'info');
                     return false;
                 }
+                /*
                 if(!personal_info_form.find('input[name=blood_type]').is(":checked")){
                     $.messager.alert('提示', '请选择血型', 'info');
                     return false;
@@ -173,6 +174,7 @@ $(function() {
                     $.messager.alert('提示', '请选择是是否RH阴性', 'info');
                     return false;
                 }
+                */
                 if(!personal_info_form.find('input[name=education]').is(":checked")){
                     $.messager.alert('提示', '请选择文化程度', 'info');
                     return false;
