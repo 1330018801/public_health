@@ -38,3 +38,7 @@ import simplejson
 def json_result(d):
     return HttpResponse(simplejson.dumps(d), content_type='text/html; charset=UTF-8')
 
+
+import multiprocessing
+cpu_count = multiprocessing.cpu_count()
+
