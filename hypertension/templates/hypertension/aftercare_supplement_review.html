@@ -1,0 +1,409 @@
+{% extends 'hypertension/aftercare_5_6_base.html' %}
+
+{% comment %}第5次产前随访表格{% endcomment %}
+
+{% if aftercare_5 %}
+{% block visit_date_5 %}
+    {{ aftercare_5.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block visit_way_5 %}
+    {{ aftercare_5.visit_way }}
+{% endblock %}
+
+{% block symptom_5 %}
+    {% for item in aftercare_5.symptom.all %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block symptom_extra_5 %}
+    {{ aftercare_5.symptom_extra }}
+{% endblock %}
+
+{% block sign_blood_pressure_5 %}
+    {{ aftercare_5.sign_sbp }}/{{ aftercare_5.sign_dbp }}
+{% endblock %}
+
+{% block sign_weight_5 %}
+    {{ aftercare_5.sign_weight }}
+{% endblock %}
+
+{% block sign_weight_next_5 %}
+    {{ aftercare_5.sign_weight_next }}
+{% endblock %}
+
+{% block sign_bmi_5 %}
+    {{ aftercare_5.sign_bmi }}
+{% endblock %}
+
+{% block sign_bmi_next_5 %}
+    {{ aftercare_5.sign_bmi_next }}
+{% endblock %}
+
+{% block sign_heart_rhythm_5 %}
+    {{ aftercare_5.sign_heart_rhythm }}
+{% endblock %}
+
+{% block sign_extra_5 %}
+    {{ aftercare_5.sign_extra }}
+{% endblock %}
+
+{% block life_style_guide_smoke_5 %}
+    {{ aftercare_5.life_style_guide_smoke }}
+{% endblock %}
+
+{% block life_style_guide_smoke_next_5 %}
+    {{ aftercare_5.life_style_guide_smoke_next }}
+{% endblock %}
+
+{% block life_style_guide_liquor_5 %}
+    {{ aftercare_5.life_style_guide_liquor }}
+{% endblock %}
+
+{% block life_style_guide_liquor_next_5 %}
+    {{ aftercare_5.life_style_guide_liquor_next }}
+{% endblock %}
+
+{% block life_style_guide_sport5_5 %}
+    {{ aftercare_5.life_style_guide_sport5 }}
+{% endblock %}
+
+{% block life_style_guide_sport2_5 %}
+    {{ aftercare_5.life_style_guide_sport2 }}
+{% endblock %}
+
+{% block life_style_guide_sport3_5 %}
+    {{ aftercare_5.life_style_guide_sport3 }}
+{% endblock %}
+
+{% block life_style_guide_sport4_5 %}
+    {{ aftercare_5.life_style_guide_sport4 }}
+{% endblock %}
+
+{% block life_style_guide_salt_5 %}
+    {{ aftercare_5.life_style_guide_salt }}
+{% endblock %}
+
+{% block life_style_guide_salt_next_5 %}
+    {{ aftercare_5.life_style_guide_salt_next }}
+{% endblock %}
+
+{% block life_style_guide_mentality_5 %}
+    {{ aftercare_5.life_style_guide_mentality }}
+{% endblock %}
+
+{% block life_style_guide_medical_compliance_5 %}
+    {{ aftercare_5.life_style_guide_medical_compliance }}
+{% endblock %}
+
+{% block auxiliary_examination_5 %}
+    {{ aftercare_5.auxiliary_examination }}
+{% endblock %}
+
+{% block take_medicine_compliance_5 %}
+    {{ aftercare_5.take_medicine_compliance }}
+{% endblock %}
+
+{% block medicine_untoward_effect_5 %}
+    {{ aftercare_5.medicine_untoward_effect }}
+{% endblock %}
+
+{% block medicine_untoward_effect_yes_5 %}
+    {% ifequal aftercare_5.medicine_untoward_effect '有' %}
+        {{ aftercare_5.medicine_untoward_effect_yes }}
+    {% endifequal %}
+{% endblock %}
+
+{% block visit_classification_5 %}
+    {{ aftercare_5.visit_classification }}
+{% endblock %}
+
+{% block take_medicine_5_5 %}
+    {{ aftercare_5.take_medicine_5 }}
+{% endblock %}
+
+{% block take_medicine_5_day_5 %}
+    {% if aftercare_5.take_medicine_5_day %}
+        {{ aftercare_5.take_medicine_5_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5_time_5 %}
+    {% if aftercare_5.take_medicine_5_time %}
+        {{ aftercare_5.take_medicine_5_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_5 %}
+    {{ aftercare_5.take_medicine_2 }}
+{% endblock %}
+
+{% block take_medicine_2_day_5 %}
+    {% if aftercare_5.take_medicine_2_day %}
+        {{ aftercare_5.take_medicine_2_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_time_5 %}
+    {% if aftercare_5.take_medicine_2_time %}
+        {{ aftercare_5.take_medicine_2_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_5 %}
+    {{ aftercare_5.take_medicine_3 }}
+{% endblock %}
+
+{% block take_medicine_3_day_5 %}
+    {% if aftercare_5.take_medicine_3_day %}
+        {{ aftercare_5.take_medicine_3_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_time_5 %}
+    {% if aftercare_5.take_medicine_3_time %}
+        {{ aftercare_5.take_medicine_3_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_qt_5 %}
+    {{ aftercare_5.take_medicine_qt }}
+{% endblock %}
+
+{% block take_medicine_qt_day_5 %}
+    {% if aftercare_5.take_medicine_qt_day %}
+    {{ aftercare_5.take_medicine_qt_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_qt_time_5 %}
+    {% if aftercare_5.take_medicine_qt_time %}
+        {{ aftercare_5.take_medicine_qt_time }}
+    {% endif %}
+{% endblock %}
+
+{% block transfer_treatment_reason_5 %}
+    {{ aftercare_5.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_5 %}
+    {{ aftercare_5.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_5 %}
+    {{ aftercare_5.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_5 %}
+    {{ aftercare_5.doctor_signature }}
+{% endblock %}
+{% endif %}
+
+
+{% comment %}第6次产前随访表格{% endcomment %}
+{% if aftercare_6 %}
+{% block visit_date_6 %}
+    {{ aftercare_6.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block visit_way_6 %}
+    {{ aftercare_6.visit_way }}
+{% endblock %}
+
+{% block symptom_6 %}
+    {% for item in aftercare_6.symptom.all %}
+        {% if forloop.last %}
+            {{ item }}
+        {% else %}
+            {{ item }}/
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block symptom_extra_6 %}
+    {{ aftercare_6.symptom_extra }}
+{% endblock %}
+
+{% block sign_blood_pressure_6 %}
+    {{ aftercare_6.sign_sbp }}/{{ aftercare_6.sign_dbp }}
+{% endblock %}
+
+{% block sign_weight_6 %}
+    {{ aftercare_6.sign_weight }}
+{% endblock %}
+
+{% block sign_weight_next_6 %}
+    {{ aftercare_6.sign_weight_next }}
+{% endblock %}
+
+{% block sign_bmi_6 %}
+    {{ aftercare_6.sign_bmi }}
+{% endblock %}
+
+{% block sign_bmi_next_6 %}
+    {{ aftercare_6.sign_bmi_next }}
+{% endblock %}
+
+{% block sign_heart_rhythm_6 %}
+    {{ aftercare_6.sign_heart_rhythm }}
+{% endblock %}
+
+{% block sign_extra_6 %}
+    {{ aftercare_6.sign_extra }}
+{% endblock %}
+
+{% block life_style_guide_smoke_6 %}
+    {{ aftercare_6.life_style_guide_smoke }}
+{% endblock %}
+
+{% block life_style_guide_smoke_next_6 %}
+    {{ aftercare_6.life_style_guide_smoke_next }}
+{% endblock %}
+
+{% block life_style_guide_liquor_6 %}
+    {{ aftercare_6.life_style_guide_liquor }}
+{% endblock %}
+
+{% block life_style_guide_liquor_next_6 %}
+    {{ aftercare_6.life_style_guide_liquor_next }}
+{% endblock %}
+
+{% block life_style_guide_sport1_6 %}
+    {{ aftercare_6.life_style_guide_sport1 }}
+{% endblock %}
+
+{% block life_style_guide_sport6_6 %}
+    {{ aftercare_6.life_style_guide_sport6 }}
+{% endblock %}
+
+{% block life_style_guide_sport3_6 %}
+    {{ aftercare_6.life_style_guide_sport3 }}
+{% endblock %}
+
+{% block life_style_guide_sport4_6 %}
+    {{ aftercare_6.life_style_guide_sport4 }}
+{% endblock %}
+
+{% block life_style_guide_salt_6 %}
+    {{ aftercare_6.life_style_guide_salt }}
+{% endblock %}
+
+{% block life_style_guide_salt_next_6 %}
+    {{ aftercare_6.life_style_guide_salt_next }}
+{% endblock %}
+
+{% block life_style_guide_mentality_6 %}
+    {{ aftercare_6.life_style_guide_mentality }}
+{% endblock %}
+
+{% block life_style_guide_medical_compliance_6 %}
+    {{ aftercare_6.life_style_guide_medical_compliance }}
+{% endblock %}
+
+{% block auxiliary_examination_6 %}
+    {{ aftercare_6.auxiliary_examination }}
+{% endblock %}
+
+{% block take_medicine_compliance_6 %}
+    {{ aftercare_6.take_medicine_compliance }}
+{% endblock %}
+
+{% block medicine_untoward_effect_6 %}
+    {{ aftercare_6.medicine_untoward_effect }}
+{% endblock %}
+
+{% block medicine_untoward_effect_yes_6 %}
+    {% ifequal aftercare_6.medicine_untoward_effect '有' %}
+        {{ aftercare_6.medicine_untoward_effect_yes }}
+    {% endifequal %}
+{% endblock %}
+
+{% block visit_classification_6 %}
+    {{ aftercare_6.visit_classification }}
+{% endblock %}
+
+{% block take_medicine_1_6 %}
+    {{ aftercare_6.take_medicine_1 }}
+{% endblock %}
+
+{% block take_medicine_1_day_6 %}
+    {% if aftercare_6.take_medicine_1_day %}
+        {{ aftercare_6.take_medicine_1_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_time_6 %}
+    {% if aftercare_6.take_medicine_1_time %}
+        {{ aftercare_6.take_medicine_1_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_6 %}
+    {{ aftercare_6.take_medicine_6 }}
+{% endblock %}
+
+{% block take_medicine_6_day_6 %}
+    {% if aftercare_6.take_medicine_6_day %}
+        {{ aftercare_6.take_medicine_6_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_time_6 %}
+    {% if aftercare_6.take_medicine_6_time %}
+        {{ aftercare_6.take_medicine_6_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_6 %}
+    {{ aftercare_6.take_medicine_3 }}
+{% endblock %}
+
+{% block take_medicine_3_day_6 %}
+    {% if aftercare_6.take_medicine_3_day %}
+    {{ aftercare_6.take_medicine_3_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_time_6 %}
+    {% if aftercare_6.take_medicine_3_time %}
+        {{ aftercare_6.take_medicine_3_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_qt_6 %}
+    {{ aftercare_6.take_medicine_qt }}
+{% endblock %}
+
+{% block take_medicine_qt_day_6 %}
+    {% if aftercare_6.take_medicine_qt_day %}
+        {{ aftercare_6.take_medicine_qt_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_qt_time_6 %}
+    {% if aftercare_6.take_medicine_qt_time %}
+        {{ aftercare_6.take_medicine_qt_time }}
+    {% endif %}
+{% endblock %}
+
+{% block transfer_treatment_reason_6 %}
+    {{ aftercare_6.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_6 %}
+    {{ aftercare_6.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_6 %}
+    {{ aftercare_6.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_6 %}
+    {{ aftercare_6.doctor_signature }}
+{% endblock %}
+{% endif %}
