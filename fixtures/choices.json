@@ -1,0 +1,380 @@
+[
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesqixu",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesyangxu",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesyinxu",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicestanshi",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesshire",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesxueyu",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicesqiyu",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicestebing",
+    "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "情志调摄"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "饮食调养"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "起居调摄"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "运动保健"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "穴位保健"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "tcm.tcmoldidentifychoicespinghe",
+    "pk": "其他"
+}
+]
