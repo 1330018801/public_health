@@ -1,0 +1,205 @@
+{% extends 'diabetes/aftercare_5_6_base.html' %}
+
+{% block table_resident %}{{ record.resident.name }}{% endblock %}
+
+{% block table_no %}{% endblock %}
+
+{% block visit_date_5 %}
+    {{ form.visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block visit_way_5 %}
+    {{ form.visit_way }}
+{% endblock %}
+
+{% block symptom_5 %}
+    {% for item in form.symptom.all %}
+            {{ item }}
+    {% endfor %}
+{% endblock %}
+
+{% block symptom_extra_5 %}
+    {{ form.symptom_extra }}
+{% endblock %}
+
+{% block sign_blood_pressure_5 %}
+    {{ form.sign_sbp }}/{{ form.sign_dbp }}
+{% endblock %}
+
+{% block sign_weight_5 %}
+    {{ form.sign_weight }}
+{% endblock %}
+
+{% block sign_weight_next_5 %}
+    {{ form.sign_weight_next }}
+{% endblock %}
+
+{% block sign_bmi_5 %}
+    {{ form.sign_bmi }}
+{% endblock %}
+
+{% block sign_bmi_next_5 %}
+    {{ form.sign_bmi_next }}
+{% endblock %}
+
+{% block sign_acrotarsium_artery_pulse_5 %}
+    {{ form.sign_acrotarsium_artery_pulse }}
+{% endblock %}
+
+{% block sign_extra_5 %}
+    {{ form.sign_extra }}
+{% endblock %}
+
+{% block life_style_guide_smoke_5 %}
+    {{ form.life_style_guide_smoke }}
+{% endblock %}
+
+{% block life_style_guide_smoke_next_5 %}
+    {{ form.life_style_guide_smoke_next }}
+{% endblock %}
+
+{% block life_style_guide_liquor_5 %}
+    {{ form.life_style_guide_liquor }}
+{% endblock %}
+
+{% block life_style_guide_liquor_next_5 %}
+    {{ form.life_style_guide_liquor_next }}
+{% endblock %}
+
+{% block life_style_guide_sport1_5 %}
+    {{ form.life_style_guide_sport1 }}
+{% endblock %}
+
+{% block life_style_guide_sport2_5 %}
+    {{ form.life_style_guide_sport2 }}
+{% endblock %}
+
+{% block life_style_guide_sport3_5 %}
+    {{ form.life_style_guide_sport3 }}
+{% endblock %}
+
+{% block life_style_guide_sport4_5 %}
+    {{ form.life_style_guide_sport4 }}
+{% endblock %}
+
+{% block life_style_guide_staple_5 %}
+    {{ form.life_style_guide_staple }}
+{% endblock %}
+
+{% block life_style_guide_staple_next_5 %}
+    {{ form.life_style_guide_staple_next }}
+{% endblock %}
+
+{% block life_style_guide_mentality_5 %}
+    {{ form.life_style_guide_mentality }}
+{% endblock %}
+
+{% block life_style_guide_medical_compliance_5 %}
+    {{ form.life_style_guide_medical_compliance }}
+{% endblock %}
+
+{% block auxiliary_examination_fbg_value_5 %}
+    {{ form.auxiliary_examination_fbg_value }}
+{% endblock %}
+
+{% block auxiliary_examination_extra_hemoglobin_5 %}
+    {% if form.auxiliary_examination_extra_hemoglobin %}
+        {{ form.auxiliary_examination_extra_hemoglobin }}
+    {% endif %}
+{% endblock %}
+
+{% block auxiliary_examination_extra_examination_date_5 %}
+    {{ form.auxiliary_examination_extra_examination_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block auxiliary_examination_extra_examination_5 %}
+    {{ form.auxiliary_examination_extra_examination }}
+{% endblock %}
+
+{% block take_medicine_compliance_5 %}
+    {{ form.take_medicine_compliance }}
+{% endblock %}
+
+{% block medicine_untoward_effect_5 %}
+    {{ form.medicine_untoward_effect }}
+{% endblock %}
+
+{% block hypoglycemia_reaction_5 %}
+    {{ form.hypoglycemia_reaction }}
+{% endblock %}
+
+{% block visit_classification_5 %}
+    {{ form.visit_classification }}
+{% endblock %}
+
+{% block take_medicine_1_5 %}
+    {{ form.take_medicine_1 }}
+{% endblock %}
+
+{% block take_medicine_1_day_5 %}
+    {% if form.take_medicine_1_day %}
+        {{ form.take_medicine_1_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_time_5 %}
+    {% if form.take_medicine_1_time %}
+        {{ form.take_medicine_1_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_5 %}
+    {{ form.take_medicine_2 }}
+{% endblock %}
+
+{% block take_medicine_2_day_5 %}
+    {% if form.take_medicine_2_day %}
+        {{ form.take_medicine_2_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_time_5 %}
+    {% if form.take_medicine_2_time %}
+        {{ form.take_medicine_2_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_5 %}
+    {{ form.take_medicine_3 }}
+{% endblock %}
+
+{% block take_medicine_3_day_5 %}
+    {% if form.take_medicine_3_day %}
+        {{ form.take_medicine_3_day }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_time_5 %}
+    {% if form.take_medicine_3_time %}
+        {{ form.take_medicine_3_time }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_insulin_5 %}
+    {{ form.take_medicine_insulin }}
+{% endblock %}
+
+{% block take_medicine_insulin_volume_5 %}
+    {{ form.take_medicine_insulin_volume }}
+{% endblock %}
+
+{% block transfer_treatment_reason_5 %}
+    {{ form.transfer_treatment_reason }}
+{% endblock %}
+
+{% block transfer_treatment_institution_5 %}
+    {{ form.transfer_treatment_institution }}
+{% endblock %}
+
+{% block next_visit_date_5 %}
+    {{ form.next_visit_date | date:"Y-m-d" }}
+{% endblock %}
+
+{% block doctor_signature_5 %}
+    {{ form.doctor_signature }}
+{% endblock %}

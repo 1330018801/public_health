@@ -68,6 +68,26 @@ def aftercare_submit(request):
                         content_type='text/html; charset=UTF-8')
 
 
+def aftercare_supplement_page(request):
+    return render(request, 'diabetes/aftercare_supplement_page.html')
+
+
+def aftercare_supplement_review(request):
+    resident = get_resident(request)
+    context = {'aftercare_5': None, 'aftercare_6': None}
+    for aftercare in context:
+        service_item = Service.items.get(alias=aftercare, service_type__alias='diabetes')
+        try:
+            record = WorkRecord.objects.get(resident=resident, service_item=service_item)
+        except WorkRecord.DoesNotExist:
+            pass
+        else:
+            context[aftercare] = Aftercare.objects.get(id=record.item_id)
+    context['resident'] = resident
+
+    return render(request, 'diabetes/aftercare_supplement_review.html', context)
+
+
 def body_exam_page(request):
     return render(request, 'diabetes/body_exam_page.html')
 
