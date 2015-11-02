@@ -1,0 +1,391 @@
+{% extends "table_base.html" %}
+
+{% block table_title %}
+    高血压患者随访服务记录表（补充）
+{% endblock %}
+
+{% block table_content %}
+    <tr>
+        <td width="60%" colspan="4" align="center">
+            <b>随访日期</b>
+        </td>
+        <td width="60%" colspan="4" class="aftercare_5">
+            {% block visit_date_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4" class="aftercare_6">
+            {% block visit_date_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="60%" colspan="4" align="center">
+            <b>随访方式</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block visit_way_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block visit_way_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="60%" colspan="4" align="center">
+            <b>症状</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block symptom_5 %}{% endblock %}<br>{% block symptom_extra_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block symptom_6 %}{% endblock %}<br>{% block symptom_extra_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="5" colspan="1" width="5%" align="center">
+            <b>体征</b>
+        </td>
+        <td  width="55%" colspan="3" align="center">
+            <b>血压（mmHg)</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_blood_pressure_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_blood_pressure_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" colspan="3" align="center">
+            <b>体重（kg）</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_weight_5 %}{% endblock %}/{% block sign_weight_next_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_weight_6 %}{% endblock %}/{% block sign_weight_next_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" colspan="3" align="center">
+            <b>体质指数</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_bmi_5 %}{% endblock %}/{% block sign_bmi_next_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_bmi_6 %}{% endblock %}/{% block sign_bmi_next_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" colspan="3" align="center">
+            <b>心率</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_heart_rhythm_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_heart_rhythm_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" colspan="3" align="center">
+            <b>其他</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_extra_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block sign_extra_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="6" colspan="1" width="5%" align="center">
+            <b>生活方式指导</b>
+        </td>
+        <td  width="55%" colspan="3" align="center">
+            <b>日吸烟量（支）</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_smoke_5 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_smoke_6 %}{% endblock %}/
+            {% block life_style_guide_smoke_next_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="55%" colspan="3" align="center">
+            <b>日饮酒量（两）</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_liquor_5 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_liquor_6 %}{% endblock %}/
+            {% block life_style_guide_liquor_next_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="55%" colspan="3" align="center">
+            <b>运动</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_sport1_5 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_5 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 240px;">
+            {% block life_style_guide_sport3_5 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_5 %}{% endblock %}分钟/次
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_sport1_6 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport2_6 %}{% endblock %}分钟/次
+            <hr style="border: 1px solid grey;width: 240px;">
+            {% block life_style_guide_sport3_6 %}{% endblock %}次/周<br>
+            {% block life_style_guide_sport4_6 %}{% endblock %}分钟/次
+        </td>
+    </tr>
+    <tr>
+        <td  width="55%" colspan="3" align="center">
+            <b>摄盐情况（咸淡）</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_salt_5 %}{% endblock %}/
+            {% block life_style_guide_salt_next_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_salt_6 %}{% endblock %}/
+            {% block life_style_guide_salt_next_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="55%" colspan="3" align="center">
+            <b>心理调整</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_mentality_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_mentality_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="55%" colspan="3" align="center">
+            <b>遵医行为</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_medical_compliance_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block life_style_guide_medical_compliance_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="60%" colspan="4"  align="center">
+            <b>辅助检查*</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block auxiliary_examination_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block auxiliary_examination_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="60%" colspan="4" align="center">
+            <b>服药依从性</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_compliance_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_compliance_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="60%" colspan="4" align="center">
+            <b>药物不良反应</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block medicine_untoward_effect_5 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block medicine_untoward_effect_6 %}{% endblock %}
+            {% block medicine_untoward_effect_yes_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  width="60%" colspan="4" align="center">
+            <b>此次随访分类</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block visit_classification_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block visit_classification_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td  rowspan="8" colspan="1" width="5%"  align="center">
+            <b>用药情况</b>
+        </td>
+        <td width="55%" colspan="3" align="center">
+            <b>药物名称1</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_1_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_1_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>用法用量</b>
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_1_day_5 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_1_time_5 %}{% endblock %}mg
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_1_day_6 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_1_time_6 %}{% endblock %}mg
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>药物名称2</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_2_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_2_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>用法用量</b>
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_2_day_5 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_2_time_5 %}{% endblock %}mg
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_2_day_6 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_2_time_6 %}{% endblock %}mg
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>药物名称3</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_3_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_3_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>用法用量</b>
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_3_day_5 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_3_time_5 %}{% endblock %}mg
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_3_day_6 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_3_time_6 %}{% endblock %}mg
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>其他药物</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_qt_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block take_medicine_qt_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>用法用量</b>
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_qt_day_5 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_qt_time_5 %}{% endblock %}mg
+        </td>
+        <td width="50%" colspan="2">
+            每日{% block take_medicine_qt_day_6 %}{% endblock %}次
+        </td>
+        <td width="50%" colspan="2">
+            每次{% block take_medicine_qt_time_6 %}{% endblock %}mg
+        </td>
+    </tr>
+
+    <tr>
+        <td rowspan="2" colspan="1" width="5%"align="center">
+            <b>转诊</b>
+        </td>
+        <td width="55%" colspan="3" align="center">
+            <b>原因</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block transfer_treatment_reason_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block transfer_treatment_reason_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="55%" colspan="3" align="center">
+            <b>机构及科别</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block transfer_treatment_institution_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block transfer_treatment_institution_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="60%" colspan="4" align="center">
+            <b>下次随访日期</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block next_visit_date_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block next_visit_date_6 %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td width="60%" colspan="4" align="center">
+            <b>随访医生签名</b>
+        </td>
+        <td width="60%" colspan="4">
+            {% block doctor_signature_5 %}{% endblock %}
+        </td>
+        <td width="60%" colspan="4">
+            {% block doctor_signature_6 %}{% endblock %}
+        </td>
+    </tr>
+{% endblock %}
