@@ -1,0 +1,16 @@
+{% load staticfiles %}
+
+<div id="hypertension_aftercare">
+    <div id="toolbar" class="datagrid-toolbar">
+        <a href="#" id="add_5">第五次随访</a>
+        <a href="#" id="add_6">第六次随访</a>
+        <a href="#" id="save">保存记录表</a>
+        <a href="#" id="undo">取消</a>
+        <a href="#" id="print">打印记录表</a>
+    </div>
+    <form id="form" method="POST">
+        <div id="table" align="center" style="padding-bottom: 30px;"></div>
+    </form>
+</div>
+
+<script src='{% static "js/hypertension_aftercare_supplement.js" %}'></script>
