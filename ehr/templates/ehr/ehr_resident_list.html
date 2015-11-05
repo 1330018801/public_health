@@ -1,0 +1,21 @@
+{% load staticfiles %}
+
+<table id="ehr_resident_list"></table>
+
+<div id="ehr_resident_toolbar" style="padding: 5px; display: none">
+    <div>
+        <a href="#" id="add">新增建档</a>
+        <a href="#" id="edit">修改个人基本信息</a>
+        <a href="#" id="body_exam">新建健康体检表</a>
+    </div>
+    <div style="margin: 5px 0 5px 4px">
+        健康档案编号：<input id="query_ehr_no" />
+        <span style="margin-left: 15px;">姓名：</span><input id="query_name" />
+        <span style="margin-left: 15px;">性别：</span><input id="query_gender"/>
+        <span style="margin-left: 15px;">年龄：</span><input id="query_age"/>
+        <span style="margin-left: 15px;">身份证号码：</span><input id="query_identity" style="margin-right: 15px" />
+        <a href="#" id="query">查询</a>
+    </div>
+</div>
+
+<script src='{% static "js/ehr_resident_list.js" %}'></script>

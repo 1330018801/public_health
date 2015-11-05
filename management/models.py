@@ -206,7 +206,7 @@ class Resident(ChangeLogModel):
     描述居民基本信息的类
     """
     CHILD_4_YEAR, CHILD_7_YEAR, OLD_MAN_AGE = 4, 7, 65
-    FEMALE, MALE, UNKNOWN = 0, 1, 2
+    FEMALE, MALE, GENDER_UNKNOWN, GENDER_NOT_PROVIDED = 0, 1, 2, 3
     JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC = 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
 
     name = models.CharField(max_length=20, verbose_name='姓名')

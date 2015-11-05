@@ -1,5 +1,13 @@
 {% extends 'ehr/personal_info_base.html' %}
 
+{% block table_resident %}
+    {% if resident %}
+        {{ resident.name }}
+    {% else %}
+        <input name="resident_name" class="easyui-textbox" data-options="required: true" style="width: 60px"/>
+    {% endif %}
+{% endblock %}
+
 {% block table_no %}
     {% if resident.ehr_no %}
         {{ resident.ehr_no }}

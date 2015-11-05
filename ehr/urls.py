@@ -21,4 +21,12 @@ urlpatterns = patterns('',
     url(r'^body_exam_table/$', views.body_exam_table, name='body_exam_table'),
     url(r'^body_exam_submit/$', views.body_exam_submit, name='body_exam_submit'),
 
+    url(r'^ehr_setup/$', views.ehr_setup, name='ehr_setup'),
+    url(r'^ehr_resident_list/$', views.ehr_resident_list, name='ehr_resident_list'),
+    url(r'^ehr_resident_query/$', views.ehr_resident_query, name='ehr_resident_query'),
+    url(r'^setup_personal_info_page/$', views.setup_personal_info_page, name='setup_personal_info_page'),
+    url(r'^personal_info_setup/$', views.personal_info_setup, name='personal_info_setup'),
+    url(r'^setup_body_exam_page/$', views.setup_body_exam_page, name='setup_body_exam_page'),
+    url(r'^body_exam_setup/$', views.body_exam_setup, name='body_exam_setup'),
+
 )

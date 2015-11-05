@@ -146,8 +146,32 @@ def family_member_rm(request):
 
 
 def personal_info_submit(request):
-    resident_id = int(request.POST.get('resident_id'))
-    resident = Resident.objects.get(id=resident_id)
+    resident_id = request.POST.get('resident_id')
+    if resident_id:
+        resident_id = int(resident_id)
+        resident = Resident.objects.get(id=resident_id)
+    else:  # 创建一个新的居民对象
+        from services.utils import gender_map
+        gender = gender_map().index(request.POST.get('gender'))
+        nation = request.POST.get('nation')
+        if nation == '少数民族' and request.POST.get('nation_extra'):
+            nation = request.POST.get('nation_extra')
+        if request.user.userprofile.clinic.region.is_town:
+            town = request.user.userprofile.clinic.region
+            village = None
+        else:
+            village = request.user.userprofile.clinic.region
+            town = village.town
+        resident = Resident(name=request.POST.get('resident_name'),
+                            gender=gender, nation=nation,
+                            town=town, village=village,
+                            birthday=request.POST.get('birthday'),
+                            address=request.POST.get('address'),
+                            identity=request.POST.get('identity'),
+                            mobile=request.POST.get('phone'),
+                            create_by=request.user)
+        resident.save()
+
     form = PersonalInfoForm(request.POST)
     if form.is_valid():
         personal_info = form.save()
@@ -176,9 +200,7 @@ def personal_info_submit(request):
     else:
         debug.info(form.errors.as_data())
         success = False
-
-    return HttpResponse(simplejson.dumps({'success': success}),
-                        content_type='text/html; charset=UTF-8')
+    return json_result({'success': success, 'resident_id': resident.id})
 
 
 def personal_info_review(request):
@@ -204,9 +226,7 @@ def body_exam_table(request):
     resident = Resident.objects.get(id=resident_id)
     record = WorkRecord.objects.filter(resident=resident,
                                        service_item_alias='body_exam_table').first()
-    debug.info(resident.name)
     if record:
-        debug.info('aaa')
         table = BodyExam.objects.get(id=record.item_id)
         debug.info(record.item_id)
         form = BodyExamForm(instance=table)
@@ -222,16 +242,16 @@ def body_exam_submit(request):
     success = False
     if form.is_valid():
         result = form.save()
-        record = WorkRecord(resident=resident, provider=request.user,
+        # 建档体检因为不是付费项目，这里没有把service_item记录在WorkRecord中
+        # 在后续的筛选中只需要使用service_item_alias或者model_name
+        record = WorkRecord(resident=resident, provider=request.user, model_name='BodyExam',
                             service_item_alias='body_exam_table', item_id=result.id)
         record.save()
         success = True
     else:
         debug.info(form.errors.as_data())
 
-    # return JsonResponse({'success': success})
-    return HttpResponse(simplejson.dumps({'success': success}),
-                        content_type='text/html; charset=UTF-8')
+    return json_result({'success': success})
 
 
 def record_list(request):
@@ -309,3 +329,70 @@ def change_resident(request):
         return JsonResponse({'success': False})
     else:
         return JsonResponse({'success': True, 'message': resident.name})
+
+
+def ehr_setup(request):
+    return render(request, 'ehr/ehr_setup.html')
+
+
+def ehr_resident_list(request):
+    return render(request, 'ehr/ehr_resident_list.html')
+
+
+from services.utils import json_result
+
+
+def ehr_resident_query(request):
+    """
+    函数说明：在卫生院医生、村医工作界面，查询列表辖区内所有建档居民
+    返回结果：在easyui的datagrid中分页显示查询结果，返回json对象数组
+    """
+    page = int(request.POST.get('page'))
+    page_size = int(request.POST.get('rows'))
+    first = page_size * (page - 1)
+
+    user = request.user
+    region = user.userprofile.clinic.region
+
+    if region is None:
+        return json_result({'total': 0, 'rows': []})
+
+    residents = Resident.objects.filter(town=region.town, ehr_no__gt='') if region.is_town \
+        else Resident.objects.filter(town=region.town, village=region, ehr_no__gt='')
+
+    json_items = []
+    for resident in residents[first: first + page_size]:
+        item = model_to_dict(resident, exclude=['town', 'village', 'birthday',
+                                                'create_time', 'create_by',
+                                                'update_time', 'update_by'])
+        item['birthday'] = resident.birthday.strftime('%Y-%m-%d')
+        item['age'] = resident.age
+        item['town'] = resident.town.name if resident.town else ''
+        item['village'] = resident.village.name if resident.village else ''
+        item['personal_info'] = u'是'
+        item['body_exam'] = u'是' \
+            if WorkRecord.objects.filter(resident=resident,
+                                         service_item_alias='body_exam_table').count() else u'否'
+        json_items.append(item)
+
+    return json_result({'total': residents.count(), 'rows': json_items})
+
+
+def setup_personal_info_page(request):
+    return render(request, 'ehr/setup_personal_info_page.html')
+
+
+def personal_info_setup(request):
+    form = PersonalInfoForm()
+    return render(request, 'ehr/personal_info_form_content.html', {'form': form})
+
+
+def setup_body_exam_page(request):
+    return render(request, 'ehr/setup_body_exam_page.html')
+
+
+def body_exam_setup(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    form = BodyExamForm()
+    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})

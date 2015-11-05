@@ -32,8 +32,6 @@ $(function () {
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#payment_stat_tabs');
-            console.log(row['id']);
-            console.log(row['clinic']);
             tabs.tabs('add', {
                 title: row['clinic'] + '公共卫生费用', closable: true,
                 href: '/management/payment_village_clinics_page/' + row['id'] + '/'

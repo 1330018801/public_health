@@ -42,3 +42,6 @@ def json_result(d):
 import multiprocessing
 cpu_count = multiprocessing.cpu_count()
 
+
+def gender_map():
+    return [u'女', u'男', u'未知的性别', u'未说明的性别']

@@ -37,7 +37,7 @@ if socket.gethostname() == 'web.phis':  # prod environment
             'PORT': '5432'
         }
     }
-elif socket.gethostname() == 'LijundeMacBook-Pro.local':  # test environment
+elif socket.gethostname() == 'LijundeMacBook-Pro.local' + 'no':  # test environment
     DEBUG = TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
     DATABASES = {
