@@ -150,6 +150,14 @@ $(function() {
             edit_row = undefined;
             selected_row = undefined;
             btn_add.linkbutton('enable');
+        },
+        onDblClickRow: function(index, row){
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            tabs.tabs('add', {
+                title: '个人基本信息表', closable: true,
+                href: '/ehr/personal_info_review/', method: 'POST',
+                queryParams: {resident_id: row['id']}
+            });
         }
     });
 

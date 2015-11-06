@@ -82,7 +82,7 @@
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_11.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '职业病' %}
-            &nbsp;{{ form.disease_hisotry_occupational }}
+            &nbsp;{{ form.disease_hisotry_occupational.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_12.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '其他' %}

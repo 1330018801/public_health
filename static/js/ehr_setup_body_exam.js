@@ -22,12 +22,19 @@ $(function () {
                         href: '/ehr/body_exam_table/', method: 'POST',
                         queryParams: {resident_id: resident_id}
                     });
+                    print_btn.linkbutton('enable');
                     tabs.find('#ehr_resident_list').datagrid('reload');
                 } else {
                     $.messager.alert('提示', '健康体检表保存失败', 'warning');
                 }
             }
         })
+    });
+
+    print_btn.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            table.find('.print_area').printThis();
+        }
     });
 
     table.panel({href: '/ehr/body_exam_setup/', method: 'POST',

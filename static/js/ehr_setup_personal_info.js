@@ -111,6 +111,7 @@ $(function () {
                             href: '/ehr/personal_info_review/', method: 'POST',
                             queryParams: {resident_id: data.resident_id}
                         });
+                        print_btn.linkbutton('enable');
                         var tabs = form.parents('#ehr_setup_tabs');
                         tabs.find('#ehr_resident_list').datagrid('reload');
                     } else {
@@ -118,6 +119,12 @@ $(function () {
                     }
                 }
             })
+        }
+    });
+
+    print_btn.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            table.find('.print_area').printThis();
         }
     });
 
