@@ -32,10 +32,7 @@ def inspection_list(request):
 
     begin_date = datetime.strptime(begin_date, '%Y-%m-%d').date()
     end_date = datetime.strptime(end_date, '%Y-%m-%d').date()
-
-    inspections = Inspection.objects.all()
-    inspections = inspections.filter(inspection_date__range=(begin_date, end_date))
-    debug.info(inspections.count())
+    inspections = Inspection.objects.filter(inspection_date__range=(begin_date, end_date))
 
     json_items = []
     for inspection in inspections:
@@ -114,8 +111,12 @@ def info_report_page(request):
 
 
 def info_report_list(request):
-    begin_date = request.POST.get('begin_date')
-    end_date = request.POST.get('end_date')
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     info_reports = InfoReport.objects.filter(report_time__range=(begin_date, end_date))
 
     json_items = []
@@ -126,6 +127,7 @@ def info_report_list(request):
         except WorkRecord.DoesNotExist:
             pass
         else:
+            debug.info('bbb')
             item = model_to_dict(report, fields=['id', 'info_type', 'info_content', 'reporter'])
             item['discover_time'] = report.discover_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
             item['report_time'] = report.report_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')

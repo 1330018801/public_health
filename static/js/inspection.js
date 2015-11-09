@@ -37,6 +37,7 @@ $(function() {
                             success: function () {
                                 datagrid.datagrid('load');
                                 datagrid.datagrid('unselectAll');
+                                selected_row = undefined;
                                 $.messager.show({ title: '提示', msg: '巡查登记删除成功！' });
                             }
                         });
@@ -117,11 +118,11 @@ $(function() {
             param.end_date = toolbar.find('#end_date').datebox('getValue');
         },
         onClickRow: function (index, row) {
-            if (selected_row != undefined && selected_row == row) {
+            if (selected_row == row) {
                 $(this).datagrid('unselectRow', index);
                 selected_row = undefined;
             } else {
-                selected_row = $(this).datagrid('getSelected');
+                selected_row = row;
             }
         },
         onAfterEdit: function() {
