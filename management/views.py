@@ -3,7 +3,7 @@ from datetime import datetime, date
 import simplejson
 import xlwt
 from threading import Thread, Lock
-from Queue import Queue
+import Queue
 import collections
 
 from django.utils.encoding import smart_unicode
@@ -24,7 +24,6 @@ bj_tz = pytz.timezone('Asia/Shanghai')
 
 import logging
 debug = logging.getLogger('debug')
-
 
 @login_required(login_url='/')
 def excel_file(request):
@@ -1722,13 +1721,16 @@ def graph_workload(request):
                 for service_type in Service.types.all()}
 
     # t0 = datetime.now()
-    queue = Queue()
+    queue = Queue.Queue()
     lock = Lock()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 if global_admin:
                     work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                      submit_time__gte=new_year_time(),
@@ -1745,8 +1747,6 @@ def graph_workload(request):
                 workload[s.name][c.name] += work
                 lock.release()
                 queue.task_done()
-            except Queue.Empty:
-                return
 
     for clinic in clinics:
         for service_type in Service.types.all():
@@ -1754,7 +1754,7 @@ def graph_workload(request):
 
     for i in range(cpu_count):
         thread = Thread(target=worker)
-        thread.setDaemon(True)
+        # thread.setDaemon(True)
         thread.start()
 
     queue.join()
@@ -1802,13 +1802,16 @@ def graph_payment(request):
 
     #t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
     lock = Lock()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 if global_admin:
                     pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                     service_item=s,
@@ -1823,17 +1826,15 @@ def graph_payment(request):
                 payment[c.name] += pay
                 lock.release()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for clinic in clinics:
         for service_item in Service.items.all():
             queue.put((clinic, service_item))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        # thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
@@ -1897,19 +1898,21 @@ def workload_town_clinics_datagrid(request):
 
     # t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                debug.info('exit workload')
+                return
+            else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic__town_clinic=c).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
@@ -1917,7 +1920,7 @@ def workload_town_clinics_datagrid(request):
 
     for i in range(cpu_count):
         thread = Thread(target=worker)
-        thread.setDaemon(True)
+        # thread.setDaemon(True)
         thread.start()
 
     queue.join()
@@ -1980,28 +1983,29 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
 
     # t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic=c).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for village_clinic in town_clinic.village_clinics.all():
         for service_type in Service.types.all():
             queue.put((village_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        # thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
@@ -2061,28 +2065,29 @@ def workload_doctors_datagrid(request, clinic_id):
 
     # t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                d, s = queue.get()
+                d, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 workload[d.user.username][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider=d.user).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for doctor in clinic.users.all():
         for service_type in Service.types.all():
             queue.put((doctor, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        # thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
@@ -2237,12 +2242,16 @@ def payment_town_clinics_datagrid(request):
 
     # t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, st = queue.get()
+                c, st = queue.get(block=False)
+            except Queue.Empty:
+                debug.info('exit')
+                return
+            else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                       submit_time__gte=new_year_time(),
@@ -2250,17 +2259,15 @@ def payment_town_clinics_datagrid(request):
                                                       service_item=si).count()
                     payment[c.name][st.alias] += (count * si.price)
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             queue.put((town_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        # thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
@@ -2325,12 +2332,15 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
 
     # t0 = datetime.now()
 
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, st = queue.get()
+                c, st = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                       submit_time__gte=new_year_time(),
@@ -2338,17 +2348,15 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
                                                       service_item=si).count()
                     payment[c.name][st.alias] += count * si.price
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for clinic in clinics:
         for service_type in services:
             queue.put((clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        # thread.setDaemon(True)
+        thread.start()
 
     queue.join()
 
