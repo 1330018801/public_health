@@ -37,19 +37,6 @@ if socket.gethostname() == 'web.phis':  # prod environment
             'PORT': '5432'
         }
     }
-elif socket.gethostname() == 'LijundeMacBook-Pro.local' + 'no':  # test environment
-    DEBUG = TEMPLATE_DEBUG = True
-    ALLOWED_HOSTS = []
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'sh_health',
-            'HOST': '127.0.0.1',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
-            'PORT': '5433'
-        }
-    }
 else:  # development environment
     DEBUG = TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
@@ -57,14 +44,6 @@ else:  # development environment
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-            #'NAME': os.path.join(BASE_DIR, 'dev.db'),
-            #'NAME': 'dev.db'
-            #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            #'NAME': 'sh_health_dev2',
-            #'HOST': '202.112.52.20',
-            #'USER': 'postgres',
-            #'PASSWORD': '6yhn7ujm,./',
-            #'PORT': '5432'
         }
     }
 

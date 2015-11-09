@@ -2,8 +2,8 @@
 from datetime import datetime, date
 import simplejson
 import xlwt
-from threading import Thread, Lock
-from Queue import Queue
+from threading import Thread
+import Queue
 import collections
 
 from django.utils.encoding import smart_unicode
@@ -24,7 +24,6 @@ bj_tz = pytz.timezone('Asia/Shanghai')
 
 import logging
 debug = logging.getLogger('debug')
-
 
 @login_required(login_url='/')
 def excel_file(request):
@@ -1721,14 +1720,15 @@ def graph_workload(request):
     workload = {service_type.name: {clinic.name: 0 for clinic in clinics}
                 for service_type in Service.types.all()}
 
-    # t0 = datetime.now()
-    queue = Queue()
-    lock = Lock()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 if global_admin:
                     work = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                      submit_time__gte=new_year_time(),
@@ -1741,12 +1741,8 @@ def graph_workload(request):
                                                      service_item__level=Service.SERVICE_ITEM,
                                                      service_item__service_type=s,
                                                      provider__userprofile__clinic=c).count()
-                lock.acquire()
                 workload[s.name][c.name] += work
-                lock.release()
                 queue.task_done()
-            except Queue.Empty:
-                return
 
     for clinic in clinics:
         for service_type in Service.types.all():
@@ -1754,29 +1750,9 @@ def graph_workload(request):
 
     for i in range(cpu_count):
         thread = Thread(target=worker)
-        thread.setDaemon(True)
         thread.start()
 
     queue.join()
-
-    '''
-    if global_admin:
-        for clinic in clinics:
-            for service_type in Service.types.all():
-                workload[service_type.name][clinic.name] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-                    provider__userprofile__clinic__town_clinic=clinic).count()
-    else:
-        for clinic in clinics:
-            for service_type in Service.types.all():
-                workload[service_type.name][clinic.name] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, service_item__level=Service.SERVICE_ITEM,
-                    service_item__service_type=service_type, provider__userprofile__clinic=clinic).count()
-    '''
-
-    # t1 = datetime.now()
-    # debug.info("Workload interval: {}".format(t1 - t0))
 
     clinics = workload.values()[0].keys()
     series = [{"name": key, "data": value.values()} for key, value in workload.items()]
@@ -1800,15 +1776,15 @@ def graph_payment(request):
 
     payment = {clinic.name: 0 for clinic in clinics}
 
-    #t0 = datetime.now()
-
-    queue = Queue()
-    lock = Lock()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 if global_admin:
                     pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                     service_item=s,
@@ -1819,41 +1795,18 @@ def graph_payment(request):
                                                     service_item=service_item,
                                                     submit_time__gte=new_year_time(),
                                                     provider__userprofile__clinic=c).count() * s.price
-                lock.acquire()
                 payment[c.name] += pay
-                lock.release()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for clinic in clinics:
         for service_item in Service.items.all():
             queue.put((clinic, service_item))
 
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
+
     queue.join()
-
-    '''
-    if global_admin:
-        for clinic in clinics:
-            for service_item in Service.items.all():
-                payment[clinic.name] += WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, service_item=service_item, submit_time__gte=new_year_time(),
-                    provider__userprofile__clinic__town_clinic=clinic).count() * service_item.price
-    else:
-        for clinic in clinics:
-            for service_item in Service.items.all():
-                payment[clinic.name] += WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, service_item=service_item,
-                    submit_time__gte=new_year_time(), provider__userprofile__clinic=clinic).count() * service_item.price
-    '''
-
-    # t1 = datetime.now()
-    # debug.info("Payment Interval: {}".format(t1 - t0))
 
     total_payment = sum(payment.values()) * 1.0
     percent = [{'name': key, 'y': value/total_payment} for key, value in payment.items()]
@@ -1895,21 +1848,20 @@ def workload_town_clinics_datagrid(request):
 
     workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    # t0 = datetime.now()
-
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic__town_clinic=c).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
@@ -1917,7 +1869,6 @@ def workload_town_clinics_datagrid(request):
 
     for i in range(cpu_count):
         thread = Thread(target=worker)
-        thread.setDaemon(True)
         thread.start()
 
     queue.join()
@@ -1925,19 +1876,6 @@ def workload_town_clinics_datagrid(request):
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
-
-    '''
-    for town_clinic in Clinic.in_town.all():
-        for service_type in Service.types.all():
-            workload[town_clinic.name][service_type.alias] = WorkRecord.objects.filter(
-                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-                provider__userprofile__clinic__town_clinic=town_clinic).count()
-            workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
-    '''
-
-    # t1 = datetime.now()
-    # debug.info("total time: {}".format(t1 - t0))
 
     json_data = []
     for key, value in workload.items():
@@ -1978,48 +1916,34 @@ def workload_village_clinics_datagrid(request, town_clinic_id):
         workload[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
     workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    # t0 = datetime.now()
-
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, s = queue.get()
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic=c).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for village_clinic in town_clinic.village_clinics.all():
         for service_type in Service.types.all():
             queue.put((village_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
 
     queue.join()
 
     for village_clinic in town_clinic.village_clinics.all():
         for service_type in Service.types.all():
             workload['合计'][service_type.alias] += workload[village_clinic.name][service_type.alias]
-
-    '''
-    for village_clinic in town_clinic.village_clinics.all():
-        for service_type in Service.types.all():
-            workload[village_clinic.name][service_type.alias] = WorkRecord.objects.filter(
-                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-                provider__userprofile__clinic=village_clinic).count()
-            workload['合计'][service_type.alias] += workload[village_clinic.name][service_type.alias]
-    '''
-    # t1 = datetime.now()
-    # debug.info("Interval: {}".format(t1 - t0))
 
     json_data = []
     for key, value in workload.items():
@@ -2059,49 +1983,34 @@ def workload_doctors_datagrid(request, clinic_id):
 
     workload['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    # t0 = datetime.now()
-
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                d, s = queue.get()
+                d, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 workload[d.user.username][s.alias] = WorkRecord.objects.filter(
                     status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider=d.user).count()
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for doctor in clinic.users.all():
         for service_type in Service.types.all():
             queue.put((doctor, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
 
     queue.join()
 
     for doctor in clinic.users.all():
         for service_type in Service.types.all():
             workload['合计'][service_type.alias] += workload[doctor.user.username][service_type.alias]
-
-    '''
-    for doctor in clinic.users.all():
-        for service_type in Service.types.all():
-            workload[doctor.user.username][service_type.alias] = WorkRecord.objects.filter(
-                status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                service_item__level=Service.SERVICE_ITEM, service_item__service_type=service_type,
-                provider=doctor.user).count()
-            workload['合计'][service_type.alias] += workload[doctor.user.username][service_type.alias]
-    '''
-
-    # t1 = datetime.now()
-    # debug.info('Interval: {}'.format(t1 - t0))
 
     json_data = []
     for key, value in workload.items():
@@ -2235,14 +2144,15 @@ def payment_town_clinics_datagrid(request):
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
     payment['合计'] = {service_type.alias: 0 for service_type in Service.types.all()}
 
-    # t0 = datetime.now()
-
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, st = queue.get()
+                c, st = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                       submit_time__gte=new_year_time(),
@@ -2250,37 +2160,20 @@ def payment_town_clinics_datagrid(request):
                                                       service_item=si).count()
                     payment[c.name][st.alias] += (count * si.price)
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             queue.put((town_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
 
     queue.join()
 
     for town_clinic in Clinic.in_town.all():
         for service_type in Service.types.all():
             payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
-
-    '''
-    for town_clinic in Clinic.in_town.all():
-        for service_type in Service.types.all():
-            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
-                payment[town_clinic.name][service_type.alias] += WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    provider__userprofile__clinic__town_clinic=town_clinic,
-                    service_item=service_item).count() * service_item.price
-            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
-    '''
-
-    # t1 = datetime.now()
-    # debug.info("Interval: {}".format(t1 - t0))
 
     json_data = []
     for key, value in payment.items():
@@ -2322,15 +2215,15 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
         payment[clinic.name] = {service_type.alias: 0 for service_type in services}
 
     payment['合计'] = {service_type.alias: 0 for service_type in services}
-
-    # t0 = datetime.now()
-
-    queue = Queue()
+    queue = Queue.Queue()
 
     def worker():
         while True:
             try:
-                c, st = queue.get()
+                c, st = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
                                                       submit_time__gte=new_year_time(),
@@ -2338,37 +2231,20 @@ def payment_village_clinics_datagrid(request, town_clinic_id):
                                                       service_item=si).count()
                     payment[c.name][st.alias] += count * si.price
                 queue.task_done()
-            except Queue.Empty:
-                return
-
-    for i in range(cpu_count):
-        thread = Thread(target=worker)
-        thread.setDaemon(True)
-        thread.start()
 
     for clinic in clinics:
         for service_type in services:
             queue.put((clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
 
     queue.join()
 
     for clinic in clinics:
         for service_type in services:
             payment['合计'][service_type.alias] += payment[clinic.name][service_type.alias]
-
-    '''
-    for clinic in clinics:
-        for service_type in services:
-            for service_item in service_type.service_items.filter(level=Service.SERVICE_ITEM):
-                payment[clinic.name][service_type.alias] += WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
-                    provider__userprofile__clinic=clinic,
-                    service_item=service_item).count() * service_item.price
-            payment['合计'][service_type.alias] += payment[clinic.name][service_type.alias]
-    '''
-
-    # t1 = datetime.now()
-    # debug.info("Interval: {}".format(t1 - t0))
 
     json_data = []
     for key, value in payment.items():
