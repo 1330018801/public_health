@@ -217,6 +217,17 @@ def personal_info_review(request):
         return render(request, 'ehr/personal_info_form_content.html',
                       {'form': form, 'resident': resident})
 
+
+def personal_info_review_tab(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    personal_info = resident.personal_info_table
+    if personal_info:
+        form = PersonalInfoForm(instance=personal_info)
+        return render(request, 'ehr/personal_info_review_tab.html',
+                      {'form': form, 'resident': resident})
+
+
 from .forms import BodyExamForm
 from .models import BodyExam
 
