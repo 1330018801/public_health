@@ -63,7 +63,7 @@
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_5.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '恶性肿瘤' %}
-            &nbsp;{{ form.disease_history_cancer.data }}
+            &nbsp;{{ form.disease_history_cancer.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_6.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '脑卒中' %}
@@ -82,11 +82,11 @@
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_11.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '职业病' %}
-            &nbsp;{{ form.disease_hisotry_occupational.value }}
+            &nbsp;{{ form.disease_history_occupational.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_12.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '其他' %}
-            &nbsp;{{ form.disease_history_extra }}
+            &nbsp;{{ form.disease_history_extra.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_13.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
     {% endfor %}
@@ -196,7 +196,7 @@
             {{ item }}/
         {% endif %}
     {% endfor %}
-    {% if '其他' in form.disability.value %}
+    {% if '其他残疾' in form.disability.value %}
         {{ form.disability_extra.value }}
     {% endif %}
 {% endblock %}

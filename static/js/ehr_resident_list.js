@@ -38,20 +38,37 @@ $(function() {
     btn_add.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             var tabs = datagrid.parents('#ehr_setup_tabs');
-            tabs.tabs('add', {
-                title: '建档：个人基本信息表', closable: true,
-                href: '/ehr/setup_personal_info_page/'
-            });
+            if(!tabs.tabs('exists', '建档：个人基本信息表')){
+                tabs.tabs('add', {
+                    title: '建档：个人基本信息表', closable: true,
+                    href: '/ehr/setup_personal_info_page/'
+                });
+            }
+            else{
+                tabs.tabs('select', '建档：个人基本信息表');
+            }
         }
     });
 
     btn_add_body_exam.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             var tabs = datagrid.parents('#ehr_setup_tabs');
-            tabs.tabs('add', {
-                title: '建档：健康体检表', closable: true,
-                href: '/ehr/setup_body_exam_page/'
-            });
+            if(!tabs.tabs('exists', '建档：健康体检表')){
+                tabs.tabs('add', {
+                    title: '建档：健康体检表', closable: true,
+                    href: '/ehr/setup_body_exam_page/'
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '建档：健康体检表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/setup_body_exam_page/'
+                    }
+                });
+                tabs.tabs('select', '建档：健康体检表');
+            }
         }
     });
 
@@ -128,7 +145,7 @@ $(function() {
                         if (data) {
                             datagrid.datagrid('reload');
                             datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息记录添加成功！' })
+                            $.messager.show({ title: '提示', timeout: 2000, msg: '居民信息记录添加成功！' })
                         }
                     }
                 });
@@ -142,7 +159,7 @@ $(function() {
                         if (data) {
                             datagrid.datagrid('load');
                             datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息记录更新成功！' })
+                            $.messager.show({ title: '提示', timeout: 2000, msg: '居民信息记录更新成功！' })
                         }
                     }
                 });
@@ -153,11 +170,24 @@ $(function() {
         },
         onDblClickRow: function(index, row){
             var tabs = datagrid.parents('#ehr_setup_tabs');
-            tabs.tabs('add', {
-                title: '个人基本信息表', closable: true,
-                href: '/ehr/personal_info_review_tab/', method: 'POST',
-                queryParams: {resident_id: row['id']}
-            });
+            if(!tabs.tabs('exists', '个人基本信息表')){
+                tabs.tabs('add', {
+                    title: '个人基本信息表', closable: true,
+                    href: '/ehr/personal_info_review_tab/', method: 'POST',
+                    queryParams: {resident_id: row['id']}
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '个人基本信息表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/personal_info_review_tab/', method: 'POST',
+                        queryParams: {resident_id: row['id']}
+                    }
+                });
+                tabs.tabs('select', '个人基本信息表');
+            }
         }
     });
 

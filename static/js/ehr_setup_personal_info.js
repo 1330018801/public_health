@@ -106,7 +106,7 @@ $(function () {
                 success: function (data) {
                     var data = eval('(' + data + ')');
                     if (data.success) {
-                        $.messager.show({title: '提示', msg: '个人基本信息表保存完成', timeout: 1000});
+                        $.messager.show({title: '提示', msg: '个人基本信息表保存完成', timeout: 2000});
                         table.panel({
                             href: '/ehr/personal_info_review/', method: 'POST',
                             queryParams: {resident_id: data.resident_id}

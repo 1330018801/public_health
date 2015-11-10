@@ -154,7 +154,7 @@ def personal_info_submit(request):
         from services.utils import gender_map
         gender = gender_map().index(request.POST.get('gender'))
         nation = request.POST.get('nation')
-        if nation == '少数民族' and request.POST.get('nation_extra'):
+        if nation == u'少数民族' and request.POST.get('nation_extra'):
             nation = request.POST.get('nation_extra')
         if request.user.userprofile.clinic.region.is_town:
             town = request.user.userprofile.clinic.region
