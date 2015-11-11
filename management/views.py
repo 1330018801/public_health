@@ -1775,7 +1775,6 @@ def graph_payment(request):
         clinics = Clinic.in_town.all()
 
     payment = {clinic.name: 0 for clinic in clinics}
-
     queue = Queue.Queue()
 
     def worker():
