@@ -30,4 +30,8 @@ urlpatterns = patterns('',
     url(r'^body_exam_setup/$', views.body_exam_setup, name='body_exam_setup'),
     url(r'^personal_info_review_tab/$', views.personal_info_review_tab, name='personal_info_review_tab'),
 
+    url(r'^personal_info_edit_tab/$', views.personal_info_edit_tab, name='personal_info_edit_tab'),
+    url(r'^personal_info_edit/$', views.personal_info_edit, name='personal_info_edit'),
+    url(r'^personal_info_edit_submit/$', views.personal_info_edit_submit, name='personal_info_edit_submit'),
+
 )
