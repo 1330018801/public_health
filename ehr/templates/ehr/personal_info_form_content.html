@@ -1,7 +1,9 @@
 {% extends 'ehr/personal_info_base.html' %}
 
 {% block table_resident %}
-    {% if resident %}
+    {% if form.gender.value %}
+        <input name="resident_name" class="easyui-textbox" data-options="required: true" style="width: 60px" value="{{ resident.name }}"/>
+    {% elif resident %}
         {{ resident.name }}
     {% else %}
         <input name="resident_name" class="easyui-textbox" data-options="required: true" style="width: 60px"/>
@@ -9,7 +11,12 @@
 {% endblock %}
 
 {% block table_no %}
-    {% if resident.ehr_no %}
+    {% if form.gender.value %}
+        <input id="ehr_village_no" name="ehr_village_no"
+               class="easyui-numberbox" data-options="required: true" style="width: 40px" value="{{ ehr_village_no }}"/> -
+        <input id="ehr_unique_no" name="ehr_unique_no"
+               class="easyui-numberbox" data-options="required: true" style="width: 60px" value="{{ ehr_unique_no }}"/>
+    {% elif resident.ehr_no  %}
         {{ resident.ehr_no }}
     {% else %}
         <input id="ehr_village_no" name="ehr_village_no"

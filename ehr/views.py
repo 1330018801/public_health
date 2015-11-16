@@ -229,7 +229,7 @@ def personal_info_review_tab(request):
 
 
 from .forms import BodyExamForm
-from .models import BodyExam
+from .models import BodyExam, PersonalInfo
 
 
 def body_exam_table(request):
@@ -371,7 +371,62 @@ def ehr_resident_query(request):
     residents = Resident.objects.filter(town=region.town, ehr_no__gt='') if region.is_town \
         else Resident.objects.filter(town=region.town, village=region, ehr_no__gt='')
 
+    ehr_no = request.POST.get('ehr_no', '').strip()
+
+    name = request.POST.get('name', '').strip()
+
+    gender = request.POST.get('gender')
+
+    age = request.POST.get('age')
+
+    identity = request.POST.get('identity', '').strip()
+
+    crowd = request.POST.get('crowd', '').strip()
+
+    if ehr_no:
+        residents = residents.filter(ehr_no=ehr_no)
+    if name:
+        residents = residents.filter(name=name)
+    if gender:
+        gender = int(gender)
+        if gender == Resident.FEMALE:
+            residents = residents.filter(gender=gender)
+        if gender == Resident.MALE:
+            residents = residents.filter(gender=gender)
+    if age:
+        age = int(age)
+        import datetime
+        today = datetime.date.today()
+        birth_date = datetime.date(today.year-age, today.month, today.day)
+        residents = residents.filter(birthday__lte=birth_date, birthday__year=today.year-age)
+    if identity:
+        residents = residents.filter(identity=identity)
+
+    if crowd and crowd != 'all':
+        if crowd == 'hypertension':
+            residents = residents.filter(hypertension=1)
+        if crowd == 'diabetes':
+            residents = residents.filter(diabetes=1)
+        if crowd == 'psychiatric':
+            residents = residents.filter(psychiatric=1)
+        if crowd == 'pregnant':
+            residents = residents.filter(pregnant=1)
+        if crowd == 'old':
+            import datetime
+            today = datetime.date.today()
+            end_date = datetime.date(today.year-64, 1, 1)
+            residents = residents.filter(birthday__lt=end_date)
+        if crowd == 'child':
+            import datetime
+            today = datetime.date.today()
+            if today.month == 2 and today.day == 29:
+                start_date = datetime.date(today.year-7, 2, 28)
+            else:
+                start_date = datetime.date(today.year-7, today.month, today.day)
+            residents = residents.filter(birthday__gt=start_date)
+
     json_items = []
+
     for resident in residents[first: first + page_size]:
         item = model_to_dict(resident, exclude=['town', 'village', 'birthday',
                                                 'create_time', 'create_by',
@@ -407,3 +462,134 @@ def body_exam_setup(request):
     resident = Resident.objects.get(id=resident_id)
     form = BodyExamForm()
     return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})
+
+
+def personal_info_edit_tab(request):
+    return render(request, 'ehr/personal_info_edit_tab.html')
+
+
+def personal_info_edit(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    form = PersonalInfoForm(instance=resident.personal_info_table)
+    return render(request, 'ehr/personal_info_form_content.html',
+                  {'form': form,
+                   'resident': resident,
+                   'ehr_village_no': int(resident.ehr_no[9:12]),
+                   'ehr_unique_no': int(resident.ehr_no[12:17])
+                  })
+
+
+def personal_info_edit_submit(request):
+    resident_id = request.POST.get('resident_id')
+    debug.info(resident_id)
+    if resident_id:
+        resident_id = int(resident_id)
+        debug.info(resident_id)
+        resident = Resident.objects.get(id=resident_id)
+        from services.utils import gender_map
+        gender = gender_map().index(request.POST.get('gender'))
+        nation = request.POST.get('nation')
+        if nation == u'少数民族' and request.POST.get('nation_extra'):
+            nation = request.POST.get('nation_extra')
+        resident.name = request.POST.get('resident_name')
+        resident.gender = gender
+        resident.nation = nation
+        resident.birthday = request.POST.get('birthday')
+        resident.address = request.POST.get('address')
+        resident.identity = request.POST.get('identity')
+        resident.mobile = request.POST.get('phone')
+        resident.update_by = request.user
+
+        debug.info(nation)
+        debug.info(request.POST.get('resident_name'))
+
+        ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
+        ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
+        town_no = request.user.userprofile.clinic.town_clinic.region.id
+        resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
+        debug.info(ehr_unique_no)
+        resident.save()
+
+        form = PersonalInfoForm(request.POST)
+        debug.info(request.POST.get('resident_name'))
+        if form.is_valid():
+            debug.info(request.POST.get('gender'))
+            #debug.info(request.POST)
+            #resident.personal_info_table.update(request.POST)
+            debug.info(resident.personal_info_table.id)
+            debug.info(form.is_valid())
+            debug.info(form.cleaned_data)
+            submit_data = {field: value for field, value in form.cleaned_data.items() if value}
+            debug.info(resident.personal_info_table.id)
+            result, created = PersonalInfo.objects.update_or_create(id=resident.personal_info_table.id, defaults=submit_data)
+            debug.info(request.POST.get('phone'))
+            resident.save()
+            record = WorkRecord.objects.get(resident=resident, service_item_alias='personal_info_table')
+            record.update_by = request.user
+            record.save()
+            success = True
+        else:
+            debug.info(form.errors.as_data())
+            success = False
+    else:
+        success = False
+
+    return json_result({'success': success, 'resident_id': resident_id})
+
+def personal_info_submit(request):
+    resident_id = request.POST.get('resident_id')
+    if resident_id:
+        resident_id = int(resident_id)
+        resident = Resident.objects.get(id=resident_id)
+    else:  # 创建一个新的居民对象
+        from services.utils import gender_map
+        gender = gender_map().index(request.POST.get('gender'))
+        nation = request.POST.get('nation')
+        if nation == u'少数民族' and request.POST.get('nation_extra'):
+            nation = request.POST.get('nation_extra')
+        if request.user.userprofile.clinic.region.is_town:
+            town = request.user.userprofile.clinic.region
+            village = None
+        else:
+            village = request.user.userprofile.clinic.region
+            town = village.town
+        resident = Resident(name=request.POST.get('resident_name'),
+                            gender=gender, nation=nation,
+                            town=town, village=village,
+                            birthday=request.POST.get('birthday'),
+                            address=request.POST.get('address'),
+                            identity=request.POST.get('identity'),
+                            mobile=request.POST.get('phone'),
+                            create_by=request.user)
+        resident.save()
+
+    form = PersonalInfoForm(request.POST)
+    if form.is_valid():
+        personal_info = form.save()
+        resident.personal_info_table = personal_info
+        record = WorkRecord(resident=resident, provider=request.user,
+                            service_item_alias='personal_info_table',
+                            item_id=personal_info.id)
+        record.save()
+        '''
+        以下是自动生成健康档案编号的方法，但是需求手动设置健康档案编号
+        if resident.village:
+            village = resident.village
+            village.ehr_no += 1
+            resident.ehr_no = village.id + '%05d' % village.ehr_no
+            village.save()
+        else:
+            resident.ehr_no = '13108200000000000'
+        '''
+        if resident.ehr_no is None:
+            ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            town_no = request.user.userprofile.clinic.town_clinic.region.id
+            resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
+            resident.save()
+        success = True
+    else:
+        debug.info(form.errors.as_data())
+        success = False
+    return json_result({'success': success, 'resident_id': resident.id})

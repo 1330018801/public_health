@@ -1,15 +1,16 @@
 $(function () {
-    var form = $('#personal_info_form');
-    var table = $('#personal_info_table');
+    var form = $('#personal_info_edit_tab_form');
+    var table = $('#personal_info_edit_tab_table');
+    var resident_id = form.parents('#ehr_setup_tabs').find('#ehr_resident_list').datagrid('getSelected')['id']
 
-    var save_btn = $('#personal_info_save').linkbutton({ iconCls: 'icon-save', plain: true});
-    var print_btn = $('#personal_info_print').linkbutton({ iconCls: 'icon-print', plain: true});
+    var save_btn = $('#personal_info_edit_tab_save').linkbutton({ iconCls: 'icon-save', plain: true});
+    var print_btn = $('#personal_info_edit_tab_print').linkbutton({ iconCls: 'icon-print', plain: true});
     print_btn.linkbutton('disable');
 
     save_btn.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             form.form('submit', {
-                url: '/ehr/personal_info_submit/', method: 'POST',
+                url: '/ehr/personal_info_edit_submit/', method: 'POST',
                 onSubmit: function (param) {
                     if (!form.find('input[name=gender]').is(":checked")) {
                         $.messager.alert('提示', '请选择性别', 'info');
@@ -97,6 +98,7 @@ $(function () {
                     }
                     if (form.form('validate')) {
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                        param.resident_id = resident_id;
                         return true;
                     }
                     else {
@@ -129,6 +131,7 @@ $(function () {
         }
     });
 
-    table.panel({href: '/ehr/personal_info_setup/'});
+    table.panel({href: '/ehr/personal_info_edit/', method: 'POST',
+                queryParams: {resident_id: resident_id}});
 
 });
