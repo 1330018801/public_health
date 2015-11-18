@@ -7,6 +7,7 @@ urlpatterns = patterns('',
                        url(r'^$', 'public_health.views.login', name='login'),
                        url(r'^logout/$', 'public_health.views.logout', name='logout'),
 
+                       url(r'^backend/', include('backend.urls', namespace='backend')),
                        url(r'^management/', include('management.urls', namespace='management')),
                        url(r'^services/', include('services.urls', namespace='services')),
                        url(r'^hypertension/', include('hypertension.urls', namespace='hypertension')),
