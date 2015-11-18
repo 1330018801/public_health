@@ -423,7 +423,7 @@ $(function() {
 
             if (inserted_row.length > 0) {
                 $.ajax({
-                    url: '/ehr/child_add_new/', method: 'POST',
+                    url: '/ehr/child_add/', method: 'POST',
                     data: inserted_row[0],
                     success: function() {
                         family_datagrid.datagrid('reload');

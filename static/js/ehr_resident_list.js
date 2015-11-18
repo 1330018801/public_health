@@ -37,11 +37,21 @@ $(function() {
 
     btn_add.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
-            var tabs = datagrid.parents('#ehr_setup_tabs');
-            tabs.tabs('add', {
-                title: '建档：个人基本信息表', closable: true,
-                href: '/ehr/setup_personal_info_page/'
-            });
+            if (selected_row)
+                $.messager.confirm("提示", "要给" + selected_row['name'] + "填写个人基本信息表？", function (data) {
+                    if (data) {
+                        datagrid.parents('#ehr_setup_tabs').tabs('add', {
+                            title: '建档：个人基本信息表', closable: true,
+                            href: '/ehr/setup_personal_info_page/'
+                        });
+                    }
+                });
+            else {
+                datagrid.parents('#ehr_setup_tabs').tabs('add', {
+                    title: '建档：个人基本信息表', closable: true,
+                    href: '/ehr/setup_personal_info_page/'
+                });
+            }
         }
     });
 
@@ -107,6 +117,7 @@ $(function() {
                 datagrid.datagrid('unselectRow', index);
                 selected_row = undefined;
                 btn_edit.linkbutton('disable');
+                btn_add.show();
             } else {
                 selected_row = datagrid.datagrid('getSelected');
                 if (selected_row['body_exam'] == '否')
@@ -114,6 +125,10 @@ $(function() {
                 else
                     btn_add_body_exam.linkbutton('disable');
                 btn_edit.linkbutton('enable');
+                if (selected_row['personal_info'] == '否')
+                    btn_add.show();
+                else
+                    btn_add.hide();
             }
         },
         onAfterEdit: function(index, row) {

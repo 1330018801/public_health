@@ -5,7 +5,7 @@ from ehr import views
 urlpatterns = patterns('',
     url(r'^ehr_page/$', views.ehr_page, name='ehr_page'),
     url(r'^family_list/$', views.family_list, name='family_list'),
-    url(r'^child_add_new/$', views.child_add_new, name='child_add_new'),
+    url(r'^child_add/$', views.child_add, name='child_add'),
     url(r'^family_add_adult/$', views.family_add_adult, name='family_add_adult'),
     url(r'^family_add_adult_query/$', views.family_add_adult_query, name='family_add_adult_query'),
     url(r'^family_add_adult/$', views.family_add_adult, name='family_add_adult'),

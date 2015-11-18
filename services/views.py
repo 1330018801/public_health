@@ -332,7 +332,8 @@ bj_tz = pytz.timezone('Asia/Shanghai')
 
 def doc_workload_list(request):
     user = request.user
-    records = WorkRecord.objects.filter(provider=user).order_by('-submit_time')
+    records = WorkRecord.objects.filter(provider=user,
+                                        service_item__isnull=False).order_by('-submit_time')
 
     json_items = []
     for record in records:

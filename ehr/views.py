@@ -76,13 +76,22 @@ def family_list(request):
     return HttpResponse(simplejson.dumps(json_items), content_type='text/html; charset=UTF-8')
 
 
-def child_add_new(request):
+def child_add(request):
     child = Resident()
     child.name = request.POST.get('name')
     child.gender = int(request.POST.get('gender'))
     child.nation = request.POST.get('nation')
+
     birthday = request.POST.get('birthday')
     child.birthday = datetime.strptime(birthday, '%Y-%m-%d')
+    if request.user.userprofile.clinic.region.is_town:
+        town = request.user.userprofile.clinic.region
+        village = None
+    else:
+        village = request.user.userprofile.clinic.region
+        town = village.town
+    child.town = town
+    child.village = village
 
     resident_id = request.session['resident_id']
     resident = Resident.objects.get(id=int(resident_id))
@@ -150,6 +159,17 @@ def personal_info_submit(request):
     if resident_id:
         resident_id = int(resident_id)
         resident = Resident.objects.get(id=resident_id)
+        if resident.town is None:
+            if request.user.userprofile.clinic.region.is_town:
+                town = request.user.userprofile.clinic.region
+                village = None
+            else:
+                village = request.user.userprofile.clinic.region
+                town = village.town
+            resident.town = town
+            resident.village = village
+            resident.save()
+
     else:  # 创建一个新的居民对象
         from services.utils import gender_map
         gender = gender_map().index(request.POST.get('gender'))
@@ -162,6 +182,7 @@ def personal_info_submit(request):
         else:
             village = request.user.userprofile.clinic.region
             town = village.town
+
         resident = Resident(name=request.POST.get('resident_name'),
                             gender=gender, nation=nation,
                             town=town, village=village,
@@ -357,8 +378,8 @@ def ehr_resident_query(request):
     if region is None:
         return json_result({'total': 0, 'rows': []})
 
-    residents = Resident.objects.filter(town=region.town, ehr_no__gt='') if region.is_town \
-        else Resident.objects.filter(town=region.town, village=region, ehr_no__gt='')
+    residents = Resident.objects.filter(town=region.town) if region.is_town \
+        else Resident.objects.filter(town=region.town, village=region)
 
     json_items = []
     for resident in residents[first: first + page_size]:
@@ -369,7 +390,7 @@ def ehr_resident_query(request):
         item['age'] = resident.age
         item['town'] = resident.town.name if resident.town else ''
         item['village'] = resident.village.name if resident.village else ''
-        item['personal_info'] = u'是'
+        item['personal_info'] = u'是' if resident.personal_info_table is not None else u'否'
         item['body_exam'] = u'是' \
             if WorkRecord.objects.filter(resident=resident,
                                          service_item_alias='body_exam_table').count() else u'否'

@@ -2,6 +2,9 @@ $(function () {
     var form = $('#personal_info_form');
     var table = $('#personal_info_table');
 
+    var datagrid = table.parents('#ehr_setup_tabs').find('#ehr_resident_list');
+    var selected_row = datagrid.datagrid('getSelected');
+
     var save_btn = $('#personal_info_save').linkbutton({ iconCls: 'icon-save', plain: true});
     var print_btn = $('#personal_info_print').linkbutton({ iconCls: 'icon-print', plain: true});
     print_btn.linkbutton('disable');
@@ -97,6 +100,9 @@ $(function () {
                     }
                     if (form.form('validate')) {
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                        if (selected_row && selected_row['personal_info'] == '否')
+                            param.resident_id = selected_row['id'];
+
                         return true;
                     }
                     else {
@@ -121,6 +127,16 @@ $(function () {
         }
     });
 
-    table.panel({href: '/ehr/personal_info_setup/'});
-
+    table.panel({
+        href: '/ehr/personal_info_setup/',
+        onLoad: function () {
+            if (selected_row) {
+                form.find('input[textboxname=resident_name]').textbox('setValue', selected_row['name']);
+                if (selected_row['identity'])
+                    form.find('input[textboxname=identity]').textbox('setValue', selected_row['identity']);
+                if (selected_row['birthday'])
+                    form.find('input[textboxname=birthday]').datebox('setValue', selected_row['birthday']);
+            }
+        }
+    });
 });
