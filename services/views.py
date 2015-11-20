@@ -528,11 +528,13 @@ def get_doc_info(request):
                 json_data['position'] = u'村医'
     return JsonResponse([json_data], safe=False)
 
+from django.contrib import auth
+
 
 def update_password(request):
-    user = request.user
-    user.set_password(request.POST.get('password'))
-    user.save()
+    request.user.set_password(request.POST.get('password'))
+    request.user.save()
+    auth.logout(request)
 
     return JsonResponse({'success': True})
 

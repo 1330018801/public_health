@@ -29,6 +29,7 @@ $(function () {
                                 var data_obj = eval('(' + data + ')');
                                 if (data_obj.success) {
                                     $.messager.show({ title: '提示', msg: '密码修改成功', timeout: 1500 });
+                                    window.location.href="/";  //返回到主页重新登录
                                 } else {
                                     $.messager.alert('提示', '密码修改失败', 'warning');
                                 }
