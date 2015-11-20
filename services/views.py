@@ -526,5 +526,23 @@ def rectify_apply(request):
     return HttpResponse({'success': True})
 
 
+def doc_statistics(request):
+    return render(request, 'services/doc_statistics_page.html')
 
 
+def get_doc_stat(request):
+    provider = request.user
+    json_data = []
+
+    total = 0
+    for service_type in Service.types.all():
+        service_type_count = 0
+        for service_item in service_type.service_items.all():
+            count = WorkRecord.objects.filter(provider=provider, service_item=service_item).count()
+            service_type_count += count
+            json_data.append({'service': service_type.name + ':' + service_item.name, 'count': count})
+        json_data.append({'service': service_type.name + ':' + u'合计', 'count': service_type_count})
+        total += service_type_count
+    json_data.append({'service': u'全部合计', 'count': total})
+
+    return JsonResponse(json_data, safe=False)
