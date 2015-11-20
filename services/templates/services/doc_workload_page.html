@@ -2,6 +2,17 @@
 
 <div id="doc_workload" class="easyui-accordion" data-options="fit: true">
     <div title="服务结果列表" style="overflow: auto;">
+        <div id="doc_worklist_toolbar">
+            <table style="padding: 0 1px">
+                <tr>
+                    <td width="10%" style="padding: 5px" align="left">起始时间：</td>
+                    <td width="15%"><input id="begin_date" /></td>
+                    <td width="10%" style="margin-left: 15px;" align="left">结束时间：</td>
+                    <td width="15%"><input id="end_date" /></td>
+                    <td width="10%"><a href="#" id="btn_query">查询</a></td>
+                </tr>
+            </table>
+        </div>
         <table id="doc_workload_table"></table>
     </div>
     <div title="服务结果详情" style="overflow: auto;">

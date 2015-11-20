@@ -13,6 +13,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from management.models import Service, WorkRecord, Resident
 from management.models import ModifyApply
 
+import pytz
+bj_tz = pytz.timezone('Asia/Shanghai')
+
 
 debug = logging.getLogger('debug')
 
@@ -326,14 +329,29 @@ def doc_nav(request):
 def doc_workload_page(request):
     return render(request, 'services/doc_workload_page.html')
 
-import pytz
-bj_tz = pytz.timezone('Asia/Shanghai')
-
 
 def doc_workload_list(request):
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
+    resident_name = request.POST.get('resident', None)
+    service_type = request.POST.get('service_type', None)
+    service_item = request.POST.get('service_item', None)
+
     user = request.user
-    records = WorkRecord.objects.filter(provider=user,
-                                        service_item__isnull=False).order_by('-submit_time')
+    records = WorkRecord.objects.filter(provider=user, service_item__isnull=False,
+                                        submit_time__range=(begin_date, end_date)).order_by('-submit_time')
+    if resident_name is not None:
+        records = records.filter(resident__name=resident_name)
+    if service_item is not None:
+        service_item = Service.items.get(id=service_item)
+        records = records.filter(service_item=service_item)
+    elif service_type is not None:
+        service_type = Service.types.get(id=service_type)
+        records = records.filter(service_item__service_type=service_type)
 
     json_items = []
     for record in records:
@@ -531,6 +549,12 @@ def doc_statistics(request):
 
 
 def get_doc_stat(request):
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     provider = request.user
     json_data = []
 
@@ -538,7 +562,8 @@ def get_doc_stat(request):
     for service_type in Service.types.all():
         service_type_count = 0
         for service_item in service_type.service_items.all():
-            count = WorkRecord.objects.filter(provider=provider, service_item=service_item).count()
+            count = WorkRecord.objects.filter(provider=provider, service_item=service_item,
+                                              submit_time__range=(begin_date, end_date)).count()
             service_type_count += count
             json_data.append({'service': service_type.name + ':' + service_item.name, 'count': count})
         json_data.append({'service': service_type.name + ':' + u'合计', 'count': service_type_count})

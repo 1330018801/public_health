@@ -2,6 +2,27 @@ $(function() {
     var accordion = $('#doc_workload');
     var datagrid = $('#doc_workload_table');
 
+    var worklist_toolbar = accordion.find('#doc_worklist_toolbar');
+
+    worklist_toolbar.find('#begin_date').datebox({
+        width: 100, editable: false, formatter: myformatter, parser :myparser
+    });
+    worklist_toolbar.find('#begin_date').datebox('setValue', newYearDay(new Date()));
+    worklist_toolbar.find('#end_date').datebox({
+        width: 100, editable: false, formatter: myformatter, parser :myparser
+    });
+    worklist_toolbar.find('#end_date').datebox('setValue', myformatter(new Date()));
+
+    var btn_query = worklist_toolbar.find('#btn_query').linkbutton({
+        iconCls: 'icon-glyphicons-28-search',
+        plain: true
+    });
+    btn_query.bind('click', function() {
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('load');
+        }
+    });
+
     var detail_toolbar = accordion.find('#detail_toolbar');
     var btn_apply = detail_toolbar.find('#modify_apply').linkbutton({iconCls: 'icon-edit', plain: true});
     var btn_modify = detail_toolbar.find('#modify').linkbutton({iconCls: 'icon-edit', plain: true});
@@ -127,6 +148,10 @@ $(function() {
             } else {
                 selected_row = row;
             }
+        },
+        onBeforeLoad: function(param) {
+            param.begin_date = worklist_toolbar.find('#begin_date').datebox('getValue');
+            param.end_date = worklist_toolbar.find('#end_date').datebox('getValue');
         }
     });
 
