@@ -55,18 +55,27 @@ $(function() {
         if ($(this).linkbutton('options').disabled == false) {
             if (selected_row)
                 $.messager.confirm("提示", "要给" + selected_row['name'] + "填写个人基本信息表？", function (data) {
-                    if (!data) {
-                        return;
+                    if (data) {
+                        var tabs = datagrid.parents('#ehr_setup_tabs');
+                        if(tabs.tabs('exists', '建档：个人基本信息表')) {
+                            tabs.tabs('close', '建档：个人基本信息表');
+                        }
+                        tabs.tabs('add', {
+                            title: '建档：个人基本信息表', closable: true,
+                            href: '/ehr/setup_personal_info_page/'
+                        });
                     }
                 });
-            var tabs = datagrid.parents('#ehr_setup_tabs');
-            if(!tabs.tabs('exists', '建档：个人基本信息表')) {
-                tabs.tabs('close', '建档：个人基本信息表');
+            else {
+                var tabs = datagrid.parents('#ehr_setup_tabs');
+                if(tabs.tabs('exists', '建档：个人基本信息表')) {
+                    tabs.tabs('close', '建档：个人基本信息表');
+                }
+                tabs.tabs('add', {
+                    title: '建档：个人基本信息表', closable: true,
+                    href: '/ehr/setup_personal_info_page/'
+                });
             }
-            tabs.tabs('add', {
-                title: '建档：个人基本信息表', closable: true,
-                href: '/ehr/setup_personal_info_page/'
-            });
         }
     });
 
