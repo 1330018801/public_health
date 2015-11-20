@@ -310,7 +310,6 @@ def svc_nav(request):
     nid = request.POST.get('id', '0')
     nav_items = SvcNav.objects.filter(nid=int(nid))
     json_data = [model_to_dict(item) for item in nav_items]
-    debug.info(len(json_data))
 
     return JsonResponse(json_data, safe=False)
 
@@ -318,10 +317,7 @@ def svc_nav(request):
 def doc_nav(request):
     nid = request.POST.get('id', '0')
     nav_items = DocNav.objects.filter(nid=int(nid))
-
     json_data = [model_to_dict(item) for item in nav_items]
-    #for item in nav_items:
-    #    json_data.append(model_to_dict(item))
 
     return JsonResponse(json_data, safe=False)
 
@@ -496,10 +492,6 @@ def real_read_card(request):
     json_data = model_to_dict(resident, fields=['id', 'name', 'ehr_no'])
 
     return JsonResponse(json_data)
-
-
-def provide_service(request):
-    return render(request, 'test4.html')
 
 
 def doc_info_page(request):

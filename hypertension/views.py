@@ -93,7 +93,6 @@ def body_exam_form(request):
     if record:
         debug.info('find the record of BodyExam')
         result = BodyExam.objects.get(id=record.item_id)
-        debug.info(record.id)
         form = BodyExamForm(instance=result)
     else:
         form = BodyExamForm()

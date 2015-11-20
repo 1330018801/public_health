@@ -127,7 +127,6 @@ def info_report_list(request):
         except WorkRecord.DoesNotExist:
             pass
         else:
-            debug.info('bbb')
             item = model_to_dict(report, fields=['id', 'info_type', 'info_content', 'reporter'])
             item['discover_time'] = report.discover_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
             item['report_time'] = report.report_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')

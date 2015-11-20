@@ -22,8 +22,6 @@ urlpatterns = patterns('',
     url(r'^read_card/$', views.read_card, name='read_card'),
     url(r'^real_read_card/$', views.real_read_card, name='real_read_card'),
 
-    url(r'^provide_service/$', views.provide_service, name='provide_service'),
-
     url(r'^doc_info_page/$', views.doc_info_page, name='doc_info_page'),
     url(r'^get_doc_info/$', views.get_doc_info, name='get_doc_info'),
     url(r'^update_password/$', views.update_password, name='update_password'),

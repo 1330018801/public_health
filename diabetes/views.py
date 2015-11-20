@@ -54,12 +54,10 @@ def aftercare_submit(request):
     form = AftercareForm(request.POST)
     if form.is_valid():
         result = form.save()
-        debug.info(result.id)
         record = WorkRecord(provider=request.user, resident=resident, service_item=service_item,
                             app_label='diabetes', model_name='Aftercare',
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
-        debug.info(record.id)
         success = True
     else:
         debug.info(form.errors.as_data())

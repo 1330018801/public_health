@@ -3,10 +3,14 @@ $(function(){
     var doc_nav = $('#doc_nav');
     var accordion = $('#nav_accordion');
 
+    $.removeCookie('resident_id');
+    $.removeCookie('resident_name');
+    $.removeCookie('resident_ehr_no');
+
     svc_nav.tree({
         url: '/services/svc_nav/', animate: true,
         onClick: function(node) {
-            // 这里通过cookie控制能否打开服务连接
+            // 这里通过cookie控制能否打开服务链接
             if (node.classification == 'individual') {
                 if ($.cookie('resident_id')){
                     if (node.url) {

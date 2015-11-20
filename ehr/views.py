@@ -172,6 +172,7 @@ def personal_info_submit(request):
 
     else:  # 创建一个新的居民对象
         from services.utils import gender_map
+
         gender = gender_map().index(request.POST.get('gender'))
         nation = request.POST.get('nation')
         if nation == u'少数民族' and request.POST.get('nation_extra'):
@@ -212,8 +213,8 @@ def personal_info_submit(request):
             resident.ehr_no = '13108200000000000'
         '''
         if resident.ehr_no is None:
-            ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
-            ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            ehr_village_no = int(request.POST.get('ehr_village_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            ehr_unique_no = int(request.POST.get('ehr_unique_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
             town_no = request.user.userprofile.clinic.town_clinic.region.id
             resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
             resident.save()
@@ -393,15 +394,10 @@ def ehr_resident_query(request):
         else Resident.objects.filter(town=region.town, village=region)
 
     ehr_no = request.POST.get('ehr_no', '').strip()
-
     name = request.POST.get('name', '').strip()
-
     gender = request.POST.get('gender')
-
     age = request.POST.get('age')
-
     identity = request.POST.get('identity', '').strip()
-
     crowd = request.POST.get('crowd', '').strip()
 
     if ehr_no:
@@ -417,9 +413,10 @@ def ehr_resident_query(request):
     if age:
         age = int(age)
         import datetime
+
         today = datetime.date.today()
-        birth_date = datetime.date(today.year-age, today.month, today.day)
-        residents = residents.filter(birthday__lte=birth_date, birthday__year=today.year-age)
+        birth_date = datetime.date(today.year - age, today.month, today.day)
+        residents = residents.filter(birthday__lte=birth_date, birthday__year=today.year - age)
     if identity:
         residents = residents.filter(identity=identity)
 
@@ -434,16 +431,18 @@ def ehr_resident_query(request):
             residents = residents.filter(pregnant=1)
         if crowd == 'old':
             import datetime
+
             today = datetime.date.today()
-            end_date = datetime.date(today.year-64, 1, 1)
+            end_date = datetime.date(today.year - 64, 1, 1)
             residents = residents.filter(birthday__lt=end_date)
         if crowd == 'child':
             import datetime
+
             today = datetime.date.today()
             if today.month == 2 and today.day == 29:
-                start_date = datetime.date(today.year-7, 2, 28)
+                start_date = datetime.date(today.year - 7, 2, 28)
             else:
-                start_date = datetime.date(today.year-7, today.month, today.day)
+                start_date = datetime.date(today.year - 7, today.month, today.day)
             residents = residents.filter(birthday__gt=start_date)
 
     json_items = []
@@ -509,6 +508,7 @@ def personal_info_edit_submit(request):
         debug.info(resident_id)
         resident = Resident.objects.get(id=resident_id)
         from services.utils import gender_map
+
         gender = gender_map().index(request.POST.get('gender'))
         nation = request.POST.get('nation')
         if nation == u'少数民族' and request.POST.get('nation_extra'):
@@ -525,8 +525,8 @@ def personal_info_edit_submit(request):
         debug.info(nation)
         debug.info(request.POST.get('resident_name'))
 
-        ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
-        ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
+        ehr_village_no = int(request.POST.get('ehr_village_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
+        ehr_unique_no = int(request.POST.get('ehr_unique_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
         town_no = request.user.userprofile.clinic.town_clinic.region.id
         resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
         debug.info(ehr_unique_no)
@@ -536,14 +536,15 @@ def personal_info_edit_submit(request):
         debug.info(request.POST.get('resident_name'))
         if form.is_valid():
             debug.info(request.POST.get('gender'))
-            #debug.info(request.POST)
-            #resident.personal_info_table.update(request.POST)
+            # debug.info(request.POST)
+            # resident.personal_info_table.update(request.POST)
             debug.info(resident.personal_info_table.id)
             debug.info(form.is_valid())
             debug.info(form.cleaned_data)
             submit_data = {field: value for field, value in form.cleaned_data.items() if value}
             debug.info(resident.personal_info_table.id)
-            result, created = PersonalInfo.objects.update_or_create(id=resident.personal_info_table.id, defaults=submit_data)
+            result, created = PersonalInfo.objects.update_or_create(id=resident.personal_info_table.id,
+                                                                    defaults=submit_data)
             debug.info(request.POST.get('phone'))
             resident.save()
             record = WorkRecord.objects.get(resident=resident, service_item_alias='personal_info_table')
@@ -558,6 +559,7 @@ def personal_info_edit_submit(request):
 
     return json_result({'success': success, 'resident_id': resident_id})
 
+
 def personal_info_submit(request):
     resident_id = request.POST.get('resident_id')
     if resident_id:
@@ -565,6 +567,7 @@ def personal_info_submit(request):
         resident = Resident.objects.get(id=resident_id)
     else:  # 创建一个新的居民对象
         from services.utils import gender_map
+
         gender = gender_map().index(request.POST.get('gender'))
         nation = request.POST.get('nation')
         if nation == u'少数民族' and request.POST.get('nation_extra'):
@@ -604,13 +607,29 @@ def personal_info_submit(request):
             resident.ehr_no = '13108200000000000'
         '''
         if resident.ehr_no is None:
-            ehr_village_no = int(request.POST.get('ehr_village_no'))    # 由于是必填项，而且是数字类型，所以在此不必检查类型
-            ehr_unique_no = int(request.POST.get('ehr_unique_no'))      # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            ehr_village_no = int(request.POST.get('ehr_village_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
+            ehr_unique_no = int(request.POST.get('ehr_unique_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
             town_no = request.user.userprofile.clinic.town_clinic.region.id
             resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
             resident.save()
+
+        if resident.identity is None and personal_info.identity is not None:
+            resident.identity = personal_info.identity
+            resident.save()
+        elif resident.identity is not None and personal_info.identity is not None:
+            if resident.identity != personal_info.identity:
+                resident.identity = personal_info.identity
+                resident.save()
+
+        if resident.mobile is None and personal_info.phone is not None:
+            resident.mobile = personal_info.phone
+            resident.save()
+        elif resident.mobile is not None and personal_info.phone is not None:
+            if resident.mobile != personal_info.phone:
+                resident.mobile = personal_info.phone
+                resident.save()
+
         success = True
     else:
-        debug.info(form.errors.as_data())
         success = False
     return json_result({'success': success, 'resident_id': resident.id})

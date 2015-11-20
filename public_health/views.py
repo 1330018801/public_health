@@ -21,7 +21,6 @@ def login(request):
                 return render(request, 'admin_page.html', {'role': u'超级管理员'})
             if user.is_staff:
                 role = user.userprofile.role.name
-                debug.info(role)
                 return render(request, 'admin_page.html', {'role': role})
             else:
                 return render(request, 'user_page.html')
