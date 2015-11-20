@@ -8,7 +8,7 @@ $(function () {
     var print_btn = $('#body_exam_print').linkbutton({ iconCls: 'icon-print', plain: true});
     print_btn.linkbutton('disable');
     save_btn.bind('click', function () {
-        if($(this).linkbutton('options').disable == false){
+        if($(this).linkbutton('options').disabled == false){
             form.form('submit', {
                 url: '/ehr/body_exam_submit/', method: 'POST',
                 onSubmit: function (param) {
