@@ -1,24 +1,16 @@
 $(function () {
-    var form = $('#personal_info_form');
-    var table = $('#personal_info_table');
+    var form = $('#personal_info_edit_tab_form');
+    var table = $('#personal_info_edit_tab_table');
+    var resident_id = form.parents('#ehr_setup_tabs').find('#ehr_resident_list').datagrid('getSelected')['id']
 
-    var datagrid = table.parents('#ehr_setup_tabs').find('#ehr_resident_list');
-    var selected_row = datagrid.datagrid('getSelected');
-
-    var save_btn = $('#personal_info_save').linkbutton({ iconCls: 'icon-save', plain: true});
-    var print_btn = $('#personal_info_print').linkbutton({ iconCls: 'icon-print', plain: true});
+    var save_btn = $('#personal_info_edit_tab_save').linkbutton({ iconCls: 'icon-save', plain: true});
+    var print_btn = $('#personal_info_edit_tab_print').linkbutton({ iconCls: 'icon-print', plain: true});
     print_btn.linkbutton('disable');
-
-    print_btn.bind('click', function(){
-        if($(this).linkbutton('options').disabled == false){
-            table.find('.print_area').printThis();
-        }
-    });
 
     save_btn.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             form.form('submit', {
-                url: '/ehr/personal_info_submit/', method: 'POST',
+                url: '/ehr/personal_info_edit_submit/', method: 'POST',
                 onSubmit: function (param) {
                     if (!form.find('input[name=gender]').is(":checked")) {
                         $.messager.alert('提示', '请选择性别', 'info');
@@ -106,9 +98,7 @@ $(function () {
                     }
                     if (form.form('validate')) {
                         param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                        if (selected_row && selected_row['personal_info'] == '否')
-                            param.resident_id = selected_row['id'];
-
+                        param.resident_id = resident_id;
                         return true;
                     }
                     else {
@@ -135,17 +125,13 @@ $(function () {
         }
     });
 
-    table.panel({
-        href: '/ehr/personal_info_setup/',
-        onLoad: function () {
-            if (selected_row) {
-                form.find('input[textboxname=resident_name]').textbox('setValue', selected_row['name']);
-                if (selected_row['identity'])
-                    form.find('input[textboxname=identity]').textbox('setValue', selected_row['identity']);
-                if (selected_row['birthday'])
-                    form.find('input[textboxname=birthday]').datebox('setValue', selected_row['birthday']);
-            }
+    print_btn.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            table.find('.print_area').printThis();
         }
     });
+
+    table.panel({href: '/ehr/personal_info_edit/', method: 'POST',
+                queryParams: {resident_id: resident_id}});
 
 });

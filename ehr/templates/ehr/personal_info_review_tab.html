@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+<div title="个人基本信息表" style="overflow: auto;">
+    <div id="personal_info_review_tab_toolbar" class="datagrid-toolbar">
+        <a href="#" id="personal_info_review_tab_print">打印</a>
+    </div>
+    <form id="personal_info_review_tab_form" method="POST">
+        <div id="personal_info_review_tab_table" align="center" style="padding-bottom: 30px;">
+            {% include 'ehr/personal_info_review_content.html' %}
+        </div>
+    </form>
+</div>
+
+<script src='{% static "js/ehr_personal_info_review_tab.js" %}'></script>

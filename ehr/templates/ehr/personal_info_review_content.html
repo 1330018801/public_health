@@ -13,8 +13,12 @@
         {{ form.nation_extra.value }}
     {% endifequal %}
 {% endblock %}
-{% block blood_type %}{{ form.blood_type.value }}{% endblock %}
-{% block blood_rh %}/&nbsp;&nbsp;RH阴性：{{ form.blood_rh.value }}{% endblock %}
+{% block blood_type %}
+    {% if form.blood_type.value %}
+        {{ form.blood_type.value }}
+    {% endif %}
+{% endblock %}
+{% block blood_rh %}{% if form.blood_rh.value %}/&nbsp;&nbsp;RH阴性：{{ form.blood_rh.value }}{% endif %}{% endblock %}
 {% block education %}{{ form.education.value }}{% endblock %}
 {% block occupation %}{{ form.occupation.value }}{% endblock %}
 {% block marriage %}{{ form.marriage.value }}{% endblock %}
@@ -63,7 +67,7 @@
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_5.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '恶性肿瘤' %}
-            &nbsp;{{ form.disease_history_cancer.data }}
+            &nbsp;{{ form.disease_history_cancer.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_6.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '脑卒中' %}
@@ -82,11 +86,11 @@
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_11.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '职业病' %}
-            &nbsp;{{ form.disease_hisotry_occupational }}
+            &nbsp;{{ form.disease_history_occupational.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_12.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
         {% ifequal item '其他' %}
-            &nbsp;{{ form.disease_history_extra }}
+            &nbsp;{{ form.disease_history_extra.value }}
             &nbsp;&nbsp;确诊时间：{{ form.diagnose_date_13.value | date:"Y-m-d"}}&nbsp;&nbsp;&nbsp;&nbsp;
         {% endifequal %}
     {% endfor %}
@@ -156,28 +160,32 @@
 {% endblock %}
 
 {% block family_history_sibling %}
-    {% for item in form.family_history_sibling.value %}
-        {% if forloop.last %}
-            {{ item }}
-        {% else %}
-            {{ item }}/
+    {% if form.family_history_sibling.value %}
+        {% for item in form.family_history_sibling.value %}
+            {% if forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+        {% if '其他' in form.family_history_sibling.value %}
+            {{ form.family_history_sibling_extra.value }}
         {% endif %}
-    {% endfor %}
-    {% if '其他' in form.family_history_sibling.value %}
-        {{ form.family_history_sibling_extra.value }}
     {% endif %}
 {% endblock %}
 
 {% block family_history_children %}
-    {% for item in form.family_history_children.value %}
-        {% if forloop.last %}
-            {{ item }}
-        {% else %}
-            {{ item }}/
+    {% if form.family_history_children.value %}
+        {% for item in form.family_history_children.value %}
+            {% if forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+        {% if '其他' in form.family_history_children.value %}
+            {{ form.family_history_children_extra.value }}
         {% endif %}
-    {% endfor %}
-    {% if '其他' in form.family_history_children.value %}
-        {{ form.family_history_children_extra.value }}
     {% endif %}
 {% endblock %}
 
@@ -196,7 +204,7 @@
             {{ item }}/
         {% endif %}
     {% endfor %}
-    {% if '其他' in form.disability.value %}
+    {% if '其他残疾' in form.disability.value %}
         {{ form.disability_extra.value }}
     {% endif %}
 {% endblock %}

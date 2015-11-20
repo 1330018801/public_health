@@ -33,35 +33,86 @@ $(function() {
         panelHeight: 66
     });
     query_gender.combobox('setValue', 2);
-    btn_query.bind('click', function () {});
+
+    var query_crowd = toolbar.find('#query_crowd').combobox({
+        valueField: 'alias', textField: 'text', editable: false, width: 100, panelHeight: 168,
+        data: [{ 'alias': 'all', 'text': '全体'},
+               { 'alias': 'hypertension', 'text': '高血压'},
+               { 'alias': 'diabetes', 'text': '2型糖尿病'},
+               { 'alias': 'psychiatric', 'text': '重性精神疾病'},
+               { 'alias': 'pregnant', 'text': '孕产妇'},
+               { 'alias': 'old', 'text': '老年人'},
+               { 'alias': 'child', 'text': '0-6岁儿童'}]
+    });
+
+    btn_query.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('reload');
+        }
+    });
 
     btn_add.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             if (selected_row)
                 $.messager.confirm("提示", "要给" + selected_row['name'] + "填写个人基本信息表？", function (data) {
-                    if (data) {
-                        datagrid.parents('#ehr_setup_tabs').tabs('add', {
-                            title: '建档：个人基本信息表', closable: true,
-                            href: '/ehr/setup_personal_info_page/'
-                        });
+                    if (!data) {
+                        return;
                     }
                 });
-            else {
-                datagrid.parents('#ehr_setup_tabs').tabs('add', {
-                    title: '建档：个人基本信息表', closable: true,
-                    href: '/ehr/setup_personal_info_page/'
-                });
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            if(!tabs.tabs('exists', '建档：个人基本信息表')) {
+                tabs.tabs('close', '建档：个人基本信息表');
             }
+            tabs.tabs('add', {
+                title: '建档：个人基本信息表', closable: true,
+                href: '/ehr/setup_personal_info_page/'
+            });
         }
     });
 
     btn_add_body_exam.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             var tabs = datagrid.parents('#ehr_setup_tabs');
-            tabs.tabs('add', {
-                title: '建档：健康体检表', closable: true,
-                href: '/ehr/setup_body_exam_page/'
-            });
+            if(!tabs.tabs('exists', '建档：健康体检表')){
+                tabs.tabs('add', {
+                    title: '建档：健康体检表', closable: true,
+                    href: '/ehr/setup_body_exam_page/'
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '建档：健康体检表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/setup_body_exam_page/'
+                    }
+                });
+                tabs.tabs('select', '建档：健康体检表');
+            }
+        }
+    });
+
+    btn_edit.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            if(!tabs.tabs('exists', '修改：个人基本信息表')){
+                tabs.tabs('add', {
+                    title: '修改：个人基本信息表', closable: true,
+                    href: '/ehr/personal_info_edit_tab/',
+                    queryParams: {resident_id: selected_row['id']}
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '修改：个人基本信息表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/personal_info_edit_tab/',
+                        queryParams: {resident_id: selected_row['id']}
+                    }
+                });
+                tabs.tabs('select', '修改：个人基本信息表');
+            }
         }
     });
 
@@ -111,6 +162,12 @@ $(function() {
                 type: 'textbox', options: { required: true } } }
         ]],
         onBeforeLoad: function (param) {
+            param.ehr_no = query_ehr_no.textbox('getValue');
+            param.name = query_name.textbox('getValue');
+            param.gender = query_gender.combobox('getValue');
+            param.age = query_age.numberbox('getValue');
+            param.identity = query_identity.textbox('getValue');
+            param.crowd = query_crowd.combobox('getValue');
         },
         onClickRow: function (index, row) {
             if (selected_row == row) {
@@ -143,7 +200,7 @@ $(function() {
                         if (data) {
                             datagrid.datagrid('reload');
                             datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息记录添加成功！' })
+                            $.messager.show({ title: '提示', timeout: 2000, msg: '居民信息记录添加成功！' })
                         }
                     }
                 });
@@ -157,7 +214,7 @@ $(function() {
                         if (data) {
                             datagrid.datagrid('load');
                             datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '居民信息记录更新成功！' })
+                            $.messager.show({ title: '提示', timeout: 2000, msg: '居民信息记录更新成功！' })
                         }
                     }
                 });
@@ -165,6 +222,27 @@ $(function() {
             edit_row = undefined;
             selected_row = undefined;
             btn_add.linkbutton('enable');
+        },
+        onDblClickRow: function(index, row){
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            if(!tabs.tabs('exists', '个人基本信息表')){
+                tabs.tabs('add', {
+                    title: '个人基本信息表', closable: true,
+                    href: '/ehr/personal_info_review_tab/', method: 'POST',
+                    queryParams: {resident_id: row['id']}
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '个人基本信息表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/personal_info_review_tab/', method: 'POST',
+                        queryParams: {resident_id: row['id']}
+                    }
+                });
+                tabs.tabs('select', '个人基本信息表');
+            }
         }
     });
 
