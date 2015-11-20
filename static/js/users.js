@@ -4,12 +4,22 @@ $(function() {
     var panel = $('#user_add_panel');
     var form = $('#user_add_form');
     var table = $('#user_add_table');
+    var password_dialog = $('#new_password_dialog');
+    var password_form = $('#new_password_form');
+    var password_table = $('#new_password_table');
+
+    password_table.find('#passwd1').textbox({ type: 'password', required: true, width: 120 });
+    password_table.find('#pswd_again').textbox({
+        type: 'password', required: true, validType: 'equals["#passwd1"]', width: 120
+    });
 
     var btn_add = toolbar.find('#add').linkbutton({ iconCls: 'icon-add', plain: true });
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true});
     var btn_undo = toolbar.find('#undo').linkbutton({ iconCls: 'icon-undo', plain: true});
     var btn_rm = toolbar.find('#remove').linkbutton({ iconCls: 'icon-remove', plain: true});
+    var btn_pass = toolbar.find('#password').linkbutton({ iconCls: 'icon-edit', plain: true});
     btn_rm.linkbutton('disable');
+    btn_pass.linkbutton('disable');
 
     var query_user_group = toolbar.find('#query_user_group');
     var query_town_clinic = toolbar.find('#query_town_clinic');
@@ -75,9 +85,11 @@ $(function() {
                 datagrid.datagrid('unselectRow', index);
                 selected_row = undefined;
                 btn_rm.linkbutton('disable');
+                btn_pass.linkbutton('disable');
             } else {
                 selected_row = row;
                 btn_rm.linkbutton('enable');
+                btn_pass.linkbutton('enable');
             }
         },
         onAfterEdit: function () {
@@ -224,46 +236,104 @@ $(function() {
     });
 
     btn_query.bind('click', function () {
-        datagrid.datagrid('reload', {
-            query_user_group: query_user_group.combobox('getValue'),
-            query_town_clinic: query_town_clinic.combobox('getValue'),
-            query_village_clinic: query_village_clinic.combobox('getValue'),
-            query_username: query_name.textbox('getValue')
-        });
-    });
-    btn_add.bind('click', function () { panel.dialog('open'); });
-    btn_save.bind('click', function () { datagrid.datagrid('endEdit', edit_row); });
-    btn_undo.bind('click', function () {
-        edit_row = undefined;
-        datagrid.datagrid('rejectChanges');
-        btn_save.hide(); btn_undo.hide();
-        btn_add.linkbutton('enable');
-        btn_rm.linkbutton('enable');
-    });
-    btn_rm.bind('click', function () {
-        if (selected_row != undefined) {
-            $.messager.confirm('提示', '要删除所选择的用户记录吗？', function(flag) {
-                if (flag) {
-                    $.ajax({
-                        url: '/management/user_del/', method: 'POST',
-                        data: { user_id: selected_row['id']},
-                        success: function (data) {
-                            if (data.success) {
-                                datagrid.datagrid('reload');
-                                datagrid.datagrid('unselectAll');
-                                $.messager.show({title: '提示', msg: data.message, timeout: 1000});
-                            } else {
-                                $.messager.alert('提示', data.message, 'warning');
-                            }
-                        }
-                    });
-                }
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('reload', {
+                query_user_group: query_user_group.combobox('getValue'),
+                query_town_clinic: query_town_clinic.combobox('getValue'),
+                query_village_clinic: query_village_clinic.combobox('getValue'),
+                query_username: query_name.textbox('getValue')
             });
         }
     });
+    btn_add.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            panel.dialog('open');
+        }
+    });
+    btn_save.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('endEdit', edit_row);
+        }
+    });
+    btn_undo.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            edit_row = undefined;
+            datagrid.datagrid('rejectChanges');
+            btn_save.hide();
+            btn_undo.hide();
+            btn_add.linkbutton('enable');
+            btn_rm.linkbutton('enable');
+        }
+    });
+    btn_rm.bind('click', function () {
+        if ($(this).linkbutton('options').disabled == false) {
+            if (selected_row != undefined) {
+                $.messager.confirm('提示', '要删除所选择的用户记录吗？', function (flag) {
+                    if (flag) {
+                        $.ajax({
+                            url: '/management/user_del/', method: 'POST',
+                            data: { user_id: selected_row['id']},
+                            success: function (data) {
+                                if (data.success) {
+                                    datagrid.datagrid('reload');
+                                    datagrid.datagrid('unselectAll');
+                                    $.messager.show({title: '提示', msg: data.message, timeout: 1000});
+                                } else {
+                                    $.messager.alert('提示', data.message, 'warning');
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
 
-    function get_edit_field(index, field) {
-        return datagrid.datagrid('getEditor', { index: index, field: field })
-    }
+    btn_pass.bind('click', function () {
+        password_dialog.dialog({
+            title: '修改用户登录密码', width: 400, height: 200,
+            buttons: [
+                {
+                    text: '提交', iconCls: 'icon-ok',
+                    handler: function() {
+                        password_form.form('submit', {
+                            url: '/services/update_password/',
+                            onSubmit: function(param) {
+                                param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                                return password_form.form('validate');
+                            },
+                            success: function(data) {
+                                var data_obj = eval('(' + data + ')');
+                                if (data_obj.success) {
+                                    $.messager.show({ title: '提示', msg: '密码修改成功', timeout: 1500 });
+                                } else {
+                                    $.messager.alert('提示', '密码修改失败', 'warning');
+                                }
+                                password_form.form('clear');
+                                password_dialog.dialog('close');
+                            }
+                        });
+                    }
+                },
+                {
+                    text: '取消', iconCls: 'icon-cancel',
+                    handler: function() {
+                        password_form.form('clear');
+                        password_dialog.dialog('close');
+                    }
+                }
+            ]
+        });
+        password_table.css('display', 'block');
+    });
+
+    $.extend($.fn.validatebox.defaults.rules, {
+        equals: {
+            validator: function(value, param){
+                return value == password_table.find('#passwd1').val();
+            },
+            message: '两次密码输入不匹配'
+        }
+    });
 
 });

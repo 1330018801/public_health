@@ -10,7 +10,6 @@ $(function () {
         type: 'password', required: true, validType: 'equals["#passwd1"]', width: 120
     });
 
-
     btn_new_password.linkbutton({ iconCls: 'icon-add', plain: true });
 
     btn_new_password.bind('click', function () {
