@@ -573,3 +573,21 @@ def get_doc_stat(request):
     json_data.append({'service': u'全部合计', 'count': total})
 
     return JsonResponse(json_data, safe=False)
+
+from django.contrib.auth.models import User
+
+
+def change_password(request):
+    user_id = request.POST.get('id')
+    user = User.objects.get(id=int(user_id))
+
+    if user == request.user:
+        user.set_password(request.POST.get('password'))
+        user.save()
+        return JsonResponse({'success': True, 'message': '修改自己的密码后应马上重新登录'})
+    elif user.is_staff:
+        return JsonResponse({'success': False, 'message': '不能修改其他管理员的密码'})
+    else:
+        user.set_password(request.POST.get('password'))
+        user.save()
+        return JsonResponse({'success': True})

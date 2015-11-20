@@ -290,41 +290,49 @@ $(function() {
     });
 
     btn_pass.bind('click', function () {
-        password_dialog.dialog({
-            title: '修改用户登录密码', width: 400, height: 200,
-            buttons: [
-                {
-                    text: '提交', iconCls: 'icon-ok',
-                    handler: function() {
-                        password_form.form('submit', {
-                            url: '/services/update_password/',
-                            onSubmit: function(param) {
-                                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                                return password_form.form('validate');
-                            },
-                            success: function(data) {
-                                var data_obj = eval('(' + data + ')');
-                                if (data_obj.success) {
-                                    $.messager.show({ title: '提示', msg: '密码修改成功', timeout: 1500 });
-                                } else {
-                                    $.messager.alert('提示', '密码修改失败', 'warning');
+        if ($(this).linkbutton('options').disabled == false) {
+            password_dialog.dialog({
+                title: '修改用户：' + selected_row['username'] + '登录密码', width: 400, height: 200,
+                buttons: [
+                    {
+                        text: '提交', iconCls: 'icon-ok',
+                        handler: function () {
+                            password_form.form('submit', {
+                                url: '/services/change_password/',
+                                onSubmit: function (param) {
+                                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                                    param.id = selected_row['id'];
+                                    return password_form.form('validate');
+                                },
+                                success: function (data) {
+                                    var data_obj = eval('(' + data + ')');
+                                    if (data_obj.success) {
+                                        if (data_obj.message == null) {
+                                            $.messager.show({ title: '提示', msg: '密码修改成功', timeout: 1500 });
+                                        } else {
+                                            $.messager.alert('提示', data_obj.message, 'info');
+                                            window.location.href='/';
+                                        }
+                                    } else {
+                                        $.messager.alert('提示', '密码修改失败：' + data_obj.message, 'warning');
+                                    }
+                                    password_form.form('clear');
+                                    password_dialog.dialog('close');
                                 }
-                                password_form.form('clear');
-                                password_dialog.dialog('close');
-                            }
-                        });
+                            });
+                        }
+                    },
+                    {
+                        text: '取消', iconCls: 'icon-cancel',
+                        handler: function () {
+                            password_form.form('clear');
+                            password_dialog.dialog('close');
+                        }
                     }
-                },
-                {
-                    text: '取消', iconCls: 'icon-cancel',
-                    handler: function() {
-                        password_form.form('clear');
-                        password_dialog.dialog('close');
-                    }
-                }
-            ]
-        });
-        password_table.css('display', 'block');
+                ]
+            });
+            password_table.css('display', 'block');
+        }
     });
 
     $.extend($.fn.validatebox.defaults.rules, {
