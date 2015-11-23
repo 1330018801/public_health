@@ -1,6 +1,11 @@
 {% load staticfiles %}
 
+<div id="workload_town_toolbar">
+    <a id="export_excel" href="{% url 'management:workload_town_excel'%}">导出Excel</a>
+</div>
+
 <div id="workload_town_clinics">
     <div id="workload_town_clinics_datagrid"></div>
 </div>
+
 <script src='{% static "js/workload_town_clinics.js" %}'></script>

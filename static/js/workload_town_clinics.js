@@ -1,10 +1,13 @@
 $(function () {
 
-    var panel = $('#workload_town_clinics');
     var datagrid = $('#workload_town_clinics_datagrid');
-    //var selected_row = undefined;
+    var excel_town_toolbar = $('#workload_town_toolbar');
+    var btn_export_excel = excel_town_toolbar.find('#export_excel');
+    btn_export_excel.linkbutton({ iconCls: 'icon-save', plain: true});
+
     datagrid.datagrid({
         url: '/management/workload_town_clinics_datagrid/',
+        toolbar: '#workload_town_toolbar',
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编号', hidden: true },
@@ -23,14 +26,6 @@ $(function () {
             { field: 'total', title: '合计', width: 20 }
         ]],
         onClickRow: function (index, row) {
-            /*
-            if (selected_row == row) {
-                $(this).datagrid('unselectRow', index);
-                selected_row = undefined;
-            } else {
-                selected_row = $(this).datagrid('getSelected');
-            }
-            */
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');
