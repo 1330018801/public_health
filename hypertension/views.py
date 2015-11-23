@@ -41,7 +41,16 @@ def aftercare_form(request):
     form = AftercareForm()
     resident = get_resident(request)
     template = 'hypertension/aftercare_%s_form_content.html' % aftercare
-    return render(request, template, {'form': form, 'resident': resident})
+
+    #因为要算体质指数，所以要把一般体格检查里的身高取得
+    record = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                       submit_time__gte=new_year_day()).first()
+    if record:
+        body_exam = BodyExam.objects.get(id=record.item_id)
+        sign_height = body_exam.height
+    else:
+        sign_height = 0.0
+    return render(request, template, {'form': form, 'resident': resident, 'sign_height': sign_height})
 
 
 def aftercare_submit(request):

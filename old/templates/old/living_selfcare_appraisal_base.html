@@ -138,4 +138,70 @@
             {% block total %}{% endblock %}
         </td>
     </tr>
+    <script>
+    $(function(){
+        var total;
+        var total_box = $('input[name=total]').numberbox({});
+        var eat;
+        var eat_box = $('input[name=eat]').numberbox({
+            onChange: function(newValue, oldValue){
+                eat = newValue;
+                wash = wash_box.numberbox('getValue');
+                dress = dress_box.numberbox('getValue');
+                toilet =toilet_box.numberbox('getValue');
+                activity = activity_box.numberbox('getValue');
+                total = parseInt(eat) + parseInt(wash) + parseInt(dress) + parseInt(toilet) + parseInt(activity);
+                total_box.numberbox('setValue', total);
+            }
+        });
+        var wash;
+        var wash_box = $('input[name=wash]').numberbox({
+            onChange: function(newValue, oldValue){
+                eat = eat_box.numberbox('getValue');
+                wash = newValue;
+                dress = dress_box.numberbox('getValue');
+                toilet =toilet_box.numberbox('getValue');
+                activity = activity_box.numberbox('getValue');
+                total = parseInt(eat) + parseInt(wash) + parseInt(dress) + parseInt(toilet) + parseInt(activity);
+                total_box.numberbox('setValue', total);
+            }
+        });
+        var dress;
+        var dress_box = $('input[name=dress]').numberbox({
+            onChange: function(newValue, oldValue){
+                eat = eat_box.numberbox('getValue');
+                wash = wash_box.numberbox('getValue');
+                dress = newValue;
+                toilet =toilet_box.numberbox('getValue');
+                activity = activity_box.numberbox('getValue');
+                total = parseInt(eat) + parseInt(wash) + parseInt(dress) + parseInt(toilet) + parseInt(activity);
+                total_box.numberbox('setValue', total);
+            }
+        });
+        var toilet;
+        var toilet_box = $('input[name=toilet]').numberbox({
+            onChange: function(newValue, oldValue){
+                eat = eat_box.numberbox('getValue');
+                wash = wash_box.numberbox('getValue');
+                dress = dress_box.numberbox('getValue');
+                toilet = newValue;
+                activity = activity_box.numberbox('getValue');
+                total = parseInt(eat) + parseInt(wash) + parseInt(dress) + parseInt(toilet) + parseInt(activity);
+                total_box.numberbox('setValue', total);
+            }
+        });
+        var activity;
+        var activity_box = $('input[name=activity]').numberbox({
+            onChange: function(newValue, oldValue){
+                eat = eat_box.numberbox('getValue');
+                wash = wash_box.numberbox('getValue');
+                dress = dress_box.numberbox('getValue');
+                toilet =toilet_box.numberbox('getValue');
+                activity = newValue;
+                total = parseInt(eat) + parseInt(wash) + parseInt(dress) + parseInt(toilet) + parseInt(activity);
+                total_box.numberbox('setValue', total);
+            }
+        });
+    });
+    </script>
 {% endblock %}

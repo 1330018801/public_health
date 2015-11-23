@@ -246,7 +246,7 @@ class Aftercare1MonthForm(ModelForm):
                                        'data-options': 'width: 40, precision: 1, required: true'}),
             'weight_grade': RadioSelect,
             'height': TextInput(attrs={'class': 'easyui-numberbox',
-                                       'data-options': 'width:40, min: 1, max: 50, precision: 1, required: true'}),
+                                       'data-options': 'width:40, min: 1, max: 150, precision: 1, required: true'}),
             'height_grade': RadioSelect,
             'head_circumference': TextInput(attrs={'class': 'easyui-numberbox',
                                                    'data-options': 'width: 40, precision: 1, required: true'}),

@@ -580,4 +580,34 @@
         <td colspan="3"></td>
         <td colspan="4"><b>危险因素控制（目标）</b></td>
     </tr>
+
+<script>
+$(function(){
+    var body_mass_index_box = $('input[name=body_mass_index]').numberbox({});
+    var height;
+    var weight;
+    var body_mass_index;
+    var height_box = $('input[name=height]').numberbox({
+        onChange: function(newValue, oldValue){
+            if(weight_box.numberbox('getValue') != '' && weight_box.numberbox('getValue') != '0.0' && newValue != '' && newValue != '0.0'){
+                height = newValue;
+                weight = weight_box.numberbox('getValue');
+                body_mass_index = weight/(height*0.01*height*0.01);
+                body_mass_index_box.numberbox('setValue', body_mass_index);
+            }
+        }
+    });
+
+    var weight_box = $('input[name=weight]').numberbox({
+        onChange: function(newValue, oldValue){
+           if(height_box.numberbox('getValue') != '' && height_box.numberbox('getValue') != '0.0' && newValue != '' && newValue != '0.0'){
+                weight = newValue;
+                height = height_box.numberbox('getValue');
+                body_mass_index = weight/(height*0.01*height*0.01);
+                body_mass_index_box.numberbox('setValue', body_mass_index);
+            }
+        }
+    });
+});
+</script>
 {% endblock %}
