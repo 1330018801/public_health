@@ -35,13 +35,13 @@
         <td width="20%" colspan="4" class="6_month">
             {% block visit_date_6 %}{% endblock %}
         </td>
-        <td colspan="4" class="8_month">
+        <td colspan="4" class="8_month" class="8_month">
             {% block visit_date_8 %}{% endblock %}
         </td>
     </tr>
     <tr>
         <td width="20%" colspan="4" align="center">
-            <b>体重（kg）</b>
+            <b>体重（kg）</b><input type="text" name="gender" style="display: none" value="{{ gender }}">
         </td>
         <td width="20%" colspan="4">
             {% block weight_1 %}{% endblock %}<br>{% block weight_grade_1 %}{% endblock %}
@@ -518,4 +518,350 @@
             {% block doctor_signature_8 %}{% endblock %}
         </td>
     </tr>
+    <script>
+    $(function(){
+        var gender = $('input[name=gender]').val();
+        var weight_grade = $('input[name=weight_grade]');
+        var weight_box = $('input[name=weight]').numberbox({
+            onChange: function(newValue, oldValue){
+                /*weight_grade.prop("disabled", false);
+                weight_grade.removeAttr("checked");*/
+                if(weight_grade.eq(0).prop("checked") == true){
+                    weight_grade.eq(0).removeAttr("checked");
+                    weight_grade.eq(1).prop("disabled", false);
+                    weight_grade.eq(2).prop("disabled", false);
+                }
+                else if(weight_grade.eq(1).prop("checked") == true){
+                   weight_grade.eq(1).removeAttr("checked");
+                    weight_grade.eq(0).prop("disabled", false);
+                    weight_grade.eq(2).prop("disabled", false);
+                }
+                else if(weight_grade.eq(2).prop("checked") == true){
+                    weight_grade.eq(2).removeAttr("checked");
+                    weight_grade.eq(0).prop("disabled", false);
+                    weight_grade.eq(1).prop("disabled", false);
+                }
+                if(gender == '女'){
+                    if($.trim($('.1_month').html())){
+                        if(newValue < 2.7){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 3.6)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.3_month').html())){
+                        if(newValue < 4.7){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 6.2)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.6_month').html())){
+                        if(newValue < 6.3){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 8.1)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.8_month').html())){
+                        if(newValue < 7.2){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 9.1)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                }
+                else{
+                    alert(gender);
+                    if($.trim($('.1_month').html())){
+                        if(newValue < 2.9){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue >3.8)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.3_month').html())){
+                        if(newValue < 5.0){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 6.9)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.6_month').html())){
+                        if(newValue < 6.9){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 8.8)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.8_month').html())){
+                        if(newValue < 7.8){
+                            weight_grade.eq(2).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 9.8)
+                        {
+                            weight_grade.eq(0).prop("checked", true);
+                            weight_grade.eq(1).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            weight_grade.eq(1).prop("checked", true);
+                            weight_grade.eq(0).prop("disabled", true);
+                            weight_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                }
+            }
+        });
+
+        var height_grade = $('input[name=height_grade]');
+        var height_box = $('input[name=height]').numberbox({
+            onChange: function(newValue, oldValue){
+                if(height_grade.eq(0).prop("checked") == true){
+                    height_grade.eq(0).removeAttr("checked");
+                    height_grade.eq(1).prop("disabled", false);
+                    height_grade.eq(2).prop("disabled", false);
+                }
+                else if(height_grade.eq(1).prop("checked") == true){
+                    height_grade.eq(1).removeAttr("checked");
+                    height_grade.eq(0).prop("disabled", false);
+                    height_grade.eq(2).prop("disabled", false);
+                }
+                else if(height_grade.eq(2).prop("checked") == true){
+                    height_grade.eq(2).removeAttr("checked");
+                    height_grade.eq(0).prop("disabled", false);
+                    height_grade.eq(1).prop("disabled", false);
+                }
+                if(gender == '女'){
+                    if($.trim($('.1_month').html())){
+                        if(newValue < 47.7){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 52.0)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.3_month').html())){
+                        if(newValue < 57.1){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 59.5)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.6_month').html())){
+                        if(newValue < 63.3){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 68.6)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.8_month').html())){
+                        if(newValue < 66.4){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 71.8)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                }
+                else{
+                    if($.trim($('.1_month').html())){
+                        if(newValue < 48.2){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 52.8)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.3_month').html())){
+                        if(newValue < 58.5){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 63.7)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.6_month').html())){
+                        if(newValue < 65.1){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 70.5)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                    else if($.trim($('.8_month').html())){
+                        if(newValue < 68.3){
+                            height_grade.eq(2).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(1).prop("disabled", true);
+                        }
+                        else if(newValue > 73.6)
+                        {
+                            height_grade.eq(0).prop("checked", true);
+                            height_grade.eq(1).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                        else{
+                            height_grade.eq(1).prop("checked", true);
+                            height_grade.eq(0).prop("disabled", true);
+                            height_grade.eq(2).prop("disabled", true);
+                        }
+                    }
+                }
+            }
+        });
+
+    });
+    </script>
 {% endblock %}

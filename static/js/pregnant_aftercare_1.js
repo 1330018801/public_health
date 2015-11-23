@@ -139,5 +139,5 @@ $(function () {
                 btn_print.linkbutton('disable');
             }
         }
-    })
+    });
 });

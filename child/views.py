@@ -1,3 +1,4 @@
+# coding=utf-8
 import logging
 import simplejson
 
@@ -7,7 +8,7 @@ from django.apps import apps
 from django.http import HttpResponse
 
 from management.models import WorkRecord, Resident, Service
-from services.utils import get_model_name
+from services.utils import get_model_name, new_year_day
 
 from .forms import *
 from .models import NewbornFamilyVisit
@@ -91,8 +92,16 @@ def health_0_1_form(request):
     form_name = get_model_name(item_alias) + 'Form'
     form = globals()[form_name]()
     template = 'child/' + item_alias + '_form_content.html'
+
+    #因为要根据性别判断儿童的身高和体重等级，所以要把新生儿家庭访视里的性别取得
+    record = WorkRecord.objects.filter(resident=resident, model_name='NewbornFamilyVisit').first()
+    if record:
+        newborn_family = NewbornFamilyVisit.objects.get(id=record.item_id)
+        gender = newborn_family.gender
+    else:
+        gender = u'男'
     return render(request, template, {'form': form, 'resident': resident,
-                                      'item_alias': item_alias})
+                                      'item_alias': item_alias, 'gender': gender})
 
 
 def health_0_1_submit(request):
@@ -149,8 +158,16 @@ def health_1_2_form(request):
     form_name = get_model_name(item_alias) + 'Form'
     form = globals()[form_name]()
     template = 'child/' + item_alias + '_form_content.html'
+
+    #因为要根据性别判断儿童的身高和体重等级，所以要把新生儿家庭访视里的性别取得
+    record = WorkRecord.objects.filter(resident=resident, model_name='NewbornFamilyVisit').first()
+    if record:
+        newborn_family = NewbornFamilyVisit.objects.get(id=record.item_id)
+        gender = newborn_family.gender
+    else:
+        gender = u'男'
     return render(request, template, {'form': form, 'resident': resident,
-                                      'item_alias': item_alias})
+                                      'item_alias': item_alias, 'gender': gender})
 
 
 def health_1_2_submit(request):
@@ -207,8 +224,16 @@ def health_3_6_form(request):
     form_name = get_model_name(item_alias) + 'Form'
     form = globals()[form_name]()
     template = 'child/' + item_alias + '_form_content.html'
+
+    #因为要根据性别判断儿童的身高和体重等级，所以要把新生儿家庭访视里的性别取得
+    record = WorkRecord.objects.filter(resident=resident, model_name='NewbornFamilyVisit').first()
+    if record:
+        newborn_family = NewbornFamilyVisit.objects.get(id=record.item_id)
+        gender = newborn_family.gender
+    else:
+        gender = u'男'
     return render(request, template, {'form': form, 'resident': resident,
-                                      'item_alias': item_alias})
+                                      'item_alias': item_alias, 'gender': gender})
 
 
 def health_3_6_submit(request):

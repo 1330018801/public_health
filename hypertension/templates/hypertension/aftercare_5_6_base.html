@@ -388,4 +388,36 @@
             {% block doctor_signature_6 %}{% endblock %}
         </td>
     </tr>
+    <script>
+    $(function(){
+        var height = $('input[name=sign_height]').val();
+        var weight;
+        var bmi;
+        var bmi_box = $('input[name=sign_bmi]').numberbox({});
+
+        var weight_box = $('input[name=sign_weight]').numberbox({
+            onChange: function(newValue, oldValue){
+                if(height != '' && height != '0.0' && newValue != '' && newValue != '0.0'){
+                    weight = newValue;
+                    bmi = weight/(height*0.01*height*0.01);
+                    bmi_box.numberbox('setValue', bmi);
+                }
+            }
+        });
+
+        var weight_next;
+        var bmi_next;
+        var bmi_box_next = $('input[name=sign_bmi_next]').numberbox({});
+
+        var weight_box_next = $('input[name=sign_weight_next]').numberbox({
+            onChange: function(newValue, oldValue){
+                if(height != '' && height != '0.0' && newValue != '' && newValue != '0.0'){
+                    weight_next = newValue;
+                    bmi_next = weight_next/(height*0.01*height*0.01);
+                    bmi_box_next.numberbox('setValue', bmi_next);
+                }
+            }
+        });
+    });
+    </script>
 {% endblock %}

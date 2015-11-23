@@ -376,5 +376,180 @@
     },
     "model": "tcm.tcmoldidentifychoicespinghe",
     "pk": "其他"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "没有症状"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "咳嗽咳痰"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "低热盗汗"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "咯血或血痰"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "胸痛消瘦"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "恶心纳差"
+},
+{
+    "fields": {
+        "order": 7
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "头痛失眠"
+},
+{
+    "fields": {
+        "order": 8
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "视物模糊"
+},
+{
+    "fields": {
+        "order": 9
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "皮肤瘙痒、皮疹"
+},
+{
+    "fields": {
+        "order": 10
+    },
+    "model": "phthisis.symptomsignchoices",
+    "pk": "耳鸣、听力下降"
+},
+{
+    "fields": {
+        "order": 1
+    },
+    "model": "phthisis.dosageformchoices",
+    "pk": "固定剂量符合制剂"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "phthisis.dosageformchoices",
+    "pk": "散装药"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "phthisis.dosageformchoices",
+    "pk": "板式组合药"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "phthisis.dosageformchoices",
+    "pk": "注射剂"
+},
+    {
+    "fields": {
+        "order": 1
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "没有症状"
+},
+{
+    "fields": {
+        "order": 2
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "咳嗽咳痰"
+},
+{
+    "fields": {
+        "order": 3
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "低热盗汗"
+},
+{
+    "fields": {
+        "order": 4
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "咯血或血痰"
+},
+{
+    "fields": {
+        "order": 5
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "胸痛消瘦"
+},
+{
+    "fields": {
+        "order": 6
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "恶心纳差"
+},
+{
+    "fields": {
+        "order": 7
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "关节疼痛"
+},
+{
+    "fields": {
+        "order": 8
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "头痛失眠"
+},
+{
+    "fields": {
+        "order": 9
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "视物模糊"
+},
+{
+    "fields": {
+        "order": 10
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "皮肤瘙痒、皮疹"
+},
+{
+    "fields": {
+        "order": 11
+    },
+    "model": "phthisis.symptomsign1choices",
+    "pk": "耳鸣、听力下降"
 }
 ]
