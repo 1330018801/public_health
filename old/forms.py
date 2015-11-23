@@ -18,5 +18,5 @@ class LivingSelfcareAppraisalForm(ModelForm):
             'activity': TextInput(attrs={'class': 'easyui-numberbox',
                                          'data-options': 'width: 40, min: 0, max: 10, required: true'}),
             'total': TextInput(attrs={'class': 'easyui-numberbox',
-                                      'data-options': 'width: 40, min: 0, max: 37, required: true'}),
+                                      'data-options': 'width: 40, min: 0, max: 37, required: true, editable: false'}),
         }

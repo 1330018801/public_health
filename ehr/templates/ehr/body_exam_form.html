@@ -204,7 +204,7 @@
     {% if form.height.value %}
         {{ form.height.value }}&nbsp;cm
     {% elif type_alias != 'tcm' %}
-        {{ form.height }}&nbsp;cm
+        {{ form.height }} &nbsp;cm
     {% endif %}
 {% endblock %}
 
@@ -228,7 +228,7 @@
     {% if form.body_mass_index.value %}
         {{ form.body_mass_index.value }}&nbsp;Kg/m<sup>2</sup>
     {% elif type_alias != 'tcm' %}
-        {{ form.body_mass_index }}&nbsp;Kg/m<sup>2</sup>
+        {{ form.body_mass_index }}{% comment %}<lable id="id_body_mass_index"></lable><input id="body_mass_index" name="body_mass_index" value="" style="display: none">{% endcomment %}&nbsp;Kg/m<sup>2</sup>
     {% endif %}
 {% endblock %}
 

@@ -239,7 +239,7 @@ class Aftercare1Form(ModelForm):
                                                        'required: true'}),
             'bmi': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40, precision: 2,'
-                                                    'required: true'}),
+                                                    'required: true, editable: false'}),
             'sbp': TextInput(attrs={'class': 'easyui-numberbox',
                                     'data-options': 'width: 40,'
                                                     'required: true'}),

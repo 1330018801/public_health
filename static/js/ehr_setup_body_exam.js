@@ -8,10 +8,17 @@ $(function () {
     var print_btn = $('#body_exam_print').linkbutton({ iconCls: 'icon-print', plain: true});
     print_btn.linkbutton('disable');
     save_btn.bind('click', function () {
-        if($(this).linkbutton('options').disable == false){
+        if($(this).linkbutton('options').disabled == false){
             form.form('submit', {
                 url: '/ehr/body_exam_submit/', method: 'POST',
                 onSubmit: function (param) {
+                    /*var height = $('#id_height').numberbox('getValue');
+                    var weight = $('#id_weight').numberbox('getValue');
+                    var body_mass_index = weight/(height*height);
+                    if(height && weight){
+                        document.getElementById("id_body_mass_index").innerText = body_mass_index.toString();
+                        document.getElementById("body_mass_index").value = body_mass_index;
+                    }*/
                     if (form.find('input[name=mouth_lip]').length && !form.find('input[name=mouth_lip]').is(":checked")) {
                             $.messager.alert('提示', '请选择脏器功能—口腔—口唇', 'info');
                             return false;
@@ -118,4 +125,19 @@ $(function () {
     table.panel({href: '/ehr/body_exam_setup/', method: 'POST',
         queryParams: {resident_id: resident_id}
     });
+
+        /*var aa = $('input[name=aa]').numberbox({});
+        var kk = aa.numberbox('getValue');
+
+        console.log(kk);*/
+
+
 });
+
+/*function bodyMass(){
+        var height_box = $('height');
+        var height = height_box.numberbox('getValue');
+
+        alert(height);
+
+}*/
