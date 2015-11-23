@@ -1,7 +1,16 @@
 {% load staticfiles %}
 
 <div id="workload_town_toolbar">
-    <a id="export_excel" href="{% url 'management:workload_town_excel'%}">导出Excel</a>
+    <table style="padding: 0 1px">
+        <td width="10%" style="padding: 5px" align="right">起始时间：</td>
+        <td width="15%"><input id="begin_date" /></td>
+        <td width="10%" style="margin-left: 15px;" align="right">结束时间：</td>
+        <td width="15%"><input id="end_date" /></td>
+        <td width="10%"><a href="#" id="btn_query">查询</a></td>
+        <td width="40%" align="right">
+            <a id="workload_town_excel" href="{% url 'management:workload_town_excel'%}">导出Excel</a>
+        </td>
+    </table>
 </div>
 
 <div id="workload_town_clinics">

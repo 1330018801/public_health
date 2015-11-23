@@ -134,6 +134,9 @@ def workload_town_excel(request):
     return response
 
 
+def payment_town_excel(request):
+    pass
+
 # 某个制定机构下属的医疗机构的各医疗机构的工作量统计
 # 如果没有指定机构，则根据用户类型判断，卫生局和财政局管理员，统计所有卫生院
 # 卫生院管理员，统计所有下属卫生室
@@ -1843,6 +1846,12 @@ def workload_town_clinics_datagrid(request):
     """
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     workload = collections.OrderedDict()
     for town_clinic in Clinic.in_town.all():
         workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -1859,7 +1868,7 @@ def workload_town_clinics_datagrid(request):
                 return
             else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    status=WorkRecord.FINISHED, submit_time__range=(begin_date, end_date),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic__town_clinic=c).count()
                 queue.task_done()
@@ -2140,6 +2149,12 @@ def payment_town_clinics_datagrid(request):
     """
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     payment = collections.OrderedDict()
     for town_clinic in Clinic.in_town.all():
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -2156,7 +2171,7 @@ def payment_town_clinics_datagrid(request):
             else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                                      submit_time__gte=new_year_time(),
+                                                      submit_time__range=(begin_date, end_date),
                                                       provider__userprofile__clinic__town_clinic=c,
                                                       service_item=si).count()
                     payment[c.name][st.alias] += (count * si.price)

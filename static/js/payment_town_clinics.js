@@ -1,6 +1,29 @@
 $(function () {
     var datagrid = $('#payment_town_clinics');
 
+    var payment_town_toolbar = $('#payment_town_toolbar');
+    var btn_payment_town_excel = payment_town_toolbar.find('#payment_town_excel');
+    btn_payment_town_excel.linkbutton({ iconCls: 'icon-save', plain: true});
+
+    payment_town_toolbar.find('#begin_date').datebox({
+        width: 120, editable: false, formatter: myformatter, parser :myparser
+    });
+    payment_town_toolbar.find('#begin_date').datebox('setValue', newYearDay(new Date()));
+    payment_town_toolbar.find('#end_date').datebox({
+        width: 120, editable: false, formatter: myformatter, parser :myparser
+    });
+    payment_town_toolbar.find('#end_date').datebox('setValue', myformatter(new Date()));
+
+    var btn_query = payment_town_toolbar.find('#btn_query').linkbutton({
+        iconCls: 'icon-glyphicons-28-search',
+        plain: true
+    });
+    btn_query.bind('click', function() {
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('load');
+        }
+    });
+
     datagrid.datagrid({
         url: '/management/payment_town_clinics_datagrid/',
         rownumbers: true, singleSelect: true, fitColumns: true,
@@ -21,14 +44,10 @@ $(function () {
             { field: 'total', title: '合计', width: 20 }
         ]],
         onClickRow: function (index, row) {
-            /*
-            if (selected_row == row) {
-                $(this).datagrid('unselectRow', index);
-                selected_row = undefined;
-            } else {
-                selected_row = $(this).datagrid('getSelected');
-            }
-            */
+        },
+        onBeforeLoad: function(param) {
+            param.begin_date = payment_town_toolbar.find('#begin_date').datebox('getValue');
+            param.end_date = payment_town_toolbar.find('#end_date').datebox('getValue');
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#payment_stat_tabs');

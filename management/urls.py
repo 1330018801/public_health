@@ -132,6 +132,8 @@ urlpatterns = patterns('',
         name='payment_town_clinics_page'),  # 各卫生院各服务类别支付金额二维表
     url(r'^payment_town_clinics_datagrid/$', views.payment_town_clinics_datagrid,
         name='payment_town_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
+    url(r'^payment_town_excel/$', views.payment_town_excel, name='payment_town_excel'),
+
 
     url(r'^payment_village_clinics_page/(?P<town_clinic_id>\d+)/$', views.payment_village_clinics_page,
         name='payment_village_clinics_page'),  # 各卫生院各服务类别支付金额二维表
