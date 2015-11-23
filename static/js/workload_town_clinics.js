@@ -1,10 +1,32 @@
 $(function () {
 
-    var panel = $('#workload_town_clinics');
     var datagrid = $('#workload_town_clinics_datagrid');
-    //var selected_row = undefined;
+    var workload_town_toolbar = $('#workload_town_toolbar');
+    var btn_workload_town_excel = workload_town_toolbar.find('#workload_town_excel');
+    btn_workload_town_excel.linkbutton({ iconCls: 'icon-save', plain: true});
+
+    workload_town_toolbar.find('#begin_date').datebox({
+        width: 120, editable: false, formatter: myformatter, parser :myparser
+    });
+    workload_town_toolbar.find('#begin_date').datebox('setValue', newYearDay(new Date()));
+    workload_town_toolbar.find('#end_date').datebox({
+        width: 120, editable: false, formatter: myformatter, parser :myparser
+    });
+    workload_town_toolbar.find('#end_date').datebox('setValue', myformatter(new Date()));
+
+    var btn_query = workload_town_toolbar.find('#btn_query').linkbutton({
+        iconCls: 'icon-glyphicons-28-search',
+        plain: true
+    });
+    btn_query.bind('click', function() {
+        if ($(this).linkbutton('options').disabled == false) {
+            datagrid.datagrid('load');
+        }
+    });
+
     datagrid.datagrid({
         url: '/management/workload_town_clinics_datagrid/',
+        toolbar: '#workload_town_toolbar',
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编号', hidden: true },
@@ -23,14 +45,10 @@ $(function () {
             { field: 'total', title: '合计', width: 20 }
         ]],
         onClickRow: function (index, row) {
-            /*
-            if (selected_row == row) {
-                $(this).datagrid('unselectRow', index);
-                selected_row = undefined;
-            } else {
-                selected_row = $(this).datagrid('getSelected');
-            }
-            */
+        },
+        onBeforeLoad: function(param) {
+            param.begin_date = workload_town_toolbar.find('#begin_date').datebox('getValue');
+            param.end_date = workload_town_toolbar.find('#end_date').datebox('getValue');
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');

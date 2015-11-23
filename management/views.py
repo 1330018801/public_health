@@ -27,9 +27,6 @@ debug = logging.getLogger('debug')
 
 @login_required(login_url='/')
 def excel_file(request):
-    import xlwt
-    from django.utils.encoding import smart_unicode
-
     wb = xlwt.Workbook()
     ws = wb.add_sheet('temp_excel_name')
 
@@ -53,7 +50,56 @@ def excel_file(request):
     return response
 
 
-def excel_sheets(request):
+def workload_town_excel(request):
+    # 计算工作量的函数，获取工作量
+    workload = collections.OrderedDict()
+    for town_clinic in Clinic.in_town.all():
+        workload[town_clinic.name] = collections.OrderedDict()
+        for service_type in Service.types.all():
+            workload[town_clinic.name][service_type.alias] = 0
+        workload[town_clinic.name]['合计'] = 0
+        # workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
+
+    workload['合计'] = collections.OrderedDict();
+    for service_type in Service.types.all():
+        workload['合计'][service_type.alias] = 0
+    workload['合计']['合计'] = 0
+        # {service_type.alias: 0 for service_type in Service.types.all()}
+
+    queue = Queue.Queue()
+
+    def worker():
+        while True:
+            try:
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
+                workload[c.name][s.alias] = WorkRecord.objects.filter(
+                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
+                    provider__userprofile__clinic__town_clinic=c).count()
+                queue.task_done()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            queue.put((town_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
+
+    queue.join()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            workload[town_clinic.name]['合计'] += workload[town_clinic.name][service_type.alias]
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            workload['合计'][service_type.alias] += workload[town_clinic.name][service_type.alias]
+        workload['合计']['合计'] += workload[town_clinic.name]['合计']
+
     workbook = xlwt.Workbook()
 
     # 工作量报表
@@ -72,65 +118,24 @@ def excel_sheets(request):
     sheet_workload.write(0, 11, smart_unicode('卫生监督'))
     sheet_workload.write(0, 12, smart_unicode('合计'))
 
-    # 计算工作量的函数，获取工作量
-    clinics = Clinic.in_town.all().order_by('id')
-    workload = dict()
-    for clinic in Clinic.in_town.all().order_by('id'):
-        workload[clinic.name] = dict()
-        for service_type in Service.types.all().order_by('id'):
-            workload[clinic.name][service_type.name] = 0
-
-    for record in WorkRecord.objects.filter(status=WorkRecord.FINISHED, service_item__isnull=False,
-                                            provider__userprofile__clinic__in=clinics):
-        if record.service_item.is_service_item:
-            service_type = record.service_item.service_type
-            clinic = record.provider.userprofile.clinic
-            workload[clinic.name][service_type.name] += 1
-
-    for i, clinic in enumerate(Service.types.all().order_by('id')):
-        sheet_workload.write(i + 1, 0, smart_unicode(clinic.name))
-
-    '''
-    records = WorkRecord.objects.all()
-    for i, record in enumerate(records):
-        sheet_workload.write(i + 1, 0, smart_unicode(record.provider.username))
-        sheet_workload.write(i + 1, 1, smart_unicode(record.resident.name))
-        sheet_workload.write(i + 1, 2, smart_unicode(record.service_item.name))
-        sheet_workload.write(i + 1, 3, smart_unicode(record.submit_time))
-    '''
-
-    # 支付费用报表
-    sheet_payment = workbook.add_sheet(u'支付金额统计')
-    sheet_payment.write(0, 0, smart_unicode('医疗机构'))
-    sheet_payment.write(0, 1, smart_unicode('健康教育'))
-    sheet_payment.write(0, 2, smart_unicode('预防接种'))
-    sheet_payment.write(0, 3, smart_unicode('0-6岁儿童'))
-    sheet_payment.write(0, 4, smart_unicode('孕产妇'))
-    sheet_payment.write(0, 5, smart_unicode('老年人'))
-    sheet_payment.write(0, 6, smart_unicode('高血压'))
-    sheet_payment.write(0, 7, smart_unicode('2型糖尿病'))
-    sheet_payment.write(0, 8, smart_unicode('重性精神病'))
-    sheet_payment.write(0, 9, smart_unicode('中医药'))
-    sheet_payment.write(0, 10, smart_unicode('传染病报告'))
-    sheet_payment.write(0, 11, smart_unicode('卫生监督'))
-    sheet_payment.write(0, 12, smart_unicode('合计'))
-
-    # 计算支付费用的函数，获取支付费用
-    '''
-    records = WorkRecord.objects.all()
-    for i, record in enumerate(records):
-        sheet_payment.write(i + 1, 0, smart_unicode(record.provider.username))
-        sheet_payment.write(i + 1, 1, smart_unicode(record.resident.name))
-        sheet_payment.write(i + 1, 2, smart_unicode(record.service_item.name))
-        sheet_payment.write(i + 1, 3, smart_unicode(record.submit_time))
-    '''
+    row = 1
+    for c, w in workload.items():
+        column = 0
+        sheet_workload.write(row, column, smart_unicode(c))
+        for s in w.values():
+            column += 1
+            sheet_workload.write(row, column, smart_unicode(s))
+        row += 1
 
     response = HttpResponse(content_type="application/vnd.ms-excel")
-    response['Content-Disposition'] = 'attachment; filename=work_recode.xls'
+    response['Content-Disposition'] = 'attachment; filename=卫生院工作量.xls'
 
     workbook.save(response)
     return response
 
+
+def payment_town_excel(request):
+    pass
 
 # 某个制定机构下属的医疗机构的各医疗机构的工作量统计
 # 如果没有指定机构，则根据用户类型判断，卫生局和财政局管理员，统计所有卫生院
@@ -1841,6 +1846,12 @@ def workload_town_clinics_datagrid(request):
     """
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     workload = collections.OrderedDict()
     for town_clinic in Clinic.in_town.all():
         workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -1857,7 +1868,7 @@ def workload_town_clinics_datagrid(request):
                 return
             else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    status=WorkRecord.FINISHED, submit_time__range=(begin_date, end_date),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic__town_clinic=c).count()
                 queue.task_done()
@@ -2138,6 +2149,12 @@ def payment_town_clinics_datagrid(request):
     """
     函数说明：计算各个卫生院各个服务类别的工作量及合计，并在easyui的datagrid中列表显示
     """
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     payment = collections.OrderedDict()
     for town_clinic in Clinic.in_town.all():
         payment[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -2154,7 +2171,7 @@ def payment_town_clinics_datagrid(request):
             else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                                      submit_time__gte=new_year_time(),
+                                                      submit_time__range=(begin_date, end_date),
                                                       provider__userprofile__clinic__town_clinic=c,
                                                       service_item=si).count()
                     payment[c.name][st.alias] += (count * si.price)

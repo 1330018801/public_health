@@ -107,6 +107,7 @@ urlpatterns = patterns('',
     url(r'^workload_town_clinics_page/$', views.workload_town_clinics_page, name='workload_town_clinics_page'),
     url(r'^workload_town_clinics_datagrid/$', views.workload_town_clinics_datagrid,
         name='workload_town_clinics_datagrid'),  # 各卫生院各服务类别工作量二维表
+    url(r'^workload_town_excel/$', views.workload_town_excel, name='workload_town_excel'),
 
     url(r'^workload_village_clinics_page/(?P<town_clinic_id>\d+)/$', views.workload_village_clinics_page,
         name='workload_village_clinics_page'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表的页面
@@ -131,6 +132,8 @@ urlpatterns = patterns('',
         name='payment_town_clinics_page'),  # 各卫生院各服务类别支付金额二维表
     url(r'^payment_town_clinics_datagrid/$', views.payment_town_clinics_datagrid,
         name='payment_town_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
+    url(r'^payment_town_excel/$', views.payment_town_excel, name='payment_town_excel'),
+
 
     url(r'^payment_village_clinics_page/(?P<town_clinic_id>\d+)/$', views.payment_village_clinics_page,
         name='payment_village_clinics_page'),  # 各卫生院各服务类别支付金额二维表
