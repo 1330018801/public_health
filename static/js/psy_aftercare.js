@@ -291,9 +291,11 @@ $(function () {
     });
 
     btn_undo.bind('click', function () {
-        btn_save.linkbutton('disable');
-        btn_undo.linkbutton('disable');
-        panel.panel('clear');
+        if($(this).linkbutton('options').disabled == false){
+            btn_save.linkbutton('disable');
+            btn_undo.linkbutton('disable');
+            panel.panel('clear');
+        }
     });
 
     refresh_buttons();

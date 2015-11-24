@@ -14,47 +14,50 @@ $(function () {
     var btn_head_print = head_tb.find('#head_print').linkbutton({ plain: true, iconCls: 'icon-print' });
 
     btn_head_print.bind('click', function () {
-        head_table.find('.print_area').printThis();
+        if($(this).linkbutton('options').disabled == false){
+            head_table.find('.print_area').printThis();
+        }
     });
 
     btn_head_save.bind('click', function () {
-        head_form.form('submit', {
-            url: '/vaccine/vaccine_card_head_save/',
-            onSubmit: function (param) {
-                if ($('#register_local').is(':checked')){
-                    head_form.find('#register_province').textbox('setValue', '河北');
-                    head_form.find('#register_city').textbox('setValue', '廊坊');
-                    head_form.find('#register_county').textbox('setValue', '三河');
-                    var home_town = head_form.find('#home_town').combobox('getValue');
-                    head_form.find('#register_town').textbox('setValue', home_town);
-                    console.log(head_form.find('#register_town').textbox('getValue'));
-                }
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.resident_id = resident_id;
-                param.home_county = '三河市'
-            },
-            success: function (data) {
-                var data_obj = eval('(' + data + ')');
-                if(data_obj.success) {
-                    $.ajax({
-                        url: '/vaccine/vaccine_card_head/', method: 'POST',
-                        data: {'resident_id': resident_id},
-                        success: function (data) {
-                            if (data.success) {
-                                head_table.html(data.message);
-                                head_table.css('display', 'block');
-                                head_table.panel('refresh');
+        if($(this).linkbutton('options').disabled == false){
+            head_form.form('submit', {
+                url: '/vaccine/vaccine_card_head_save/',
+                onSubmit: function (param) {
+                    if ($('#register_local').is(':checked')){
+                        head_form.find('#register_province').textbox('setValue', '河北');
+                        head_form.find('#register_city').textbox('setValue', '廊坊');
+                        head_form.find('#register_county').textbox('setValue', '三河');
+                        var home_town = head_form.find('#home_town').combobox('getValue');
+                        head_form.find('#register_town').textbox('setValue', home_town);
+                        console.log(head_form.find('#register_town').textbox('getValue'));
+                    }
+                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                    param.resident_id = resident_id;
+                    param.home_county = '三河市'
+                },
+                success: function (data) {
+                    var data_obj = eval('(' + data + ')');
+                    if(data_obj.success) {
+                        $.ajax({
+                            url: '/vaccine/vaccine_card_head/', method: 'POST',
+                            data: {'resident_id': resident_id},
+                            success: function (data) {
+                                if (data.success) {
+                                    head_table.html(data.message);
+                                    head_table.css('display', 'block');
+                                    head_table.panel('refresh');
+                                }
                             }
-                        }
-                    });
-                    card_exist = true;
-                    $.messager.show({title: '提示', msg: '新生儿建卡完成'});
-                } else {
-                    $.messager.alert('提示', '新生儿建卡失败', 'info');
+                        });
+                        card_exist = true;
+                        $.messager.show({title: '提示', msg: '新生儿建卡完成'});
+                    } else {
+                        $.messager.alert('提示', '新生儿建卡失败', 'info');
+                    }
                 }
-            }
-
-        })
+            })
+        }
     });
     btn_head_edit.bind('click', function () {});
     btn_head_undo.bind('click', function () {});
@@ -101,11 +104,15 @@ $(function () {
     btn_list_undo.linkbutton('disable');
 
     btn_list_print.bind('click', function () {
-        datagrid.datagrid('getPanel').panel('body').printThis();
+        if($(this).linkbutton('options').disabled == false){
+            datagrid.datagrid('getPanel').panel('body').printThis();
+        }
     });
 
     btn_list_save.bind('click', function () {
-        datagrid.datagrid('endEdit', edit_row);
+        if($(this).linkbutton('options').disabled == false){
+            datagrid.datagrid('endEdit', edit_row);
+        }
     });
     btn_list_undo.bind('click', function () {
         datagrid.datagrid('rejectChanges');

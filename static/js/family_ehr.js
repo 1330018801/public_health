@@ -150,117 +150,122 @@ $(function() {
     });
 
     personal_info_save_btn.bind('click', function () {
-        personal_info_form.form('submit', {
-            url: '/ehr/personal_info_submit/', method: 'POST',
-            onSubmit: function (param) {
-                if(!personal_info_form.find('input[name=gender]').is(":checked")){
-                    $.messager.alert('提示', '请选择性别', 'info');
-                    return false;
+        if($(this).linkbutton('options').disabled == false){
+            personal_info_form.form('submit', {
+                url: '/ehr/personal_info_submit/', method: 'POST',
+                onSubmit: function (param) {
+                    if(!personal_info_form.find('input[name=gender]').is(":checked")){
+                        $.messager.alert('提示', '请选择性别', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=residence_type]').is(":checked")){
+                        $.messager.alert('提示', '请选择常住类型', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=nation]').is(":checked")){
+                        $.messager.alert('提示', '请选择民族', 'info');
+                        return false;
+                    }
+                    /*
+                    if(!personal_info_form.find('input[name=blood_type]').is(":checked")){
+                        $.messager.alert('提示', '请选择血型', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=blood_rh]').is(":checked")){
+                        $.messager.alert('提示', '请选择是是否RH阴性', 'info');
+                        return false;
+                    }
+                    */
+                    if(!personal_info_form.find('input[name=education]').is(":checked")){
+                        $.messager.alert('提示', '请选择文化程度', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=occupation]').is(":checked")){
+                        $.messager.alert('提示', '请选择职业', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=marriage]').is(":checked")){
+                        $.messager.alert('提示', '请选择婚姻状况', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=payment_way]').is(":checked")){
+                        $.messager.alert('提示', '请选择医疗费用支付方式', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=allergy_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择药物过敏史', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=expose_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择暴露史', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=disease_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择既往史—疾病', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=surgery_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择既往史—手术', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=injury_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择既往史—外伤', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=transfusion_history]').is(":checked")){
+                        $.messager.alert('提示', '请选择既往史—输血', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=family_history_father]').is(":checked")){
+                        $.messager.alert('提示', '请选择家族史—父亲患病情况', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=family_history_mother]').is(":checked")){
+                        $.messager.alert('提示', '请选择家族史—母亲患病情况', 'info');
+                        return false;
+                    }
+                    /*
+                    if(!personal_info_form.find('input[name=family_history_sibling]').is(":checked")){
+                        $.messager.alert('提示', '请选择家族史—兄弟姐妹患病情况', 'info');
+                        return false;
+                    }
+                    if(!personal_info_form.find('input[name=family_history_children]').is(":checked")){
+                        $.messager.alert('提示', '请选择家族史—子女患病情况', 'info');
+                        return false;
+                    }
+                    */
+                    if(!personal_info_form.find('input[name=genetic_disease]').is(":checked")){
+                        $.messager.alert('提示', '请选择有无遗传病史', 'info');
+                        return false;
+                    }
+                    if(personal_info_form.form('validate')){
+                        param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                        param.resident_id = selected_row['id'];
+                        return true;
+                    }
+                    else{
+                        return false;
+                    }
+                },
+                success: function (data) {
+                    var data = eval('(' + data + ')');
+                    if (data.success) {
+                        $.messager.show({title: '提示', msg: '个人基本信息表保存完成', timeout: 1000});
+                        personal_info_table.panel('refresh');
+                        family_datagrid.datagrid('reload');
+                        personal_info_save_btn.linkbutton('disable');
+                    } else {
+                        $.messager.alert('提示', '个人基本信息表保存失败', 'warning');
+                    }
                 }
-                if(!personal_info_form.find('input[name=residence_type]').is(":checked")){
-                    $.messager.alert('提示', '请选择常住类型', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=nation]').is(":checked")){
-                    $.messager.alert('提示', '请选择民族', 'info');
-                    return false;
-                }
-                /*
-                if(!personal_info_form.find('input[name=blood_type]').is(":checked")){
-                    $.messager.alert('提示', '请选择血型', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=blood_rh]').is(":checked")){
-                    $.messager.alert('提示', '请选择是是否RH阴性', 'info');
-                    return false;
-                }
-                */
-                if(!personal_info_form.find('input[name=education]').is(":checked")){
-                    $.messager.alert('提示', '请选择文化程度', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=occupation]').is(":checked")){
-                    $.messager.alert('提示', '请选择职业', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=marriage]').is(":checked")){
-                    $.messager.alert('提示', '请选择婚姻状况', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=payment_way]').is(":checked")){
-                    $.messager.alert('提示', '请选择医疗费用支付方式', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=allergy_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择药物过敏史', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=expose_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择暴露史', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=disease_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择既往史—疾病', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=surgery_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择既往史—手术', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=injury_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择既往史—外伤', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=transfusion_history]').is(":checked")){
-                    $.messager.alert('提示', '请选择既往史—输血', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=family_history_father]').is(":checked")){
-                    $.messager.alert('提示', '请选择家族史—父亲患病情况', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=family_history_mother]').is(":checked")){
-                    $.messager.alert('提示', '请选择家族史—母亲患病情况', 'info');
-                    return false;
-                }
-                /*
-                if(!personal_info_form.find('input[name=family_history_sibling]').is(":checked")){
-                    $.messager.alert('提示', '请选择家族史—兄弟姐妹患病情况', 'info');
-                    return false;
-                }
-                if(!personal_info_form.find('input[name=family_history_children]').is(":checked")){
-                    $.messager.alert('提示', '请选择家族史—子女患病情况', 'info');
-                    return false;
-                }
-                */
-                if(!personal_info_form.find('input[name=genetic_disease]').is(":checked")){
-                    $.messager.alert('提示', '请选择有无遗传病史', 'info');
-                    return false;
-                }
-                if(personal_info_form.form('validate')){
-                    param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                    param.resident_id = selected_row['id'];
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            },
-            success: function (data) {
-                var data = eval('(' + data + ')');
-                if (data.success) {
-                    $.messager.show({title: '提示', msg: '个人基本信息表保存完成', timeout: 1000});
-                    personal_info_table.panel('refresh');
-                    family_datagrid.datagrid('reload');
-                } else {
-                    $.messager.alert('提示', '个人基本信息表保存失败', 'warning');
-                }
-            }
-        })
+            })
+        }
     });
 
     personal_info_print_btn.bind('click', function () {
-        personal_info_table.find('.print_area').printThis();
+        if($(this).linkbutton('options').disabled == false){
+            personal_info_table.find('.print_area').printThis();
+        }
     });
 
     // 提交成年人家庭成员对话框的工具栏的控件及事件绑定
@@ -307,27 +312,108 @@ $(function() {
     });
 
     body_exam_save_btn.bind('click', function () {
-        body_exam_form.form('submit', {
-            url: '/ehr/body_exam_submit/', method: 'POST',
-            onSubmit: function (param) {
-                param.csrfmiddlewaretoken = $.cookie('csrftoken');
-                param.resident_id = selected_row['id'];
-            },
-            success: function (data) {
-                var data = eval('(' + data + ')');
-                if (data.success) {
-                    $.messager.show({title: '提示', msg: '健康体检表保存完成', timeout: 1000});
-                    body_exam_table.panel('refresh');
-                    family_datagrid.datagrid('reload');
-                } else {
-                    $.messager.alert('提示', '健康体检表保存失败', 'warning');
+        if($(this).linkbutton('options').disabled == false){
+            body_exam_form.form('submit', {
+                url: '/ehr/body_exam_submit/', method: 'POST',
+                onSubmit: function (param) {
+                    if (body_exam_form.find('input[name=mouth_lip]').length && !body_exam_form.find('input[name=mouth_lip]').is(":checked")) {
+                            $.messager.alert('提示', '请选择脏器功能—口腔—口唇', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=mouth_tooth]').length && !body_exam_form.find('input[name=mouth_tooth]').is(":checked")) {
+                            $.messager.alert('提示', '请选择脏器功能—口腔—齿列', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=mouth_throat]').length && !body_exam_form.find('input[name=mouth_throat]').is(":checked")) {
+                            $.messager.alert('提示', '请选择脏器功能—口腔—咽部', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=hearing]').length && !body_exam_form.find('input[name=hearing]').is(":checked")) {
+                            $.messager.alert('提示', '请选择脏器功能—听力', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=movement_function]').length && !body_exam_form.find('input[name=movement_function]').is(":checked")) {
+                            $.messager.alert('提示', '请选择脏器功能—运动功能', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=skin]').length && !body_exam_form.find('input[name=skin]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—皮肤', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=lymph_node]').length && !body_exam_form.find('input[name=lymph_node]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—淋巴结', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=lung_barrel_chested]').length && !body_exam_form.find('input[name=lung_barrel_chested]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—肺—桶状胸', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=lung_breath_sound]').length && !body_exam_form.find('input[name=lung_breath_sound]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—肺—呼吸音', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=lung_rale]').length && !body_exam_form.find('input[name=lung_rale]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—肺—罗音', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=heart_rhythm]').length && !body_exam_form.find('input[name=heart_rhythm]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—心脏—心律', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=heart_noise]').length && !body_exam_form.find('input[name=heart_noise]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—心脏—杂音', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=stomach_tenderness]').length && !body_exam_form.find('input[name=stomach_tenderness]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—腹部—压痛', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=stomach_enclosed_mass]').length && !body_exam_form.find('input[name=stomach_enclosed_mass]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—腹部—包块', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=stomach_hepatomegaly]').length && !body_exam_form.find('input[name=stomach_hepatomegaly]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—腹部—肝大', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=stomach_slenauxe]').length && !body_exam_form.find('input[name=stomach_slenauxe]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—腹部—脾大', 'info');
+                            return false;
+                        }
+                        if (body_exam_form.find('input[name=stomach_shifting_dullness]').length && !body_exam_form.find('input[name=stomach_shifting_dullness]').is(":checked")) {
+                            $.messager.alert('提示', '请选择查体—腹部—移动性浊音', 'info');
+                            return false;
+                        }
+
+                        if(body_exam_form.form('validate')){
+                            param.csrfmiddlewaretoken = $.cookie('csrftoken');
+                            param.resident_id = selected_row['id'];
+                            return true;
+                        }
+                        else{
+                            return false;
+                        }
+                },
+                success: function (data) {
+                    var data = eval('(' + data + ')');
+                    if (data.success) {
+                        $.messager.show({title: '提示', msg: '健康体检表保存完成', timeout: 2000});
+                        body_exam_table.panel('refresh');
+                        family_datagrid.datagrid('reload');
+                        body_exam_save_btn.linkbutton('disable');
+                    } else {
+                        $.messager.alert('提示', '健康体检表保存失败', 'warning');
+                    }
                 }
-            }
-        })
+            })
+        }
     });
 
     body_exam_print_btn.bind('click', function () {
         // 打印体检表的内容
+        if($(this).linkbutton('options').disabled == false){
+            body_exam_table.find('.print_area').printThis();
+        }
     });
 
     // 添加成年人家庭成员的对话框
