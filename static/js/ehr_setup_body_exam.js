@@ -118,5 +118,4 @@ $(function () {
     table.panel({href: '/ehr/body_exam_setup/', method: 'POST',
         queryParams: {resident_id: resident_id}
     });
-
 });
