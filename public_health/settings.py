@@ -54,6 +54,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.formtools',
+    'backend',
     'management',
     'services',
     'education',
