@@ -118,7 +118,7 @@ $(function() {
     });
 
     $.extend($.fn.validatebox.defaults.rules, {
-        equals: {
+        same_as: {
             validator: function(value, param){
                 //console.log('value' + value);
                 //console.log('param[0]' + form.find('#pswd2').val());
@@ -164,7 +164,7 @@ $(function() {
     });
     form.find('#pswd2').textbox({ required: true, width: 120 });
     form.find('#pswd2_again').textbox({
-        required: true, validType: 'equals["#pswd2"]', width: 120
+        required: true, validType: 'same_as["#pswd2"]', width: 120
     });
     form.find('#town_clinic').combobox({
         url: '/management/get_town_clinics/',

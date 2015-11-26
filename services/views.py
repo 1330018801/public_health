@@ -9,6 +9,9 @@ from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import auth
+
+from services.utils import json_result
 
 from management.models import Service, WorkRecord, Resident
 from management.models import ModifyApply
@@ -520,15 +523,13 @@ def get_doc_info(request):
                 json_data['position'] = u'村医'
     return JsonResponse([json_data], safe=False)
 
-from django.contrib import auth
-
 
 def update_password(request):
     request.user.set_password(request.POST.get('password'))
     request.user.save()
     auth.logout(request)
 
-    return JsonResponse({'success': True})
+    return json_result({'success': True})
 
 
 def rectify_apply(request):
