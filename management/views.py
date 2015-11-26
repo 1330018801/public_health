@@ -636,6 +636,7 @@ def village_clinic_list(request):
         item = model_to_dict(clinic, fields=['id', 'name', 'address'])
         if clinic.town_clinic:
             item['town_clinic'] = clinic.town_clinic.name
+        item['doctor_user_num'] = clinic.users.count()
 
         json_items.append(item)
 
