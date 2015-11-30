@@ -26,7 +26,7 @@ $(function () {
         toolbar: '#doc_stat_toolbar',
         rownumbers: false, singleSelect: true, fitColumns: true,
         columns: [[
-            { field: 'service', title: '公卫服务类别', width: 10 },
+            { field: 'service', title: '公卫服务类别:服务项目', width: 10 },
             { field: 'count', title: '工作量', width: 10 }
         ]],
         onBeforeLoad: function(param) {

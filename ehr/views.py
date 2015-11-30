@@ -261,7 +261,6 @@ def body_exam_table(request):
                                        service_item_alias='body_exam_table').first()
     if record:
         table = BodyExam.objects.get(id=record.item_id)
-        debug.info(record.item_id)
         form = BodyExamForm(instance=table)
     else:
         form = BodyExamForm()
@@ -502,10 +501,8 @@ def personal_info_edit(request):
 
 def personal_info_edit_submit(request):
     resident_id = request.POST.get('resident_id')
-    debug.info(resident_id)
     if resident_id:
         resident_id = int(resident_id)
-        debug.info(resident_id)
         resident = Resident.objects.get(id=resident_id)
         from services.utils import gender_map
 
@@ -522,30 +519,20 @@ def personal_info_edit_submit(request):
         resident.mobile = request.POST.get('phone')
         resident.update_by = request.user
 
-        debug.info(nation)
-        debug.info(request.POST.get('resident_name'))
-
         ehr_village_no = int(request.POST.get('ehr_village_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
         ehr_unique_no = int(request.POST.get('ehr_unique_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
         town_no = request.user.userprofile.clinic.town_clinic.region.id
         resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
-        debug.info(ehr_unique_no)
         resident.save()
 
         form = PersonalInfoForm(request.POST)
-        debug.info(request.POST.get('resident_name'))
         if form.is_valid():
-            debug.info(request.POST.get('gender'))
-            # debug.info(request.POST)
-            # resident.personal_info_table.update(request.POST)
             debug.info(resident.personal_info_table.id)
             debug.info(form.is_valid())
             debug.info(form.cleaned_data)
             submit_data = {field: value for field, value in form.cleaned_data.items() if value}
-            debug.info(resident.personal_info_table.id)
             result, created = PersonalInfo.objects.update_or_create(id=resident.personal_info_table.id,
                                                                     defaults=submit_data)
-            debug.info(request.POST.get('phone'))
             resident.save()
             record = WorkRecord.objects.get(resident=resident, service_item_alias='personal_info_table')
             record.update_by = request.user

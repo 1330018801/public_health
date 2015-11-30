@@ -15,7 +15,7 @@ class PersonalInfoForm(ModelForm):
             'birthday': TextInput(attrs={'class': 'easyui-datebox',
                                          'data-options': 'formatter: myformatter, parser: myparser, '
                                                          'width: 100, required: true, editable: false'}),
-            'identity': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 160, required: true'}),
+            'identity': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 160, required: true'}),
             'work_company': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
             'phone': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 100, required: true'}),
             'contact_name': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100, required: true'}),
