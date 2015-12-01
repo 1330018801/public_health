@@ -217,7 +217,7 @@ def personal_info_submit(request):
             ehr_unique_no = int(request.POST.get('ehr_unique_no'))  # 由于是必填项，而且是数字类型，所以在此不必检查类型
             town_no = request.user.userprofile.clinic.town_clinic.region.id
             resident.ehr_no = town_no + '%03d' % ehr_village_no + '%05d' % ehr_unique_no
-            resident.save()
+        resident.save()
         success = True
     else:
         debug.info(form.errors.as_data())
