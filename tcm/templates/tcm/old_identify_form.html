@@ -7,7 +7,7 @@
     {% elif form.q1.value == None %}
         {% for item in form.q1 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {% comment %}<div onchange="totalPoint()" onclick="radioClick()">{{ item }}</div>{% endcomment %}{{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -19,7 +19,7 @@
     {% elif form.q1.value == None %}
         {% for item in form.q1 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {% comment %}<div onchange="totalPoint()" onclick="radioClick()">{{ item }}</div>{% endcomment %}{{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -31,7 +31,7 @@
     {% elif form.q1.value == None %}
         {% for item in form.q1 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {% comment %}<div onchange="totalPoint()" onclick="radioClick()">{{ item }}</div>{% endcomment %}{{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -43,7 +43,7 @@
     {% elif form.q1.value == None %}
         {% for item in form.q1 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {% comment %}<div onchange="totalPoint()" onclick="radioClick()">{{ item }}</div>{% endcomment %}{{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -55,7 +55,7 @@
     {% elif form.q1.value == None %}
         {% for item in form.q1 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {% comment %}<div onchange="totalPoint()" onclick="radioClick()">{{ item }}</div>{% endcomment %}{{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -69,7 +69,7 @@
     {% elif form.q2.value == None %}
         {% for item in form.q2 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -81,7 +81,7 @@
     {% elif form.q2.value == None %}
         {% for item in form.q2 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -93,7 +93,7 @@
     {% elif form.q2.value == None %}
         {% for item in form.q2 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -105,7 +105,7 @@
     {% elif form.q2.value == None %}
         {% for item in form.q2 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -117,7 +117,7 @@
     {% elif form.q2.value == None %}
         {% for item in form.q2 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -131,7 +131,7 @@
     {% elif form.q3.value == None %}
         {% for item in form.q3 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()"><div onchange="totalPoint()">{{ item }}</div></div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -143,7 +143,7 @@
     {% elif form.q3.value == None %}
         {% for item in form.q3 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -155,7 +155,7 @@
     {% elif form.q3.value == None %}
         {% for item in form.q3 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -167,7 +167,7 @@
     {% elif form.q3.value == None %}
         {% for item in form.q3 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -179,7 +179,7 @@
     {% elif form.q3.value == None %}
         {% for item in form.q3 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -193,7 +193,7 @@
     {% elif form.q4.value == None %}
         {% for item in form.q4 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -205,7 +205,7 @@
     {% elif form.q4.value == None %}
         {% for item in form.q4 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -217,7 +217,7 @@
     {% elif form.q4.value == None %}
         {% for item in form.q4 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -229,7 +229,7 @@
     {% elif form.q4.value == None %}
         {% for item in form.q4 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -241,7 +241,7 @@
     {% elif form.q4.value == None %}
         {% for item in form.q4 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -255,7 +255,7 @@
     {% elif form.q5.value == None %}
         {% for item in form.q5 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -267,7 +267,7 @@
     {% elif form.q5.value == None %}
         {% for item in form.q5 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -279,7 +279,7 @@
     {% elif form.q5.value == None %}
         {% for item in form.q5 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -291,7 +291,7 @@
     {% elif form.q5.value == None %}
         {% for item in form.q5 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -303,7 +303,7 @@
     {% elif form.q5.value == None %}
         {% for item in form.q5 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -317,7 +317,7 @@
     {% elif form.q6.value == None %}
         {% for item in form.q6 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -329,7 +329,7 @@
     {% elif form.q6.value == None %}
         {% for item in form.q6 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -341,7 +341,7 @@
     {% elif form.q6.value == None %}
         {% for item in form.q6 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -353,7 +353,7 @@
     {% elif form.q6.value == None %}
         {% for item in form.q6 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -365,7 +365,7 @@
     {% elif form.q6.value == None %}
         {% for item in form.q6 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -379,7 +379,7 @@
     {% elif form.q7.value == None %}
         {% for item in form.q7 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -391,7 +391,7 @@
     {% elif form.q7.value == None %}
         {% for item in form.q7 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -403,7 +403,7 @@
     {% elif form.q7.value == None %}
         {% for item in form.q7 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -415,7 +415,7 @@
     {% elif form.q7.value == None %}
         {% for item in form.q7 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -427,7 +427,7 @@
     {% elif form.q7.value == None %}
         {% for item in form.q7 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -441,7 +441,7 @@
     {% elif form.q8.value == None %}
         {% for item in form.q8 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -453,7 +453,7 @@
     {% elif form.q8.value == None %}
         {% for item in form.q8 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -465,7 +465,7 @@
     {% elif form.q8.value == None %}
         {% for item in form.q8 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -477,7 +477,7 @@
     {% elif form.q8.value == None %}
         {% for item in form.q8 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -489,7 +489,7 @@
     {% elif form.q8.value == None %}
         {% for item in form.q8 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -503,7 +503,7 @@
     {% elif form.q9.value == None %}
         {% for item in form.q9 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -515,7 +515,7 @@
     {% elif form.q9.value == None %}
         {% for item in form.q9 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -527,7 +527,7 @@
     {% elif form.q9.value == None %}
         {% for item in form.q9 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -539,7 +539,7 @@
     {% elif form.q9.value == None %}
         {% for item in form.q9 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -551,7 +551,7 @@
     {% elif form.q9.value == None %}
         {% for item in form.q9 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -565,7 +565,7 @@
     {% elif form.q10.value == None %}
         {% for item in form.q10 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -577,7 +577,7 @@
     {% elif form.q10.value == None %}
         {% for item in form.q10 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -589,7 +589,7 @@
     {% elif form.q10.value == None %}
         {% for item in form.q10 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -601,7 +601,7 @@
     {% elif form.q10.value == None %}
         {% for item in form.q10 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -613,7 +613,7 @@
     {% elif form.q10.value == None %}
         {% for item in form.q10 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -627,7 +627,7 @@
     {% elif form.q11.value == None %}
         {% for item in form.q11 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -639,7 +639,7 @@
     {% elif form.q11.value == None %}
         {% for item in form.q11 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -651,7 +651,7 @@
     {% elif form.q11.value == None %}
         {% for item in form.q11 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -663,7 +663,7 @@
     {% elif form.q11.value == None %}
         {% for item in form.q11 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -675,7 +675,7 @@
     {% elif form.q11.value == None %}
         {% for item in form.q11 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -689,7 +689,7 @@
     {% elif form.q12.value == None %}
         {% for item in form.q12 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -701,7 +701,7 @@
     {% elif form.q12.value == None %}
         {% for item in form.q12 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -713,7 +713,7 @@
     {% elif form.q12.value == None %}
         {% for item in form.q12 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -725,7 +725,7 @@
     {% elif form.q12.value == None %}
         {% for item in form.q12 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -737,7 +737,7 @@
     {% elif form.q12.value == None %}
         {% for item in form.q12 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -751,7 +751,7 @@
     {% elif form.q13.value == None %}
         {% for item in form.q13 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -763,7 +763,7 @@
     {% elif form.q13.value == None %}
         {% for item in form.q13 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -775,7 +775,7 @@
     {% elif form.q13.value == None %}
         {% for item in form.q13 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -787,7 +787,7 @@
     {% elif form.q13.value == None %}
         {% for item in form.q13 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -799,7 +799,7 @@
     {% elif form.q13.value == None %}
         {% for item in form.q13 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -813,7 +813,7 @@
     {% elif form.q14.value == None %}
         {% for item in form.q14 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -825,7 +825,7 @@
     {% elif form.q14.value == None %}
         {% for item in form.q14 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -837,7 +837,7 @@
     {% elif form.q14.value == None %}
         {% for item in form.q14 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -849,7 +849,7 @@
     {% elif form.q14.value == None %}
         {% for item in form.q14 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -861,7 +861,7 @@
     {% elif form.q14.value == None %}
         {% for item in form.q14 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -875,7 +875,7 @@
     {% elif form.q15.value == None %}
         {% for item in form.q15 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -887,7 +887,7 @@
     {% elif form.q15.value == None %}
         {% for item in form.q15 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -899,7 +899,7 @@
     {% elif form.q15.value == None %}
         {% for item in form.q15 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -911,7 +911,7 @@
     {% elif form.q15.value == None %}
         {% for item in form.q15 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -923,7 +923,7 @@
     {% elif form.q15.value == None %}
         {% for item in form.q15 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -937,7 +937,7 @@
     {% elif form.q16.value == None %}
         {% for item in form.q16 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -949,7 +949,7 @@
     {% elif form.q16.value == None %}
         {% for item in form.q16 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -961,7 +961,7 @@
     {% elif form.q16.value == None %}
         {% for item in form.q16 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -973,7 +973,7 @@
     {% elif form.q16.value == None %}
         {% for item in form.q16 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -985,7 +985,7 @@
     {% elif form.q16.value == None %}
         {% for item in form.q16 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -999,7 +999,7 @@
     {% elif form.q17.value == None %}
         {% for item in form.q17 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1011,7 +1011,7 @@
     {% elif form.q17.value == None %}
         {% for item in form.q17 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1023,7 +1023,7 @@
     {% elif form.q17.value == None %}
         {% for item in form.q17 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1035,7 +1035,7 @@
     {% elif form.q17.value == None %}
         {% for item in form.q17 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1047,7 +1047,7 @@
     {% elif form.q17.value == None %}
         {% for item in form.q17 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1061,7 +1061,7 @@
     {% elif form.q18.value == None %}
         {% for item in form.q18 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1073,7 +1073,7 @@
     {% elif form.q18.value == None %}
         {% for item in form.q18 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1085,7 +1085,7 @@
     {% elif form.q18.value == None %}
         {% for item in form.q18 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1097,7 +1097,7 @@
     {% elif form.q18.value == None %}
         {% for item in form.q18 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1109,7 +1109,7 @@
     {% elif form.q18.value == None %}
         {% for item in form.q18 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1123,7 +1123,7 @@
     {% elif form.q19.value == None %}
         {% for item in form.q19 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1135,7 +1135,7 @@
     {% elif form.q19.value == None %}
         {% for item in form.q19 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1147,7 +1147,7 @@
     {% elif form.q19.value == None %}
         {% for item in form.q19 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1159,7 +1159,7 @@
     {% elif form.q19.value == None %}
         {% for item in form.q19 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1171,7 +1171,7 @@
     {% elif form.q19.value == None %}
         {% for item in form.q19 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1185,7 +1185,7 @@
     {% elif form.q20.value == None %}
         {% for item in form.q20 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1197,7 +1197,7 @@
     {% elif form.q20.value == None %}
         {% for item in form.q20 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1209,7 +1209,7 @@
     {% elif form.q20.value == None %}
         {% for item in form.q20 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1221,7 +1221,7 @@
     {% elif form.q20.value == None %}
         {% for item in form.q20 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1233,7 +1233,7 @@
     {% elif form.q20.value == None %}
         {% for item in form.q20 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1247,7 +1247,7 @@
     {% elif form.q21.value == None %}
         {% for item in form.q21 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1259,7 +1259,7 @@
     {% elif form.q21.value == None %}
         {% for item in form.q21 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1271,7 +1271,7 @@
     {% elif form.q21.value == None %}
         {% for item in form.q21 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1283,7 +1283,7 @@
     {% elif form.q21.value == None %}
         {% for item in form.q21 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1295,7 +1295,7 @@
     {% elif form.q21.value == None %}
         {% for item in form.q21 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1309,7 +1309,7 @@
     {% elif form.q22.value == None %}
         {% for item in form.q22 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1321,7 +1321,7 @@
     {% elif form.q22.value == None %}
         {% for item in form.q22 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1333,7 +1333,7 @@
     {% elif form.q22.value == None %}
         {% for item in form.q22 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1345,7 +1345,7 @@
     {% elif form.q22.value == None %}
         {% for item in form.q22 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1357,7 +1357,7 @@
     {% elif form.q22.value == None %}
         {% for item in form.q22 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1371,7 +1371,7 @@
     {% elif form.q23.value == None %}
         {% for item in form.q23 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1383,7 +1383,7 @@
     {% elif form.q23.value == None %}
         {% for item in form.q23 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1395,7 +1395,7 @@
     {% elif form.q23.value == None %}
         {% for item in form.q23 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1407,7 +1407,7 @@
     {% elif form.q23.value == None %}
         {% for item in form.q23 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1419,7 +1419,7 @@
     {% elif form.q23.value == None %}
         {% for item in form.q23 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1433,7 +1433,7 @@
     {% elif form.q24.value == None %}
         {% for item in form.q24 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1445,7 +1445,7 @@
     {% elif form.q24.value == None %}
         {% for item in form.q24 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1457,7 +1457,7 @@
     {% elif form.q24.value == None %}
         {% for item in form.q24 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1469,7 +1469,7 @@
     {% elif form.q24.value == None %}
         {% for item in form.q24 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1481,7 +1481,7 @@
     {% elif form.q24.value == None %}
         {% for item in form.q24 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1496,7 +1496,7 @@
     {% elif form.q25.value == None %}
         {% for item in form.q25 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1508,7 +1508,7 @@
     {% elif form.q25.value == None %}
         {% for item in form.q25 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1520,7 +1520,7 @@
     {% elif form.q25.value == None %}
         {% for item in form.q25 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1532,7 +1532,7 @@
     {% elif form.q25.value == None %}
         {% for item in form.q25 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1544,7 +1544,7 @@
     {% elif form.q25.value == None %}
         {% for item in form.q25 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1558,7 +1558,7 @@
     {% elif form.q26.value == None %}
         {% for item in form.q26 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1570,7 +1570,7 @@
     {% elif form.q26.value == None %}
         {% for item in form.q26 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1582,7 +1582,7 @@
     {% elif form.q26.value == None %}
         {% for item in form.q26 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1594,7 +1594,7 @@
     {% elif form.q26.value == None %}
         {% for item in form.q26 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1606,7 +1606,7 @@
     {% elif form.q26.value == None %}
         {% for item in form.q26 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1620,7 +1620,7 @@
     {% elif form.q27.value == None %}
         {% for item in form.q27 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1632,7 +1632,7 @@
     {% elif form.q27.value == None %}
         {% for item in form.q27 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1644,7 +1644,7 @@
     {% elif form.q27.value == None %}
         {% for item in form.q27 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1656,7 +1656,7 @@
     {% elif form.q27.value == None %}
         {% for item in form.q27 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1668,7 +1668,7 @@
     {% elif form.q27.value == None %}
         {% for item in form.q27 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1682,7 +1682,7 @@
     {% elif form.q28.value == None %}
         {% for item in form.q28 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1694,7 +1694,7 @@
     {% elif form.q28.value == None %}
         {% for item in form.q28 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1706,7 +1706,7 @@
     {% elif form.q28.value == None %}
         {% for item in form.q28 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1718,7 +1718,7 @@
     {% elif form.q28.value == None %}
         {% for item in form.q28 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1730,7 +1730,7 @@
     {% elif form.q28.value == None %}
         {% for item in form.q28 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1744,7 +1744,7 @@
     {% elif form.q29.value == None %}
         {% for item in form.q29 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1756,7 +1756,7 @@
     {% elif form.q29.value == None %}
         {% for item in form.q29 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1768,7 +1768,7 @@
     {% elif form.q29.value == None %}
         {% for item in form.q29 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1780,7 +1780,7 @@
     {% elif form.q29.value == None %}
         {% for item in form.q29 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1792,7 +1792,7 @@
     {% elif form.q29.value == None %}
         {% for item in form.q29 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1806,7 +1806,7 @@
     {% elif form.q30.value == None %}
         {% for item in form.q30 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1818,7 +1818,7 @@
     {% elif form.q30.value == None %}
         {% for item in form.q30 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1830,7 +1830,7 @@
     {% elif form.q30.value == None %}
         {% for item in form.q30 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1842,7 +1842,7 @@
     {% elif form.q30.value == None %}
         {% for item in form.q30 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1854,7 +1854,7 @@
     {% elif form.q30.value == None %}
         {% for item in form.q30 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1868,7 +1868,7 @@
     {% elif form.q31.value == None %}
         {% for item in form.q31 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1880,7 +1880,7 @@
     {% elif form.q31.value == None %}
         {% for item in form.q31 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1892,7 +1892,7 @@
     {% elif form.q31.value == None %}
         {% for item in form.q31 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1904,7 +1904,7 @@
     {% elif form.q31.value == None %}
         {% for item in form.q31 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1916,7 +1916,7 @@
     {% elif form.q31.value == None %}
         {% for item in form.q31 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1930,7 +1930,7 @@
     {% elif form.q32.value == None %}
         {% for item in form.q32 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1942,7 +1942,7 @@
     {% elif form.q32.value == None %}
         {% for item in form.q32 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1954,7 +1954,7 @@
     {% elif form.q32.value == None %}
         {% for item in form.q32 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1966,7 +1966,7 @@
     {% elif form.q32.value == None %}
         {% for item in form.q32 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1978,7 +1978,7 @@
     {% elif form.q32.value == None %}
         {% for item in form.q32 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -1992,7 +1992,7 @@
     {% elif form.q33.value == None %}
         {% for item in form.q33 %}
             {% if forloop.counter0 == 1 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2004,7 +2004,7 @@
     {% elif form.q33.value == None %}
         {% for item in form.q33 %}
             {% if forloop.counter0 == 2 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2016,7 +2016,7 @@
     {% elif form.q33.value == None %}
         {% for item in form.q33 %}
             {% if forloop.counter0 == 3 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2028,7 +2028,7 @@
     {% elif form.q33.value == None %}
         {% for item in form.q33 %}
             {% if forloop.counter0 == 4 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2040,7 +2040,7 @@
     {% elif form.q33.value == None %}
         {% for item in form.q33 %}
             {% if forloop.counter0 == 5 %}
-                <div onchange="totalPoint()">{{ item }}</div>
+                {{ item }}
             {% endif %}
         {% endfor %}
     {% endif %}
@@ -2051,7 +2051,7 @@
     {% if form.points_qixu.value %}
         {{ form.points_qixu.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_qixu }}{% endcomment %}<lable id="id_points_qixu"></lable><input id="points_qixu" name="points_qixu" value="" style="display: none"><br>
+        {{ form.points_qixu }}{% comment %}<lable id="id_points_qixu"></lable><input id="points_qixu" name="points_qixu" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_qixu %}
@@ -2073,7 +2073,7 @@
     {% if form.points_yangxu.value %}
         {{ form.points_yangxu.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_yangxu }}{% endcomment %}<lable id="id_points_yangxu"></lable><input id="points_yangxu" name="points_yangxu" value="" style="display: none"><br>
+        {{ form.points_yangxu }}{% comment %}<lable id="id_points_yangxu"></lable><input id="points_yangxu" name="points_yangxu" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_yangxu %}
@@ -2095,7 +2095,7 @@
     {% if form.points_yinxu.value %}
         {{ form.points_yinxu.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_yinxu }}{% endcomment %}<lable id="id_points_yinxu"></lable><input id="points_yinxu" name="points_yinxu" value="" style="display: none"><br>
+        {{ form.points_yinxu }}{% comment %}<lable id="id_points_yinxu"></lable><input id="points_yinxu" name="points_yinxu" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_yinxu %}
@@ -2118,7 +2118,7 @@
     {% if form.points_tanshi.value %}
         {{ form.points_tanshi.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_tanshi }}{% endcomment %}<lable id="id_points_tanshi"></lable><input id="points_tanshi" name="points_tanshi" value="" style="display: none"><br>
+        {{ form.points_tanshi }}{% comment %}<lable id="id_points_tanshi"></lable><input id="points_tanshi" name="points_tanshi" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_tanshi %}
@@ -2141,7 +2141,7 @@
     {% if form.points_shire.value %}
         {{ form.points_shire.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_shire }}{% endcomment %}<lable id="id_points_shire"></lable><input id="points_shire" name="points_shire" value="" style="display: none"><br>
+        {{ form.points_shire }}{% comment %}<lable id="id_points_shire"></lable><input id="points_shire" name="points_shire" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_shire %}
@@ -2164,7 +2164,7 @@
     {% if form.points_xueyu.value %}
         {{ form.points_xueyu.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_xueyu }}{% endcomment %}<lable id="id_points_xueyu"></lable><input id="points_xueyu" name="points_xueyu" value="" style="display: none"><br>
+        {{ form.points_xueyu }}{% comment %}<lable id="id_points_xueyu"></lable><input id="points_xueyu" name="points_xueyu" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_xueyu %}
@@ -2187,7 +2187,7 @@
     {% if form.points_qiyu.value %}
         {{ form.points_qiyu.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_qiyu }}{% endcomment %}<lable id="id_points_qiyu"></lable><input id="points_qiyu" name="points_qiyu" value="" style="display: none"><br>
+        {{ form.points_qiyu }}{% comment %}<lable id="id_points_qiyu"></lable><input id="points_qiyu" name="points_qiyu" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_qiyu %}
@@ -2210,7 +2210,7 @@
     {% if form.points_tebing.value %}
         {{ form.points_tebing.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_tebing }}{% endcomment %}<lable id="id_points_tebing"></lable><input id="points_tebing" name="points_tebing" value="" style="display: none"><br>
+        {{ form.points_tebing }}{% comment %}<lable id="id_points_tebing"></lable><input id="points_tebing" name="points_tebing" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_tebing %}
@@ -2233,7 +2233,7 @@
     {% if form.points_pinghe.value %}
         {{ form.points_pinghe.value }}<br>
     {% else %}
-        {% comment %}{{ form.points_pinghe }}{% endcomment %}<lable id="id_points_pinghe"></lable><input id="points_pinghe" name="points_pinghe" value="" style="display: none"><br>
+        {{ form.points_pinghe }}{% comment %}<lable id="id_points_pinghe"></lable><input id="points_pinghe" name="points_pinghe" value="" style="display: none">{% endcomment %}<br>
     {% endif %}
 {% endblock %}
 {% block yes_trend_pinghe %}
