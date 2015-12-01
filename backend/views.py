@@ -7,6 +7,9 @@ from django.apps import apps
 from management.models import Resident
 from .models import AppUser
 
+import logging
+debug = logging.getLogger('debug')
+
 import pytz
 bj_tz = pytz.timezone('Asia/Shanghai')
 
@@ -101,18 +104,34 @@ from management.models import WorkRecord
 @csrf_exempt
 def service_list(request):
     response = []
+    service_provided = []
     resident_id = request.POST.get('resident_id')
     resident = Resident.objects.get(id=int(resident_id))
 
     for record in WorkRecord.objects.filter(resident=resident,
                                             service_item__isnull=False).order_by('-submit_time'):
+        service = record.service_item
+        if service.service_group is not None:
+            service = service.service_group
+        s = dict()
+        s['item_id'] = record.item_id
+        s['type_alias'] = service.service_type.alias
+        s['item_alias'] = service.alias
+        if s in service_provided:
+            continue
+        else:
+            service_provided.append(s)
         item = dict()
-        item['resident_id'] = record.id
-        item['title'] = record.service_item.service_type.name + ': ' + record.service_item.name
+        item['record_id'] = record.id
+        item['type_alias'] = service.service_type.alias
+        item['item_alias'] = service.alias
         item['clinic'] = record.provider.userprofile.clinic.name
+        item['title'] = service.service_type.name + ': ' + service.name
         item['provider'] = record.provider.username
         item['service_time'] = record.submit_time.astimezone(bj_tz).strftime('%Y-%m-%d %H:%M:%S')
+
         response.append(item)
+    debug.info(service_provided)
 
     return JsonResponse({'error': False, 'length': len(response), 'list': response})
 
