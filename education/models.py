@@ -20,7 +20,7 @@ class EducationActivity(models.Model):
     material_num = models.IntegerField(verbose_name='健康教育资料发放数量')
     content = models.CharField(max_length=1000, verbose_name='活动内容')
     summary = models.CharField(max_length=1000, verbose_name='活动总结评价')
-    photo = models.ImageField(upload_to='images/%Y%m%d')
+    photo = models.ImageField(upload_to='images/%Y%m%d', null=True)
 
     class Meta:
         db_table = 'education_activity'
