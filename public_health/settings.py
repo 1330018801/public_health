@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -84,7 +85,6 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'public_health.urls'
 WSGI_APPLICATION = 'public_health.wsgi.application'
 
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
@@ -131,7 +131,7 @@ LOGGING = {
         },
     },
     'handlers': {
-        #'file': {
+        # 'file': {
         #    'class': 'logging.FileHandler',
         #    'filename': os.path.join(BASE_DIR, 'log/site.log'),
         #    'formatter': 'verbose'
@@ -143,7 +143,7 @@ LOGGING = {
         },
     },
     'loggers': {
-        #'django': {
+        # 'django': {
         #    'handlers': ['file'],
         #    'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
         #},
@@ -159,6 +159,6 @@ LOGGING = {
     },
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'images/')
 MEDIA_URL = '/medias/'
 
