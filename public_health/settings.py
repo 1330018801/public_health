@@ -158,6 +158,7 @@ LOGGING = {
     },
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'files/')
+MEDIA_ROOT = 'F:/pictures/'
 MEDIA_URL = '/medias/'
 

@@ -43,7 +43,7 @@ def activity_list(request):
 
 
 def activity_table(request):
-    form = EducationActivityForm(request.POST)
+    form = EducationActivityForm(request.POST, request.FILES)
     if form.is_valid():
         result = form.save()
         try:
