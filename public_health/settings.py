@@ -159,6 +159,10 @@ LOGGING = {
     },
 }
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'images/')
+if DEBUG:
+    MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'images/')
+else:
+    MEDIA_ROOT = '/data/images/'
+
 MEDIA_URL = '/medias/'
 
