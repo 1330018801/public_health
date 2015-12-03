@@ -584,7 +584,7 @@ def town_clinic_list(request):
     json_items = []
     for town_clinic in Clinic.in_town.all():
         item = model_to_dict(town_clinic, fields=['id', 'name', 'address'])
-        item['village_clinic_num'] = town_clinic.village_clinics.count()
+        item['village_clinic_num'] = town_clinic.village_clinics.count() - 1
         item['doctor_user_num'] = town_clinic.users.count()
         if town_clinic.region:
             item['town_name'] = town_clinic.region.name
