@@ -9,4 +9,5 @@ urlpatterns = patterns('',
                        url(r'^personal_info/$', views.personal_info),
                        url(r'^summarys/$', views.service_list),
                        url(r'^detail/$', views.record_detail),
+                       url(r'^family/$', views.family_members),
 )

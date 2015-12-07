@@ -161,3 +161,21 @@ def record_detail(request):
         response['error_msg'] = 'Record does no exist'
 
     return JsonResponse(response)
+
+
+@csrf_exempt
+def family_members(request):
+    resident_id = request.POST.get('resident_id')
+    try:
+        resident = Resident.objects.get(id=int(resident_id))
+    except Resident.DoesNotExist:
+        return JsonResponse({'error': True, 'error_msg': 'No resident with id '.format(resident_id)})
+    else:
+        response = []
+        if resident.family:
+            members = resident.family.members.all()
+            for member in members:
+                item = {'id': member.id, 'name': resident.name}
+                response.append(item)
+
+        return JsonResponse({'error': False, 'length': len(response), 'members': response})
