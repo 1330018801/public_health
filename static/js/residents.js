@@ -33,6 +33,11 @@ $(function() {
     var btn_psyc = toolbar.find('#psychiatric').linkbutton({ iconCls: 'icon-add', plain: true });
     var btn_preg = toolbar.find('#pregnant').linkbutton({ iconCls: 'icon-add', plain: true });
 
+    btn_hypt.linkbutton('disable');
+    btn_diab.linkbutton('disable');
+    btn_psyc.linkbutton('disable');
+    btn_preg.linkbutton('disable');
+
     var btn_query = toolbar.find('#query').linkbutton({
         iconCls: 'icon-glyphicons-28-search', plain: true
     });
@@ -318,6 +323,10 @@ $(function() {
         pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
         columns: [[
             { field: 'id', title: '编码', hidden: true },
+            { field: 'hypertension', title: '高血压', hidden: true },
+            { field: 'diabetes', title: '糖尿病', hidden: true },
+            { field: 'psychiatric', title: '重性精神病', hidden: true },
+            { field: 'pregnant', title: '孕产妇', hidden: true },
             { field: 'name', title: '姓名', width: 10, editor: {
                 type: 'textbox', options: { required: true } } },
             { field: 'ehr_no', title: '健康档案', width:18, formatter: function (value) {
@@ -369,10 +378,36 @@ $(function() {
                 selected_row = undefined;
                 btn_edit.linkbutton('disable');
                 btn_rm.linkbutton('disable');
+
+                btn_hypt.linkbutton('disable');
+                btn_diab.linkbutton('disable');
+                btn_psyc.linkbutton('disable');
+                btn_preg.linkbutton('disable');
+
             } else {
                 selected_row = datagrid.datagrid('getSelected');
                 btn_edit.linkbutton('enable');
                 btn_rm.linkbutton('enable');
+                if (row['hypertension'] == 0) {
+                    btn_hypt.linkbutton('enable');
+                } else {
+                    btn_hypt.linkbutton('disable');
+                }
+                if (row['diabetes'] == 0) {
+                    btn_diab.linkbutton('enable');
+                } else {
+                    btn_diab.linkbutton('disable');
+                }
+                if (row['psychiatric'] == 0) {
+                    btn_psyc.linkbutton('enable');
+                } else {
+                    btn_psyc.linkbutton('disable');
+                }
+                if (row['pregnant'] == 0) {
+                    btn_preg.linkbutton('enable');
+                } else {
+                    btn_preg.linkbutton('disable');
+                }
             }
         },
         onAfterEdit: function(index, row) {
