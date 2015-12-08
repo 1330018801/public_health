@@ -18,10 +18,11 @@ def login(request):
         if user and user.is_active:
             auth.login(request, user)
             if user.is_superuser:
-                return render(request, 'admin_page.html', {'role': u'超级管理员'})
-            if user.is_staff:
+                return render(request, 'admin_page.html', {'role': u'超级管理员', 'clinic_id': 0})
+            elif user.is_staff:
                 role = user.userprofile.role.name
-                return render(request, 'admin_page.html', {'role': role})
+                clinic_id = user.userprofile.clinic.town_clinic.id if role == u'卫生院管理员' else 0
+                return render(request, 'admin_page.html', {'role': role, 'clinic_id': clinic_id})
             else:
                 return render(request, 'user_page.html')
         else:

@@ -53,7 +53,23 @@ $(function() {
             param.first_text = '全部'
         },
         onLoadSuccess: function () {
-            $(this).combobox('setValue', '0');
+            if ($.cookie('role') == '卫生院管理员') {
+                $(this).combobox('setValue', $.cookie('clinic_id'));
+
+                var query_village_clinic = toolbar.find('#query_village_clinic');
+                query_village_clinic.combobox({
+                    onBeforeLoad: function(param) {
+                        param.first_text = '全部';
+                        param.query_town_clinic = $.cookie('clinic_id');
+                    }
+                });
+                query_village_clinic.combobox('reload', '/management/village_clinic_options/');
+                query_village_clinic.combobox('setValue', '0');
+
+                $(this).combobox('disable');
+            } else {
+                $(this).combobox('setValue', 0);
+            }
         },
         onSelect: function (record) {
             query_village_clinic.combobox({

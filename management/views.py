@@ -863,9 +863,14 @@ def town_clinic_options(request):
     参数：request.POST中的first_text指定列表第一项的名称
     返回值：返回所有乡镇卫生院列表，第一项id为0，名称由first_text指定
     """
-    first_text = request.POST.get('first_text', '')
-    json_items = [{'id': 0, 'name': first_text}]
-    json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
+    user = request.user
+    if not user.is_superuser and user.userprofile.role.name == u'卫生院管理员':
+        clinic = user.userprofile.clinic.town_clinic
+        json_items = [{'id': clinic.id, 'name': clinic.name}]
+    else:
+        first_text = request.POST.get('first_text', '')
+        json_items = [{'id': 0, 'name': first_text}]
+        json_items += [model_to_dict(clinic, fields=['id', 'name']) for clinic in Clinic.in_town.all()]
     return JsonResponse(json_items, safe=False)
 
 

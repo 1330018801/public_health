@@ -1,26 +1,23 @@
 $(function() {
     var nav = $('#admin_nav');
     var area = $('#admin_area');
-    var role = $('#role').val();
-    $.cookie('role', role); //记录当前登录用户的类型：超级管理员、卫生局管理员、财政局管理员
+    $.removeCookie('role');
+    $.removeCookie('clinic_id');
+    $.cookie('role', $('#role').val());
+    $.cookie('clinic_id', $('#clinic_id').val());
 
     nav.tree({
         url: '/management/admin_nav/', animate: true,
         onLoadSuccess: function(data) {
-            if (data) {
+            if (data)
                 $(data).each(function () {
-                    if (this.state == 'closed') {
+                    if (this.state == 'closed')
                         nav.tree('expandAll');
-                    }
                 })
-            }
         },
         onClick: function(node) {
-            if (node.url) {
-                if (node.url) {
-                    area.panel({ href: node.url, fit: true, border: false });
-                }
-            }
+            if (node.url)
+                area.panel({ href: node.url, fit: true, border: false });
         }
     });
 
