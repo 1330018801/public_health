@@ -1879,7 +1879,7 @@ def graph_payment(request):
                                                     provider__userprofile__clinic__town_clinic=c).count() * s.price
                 else:
                     pay = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                                    service_item=service_item,
+                                                    service_item=s,
                                                     submit_time__gte=new_year_time(),
                                                     provider__userprofile__clinic=c).count() * s.price
                 payment[c.name] += pay
