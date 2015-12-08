@@ -52,8 +52,9 @@ $(function () {
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#payment_stat_tabs');
             tabs.tabs('add', {
-                title: row['clinic'] + '公共卫生费用', closable: true,
-                href: '/management/payment_village_clinics_page/' + row['id'] + '/'
+                title: row['clinic'] + '公共卫生费用', closable: true, method: 'POST',
+                href: '/management/payment_village_clinics_page/',
+                queryParams: {'town_clinic_id': row['id']}
             });
         }
     });

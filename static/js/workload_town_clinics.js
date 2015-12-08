@@ -52,11 +52,10 @@ $(function () {
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');
-            console.log(row['id']);
-            console.log(row['clinic']);
             tabs.tabs('add', {
-                title: row['clinic'] + '工作量', closable: true,
-                href: '/management/workload_village_clinics_page/' + row['id'] + '/'
+                title: row['clinic'] + '工作量', closable: true, method: 'POST',
+                href: '/management/workload_village_clinics_page/',
+                queryParams: {town_clinic_id: row['id']}
             });
         }
     });

@@ -1995,10 +1995,11 @@ def workload_town_clinics_datagrid(request):
 
 
 @login_required(login_url='/')
-def workload_village_clinics_page(request, town_clinic_id):
+def workload_village_clinics_page(request):
     """
     函数说明：指定乡镇卫生院下属各个村卫生室的工作量统计的主页面
     """
+    town_clinic_id = request.POST.get('town_clinic_id')
     return render(request, 'management/workload_village_clinics_page.html',
                   {'town_clinic_id': town_clinic_id})
 
@@ -2298,10 +2299,11 @@ def payment_town_clinics_datagrid(request):
 
 
 @login_required(login_url='/')
-def payment_village_clinics_page(request, town_clinic_id):
+def payment_village_clinics_page(request):
     """
     函数说明：某指定卫生院下属村卫生室的支付费用的主页面
     """
+    town_clinic_id = request.POST.get('town_clinic_id')
     return render(request, 'management/payment_village_clinics_page.html',
                   {'town_clinic_id': town_clinic_id})
 
