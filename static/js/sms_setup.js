@@ -166,13 +166,18 @@ $(function() {
 
     toolbar.find('#town_clinic').combobox({
         url: '/management/town_clinic_options/',
-        valueField: 'id', textField: 'name', width: 150, editable: false,
+        valueField: 'id', textField: 'name', width: 100, editable: false,
         data: [{'id': 0, 'name': '全部'}],
         onBeforeLoad: function (param) {
             param.first_text = '全部'
         },
         onLoadSuccess: function () {
-            $(this).combobox('setValue', '0');
+            if ($.cookie('role') == '卫生院管理员') {
+                $(this).combobox('setValue', $.cookie('clinic_id'));
+                $(this).combobox('disable');
+            } else {
+                $(this).combobox('setValue', 0);
+            }
         }
     });
 
@@ -184,7 +189,7 @@ $(function() {
                {'id': 2, 'name': "未发送"}, {'id': 3, 'name': "已取消"}],
         onLoadSuccess: function() {
             $(this).combobox('setValue', 0);
-        }
+        }, panelHeight: 85
     });
 
     var btn_query = toolbar.find('#btn_query').linkbutton({

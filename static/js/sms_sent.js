@@ -47,7 +47,7 @@ $(function() {
                {'id': 2, 'name': "发送完成"}, {'id': -1, 'name': "发送错误"}],
         onLoadSuccess: function() {
             $(this).combobox('setValue', '0');
-        }
+        }, panelHeight: 85
     });
     toolbar.find('#btn_query').linkbutton({
         iconCls: 'icon-glyphicons-28-search',

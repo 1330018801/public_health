@@ -694,10 +694,9 @@ class Sms(models.Model):
 
 class SmsTime(models.Model):
     FINISHED, UNFINISHED, CANCELED = 1, 2, 3
-    service_type = models.ForeignKey(Service, related_name='sms_service_items',
-                                     related_query_name='sms_service_item', verbose_name='服务类别')
-    service_item = models.ForeignKey(Service, verbose_name='服务项目')
-    service_time = models.DateField(verbose_name='下次服务时间')
+    service_type = models.ForeignKey(Service, related_name='sms_service_type', verbose_name='服务类别')
+    service_item = models.ForeignKey(Service, related_name='sms_service_item', verbose_name='服务项目')
+    service_time = models.DateField(verbose_name='服务时间')
     status = models.IntegerField(verbose_name='状态')
     message = models.CharField(max_length=300, null=True)
     create_by = models.ForeignKey(User, null=True,
