@@ -94,14 +94,14 @@ $(function() {
     });
 
     var query_ehr_no = toolbar.find('#query_ehr_no').combobox({
-        valueField: 'id', textField: 'status', editable: false, width: 80,
+        valueField: 'id', textField: 'status', editable: false, width: 100,
         data: [{ 'id': 0, 'status': '全部'}, { 'id': -1, 'status': '未建档'},
                { 'id': 1, 'status': '已建档'}],
         panelHeight: 72
     });
 
     var query_crowd = toolbar.find('#query_crowd').combobox({
-        valueField: 'alias', textField: 'text', editable: false, width: 80,
+        valueField: 'alias', textField: 'text', editable: false, width: 100,
         data: [{ 'alias': 'all', 'text': '全体'},
                { 'alias': 'hypertension', 'text': '高血压'},
                { 'alias': 'diabetes', 'text': '2型糖尿病'},
