@@ -39,23 +39,53 @@ $(function() {
     btn_save.hide(); btn_undo.hide();
     btn_edit.linkbutton('disable'); btn_rm.linkbutton('disable');
 
-    var query_town = toolbar.find('#query_town');
-    query_town.combobox({
-        url: '/management/get_towns/',
-        valueField: 'id', textField: 'name', editable: false, width: 120,
-        onLoadSuccess: function () { $(this).combobox('setValue', '0'); },
-        onSelect: function (rec) {
-            var url = '/management/get_town_villages/' + rec.id + '/';
-            query_village.combobox('reload', url);
-            query_village.combobox('setValue', '0');
+    var query_town_clinic = toolbar.find('#query_town_clinic');
+    query_town_clinic.combobox({
+        url: '/management/town_clinic_options/',
+        valueField: 'id', textField: 'name', width: 100, editable: false,
+        data: [{'id': 0, 'name': '全部'}],
+        onBeforeLoad: function (param) {
+            param.first_text = '全部'
+        },
+        onLoadSuccess: function () {
+            if ($.cookie('role') == '卫生院管理员') {
+                $(this).combobox('setValue', $.cookie('clinic_id'));
+
+                var query_village_clinic = toolbar.find('#query_village_clinic');
+                query_village_clinic.combobox({
+                    onBeforeLoad: function(param) {
+                        param.first_text = '全部';
+                        param.query_town_clinic = $.cookie('clinic_id');
+                    }
+                });
+                query_village_clinic.combobox('reload', '/management/village_clinic_options/');
+                query_village_clinic.combobox('setValue', '0');
+
+                $(this).combobox('disable');
+            } else {
+                $(this).combobox('setValue', 0);
+            }
+        },
+        onSelect: function (record) {
+            var query_village_clinic = toolbar.find('#query_village_clinic');
+            query_village_clinic.combobox({
+                onBeforeLoad: function(param) {
+                    param.first_text = '全部';
+                    param.query_town_clinic = record.id;
+                }
+            });
+            query_village_clinic.combobox('reload', '/management/village_clinic_options/');
+            query_village_clinic.combobox('setValue', '0');
         }
     });
 
-    var query_village = toolbar.find('#query_village');
-    query_village.combobox({
-        valueField: 'id', textField: 'name', editable: false, width: 100,
-        data: [{ 'id': '0', 'name': '全部' }],
-        onLoadSuccess: function () { $(this).combobox('setValue', '0'); }
+    var query_village_clinic = toolbar.find('#query_village_clinic');
+    query_village_clinic.combobox({
+        valueField: 'id', textField: 'name', width: 100, editable: false,
+        data: [{'id': 0, 'name': ''}],
+        onLoadSuccess: function () {
+            $(this).combobox('setValue', '0');
+        }
     });
 
     var query_ehr_no = toolbar.find('#query_ehr_no').combobox({
@@ -319,15 +349,15 @@ $(function() {
                 type: 'textbox', options: { required: true, validateType: 'maxLength[18]' } } },
             { field: 'town', title: '乡镇', width: 18, editor: {
                 type: 'combobox', options: { editable: false } } },
-            { field: 'village', title: '村/街道', width: 10, editor: {
+            { field: 'village', title: '村/社区', width: 10, editor: {
                 type: 'combobox', options: { editable: false } } },
             { field: 'address', title: '地址', width: 20, editor: { type: 'textbox' } },
             { field: 'mobile', title: '电话', width: 12, editor: {
                 type: 'textbox', options: { required: true } } }
         ]],
         onBeforeLoad: function (param) {
-            param.query_town = query_town.combobox('getValue');
-            param.query_village = query_village.combobox('getValue');
+            param.query_town_clinic = query_town_clinic.combobox('getValue');
+            param.query_village_clinic = query_village_clinic.combobox('getValue');
             param.query_name = query_name.textbox('getValue');
             param.query_identity = query_identity.textbox('getValue');
             param.query_ehr_no = query_ehr_no.combobox('getValue');

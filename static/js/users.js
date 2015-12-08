@@ -42,11 +42,31 @@ $(function() {
             param.first_text = '全部'
         },
         onLoadSuccess: function () {
-            query_town_clinic.combobox('setValue', '0');
+            if ($.cookie('role') == '卫生院管理员') {
+                $(this).combobox('setValue', $.cookie('clinic_id'));
+
+                query_village_clinic.combobox({
+                    onBeforeLoad: function(param) {
+                        param.first_text = '全部';
+                        param.query_town_clinic = $.cookie('clinic_id');
+                    }
+                });
+                query_village_clinic.combobox('reload', '/management/village_clinic_options/');
+                query_village_clinic.combobox('setValue', '0');
+
+                $(this).combobox('disable');
+            } else {
+                $(this).combobox('setValue', 0);
+            }
         },
-        onSelect: function (rec) {
-            var url = '/management/get_town_village_clinics/' + rec.id + '/';
-            query_village_clinic.combobox('reload', url);
+        onSelect: function (record) {
+            query_village_clinic.combobox({
+                onBeforeLoad: function(param) {
+                    param.first_text = '全部';
+                    param.query_town_clinic = record.id;
+                }
+            });
+            query_village_clinic.combobox('reload', '/management/village_clinic_options/');
             query_village_clinic.combobox('setValue', '0');
         }
     });
@@ -173,11 +193,31 @@ $(function() {
             param.first_text = '';
         },
         onLoadSuccess: function () {
-            $(this).combobox('setValue', '0');
+            if ($.cookie('role') == '卫生院管理员') {
+                $(this).combobox('setValue', $.cookie('clinic_id'));
+
+                form.find('#village_clinic').combobox({
+                    onBeforeLoad: function(param) {
+                        param.first_text = '全部';
+                        param.query_town_clinic = $.cookie('clinic_id');
+                    }
+                });
+                form.find('#village_clinic').combobox('reload', '/management/village_clinic_options/');
+                form.find('#village_clinic').combobox('setValue', '0');
+
+                $(this).combobox('disable');
+            } else {
+                $(this).combobox('setValue', 0);
+            }
         },
-        onSelect: function (rec) {
-            var url = '/management/get_town_village_clinics/' + rec.id + '/';
-            form.find('#village_clinic').combobox('reload', url);
+        onSelect: function (record) {
+            form.find('#village_clinic').combobox({
+                onBeforeLoad: function(param) {
+                    param.first_text = '全部';
+                    param.query_town_clinic = record.id;
+                }
+            });
+            form.find('#village_clinic').combobox('reload', '/management/village_clinic_options/');
             form.find('#village_clinic').combobox('setValue', '0');
         }
     });

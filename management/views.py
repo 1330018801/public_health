@@ -507,18 +507,20 @@ def resident_query_list(request):
     page_size = int(request.POST.get('rows'))
     first = page_size * (page - 1)
 
-    query_town = request.POST.get('query_town')
-    query_village = request.POST.get('query_village')
+    query_town_clinic = request.POST.get('query_town_clinic')
+    query_village_clinic = request.POST.get('query_village_clinic')
     query_name = request.POST.get('query_name')
     query_identity = request.POST.get('query_identity')
     query_ehr_no = request.POST.get('query_ehr_no')
     query_crowd = request.POST.get('query_crowd')
 
     residents = Resident.objects.all().order_by('-id')
-    if query_town and query_town != '0':
-        residents = residents.filter(town__id=query_town)
-    if query_village and query_village != '0':
-        residents = residents.filter(village__id=query_village)
+    if query_town_clinic and query_town_clinic != '0':
+        town_clinic = Clinic.objects.get(id=int(query_town_clinic))
+        residents = residents.filter(town=town_clinic.region)
+    if query_village_clinic and query_village_clinic != '0':
+        village_clinic = Clinic.objects.get(id=int(query_village_clinic))
+        residents = residents.filter(village=village_clinic.region)
     if query_name:
         residents = residents.filter(name=query_name)
     if query_identity:
