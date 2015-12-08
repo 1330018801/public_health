@@ -2,7 +2,11 @@
 
 <div class="resident_records">
     <input type="hidden" name="resident_id" value="{{ resident_id }}" />
+    <input type="hidden" name="begin_date" value="{{ begin_date }}" />
+    <input type="hidden" name="end_date" value="{{ end_date }}" />
     <div class="resident_records_datagrid"></div>
 </div>
+
+<div id="resident_record_detail_review" style="display: none; padding: 10px; font-size: 13px;" align="center"></div>
 
 <script src='{% static "js/resident_records.js" %}'></script>

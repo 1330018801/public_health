@@ -51,10 +51,34 @@ $(function () {
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#payment_stat_tabs');
-            tabs.tabs('add', {
-                title: row['clinic'] + '公共卫生费用', closable: true,
-                href: '/management/payment_village_clinics_page/' + row['id'] + '/'
-            });
+            if(!tabs.tabs('exists', row['clinic'] + '公共卫生费用')) {
+                tabs.tabs('add', {
+                    title: row['clinic'] + '公共卫生费用', closable: true,
+                    //href: '/management/payment_village_clinics_page/' + row['id'] + '/'
+                    href: '/management/payment_village_clinics_page/', method: 'POST',
+                    queryParams: {
+                        town_clinic_id: row['id'],
+                        begin_date: payment_town_toolbar.find('#begin_date').datebox('getValue'),
+                        end_date: payment_town_toolbar.find('#end_date').datebox('getValue')
+                    }
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', row['clinic'] + '公共卫生费用');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        title: row['clinic'] + '公共卫生费用', closable: true,
+                        href: '/management/payment_village_clinics_page/', method: 'POST',
+                        queryParams: {
+                            town_clinic_id: row['id'],
+                            begin_date: payment_town_toolbar.find('#begin_date').datebox('getValue'),
+                            end_date: payment_town_toolbar.find('#end_date').datebox('getValue')
+                        }
+                    }
+                });
+                tabs.tabs('select', row['clinic'] + '公共卫生费用');
+            }
         }
     });
 });
