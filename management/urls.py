@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # 下拉列表选项
     url(r'^town_clinic_options/$', views.town_clinic_options, name='town_clinic_options'),
     url(r'^village_clinic_options/$', views.village_clinic_options, name='village_clinic_options'),
-    url(r'^village_clinic_list_new/$', views.village_clinic_list, name='village_clinic_list'),
+    url(r'^village_clinic_list/$', views.village_clinic_list, name='village_clinic_list'),
     url(r'^get_town_clinics_edit/$', views.town_clinic_options, name='town_clinic_options'),
     url(r'^get_town_village_clinics_edit/$', views.get_town_village_clinics_edit, name='get_town_village_clinics_edit'),
     url(r'^get_town_village_clinics/(?P<town_clinic_id>\d+)/$', views.get_town_village_clinics, name='get_town_village_clinics'),

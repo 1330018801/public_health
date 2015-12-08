@@ -40,6 +40,7 @@ $(function() {
             } else {
                 $(this).combobox('setValue', 0);
             }
+            dg_init();
         }
     });
 
@@ -115,74 +116,80 @@ $(function() {
         });
     });
 
-    datagrid.datagrid({
-        title: '村卫生室信息列表', toolbar: '#village_clinic_tb',
-        url: '/management/village_clinic_list_new/',
-        rownumbers: true, singleSelect: true, fitColumns: true,
-        pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
-        columns: [[
-            { field: 'id', title: '编码', hidden: true },
-            { field: 'name', title: '卫生室名称', width: 10, editor: {
-                type: 'textbox', options: { required: true } } },
-            { field: 'town_clinic', title: '所属卫生院', width: 20, editor: {
-                    type: 'combobox', options: { editable: false, required: true } } },
-            { field: 'address', title: '地址', width: 30, editor: {
-                    type: 'textbox' } },
-            { field: 'doctor_user_num', title: '医生用户数量', width: 20 }
-        ]],
-        onClickRow: function (index, row) {
-            if (selected_row == row) {
-                datagrid.datagrid('unselectRow', index);
-                selected_row = undefined;
+    function dg_init () {
+        datagrid.datagrid({
+            title: '村卫生室信息列表', toolbar: '#village_clinic_tb',
+            url: '/management/village_clinic_list/',
+            rownumbers: true, singleSelect: true, fitColumns: true,
+            pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
+            queryParams: {
+                query_town_clinic: query_town_clinic.combobox('getValue'),
+                query_village_clinic_name: query_village_clinic_name.textbox('getValue')
+            },
+            columns: [[
+                { field: 'id', title: '编码', hidden: true },
+                { field: 'name', title: '卫生室名称', width: 10, editor: {
+                    type: 'textbox', options: { required: true } } },
+                { field: 'town_clinic', title: '所属卫生院', width: 20, editor: {
+                        type: 'combobox', options: { editable: false, required: true } } },
+                { field: 'address', title: '地址', width: 30, editor: {
+                        type: 'textbox' } },
+                { field: 'doctor_user_num', title: '医生用户数量', width: 20 }
+            ]],
+            onClickRow: function (index, row) {
+                if (selected_row == row) {
+                    datagrid.datagrid('unselectRow', index);
+                    selected_row = undefined;
+                    btn_edit.linkbutton('disable');
+                    btn_rm.linkbutton('disable');
+                } else {
+                    selected_row = datagrid.datagrid('getSelected');
+                    btn_edit.linkbutton('enable');
+                    btn_rm.linkbutton('enable');
+                }
+            },
+            onLoadSuccess: function () {
                 btn_edit.linkbutton('disable');
                 btn_rm.linkbutton('disable');
-            } else {
-                selected_row = datagrid.datagrid('getSelected');
+            },
+            onAfterEdit: function() {
+                btn_save.hide(); btn_undo.hide();
+                var inserted = datagrid.datagrid('getChanges', 'inserted');
+                var updated = datagrid.datagrid('getChanges', 'updated');
+
+                if (inserted.length > 0) {
+                    $.ajax({
+                        url: '/management/village_clinic_add/', method: 'POST',
+                        data: inserted[0],
+                        success: function (data) {
+                            if (data) {
+                                datagrid.datagrid('load');
+                                datagrid.datagrid('unselectAll');
+                                $.messager.show({ title: '提示', timeout: 1000, msg: '村卫生室添加成功！' })
+                            }
+                        }
+                    });
+                }
+                if (updated.length > 0) {
+                    $.ajax({
+                        url: '/management/village_clinic_update/', method: 'POST',
+                        data: updated[0],
+                        success: function (data) {
+                            if (data) {
+                                datagrid.datagrid('load');
+                                datagrid.datagrid('unselectAll');
+                                $.messager.show({ title: '提示', timeout: 1000, msg: '村卫生室更新成功！' })
+                            }
+                        }
+                    });
+                }
+                edit_row = undefined;
+                btn_add.linkbutton('enable');
                 btn_edit.linkbutton('enable');
                 btn_rm.linkbutton('enable');
             }
-        },
-        onLoadSuccess: function () {
-            btn_edit.linkbutton('disable');
-            btn_rm.linkbutton('disable');
-        },
-        onAfterEdit: function() {
-            btn_save.hide(); btn_undo.hide();
-            var inserted = datagrid.datagrid('getChanges', 'inserted');
-            var updated = datagrid.datagrid('getChanges', 'updated');
-
-            if (inserted.length > 0) {
-                $.ajax({
-                    url: '/management/village_clinic_add/', method: 'POST',
-                    data: inserted[0],
-                    success: function (data) {
-                        if (data) {
-                            datagrid.datagrid('load');
-                            datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '村卫生室添加成功！' })
-                        }
-                    }
-                });
-            }
-            if (updated.length > 0) {
-                $.ajax({
-                    url: '/management/village_clinic_update/', method: 'POST',
-                    data: updated[0],
-                    success: function (data) {
-                        if (data) {
-                            datagrid.datagrid('load');
-                            datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: '村卫生室更新成功！' })
-                        }
-                    }
-                });
-            }
-            edit_row = undefined;
-            btn_add.linkbutton('enable');
-            btn_edit.linkbutton('enable');
-            btn_rm.linkbutton('enable');
-        }
-    });
+        });
+    }
 
     function townClinicOptions(field) {
         var current = $(field.target).combobox('getValue');

@@ -27,11 +27,26 @@ $(function() {
     var query_name = toolbar.find('#query_name').textbox({width: 80});
     var btn_query = toolbar.find('#query').linkbutton({ iconCls: 'icon-search', plain: true });
 
+    var user_group_init = false;
+    var town_clinic_init = false;
+    var village_clinic_init = false;
+
+    var selected_row = undefined;
+    var edit_row = undefined;
+
+    function tb_init_finish () {
+        return village_clinic_init && town_clinic_init && user_group_init;
+    }
+
     query_user_group.combobox({
         url: '/management/get_roles/',
         valueField: 'id', textField: 'name', editable: false, panelHeight: 144, width: 100,
         onBeforeLoad: function (param) {
             param.first_text = '全部'
+        },
+        onLoadSuccess: function () {
+            user_group_init = true;
+            if (tb_init_finish()) dg_init();
         }
     });
 
@@ -58,6 +73,8 @@ $(function() {
             } else {
                 $(this).combobox('setValue', 0);
             }
+            town_clinic_init = true;
+            if (tb_init_finish()) dg_init();
         },
         onSelect: function (record) {
             query_village_clinic.combobox({
@@ -79,63 +96,70 @@ $(function() {
         data: [{ 'id': '0', 'name': '全部' }],
         onLoadSuccess: function () {
             query_village_clinic.combobox('setValue', '0');
+            village_clinic_init = true;
+            if (tb_init_finish()) dg_init();
         }
     });
 
-    var selected_row = undefined;
-    var edit_row = undefined;
+    function dg_init () {
+        datagrid.datagrid({
+            title: '系统用户列表', url: '/management/user_query_list/',
+            toolbar: '#user_list_toolbar', fitColumns: true, rownumbers: true, singleSelect: true,
+            pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
+            queryParams: {
+                query_user_group: query_user_group.combobox('getValue'),
+                query_town_clinic: query_town_clinic.combobox('getValue'),
+                query_village_clinic: query_village_clinic.combobox('getValue'),
+                query_username: query_name.textbox('getValue')
+            },
+            columns: [[
+                { field: 'id', title: '编码', hidden: true },
+                { field: 'username', title: '用户名', width: 8, editor: { type: 'textbox', options: { required: true } } },
+                //{ field: 'name', title: '姓名', width: 8 },
+                { field: 'role', title: '用户角色', width: 10, editor: { type: 'combobox', options: { required: true } } },
+                { field: 'town_clinic', title: '所在卫生院', width: 15, editor: { type: 'combobox' } },
+                { field: 'village_clinic', title: '所在卫生室', width: 10, editor: { type: 'combobox' } },
+                { field: 'department', title: '科室', width: 10, editor: { type: 'textbox' } },
+                { field: 'title', title: '职务', width: 10, editor: { type: 'textbox' } }
+                //{ field: 'mobile', title: '电话', width: 12 }
+            ]],
+            onClickRow: function (index, row) {
+                if (selected_row == row) {
+                    datagrid.datagrid('unselectRow', index);
+                    selected_row = undefined;
+                    btn_rm.linkbutton('disable');
+                    btn_pass.linkbutton('disable');
+                } else {
+                    selected_row = row;
+                    btn_rm.linkbutton('enable');
+                    btn_pass.linkbutton('enable');
+                }
+            },
+            onAfterEdit: function () {
+                var updated_row = datagrid.datagrid('getChanges', 'updated');
 
-    datagrid.datagrid({
-        title: '系统用户列表', url: '/management/user_query_list/',
-        toolbar: '#user_list_toolbar', fitColumns: true, rownumbers: true, singleSelect: true,
-        pagination: true, pageList: [10, 15, 20, 25, 30, 40, 50], pageSize: 15,
-        columns: [[
-            { field: 'id', title: '编码', hidden: true },
-            { field: 'username', title: '用户名', width: 8, editor: { type: 'textbox', options: { required: true } } },
-            //{ field: 'name', title: '姓名', width: 8 },
-            { field: 'role', title: '用户角色', width: 10, editor: { type: 'combobox', options: { required: true } } },
-            { field: 'town_clinic', title: '所在卫生院', width: 15, editor: { type: 'combobox' } },
-            { field: 'village_clinic', title: '所在卫生室', width: 10, editor: { type: 'combobox' } },
-            { field: 'department', title: '科室', width: 10, editor: { type: 'textbox' } },
-            { field: 'title', title: '职务', width: 10, editor: { type: 'textbox' } }
-            //{ field: 'mobile', title: '电话', width: 12 }
-        ]],
-        onClickRow: function (index, row) {
-            if (selected_row == row) {
-                datagrid.datagrid('unselectRow', index);
-                selected_row = undefined;
-                btn_rm.linkbutton('disable');
-                btn_pass.linkbutton('disable');
-            } else {
-                selected_row = row;
-                btn_rm.linkbutton('enable');
-                btn_pass.linkbutton('enable');
-            }
-        },
-        onAfterEdit: function () {
-            var updated_row = datagrid.datagrid('getChanges', 'updated');
-
-            if (updated_row.length > 0) {
-                $.ajax({
-                    url: '/management/user_update_test/', method: 'POST',
-                    data: updated_row[0],
-                    success: function (data) {
-                        if (data.success) {
-                            datagrid.datagrid('reload');
-                            datagrid.datagrid('unselectAll');
-                            $.messager.show({ title: '提示', timeout: 1000, msg: data.message});
-                        } else {
-                            $.messager.alert('提示', data.message, 'warning');
+                if (updated_row.length > 0) {
+                    $.ajax({
+                        url: '/management/user_update_test/', method: 'POST',
+                        data: updated_row[0],
+                        success: function (data) {
+                            if (data.success) {
+                                datagrid.datagrid('reload');
+                                datagrid.datagrid('unselectAll');
+                                $.messager.show({ title: '提示', timeout: 1000, msg: data.message});
+                            } else {
+                                $.messager.alert('提示', data.message, 'warning');
+                            }
                         }
-                    }
-                });
+                    });
+                }
+                edit_row = undefined; selected_row = undefined;
+                btn_save.hide(); btn_undo.hide();
+                btn_add.linkbutton('enable');
+                btn_rm.linkbutton('enable');
             }
-            edit_row = undefined; selected_row = undefined;
-            btn_save.hide(); btn_undo.hide();
-            btn_add.linkbutton('enable');
-            btn_rm.linkbutton('enable');
-        }
-    });
+        });
+    }
 
     $.extend($.fn.validatebox.defaults.rules, {
         same_as: {
