@@ -52,6 +52,7 @@ def excel_file(request):
 
 def workload_town_excel(request):
     # 计算工作量的函数，获取工作量
+
     workload = collections.OrderedDict()
     for town_clinic in Clinic.in_town.all():
         workload[town_clinic.name] = collections.OrderedDict()
@@ -135,7 +136,88 @@ def workload_town_excel(request):
 
 
 def payment_town_excel(request):
-    pass
+    # 计算工作量的函数，获取工作量
+    payment = collections.OrderedDict()
+    for town_clinic in Clinic.in_town.all():
+        payment[town_clinic.name] = collections.OrderedDict()
+        for service_type in Service.types.all():
+            payment[town_clinic.name][service_type.alias] = 0
+        payment[town_clinic.name]['合计'] = 0
+        # workload[town_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
+
+    payment['合计'] = collections.OrderedDict();
+    for service_type in Service.types.all():
+        payment['合计'][service_type.alias] = 0
+    payment['合计']['合计'] = 0
+        # {service_type.alias: 0 for service_type in Service.types.all()}
+
+    queue = Queue.Queue()
+
+    def worker():
+        while True:
+            try:
+                c, s = queue.get(block=False)
+            except Queue.Empty:
+                return
+            else:
+                for si in s.service_items.filter(level=Service.SERVICE_ITEM):
+                    count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
+                                                      provider__userprofile__clinic__town_clinic=c,
+                                                      service_item=si).count()
+                    payment[c.name][s.alias] += (count * si.price)
+                queue.task_done()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            queue.put((town_clinic, service_type))
+
+    for i in range(cpu_count):
+        thread = Thread(target=worker)
+        thread.start()
+
+    queue.join()
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            payment[town_clinic.name]['合计'] += payment[town_clinic.name][service_type.alias]
+
+    for town_clinic in Clinic.in_town.all():
+        for service_type in Service.types.all():
+            payment['合计'][service_type.alias] += payment[town_clinic.name][service_type.alias]
+        payment['合计']['合计'] += payment[town_clinic.name]['合计']
+
+    workbook = xlwt.Workbook()
+
+    # 工作量报表
+    sheet_payment = workbook.add_sheet(u'支付金额统计')
+    sheet_payment.write(0, 0, smart_unicode('医疗机构'))
+    sheet_payment.write(0, 1, smart_unicode('健康教育'))
+    sheet_payment.write(0, 2, smart_unicode('预防接种'))
+    sheet_payment.write(0, 3, smart_unicode('0-6岁儿童'))
+    sheet_payment.write(0, 4, smart_unicode('孕产妇'))
+    sheet_payment.write(0, 5, smart_unicode('老年人'))
+    sheet_payment.write(0, 6, smart_unicode('高血压'))
+    sheet_payment.write(0, 7, smart_unicode('2型糖尿病'))
+    sheet_payment.write(0, 8, smart_unicode('重性精神病'))
+    sheet_payment.write(0, 9, smart_unicode('中医药'))
+    sheet_payment.write(0, 10, smart_unicode('传染病报告'))
+    sheet_payment.write(0, 11, smart_unicode('卫生监督'))
+    sheet_payment.write(0, 12, smart_unicode('合计'))
+
+    row = 1
+    for c, w in payment.items():
+        column = 0
+        sheet_payment.write(row, column, smart_unicode(c))
+        for s in w.values():
+            column += 1
+            sheet_payment.write(row, column, smart_unicode(s))
+        row += 1
+
+    response = HttpResponse(content_type="application/vnd.ms-excel")
+    response['Content-Disposition'] = 'attachment; filename=卫生院支付金额.xls'
+
+    workbook.save(response)
+    return response
 
 # 某个制定机构下属的医疗机构的各医疗机构的工作量统计
 # 如果没有指定机构，则根据用户类型判断，卫生局和财政局管理员，统计所有卫生院
