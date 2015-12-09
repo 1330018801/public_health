@@ -5,7 +5,7 @@ $(function () {
     var datagrid = $('.workload_village_clinics_datagrid').last();
 
     datagrid.datagrid({
-        url: '/management/workload_village_clinics_datagrid/' + town_clinic_id + '/',
+        url: '/management/workload_village_clinics_datagrid/',
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编号', hidden: true },
@@ -23,6 +23,7 @@ $(function () {
             { field: 'supervision', title: '卫生监督', width: 20 },
             { field: 'total', title: '合计', width: 20 }
         ]],
+        queryParams: { town_clinic_id: town_clinic_id },
         onClickRow: function (index, row) {
             /*
             if (selected_row == row) {
@@ -35,8 +36,6 @@ $(function () {
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');
-            console.log(row['id']);
-            console.log(row['clinic']);
             tabs.tabs('add', {
                 title: row['clinic'] + '医生工作量', closable: true,
                 href: '/management/workload_doctors_page/' + row['id'] + '/'

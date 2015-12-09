@@ -111,7 +111,7 @@ urlpatterns = patterns('',
 
     url(r'^workload_village_clinics_page/$', views.workload_village_clinics_page,
         name='workload_village_clinics_page'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表的页面
-    url(r'^workload_village_clinics_datagrid/(?P<town_clinic_id>\d+)/$', views.workload_village_clinics_datagrid,
+    url(r'^workload_village_clinics_datagrid/$', views.workload_village_clinics_datagrid,
         name='workload_village_clinics_datagrid'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表
 
     url(r'^workload_doctors_page/(?P<clinic_id>\d+)/$', views.workload_doctors_page,
@@ -137,7 +137,7 @@ urlpatterns = patterns('',
 
     url(r'^payment_village_clinics_page/$', views.payment_village_clinics_page,
         name='payment_village_clinics_page'),  # 各卫生院各服务类别支付金额二维表
-    url(r'^payment_village_clinics_datagrid/(?P<town_clinic_id>\d+)/$', views.payment_village_clinics_datagrid,
+    url(r'^payment_village_clinics_datagrid/$', views.payment_village_clinics_datagrid,
         name='payment_village_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
 
     # 管理员工作界面中，修改服务记录结果申请的管理操作

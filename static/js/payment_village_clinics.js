@@ -5,7 +5,7 @@ $(function () {
     var datagrid = $('.payment_village_clinics_datagrid').last();
 
     datagrid.datagrid({
-        url: '/management/payment_village_clinics_datagrid/' + town_clinic_id + '/',
+        url: '/management/payment_village_clinics_datagrid/',
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编号', hidden: true },
@@ -22,6 +22,7 @@ $(function () {
             { field: 'infection', title: '传染病报告', width: 20 },
             { field: 'supervision', title: '卫生监督', width: 20 },
             { field: 'total', title: '合计', width: 20 }
-        ]]
+        ]],
+        queryParams: { town_clinic_id: town_clinic_id }
     });
 });

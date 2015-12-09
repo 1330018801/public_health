@@ -2005,12 +2005,13 @@ def workload_village_clinics_page(request):
 
 
 @login_required(login_url='/')
-def workload_village_clinics_datagrid(request, town_clinic_id):
+def workload_village_clinics_datagrid(request):
     """
     函数说明：计算指定卫生院各个服务类别的工作量及合计，并在datagrid中列表显示
     参数：town_clinic_id，指定卫生院的id
     返回：指定卫生院下属卫生室的各服务类别的工作量及合计
     """
+    town_clinic_id = request.POST.get('town_clinic_id')
     town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
     workload = collections.OrderedDict()
     for village_clinic in town_clinic.village_clinics.all():
@@ -2309,10 +2310,11 @@ def payment_village_clinics_page(request):
 
 
 @login_required(login_url='/')
-def payment_village_clinics_datagrid(request, town_clinic_id):
+def payment_village_clinics_datagrid(request):
     """
     函数说明：某指定卫生院下属村卫生室的支付费用，在easyui的datagrid中列表显示
     """
+    town_clinic_id = request.POST.get('town_clinic_id')
     payment = collections.OrderedDict()
     town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
 
