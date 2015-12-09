@@ -2,7 +2,11 @@
 
 <div class="workload_list">
     <input type="hidden" name="provider_id" value="{{ provider_id }}" />
+    <input type="hidden" name="begin_date" value="{{ begin_date }}" />
+    <input type="hidden" name="end_date" value="{{ end_date }}" />
     <div class="workload_list_datagrid"></div>
 </div>
+
+<div id="record_detail_review" style="display: none; padding: 10px; font-size: 13px;" align="center"></div>
 
 <script src='{% static "js/workload_list.js" %}'></script>

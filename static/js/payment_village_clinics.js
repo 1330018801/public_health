@@ -4,8 +4,15 @@ $(function () {
     var town_clinic_id = panel.find('input[name=town_clinic_id]').last().val();
     var datagrid = $('.payment_village_clinics_datagrid').last();
 
+    var begin_date = panel.find('input[name=begin_date]').last().val();
+    var end_date = panel.find('input[name=end_date]').last().val();
     datagrid.datagrid({
         url: '/management/payment_village_clinics_datagrid/',
+        queryParams: {
+            town_clinic_id: town_clinic_id,
+            begin_date: begin_date,
+            end_date: end_date
+        },
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '编号', hidden: true },

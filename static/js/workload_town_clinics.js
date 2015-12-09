@@ -52,11 +52,35 @@ $(function () {
         },
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');
-            tabs.tabs('add', {
-                title: row['clinic'] + '工作量', closable: true, method: 'POST',
-                href: '/management/workload_village_clinics_page/',
-                queryParams: {town_clinic_id: row['id']}
-            });
+            if(!tabs.tabs('exists', row['clinic']+'工作量')){
+                console.log(row['id']);
+                console.log(row['clinic']);
+                tabs.tabs('add', {
+                    title: row['clinic'] + '工作量', closable: true,
+                    //href: '/management/workload_village_clinics_page/' + row['id'] + '/'
+                    href: '/management/workload_village_clinics_page/', method: 'POST',
+                    queryParams: {town_clinic_id: row['id'],
+                                    begin_date: workload_town_toolbar.find('#begin_date').datebox('getValue'),
+                                    end_date: workload_town_toolbar.find('#end_date').datebox('getValue')
+                    }
+                });
+            }
+            else{
+                //因为有可能用户在双击某乡镇卫生院后，再回到本页面重新设定起始时间和结束时间，然后再双击该乡镇卫生院，所以必须先对已存在的标签页更新为新的时间的标签页
+                var tab = tabs.tabs('getTab', row['clinic']+'工作量');
+                tabs.tabs('update', {
+                            tab: tab,
+                            options: {
+                                title: row['clinic'] + '工作量', closable: true,
+                                href: '/management/workload_village_clinics_page/', method: 'POST',
+                                queryParams: {town_clinic_id: row['id'],
+                                    begin_date: workload_town_toolbar.find('#begin_date').datebox('getValue'),
+                                    end_date: workload_town_toolbar.find('#end_date').datebox('getValue')
+                                }
+                            }
+                });
+                tabs.tabs('select', row['clinic']+'工作量');
+            }
         }
     });
 });

@@ -4,8 +4,17 @@ $(function () {
     var resident_id = panel.find('input[name=resident_id]').last().val();
     var datagrid = $('.resident_records_datagrid').last();
 
+    var begin_date = panel.find('input[name=begin_date]').last().val();
+    var end_date = panel.find('input[name=end_date]').last().val();
+
     datagrid.datagrid({
-        url: '/management/resident_records_datagrid/' + resident_id + '/',
+        //url: '/management/resident_records_datagrid/' + resident_id + '/',
+        url: '/management/resident_records_datagrid/',
+        queryParams: {
+            resident_id: resident_id,
+            begin_date: begin_date,
+            end_date: end_date
+        },
         rownumbers: true, singleSelect: true, fitColumns: true,
         columns: [[
             { field: 'id', title: '记录编号', hidden: true },
@@ -40,6 +49,25 @@ $(function () {
                 href: '/management/workload_list_page/' + row['id'] + '/'
             });
             */
+            if(row['service_type'] != '健康档案建档'){
+                var detail = $('#resident_record_detail_review').dialog({
+                                title: '服务详情', width: 820, height: 500, method: 'POST', modal: true,
+                                href: '/ehr/record_detail_review/', queryParams: {record_id: row['id']},
+                                buttons: [{
+                                    text: '打印', iconCls: 'icon-print',
+                                    handler: function () {
+                                        detail.find('.print_area').printThis();
+                                    }
+                                },{
+                                    text: '关闭', iconCls: 'icon-cancel',
+                                    handler: function () {
+                                        detail.dialog('close');
+                                    }
+                                }]
+                            });
+                            detail.css('display', 'block');
+                            detail.dialog('center');
+            }
         },
         onDblClickCell: function (index, field, value) {
             /*

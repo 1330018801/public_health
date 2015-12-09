@@ -108,24 +108,29 @@ urlpatterns = patterns('',
     url(r'^workload_town_clinics_datagrid/$', views.workload_town_clinics_datagrid,
         name='workload_town_clinics_datagrid'),  # 各卫生院各服务类别工作量二维表
     url(r'^workload_town_excel/$', views.workload_town_excel, name='workload_town_excel'),
-
     url(r'^workload_village_clinics_page/$', views.workload_village_clinics_page,
         name='workload_village_clinics_page'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表的页面
     url(r'^workload_village_clinics_datagrid/$', views.workload_village_clinics_datagrid,
         name='workload_village_clinics_datagrid'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表
-
-    url(r'^workload_doctors_page/(?P<clinic_id>\d+)/$', views.workload_doctors_page,
+    #url(r'^workload_doctors_page/(?P<clinic_id>\d+)/$', views.workload_doctors_page,
+        #name='workload_doctors_page'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表的页面
+    url(r'^workload_doctors_page/$', views.workload_doctors_page,
         name='workload_doctors_page'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表的页面
-    url(r'^workload_doctors_datagrid/(?P<clinic_id>\d+)/$', views.workload_doctors_datagrid,
+    #url(r'^workload_doctors_datagrid/(?P<clinic_id>\d+)/$', views.workload_doctors_datagrid,
+        #name='workload_doctors_datagrid'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表
+    url(r'^workload_doctors_datagrid/$', views.workload_doctors_datagrid,
         name='workload_doctors_datagrid'),  # 获取指定乡镇卫生院下属村卫生室的工作量二维表
     # 获取指定卫生机构的所有服务记录列表的页面
-    url(r'^workload_list_page/(?P<provider_id>\d+)/$', views.workload_list_page, name='workload_list_page'),
+    #url(r'^workload_list_page/(?P<provider_id>\d+)/$', views.workload_list_page, name='workload_list_page'),
+    url(r'^workload_list_page/$', views.workload_list_page, name='workload_list_page'),
     # 获取指定卫生机构的所有服务记录列表
-    url(r'^workload_list_datagrid/(?P<provider_id>\d+)/$', views.workload_list_datagrid, name='workload_list_datagrid'),
-
-    url(r'^resident_records_page/(?P<resident_id>\d+)/$', views.resident_records_page, name='resident_records_page'),
-    url(r'^resident_records_datagrid/(?P<resident_id>\d+)/$', views.resident_records_datagrid,
-        name='resident_records_datagrid'),
+    #url(r'^workload_list_datagrid/(?P<provider_id>\d+)/$', views.workload_list_datagrid, name='workload_list_datagrid'),
+    url(r'^workload_list_datagrid/$', views.workload_list_datagrid, name='workload_list_datagrid'),
+    #url(r'^resident_records_page/(?P<resident_id>\d+)/$', views.resident_records_page, name='resident_records_page'),
+    url(r'^resident_records_page/$', views.resident_records_page, name='resident_records_page'),
+    #url(r'^resident_records_datagrid/(?P<resident_id>\d+)/$', views.resident_records_datagrid,
+        #name='resident_records_datagrid'),
+    url(r'^resident_records_datagrid/$', views.resident_records_datagrid, name='resident_records_datagrid'),
 
     url(r'^payment_stat_page/$', views.payment_stat_page, name='payment_stat_page'),  # 统计首页
     url(r'^payment_town_clinics_page/$', views.payment_town_clinics_page,
@@ -134,16 +139,13 @@ urlpatterns = patterns('',
         name='payment_town_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
     url(r'^payment_town_excel/$', views.payment_town_excel, name='payment_town_excel'),
 
-
     url(r'^payment_village_clinics_page/$', views.payment_village_clinics_page,
         name='payment_village_clinics_page'),  # 各卫生院各服务类别支付金额二维表
     url(r'^payment_village_clinics_datagrid/$', views.payment_village_clinics_datagrid,
         name='payment_village_clinics_datagrid'),  # 各卫生院各服务类别支付金额二维表
-
     # 管理员工作界面中，修改服务记录结果申请的管理操作
     url(r'^modify_apply_page/$', views.modify_apply_page, name='modify_apply_page'),
     url(r'^modify_apply_list/$', views.modify_apply_list, name='modify_apply_list'),
     url(r'^modify_apply_opinion/$', views.modify_apply_opinion, name='modify_apply_opinion'),
-
 
 )

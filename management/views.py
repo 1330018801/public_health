@@ -1999,9 +1999,14 @@ def workload_village_clinics_page(request):
     """
     函数说明：指定乡镇卫生院下属各个村卫生室的工作量统计的主页面
     """
-    town_clinic_id = request.POST.get('town_clinic_id')
+    town_clinic_id = int(request.POST.get('town_clinic_id'))
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
     return render(request, 'management/workload_village_clinics_page.html',
-                  {'town_clinic_id': town_clinic_id})
+                  {'town_clinic_id': town_clinic_id,
+                   'begin_date': begin_date,
+                   'end_date': end_date
+                   })
 
 
 @login_required(login_url='/')
@@ -2011,8 +2016,13 @@ def workload_village_clinics_datagrid(request):
     参数：town_clinic_id，指定卫生院的id
     返回：指定卫生院下属卫生室的各服务类别的工作量及合计
     """
-    town_clinic_id = request.POST.get('town_clinic_id')
-    town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
+    town_clinic = Clinic.in_town.get(id=int(request.POST.get('town_clinic_id')))
     workload = collections.OrderedDict()
     for village_clinic in town_clinic.village_clinics.all():
         workload[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -2028,7 +2038,7 @@ def workload_village_clinics_datagrid(request):
                 return
             else:
                 workload[c.name][s.alias] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    status=WorkRecord.FINISHED, submit_time__range=(begin_date, end_date),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider__userprofile__clinic=c).count()
                 queue.task_done()
@@ -2063,21 +2073,34 @@ def workload_village_clinics_datagrid(request):
 
 
 @login_required(login_url='/')
-def workload_doctors_page(request, clinic_id):
+def workload_doctors_page(request):
     """
     函数说明：医生工作量统计的主页面
     """
-    return render(request, 'management/workload_doctors_page.html', {'clinic_id': clinic_id})
+    clinic_id = int(request.POST.get('clinic_id'))
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
+    return render(request, 'management/workload_doctors_page.html',
+                  {'clinic_id': clinic_id,
+                   'begin_date': begin_date,
+                   'end_date': end_date
+                   })
 
 
 @login_required(login_url='/')
-def workload_doctors_datagrid(request, clinic_id):
+def workload_doctors_datagrid(request):
     """
     函数说明：计算指定卫生机构中各位医生的工作量（分类和合计），并在easyui的datagrid中列表显示
     参数：clinic_id，指定卫生机构的id
     返回：指定卫生机构中各位医生的各服务类别的工作量及合计
     """
-    clinic = Clinic.objects.get(id=int(clinic_id))
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
+    clinic = Clinic.objects.get(id=int(request.POST.get('clinic_id')))
 
     workload = collections.OrderedDict()
     for doctor in clinic.users.all():
@@ -2095,7 +2118,7 @@ def workload_doctors_datagrid(request, clinic_id):
                 return
             else:
                 workload[d.user.username][s.alias] = WorkRecord.objects.filter(
-                    status=WorkRecord.FINISHED, submit_time__gte=new_year_time(),
+                    status=WorkRecord.FINISHED, submit_time__range=(begin_date, end_date),
                     service_item__level=Service.SERVICE_ITEM, service_item__service_type=s,
                     provider=d.user).count()
                 queue.task_done()
@@ -2131,20 +2154,34 @@ def workload_doctors_datagrid(request, clinic_id):
 
 
 @login_required(login_url='/')
-def workload_list_page(request, provider_id):
+def workload_list_page(request):
     """
     函数说明：某指定医生工作记录列表的主页面
     """
-    return render(request, 'management/workload_list_page.html', {'provider_id': provider_id})
+    provider_id = int(request.POST.get('provider_id'))
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
+    return render(request, 'management/workload_list_page.html',
+                  {'provider_id': provider_id,
+                   'begin_date': begin_date,
+                   'end_date': end_date
+                   })
 
 
 @login_required(login_url='/')
-def workload_list_datagrid(request, provider_id):
+def workload_list_datagrid(request):
     """
     函数说明：某指定医生工作记录，在easyui的datagrid中列表显示
     """
-    provider = User.objects.get(id=int(provider_id))
-    records = WorkRecord.objects.filter(provider=provider, status=WorkRecord.FINISHED).order_by('-submit_time')
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
+    provider = User.objects.get(id=int(request.POST.get('provider_id')))
+    records = WorkRecord.objects.filter(provider=provider, status=WorkRecord.FINISHED,
+                                        submit_time__range=(begin_date, end_date)).order_by('-submit_time')
 
     json_items = []
     for record in records:
@@ -2177,25 +2214,37 @@ def workload_list_datagrid(request, provider_id):
 
 
 @login_required(login_url='/')
-def resident_records_page(request, resident_id):
+def resident_records_page(request):
     """
     函数说明：某指定居民的服务记录列表的主页面
     """
+    resident_id = int(request.POST.get('resident_id'))
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
     return render(request, 'management/resident_records_datagrid.html',
-                  {'resident_id': resident_id})
+                  {'resident_id': resident_id,
+                   'begin_date': begin_date,
+                   'end_date': end_date
+                  })
 
 
 @login_required(login_url='/')
-def resident_records_datagrid(request, resident_id):
+def resident_records_datagrid(request):
     """
     函数说明：某指定居民的服务记录，并在easyui的datagrid中列表显示
     """
-    resident = Resident.objects.get(id=int(resident_id))
-    records = WorkRecord.objects.filter(resident=resident).order_by('-submit_time')
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
+    resident = Resident.objects.get(id=int(request.POST.get('resident_id')))
+    records = WorkRecord.objects.filter(resident=resident,
+                                        submit_time__range=(begin_date, end_date)).order_by('-submit_time')
 
     json_items = []
     for record in records:
-        if record.service_item:
             item = model_to_dict(resident, fields=['ehr_no', 'name'])
             item['id'] = record.id
             item['resident_name'] = record.resident.name
@@ -2304,9 +2353,14 @@ def payment_village_clinics_page(request):
     """
     函数说明：某指定卫生院下属村卫生室的支付费用的主页面
     """
-    town_clinic_id = request.POST.get('town_clinic_id')
+    town_clinic_id = int(request.POST.get('town_clinic_id'))
+    begin_date = request.POST.get('begin_date')
+    end_date = request.POST.get('end_date')
     return render(request, 'management/payment_village_clinics_page.html',
-                  {'town_clinic_id': town_clinic_id})
+                  {'town_clinic_id': town_clinic_id,
+                   'begin_date': begin_date,
+                   'end_date': end_date
+                   })
 
 
 @login_required(login_url='/')
@@ -2314,9 +2368,14 @@ def payment_village_clinics_datagrid(request):
     """
     函数说明：某指定卫生院下属村卫生室的支付费用，在easyui的datagrid中列表显示
     """
-    town_clinic_id = request.POST.get('town_clinic_id')
+    begin_date = datetime.strptime(request.POST.get('begin_date'), '%Y-%m-%d')
+    begin_date = bj_tz.localize(begin_date)
+    end_date = datetime.strptime(request.POST.get('end_date'), '%Y-%m-%d')
+    end_date = datetime(end_date.year, end_date.month, end_date.day, 23, 59, 59)
+    end_date = bj_tz.localize(end_date)
+
     payment = collections.OrderedDict()
-    town_clinic = Clinic.in_town.get(id=int(town_clinic_id))
+    town_clinic = Clinic.in_town.get(id=int(request.POST.get('town_clinic_id')))
 
     clinics = town_clinic.village_clinics.all()
     services = Service.types.all()
@@ -2336,7 +2395,7 @@ def payment_village_clinics_datagrid(request):
             else:
                 for si in st.service_items.filter(level=Service.SERVICE_ITEM):
                     count = WorkRecord.objects.filter(status=WorkRecord.FINISHED,
-                                                      submit_time__gte=new_year_time(),
+                                                      submit_time__range=(begin_date, end_date),
                                                       provider__userprofile__clinic=c,
                                                       service_item=si).count()
                     payment[c.name][st.alias] += count * si.price
