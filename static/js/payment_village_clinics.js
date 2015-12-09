@@ -30,6 +30,5 @@ $(function () {
             { field: 'supervision', title: '卫生监督', width: 20 },
             { field: 'total', title: '合计', width: 20 }
         ]],
-        queryParams: { town_clinic_id: town_clinic_id }
     });
 });

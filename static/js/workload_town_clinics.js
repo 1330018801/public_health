@@ -53,8 +53,6 @@ $(function () {
         onDblClickRow: function(index, row) {
             var tabs = datagrid.parents('#workload_stat_tabs');
             if(!tabs.tabs('exists', row['clinic']+'工作量')){
-                console.log(row['id']);
-                console.log(row['clinic']);
                 tabs.tabs('add', {
                     title: row['clinic'] + '工作量', closable: true,
                     //href: '/management/workload_village_clinics_page/' + row['id'] + '/'

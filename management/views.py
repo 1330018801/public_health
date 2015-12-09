@@ -2000,8 +2000,17 @@ def workload_village_clinics_page(request):
     函数说明：指定乡镇卫生院下属各个村卫生室的工作量统计的主页面
     """
     town_clinic_id = int(request.POST.get('town_clinic_id'))
-    begin_date = request.POST.get('begin_date')
-    end_date = request.POST.get('end_date')
+
+    # 当前还没有设计出卫生院管理员的按照日期进行工作量统计的功能
+    # 因此，这里在后台制定日期是年初到当前日期作为查询条件
+    if request.user.userprofile.role.name == '卫生院管理员':
+        begin_date = request.POST.get('begin_date')
+        end_date = request.POST.get('end_date')
+    else:
+        from services.utils import new_year_day
+        begin_date = new_year_day().strftime('%Y-%m-%d')
+        end_date = datetime.today().date().strftime('%Y-%m-%d')
+
     return render(request, 'management/workload_village_clinics_page.html',
                   {'town_clinic_id': town_clinic_id,
                    'begin_date': begin_date,
@@ -2023,6 +2032,7 @@ def workload_village_clinics_datagrid(request):
     end_date = bj_tz.localize(end_date)
 
     town_clinic = Clinic.in_town.get(id=int(request.POST.get('town_clinic_id')))
+
     workload = collections.OrderedDict()
     for village_clinic in town_clinic.village_clinics.all():
         workload[village_clinic.name] = {service_type.alias: 0 for service_type in Service.types.all()}
@@ -2354,8 +2364,15 @@ def payment_village_clinics_page(request):
     函数说明：某指定卫生院下属村卫生室的支付费用的主页面
     """
     town_clinic_id = int(request.POST.get('town_clinic_id'))
-    begin_date = request.POST.get('begin_date')
-    end_date = request.POST.get('end_date')
+
+    if request.user.userprofile.role.name == '卫生院管理员':
+        begin_date = request.POST.get('begin_date')
+        end_date = request.POST.get('end_date')
+    else:
+        from services.utils import new_year_day
+        begin_date = new_year_day().strftime('%Y-%m-%d')
+        end_date = datetime.today().date().strftime('%Y-%m-%d')
+
     return render(request, 'management/payment_village_clinics_page.html',
                   {'town_clinic_id': town_clinic_id,
                    'begin_date': begin_date,
