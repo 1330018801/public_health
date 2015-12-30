@@ -25,13 +25,17 @@ def body_exam_form(request):
     records = WorkRecord.objects.filter(resident=resident,
                                         model_name='BodyExam',
                                         submit_time__gte=new_year_day())
+    debug.info(records.count())
     if records.count():
         result = BodyExam.objects.get(id=records[0].item_id)
+        debug.info(result.doctor)
         form = BodyExamForm(instance=result)
+        debug.info(form.Meta)
     else:
         form = BodyExamForm()
     return render(request, 'ehr/body_exam_form.html',
-                  {'form': form, 'resident': resident, 'type_alias': 'old'})
+                 {'form': form, 'resident': resident, 'type_alias': 'old'})
+    #return render(request, 'ehr/text.html', {'form': form, 'resident': resident, 'type_alias': 'old'})
 
 
 def body_exam_suspend_submit(request, record):
@@ -114,15 +118,44 @@ def living_selfcare_appraisal_submit(request):
     resident = get_resident(request)
     service_item = Service.items.get(alias='living_selfcare_appraisal')
     form = LivingSelfcareAppraisalForm(request.POST)
+    degree = None
     if form.is_valid():
         result = form.save()
         record = WorkRecord(provider=request.user, resident=resident, service_item=service_item,
                             app_label='old', model_name='LivingSelfcareAppraisal',
                             item_id=result.id, service_item_alias=service_item.alias)
         record.save()
+        if result.total>=0 and result.total<=3:
+            degree = u'可自理（0~3分）'
+        elif result.total >=4 and result.total<=8:
+            degree = u'轻度依赖（4~8分）'
+        elif result.total>=9 and result.total<=18:
+            degree = u'中度依赖（9~18分）'
+        else:
+            degree = u'不能自理（≥19分）'
+
         success = True
     else:
         success = False
+
+    if success:
+        record0 = WorkRecord.objects.filter(resident=resident, model_name='BodyExam',
+                                            submit_time__gte=new_year_day()).first()
+        if record0:
+            result0 = BodyExam.objects.get(id=record0.item_id)
+
+            result0.old__living_selfcare_appraisal = degree
+            result0.save()
+        else:
+            form0 = BodyExam({'old_living_selfcare_appraisal': degree})
+
+            if form0.is_valid():
+                form0.save()
+
+            service_item = Service.objects.get(alias='body_exam_table', service_type__alias='old')
+            WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                      app_label='old', model_name='BodyExam',
+                                      item_id=form0.id, service_item_alias=service_item.alias)
 
     return HttpResponse(simplejson.dumps({'success': success}),
                         content_type='text/html; charset=UTF-8')

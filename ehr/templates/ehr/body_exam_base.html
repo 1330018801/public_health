@@ -65,11 +65,11 @@
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center"><b>老年人健康状态自我评估*</b></td>
-        <td colspan="6" width="75%">{% block old_health_eval %}{% endblock %}</td>
+        <td colspan="6" width="75%">{% block old_health_situation_appraisal %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center"><b>老年人生活自理能力自我评估*</b></td>
-        <td colspan="6" width="75%">{% block old_care_eval %}{% endblock %}</td>
+        <td colspan="6" width="75%">{% block old_living_selfcare_appraisal %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center"><b>老年人认知功能*</b></td>
@@ -83,73 +83,73 @@
         <td colspan="1" rowspan="13" width="10%" align="center"><b>生活方式</b></td>
         <td colspan="1" rowspan="3" width="15%" align="center"><b>体育锻炼</b></td>
         <td colspan="2" width="25%" align="center"><b>锻炼频率</b></td>
-        <td colspan="4">{% block sport_frequency %}{% endblock %}</td>
+        <td colspan="4">{% block exercise_rate %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>每次锻炼时间</b></td>
-        <td colspan="1" width="10%" align="center">{% block sport_length %}{% endblock %}</td>
+        <td colspan="1" width="10%" align="center">{% block exercise_time %}{% endblock %}</td>
         <td colspan="2" width="17.5%" align="center"><b>坚持锻炼时间</b></td>
-        <td colspan="1" width="17.5%" align="center">{% block sport_duration %}{% endblock %}</td>
+        <td colspan="1" width="17.5%" align="center">{% block exercise_years %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>锻炼方式</b></td>
-        <td colspan="4">{% block sport_items %}{% endblock %}</td>
+        <td colspan="4">{% block exercise_way %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center"><b>饮食习惯</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block diet_habit %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="3" width="15%" align="center"><b>吸烟情况</b></td>
         <td colspan="2" width="15%" align="center"><b>吸烟状况</b></td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block smoke_situation %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>日吸烟量</b></td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block smoke_day %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>开始吸烟时间</b></td>
-        <td colspan="1" width="10%"></td>
+        <td colspan="1" width="10%">{% block smoke_begin_age %}{% endblock %}</td>
         <td colspan="2" width="17.5%" align="center"><b>戒烟年龄</b></td>
-        <td colspan="1" width="17.5%"></td>
+        <td colspan="1" width="17.5%">{% block smoke_cessation_age %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="5" width="15%" align="center"><b>饮酒情况</b></td>
         <td colspan="2" width="22.5%" align="center"><b>饮酒频率</b></td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block liquor_rate %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>日饮酒量</b></td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block liquor_day %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>是否戒酒</b></td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block liquor_cessation %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center"><b>开始饮酒年龄</b></td>
-        <td colspan="1" width="10%"></td>
+        <td colspan="1" width="10%">{% block liquor_begin_age %}{% endblock %}</td>
         <td colspan="2" width="17.5%" align="center"><b>近一年是否曾醉酒</b></td>
-        <td colspan="1" width="17.5"></td>
+        <td colspan="1" width="17.5">{% block liquor_drunkenness %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="2" width="22.5%" align="center">
             <b>饮酒种类</b>
         </td>
-        <td colspan="4"></td>
+        <td colspan="4">{% block liquor_kind %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" width="15%" align="center">
             <b>职业病危害因素接触史</b>
         </td>
         <td colspan="6">
-            <span>（工种 从业时间 ）</span><br />
-            <span>毒物种类 粉尘 防护措施</span><br />
-            <span>毒物种类 放射物质 防护措施</span><br />
-            <span>毒物种类 物理因素 防护措施</span><br />
-            <span>毒物种类 化学物质 防护措施</span><br />
-            <span>毒物种类 其他 防护措施</span><br />
+            <span>{% block occupational_disease %}{% endblock %}</span><br />
+            <span>毒物种类 &nbsp;&nbsp;粉尘&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% block occupational_disease_dust %}{% endblock %} &nbsp;&nbsp;&nbsp;&nbsp;防护措施{% block occupational_disease_dust_safeguard %}{% endblock %}</span><br />
+            <span>毒物种类 &nbsp;&nbsp;放射物质{% block occupational_disease_radioactive %}{% endblock %} &nbsp;&nbsp;&nbsp;&nbsp;防护措施{% block occupational_disease_radioactive_safeguard %}{% endblock %}</span><br />
+            <span>毒物种类 &nbsp;&nbsp;物理因素{% block occupational_disease_physical %}{% endblock %} &nbsp;&nbsp;&nbsp;&nbsp;防护措施{% block occupational_disease_physical_safeguard %}{% endblock %}</span><br />
+            <span>毒物种类 &nbsp;&nbsp;化学物质{% block occupational_disease_chemical %}{% endblock %} &nbsp;&nbsp;&nbsp;&nbsp;防护措施{% block occupational_disease_chemical_safeguard %}{% endblock %}</span><br />
+            <span>毒物种类 &nbsp;&nbsp;其他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% block occupational_disease_extra %}{% endblock %} &nbsp;&nbsp;&nbsp;&nbsp;防护措施{% block occupational_disease_extra_safeguard %}{% endblock %}</span><br />
         </td>
     </tr>
     <tr{% if form.Meta.alias == 'physical_examination' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
@@ -239,12 +239,11 @@
     </tr>
     <tr>
         <td colspan="1" align="center"><b>下肢水肿</b></td>
-        <td colspan="6">
-        </td>
+        <td colspan="6">{% block legs_edema %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>足背动脉搏动</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block acrotarsium_artery_pulse %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>肛门指诊*</b></td>
@@ -309,20 +308,20 @@
         <td colspan="6">{% block electrocardiogram %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center"><b>大便潜血*</b></td>
-        <td colspan="6"></td>
+        <td colspan="1" align="center"><b>尿微量白蛋白*</b></td>
+        <td colspan="6">{% block urine_microalbumin %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1" align="center"><b>尿微量白蛋白*</b></td>
-        <td colspan="6"></td>
+        <td colspan="1" align="center"><b>大便潜血*</b></td>
+        <td colspan="6">{% block fecal_occult_blood %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>糖化血红蛋白*</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block glycosylated_hemoglobin %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>乙型肝炎表面抗原*</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block hepatitis_b_surface_antigen %}{% endblock %}</td>
     </tr>
     <tr{% if form.Meta.alias == 'alanine_aminotransferase' or form.Meta.alias == 'glutamic_oxalacetic_transaminase' or form.Meta.alias == 'total_bilirubin' or form.Meta.alias == 'old_body_check' or form.Meta.alias == 'psy_body_check' %}
         style="background-color: lightyellow"
@@ -333,7 +332,7 @@
             血清谷草转氨酶{% block glutamic_oxalacetic_transaminase %}{% endblock %}
             白蛋白{% block albumin %}{% endblock %}
             总胆红素{% block total_bilirubin %}{% endblock %}
-            结合胆红素{% block dbil %}{% endblock %}
+            结合胆红素{% block conjugated_bilirubin %}{% endblock %}
         </td>
     </tr>
     <tr{% if form.Meta.alias == 'serum_creatinine' or form.Meta.alias == 'blood_urea_nitrogen' or form.Meta.alias == 'old_body_check' %}
@@ -341,10 +340,10 @@
         {% endif %}>
         <td colspan="1" align="center"><b>肾功能*</b></td>
         <td colspan="6">
-            血清肌酐&nbsp;{% block serum_creatinine %}&nbsp;&nbsp;{% endblock %}
-            血尿素氮&nbsp;{% block blood_urea_nitrogen %}&nbsp;&nbsp;{% endblock %}
-            血钾浓度&nbsp;&nbsp;
-            血钠浓度&nbsp;&nbsp;
+            血清肌酐{% block serum_creatinine %}{% endblock %}&nbsp;&nbsp;
+            血尿素氮{% block blood_urea_nitrogen %}{% endblock %}&nbsp;&nbsp;
+            血钾浓度{% block blood_potassium_concentration %}{% endblock %}&nbsp;&nbsp;
+            血钠浓度{% block blood_sodium_concentration %}{% endblock %}&nbsp;&nbsp;
         </td>
     </tr>
     <tr{% if form.Meta.alias == 'blood_fat' or form.Meta.alias == 'old_body_check' %}
@@ -355,9 +354,7 @@
     </tr>
     <tr>
         <td colspan="1" align="center"><b>胸部X线片*</b></td>
-        <td colspan="6">
-
-        </td>
+        <td colspan="6">{% block chest_x_ray %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>B超*</b></td>
@@ -367,15 +364,11 @@
     </tr>
     <tr>
         <td colspan="1" align="center"><b>宫颈涂片*</b></td>
-        <td colspan="6">
-
-        </td>
+        <td colspan="6">{% block cervical_smear %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>其他*</b></td>
-        <td colspan="6">
-
-        </td>
+        <td colspan="6">{% block extra %}{% endblock %}</td>
     </tr>
     <tr {% if form.Meta.alias == 'constitution_identification' %}
         style="background-color: lightyellow"
@@ -435,31 +428,31 @@
     <tr>
         <td colspan="1" rowspan="7" align="center"><b>现存主要问题</b></td>
         <td colspan="1" align="center"><b>脑血管疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block cerebrovascular %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>肾脏疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block kidney %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>心脏疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block cardiac %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>血管疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block vessel %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>眼部疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block eye %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>神经系统疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block nervous_system %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>其他系统疾病</b></td>
-        <td colspan="6"></td>
+        <td colspan="6">{% block extra_system %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="6" align="center"><b>住院治疗情况</b></td>
@@ -470,16 +463,16 @@
         <td colspan="1" align="center"><b>病案号</b></td>
     </tr>
     <tr>
-        <td colspan="2" align="center">/</td>
-        <td colspan="1" align="center"></td>
-        <td colspan="2" align="center"></td>
-        <td colspan="1" align="center"></td>
+        <td colspan="2">{% block hospitalization_history_in_date_1 %}{% endblock %}/{% block hospitalization_history_out_date_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block hospitalization_history_reason_1 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block hospitalization_history_medical_institution_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block hospitalization_history_case_number_1 %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">/</td>
-        <td colspan="1" align="center"></td>
-        <td colspan="2" align="center"></td>
-        <td colspan="1" align="center"></td>
+        <td colspan="2" align="center">{% block hospitalization_history_in_date_2 %}{% endblock %}/{% block hospitalization_history_out_date_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block hospitalization_history_reason_2 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block hospitalization_history_medical_institution_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block hospitalization_history_case_number_2 %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="3" align="center"><b>家庭病床史</b></td>
@@ -489,16 +482,16 @@
         <td colspan="1" align="center"><b>病案号</b></td>
     </tr>
     <tr>
-        <td colspan="2" align="center">/</td>
-        <td colspan="1" align="center"></td>
-        <td colspan="2" align="center"></td>
-        <td colspan="1" align="center"></td>
+        <td colspan="2" align="center">{% block family_bed_history_build_date_1 %}{% endblock %}/{% block family_bed_history_remove_date_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block family_bed_history_reason_1 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block family_bed_history_medical_institution_1 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block family_bed_history_case_number_1 %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="2" align="center">/</td>
-        <td colspan="1" align="center"></td>
-        <td colspan="2" align="center"></td>
-        <td colspan="1" align="center"></td>
+        <td colspan="2" align="center">{% block family_bed_history_build_date_2 %}{% endblock %}/{% block family_bed_history_remove_date_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block family_bed_history_reason_2 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block family_bed_history_medical_institution_2 %}{% endblock %}</td>
+        <td colspan="1" align="center">{% block family_bed_history_case_number_2 %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="7" align="center"><b>主要用药情况</b></td>
@@ -509,46 +502,46 @@
         <td colspan="1" align="center"><b>服药依从性<br />1 规律 2 间断 3 不服药</b></td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_1 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_1_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_1_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_1_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_1_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_2 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_2_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_2_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_2_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_2_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_3 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_3_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_3_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_3_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_3_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_4 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_4_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_4_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_4_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_4_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_5 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_5_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_5_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_5_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_5_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="1"></td>
+        <td colspan="1">{% block take_medicine_6 %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_6_method %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_6_volume %}{% endblock %}</td>
+        <td colspan="2">{% block take_medicine_6_period %}{% endblock %}</td>
+        <td colspan="1">{% block take_medicine_6_take_medicine_compliance %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" rowspan="4" align="center"><b>免疫规划预防接种史</b></td>
@@ -557,28 +550,28 @@
         <td colspan="4" align="center"><b>接种机构</b></td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="4"></td>
+        <td colspan="1">{% block vaccine_name_1 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block vaccine_date_1 %}{% endblock %}</td>
+        <td colspan="4">{% block vaccine_institution_1 %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="4"></td>
+        <td colspan="1">{% block vaccine_name_2 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block vaccine_date_2 %}{% endblock %}</td>
+        <td colspan="4">{% block vaccine_institution_2 %}{% endblock %}</td>
     </tr>
     <tr>
-        <td colspan="1"></td>
-        <td colspan="2"></td>
-        <td colspan="4"></td>
+        <td colspan="1">{% block vaccine_name_3 %}{% endblock %}</td>
+        <td colspan="2" align="center">{% block vaccine_date_3 %}{% endblock %}</td>
+        <td colspan="4">{% block vaccine_institution_3 %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>健康评价</b></td>
-        <td colspan="7"></td>
+        <td colspan="7">{% block normal_or_abnormal %}{% endblock %}{% block abnormal_1 %}{% endblock %}<br>{% block abnormal_2 %}{% endblock %}<br>{% block abnormal_3 %}{% endblock %}<br>{% block abnormal_4 %}{% endblock %}</td>
     </tr>
     <tr>
         <td colspan="1" align="center"><b>健康指导</b></td>
-        <td colspan="3"></td>
-        <td colspan="4"><b>危险因素控制（目标）</b></td>
+        <td colspan="3">{% block health_guide %}{% endblock %}</td>
+        <td colspan="4"><b>危险因素控制：</b><br>{% block dangerous_factor_control %}{% endblock %}</td>
     </tr>
 
 <script>

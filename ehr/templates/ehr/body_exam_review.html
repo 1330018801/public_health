@@ -322,3 +322,801 @@
     {% endif %}
 {% endblock %}
 
+{% block old_health_situation_appraisal %}
+    {% if form.old_health_situation_appraisal %}
+        {{ form.old_health_situation_appraisal }}
+    {% endif %}
+{% endblock %}
+
+{% block old_living_selfcare_appraisal %}
+    {% if form.old_living_selfcare_appraisal %}
+        {{ form.old_living_selfcare_appraisal }}
+    {% endif %}
+{% endblock %}
+
+{% block exercise_rate %}
+    {% if form.exercise_rate %}
+        {{ form.exercise_rate }}
+    {% endif %}
+{% endblock %}
+
+{% block exercise_time %}
+    {% if form.exercise_time %}
+        {{ form.exercise_time }}
+    {% endif %}分钟
+{% endblock %}
+
+{% block exercise_years %}
+    {% if form.exercise_years %}
+        {{ form.exercise_years }}
+    {% endif %}年
+{% endblock %}
+
+{% block exercise_way %}
+    {% if form.exercise_way %}
+        {{ form.exercise_way }}
+    {% endif %}
+{% endblock %}
+
+{% block diet_habit %}
+    {% if form.diet_habit %}
+        {% for item in form.diet_habit.all %}
+            {% if forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block smoke_situation %}
+    {% if form.smoke_situation %}
+        {{ form.smoke_situation }}
+    {% endif %}
+{% endblock %}
+
+{% block smoke_day %}
+    平均{% if form.smoke_day %}
+            {{ form.smoke_day }}
+        {% endif %}支
+{% endblock %}
+
+{% block smoke_begin_age %}
+    {% if form.smoke_begin_age %}
+        {{ form.smoke_begin_age }}
+    {% endif %}岁
+{% endblock %}
+
+{% block smoke_cessation_age %}
+    {% if form.smoke_cessation_age %}
+        {{ form.smoke_cessation_age }}
+    {% endif %}岁
+{% endblock %}
+
+{% block liquor_rate %}
+    {% if form.liquor_rate %}
+        {{ form.liquor_rate }}
+    {% endif %}
+{% endblock %}
+
+{% block liquor_day %}
+    平均{% if form.liquor_day %}
+            {{ form.liquor_day }}
+        {% endif %}两
+{% endblock %}
+
+{% block liquor_cessation %}
+    {% if form.liquor_cessation %}
+        {{ form.liquor_cessation }}
+        {% ifequal form.liquor_cessation '已戒酒' %}
+            ，戒酒年龄：{% if form.liquor_cessation_age %}
+                            {{ form.liquor_cessation_age }}岁
+                        {% endif %}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block liquor_begin_age %}
+    {% if form.liquor_begin_age %}
+        {{ form.liquor_begin_age }}
+    {% endif %}岁
+{% endblock %}
+
+{% block liquor_drunkenness %}
+    {% if form.liquor_drunkenness %}
+        {{ form.liquor_drunkenness }}
+    {% endif %}
+{% endblock %}
+
+{% block liquor_kind %}
+    {% if form.liquor_kind %}
+        {% for item in form.liquor_kind.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.liquor_kind_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease %}
+    {% if form.occupational_disease_yes_or_not %}
+        {{ form.occupational_disease_yes_or_not }}
+        {% ifequal form.occupational_disease_yes_or_not '有' %}
+            （工种{{ form.occupational_disease_profession }}从业时间{% if form.occupational_disease_employment %}{{ form.occupational_disease_employment }}{% endif %}年）
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_dust %}
+    {% if form.occupational_disease_dust %}
+        {{ form.occupational_disease_dust }}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_dust_safeguard %}
+    {% if form.occupational_disease_dust_safeguard %}
+        {{ form.occupational_disease_dust_safeguard }}
+        {% ifequal form.occupational_disease_dust_safeguard '有' %}
+            {{ form.occupational_disease_dust_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_radioactive %}
+    {% if form.occupational_disease_radioactive %}
+        {{ form.occupational_disease_radioactive }}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_radioactive_safeguard %}
+    {% if form.occupational_disease_radioactive_safeguard %}
+        {{ form.occupational_disease_radioactive_safeguard }}
+        {% ifequal form.occupational_disease_radioactive_safeguard '有' %}
+            {{ form.occupational_disease_radioactive_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_physical %}
+    {% if form.occupational_disease_physical %}
+        {{ form.occupational_disease_physical }}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_physical_safeguard %}
+    {% if form.occupational_disease_physical_safeguard %}
+        {{ form.occupational_disease_physical_safeguard }}
+        {% ifequal form.occupational_disease_physical_safeguard '有' %}
+            {{ form.occupational_disease_physical_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_chemical %}
+    {% if form.occupational_disease_chemical %}
+        {{ form.occupational_disease_chemical }}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_chemical_safeguard %}
+    {% if form.occupational_disease_chemical_safeguard %}
+        {{ form.occupational_disease_chemical_safeguard }}
+        {% ifequal form.occupational_disease_chemical_safeguard '有' %}
+            {{ form.occupational_disease_chemical_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_extra %}
+    {% if form.occupational_disease_extra %}
+        {{ form.occupational_disease_extra }}
+    {% endif %}
+{% endblock %}
+
+{% block occupational_disease_extra_safeguard %}
+    {% if form.occupational_disease_extra_safeguard %}
+        {{ form.occupational_disease_extra_safeguard }}
+        {% ifequal form.occupational_disease_extra_safeguard '有' %}
+            {{ form.occupational_disease_extra_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block legs_edema %}
+    {% if form.legs_edema %}
+        {{ form.legs_edema }}
+    {% endif %}
+{% endblock %}
+
+{% block acrotarsium_artery_pulse %}
+    {% if form.acrotarsium_artery_pulse %}
+        {{ form.acrotarsium_artery_pulse }}
+    {% endif %}
+{% endblock %}
+
+{% block urine_microalbumin %}
+    {% if form.urine_microalbumin %}
+        {{ form.urine_microalbumin }}mg/dL
+    {% endif %}
+{% endblock %}
+
+{% block fecal_occult_blood %}
+    {% if form.fecal_occult_blood %}
+        {{ form.fecal_occult_blood }}
+    {% endif %}
+{% endblock %}
+
+{% block glycosylated_hemoglobin %}
+    {% if form.glycosylated_hemoglobin %}
+        {{ form.glycosylated_hemoglobin }}%
+    {% endif %}
+{% endblock %}
+
+{% block hepatitis_b_surface_antigen %}
+    {% if form.hepatitis_b_surface_antigen %}
+        {{ form.hepatitis_b_surface_antigen }}
+    {% endif %}
+{% endblock %}
+
+{% block albumin %}
+    {% if form.albumin %}
+        {{ form.albumin }}g/L
+    {% endif %}
+{% endblock %}
+
+{% block conjugated_bilirubin %}
+    {% if form.conjugated_bilirubin %}
+        {{ form.conjugated_bilirubin }}&#956mol/L
+    {% endif %}
+{% endblock %}
+
+{% block blood_potassium_concentration %}
+    {% if form.blood_potassium_concentration %}
+        {{ form.blood_potassium_concentration }}mmol/L
+    {% endif %}
+{% endblock %}
+
+{% block blood_sodium_concentration %}
+    {% if form.blood_sodium_concentration %}
+        {{ form.blood_sodium_concentration }}mmol/L
+    {% endif %}
+{% endblock %}
+
+{% block chest_x_ray %}
+    {% if form.chest_x_ray %}
+        {{ form.chest_x_ray }}
+        {% ifequal form.chest_x_ray '异常' %}
+            {{ form.chest_x_ray_abnormal }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block cervical_smear %}
+    {% if form.cervical_smear %}
+        {{ form.cervical_smear }}
+        {% ifequal form.cervical_smear '异常' %}
+            {{ form.cervical_smear_abnormal }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block extra %}
+    {% if form.extra %}
+        {{ form.extra }}
+    {% endif %}
+{% endblock %}
+
+{% block cerebrovascular %}
+    {% if form.cerebrovascular %}
+        {% for item in form.cerebrovascular.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.cerebrovascular_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block kidney %}
+    {% if form.kidney %}
+        {% for item in form.kidney.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.kidney_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block cardiac %}
+    {% if form.cardiac %}
+        {% for item in form.cardiac.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.cardiac_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block vessel %}
+    {% if form.vessel %}
+        {% for item in form.vessel.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.vessel_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block eye %}
+    {% if form.eye %}
+        {% for item in form.eye.all %}
+            {% if forloop.last %}
+                {{ item }}&nbsp;
+                {% ifequal item.choice '其他' %}
+                    {{ form.eye_extra }}
+                {% endifequal %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block nervous_system %}
+    {% if form.nervous_system %}
+        {{ form.nervous_system }}
+        {% ifequal form.nervous_system '有' %}
+            {{ form.nervous_system_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block extra_system %}
+    {% if form.extra_system %}
+        {{ form.extra_system }}
+        {% ifequal form.extra_system '有' %}
+            {{ form.extra_system_yes }}
+        {% endifequal %}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_in_date_1 %}
+    {% if form.hospitalization_history_in_date_1 %}
+        {{ form.hospitalization_history_in_date_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_out_date_1 %}
+    {% if form.hospitalization_history_out_date_1 %}
+        {{ form.hospitalization_history_out_date_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_reason_1 %}
+    {% if form.hospitalization_history_reason_1 %}
+        {{ form.hospitalization_history_reason_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_medical_institution_1 %}
+    {% if form.hospitalization_history_medical_institution_1 %}
+        {{ form.hospitalization_history_medical_institution_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_case_number_1 %}
+    {% if form.hospitalization_history_case_number_1 %}
+        {{ form.hospitalization_history_case_number_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_in_date_2 %}
+    {% if form.hospitalization_history_in_date_2 %}
+        {{ form.hospitalization_history_in_date_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_out_date_2 %}
+    {% if form.hospitalization_history_out_date_2 %}
+        {{ form.hospitalization_history_out_date_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_reason_2 %}
+    {% if form.hospitalization_history_reason_2 %}
+        {{ form.hospitalization_history_reason_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_medical_institution_2 %}
+    {% if form.hospitalization_history_medical_institution_2 %}
+        {{ form.hospitalization_history_medical_institution_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block hospitalization_history_case_number_2 %}
+    {% if form.hospitalization_history_case_number_2 %}
+        {{ form.hospitalization_history_case_number_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_build_date_1 %}
+    {% if form.family_bed_history_build_date_1 %}
+        {{ form.family_bed_history_build_date_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_remove_date_1 %}
+    {% if form.family_bed_history_remove_date_1 %}
+        {{ form.family_bed_history_remove_date_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_reason_1 %}
+    {% if form.family_bed_history_reason_1 %}
+        {{ form.family_bed_history_reason_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_medical_institution_1 %}
+    {% if form.family_bed_history_medical_institution_1 %}
+        {{ form.family_bed_history_medical_institution_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_case_number_1 %}
+    {% if form.family_bed_history_case_number_1 %}
+        {{ form.family_bed_history_case_number_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_build_date_2 %}
+    {% if form.family_bed_history_build_date_2 %}
+        {{ form.family_bed_history_build_date_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_remove_date_2 %}
+    {% if form.family_bed_history_remove_date_2 %}
+        {{ form.family_bed_history_remove_date_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_reason_2 %}
+    {% if form.family_bed_history_reason_2 %}
+        {{ form.family_bed_history_reason_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_medical_institution_2 %}
+    {% if form.family_bed_history_medical_institution_2 %}
+        {{ form.family_bed_history_medical_institution_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block family_bed_history_case_number_2 %}
+    {% if form.family_bed_history_case_number_2 %}
+        {{ form.family_bed_history_case_number_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1 %}
+    {% if form.take_medicine_1 %}
+        {{ form.take_medicine_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_method %}
+    {% if form.take_medicine_1_method %}
+        {{ form.take_medicine_1_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_volume %}
+    {% if form.take_medicine_1_volume %}
+        {{ form.take_medicine_1_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_period %}
+    {% if form.take_medicine_1_period %}
+        {{ form.take_medicine_1_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_1_take_medicine_compliance %}
+    {% if form.take_medicine_1_take_medicine_compliance %}
+        {{ form.take_medicine_1_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2 %}
+    {% if form.take_medicine_2 %}
+        {{ form.take_medicine_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_method %}
+    {% if form.take_medicine_2_method %}
+        {{ form.take_medicine_2_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_volume %}
+    {% if form.take_medicine_2_volume %}
+        {{ form.take_medicine_2_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_period %}
+    {% if form.take_medicine_2_period %}
+        {{ form.take_medicine_2_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_2_take_medicine_compliance %}
+    {% if form.take_medicine_2_take_medicine_compliance %}
+        {{ form.take_medicine_2_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3 %}
+    {% if form.take_medicine_3 %}
+        {{ form.take_medicine_3 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_method %}
+    {% if form.take_medicine_3_method %}
+        {{ form.take_medicine_3_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_volume %}
+    {% if form.take_medicine_3_volume %}
+        {{ form.take_medicine_3_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_period %}
+    {% if form.take_medicine_3_period %}
+        {{ form.take_medicine_3_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_3_take_medicine_compliance %}
+    {% if form.take_medicine_3_take_medicine_compliance %}
+        {{ form.take_medicine_3_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_4 %}
+    {% if form.take_medicine_4 %}
+        {{ form.take_medicine_4 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_4_method %}
+    {% if form.take_medicine_4_method %}
+        {{ form.take_medicine_4_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_4_volume %}
+    {% if form.take_medicine_4_volume %}
+        {{ form.take_medicine_4_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_4_period %}
+    {% if form.take_medicine_4_period %}
+        {{ form.take_medicine_4_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_4_take_medicine_compliance %}
+    {% if form.take_medicine_4_take_medicine_compliance %}
+        {{ form.take_medicine_4_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5 %}
+    {% if form.take_medicine_5 %}
+        {{ form.take_medicine_5 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5_method %}
+    {% if form.take_medicine_5_method %}
+        {{ form.take_medicine_5_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5_volume %}
+    {% if form.take_medicine_5_volume %}
+        {{ form.take_medicine_5_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5_period %}
+    {% if form.take_medicine_5_period %}
+        {{ form.take_medicine_5_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_5_take_medicine_compliance %}
+    {% if form.take_medicine_5_take_medicine_compliance %}
+        {{ form.take_medicine_5_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6 %}
+    {% if form.take_medicine_6 %}
+        {{ form.take_medicine_6 }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_method %}
+    {% if form.take_medicine_6_method %}
+        {{ form.take_medicine_6_method }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_volume %}
+    {% if form.take_medicine_6_volume %}
+        {{ form.take_medicine_6_volume }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_period %}
+    {% if form.take_medicine_6_period %}
+        {{ form.take_medicine_6_period }}
+    {% endif %}
+{% endblock %}
+
+{% block take_medicine_6_take_medicine_compliance %}
+    {% if form.take_medicine_6_take_medicine_compliance %}
+        {{ form.take_medicine_6_take_medicine_compliance }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_name_1 %}
+    {% if form.vaccine_name_1 %}
+        {{ form.vaccine_name_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_date_1 %}
+    {% if form.vaccine_date_1 %}
+        {{ form.vaccine_date_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_institution_1 %}
+    {% if form.vaccine_institution_1 %}
+        {{ form.vaccine_institution_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_name_2 %}
+    {% if form.vaccine_name_2 %}
+        {{ form.vaccine_name_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_date_2 %}
+    {% if form.vaccine_date_2 %}
+        {{ form.vaccine_date_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_institution_2 %}
+    {% if form.vaccine_institution_2 %}
+        {{ form.vaccine_institution_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_name_3 %}
+    {% if form.vaccine_name_3 %}
+        {{ form.vaccine_name_3 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_date_3 %}
+    {% if form.vaccine_date_3 %}
+        {{ form.vaccine_date_3 }}
+    {% endif %}
+{% endblock %}
+
+{% block vaccine_institution_3 %}
+    {% if form.vaccine_institution_3 %}
+        {{ form.vaccine_institution_3 }}
+    {% endif %}
+{% endblock %}
+
+{% block normal_or_abnormal %}
+    {% if form.normal_or_abnormal %}
+        {{ form.normal_or_abnormal }}
+    {% endif %}
+{% endblock %}
+
+{% block abnormal_1 %}
+    {% if form.abnormal_1 %}
+        异常1&nbsp;&nbsp;{{ form.abnormal_1 }}
+    {% endif %}
+{% endblock %}
+
+{% block abnormal_2 %}
+    {% if form.abnormal_2 %}
+        异常2&nbsp;&nbsp;{{ form.abnormal_2 }}
+    {% endif %}
+{% endblock %}
+
+{% block abnormal_3 %}
+    {% if form.abnormal_3 %}
+        异常3&nbsp;&nbsp;{{ form.abnormal_3 }}
+    {% endif %}
+{% endblock %}
+
+{% block abnormal_4 %}
+    {% if form.abnormal_4 %}
+        异常4&nbsp;&nbsp;{{ form.abnormal_4 }}
+    {% endif %}
+{% endblock %}
+
+{% block health_guide %}
+    {% if form.health_guide %}
+        {% for item in form.health_guide.all %}
+            {% if forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block dangerous_factor_control %}
+    {% if form.dangerous_factor_control %}
+        {% for item in form.dangerous_factor_control.all %}
+            {% if item.choice == '减体重'%}
+                {{ item }}（目标&nbsp;{{ form.lose_weight }}）
+            {% elif item.choice == '建议接种疫苗' %}
+                {{ item }}{{ form.vaccinate_suggestion }}
+            {% elif item.choice == '其他' %}
+                {{ item }}{{ form.guide_extra }}
+            {% else %}
+                {{ item }}
+            {% endif %}
+            {% if forloop.last %}
+            {% else %}
+                {{ item }}/
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

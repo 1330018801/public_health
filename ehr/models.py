@@ -359,6 +359,58 @@ class ConstitutionIdentification(models.Model):
         abstract = True
 
 
+HEALTH_APPRAISAL = ((u'满意', '满意'), (u'基本满意', '基本满意'), (u'说不清楚', '说不清楚'), (u'不太满意', '不太满意'), (u'不满意', '不满意'))
+EXERCISE_RATE = ((u'每天', '每天'), (u'每周一次以上', '每周一次以上'), (u'偶尔', '偶尔'), (u'不锻炼', '不锻炼'))
+SMOKE_SITUATION = ((u'从不吸烟', '从不吸烟'), (u'已戒烟', '已戒烟'), (u'吸烟', '吸烟'))
+LIQUOR_RATE = ((u'从不', '从不'), (u'偶尔', '偶尔'), (u'经常', '经常'), (u'每天', '每天'))
+LIQUOR_CESSATION = ((u'未戒酒', '未戒酒'), (u'已戒酒', '已戒酒'))
+LIQUOR_DRUNKENNESS = ((u'是', '是'), (u'否', '否'))
+YES_OR_NOT = ((u'无', '无'), (u'有', '有'))
+LEGS_EDEMA = ((u'无', '无'), (u'单侧', '单侧'), (u'双侧不对称', '双侧不对称'), (u'双侧对称', '双侧对称'))
+ACROTARSIUM_ARTERY_PULSE = ((u'未触及', '未触及'), (u'触及双侧对称', '触及双侧对称'), (u'触及左侧弱或消失', '触及左侧弱或消失'), (u'触及右侧弱或消失', '触及右侧弱或消失'))
+
+NEGATIVE_OR_POSITIVE = ((u'阴性', '阴性'), (u'阳性', '阳性'),)
+DISCOVER_OR_NOT = ((u'未发现', '未发现'), (u'有', '有'))
+TAKE_MEDICINE_COMPLIANCE = ((u'规律', '规律'), (u'间断', '间断'), (u'不服药', '不服药'),)
+EXAM_NORMAL_OR_ABNORMAL = ((u'体检无异常', '有异常'), (u'体检无异常', '有异常'),)
+
+
+class DietHabitChoices(ChoicesAbstract):
+    pass
+
+
+class LiquorKindChoices(ChoicesAbstract):
+    pass
+
+
+class CerebrovascularChoices(ChoicesAbstract):
+    pass
+
+
+class KidneyChoices(ChoicesAbstract):
+    pass
+
+
+class HeartChoices(ChoicesAbstract):
+    pass
+
+
+class VesselChoices(ChoicesAbstract):
+    pass
+
+
+class EyeChoices(ChoicesAbstract):
+    pass
+
+
+class HealthGuideChoices(ChoicesAbstract):
+    pass
+
+
+class DangerousFactorChoices(ChoicesAbstract):
+    pass
+
+
 class BodyExam(models.Model):
     visit_date = models.DateField(verbose_name='体检日期', blank=True, null=True)
     doctor = models.CharField(max_length=10, verbose_name='责任医生', blank=True, null=True)
@@ -409,7 +461,7 @@ class BodyExam(models.Model):
     lung_barrel_chested = models.CharField(verbose_name='桶状胸', max_length=10,
                                            choices=NO_YES_CHOICES, blank=True, null=True)
     lung_breath_sound = models.CharField(verbose_name='呼吸音', max_length=10,
-                                         choices=NO_YES_CHOICES, blank=True, null=True)
+                                         choices=NORMAL_OR_ABNORMAL, blank=True, null=True)
     lung_breath_sound_extra = models.CharField(max_length=100, blank=True, null=True)
     lung_rale = models.CharField(verbose_name='罗音', max_length=10,
                                  choices=LUNG_RALE_CHOICES, blank=True, null=True)
@@ -478,8 +530,9 @@ class BodyExam(models.Model):
     ldl_c = models.FloatField(verbose_name='血清低密度脂蛋白胆固醇', blank=True, null=True)
     hdl_c = models.FloatField(verbose_name='血清高密度脂蛋白胆固醇', blank=True, null=True)
 
-    # 彩超
-    b_ultrasonic = models.CharField(max_length=200, verbose_name='彩超', blank=True, null=True)
+    # B超
+    b_ultrasonic = models.CharField(max_length=20, verbose_name='B超', blank=True, null=True, choices=NORMAL_OR_ABNORMAL)
+    b_ultrasonic_abnormal = models.CharField(max_length=100, verbose_name='B超', blank=True, null=True)
 
     # 中医体质辨识（中医药）
     pinghe = models.CharField(max_length=15, verbose_name='平和质', choices=MOST, blank=True, null=True)
@@ -491,3 +544,200 @@ class BodyExam(models.Model):
     xueyu = models.CharField(max_length=15, verbose_name='血瘀质', choices=TEND, blank=True, null=True)
     qiyu = models.CharField(max_length=15, verbose_name='气郁质', choices=TEND, blank=True, null=True)
     tebing = models.CharField(max_length=15, verbose_name='特禀质', choices=TEND, blank=True, null=True)
+
+    #一般状况
+    old_health_situation_appraisal = models.CharField(max_length=50, verbose_name='老年人健康状态自我评估*', blank=True, null=True, choices=HEALTH_APPRAISAL)
+    old_living_selfcare_appraisal = models.CharField(max_length=100, verbose_name='老年人生活自理能力自我评估*', blank=True, null=True)
+
+    #生活方式
+    #体育锻炼
+    exercise_rate = models.CharField(max_length=50, verbose_name='锻炼频率', choices=EXERCISE_RATE, blank=True, null=True)
+    exercise_time = models.PositiveSmallIntegerField(verbose_name='每次锻炼时间', blank=True, null=True)
+    exercise_years = models.FloatField(verbose_name='坚持锻炼时间', blank=True, null=True)
+    exercise_way = models.CharField(max_length=200, verbose_name='锻炼方式', blank=True, null=True)
+    #饮食习惯
+    diet_habit = models.ManyToManyField(DietHabitChoices, verbose_name='饮食习惯', blank=True, null=True)
+    #吸烟情况
+    smoke_situation = models.CharField(max_length=50, verbose_name='吸烟状况', blank=True, null=True, choices=SMOKE_SITUATION)
+    smoke_day = models.PositiveSmallIntegerField(verbose_name='日吸烟量', blank=True, null=True)
+    smoke_begin_age = models.PositiveSmallIntegerField(verbose_name='开始吸烟年龄', blank=True, null=True)
+    smoke_cessation_age = models.PositiveSmallIntegerField(verbose_name='戒烟年龄', blank=True, null=True)
+    #饮酒情况
+    liquor_rate = models.CharField(max_length=10, verbose_name='饮酒频率', blank=True, null=True, choices=LIQUOR_RATE)
+    liquor_day = models.PositiveSmallIntegerField(verbose_name='日饮酒量', blank=True, null=True)
+    liquor_cessation = models.CharField(max_length=30, verbose_name='是否戒酒', blank=True, null=True, choices=LIQUOR_CESSATION)
+    liquor_cessation_age = models.PositiveSmallIntegerField(verbose_name='戒酒年龄', blank=True, null=True)
+    liquor_begin_age = models.PositiveSmallIntegerField(verbose_name='开始饮酒年龄', blank=True, null=True)
+    liquor_drunkenness = models.CharField(max_length=5, verbose_name='近一年内是否曾醉酒', blank=True, null=True, choices=LIQUOR_DRUNKENNESS)
+    liquor_kind = models.ManyToManyField(LiquorKindChoices, verbose_name='饮酒种类', blank=True, null=True)
+    liquor_kind_extra = models.CharField(max_length=20, verbose_name='', blank=True, null=True)
+    #职业病危害因素接触史
+    occupational_disease_yes_or_not = models.CharField(max_length=5, verbose_name='职业病危害因素接触史——有无', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_profession = models.CharField(max_length=20, verbose_name='职业病危害因素接触史——工种', blank=True, null=True)
+    occupational_disease_employment = models.FloatField(verbose_name='职业病危害因素接触史——从业时间', blank=True, null=True)
+    occupational_disease_dust = models.CharField(max_length=50, verbose_name='毒物种类——粉尘', blank=True, null=True)
+    occupational_disease_dust_safeguard = models.CharField(max_length=5, verbose_name='毒物种类——粉尘——防护措施', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_dust_yes = models.CharField(max_length=50, blank=True, null=True)
+    occupational_disease_radioactive = models.CharField(max_length=50, verbose_name='毒物种类——放射物质', blank=True, null=True)
+    occupational_disease_radioactive_safeguard = models.CharField(max_length=5, verbose_name='毒物种类——放射物质——防护措施', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_radioactive_yes = models.CharField(max_length=50, blank=True, null=True)
+    occupational_disease_physical = models.CharField(max_length=50, verbose_name='毒物种类——物理因素', blank=True, null=True)
+    occupational_disease_physical_safeguard = models.CharField(max_length=5, verbose_name='毒物种类——物理因素——防护措施', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_physical_yes = models.CharField(max_length=50, blank=True, null=True)
+    occupational_disease_chemical = models.CharField(max_length=50, verbose_name='毒物种类——化学物质', blank=True, null=True)
+    occupational_disease_chemical_safeguard = models.CharField(max_length=5, verbose_name='毒物种类——化学物质——防护措施', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_chemical_yes = models.CharField(max_length=50, blank=True, null=True)
+    occupational_disease_extra = models.CharField(max_length=50, verbose_name='毒物种类——其他', blank=True, null=True)
+    occupational_disease_extra_safeguard = models.CharField(max_length=5, verbose_name='毒物种类——其他——防护措施', blank=True, null=True, choices=YES_OR_NOT)
+    occupational_disease_extra_yes = models.CharField(max_length=50, blank=True, null=True)
+
+    #辅助检查
+    #查体
+    legs_edema = models.CharField(max_length=50, verbose_name='下肢水肿', blank=True, null=True, choices=LEGS_EDEMA)
+    acrotarsium_artery_pulse = models.CharField(max_length=100, verbose_name='足背动脉搏动', blank=True, null=True, choices=ACROTARSIUM_ARTERY_PULSE)
+
+    #尿微量白蛋白
+    urine_microalbumin = models.FloatField(verbose_name='尿微量白蛋白', blank=True, null=True)
+    #大便潜血
+    fecal_occult_blood = models.CharField(max_length=10, verbose_name='大便潜血', blank=True, null=True, choices=NEGATIVE_OR_POSITIVE)
+    #糖化血红蛋白
+    glycosylated_hemoglobin = models.FloatField(verbose_name='糖化血红蛋白', blank=True, null=True)
+    #乙型肝炎表面抗原
+    hepatitis_b_surface_antigen = models.CharField(max_length=10, verbose_name='乙型肝炎表面抗原', choices=NEGATIVE_OR_POSITIVE, blank=True, null=True)
+
+    #肝功能（增加）
+    albumin = models.FloatField(verbose_name='白蛋白', blank=True, null=True)
+    conjugated_bilirubin = models.FloatField(verbose_name='结合胆红素', blank=True, null=True)
+
+    #肾功能（增加）
+    blood_potassium_concentration = models.FloatField(verbose_name='血钾浓度', blank=True, null=True)
+    blood_sodium_concentration = models.FloatField(verbose_name='血钠浓度', blank=True, null=True)
+
+    #胸部X线片
+    chest_x_ray = models.CharField(max_length=20, verbose_name='', blank=True, null=True, choices=NORMAL_OR_ABNORMAL)
+    chest_x_ray_abnormal = models.CharField(max_length=100, verbose_name='', blank=True, null=True)
+
+    #宫颈涂片
+    cervical_smear = models.CharField(max_length=20, verbose_name='胸部X线片——正常异常', blank=True, null=True, choices=NORMAL_OR_ABNORMAL)
+    cervical_smear_abnormal = models.CharField(max_length=20, verbose_name='胸部X线片——异常', blank=True, null=True)
+
+    #其他
+    extra = models.CharField(max_length=500, verbose_name='其他', blank=True, null=True)
+
+    #现存主要健康问题
+    cerebrovascular = models.ManyToManyField(CerebrovascularChoices, verbose_name='脑血管疾病', blank=True, null=True)
+    cerebrovascular_extra = models.CharField(max_length=50, verbose_name='脑血管疾病——其他', blank=True, null=True)
+
+    kidney = models.ManyToManyField(KidneyChoices, verbose_name='肾脏疾病', blank=True, null=True)
+    kidney_extra = models.CharField(max_length=50, verbose_name='肾脏疾病——其他', blank=True, null=True)
+
+    cardiac = models.ManyToManyField(HeartChoices, verbose_name='心脏疾病', blank=True, null=True)
+    cardiac_extra = models.CharField(max_length=50, verbose_name='心脏疾病——其他', blank=True, null=True)
+
+    vessel = models.ManyToManyField(VesselChoices, verbose_name='血管疾病', blank=True, null=True)
+    vessel_extra = models.CharField(max_length=50, verbose_name='血管疾病——其他', blank=True, null=True)
+
+    eye = models.ManyToManyField(EyeChoices, verbose_name='眼部疾病', blank=True, null=True)
+    eye_extra = models.CharField(max_length=50, verbose_name='眼部疾病——其他', blank=True, null=True)
+
+    nervous_system = models.CharField(max_length=20, verbose_name='神经系统疾病', blank=True, null=True, choices=DISCOVER_OR_NOT)
+    nervous_system_yes = models.CharField(max_length=50, verbose_name='神经系统疾病——有', blank=True, null=True)
+
+    extra_system = models.CharField(max_length=20, verbose_name='其他系统疾病', blank=True, null=True, choices=DISCOVER_OR_NOT)
+    extra_system_yes = models.CharField(max_length=50, verbose_name='其他系统疾病——有', blank=True, null=True)
+
+    #住院治疗情况
+    #住院史
+    hospitalization_history_in_date_1 = models.DateField(verbose_name='住院史——入院日期', blank=True, null=True)
+    hospitalization_history_out_date_1 = models.DateField(verbose_name='住院史——出院日期', blank=True, null=True)
+    hospitalization_history_reason_1 = models.CharField(max_length=200, verbose_name='住院史——原因', blank=True, null=True)
+    hospitalization_history_medical_institution_1 = models.CharField(max_length=100, verbose_name='住院史——医疗机构名称', blank=True, null=True)
+    hospitalization_history_case_number_1 = models.CharField(max_length=100, verbose_name='住院史——病案号', blank=True, null=True)
+
+    hospitalization_history_in_date_2 = models.DateField(verbose_name='', blank=True, null=True)
+    hospitalization_history_out_date_2 = models.DateField(verbose_name='', blank=True, null=True)
+    hospitalization_history_reason_2 = models.CharField(max_length=200, verbose_name='', blank=True, null=True)
+    hospitalization_history_medical_institution_2 = models.CharField(max_length=100, verbose_name='', blank=True, null=True)
+    hospitalization_history_case_number_2 = models.CharField(max_length=100, verbose_name='', blank=True, null=True)
+
+    #家庭病床史
+    family_bed_history_build_date_1 = models.DateField(verbose_name='家庭病床史——建床日期', blank=True, null=True)
+    family_bed_history_remove_date_1 = models.DateField(verbose_name='家庭病床史——撤床日期', blank=True, null=True)
+    family_bed_history_reason_1 = models.CharField(max_length=200, verbose_name='家庭病床史——原因', blank=True, null=True)
+    family_bed_history_medical_institution_1 = models.CharField(max_length=100, verbose_name='家庭病床史——医疗机构名称', blank=True, null=True)
+    family_bed_history_case_number_1 = models.CharField(max_length=100, verbose_name='家庭病床史——病案号', blank=True, null=True)
+
+    family_bed_history_build_date_2 = models.DateField(verbose_name='', blank=True, null=True)
+    family_bed_history_remove_date_2 = models.DateField(verbose_name='', blank=True, null=True)
+    family_bed_history_reason_2 = models.CharField(max_length=200, verbose_name='', blank=True, null=True)
+    family_bed_history_medical_institution_2 = models.CharField(max_length=100, verbose_name='', blank=True, null=True)
+    family_bed_history_case_number_2 = models.CharField(max_length=100, verbose_name='', blank=True, null=True)
+
+    #主要用药情况
+    take_medicine_1 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_1_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_1_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_1_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_1_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    take_medicine_2 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_2_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_2_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_2_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_2_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    take_medicine_3 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_3_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_3_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_3_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_3_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    take_medicine_4 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_4_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_4_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_4_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_4_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    take_medicine_5 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_5_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_5_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_5_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_5_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    take_medicine_6 = models.CharField(max_length=100, verbose_name='药物名称1', blank=True, null=True,)
+    take_medicine_6_method = models.CharField(max_length=100, verbose_name='用法', blank=True, null=True,)
+    take_medicine_6_volume = models.CharField(max_length=100, verbose_name='用量', blank=True, null=True,)
+    take_medicine_6_period = models.CharField(max_length=100, verbose_name='用药时间', blank=True, null=True)
+    take_medicine_6_take_medicine_compliance = models.CharField(max_length=10, verbose_name='服药依从性', blank=True, null=True, choices=TAKE_MEDICINE_COMPLIANCE)
+
+    #非免疫规划预防接种史
+    vaccine_name_1 = models.CharField(max_length=100, verbose_name='名称1', blank=True, null=True)
+    vaccine_date_1 = models.DateField(verbose_name='接种日期', blank=True, null=True)
+    vaccine_institution_1 = models.CharField(max_length=100, verbose_name='接种机构', blank=True, null=True)
+
+    vaccine_name_2 = models.CharField(max_length=100, verbose_name='名称2', blank=True, null=True)
+    vaccine_date_2 = models.DateField(verbose_name='接种日期', blank=True, null=True)
+    vaccine_institution_2 = models.CharField(max_length=100, verbose_name='接种机构', blank=True, null=True)
+
+    vaccine_name_3 = models.CharField(max_length=100, verbose_name='名称3', blank=True, null=True)
+    vaccine_date_3 = models.DateField(verbose_name='接种日期', blank=True, null=True)
+    vaccine_institution_3 = models.CharField(max_length=100, verbose_name='接种机构', blank=True, null=True)
+
+    #健康评价
+    normal_or_abnormal = models.CharField(max_length=50, verbose_name='无异常——有异常', blank=True, null=True, choices=EXAM_NORMAL_OR_ABNORMAL)
+
+    abnormal_1 = models.CharField(max_length=200, verbose_name='异常1', blank=True, null=True)
+    abnormal_2 = models.CharField(max_length=200, verbose_name='异常2', blank=True, null=True)
+    abnormal_3 = models.CharField(max_length=200, verbose_name='异常3', blank=True, null=True)
+    abnormal_4 = models.CharField(max_length=200, verbose_name='异常4', blank=True, null=True)
+
+    #健康指导
+    health_guide = models.ManyToManyField(HealthGuideChoices, verbose_name='健康指导', blank=True, null=True)
+
+    dangerous_factor_control = models.ManyToManyField(DangerousFactorChoices, verbose_name='危险因素控制', blank=True, null=True)
+
+    lose_weight = models.CharField(max_length=50, verbose_name='危险因素控制——减体重——目标', blank=True, null=True)
+
+    vaccinate_suggestion = models.CharField(max_length=200, verbose_name='危险因素控制——建议接种疫苗', blank=True, null=True)
+
+    guide_extra = models.CharField(max_length=200, verbose_name='危险因素控制——其他', blank=True, null=True)

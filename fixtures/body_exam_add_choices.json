@@ -1,0 +1,345 @@
+[
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "荤素均衡",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "荤食为主",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "素食为主",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "嗜盐",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "嗜油",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.diethabitchoices",
+    "pk": "嗜糖",
+    "fields": {
+        "order": 6
+    }
+},
+{
+    "model": "ehr.liquorkindchoices",
+    "pk": "白酒",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.liquorkindchoices",
+    "pk": "啤酒",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.liquorkindchoices",
+    "pk": "红酒",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.liquorkindchoices",
+    "pk": "黄酒",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.liquorkindchoices",
+    "pk": "其他",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "未发现",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "缺血性卒中",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "脑出血",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "蛛网膜下腔出血",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "短暂性脑缺血",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.cerebrovascularchoices",
+    "pk": "其他",
+    "fields": {
+        "order": 6
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "未发现",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "糖尿病肾病",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "肾功能衰竭",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "急性肾炎",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "慢性肾炎",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.kidneychoices",
+    "pk": "其他",
+    "fields": {
+        "order": 6
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "未发现",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "心肌梗死",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "心绞痛",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "冠状动脉血运重建",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "充血性心力",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "心前区疼痛",
+    "fields": {
+        "order": 6
+    }
+},
+{
+    "model": "ehr.heartchoices",
+    "pk": "其他",
+    "fields": {
+        "order": 7
+    }
+},
+{
+    "model": "ehr.vesselchoices",
+    "pk": "未发现",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.vesselchoices",
+    "pk": "夹层动脉瘤",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.vesselchoices",
+    "pk": "动脉闭塞性疾病",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.vesselchoices",
+    "pk": "其他",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.eyechoices",
+    "pk": "未发现",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.eyechoices",
+    "pk": "视网膜出血或渗出",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.eyechoices",
+    "pk": "视乳头水肿",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.eyechoices",
+    "pk": "白内障",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.eyechoices",
+    "pk": "其他",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.healthguidechoices",
+    "pk": "纳入慢性病患者健康管理",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.healthguidechoices",
+    "pk": "建议复查",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.healthguidechoices",
+    "pk": "建议转诊",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "戒烟",
+    "fields": {
+        "order": 1
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "健康饮酒",
+    "fields": {
+        "order": 2
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "饮食",
+    "fields": {
+        "order": 3
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "锻炼",
+    "fields": {
+        "order": 4
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "减体重",
+    "fields": {
+        "order": 5
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "建议接种疫苗",
+    "fields": {
+        "order": 6
+    }
+},
+{
+    "model": "ehr.dangerousfactorchoices",
+    "pk": "其他",
+    "fields": {
+        "order": 7
+    }
+}
+]

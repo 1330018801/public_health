@@ -405,7 +405,7 @@ $(function() {
                         $.messager.alert('提示', '健康体检表保存失败', 'warning');
                     }
                 }
-            })
+            });
         }
     });
 

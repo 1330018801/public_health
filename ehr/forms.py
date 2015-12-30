@@ -397,9 +397,9 @@ class BodyExamForm(ModelForm):
             'hdl_c': TextInput(attrs={'class': 'easyui-numberbox',
                                       'data-options': 'width: 40, min: 0, max: 11, precision: 1'}),
 
-            # 彩超
-            'b_ultrasonic': TextInput(attrs={'class': 'easyui-textbox',
-                                             'data-options': 'width: 500, required: true'}),
+            # B超
+            'b_ultrasonic': RadioSelect,
+            'b_ultrasonic_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
 
             # 中医体质辨识
             'pinghe': RadioSelect,      # 平和
@@ -412,6 +412,271 @@ class BodyExamForm(ModelForm):
             'qiyu': RadioSelect,        # 气郁
             'tebing': RadioSelect,      # 特秉
 
+            #一般状况
+            'old_health_situation_appraisal': RadioSelect,
+            'old_living_selfcare_appraisal': TextInput,
+
+            #生活方式
+
+            #体育锻炼
+            'exercise_rate': RadioSelect,
+            'exercise_time': TextInput(attrs={'class': 'easyui-numberbox',
+                                              'data-options': 'width: 40, min: 0'}),
+            'exercise_years': TextInput(attrs={'class': 'easyui-numberbox',
+                                               'data-options': 'width: 40, min: 0, precision: 1'}),
+            'exercise_way': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 370'}),
+
+            #饮食习惯
+            'diet_habit': CheckboxSelectMultiple,
+
+            #吸烟情况
+            'smoke_situation': RadioSelect,
+            'smoke_day': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 40, min: 0'}),
+            'smoke_begin_age': TextInput(attrs={'class': 'easyui-numberbox',
+                                                'data-options': 'width: 40, min: 0, precision: 1'}),
+            'smoke_cessation_age': TextInput(attrs={'class': 'easyui-numberbox',
+                                                'data-options': 'width: 40, min: 0, precision: 1'}),
+
+            #饮酒情况
+            'liquor_rate': RadioSelect,
+            'liquor_day': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 40, min: 0'}),
+            'liquor_cessation': RadioSelect,
+            'liquor_cessation_age': TextInput(attrs={'class': 'easyui-numberbox',
+                                                     'data-options': 'width: 40, min: 0, precision: 1'}),
+            'liquor_begin_age': TextInput(attrs={'class': 'easyui-numberbox',
+                                                 'data-options': 'width: 40, min: 0, precision: 1'}),
+            'liquor_drunkenness': RadioSelect,
+            'liquor_kind': CheckboxSelectMultiple,
+            'liquor_kind_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 60'}),
+
+            #职业病危害因素接触史
+            'occupational_disease_yes_or_not': RadioSelect,
+            'occupational_disease_profession': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 60'}),
+            'occupational_disease_employment': TextInput(attrs={'class': 'easyui-numberbox',
+                                                                'data-options': 'width: 40, min: 0, precision: 1'}),
+            'occupational_disease_dust': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'occupational_disease_dust_safeguard': RadioSelect,
+            'occupational_disease_dust_yes': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
+
+            'occupational_disease_radioactive': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'occupational_disease_radioactive_safeguard': RadioSelect,
+            'occupational_disease_radioactive_yes': TextInput(attrs={'class': 'easyui-textbox',
+                                                                     'data-options': 'width: 150'}),
+
+            'occupational_disease_physical': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'occupational_disease_physical_safeguard': RadioSelect,
+            'occupational_disease_physical_yes': TextInput(attrs={'class': 'easyui-textbox',
+                                                                  'data-options': 'width: 150'}),
+
+            'occupational_disease_chemical': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'occupational_disease_chemical_safeguard': RadioSelect,
+            'occupational_disease_chemical_yes': TextInput(attrs={'class': 'easyui-textbox',
+                                                                  'data-options': 'width: 150'}),
+
+            'occupational_disease_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 100'}),
+            'occupational_disease_extra_safeguard': RadioSelect,
+            'occupational_disease_extra_yes': TextInput(attrs={'class': 'easyui-textbox',
+                                                               'data-options': 'width: 150'}),
+
+            #查体
+            'legs_edema': RadioSelect,
+            'acrotarsium_artery_pulse': RadioSelect,
+
+            #辅助检查
+            #尿微量白蛋白
+            'urine_microalbumin': TextInput(attrs={'class': 'easyui-numberbox',
+                                                   'data-options': 'width: 100, min: 0, precision: 2'}),
+            'fecal_occult_blood': RadioSelect,
+
+            #糖化血红蛋白
+            'glycosylated_hemoglobin': TextInput(attrs={'class': 'easyui-numberbox',
+                                                        'data-options': 'width: 100, min: 0, precision: 2'}),
+
+            #乙型肝炎表面抗原
+            'hepatitis_b_surface_antigen': RadioSelect,
+
+            #肝功能（增加）
+            'albumin': TextInput(attrs={'class': 'easyui-numberbox', 'data-options': 'width: 60, min: 0, precision: 2'}),
+            'conjugated_bilirubin': TextInput(attrs={'class': 'easyui-numberbox',
+                                                     'data-options': 'width: 60, min: 0, precision: 2'}),
+
+            #肾功能（增加）
+            'blood_potassium_concentration': TextInput(attrs={'class': 'easyui-numberbox',
+                                                              'data-options': 'width: 60, min: 0, precision: 2'}),
+            'blood_sodium_concentration': TextInput(attrs={'class': 'easyui-numberbox',
+                                                           'data-options': 'width: 60, min: 0, precision: 2'}),
+
+            #胸部X线片
+            'chest_x_ray': RadioSelect,
+            'chest_x_ray_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            #宫颈涂片
+            'cervical_smear': RadioSelect,
+            'cervical_smear_abnormal': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            #其他
+            'extra': TextInput(attrs={'class': 'easyui-textbox',
+                                      'data-options': 'multiline: true, width: 500, height: 50'}),
+
+            #现存主要健康问题
+            'cerebrovascular': CheckboxSelectMultiple,
+            'cerebrovascular_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'kidney': CheckboxSelectMultiple,
+            'kidney_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'cardiac': CheckboxSelectMultiple,
+            'cardiac_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'vessel': CheckboxSelectMultiple,
+            'vessel_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'eye': CheckboxSelectMultiple,
+            'eye_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'nervous_system': RadioSelect,
+            'nervous_system_yes': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            'extra_system': RadioSelect,
+            'extra_system_yes': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 200'}),
+
+            #住院治疗情况
+            #住院史
+            'hospitalization_history_in_date_1': TextInput(attrs={'class': 'easyui-datebox',
+                                                                  'data-options': 'formatter: myformatter, '
+                                                                                  'paser: myparser, '
+                                                                                  'width: 85, editable: false'}),
+            'hospitalization_history_out_date_1': TextInput(attrs={'class': 'easyui-datebox',
+                                                                   'data-options': 'formatter: myformatter, '
+                                                                                   'paser: myparser,'
+                                                                                   'width: 85, editable: false'}),
+            'hospitalization_history_reason_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                                 'data-options': 'width: 91'}),
+            'hospitalization_history_medical_institution_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                                              'data-options': 'width: 180'}),
+            'hospitalization_history_case_number_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                                      'data-options': 'width: 91'}),
+
+
+            'hospitalization_history_in_date_2': TextInput(attrs={'class': 'easyui-datebox',
+                                                                  'data-options': 'formatter: myformatter, '
+                                                                                  'paser: myparser, '
+                                                                                  'width: 85, editable: false'}),
+            'hospitalization_history_out_date_2': TextInput(attrs={'class': 'easyui-datebox',
+                                                                   'data-options': 'formatter: myformatter, '
+                                                                                   'paser: myparser,'
+                                                                                   'width: 85, editable: false'}),
+            'hospitalization_history_reason_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                                 'data-options': 'width: 91'}),
+            'hospitalization_history_medical_institution_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                                              'data-options': 'width: 180'}),
+            'hospitalization_history_case_number_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                                      'data-options': 'width: 91'}),
+
+            #家庭病床史
+            'family_bed_history_build_date_1': TextInput(attrs={'class': 'easyui-datebox',
+                                                                'data-options': 'formatter: myformatter,'
+                                                                                'paser: myparser,'
+                                                                                'width: 85, editable: false'}),
+            'family_bed_history_remove_date_1': TextInput(attrs={'class': 'easyui-datebox',
+                                                                 'data-options': 'formatter: myformatter,'
+                                                                                 'paser: myparser,'
+                                                                                 'width: 85, editable: false'}),
+            'family_bed_history_reason_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                            'data-options': 'width: 91'}),
+            'family_bed_history_medical_institution_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                                         'data-options': 'width: 180'}),
+            'family_bed_history_case_number_1': TextInput(attrs={'class': 'easyui-textbox',
+                                                                 'data-options': 'width: 91'}),
+
+
+            'family_bed_history_build_date_2': TextInput(attrs={'class': 'easyui-datebox',
+                                                                'data-options': 'formatter: myformatter,'
+                                                                                'paser: myparser,'
+                                                                                'width: 85, editable: false'}),
+            'family_bed_history_remove_date_2': TextInput(attrs={'class': 'easyui-datebox',
+                                                                 'data-options': 'formatter: myformatter,'
+                                                                                 'paser: myparser,'
+                                                                                 'width: 85, editable: false'}),
+            'family_bed_history_reason_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                            'data-options': 'width: 91'}),
+            'family_bed_history_medical_institution_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                                         'data-options': 'width: 180'}),
+            'family_bed_history_case_number_2': TextInput(attrs={'class': 'easyui-textbox',
+                                                                 'data-options': 'width: 91'}),
+
+            #主要用药情况
+            'take_medicine_1': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_1_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_1_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_1_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_1_take_medicine_compliance': RadioSelect,
+
+            'take_medicine_2': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_2_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_2_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_2_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_2_take_medicine_compliance': RadioSelect,
+
+            'take_medicine_3': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_3_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_3_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_3_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_3_take_medicine_compliance': RadioSelect,
+
+            'take_medicine_4': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_4_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_4_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_4_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_4_take_medicine_compliance': RadioSelect,
+
+            'take_medicine_5': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_5_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_5_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_5_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_5_take_medicine_compliance': RadioSelect,
+
+            'take_medicine_6': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_6_method': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_6_volume': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'take_medicine_6_period': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 182'}),
+            'take_medicine_6_take_medicine_compliance': RadioSelect,
+
+            #非免疫规划预防接种史
+            'vaccine_name_1': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'vaccine_date_1': TextInput(attrs={'class': 'easyui-datebox', 'data-options': 'width: 100, '
+                                                                                          'formatter: myformatter, '
+                                                                                          'parser: myparser, '
+                                                                                          'editable: false'}),
+            'vaccine_institution_1': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 370'}),
+
+            'vaccine_name_2': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'vaccine_date_2': TextInput(attrs={'class': 'easyui-datebox', 'data-options': 'width: 100, '
+                                                                                          'formatter: myformatter, '
+                                                                                          'parser: myparser, '
+                                                                                          'editable: false'}),
+            'vaccine_institution_2': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 370'}),
+
+            'vaccine_name_3': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 90'}),
+            'vaccine_date_3': TextInput(attrs={'class': 'easyui-datebox', 'data-options': 'width: 100, '
+                                                                                          'formatter: myformatter, '
+                                                                                          'parser: myparser, '
+                                                                                          'editable: false'}),
+            'vaccine_institution_3': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 370'}),
+
+            #健康评价
+            'normal_or_abnormal': RadioSelect,
+            'abnormal_1': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 500'}),
+            'abnormal_2': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 500'}),
+            'abnormal_3': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 500'}),
+            'abnormal_4': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 500'}),
+
+            #健康指导
+            'health_guide': CheckboxSelectMultiple,
+            'dangerous_factor_control': CheckboxSelectMultiple,
+            'lose_weight': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
+            'vaccinate_suggestion': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 150'}),
+            'guide_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 202'}),
         }
 
     def __init__(self, *args, **kwargs):

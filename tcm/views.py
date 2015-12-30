@@ -131,6 +131,11 @@ def old_identify_submit(request):
             if form0.is_valid():
                 form0.save()
 
+            service_item = Service.objects.get(alias='body_exam_table', service_type__alias='old')
+            WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
+                                      app_label='old', model_name='BodyExam',
+                                      item_id=form0.id, service_item_alias=service_item.alias)
+
         service_item = Service.items.get(alias='constitution_identification', service_type__alias='tcm')
         WorkRecord.objects.create(provider=request.user, resident=resident, service_item=service_item,
                                   app_label='tcm', model_name='OldIdentify', item_id=result.id,
