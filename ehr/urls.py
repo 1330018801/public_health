@@ -34,4 +34,6 @@ urlpatterns = patterns('',
     url(r'^personal_info_edit/$', views.personal_info_edit, name='personal_info_edit'),
     url(r'^personal_info_edit_submit/$', views.personal_info_edit_submit, name='personal_info_edit_submit'),
 
+    url(r'^body_exam_review_tab/$', views.body_exam_review_tab, name='body_exam_review_tab')
+
 )

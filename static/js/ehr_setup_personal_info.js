@@ -143,7 +143,30 @@ $(function () {
                 if (selected_row['identity'])
                     form.find('input[textboxname=identity]').textbox('setValue', selected_row['identity']);
                 if (selected_row['birthday'])
+                    var b = selected_row['birthday'].split("-");
+                    var birth = new Date(b[0], b[1], b[2]);
+                    var today = new Date();
+                    if(today.getFullYear()-birth.getFullYear()<6){
+                        form.find('input[textboxname=identity]').textbox({required: false});
+                    }
+                    else if(today.getFullYear()-birth.getFullYear()==6){
+                        if(today.getMonth()>birth.getMonth())
+                            form.find('input[textboxname=identity]').textbox({required: true});
+                        else if(today.getMonth()==birth.getMonth())
+                            if(today.getDate()<birth.getDate())
+                                form.find('input[textboxname=identity]').textbox({required: false});
+                            else
+                                form.find('input[textboxname=identity]').textbox({required: true});
+                        else
+                            form.find('input[textboxname=identity]').textbox({required: false});
+                    }
+                    else
+                        form.find('input[textboxname=identity]').textbox({required: true});
                     form.find('input[textboxname=birthday]').datebox('setValue', selected_row['birthday']);
+                if(selected_row['ehr_no']){
+                    form.find('input[textboxname=ehr_village_no]').textbox('setValue', selected_row['ehr_no'].substring(9, 12));
+                    form.find('input[textboxname=ehr_unique_no]').textbox('setValue', selected_row['ehr_no'].substring(12, 17));
+                }
             }
         }
     });

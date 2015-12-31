@@ -101,12 +101,14 @@ def body_exam_form(request):
                                        submit_time__gte=new_year_day()).first()
     if record:
         debug.info('find the record of BodyExam')
-        result = BodyExam.objects.get(id=record.item_id)
-        form = BodyExamForm(instance=result)
+        #result = BodyExam.objects.get(id=record.item_id)
+        #form = BodyExamForm(instance=result)
+        form = BodyExam.objects.get(id=record.item_id)
+        return render(request, 'ehr/body_exam_review.html', {'form': form, 'resident': resident})
     else:
         form = BodyExamForm()
-    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
-                                                       'type_alias': 'hypertension'})
+        return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident,
+                                                           'type_alias': 'hypertension'})
 
 
 def body_exam_submit(request):

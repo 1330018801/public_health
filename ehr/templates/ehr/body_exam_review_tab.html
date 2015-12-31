@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+<div title="健康体检表" style="overflow: auto;">
+    <div id="body_exam_review_tab_toolbar" class="datagrid-toolbar">
+        <a href="#" id="body_exam_review_tab_print">打印</a>
+    </div>
+    <form id="body_exam_review_tab_form" method="POST">
+        <div id="body_exam_review_tab_table" align="center" style="padding-bottom: 30px;">
+            {% include 'ehr/body_exam_review.html' %}
+        </div>
+    </form>
+</div>
+
+<script src='{% static "js/ehr_body_exam_review_tab.js" %}'></script>

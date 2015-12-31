@@ -289,6 +289,16 @@ def body_exam_submit(request):
     return json_result({'success': success})
 
 
+def body_exam_review_tab(request):
+    resident_id = int(request.POST.get('resident_id'))
+    resident = Resident.objects.get(id=resident_id)
+    record = WorkRecord.objects.filter(resident=resident, service_item_alias='body_exam_table').first()
+
+    if record:
+        form = BodyExam.objects.get(id=record.item_id)
+        return render(request, 'ehr/body_exam_review_tab.html', {'form': form, 'resident': resident})
+
+
 def record_list(request):
     resident_id = request.POST.get('resident_id')
     resident = Resident.objects.get(id=int(resident_id))

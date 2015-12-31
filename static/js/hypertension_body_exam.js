@@ -6,12 +6,19 @@ $(function () {
     var btn_save = toolbar.find('#save').linkbutton({ iconCls: 'icon-save', plain: true });
     var btn_print = toolbar.find('#print').linkbutton({ iconCls: 'icon-print', plain: true });
 
+    var btn_edit = toolbar.find('#edit').linkbutton({ iconCls: 'icon-edit', plain: true});
+
     btn_print.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {
             panel.find('.print_area').printThis();
         }
     });
 
+    btn_edit.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+
+        }
+    });
 
     btn_save.bind('click', function () {
         if ($(this).linkbutton('options').disabled == false) {

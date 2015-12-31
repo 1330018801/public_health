@@ -18,8 +18,14 @@ $(function() {
     var btn_edit = toolbar.find('#edit').linkbutton({ iconCls: 'icon-edit', plain: true });
     var btn_add_body_exam = toolbar.find('#body_exam').linkbutton({ iconCls: 'icon-add', plain: true });
 
+    var btn_review_info = toolbar.find('#review_info').linkbutton({ iconCls: 'icon-glyphicons-158-show-thumbnails-with-lines', plain: true});
+    var btn_review_exam = toolbar.find('#review_exam').linkbutton({ iconCls: 'icon-glyphicons-158-show-thumbnails-with-lines', plain: true});
+
     btn_edit.linkbutton('disable');
     btn_add_body_exam.linkbutton('disable');
+
+    btn_review_info.linkbutton('disable');
+    btn_review_exam.linkbutton('disable');
 
     var query_ehr_no = toolbar.find('#query_ehr_no').textbox({ width: 150, options: { validateType: 'maxLength(17)'}});
     var query_age = toolbar.find('#query_age').numberbox({ width: 40 });
@@ -125,6 +131,56 @@ $(function() {
         }
     });
 
+    btn_review_info.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            var row = datagrid.datagrid('getSelected');
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            if(!tabs.tabs('exists', '个人基本信息表')){
+                tabs.tabs('add', {
+                    title: '个人基本信息表', closable: true,
+                    href: '/ehr/personal_info_review_tab/', method: 'POST',
+                    queryParams: {resident_id: row['id']}
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '个人基本信息表');
+                tabs.tabs('update', {
+                    tab: tab,
+                    options: {
+                        href: '/ehr/personal_info_review_tab/', method: 'POST',
+                        queryParams: {resident_id: row['id']}
+                    }
+                });
+                tabs.tabs('select', '个人基本信息表');
+            }
+        }
+    });
+
+    btn_review_exam.bind('click', function(){
+        if($(this).linkbutton('options').disabled == false){
+            var tabs = datagrid.parents('#ehr_setup_tabs');
+            var row = datagrid.datagrid('getSelected');
+            if(!tabs.tabs('exists', '健康体检表')){
+                tabs.tabs('add', {
+                   title: '健康体检表', closable: true,
+                    href: '/ehr/body_exam_review_tab/', method: 'POST',
+                    queryParams: {resident_id: row['id']}
+                });
+            }
+            else{
+                var tab = tabs.tabs('getTab', '健康体检表');
+                tabs.tabs('update', {
+                   tab: tab,
+                   options: {
+                       href: '/ehr/body_exam_review_tab/', method: 'POST',
+                       queryParams: {resident_id: row['id']}
+                   }
+                });
+                tabs.tabs('select', '健康体检表');
+            }
+        }
+    });
+
     datagrid.datagrid({
         toolbar: '#ehr_resident_toolbar',
         url: '/ehr/ehr_resident_query/',
@@ -142,7 +198,7 @@ $(function() {
                 }},
               editor: { type: 'textbox' }
             },
-            { field: 'personal_info', title: '个人基本体检表', width: 10 },
+            { field: 'personal_info', title: '个人基本信息表', width: 10 },
             { field: 'body_exam', title: '健康体检表', width: 10 },
             { field: 'gender', title: '性别', width: 6,
                 formatter: function(value) {
@@ -186,15 +242,24 @@ $(function() {
                 btn_add.show();
             } else {
                 selected_row = datagrid.datagrid('getSelected');
-                if (selected_row['body_exam'] == '否')
+                if (selected_row['body_exam'] == '否'){
                     btn_add_body_exam.linkbutton('enable');
-                else
+                    btn_review_exam.linkbutton('disable');
+                }
+                else{
                     btn_add_body_exam.linkbutton('disable');
-                btn_edit.linkbutton('enable');
-                if (selected_row['personal_info'] == '否')
+                    btn_review_exam.linkbutton('enable');
+                }
+                if(selected_row['personal_info'] == '否'){
                     btn_add.show();
-                else
+                    btn_edit.linkbutton('disable');
+                    btn_review_info.linkbutton('disable');
+                }
+                else{
                     btn_add.hide();
+                    btn_edit.linkbutton('enable');
+                    btn_review_info.linkbutton('enable');
+                }
             }
         },
         onAfterEdit: function(index, row) {
@@ -231,7 +296,7 @@ $(function() {
             edit_row = undefined;
             selected_row = undefined;
             btn_add.linkbutton('enable');
-        },
+        }/*,
         onDblClickRow: function(index, row){
             var tabs = datagrid.parents('#ehr_setup_tabs');
             if(!tabs.tabs('exists', '个人基本信息表')){
@@ -252,7 +317,7 @@ $(function() {
                 });
                 tabs.tabs('select', '个人基本信息表');
             }
-        }
+        }*/
     });
 
     function townOptions(field, index) {
