@@ -260,14 +260,11 @@ def body_exam_table(request):
     record = WorkRecord.objects.filter(resident=resident,
                                        service_item_alias='body_exam_table').first()
     if record:
-        #table = BodyExam.objects.get(id=record.item_id)
-        #form = BodyExamForm(instance=table)
-        form = BodyExam.objects.get(id=record.item_id)
-        return render(request, 'ehr/body_exam_review.html', {'form': form, 'resident': resident})
+        table = BodyExam.objects.get(id=record.item_id)
+        form = BodyExamForm(instance=table)
     else:
         form = BodyExamForm()
-    #return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})
-        return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})
+    return render(request, 'ehr/body_exam_form.html', {'form': form, 'resident': resident})
 
 
 def body_exam_submit(request):
@@ -631,5 +628,6 @@ def personal_info_submit(request):
 
         success = True
     else:
+        debug.info(form.errors.as_data())
         success = False
     return json_result({'success': success, 'resident_id': resident.id})

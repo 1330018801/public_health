@@ -37,11 +37,15 @@
 {% endblock %}
 
 {% block bregma_length_1 %}
-    {{ form.bregma_length }}
+    {% if form.bregma_length %}
+        {{ form.bregma_length }}
+    {% endif %}
 {% endblock %}
 
 {% block bregma_width_1 %}
-    {{ form.bregma_width }}
+    {% if form.bregma_width %}
+        {{ form.bregma_width }}
+    {% endif %}
 {% endblock %}
 
 {% block neck_enclosed_mass_1 %}

@@ -26,10 +26,10 @@ class AftercareForm(ModelForm):
             'sign_weight_next':  TextInput(attrs={'class': 'easyui-numberbox',
                                                   'data-options': 'width: 40, precision: 1,required: true'},),
             'sign_bmi':  TextInput(attrs={'class': 'easyui-numberbox',
-                                          'data-options': 'width: 40, precision: 2, required: true, editable: false'},),
+                                          'data-options': 'width: 40, precision: 2, required: true'},),
             'sign_bmi_next':  TextInput(attrs={'class': 'easyui-numberbox',
                                                'data-options': 'width: 40, precision: 2, '
-                                                               'required: true, editable: false'},),
+                                                               'required: true'},),
             'sign_heart_rhythm': TextInput(attrs={'class': 'easyui-numberbox',
                                                   'data-options': 'width: 40, required: true'},),
             'sign_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width: 130'},),

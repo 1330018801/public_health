@@ -457,8 +457,9 @@ def read_card(request):
     由于，现在在家庭电子健康档案中能够切换家庭成员作为服务对象，因袭现在没有必要
     提示选择家庭成员。
     """
-    adults = Resident.objects.filter(identity__isnull=False)
-    resident = adults[int(random() * adults.count())]
+    #adults = Resident.objects.filter(identity__isnull=False)
+   # resident = adults[int(random() * adults.count())]
+    resident = Resident.objects.get(name='朱厚照')
     request.session['resident_id'] = resident.id
     request.session['resident_name'] = resident.name
     request.session['resident_ehr_no'] = resident.ehr_no

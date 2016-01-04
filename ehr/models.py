@@ -372,7 +372,7 @@ ACROTARSIUM_ARTERY_PULSE = ((u'未触及', '未触及'), (u'触及双侧对称',
 NEGATIVE_OR_POSITIVE = ((u'阴性', '阴性'), (u'阳性', '阳性'),)
 DISCOVER_OR_NOT = ((u'未发现', '未发现'), (u'有', '有'))
 TAKE_MEDICINE_COMPLIANCE = ((u'规律', '规律'), (u'间断', '间断'), (u'不服药', '不服药'),)
-EXAM_NORMAL_OR_ABNORMAL = ((u'体检无异常', '有异常'), (u'体检无异常', '有异常'),)
+EXAM_NORMAL_OR_ABNORMAL = ((u'体检无异常', '体检无异常'), (u'有异常', '有异常'),)
 
 
 class DietHabitChoices(ChoicesAbstract):
