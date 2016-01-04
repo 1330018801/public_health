@@ -13,6 +13,5 @@ urlpatterns = patterns('',
 
     url(r'^body_exam_page/$', views.body_exam_page, name='body_exam_page'),
     url(r'^body_exam_form/$', views.body_exam_form, name='body_exam_form'),
-    url(r'^body_exam_submit/$', views.body_exam_submit, name='body_exam_submit'),
-
+    url(r'^body_exam_submit/$', views.body_exam_submit, name='body_exam_submit')
 )

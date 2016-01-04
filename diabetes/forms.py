@@ -30,10 +30,10 @@ class AftercareForm(ModelForm):
                                                                     'required: true'}),
             'sign_bmi': TextInput(attrs={'class': 'easyui-numberbox',
                                          'data-options': 'width: 40, precision: 2,'
-                                                         'required: true, editable: false'}),
+                                                         'required: true'}),
             'sign_bmi_next': TextInput(attrs={'class': 'easyui-numberbox',
                                               'data-options': 'width: 40, precision: 2,'
-                                                              'required: true, editable: false'}),
+                                                              'required: true'}),
 
             'sign_acrotarsium_artery_pulse': RadioSelect,
             'sign_extra': TextInput(attrs={'class': 'easyui-textbox', 'data-options': 'width:128'}),

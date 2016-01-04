@@ -1,4 +1,13 @@
 $(function () {
+    $.extend($.fn.validatebox.defaults.rules, {
+        posNeg:{//判断阴阳性
+            validator: function(value, param){
+                return value == '-' | value == '+' | value == '++' | value == '+++' | value == '++++';
+            },
+            message:  '请输入正确的阴阳性'
+        }
+    });
+
     var form = $('#body_exam_form');
     var table = $('#body_exam_table');
     var tabs = form.parents('#ehr_setup_tabs');

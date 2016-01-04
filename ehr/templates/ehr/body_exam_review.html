@@ -707,13 +707,13 @@
 
 {% block hospitalization_history_in_date_1 %}
     {% if form.hospitalization_history_in_date_1 %}
-        {{ form.hospitalization_history_in_date_1 }}
+        {{ form.hospitalization_history_in_date_1 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
 {% block hospitalization_history_out_date_1 %}
     {% if form.hospitalization_history_out_date_1 %}
-        {{ form.hospitalization_history_out_date_1 }}
+        {{ form.hospitalization_history_out_date_1 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -737,13 +737,13 @@
 
 {% block hospitalization_history_in_date_2 %}
     {% if form.hospitalization_history_in_date_2 %}
-        {{ form.hospitalization_history_in_date_2 }}
+        {{ form.hospitalization_history_in_date_2 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
 {% block hospitalization_history_out_date_2 %}
     {% if form.hospitalization_history_out_date_2 %}
-        {{ form.hospitalization_history_out_date_2 }}
+        {{ form.hospitalization_history_out_date_2 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -767,13 +767,13 @@
 
 {% block family_bed_history_build_date_1 %}
     {% if form.family_bed_history_build_date_1 %}
-        {{ form.family_bed_history_build_date_1 }}
+        {{ form.family_bed_history_build_date_1 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
 {% block family_bed_history_remove_date_1 %}
     {% if form.family_bed_history_remove_date_1 %}
-        {{ form.family_bed_history_remove_date_1 }}
+        {{ form.family_bed_history_remove_date_1 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -797,13 +797,13 @@
 
 {% block family_bed_history_build_date_2 %}
     {% if form.family_bed_history_build_date_2 %}
-        {{ form.family_bed_history_build_date_2 }}
+        {{ form.family_bed_history_build_date_2 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
 {% block family_bed_history_remove_date_2 %}
     {% if form.family_bed_history_remove_date_2 %}
-        {{ form.family_bed_history_remove_date_2 }}
+        {{ form.family_bed_history_remove_date_2 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -1013,7 +1013,7 @@
 
 {% block vaccine_date_1 %}
     {% if form.vaccine_date_1 %}
-        {{ form.vaccine_date_1 }}
+        {{ form.vaccine_date_1 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -1031,7 +1031,7 @@
 
 {% block vaccine_date_2 %}
     {% if form.vaccine_date_2 %}
-        {{ form.vaccine_date_2 }}
+        {{ form.vaccine_date_2 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 
@@ -1049,7 +1049,7 @@
 
 {% block vaccine_date_3 %}
     {% if form.vaccine_date_3 %}
-        {{ form.vaccine_date_3 }}
+        {{ form.vaccine_date_3 | date:"Y-m-d" }}
     {% endif %}
 {% endblock %}
 

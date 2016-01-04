@@ -136,6 +136,7 @@ def living_selfcare_appraisal_submit(request):
 
         success = True
     else:
+        debug.info(form.errors.as_data())
         success = False
 
     if success:
@@ -144,7 +145,7 @@ def living_selfcare_appraisal_submit(request):
         if record0:
             result0 = BodyExam.objects.get(id=record0.item_id)
 
-            result0.old__living_selfcare_appraisal = degree
+            result0.old_living_selfcare_appraisal = degree
             result0.save()
         else:
             form0 = BodyExam({'old_living_selfcare_appraisal': degree})

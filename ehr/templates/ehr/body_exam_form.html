@@ -13,46 +13,90 @@
         {{ form.visit_date.value }}
     {% else %}
         {{ form.visit_date }}
-    {% endif %}
+    {% endif %}<input type="text" style="display: none" name="visit_date" value="{{ form.visit_date.value }}">
 {% endblock %}
 
 # 血常规
 {% block blood_routine_test %}
     {% if form.hemoglobin.value %}
         血红蛋白&nbsp;{{ form.hemoglobin.value }}&nbsp;g/L&nbsp;&nbsp;
+    {% else %}
+        血红蛋白&nbsp;{{ form.hemoglobin }}&nbsp;g/L&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.leucocyte.value %}
         白细胞&nbsp;{{ form.leucocyte.value }}&nbsp;×10<sup>9</sup>/L&nbsp;&nbsp;
+    {% else %}
+        白细胞&nbsp;{{ form.leucocyte }}&nbsp;×10<sup>9</sup>/L&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.blood_platelets.value %}
         血小板&nbsp;{{ form.blood_platelets.value }}&nbsp;×10<sup>9</sup>/L<br />
+    {% else %}
+        血小板&nbsp;{{ form.blood_platelets }}&nbsp;×10<sup>9</sup>/L<br />
+    {% endif %}
+
+    {% if form.blood_routine_test_extra.value %}
         其他&nbsp;{{ form.blood_routine_test_extra.value }}
-    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+    {% else %}
+        其他&nbsp;{{ form.blood_routine_test_extra }}
+    {% endif %}
+    {% comment %}{% elif type_alias == 'old' or type_alias == 'psychiatric' %}
         血红蛋白&nbsp;{{ form.hemoglobin }}&nbsp;g/L&nbsp;&nbsp;
         白细胞&nbsp;{{ form.leucocyte }}&nbsp;×10<sup>9</sup>/L&nbsp;&nbsp;
         血小板&nbsp;{{ form.blood_platelets }}&nbsp;×10<sup>9</sup>/L<br />
         其他&nbsp;{{ form.blood_routine_test_extra }}
-    {% endif %}
+    {% endcomment %}
 {% endblock %}
 
 # 尿常规
 {% block urine_routine_test %}
     {% if form.urine_protein.value %}
         尿蛋白&nbsp;{{ form.urine_protein.value }}&nbsp;&nbsp;
+    {% else %}
+        尿蛋白&nbsp;{{ form.urine_protein }}&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.urine_glucose.value %}
         尿糖&nbsp;{{ form.urine_glucose.value }}&nbsp;&nbsp;
+    {% else %}
+        尿糖&nbsp;{{ form.urine_glucose }}&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.ketone_bodies.value %}
         尿酮体&nbsp;{{ form.ketone_bodies.value }}&nbsp;&nbsp;
+    {% else %}
+        尿酮体&nbsp;{{ form.ketone_bodies }}&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.occult_blood.value %}
         尿潜血&nbsp;{{ form.occult_blood.value }}&nbsp;&nbsp;<br>
+    {% else %}
+        尿潜血&nbsp;{{ form.occult_blood }}&nbsp;&nbsp;<br>
+    {% endif %}
+
+    {% if form.routine_urine_test_extra.value %}
         其他&nbsp;{{ form.routine_urine_test_extra.value }}
-    {% elif type_alias == 'old' %}
+    {% else %}
+        其他&nbsp;{{ form.routine_urine_test_extra }}
+    {% endif %}
+    {% comment %}{% elif type_alias == 'old' %}
         尿蛋白&nbsp;{{ form.urine_protein }}&nbsp;&nbsp;
         尿糖&nbsp;{{ form.urine_glucose }}&nbsp;&nbsp;
         尿酮体&nbsp;{{ form.ketone_bodies }}&nbsp;&nbsp;
         尿潜血&nbsp;{{ form.occult_blood }}&nbsp;&nbsp;<br>
         其他&nbsp;{{ form.routine_urine_test_extra }}
-    {% endif %}
+    {% endcomment %}
 {% endblock %}
 
 # 血清谷丙转氨酶
 {% block alanine_aminotransferase %}
     {% if form.alt.value %}
         &nbsp;{{ form.alt.value }}&nbsp;U/L&nbsp;&nbsp;
-    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+    {% comment %}{% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        &nbsp;{{ form.alt }}&nbsp;U/L&nbsp;&nbsp;
+    {% endcomment %}
+    {% else %}
         &nbsp;{{ form.alt }}&nbsp;U/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
@@ -61,7 +105,10 @@
 {% block glutamic_oxalacetic_transaminase %}
     {% if form.ast.value %}
         &nbsp;{{ form.ast.value }}&nbsp;U/L&nbsp;&nbsp;
-    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+    {% comment %}{% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        &nbsp;{{ form.ast }}&nbsp;U/L&nbsp;&nbsp;
+    {% endcomment %}
+    {% else %}
         &nbsp;{{ form.ast }}&nbsp;U/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
@@ -78,7 +125,10 @@
         {% if form.blood_glucose_mg.value %}
             {{ form.blood_glucose_mg.value }} mg/dL
         {% endif %}
-    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+    {% comment %}{% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        {{ form.blood_glucose_mmol }} mmol/L 或 {{ form.blood_glucose_mg }} mg/dL
+    {% endcomment %}
+    {% else %}
         {{ form.blood_glucose_mmol }} mmol/L 或 {{ form.blood_glucose_mg }} mg/dL
     {% endif %}
 {% endblock %}
@@ -90,7 +140,16 @@
         {% if form.electr_gram.value == '异常' %}
             &nbsp;&nbsp;{{ form.electr_gram_abnormal.value }}
         {% endif %}
-    {% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+    {% comment %}{% elif type_alias == 'old' or type_alias == 'psychiatric' %}
+        {% for item in form.electr_gram %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.electr_gram_abnormal }}
+    {% endcomment %}
+    {% else %}
         {% for item in form.electr_gram %}
             {% if forloop.first %}
             {% else %}
@@ -105,22 +164,43 @@
 {% block blood_fat %}
     {% if form.tc.value %}
         总胆固醇&nbsp;{{ form.tc.value }}&nbsp;mmol/L&nbsp;&nbsp;
+    {% else %}
+        总胆固醇&nbsp;{{ form.tc }}&nbsp;mmol/L&nbsp;&nbsp;
+    {% endif %}
+
+    {% if form.tg.value %}
         甘油三酯&nbsp;{{ form.tg.value }}&nbsp;mmol/L<br />
+    {% else %}
+        甘油三酯&nbsp;{{ form.tg }}&nbsp;mmol/L<br />
+    {% endif %}
+
+    {% if form.ldl_c.value %}
         血清低密度脂蛋白胆固醇&nbsp;{{ form.ldl_c.value }}&nbsp;mmol/L<br />
+    {% else %}
+        血清低密度脂蛋白胆固醇&nbsp;{{ form.ldl_c }}&nbsp;mmol/L<br />
+    {% endif %}
+
+    {% if form.hdl_c.value %}
         血清高密度脂蛋白胆固醇&nbsp;{{ form.hdl_c.value }}&nbsp;mmol/L
-    {% elif type_alias == 'old' %}
+    {% else %}
+        血清高密度脂蛋白胆固醇&nbsp;{{ form.hdl_c }}&nbsp;mmol/L
+    {% endif %}
+    {% comment %}{% elif type_alias == 'old' %}
         总胆固醇&nbsp;{{ form.tc }}&nbsp;mmol/L&nbsp;&nbsp;
         甘油三酯&nbsp;{{ form.tg }}&nbsp;mmol/L<br />
         血清低密度脂蛋白胆固醇&nbsp;{{ form.ldl_c }}&nbsp;mmol/L<br />
         血清高密度脂蛋白胆固醇&nbsp;{{ form.hdl_c }}&nbsp;mmol/L
-    {% endif %}
+    {% endcomment %}
 {% endblock %}
 
 # 总胆红素
 {% block total_bilirubin %}
     {% if form.tbil.value %}
         {{ form.tbil.value }}&nbsp;&#956mol/L&nbsp;&nbsp;
-    {% elif type_alias == 'old' %}
+    {% comment%}{%elif type_alias == 'old' %}
+        {{ form.tbil }}&nbsp;&#956mol/L&nbsp;&nbsp;
+    {% endcomment %}
+    {% else %}
         {{ form.tbil }}&nbsp;&#956mol/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
@@ -129,7 +209,10 @@
 {% block serum_creatinine %}
     {% if form.scr.value %}
         {{ form.scr.value }}&nbsp;&#956mol/L&nbsp;&nbsp;
-    {% elif type_alias == 'old' %}
+    {% comment %}{% elif type_alias == 'old' %}
+        {{ form.scr }}&#956mol/L&nbsp;&nbsp;
+    {% endcomment %}
+    {% else %}
         {{ form.scr }}&#956mol/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
@@ -138,7 +221,10 @@
 {% block blood_urea_nitrogen %}
     {% if form.bun.value %}
         {{ form.bun.value }}&nbsp;mmol/L&nbsp;&nbsp;
-    {% elif type_alias == 'old' %}
+    {% comment %}{% elif type_alias == 'old' %}
+        {{ form.bun }}&nbsp;mmol/L&nbsp;&nbsp;
+    {% endcomment %}
+    {% else %}
         {{ form.bun }}&nbsp;mmol/L&nbsp;&nbsp;
     {% endif %}
 {% endblock %}
@@ -147,7 +233,10 @@
 {% block body_temperature %}
     {% if form.body_temperature.value %}
         {{ form.body_temperature.value }}&nbsp;℃
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.body_temperature }}&nbsp;℃
+    {% endcomment %}
+    {% else %}
         {{ form.body_temperature }}&nbsp;℃
     {% endif %}
 {% endblock %}
@@ -155,7 +244,10 @@
 {% block pulse %}
     {% if form.pulse.value %}
         {{ form.pulse.value }}&nbsp;次/分钟
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.pulse }}&nbsp;次/分钟
+    {% endcomment %}
+    {% else %}
         {{ form.pulse }}&nbsp;次/分钟
     {% endif %}
 {% endblock %}
@@ -163,7 +255,10 @@
 {% block breath_frequency %}
     {% if form.breath_frequency.value %}
         {{ form.breath_frequency.value }}&nbsp;次/分钟
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{{% elif type_alias != 'tcm' %}
+        {{ form.breath_frequency }}&nbsp;次/分钟
+    {% endcomment %}
+    {% else %}
         {{ form.breath_frequency }}&nbsp;次/分钟
     {% endif %}
 {% endblock %}
@@ -171,7 +266,10 @@
 {% block blood_pressure_left_sbp %}
     {% if form.blood_pressure_left_sbp.value %}
         {{ form.blood_pressure_left_sbp.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_left_sbp }}
+    {% endcomment %}
+    {% else %}
         {{ form.blood_pressure_left_sbp }}
     {% endif %}
 {% endblock %}
@@ -179,7 +277,10 @@
 {% block blood_pressure_left_dbp %}
     {% if form.blood_pressure_left_dbp.value %}
         {{ form.blood_pressure_left_dbp.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_left_dbp }}
+    {% endcomment %}
+    {% else %}
         {{ form.blood_pressure_left_dbp }}
     {% endif %}
 {% endblock %}
@@ -187,7 +288,10 @@
 {% block blood_pressure_right_sbp %}
     {% if form.blood_pressure_right_sbp.value %}
         {{ form.blood_pressure_right_sbp.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_right_sbp }}
+    {% endcomment %}
+    {% else %}
         {{ form.blood_pressure_right_sbp }}
     {% endif %}
 {% endblock %}
@@ -195,7 +299,10 @@
 {% block blood_pressure_right_dbp %}
     {% if form.blood_pressure_right_dbp.value %}
         {{ form.blood_pressure_right_dbp.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.blood_pressure_right_dbp }}
+    {% endcomment %}
+    {% else %}
         {{ form.blood_pressure_right_dbp }}
     {% endif %}
 {% endblock %}
@@ -203,7 +310,10 @@
 {% block height %}
     {% if form.height.value %}
         {{ form.height.value }}&nbsp;cm
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.height }} &nbsp;cm
+    {% endcomment %}
+    {% else %}
         {{ form.height }} &nbsp;cm
     {% endif %}
 {% endblock %}
@@ -211,7 +321,10 @@
 {% block weight %}
     {% if form.weight.value %}
         {{ form.weight.value }}&nbsp;kg
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.weight }}&nbsp;kg
+    {% endcomment %}
+    {% else %}
         {{ form.weight }}&nbsp;kg
     {% endif %}
 {% endblock %}
@@ -219,7 +332,10 @@
 {% block waistline %}
     {% if form.waistline.value %}
         {{ form.waistline.value }}&nbsp;cm
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.waistline }}&nbsp;cm
+    {% endcomment %}
+    {% else %}
         {{ form.waistline }}&nbsp;cm
     {% endif %}
 {% endblock %}
@@ -227,15 +343,26 @@
 {% block body_mass_index %}
     {% if form.body_mass_index.value %}
         {{ form.body_mass_index.value }}&nbsp;Kg/m<sup>2</sup>
-    {% elif type_alias != 'tcm' %}
-        {{ form.body_mass_index }}{% comment %}<lable id="id_body_mass_index"></lable><input id="body_mass_index" name="body_mass_index" value="" style="display: none">{% endcomment %}&nbsp;Kg/m<sup>2</sup>
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {{ form.body_mass_index }}&nbsp;Kg/m<sup>2</sup>
+    {% endcomment %}
+    {% else %}
+        {{ form.body_mass_index }}&nbsp;Kg/m<sup>2</sup>
     {% endif %}
 {% endblock %}
 
 {% block mouth_lip %}
     {% if form.mouth_lip.value %}
         {{ form.mouth_lip.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_lip %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.mouth_lip %}
             {% if forloop.first %}
             {% else %}
@@ -264,7 +391,36 @@
                 右上&nbsp;{{ form.mouth_tooth_denture_upright.value }}
                 右下&nbsp;{{ form.mouth_tooth_denture_bottomright.value }}
             {% endif %}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_tooth %}
+            {% if forloop.first %}
+            {% elif forloop.counter0 == 2 %}
+                {{ item }}：
+                左上&nbsp;{{ form.mouth_tooth_missing_upleft }}
+                左下&nbsp;{{ form.mouth_tooth_missing_bottomleft }}
+                右上&nbsp;{{ form.mouth_tooth_missing_upright }}
+                右下&nbsp;{{ form.mouth_tooth_missing_bottomright }}<br />
+            {% elif forloop.counter0 == 3 %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ item }}：
+                左上&nbsp;{{ form.mouth_tooth_decayed_upleft }}
+                左下&nbsp;{{ form.mouth_tooth_decayed_bottomleft }}
+                右上&nbsp;{{ form.mouth_tooth_decayed_upright }}
+                右下&nbsp;{{ form.mouth_tooth_decayed_bottomright }}<br />
+            {% elif forloop.counter0 == 4 %}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {{ item }}：
+                左上&nbsp;{{ form.mouth_tooth_denture_upleft }}
+                左下&nbsp;{{ form.mouth_tooth_denture_bottomleft }}
+                右上&nbsp;{{ form.mouth_tooth_denture_upright }}
+                右下&nbsp;{{ form.mouth_tooth_denture_bottomright }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.mouth_tooth %}
             {% if forloop.first %}
             {% elif forloop.counter0 == 2 %}
@@ -298,7 +454,15 @@
 {% block mouth_throat %}
     {% if form.mouth_throat.value %}
         {{ form.mouth_throat.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.mouth_throat %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.mouth_throat %}
             {% if forloop.first %}
             {% else %}
@@ -306,7 +470,7 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-    {% endblock %}
+{% endblock %}
 
 {% block eyesight %}
     {% if form.eyesight_left.value %}
@@ -315,7 +479,14 @@
         （矫正视力：
         左眼&nbsp;{{ form.eyesight_left_rectified.value }}&nbsp;&nbsp;
         右眼&nbsp;{{ form.eyesight_right_rectified.value }}）
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        左眼&nbsp;{{ form.eyesight_left }}&nbsp;&nbsp;
+        右眼&nbsp;{{ form.eyesight_right }}&nbsp;&nbsp;
+        （矫正视力：
+        左眼&nbsp;{{ form.eyesight_left_rectified }}&nbsp;&nbsp;
+        右眼&nbsp;{{ form.eyesight_right_rectified }}）
+    {% endcomment %}
+    {% else %}
         左眼&nbsp;{{ form.eyesight_left }}&nbsp;&nbsp;
         右眼&nbsp;{{ form.eyesight_right }}&nbsp;&nbsp;
         （矫正视力：
@@ -327,7 +498,15 @@
 {% block hearing %}
     {% if form.hearing.value %}
         {{ form.hearing.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.hearing %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.hearing %}
             {% if forloop.first %}
             {% else %}
@@ -340,7 +519,15 @@
 {% block movement_function %}
     {% if form.movement_function.value %}
         {{ form.movement_function.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.movement_function %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.movement_function %}
             {% if forloop.first %}
             {% else %}
@@ -354,7 +541,16 @@
     {% if form.skin.value %}
         {{ form.skin.value }}&nbsp;&nbsp;
         {{ form.skin_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.skin %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.skin_extra }}
+    {% endcomment %}
+    {% else %}
         {% for item in form.skin %}
             {% if forloop.first %}
             {% else %}
@@ -370,7 +566,16 @@
     {% if form.lymph_node.value %}
         {{ form.lymph_node.value }}&nbsp;&nbsp;
         {{ form.lymph_node_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.lymph_node %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lymph_node_extra }}
+    {% endcomment %}
+    {% else %}
         {% for item in form.lymph_node %}
             {% if forloop.first %}
             {% else %}
@@ -385,7 +590,15 @@
 {% block lung_barrel_chested %}
     {% if form.lung_barrel_chested.value %}
         {{ form.lung_barrel_chested.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.lung_barrel_chested %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+    {% endcomment %}
+    {% else %}
         {% for item in form.lung_barrel_chested %}
             {% if forloop.first %}
             {% else %}
@@ -399,7 +612,16 @@
     {% if form.lung_breath_sound.value %}
         {{ form.lung_breath_sound.value }}&nbsp;&nbsp;
         {{ form.lung_breath_sound_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.lung_breath_sound %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lung_breath_sound_extra }}
+    {% endcomment %}
+    {% else %}
         {% for item in form.lung_breath_sound %}
             {% if forloop.first %}
             {% else %}
@@ -414,7 +636,16 @@
     {% if form.lung_rale.value %}
         {{ form.lung_rale.value }}&nbsp;&nbsp;
         {{ form.lung_rale_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        {% for item in form.lung_rale %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.lung_rale_extra }}
+    {% endcomment %}
+    {% else %}
         {% for item in form.lung_rale %}
             {% if forloop.first %}
             {% else %}
@@ -431,7 +662,29 @@
         心律：{{ form.heart_rhythm.value }}
         杂音：{{ form.heart_noise.value }}&nbsp;&nbsp;
         {{ form.heart_noise_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        心率：{{ form.heart_rate }}&nbsp;次/分钟<br />
+        心律：
+        {% for item in form.heart_rhythm %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}<br />
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        杂音：
+        {% for item in form.heart_noise %}
+            {% if forloop.first %}
+            {% elif forloop.last %}
+                {{ item }}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.heart_noise_extra }}
+    {% endcomment %}
+    {% else %}
         心率：{{ form.heart_rate }}&nbsp;次/分钟<br />
         心律：
         {% for item in form.heart_rhythm %}
@@ -467,7 +720,49 @@
         {{ form.stomach_slenauxe_extra.value }}<br />
         移动性浊音：{{ form.stomach_shifting_dullness.value }}
         {{ form.stomach_shifting_dullness_extra.value }}
-    {% elif type_alias != 'tcm' %}
+    {% comment %}{% elif type_alias != 'tcm' %}
+        压痛：
+        {% for item in form.stomach_tenderness %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_tenderness_extra }}<br />
+        包块：
+        {% for item in form.stomach_enclosed_mass %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_enclosed_mass_extra }}<br />
+        肝大：
+        {% for item in form.stomach_hepatomegaly %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_hepatomegaly_extra }}<br />
+        脾大：
+        {% for item in form.stomach_slenauxe %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_slenauxe_extra }}<br />
+        移动性浊音：
+        {% for item in form.stomach_shifting_dullness %}
+            {% if forloop.first %}
+            {% else %}
+                {{ item }}&nbsp;&nbsp;
+            {% endif %}
+        {% endfor %}
+        {{ form.stomach_shifting_dullness_extra }}
+    {% endcomment %}
+    {% else %}
         压痛：
         {% for item in form.stomach_tenderness %}
             {% if forloop.first %}
@@ -533,117 +828,126 @@
 {% block pinghe %}
     {% if form.pinghe.value %}
         {{ form.pinghe.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.pinghe %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block qixu %}
     {% if form.qixu.value %}
         {{ form.qixu.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.qixu %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block yangxu %}
     {% if form.yangxu.value %}
         {{ form.yangxu.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.yangxu %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block yinxu %}
     {% if form.yinxu.value %}
         {{ form.yinxu.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.yinxu %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block tanshi %}
     {% if form.tanshi.value %}
         {{ form.tanshi.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.tanshi %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block shire %}
     {% if form.shire.value %}
         {{ form.shire.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.shire %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block xueyu %}
     {% if form.xueyu.value %}
         {{ form.xueyu.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.xueyu %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block qiyu %}
     {% if form.qiyu.value %}
         {{ form.qiyu.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.qiyu %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
 {% block tebing %}
     {% if form.tebing.value %}
         {{ form.tebing.value }}
-    {% elif type_alias == 'tcm' %}
+    {% comment %}{% elif type_alias == 'tcm' %}
         {% for item in form.tebing %}
             {% if forloop.first %}
             {% else %}
                 {{ item }}&nbsp;&nbsp;&nbsp;&nbsp;
             {% endif %}
         {% endfor %}
+    {% endcomment %}
     {% endif %}
 {% endblock %}
 
@@ -1277,7 +1581,7 @@
 
 {% block hospitalization_history_in_date_1 %}
     {% if form.hospitalization_history_in_date_1.value %}
-        {{ form.hospitalization_history_in_date_1.value }}
+        {{ form.hospitalization_history_in_date_1.value | date:"Y-m-d" }}
     {% else %}
         {{ form.hospitalization_history_in_date_1 }}
     {% endif %}
@@ -1285,7 +1589,7 @@
 
 {% block hospitalization_history_out_date_1 %}
     {% if form.hospitalization_history_out_date_1.value %}
-        {{ form.hospitalization_history_out_date_1.value }}
+        {{ form.hospitalization_history_out_date_1.value | date:"Y-m-d" }}
     {% else %}
         {{ form.hospitalization_history_out_date_1 }}
     {% endif %}
@@ -1317,7 +1621,7 @@
 
 {% block hospitalization_history_in_date_2 %}
     {% if form.hospitalization_history_in_date_2.value %}
-        {{ form.hospitalization_history_in_date_2.value }}
+        {{ form.hospitalization_history_in_date_2.value | date:"Y-m-d" }}
     {% else %}
         {{ form.hospitalization_history_in_date_2 }}
     {% endif %}
@@ -1325,7 +1629,7 @@
 
 {% block hospitalization_history_out_date_2 %}
     {% if form.hospitalization_history_out_date_2.value %}
-        {{ form.hospitalization_history_out_date_2.value }}
+        {{ form.hospitalization_history_out_date_2.value | date:"Y-m-d" }}
     {% else %}
         {{ form.hospitalization_history_out_date_2 }}
     {% endif %}
@@ -1357,7 +1661,7 @@
 
 {% block family_bed_history_build_date_1 %}
     {% if form.family_bed_history_build_date_1.value %}
-        {{ form.family_bed_history_build_date_1.value }}
+        {{ form.family_bed_history_build_date_1.value | date:"Y-m-d" }}
     {% else %}
         {{ form.family_bed_history_build_date_1 }}
     {% endif %}
@@ -1365,7 +1669,7 @@
 
 {% block family_bed_history_remove_date_1 %}
     {% if form.family_bed_history_remove_date_1.value %}
-        {{ form.family_bed_history_remove_date_1.value }}
+        {{ form.family_bed_history_remove_date_1.value | date:"Y-m-d" }}
     {% else %}
         {{ form.family_bed_history_remove_date_1 }}
     {% endif %}
@@ -1397,7 +1701,7 @@
 
 {% block family_bed_history_build_date_2 %}
     {% if form.family_bed_history_build_date_2.value %}
-        {{ form.family_bed_history_build_date_2.value }}
+        {{ form.family_bed_history_build_date_2.value | date:"Y-m-d" }}
     {% else %}
         {{ form.family_bed_history_build_date_2 }}
     {% endif %}
@@ -1405,7 +1709,7 @@
 
 {% block family_bed_history_remove_date_2 %}
     {% if form.family_bed_history_remove_date_2.value %}
-        {{ form.family_bed_history_remove_date_2.value }}
+        {{ form.family_bed_history_remove_date_2.value | date:"Y-m-d" }}
     {% else %}
         {{ form.family_bed_history_remove_date_2 }}
     {% endif %}
@@ -1715,7 +2019,7 @@
 
 {% block vaccine_date_1 %}
     {% if form.vaccine_date_1.value %}
-        {{ form.vaccine_date_1.value }}
+        {{ form.vaccine_date_1.value | date:"Y-m-d" }}
     {% else %}
         {{ form.vaccine_date_1 }}
     {% endif %}
@@ -1739,7 +2043,7 @@
 
 {% block vaccine_date_2 %}
     {% if form.vaccine_date_2.value %}
-        {{ form.vaccine_date_2.value }}
+        {{ form.vaccine_date_2.value | date:"Y-m-d" }}
     {% else %}
         {{ form.vaccine_date_2 }}
     {% endif %}
@@ -1763,7 +2067,7 @@
 
 {% block vaccine_date_3 %}
     {% if form.vaccine_date_3.value %}
-        {{ form.vaccine_date_3.value }}
+        {{ form.vaccine_date_3.value | date:"Y-m-d" }}
     {% else %}
         {{ form.vaccine_date_3 }}
     {% endif %}
